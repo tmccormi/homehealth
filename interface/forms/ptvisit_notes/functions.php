@@ -1,4 +1,3 @@
-
 <?php
 include_once("../../globals.php");
 include_once("$srcdir/api.inc");
@@ -15,6 +14,7 @@ function patientName()
         echo $fname." ".$mname." ".$lname;
 }
 }
+
 function ICD9_dropdown($sel)
 {
           $select= sqlStatement("select code,code_text from codes");
@@ -42,64 +42,30 @@ function ICD9_dropdown($sel)
 }
 
 
-function Mobility_status($sel)
-{
-	$Mob_status['status']= array(
-	'U',
-	'Dep',
-	'Max',
-	'Mod',
-	'Min',
-	'CG',
-	'SBA',
-	'S',
-	'Mod I',
-	'Independent'
-);
+function timeDropDown($sel)
+{ 
 echo "<option value='' selected='selected'>"."Please Select...". "</option>\n";
-
-foreach($Mob_status['status'] as $stat)
-	{
-		$selected="";
-		if($sel!="new")
-		{
-			if($sel== $stat)
-			{	
-				$selected="selected='selected'";
-			}			
-		echo "<option value='$stat' $selected>".$stat. "</option>\n";
-		$selected="";	
+	  $start = strtotime('9:00am');
+	  $end = strtotime('9:00pm');
+	  $selected="";
+	  if($sel!="new")
+	  {
+	    for ($i = $start; $i <= $end; $i += 900)
+	    {		
+		if($sel== date('g:i a', $i))
+		{	
+			$selected= "selected='selected'";			
 		}
-	else
-	{
-		echo "<option value='$stat'>".$stat. "</option>\n";
-	}
+		echo "<option value='".date('g:i a', $i)."'". $selected.">" . date('g:i a', $i).'</option>';
+		$selected="";			
+	    }
+	  }
+	  else
+	  {
+	    for ($i = $start; $i <= $end; $i += 900)
+	    {
+		echo "<option value='".date('g:i a', $i)."'".">" . date('g:i a', $i).'</option>';
+	    }
+	  }
 }
-}
-
-
-function Balance_skills($sel)
-{
-	$Bal_skills['skills']=array(
-	'N', 'G','F','P', '0');
-echo "<option value='' selected='selected'>"."Please Select...". "</option>\n";
-foreach($Bal_skills['skills'] as $skill)
-	{
-		$selected="";
-		if($sel!="new")
-		{
-			if($sel== $skill)
-			{	
-				$selected="selected='selected'";
-			}			
-		echo "<option value='$skill' $selected>".$skill. "</option>\n";
-		$selected="";	
-		}
-		else
-		{
-		echo "<option value='$skill'>".$skill. "</option>\n";	
-		}
-	}
-}
-
 ?>

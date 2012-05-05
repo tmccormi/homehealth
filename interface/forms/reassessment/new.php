@@ -120,8 +120,8 @@ formHeader("Form: evaluation");
 <label>
   <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Lying" id="lying" />
   <?php xl('Lying *O2 Sat','e')?>
-  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" />
-</label>
+</label>  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" />
+
 <?php xl('*Physician ordered','e')?></td></tr></table></td>
   </tr>
   <tr>
@@ -221,11 +221,11 @@ formHeader("Form: evaluation");
 
         <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Initial_Status" id="Reassessment_ADL_Grooming_Oral_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Current_Status" id="Reassessment_ADL_Grooming_Oral_Current_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
-        <td><input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
+        <td><input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
 <?php xl('N/A','e')?>
-  <input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
+  <input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
 <?php xl('Goal met','e')?>
-<input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
+<input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
       <tr>
@@ -233,11 +233,11 @@ formHeader("Form: evaluation");
         <td scope="row"><?php xl('Toileting','e')?></td>
         <td align="center"><strong><select name="Reassessment_ADL_Toileting_Initial_Status" id="Reassessment_ADL_Toileting_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Toileting_Current_Status" id="Reassessment_ADL_Toileting_Current_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
-        <td><input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
+        <td><input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
 <?php xl('N/A','e')?>
-  <input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
+  <input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
 <?php xl('Goal met','e')?>
-<input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
+<input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
 
       </tr>

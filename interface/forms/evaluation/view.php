@@ -43,7 +43,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 				value='<?php echo stripslashes($obj{"Evaluation_date"});?>'
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  disabled/> 
+					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'

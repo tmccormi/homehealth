@@ -15,29 +15,29 @@ function patientName()
         echo $fname." ".$mname." ".$lname;
 }
 }
+
 function ICD9_dropdown($sel)
 {
           $select= sqlStatement("select code,code_text from codes");
-		$selected="";		
-		echo "<option value='' selected='selected'>"."Please Select...". "</option>\n";		
-		
+                $selected="";
+                echo "<option value='' selected='selected'>"."Please Select...". "</option>\n";
           while($Row=sqlFetchArray($select))
           {
               $id= $Row['code'];
               $descr= $Row['code_text'];
           if($sel!="new")
-			{
-			if($sel== $id)
-			{	
-				$selected="selected='selected'";
-			}
-			 echo "<option value='$id' title=".$descr.". $selected> ".$id."</option>\n";
-			$selected="";	
-			}
-			else 
-			{
+                        {
+                        if($sel== $id)
+                        {
+                                $selected="selected='selected'";
+                        }
+                         echo "<option value='$id' title=".$descr.". $selected> ".$id."</option>\n";
+                        $selected="";
+                        }
+                        else
+                        {
               echo "<option value='$id' title=".$descr."> ".$id."</option>\n";
-			}
+                        }
           }
 }
 

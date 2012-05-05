@@ -46,12 +46,12 @@ formHeader("Form: evaluation");
           <td align="center"><strong><?php xl('MR#','e')?></strong></td>
          <td width="15%" align="center" valign="top" class="bold"><input
 					type="text" name="mr" id="mr"
-					value="<?php  echo $_SESSION['pid']?>" disabled /></td>
+					value="<?php  echo $_SESSION['pid']?>" readonly /></td>
           <td align="center"><strong>Date</strong></td>
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  disabled/> 
+					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'

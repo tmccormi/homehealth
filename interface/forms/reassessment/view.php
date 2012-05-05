@@ -127,9 +127,9 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_BP_Systolic"});?>" />
   <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Lying" id="lying" 
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Lying") echo "checked";;?>/>
   <?php xl('Lying *O2 Sat','e')?>
-  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" 
+</label>  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" 
   value="<?php echo stripslashes($obj{"Reassessment_VS_Sat"});?>" />
-</label>
+
 <?php xl('*Physician ordered','e')?></td></tr></table></td>
   </tr>
   <tr>
@@ -247,8 +247,8 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
       <tr>
         <td scope="row"><?php xl('Grooming/Oral Hygiene','e')?></td>
 
-        <td align="center"><strong><select name="" id=""><?php Mobility_status(stripslashes($obj{"Reassessment_ADL_Feeding_Initial_Status"}))	?></select></strong></td>
-        <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Initial_Status" id="Reassessment_ADL_Grooming_Oral_Initial_Status"><?php Mobility_status(stripslashes($obj{"Reassessment_ADL_Grooming_Oral_Current_Status"}))	?></select></strong></td>
+        <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Initial_Status" id="Reassessment_ADL_Grooming_Oral_Initial_Status"><?php Mobility_status(stripslashes($obj{"Reassessment_ADL_Grooming_Oral_Initial_Status"}))	?></select></strong></td>
+        <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Current_Status" id="Reassessment_ADL_Grooming_Oral_Current_Status"><?php Mobility_status(stripslashes($obj{"Reassessment_ADL_Grooming_Oral_Current_Status"}))	?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" 
         <?php if ($obj{"Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills"} == "N/A") echo "checked";;?>/>
 <?php xl('N/A','e')?>
@@ -479,10 +479,10 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
         <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
         value="No Change" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "No Change") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
-        value="Improved" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "N/A") echo "checked";;?>/></td>
+        value="N/A" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "N/A") echo "checked";;?>/></td>
         <td align="center"><?php xl('SHORT-TERM MEMORY','e')?></td>
         <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
-        value="Improved" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "on") echo "checked";;?>/></td>
+        value="Improved" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "Improved") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
         value="No Change" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "No Change") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
