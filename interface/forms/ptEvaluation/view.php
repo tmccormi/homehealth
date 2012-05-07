@@ -19,8 +19,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
 <form method=post action="<?php echo $rootdir?>/forms/ptEvaluation/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="evaluation">
 <span class="title"><?php xl('Evaluation','e');?></span><br></br>
 
-<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
-<br>
+<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
 <br></br>
@@ -274,8 +273,8 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
           <?php xl('Falls Risks','e')?>
   <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="SOB" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" 
      <?php if ($obj{"Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS"} == "SOB")  echo "checked";;?>/>
-          <?php xl('SOB Other','e')?></strong>
-          <strong>
+            <?php xl('SOB','e')?><br><?php xl('Other','e')?></strong>
+            <strong>
             <input type="text" name="Evaluation_MFP_Other" id="Evaluation_MFP_Other" 
     value="<?php echo stripslashes($obj{"Evaluation_MFP_Other"});?>"/>
             <br />
@@ -347,7 +346,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
            <?php xl('Who','e')?> <strong>
               <input type="text" name="Evaluation_Family_Caregiver_Support_Who" id="Evaluation_Family_Caregiver_Support_Who" 
     value="<?php echo stripslashes($obj{"Evaluation_Family_Caregiver_Support_Who"});?>"/>
-              </strong><?php xl('Previous # Visits into Community Weekly','e')?> <strong>
+              </strong><br><?php xl('Previous # Visits into Community Weekly','e')?> <strong>
                 <input type="text" name="Evaluation_FC_Visits_Community_Weekly" id="Evaluation_FC_Visits_Community_Weekly" 
       value="<?php echo stripslashes($obj{"Evaluation_FC_Visits_Community_Weekly"});?>"/>
                 </strong><br />
@@ -681,10 +680,10 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
     value="Good" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Good")  echo "checked";;?>/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Fair")  echo "checked";;?>/></td>
+    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Fair")  echo "checked";;?>/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Poor")  echo "checked";;?>/></td>
+    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Poor")  echo "checked";;?>/></td>
 
         <td><?php xl('HEARING','e')?></td>
         <td align="center">
@@ -692,10 +691,10 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
     value="Good" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Good")  echo "checked";;?>/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Fair")  echo "checked";;?>/></td>
+    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Fair")  echo "checked";;?>/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Poor")  echo "checked";;?>/></td>
+    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Poor")  echo "checked";;?>/></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('COMMUNICATION','e')?></td>
@@ -705,10 +704,10 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
           </td>
         <td align="center">
       <input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Fair")  echo "checked";;?>/></td></td>
+    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Fair")  echo "checked";;?>/></td></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Poor")  echo "checked";;?>/></td></td>
+    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Poor")  echo "checked";;?>/></td></td>
 
         <td><?php xl('VISION','e')?></td>
         <td align="center">
@@ -716,10 +715,10 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
     value="Good" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Good")  echo "checked";;?>/></td></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Fair")  echo "checked";;?>/></td></td>
+    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Fair")  echo "checked";;?>/></td></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Poor")  echo "checked";;?>/></td></td>
+    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Poor")  echo "checked";;?>/></td></td>
       </tr>
   </table></td>
   </tr>
@@ -760,13 +759,13 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
 	<tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" 
-<?php if ($obj{"Evaluation_Mis_skil_Vision"} == "All Muscle Strength is WFL")  echo "checked";;?>/>
+<?php if ($obj{"Evaluation_MS_ROM_All_Muscle_WFL"} == "All Muscle Strength is WFL")  echo "checked";;?>/>
       <?php xl('All Muscle Strength is WFL','e')?>
-      <input type="checkbox" name="Evaluation_MS_ROM_ALL_ROM_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_ALL_ROM_WFL" 
-<?php if ($obj{"Evaluation_Mis_skil_Vision"} == "All ROM is WFL")  echo "checked";;?>/>
+      <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" 
+<?php if ($obj{"Evaluation_MS_ROM_All_Muscle_WFL"} == "All ROM is WFL")  echo "checked";;?>/>
     <?php xl('All ROM is WFL','e')?>
-    <input type="checkbox" name="Evaluation_MS_ROM_ALL_ROM_WFL" value="other Problem" id="Evaluation_MS_ROM_ALL_ROM_WFL" 
-<?php if ($obj{"Evaluation_Mis_skil_Vision"} == "other Problem")  echo "checked";;?>/>
+    <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="other Problem" id="Evaluation_MS_ROM_All_Muscle_WFL" 
+<?php if ($obj{"Evaluation_MS_ROM_All_Muscle_WFL"} == "other Problem")  echo "checked";;?>/>
     <?php xl('The following problem areas are','e')?>
 <input type="text" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" 
 value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"});?>"/>
@@ -826,9 +825,8 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left"});?>"/>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hypo" 
 <?php if ($obj{"Evaluation_MS_ROM_Tonicity"} == "Hypo")  echo "checked";;?>/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" 
-value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?>"/></td>
+        <td align="center" rowspan="4">
+        <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="27" rows="7"> <?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?></textarea>
         </tr>
       <tr>
         <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" 
@@ -860,9 +858,6 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left1"});?>"/>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity1" id="Evaluation_MS_ROM_Tonicity1" value="Hypo" 
 <?php if ($obj{"Evaluation_MS_ROM_Tonicity1"} == "Hypo")  echo "checked";;?>/></td>
-        <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description"  
-value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?>"/></td>
         </tr>
       <tr>
         <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" 
@@ -894,9 +889,6 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left2"});?>"/>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity2" id="Evaluation_MS_ROM_Tonicity2" value="Hypo"  
 <?php if ($obj{"Evaluation_MS_ROM_Tonicity2"} == "Hypo")  echo "checked";;?>/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" 
-value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?>"/></td>
         </tr>
       <tr>
         <td align="center" scope="row">
@@ -929,9 +921,6 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left3"});?>"/>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity3" id="Evaluation_MS_ROM_Tonicity3" value="Hypo"  
 <?php if ($obj{"Evaluation_MS_ROM_Tonicity3"} == "Hypo")  echo "checked";;?>/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" 
- value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?>"/></td>
         </tr>
     </table></td>
   </tr>

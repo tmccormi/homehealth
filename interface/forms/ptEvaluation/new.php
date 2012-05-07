@@ -242,7 +242,7 @@ formHeader("Form: evaluation");
           <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="Falls Risks" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
           <?php xl('Falls Risks','e')?>
   <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="SOB" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
-          <?php xl('SOB Other','e')?></strong>
+          <?php xl('SOB','e')?><br><?php xl('Other','e')?></strong>
           <strong>
             <input type="text" name="Evaluation_MFP_Other" id="Evaluation_MFP_Other" />
             <br />
@@ -299,7 +299,7 @@ formHeader("Form: evaluation");
                       
            <?php xl('Who','e')?> <strong>
               <input type="text" name="Evaluation_Family_Caregiver_Support_Who" id="Evaluation_Family_Caregiver_Support_Who" />
-              </strong><?php xl('Previous # Visits into Community Weekly','e')?> <strong>
+              </strong><br><?php xl('Previous # Visits into Community Weekly','e')?> <strong>
                 <input type="text" name="Evaluation_FC_Visits_Community_Weekly" id="Evaluation_FC_Visits_Community_Weekly" />
                 </strong><br />
             <?php xl('Additional Comments','e')?><strong>
@@ -434,7 +434,7 @@ formHeader("Form: evaluation");
         <br />
         <strong><?php xl('Gait Deviations','e')?></strong> <?php xl('(E.g. Posture, Stride Length, Cadence, Foot Placement, Weight Shift)','e')?>
  <br/>
-       <input type="text" id="Evaluation_GS_Gait_Deviations" name="Evaluation_GS_Gait_Deviations" />
+       <input type="text"  size="115%" id="Evaluation_GS_Gait_Deviations" name="Evaluation_GS_Gait_Deviations" />
       </td></tr></table></td></tr>
       <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
@@ -640,9 +640,9 @@ formHeader("Form: evaluation");
 	<tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
       <?php xl('All Muscle Strength is WFL','e')?>
-      <input type="checkbox" name="Evaluation_MS_ROM_ALL_ROM_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_ALL_ROM_WFL" />
+      <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
     <?php xl('All ROM is WFL','e')?>
-    <input type="checkbox" name="Evaluation_MS_ROM_ALL_ROM_WFL" value="other Problem" id="Evaluation_MS_ROM_ALL_ROM_WFL" />
+    <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="other Problem" id="Evaluation_MS_ROM_All_Muscle_WFL" />
     <?php xl('The following problem areas are','e')?>
 <input type="text" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" />
     </strong></td></tr></table></td>
@@ -691,8 +691,8 @@ formHeader("Form: evaluation");
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hyper"/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hypo"/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" /></td>
+        <td align="center" rowspan="4">
+        <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="27" rows="7"></textarea>
         </tr>
       <tr>
         <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" /></td>
@@ -714,8 +714,6 @@ formHeader("Form: evaluation");
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity1" id="Evaluation_MS_ROM_Tonicity1" value="Hyper"/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity1" id="Evaluation_MS_ROM_Tonicity1" value="Hypo"/></td>
-        <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" /></td>
         </tr>
       <tr>
         <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" /></td>
@@ -737,8 +735,6 @@ formHeader("Form: evaluation");
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity2" id="Evaluation_MS_ROM_Tonicity2" value="Hyper"/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity2" id="Evaluation_MS_ROM_Tonicity2" value="Hypo"/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" /></td>
         </tr>
       <tr>
         <td align="center" scope="row">
@@ -761,8 +757,6 @@ formHeader("Form: evaluation");
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity3" id="Evaluation_MS_ROM_Tonicity3" value="Hyper"/></td>
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity3" id="Evaluation_MS_ROM_Tonicity3" value="Hypo"/></td>
-        <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" /></td>
         </tr>
     </table></td>
   </tr>
