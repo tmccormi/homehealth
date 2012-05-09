@@ -12,7 +12,7 @@ if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_ot_visit_discharge_note", $_POST, $_GET["id"],$userauthorized);
 addForm($encounter, "Visit Discharge", $newid, "visit_discharge_test", $pid, $userauthorized);
 
-}
+ }
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_ot_visit_discharge_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1,date = NOW(), 
 dischargeplan_Time_In='".$_POST["dischargeplan_Time_In"]."',
@@ -39,12 +39,7 @@ dischargeplan_Vital_Signs_chronic_condition='".$_POST["dischargeplan_Vital_Signs
 dischargeplan_Vital_Signs_Patient_states='".$_POST["dischargeplan_Vital_Signs_Patient_states"]."',
 dischargeplan_Vital_Signs_Patient_states_other='".$_POST["dischargeplan_Vital_Signs_Patient_states_other"]."',
 dischargeplan_treatment_diagnosis_problem='".$_POST["dischargeplan_treatment_diagnosis_problem"]."',
-dischargeplan_Mental_Status_Alert='".$_POST["dischargeplan_Mental_Status_Alert"]."',
-dischargeplan_Mental_Status_Oriented='".$_POST["dischargeplan_Mental_Status_Oriented"]."',
-dischargeplan_Mental_Status_Forgetful='".$_POST["dischargeplan_Mental_Status_Forgetful"]."',
-dischargeplan_Mental_Status_Disoriented='".$_POST["dischargeplan_Mental_Status_Disoriented"]."',
-dischargeplan_Mental_Status_Depressed='".$_POST["dischargeplan_Mental_Status_Depressed"]."',
-dischargeplan_Mental_Status_Agitated='".$_POST["dischargeplan_Mental_Status_Agitated"]."',
+dischargeplan_Mental_Status='".$_POST["dischargeplan_Mental_Status"]."',
 dischargeplan_Mental_Status_Other='".$_POST["dischargeplan_Mental_Status_Other"]."',
 dischargeplan_Mental_Status_MSS='".$_POST["dischargeplan_Mental_Status_MSS"]."',
 dischargeplan_Mental_Status_CMT='".$_POST["dischargeplan_Mental_Status_CMT"]."',
@@ -87,10 +82,7 @@ dischargeplan_ToD_Per_Home_Exercises='".$_POST["dischargeplan_ToD_Per_Home_Exerc
 dischargeplan_ToD_Per_Home_Exercises_for='".$_POST["dischargeplan_ToD_Per_Home_Exercises_for"]."',
 dischargeplan_ToD_Other='".$_POST["dischargeplan_ToD_Other"]."',
 dischargeplan_ToD_Status_of_Patient='".$_POST["dischargeplan_ToD_Status_of_Patient"]."',
-dischargeplan_ToD_Independent='".$_POST["dischargeplan_ToD_Independent"]."',
-dischargeplan_ToD_Ind_with_Minimal_Assist='".$_POST["dischargeplan_ToD_Ind_with_Minimal_Assist"]."',
-dischargeplan_ToD_Partially_Dependent='".$_POST["dischargeplan_ToD_Partially_Dependent"]."',
-dischargeplan_ToD_Totally_Dependent='".$_POST["dischargeplan_ToD_Totally_Dependent"]."',
+dischargeplan_Functional_Ability_Timeof_Discharge='".$_POST["dischargeplan_Functional_Ability_Timeof_Discharge"]."',
 dischargeplan_Discharge_anticipated='".$_POST["dischargeplan_Discharge_anticipated"]."',
 dischargeplan_Discharge_not_anticipated='".$_POST["dischargeplan_Discharge_not_anticipated"]."',
 dischargeplan_follow_up_treatment='".$_POST["dischargeplan_follow_up_treatment"]."',

@@ -27,8 +27,14 @@ formHeader("Form: visit_discharge");
 </head>
 
 <body>
-<form method=post action="<?php echo $rootdir;?>/forms/visit_discharge_test/save.php?mode=new" name="my_form">
-<span class="title"><?php xl('Visit/Discharge Note','e');?></span><br><br>
+<form method=post action="<?php echo $rootdir;?>/forms/visit_discharge_test/save.php?mode=new" name="visitdischarge">
+<h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT/DISCHARGE NOTE','e')?> </h3>
+<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+ <br></br>
 <table width="100%" padding="2px"border="1" cellpadding="2px" class="formtable">
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
@@ -36,15 +42,15 @@ formHeader("Form: visit_discharge");
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
     <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled/></td>
     <td width="70"><strong><?php xl('Time In','e');?></strong></td>
-    <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In"><?php timeDropDown()?></select></td>
+    <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
     <td width="70"><strong><?php xl('Time Out','e');?></strong> <br /></td>
-    <td><select name="dischargeplan_Time_Out" id="dischargeplan_Time_Out"><?php timeDropDown()?></select></td>
+    <td><select name="dischargeplan_Time_Out" id="dischargeplan_Time_Out"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
     <td width="70"><strong><?php xl('Date','e');?></strong></td>
     <td><strong>
     <input type='text' size='20' name='dischargeplan_date' id='dischargeplan_date'
     value='<?php echo $date ?>'
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' />
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
     title='<?php xl('Click here to choose a date','e'); ?>'>
@@ -103,7 +109,7 @@ formHeader("Form: visit_discharge");
       <?php xl('Standing','e');?> </label>
      <label>
        <input type="checkbox" name="dischargeplan_Vital_Signs_Sitting" value="Lying" id="dischargeplan_Vital_Signs_Lying" />
-     <?php xl('Lying *O2 Sat','e');?> 
+     <?php xl('Lying *O2 Sat','e');?></label><label> 
      <input type="text" size="5px" name="dischargeplan_Vital_Signs_Sat" id="dischargeplan_Vital_Signs_Sat" />
      </label> 
      <?php xl('*Physician ordered','e');?> 
@@ -124,30 +130,27 @@ formHeader("Form: visit_discharge");
     <td scope="row"></td></tr>
   <tr>
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e');?> </strong>
-    <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem"><?php ICD9_dropdown()?></select>
+    <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem"><?php ICD9_dropdown($GLOBALS['Selected'])?></select>
   </tr>
   <tr>
-
-    <td scope="row"><p><strong><?php xl('Mental Status','e');?></strong></p>
+          <td scope="row"><p><strong><?php xl('Mental Status','e');?></strong></p>
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Alert"  id="dischargeplan_Mental_Status_Alert" />
+            <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Alert"/>
           <?php xl('Alert','e');?></label>
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Oriented"  id="dischargeplan_Mental_Status_Oriented" />
-
+            <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Oriented"/>
           <?php xl('Oriented','e');?></label>
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Forgetful"  id="dischargeplan_Mental_Status_Forgetful" />
+            <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Forgetful"/>
           <?php xl('Forgetful','e');?></label>
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Disoriented"  id="dischargeplan_Mental_Status_Disoriented" />
+            <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Disoriented"/>
           <?php xl('Disoriented','e');?></label>
-
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Depressed"  id="dischargeplan_Mental_Status_Depressed" />
+            <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Depressed"/>
           <?php xl('Depressed','e');?></label>
           <label>
-            <input type="checkbox" name="dischargeplan_Mental_Status_Agitated" id="dischargeplan_Mental_Status_Agitated" />
+            <input type="checkbox" name="dischargeplan_Mental_Status" id="dischargeplan_Mental_Status" value="Agitated"/>
           <?php xl('Agitated','e');?></label>
           <?php xl('Other','e');?>
           <input type="text" name="dischargeplan_Mental_Status_Other" id="dischargeplan_Mental_Status_Other" /><br />
@@ -299,8 +302,10 @@ formHeader("Form: visit_discharge");
             <label for="Safety Management in"><?php xl('Safety Management in','e');?></label>
             <input type="text" name="dischargeplan_ToD_Safety_Management_in" size="50px" id="dischargeplan_ToD_Safety_Management_in" />
 
-          </tr>
-        <tr>
+          </td>
+        </tr>
+
+<tr>
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_Env_Adaptations" id="dischargeplan_ToD_Env_Adaptations" />
             <label for="Environment Adaptations including"><?php xl('Environment Adaptations including','e');?></label>
@@ -312,12 +317,14 @@ formHeader("Form: visit_discharge");
             <input type="checkbox" name="dischargeplan_ToD_AE_Usage" id="dischargeplan_ToD_AE_Usage" />
             <label for="Adaptive Equipment Usage for"><?php xl('Adaptive Equipment Usage for','e');?></label>
             <input type="text" name="dischargeplan_ToD_AE_Usage_for" size="40px" id="dischargeplan_ToD_AE_Usage_for" />
-            <input type="checkbox" name="" id="dischargeplan_ToD_CF_Performance" />
+            <input type="checkbox" name="dischargeplan_ToD_CF_Performance" id="dischargeplan_ToD_CF_Performance" />
             <label for="Caregiver/Family Performance in"><?php xl('Caregiver/Family Performance in','e');?></label>
             <input type="text" name="dischargeplan_ToD_CF_Performance_in" size="40px" id="dischargeplan_ToD_CF_Performance_in" />
 
           </td>
         </tr>
+         
+        
         <tr>
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_Per_Home_Exercises" id="dischargeplan_ToD_Per_Home_Exercises" />
@@ -342,20 +349,18 @@ formHeader("Form: visit_discharge");
   <tr>
     <td scope="row"><strong><?php xl('Functional Ability at Time of Discharge','e');?></strong><br />
       
-
-            <label>
-              <input type="checkbox" name="dischargeplan_ToD_Independent" value="Independent" id="dischargeplan_ToD_Independent" />
-
+       <label>
+              <input type="checkbox" name="dischargeplan_Functional_Ability_Timeof_Discharge" value="Independent" id="dischargeplan_Functional_Ability_Timeof_Discharge" />
         <?php xl('Independent','e');?></label>
             <label>
-              <input type="checkbox" name="dischargeplan_ToD_Independent" value="Independent with Minimal Assistance" id="dischargeplan_ToD_Ind_with_Minimal_Assist" />
+              <input type="checkbox" name="dischargeplan_Functional_Ability_Timeof_Discharge" value="Independent with Minimal Assistance" id="dischargeplan_Functional_Ability_Timeof_Discharge" />
               <?php xl('Independent with Minimal Assistance','e');?></label>
           <label>
-              <input type="checkbox" name="dischargeplan_ToD_Independent" value="Partially Dependent" id="dischargeplan_ToD_Partially_Dependent" />
+              <input type="checkbox" name="dischargeplan_Functional_Ability_Timeof_Discharge" value="Partially Dependent" id="dischargeplan_Functional_Ability_Timeof_Discharge" />
               <?php xl('Partially Dependent','e');?></label>
 
          <label>
-              <input type="checkbox" name="dischargeplan_ToD_Independent" value="Totally Dependent" id="dischargeplan_ToD_Totally_Dependent" />
+              <input type="checkbox" name="dischargeplan_Functional_Ability_Timeof_Discharge" value="Totally Dependent" id="dischargeplan_Functional_Ability_Timeof_Discharge" />
               <?php xl('Totally Dependent','e');?></label>
       
   </tr>
@@ -414,14 +419,5 @@ formHeader("Form: visit_discharge");
 <tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
 </table>
 </form>
-<a href="javascript:top.restoreSession();document.my_form.submit();" class="link_submit">[<?php xl('Save','e'); ?>]</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
-<br>
-<?php
-formFooter();
-?>
-
 </body>
 </html>

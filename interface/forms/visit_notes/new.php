@@ -37,16 +37,16 @@ formHeader("Form: visit_notes");
         <td align="center" valign="top">
         <input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled /></td>
         <td><strong><?php xl('Time In','e'); ?></strong></td>
-        <td><select name="visitnote_Time_In" id="visitnote_Time_In"><?php timeDropDown() ?></select></td>
+        <td><select name="visitnote_Time_In" id="visitnote_Time_In"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
         <td><strong><?php xl('Time Out','e'); ?></strong></td>
-        <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"><?php timeDropDown() ?></select></td>
+        <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
         <strong>
     <input type='text' size='20' name='visitnote_date_curr' id='visitnote_date_curr'
     value='<?php echo $date ?>'
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' />
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
     title='<?php xl('Click here to choose a date','e'); ?>'>
@@ -142,18 +142,18 @@ formHeader("Form: visit_notes");
                  <?php xl('Unable to leave home safely without assistance','e'); ?> </label></td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Medical_Restrictions"id="visitnote_Pat_Homebound_Medical_Restrictions" />
                   <?php xl('Medical Restrictions in','e'); ?>
                   <input type="text" name="visitnote_Pat_Homebound_Medical_Restrictions_In" size="35px" id="visitnote_Pat_Homebound_Medical_Restrictions_In" />
-                </label></td>
+                </td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_SOB_upon_exertion" id="visitnote_Pat_Homebound_SOB_upon_exertion" />
                   <?php xl('SOB upon exertion','e'); ?>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Pain_with_Travel" id="visitnote_Pat_Homebound_Pain_with_Travel" />
-                  <?php xl('Pain with Travel','e'); ?></label></td>
+                  <?php xl('Pain with Travel','e'); ?></td>
               </tr>
             </table>
           <td valign="top">
@@ -164,13 +164,13 @@ formHeader("Form: visit_notes");
                   <?php xl('Requires assistance in mobility and ambulation','e'); ?></label></td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Arrhythmia" id="visitnote_Pat_Homebound_Arrhythmia" />
                   <?php xl('Arrhythmia','e'); ?>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Bed_Bound" id="visitnote_Pat_Homebound_Bed_Bound" />
 <?php xl('Bed Bound','e'); ?>
 <input type="checkbox" name="visitnote_Pat_Homebound_Residual_Weakness" id="visitnote_Pat_Homebound_Residual_Weakness" />
-<?php xl('Residual Weakness','e'); ?></label></td>
+<?php xl('Residual Weakness','e'); ?></td>
               </tr>
               <tr>
                 <td><input type="checkbox" name="visitnote_Pat_Homebound_Confusion" id="visitnote_Pat_Homebound_Confusion" />
@@ -387,7 +387,7 @@ formHeader("Form: visit_notes");
 <input type="text" name="visitnote_CPRW_Other" size="75px" id="visitnote_CPRW_Other" />
 </strong>
 <br />
-<input type="checkbox" name="visitnote_CP_Modifications_Include" value="visitnote_CP_Modifications_Include" id="visitnote_CP_Modifications_Include" />
+<input type="checkbox" name="visitnote_CP_Modifications_Include" id="visitnote_CP_Modifications_Include" />
 <strong><?php xl('CARE PLANS MODIFICATIONS INCLUDE','e'); ?>
 <input type="text" size="75px" name="visitnote_CP_Modifications_Include_Notes" id="visitnote_CP_Modifications_Include_Notes" />
 </strong></td>

@@ -26,8 +26,16 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_ot_careplan", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/careplan/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="careplan">
-<span class="title"><?php xl('Care Plan','e');?></span><br></br>
-</br>
+<h3 align="center"><?php xl('OCCUPATIONAL THERAPY CARE PLAN','e')?></h3>
+                <h5 align="center">
+                <?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
+                </h5>
+<a href="javascript:top.restoreSession();document.careplan.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+ <br><br/>
 <table width="100%" border="1" cellpadding="2px" class="formtable">
 <tr> <td> </td></tr>
   <tr>
@@ -44,7 +52,7 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
       <input type='text' size='10' name='date_curr' id='date_curr'
     value="<?php echo stripslashes($obj{"date_curr"});?>"
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' />
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
     title='<?php xl('Click here to choose a date','e'); ?>'>
@@ -58,11 +66,11 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
     <td colspan="2" align="center" valign="top" scope="row">
     <strong><?php xl('Med Dx/ Reason for OT intervention','e')?></strong></td>
     <td align="center" valign="top" class="bold">
-    <select id="med_dx_icd9" name="med_dx_icd9"> <?php  ICD9_dropdown() ?>  </select></td>
+    <select id="med_dx_icd9" name="med_dx_icd9"> <?php  ICD9_dropdown(stripslashes($obj{"med_dx_icd9"})) ?>  </select></td>
     <td align="center" valign="top" class="bold">
     <?php xl('Treatment Dx','e')?></td>
     <td colspan="2" align="center" valign="top" class="bold">
-    <select id="trmnt_dx_icd9" name="trmnt_dx_icd9"> <?php ICD9_dropdown() ?>  </select></td>
+    <select id="trmnt_dx_icd9" name="trmnt_dx_icd9"> <?php ICD9_dropdown(stripslashes($obj{"trmnt_dx_icd9"})) ?>  </select></td>
   </tr>
 
   <tr>
@@ -156,7 +164,7 @@ echo "checked";;?>>
       <input type="text" name="duration" id="duration"  value="<?php echo stripslashes($obj{"duration"});?>" >
     </strong></td>
     <td colspan="2" align="left" valign="top"><strong><?php xl('EFFECTIVE DATE','e')?>  
-    <input type="text" name="effective_date" id="effective_date" value="<?php echo stripslashes($obj{"effective_date"});?>" >
+    <input type="text" name="effective_date" id="effective_date" value="<?php echo stripslashes($obj{"effective_date"});?>"  readonly>
     </strong>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_eff_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -191,7 +199,7 @@ echo "checked";;?>>
         <?php xl('Self Care ADL Training','e')?></label>
       <br />
       <label>
-        <input type="checkbox" name="iadl_training" id="iadl_training" <?php if ($obj{"visual_comp"} == "on")
+        <input type="checkbox" name="iadl_training" id="iadl_training" <?php if ($obj{"iadl_training"} == "on")
 echo "checked";;?>>
        <?php xl(' IADL Training','e')?></label>
       <br />
@@ -309,8 +317,8 @@ echo "checked";;?>>
         </tr>
       <tr>
         <td valign="top" scope="row"><label>
-          <input type="checkbox" name="wfl_details" id="wfl_details" <?php if ($obj{"wfl_details"} == "increase")
-      echo "checked";;?> value="increase"> 
+          <input type="checkbox" name="wfl_Increase" id="wfl_Increase" <?php if ($obj{"wfl_Increase"} == "on")
+      echo "checked";;?> > 
           <?php xl('Increase','e')?></label>             
               <input type="checkbox" name="wfl_details" id="wfl_details" <?php if ($obj{"wfl_details"} == "strength")
       echo "checked";;?> value="strength"> 
@@ -329,7 +337,7 @@ echo "checked";;?>>
               <?php xl('left','e')?></label> 
             
           <input type="text" size="12" name="increase_to" id="increase_to" value="<?php echo stripslashes($obj{"increase_to"});?>" >  
-          <?php xl('       to WFL   ','e')?>      </td></tr>
+          <?php xl('to WFL','e')?>      </td></tr>
       <tr>
         <td valign="top" scope="row"><label>
 
@@ -549,12 +557,12 @@ echo "checked";;?>>
 echo "checked";;?>>
           <?php xl('Supportive family/caregiver likely to increase success','e')?>
           </label></p><td colspan="3" valign="middle">
-            <input type="checkbox" name="addtn_treatment" id="addtn_treatment" <?php if ($obj{"addtn_treatment"} == "on")
+            <input type="checkbox" name="addtn_treatment"  id="addtn_treatment" <?php if ($obj{"addtn_treatment"} == "on")
 echo "checked";;?>>
-            <label for="checkbox"></label>
+            <label for="checkbox">
 
           <?php xl('May require additional treatment session  to
-          achieve Long Term Outcomes due to','e')?>
+          achieve Long Term Outcomes due to','e')?></label>
           <input type="checkbox" name="addtn_treatment_req" id="addtn_treatment_req" <?php if ($obj{"addtn_treatment_req"} == "memoryloss")
 echo "checked";;?> value="memoryloss">
           <?php xl('short term memory difficulties','e')?>
@@ -569,22 +577,19 @@ echo "checked";;?> value="langbarrier">
   <tr>
     <td colspan="3" valign="middle" scope="row">
       <p><strong><?php xl('Physician Orders','e')?> </strong>         
-        <input type="checkbox" name="physician_orders_obtained" id="physician_orders_obtained" <?php if ($obj{"physician_orders_obtained"} == "on")
-echo "checked";;?>>
+        <input type="checkbox" name="physician_orders_obtained" id="physician_orders_obtained" <?php if ($obj{"physician_orders_obtained"} == "on") echo "checked";;?>>
         <label for="Physician Orders Obtained">
         <?php xl('Physician Orders Obtained','e')?></label>
       </p>
       <p>
-        <input type="checkbox" name="physician_orders_needed" id="physician_orders_needed" <?php if ($obj{"physician_orders_obtained"} == "on")
-echo "checked";;?>>
+        <input type="checkbox" name="physician_orders_needed" id="physician_orders_needed" <?php if ($obj{"physician_orders_needed"} == "on") echo "checked";;?>>
         <label for="Physician orders needed">
         <?php xl('Physician orders needed','e')?></label>
         .  <strong><?php xl('Will follow agency&rsquo;s procedures for obtaining verbal orders and completing the 485/POC or submitting  supplemental orders for physician signature','e')?></strong> </p>
 
    
     <td colspan="3" valign="middle"><p>
-        <input type="checkbox" name="address_issues_by" id="address_issues_by" <?php if ($obj{"address_issues_by"} == "on")
-echo "checked";;?>>
+        <input type="checkbox" name="address_issues_by" id="address_issues_by" <?php if ($obj{"address_issues_by"} == "on") echo "checked";;?>>
     <?php xl('Will address above issues by','e')?>
       <input type="checkbox" name="address_issues_options" id="writtendirections" <?php if ($obj{"address_issues_options"} == "writtendirections")
 echo "checked";;?> value="writtendirections">
@@ -606,17 +611,11 @@ echo "checked";;?> value="usefamily">
   <tr>
     <td colspan="3" valign="top" scope="row"><strong>
     <?php xl('Therapist Who Developed POC','e')?> </strong>
-    <input type="text" name="therapist_name" id="therapist_name" value="<?php echo stripslashes($obj{"therapist_name"});?>" >
     </td>
     <td colspan="3" valign="top"><strong>
     <?php xl('Electronic Signature','e')?></strong></td>
   </tr>  
 </table>
-<a href="javascript:top.restoreSession();document.careplan.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
-&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
-<p>&nbsp;</p>
 </form>
 </body>
 

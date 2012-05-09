@@ -17,10 +17,10 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_ot_visitnote", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/visit_notes/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitnotes">
-<span class="title"><?php xl('Visit Notes','e');?></span><br></br>
-
+<h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT NOTE','e'); ?></h3>
+<br></br>
 <a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
 <br></br>
@@ -33,16 +33,16 @@ $obj = formFetch("forms_ot_visitnote", $_GET["id"]);
         <td align="center" valign="top">
         <input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled /></td>
         <td><strong><?php xl('Time In','e'); ?></strong></td>
-        <td><select name="visitnote_Time_In" id="visitnote_Time_In"><?php timeDropDown() ?></select></td>
+        <td><select name="visitnote_Time_In" id="visitnote_Time_In"><?php timeDropDown(stripslashes($obj{"visitnote_Time_In"})) ?></select></td>
         <td><strong><?php xl('Time Out','e'); ?></strong></td>
-        <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"><?php timeDropDown() ?></select></td>
+        <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"><?php timeDropDown(stripslashes($obj{"visitnote_Time_Out"})) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
         <strong>
     <input type='text' size='20' name='visitnote_date_curr' id='visitnote_date_curr'
     value='<?php echo stripslashes($obj{"visitnote_date_curr"});?>'
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' />
+   onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
     title='<?php xl('Click here to choose a date','e'); ?>'>
@@ -141,7 +141,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
   <tr>
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
     <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem">
-					<?php ICD9_dropdown() ?>
+					<?php ICD9_dropdown(stripslashes($obj{"visitnote_Treatment_Diagnosis_Problem"})) ?>
 				</select></td>
   </tr>
   <tr>
@@ -162,22 +162,22 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
                  <?php xl('Unable to leave home safely without assistance','e'); ?> </label></td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Medical_Restrictions" id="visitnote_Pat_Homebound_Medical_Restrictions" 
                   <?php if ($obj{"visitnote_Pat_Homebound_Medical_Restrictions"} == "on")	echo "checked";;?> />
                   <?php xl('Medical Restrictions in','e'); ?>
                   <input type="text" name="visitnote_Pat_Homebound_Medical_Restrictions_In" size="35px" id="visitnote_Pat_Homebound_Medical_Restrictions_In" 
                  value="<?php echo stripslashes($obj{"visitnote_Pat_Homebound_Medical_Restrictions_In"});?>" >
-                </label></td>
+                </td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_SOB_upon_exertion" id="visitnote_Pat_Homebound_SOB_upon_exertion" 
                    <?php if ($obj{"visitnote_Pat_Homebound_SOB_upon_exertion"} == "on")	echo "checked";;?> />
                   <?php xl('SOB upon exertion','e'); ?>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Pain_with_Travel" id="visitnote_Pat_Homebound_Pain_with_Travel" 
                   <?php if ($obj{"visitnote_Pat_Homebound_Pain_with_Travel"} == "on")	echo "checked";;?> />
-                  <?php xl('Pain with Travel','e'); ?></label></td>
+                  <?php xl('Pain with Travel','e'); ?></td>
               </tr>
             </table>
           <td valign="top">
@@ -189,7 +189,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
                   <?php xl('Requires assistance in mobility and ambulation','e'); ?></label></td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Arrhythmia" id="visitnote_Pat_Homebound_Arrhythmia"
                    <?php if ($obj{"visitnote_Pat_Homebound_Arrhythmia"} == "on")	echo "checked";;?> >
                   <?php xl('Arrhythmia','e'); ?>
@@ -198,7 +198,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
 <?php xl('Bed Bound','e'); ?>
 <input type="checkbox" name="visitnote_Pat_Homebound_Residual_Weakness" id="visitnote_Pat_Homebound_Residual_Weakness" 
 <?php if ($obj{"visitnote_Pat_Homebound_Residual_Weakness"} == "on")	echo "checked";;?> >
-<?php xl('Residual Weakness','e'); ?></label></td>
+<?php xl('Residual Weakness','e'); ?></td>
               </tr>
               <tr>
                 <td><input type="checkbox" name="visitnote_Pat_Homebound_Confusion" id="visitnote_Pat_Homebound_Confusion" 
@@ -479,7 +479,8 @@ value="<?php echo stripslashes($obj{"visitnote_RT_Revisit_Other"});?>" >
 value="<?php echo stripslashes($obj{"visitnote_CPRW_Other"});?>" >
 </strong>
 <br />
-<input type="checkbox" name="visitnote_CP_Modifications_Include" value="visitnote_CP_Modifications_Include" id="visitnote_CP_Modifications_Include" />
+<input type="checkbox" name="visitnote_CP_Modifications_Include" id="visitnote_CP_Modifications_Include" 
+<?php if ($obj{"visitnote_CP_Modifications_Include"} == "on") echo "checked";;?> />
 <strong><?php xl('CARE PLANS MODIFICATIONS INCLUDE','e'); ?>
 <input type="text" size="75px" name="visitnote_CP_Modifications_Include_Notes" id="visitnote_CP_Modifications_Include_Notes" 
 value="<?php echo stripslashes($obj{"visitnote_CP_Modifications_Include_Notes"});?>" >

@@ -33,9 +33,16 @@ formHeader("Form: careplan");
 <body>
 	<form method="post"
 		action="<?php echo $rootdir;?>/forms/careplan/save.php?mode=new" name="careplan">
+		<h3 align="center"><?php xl('OCCUPATIONAL THERAPY CARE PLAN','e')?></h3>		
 		<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
+		<a href="javascript:top.restoreSession();document.careplan.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+ <br> <br/>
 		<table width="100%" border="1" cellpadding="2px" class="formtable">
 			<tr>
 				<td width="13%" align="center" valign="top" scope="row">
@@ -51,9 +58,9 @@ formHeader("Form: careplan");
 				<td width="22%" align="center" valign="top">
 				<strong><?php xl('DATE','e')?></strong></td>
 				<td width="17%" align="center" valign="top" class="bold">
-				<input type='text' size='10' name='date_curr' id='date_curr' value='<?php echo $date ?>'
+				<input type='text' size='10' name='date_curr' id='date_curr' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' /> 
+					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -70,12 +77,12 @@ formHeader("Form: careplan");
 				</strong></td>
 				<td align="center" valign="top" class="bold">
 				<select id="med_dx_icd9" name="med_dx_icd9">
-					<?php ICD9_dropdown() ?>
+					<?php ICD9_dropdown($GLOBALS['Selected']) ?>
 				</select></td>
 				<td align="center" valign="top" class="bold"><?php xl('Treatment Dx','e')?></td>
 				<td colspan="2" align="center" valign="top" class="bold">
 				<select id="trmnt_dx_icd9" name="trmnt_dx_icd9">
-					<?php ICD9_dropdown() ?>
+					<?php ICD9_dropdown($GLOBALS['Selected']) ?>
 				</select></td>
 			</tr>
 
@@ -164,7 +171,7 @@ formHeader("Form: careplan");
 							<td colspan="2" align="left" valign="top"><strong><?php xl('DURATION','e')?>
 									<input type="text" name="duration" id="duration" /> </strong></td>
 							<td colspan="2" align="left" valign="top"><strong><?php xl('EFFECTIVE DATE','e')?>
-									<input type="text" name="effective_date" id="effective_date" />
+									<input type="text" name="effective_date" id="effective_date" readonly/>
 									<img src='../../pic/show_calendar.gif' align='absbottom'
 									width='24' height='22' id='img_eff_date' border='0' alt='[?]'
 									style='cursor: pointer; cursor: hand'
@@ -177,8 +184,7 @@ formHeader("Form: careplan");
 				</td>
 			</tr>
 			<tr>
-				<td colspan="6" valign="top" scope="row"><strong> <?php xl('Information such as  frequency, duration and effective date sh','e')?>
-				</strong><strong><?php xl('ould be linked to a physician order due report.','e')?>
+				<td colspan="6" valign="top" scope="row"><strong> <?php xl('Information such as  frequency, duration and effective date should be linked to a physician order due report.','e')?>
 				</strong>
 				</td>
 			</tr>
@@ -223,7 +229,7 @@ formHeader("Form: careplan");
 						</label>
 					</p>
 					<p>
-						<?php xl(' Other','e')?> <label for="0checkbox_3_ther"></label> <input type="text"
+						<?php xl(' Other','e')?> <input type="text"
 							name="exercises_others" id="exercises_others" />
 					</p>
 					<p>
@@ -277,7 +283,7 @@ formHeader("Form: careplan");
 									</tr>
 									<tr>
 										<td valign="top" scope="row"><label> <input type="checkbox"
-												name="wfl_details" id="wfl_details" value="increase"/> <?php xl('Increase','e')?>
+												name="wfl_Increase" id="wfl_Increase" /> <?php xl('Increase','e')?>
 										</label> <input type="checkbox" name="wfl_details"
 											id="wfl_details" value="strength" /> <label><?php xl('Strength','e')?> </label>
 											<label> <input type="checkbox" name="wfl_details"
@@ -469,8 +475,8 @@ formHeader("Form: careplan");
 					</p>
 				
 				<td colspan="3" valign="middle"><input type="checkbox"
-					name="addtn_treatment" id="addtn_treatment" /> <label
-					for="checkbox"></label> <?php xl('May require additional treatment session  to
+					name="addtn_treatment" id="addtn_treatment" /> 
+					 <?php xl('May require additional treatment session  to
           achieve Long Term Outcomes due to','e')?> <input
 					type="checkbox" name="addtn_treatment_req" value="memoryloss"
 					id="addtn_treatment_req" /> <?php xl('short term memory difficulties','e')?>
@@ -484,22 +490,19 @@ formHeader("Form: careplan");
 				<td colspan="3" valign="middle" scope="row">
 					<p>
 						<strong><?php xl('Physician Orders','e')?> </strong> <input
-							type="checkbox" name="physician_orders_obtained"
-							id="physician_orders_obtained" /> <label
+							type="checkbox" name="physician_orders_obtained" id="physician_orders_obtained" /> <label
 							for="Physician Orders Obtained"> <?php xl('Physician Orders Obtained','e')?>
 						</label>
 					</p>
 					<p>
-						<input type="checkbox" name="physician_orders_needed"
-							id="physician_orders_needed" /> <label
+						<input type="checkbox" name="physician_orders_needed" id="physician_orders_needed" /> <label
 							for="Physician orders needed"> <?php xl('Physician orders needed','e')?>
 						</label> . <strong> <?php xl('Will follow agency&rsquo;s procedures for obtaining verbal orders and completing the 485/POC or submitting  supplemental orders for physician signature','e')?>
 						</strong>
 					</p>
 				
 				<td colspan="3" valign="middle"><p>
-						<input type="checkbox" name="address_issues_by"
-							id="address_issues_by" />
+						<input type="checkbox" name="address_issues_by" id="address_issues_by" />
 							<?php xl('Will address above issues by','e')?>
 						<input type="checkbox" name="address_issues_options"
 							id="writtendirection" value="writtendirection" />
@@ -523,19 +526,12 @@ formHeader("Form: careplan");
 			</tr>
 			<tr>
 				<td colspan="3" valign="top" scope="row"><strong><?php xl('Therapist Who Developed POC','e')?>
-				</strong> <input type="text" name="therapist_name"
-					id="therapist_name" /></td>
+				</strong> </td>
 				<td colspan="3" valign="top"><strong><?php xl('Electronic Signature','e')?>
 				</strong></td>
 			</tr>	
 		</table>
-		<a href="javascript:top.restoreSession();document.careplan.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>		
-		<p>&nbsp;</p>
-	</form>
+		</form>
 </body>
 
 </html>

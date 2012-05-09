@@ -47,7 +47,7 @@ formHeader("Form: evaluation");
          <td width="15%" align="center" valign="top" class="bold"><input
 					type="text" name="mr" id="mr"
 					value="<?php  echo $_SESSION['pid']?>" readonly /></td>
-          <td align="center"><strong>Date</strong></td>
+          <td align="center"><strong><?php xl('Date','e')?></strong></td>
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
@@ -130,7 +130,7 @@ formHeader("Form: evaluation");
     <input type="checkbox" name="Evaluation_VS_Pain" value="pain_due_to_illness" id="Evaluation_VS_Pain" /></label>
   <?php xl('Pain due to recent illness/injury','e')?>
   <label>
-  <input type="checkbox" name="Evaluation_VS_Pain" value="ChronicPain" id="Evaluation_VS_Pain " />
+  <input type="checkbox" name="Evaluation_VS_Pain" value="ChronicPain" id="Evaluation_VS_Pain" />
   <?php xl('Chronic pain','e')?></label>
 
   <?php xl('Other','e')?>
@@ -145,8 +145,8 @@ formHeader("Form: evaluation");
     <?php xl('Please Note Contact MD if Vital Signs are Pulse','e')?>&lt;<?php xl('56','e')?>
       <?php xl('or','e')?> &gt;<?php xl('120','e')?>; <?php xl('Temperature','e')?>
        &lt;<?php xl('56','e')?>  <?php xl('or','e')?>  &gt; <?php xl('101;  Respirations','e')?>&lt;<?php xl('10 or','e')?>
-         &gt;30</strong> <br />
-  <strong>SBP &lt;80 or &gt;190; DBP &lt;50 or &gt;100; 
+         &gt;30 <br />
+  <?php xl('SBP','e')?> &lt;80 or &gt;190; <?php xl('DBP','e')?> &lt;50 or &gt;100; 
   <?php xl('Pain Significantly Impacts patients ability to participate. O2 Sat','e')?>&lt;
   <?php xl('90% after rest','e')?></strong>
   </td></tr></table>
@@ -169,18 +169,18 @@ formHeader("Form: evaluation");
                     <?php xl('Unable to leave home safely unassisted','e')?></label></td>
                 </tr>
                 <tr>
-                  <td><label>
+                  <td>
                     <input type="checkbox" name="Evaluation_HR_Medical_Restrictions" id="Evaluation_HR_Medical_Restrictions" />
                     <?php xl('Medical Restrictions in','e')?>
                     <input type="text" name="Evaluation_HR_Medical_Restrictions_In" size="30px"id="Evaluation_HR_Medical_Restrictions_In" />
-                  </label></td>
+                  </td>
                 </tr>
                 <tr>
-                  <td><label>
+                  <td>
                     <input type="checkbox" name="Evaluation_HR_SOB_upon_exertion" id="Evaluation_HR_SOB_upon_exertion" />
                     <?php xl('SOB upon exertion','e')?>
                     <input type="checkbox" name="Evaluation_HR_Pain_with_Travel" id="Evaluation_HR_Pain_with_Travel" />
-					<?php xl('Pain with Travel','e')?></label></td>
+					<?php xl('Pain with Travel','e')?></td>
                 </tr>
               </table>
           <td width="53%" valign="top">
@@ -192,13 +192,13 @@ formHeader("Form: evaluation");
                   <?php xl('Requires assistance in mobility and ambulation','e')?></label></td>
               </tr>
               <tr>
-                <td><label>
+                <td>
                   <input type="checkbox" name="Evaluation_HR_Arrhythmia" id="Evaluation_HR_Arrhythmia" />
                   <?php xl('Arrhythmia','e')?>
                   <input type="checkbox" name="Evaluation_HR_Bed_Bound" id="Evaluation_HR_Bed_Bound" />
 				   <?php xl('Bed Bound','e')?>
 					<input type="checkbox" name="Evaluation_HR_Residual_Weakness" id="Evaluation_HR_Residual_Weakness" />
-					<?php xl('Residual Weakness','e')?></label></td>
+					<?php xl('Residual Weakness','e')?></td>
               </tr>
               <tr>
                 <td><input type="checkbox" name="Evaluation_HR_Confusion" id="Evaluation_HR_Confusion" />
@@ -269,10 +269,10 @@ formHeader("Form: evaluation");
       </tr>
       <tr>
         <td scope="row"><strong><?php xl('FAMILY/CAREGIVER SUPPORT','e')?> 
-             <input type="checkbox" name="Evaluation_FAMILY_CAREGIVER_SUPPORT" value="true" id="Evaluation_FAMILY_CAREGIVER_SUPPORT" />
+             <input type="checkbox" name="Evaluation_FAMILY_CAREGIVER_SUPPORT" value="Yes" id="Evaluation_FAMILY_CAREGIVER_SUPPORT" />
 
 <?php xl('Yes','e')?>
-<input type="checkbox" name="Evaluation_FAMILY_CAREGIVER_SUPPORT" value="false" id="Evaluation_FAMILY_CAREGIVER_SUPPORT" />
+<input type="checkbox" name="Evaluation_FAMILY_CAREGIVER_SUPPORT" value="No" id="Evaluation_FAMILY_CAREGIVER_SUPPORT" />
 <?php xl('No Relationship','e')?> 
 <input type="text" size="8px" name="Evaluation_FCS_Relationship" id="Evaluation_FCS_Relationship" /> 
 
@@ -576,7 +576,7 @@ formHeader("Form: evaluation");
 <?php xl('Number of Minutes Can Participate in a Task','e')?>
 <input type="text" size="22px" name="Evaluation_AT_Minutes_Participate_Note" id="part_task" />
 <input type="checkbox" name="Evaluation_AT_SOB" id="Evaluation_AT_SOB" />
-<?php xl('SOB','e')?>
+<?php xl('SOB','e')?><br>
 <input type="checkbox" name="Evaluation_AT_RHC_Impacts_Activity" id="Evaluation_AT_RHC_Impacts_Activity" />
 <?php xl('Respiratory/Heart Condition Impacts Activity Tolerance Comments','e')?>
 <input type="text" size="61px" name="Evaluation_AT_Comments" id="Evaluation_AT_Comments" /></td></tr></table></td>
@@ -591,7 +591,7 @@ formHeader("Form: evaluation");
 <?php xl('Wheelchair','e')?>
 <input type="checkbox" name="Evaluation_Assist_devices_Cane" id="Evaluation_Assist_devices_Cane" />
 <?php xl('Cane Type','e')?>
-<input type="text" size="15px" name="Evaluation_Assist_devices_Cane_Type" id="Evaluation_Assist_devices_Cane_Type" />
+<input type="text" size="15px" name="Evaluation_Assist_devices_Cane_Type" id="Evaluation_Assist_devices_Cane_Type" /><br>
 <input type="checkbox" name="Evaluation_Assist_devices_Glasses_For_Read" id="Evaluation_Assist_devices_Glasses_For_Read" />
 <?php xl('Glasses for reading','e')?>
 <input type="checkbox" name="Evaluation_Assist_devices_Glasses_For_Distance" id="Evaluation_Assist_devices_Glasses_For_Distance" />
@@ -601,7 +601,7 @@ formHeader("Form: evaluation");
 <input type="text" name="Evaluation_Assist_devices_Other" id="Evaluation_Assist_devices_Other" size="62px"/></td></tr></table></td>
   </tr>
   <tr>
-    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>CURRENT BALANCE SKILLS</strong><br />
+    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
       <strong><?php xl('Drop down Scale','e')?> </strong>
 <?php xl('N=Normal, G=Good, takes moderate challenges, F=Fair, maintain balance without contact, P=Poor maintain balance for 15 seconds or less, 0 no balance reaction','e')?>
     </td></tr></table></td>
@@ -630,22 +630,23 @@ formHeader("Form: evaluation");
        <td><select name="Evaluation_CB_Skills_Static_Sitting" id="Evaluation_CB_Skills_Static_Sitting" >
        <?php Balance_skills($GLOBALS['Selected'])?></select></td>
         <td><?php xl('STATIC STANDING BALANCE','e')?></td>
-        <td><select name="Evaluation_CB_Skills_Dynamic_Standing" id="Evaluation_CB_Skills_Dynamic_Standing" >
+        <td><select name="Evaluation_CB_Skills_Static_Standing" id="Evaluation_CB_Skills_Static_Standing" >
         <?php Balance_skills($GLOBALS['Selected'])?></select></td>
 
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
-<strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
-      <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
-<?php xl('All Muscle Strength is WFL','e')?>
-<input type="checkbox" name="Evaluation_MS_ROM_ALL_ROM_WFL" id="Evaluation_MS_ROM_ALL_ROM_WFL" />
-<?php xl('All ROM is WFL','e')?>
-<input type="checkbox" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" />
-
-<?php xl('The following problem areas are','e')?></strong></td></tr></table></td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+        <tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
+      <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
+      <?php xl('All Muscle Strength is WFL','e')?>
+      <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
+    <?php xl('All ROM is WFL','e')?>
+    <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="other Problem" id="Evaluation_MS_ROM_All_Muscle_WFL" />
+    <?php xl('The following problem areas are','e')?>
+<input type="text" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" />
+    </strong></td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
@@ -806,7 +807,7 @@ formHeader("Form: evaluation");
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>Skilled OT is Reasonable and Necessary  to</strong>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('Skilled OT is Reasonable and Necessary to','e')?></strong>
             <br />
             <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Return_to_Prior_Level" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" />
 <?php xl('Return Patient to Their Prior Level of Function;','e')?> 
