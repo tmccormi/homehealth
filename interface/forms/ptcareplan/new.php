@@ -26,7 +26,7 @@ formHeader("Form: careplan");
 <body>
 <form method="post"
 		action="<?php echo $rootdir;?>/forms/ptcareplan/save.php?mode=new" name="careplan">
-		<h3 align="center"><?php xl('OCCUPATIONAL THERAPY CARE PLAN','e')?></h3>
+		<h3 align="center"><?php xl('PHYSICAL THERAPY CARE PLAN','e')?></h3>
 		<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
@@ -35,7 +35,7 @@ formHeader("Form: careplan");
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br>
+ <br><br/>
 <table align="center"  border="1px" cellspacing="0px" cellpadding="0px">
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
@@ -217,7 +217,7 @@ formHeader("Form: careplan");
           <strong>
           <input type="text" name="careplan_Physical_Agents_Name" id="careplan_Physical_Agents_Name" />
           </strong><br />
-          &nbsp;  &nbsp;  &nbsp; for <strong>
+          &nbsp;  &nbsp;  &nbsp;<?php xl('for','e')?><strong>
           <input type="text" name="careplan_Physical_Agents_For" id="careplan_Physical_Agents_For" />
           </strong><br />
           <label>
@@ -387,7 +387,7 @@ formHeader("Form: careplan");
           <label>
             <input type="checkbox" name="careplan_Rehab_Potential" value="Poor" id="careplan_Rehab_Potential" />
           <?php xl('Poor','e')?></label></td>
-        <td><strong><?php xl('Discharge','e')?></strong> <strong>Plan</strong></td>
+        <td><strong><?php xl('Discharge','e')?></strong> <strong><?php xl('Plan','e')?></strong></td>
 
         <td><input type="checkbox" name="careplan_DP_When_Goals_Are_Met" id="careplan_DP_When_Goals_Are_Met" />
 		<?php xl('When Goals Are Met Other','e')?> 

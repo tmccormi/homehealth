@@ -2,7 +2,7 @@
 require_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
-formHeader("Form: evaluation");
+formHeader("Form: reassessment");
 ?>
 
 <html>
@@ -192,7 +192,7 @@ formHeader("Form: evaluation");
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
     <strong><?php xl('ADL/IADL REASSESSMENT','e')?></strong><br />
     <strong><?php xl('Drop Down Scale','e')?>  </strong>
-    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant  contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required. <strong>Balance Scale G=Good, F=Fair, P=Poor','e')?>
+    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant  contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required.','e')?>
     </strong></td></tr></table></td>
   </tr>
 
@@ -200,10 +200,10 @@ formHeader("Form: evaluation");
     <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px">
       <tr>
         <td width="25%" align="center" scope="row"><strong><?php xl('Mobility Skills','e')?></strong></td>
-        <td width="13%" align="center"><strong><?php xl('Initial','e')?> </strong><strong>Status</strong></td>
+        <td width="13%" align="center"><strong><?php xl('Initial','e')?> </strong><strong><?php xl('Status','e')?></strong></td>
         <td width="13%" align="center"><strong><?php xl('Current Status','e')?></strong></td>
         <td width="49%" align="center"><strong><?php xl('Describe progress related to mobility skills','e')?></strong><br />
-          <strong><?php xl('This can be a drop down for the 3 choices n/a, goal met etc','e')?></strong>></td>
+          </td>
       </tr>
       <tr>
         <td scope="row"><?php xl('Rolling','e')?></td>
@@ -443,7 +443,7 @@ formHeader("Form: evaluation");
         <td align="center"><strong><?php xl('Hypo','e')?></strong></td>
 
         </tr>
-/5</strong></td>      <tr>
+</strong></td>      <tr>
         <td align="center" scope="row"><strong>
           <input type="text" name="Reassessment_MS_ROM_Problemarea_text" size="30px" id="Reassessment_MS_ROM_Problemarea_text" />
         </strong></td>
@@ -689,15 +689,15 @@ rows="3" cols="30" ></textarea></td>
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>PT continued treatment plan was communicated to and agreed upon by </strong>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong><?php xl('PT continued treatment plan was communicated to and agreed upon by ','e')?></strong>
       <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Patient" id="Reassessment_PT_communicated_and_agreed_upon_by" />
 <?php xl('Patient','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Physician" id="Reassessment_PT_communicated_and_agreed_upon_by" />
 <?php xl('Physician','e')?>
-<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PT/ST" id="Reassessment_PT_communicated_and_agreed_upon_by" />
-<?php xl('PT/ST','e')?><br />
-<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PTA/COTA" id="Reassessment_PT_communicated_and_agreed_upon_by" />
-<?php xl('PTA/COTA','e')?>
+<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="OT/ST" id="Reassessment_PT_communicated_and_agreed_upon_by" />
+<?php xl('OT/ST','e')?><br />
+<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PTA" id="Reassessment_PT_communicated_and_agreed_upon_by" />
+<?php xl('PTA','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Skilled Nursing" id="Reassessment_PT_communicated_and_agreed_upon_by" />
 <?php xl('Skilled Nursing','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Caregiver/Family" id="Reassessment_PT_communicated_and_agreed_upon_by" />
@@ -712,7 +712,7 @@ rows="3" cols="30" ></textarea></td>
 	<input type="checkbox" name="Reassessment_AS_Home_Exercise" id="Reassessment_AS_Home_Exercise" />
 <?php xl('Home Exercise Program Upgraded','e')?><br>
   <input type="checkbox" name="Reassessment_AS_Falls_Management_Prevention" id="Reassessment_AS_Falls_Management_Prevention" />
-<?php xl('Recommendations for Environmental Adaptations Reviewed','e')?>
+<?php xl('Falls Management/Prevention Program Implemented','e')?>
 <input type="checkbox" name="Reassessment_AS_Recommendations_for_SafetyIssues" id="Reassessment_AS_Recommendations_for_SafetyIssues" />
 <?php xl('Recommendations for Safety Issues Implemented','e')?><br>
 <input type="checkbox" name="Reassessment_AS_Treatment" id="Reassessment_AS_Treatment" />

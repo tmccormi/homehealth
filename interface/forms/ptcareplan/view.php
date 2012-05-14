@@ -18,7 +18,9 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
 ?>
 <form method="post"
 		action="<?php echo $rootdir;?>/forms/ptcareplan/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="careplan">
-		<h5 align="center">
+		 <h3 align="center"><?php xl('PHYSICAL THERAPY CARE PLAN','e')?></h3>
+	
+	<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
 		<a href="javascript:top.restoreSession();document.careplan.submit();"
@@ -26,7 +28,7 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br>
+ <br> <br/>
 <table align="center"  border="1px" cellspacing="0px" cellpadding="0px">
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
@@ -235,7 +237,7 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
           <input type="text" name="careplan_Physical_Agents_Name" id="careplan_Physical_Agents_Name" 
          value="<?php echo stripslashes($obj{"careplan_Physical_Agents_Name"});?>" />
           </strong><br />
-          &nbsp;  &nbsp;  &nbsp; for <strong>
+          &nbsp;  &nbsp;  &nbsp; <?php xl('for','e')?> <strong>
           <input type="text" name="careplan_Physical_Agents_For" id="careplan_Physical_Agents_For" 
            value="<?php echo stripslashes($obj{"careplan_Physical_Agents_For"});?>" />
           </strong><br />
@@ -314,7 +316,7 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
           value="<?php echo stripslashes($obj{"careplan_STO_Increase_ROM_Note"});?>" />
           <?php xl('(joints) to','e')?>
           <input type="text" name="careplan_STO_Increase_ROM_To" id="careplan_STO_Increase_ROM_To" 
-          value="<?php echo stripslashes($obj{"careplan_STO_Increase_ROM_Note"});?>" />
+          value="<?php echo stripslashes($obj{"careplan_STO_Increase_ROM_To"});?>" />
           <?php xl('/WFL','e')?> <br />
           <label>
             <input type="checkbox" name="careplan_STO_Increase_Strength" id="careplan_STO_Increase_Strength" 

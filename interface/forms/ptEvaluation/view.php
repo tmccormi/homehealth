@@ -17,7 +17,7 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/ptEvaluation/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="evaluation">
-<span class="title"><?php xl('Evaluation','e');?></span><br></br>
+<h3 align="center"><?php xl('PHYSICAL THERAPY EVALUATION','e'); ?></h3></span><br></br>
 
 <a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
@@ -125,7 +125,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
     <?php xl('Pain limits functional ability ','e')?> &nbsp; <?php xl('Intensity ','e')?>
 
   <input type="text" size="5px" name="Evaluation_VS_Pain_Intensity" id="Evaluation_VS_Pain_Intensity" 
-     value="<?php echo stripslashes($obj{"Evaluation_VS_Pain"});?>"/>  
+     value="<?php echo stripslashes($obj{"Evaluation_VS_Pain_Intensity"});?>"/>  
   <?php xl('(0-10)  Location(s)','e')?>
   <input type="text" size="25px" name="Evaluation_VS_Location" id="Evaluation_VS_Location" 
   value="<?php echo stripslashes($obj{"Evaluation_VS_Location"});?>"/>  
@@ -379,8 +379,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
         <td><strong><select id="Evaluation_CMS_SIT_STAND" name="Evaluation_CMS_SIT_STAND">
 	<?php Mobility_status(stripslashes($obj{"Evaluation_CMS_SIT_STAND"})) ?></select></strong></td>
         <td rowspan="5" align="center">
-	<textarea name="Evaluation_CMS_COMMENTS" id="Evaluation_CMS_COMMENTS" cols="25" rows="5">
-    <?php echo stripslashes($obj{"Evaluation_CMS_COMMENTS"});?></textarea></td>
+	<textarea name="Evaluation_CMS_COMMENTS" id="Evaluation_CMS_COMMENTS" cols="25" rows="5"><?php echo stripslashes($obj{"Evaluation_CMS_COMMENTS"});?></textarea></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('ROLLING LEFT','e')?></td>
@@ -402,7 +401,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
         <td scope="row"><?php xl('SUPINE','e')?> <-><?php xl('SIT','e')?></td>
         <td><strong><select id="Evaluation_CMS_SUPINE_SIT" name="Evaluation_CMS_SUPINE_SIT">
 	<?php Mobility_status(stripslashes($obj{"Evaluation_CMS_SUPINE_SIT"})) ?></select></strong></td>
-        <td><?php xl('Other','e')?> <input type="text" id="" name=""></td>
+        <td><?php xl('Other','e')?> <input type="text" id="Evaluation_CMS_Other_text" name="Evaluation_CMS_Other_text" value="<?php echo stripslashes($obj{"Evaluation_CMS_Other_text"}) ?>"></td>
         <td><strong><select id="Evaluation_CMS_Other" name="Evaluation_CMS_Other">
 	<?php Mobility_status(stripslashes($obj{"Evaluation_CMS_Other"})) ?></select></strong></td>
       </tr>     
@@ -826,7 +825,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left"});?>"/>
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hypo" 
 <?php if ($obj{"Evaluation_MS_ROM_Tonicity"} == "Hypo")  echo "checked";;?>/></td>
         <td align="center" rowspan="4">
-        <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="27" rows="7"> <?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?></textarea>
+       <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="27" rows="7"><?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?></textarea>
         </tr>
       <tr>
         <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" 

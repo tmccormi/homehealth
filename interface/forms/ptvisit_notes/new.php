@@ -348,13 +348,13 @@ formHeader("Form: visit_notes");
 <?php xl('Timed Up and Go Score ','e'); ?>
 <input type="text" name="visitnote_Timed_Up_Go_Score" id="visitnote_Timed_Up_Go_Score" /> 
     </strong> <strong> <?php xl('Interpretation','e'); ?> </strong>
-    <input type="checkbox" name="visitnote_Interpretation" value="No_Fall_Risk" id="visitnote_Interpretation" />
-<?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?> 
-<input type="checkbox" name="visitnote_Interpretation" value="Minimal_Fall_Risk" id="visitnote_Interpretation" />
+    <input type="checkbox" name="visitnote_Interpretation" value="No Fall Risk" id="visitnote_Interpretation" />
+<strong><?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?></strong>
+<input type="checkbox" name="visitnote_Interpretation" value="Minimal Fall Risk" id="visitnote_Interpretation" />
 <strong><?php xl('Minimal Fall Risk (11- 13 seconds)','e'); ?> </strong>
-<input type="checkbox" name="visitnote_Interpretation" value="Moderate_Fall_Risk" id="visitnote_Interpretation" />
+<input type="checkbox" name="visitnote_Interpretation" value="Moderate Fall Risk" id="visitnote_Interpretation" />
 <strong><?php xl('Moderate Fall Risk (13.5-19 seconds)','e'); ?> </strong>
-<input type="checkbox" name="visitnote_Interpretation" value="High_Fall_Risk" id="visitnote_Interpretation" />
+<input type="checkbox" name="visitnote_Interpretation" value="High Fall Risk" id="visitnote_Interpretation" />
 <strong><?php xl('High Risk for Falls (&gt;19 seconds)','e'); ?> </strong><br />
 <strong><?php xl('Other Tests/Scores/Interpretations','e'); ?> 
 <input type="text" name="visitnote_Other_Tests_Scores_Interpretations" size="100px" id="visitnote_Other_Tests_Scores_Interpretations" />
@@ -362,11 +362,11 @@ formHeader("Form: visit_notes");
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('PATIENT/CAREGIVER/FAMILY RESPONSE TO REVISIT','e'); ?></strong> 
-    <input type="checkbox" name="visitnote_Response_To_Revisit" value="Verbalized_Understanding" id="visitnote_Response_To_Revisit" />
+    <input type="checkbox" name="visitnote_Response_To_Revisit" value="Verbalized Understanding" id="visitnote_Response_To_Revisit" />
 <?php xl('Verbalized Understanding','e'); ?>
-  <input type="checkbox" name="visitnote_Response_To_Revisit" value="Demonstrated_Task" id="visitnote_Response_To_Revisit" />
+  <input type="checkbox" name="visitnote_Response_To_Revisit" value="Demonstrated Task" id="visitnote_Response_To_Revisit" />
 <?php xl('Demonstrated Task','e'); ?>
-<input type="checkbox" name="visitnote_Response_To_Revisit" value="Needed_Guidance" id="visitnote_Response_To_Revisit" />
+<input type="checkbox" name="visitnote_Response_To_Revisit" value="Needed Guidance" id="visitnote_Response_To_Revisit" />
 <?php xl('Needed Guidance/Re-Instruction','e'); ?><br />
 <?php xl('Other','e'); ?> <strong>
 <input type="text" size="100px" name="visitnote_Response_To_Revisit_Other" id="visitnote_Response_To_Revisit_Other" />
@@ -382,15 +382,15 @@ formHeader("Form: visit_notes");
 <?php xl('Patient','e'); ?>
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Physician" id="visitnote_DDW_Physician" />
 <?php xl('Physician','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PT_OT_ST" id="visitnote_DDW_PT_OT_ST" />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PT/OT/ST" id="visitnote_DDW_PT_OT_ST" />
 <?php xl('PTA','e'); ?>
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PTA" id="visitnote_DDW_PT_OT_ST" />
 <?php xl('PT/OT/ST','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Skilled_Nursing" id="visitnote_CPRW_Skilled_Nursing" />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Skilled Nursing" id="visitnote_CPRW_Skilled_Nursing" />
 <?php xl('Skilled Nursing','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Caregiver_Family" id="visitnote_CPRW_Caregiver_Family" />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Caregiver Family" id="visitnote_CPRW_Caregiver_Family" />
 <?php xl('Caregiver/Family','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Case_Manager" id="visitnote_CPRW_Case_Manager" />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Case Manager" id="visitnote_CPRW_Case_Manager" />
 <?php xl('Case Manager','e'); ?>
 <br /> <?php xl('Other','e'); ?>
 <input type="text" name="visitnote_CPRW_Other" size="75px" id="visitnote_CPRW_Other" />
@@ -404,12 +404,12 @@ formHeader("Form: visit_notes");
   <tr>
     <td valign="top" scope="row">
     <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO','e'); ?></strong> 
-    <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Reprioritize_exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" />
+    <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Reprioritize exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" />
 <?php xl('Progress/Re-prioritize exercise program','e'); ?>
-  <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Train_patient" id="visitnote_FSVR_Train_patient" />
+  <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Train patient" id="visitnote_FSVR_Train_patient" />
 <?php xl('Train patient in additional skills such as','e'); ?>
 <input type="text" name="visitnote_Train_patient_Suchas_Notes" id="visitnote_Train_patient_Suchas_Notes" />
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Begin_Practice" id="visitnote_FSVR_Begin_Practice" />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Begin Practice" id="visitnote_FSVR_Begin_Practice" />
 <?php xl('Begin/Practice','e'); ?>
 <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="IADLs" id="visitnote_FSVR_IADLs" />
 <?php xl('IADLs','e'); ?>
@@ -426,43 +426,43 @@ formHeader("Form: visit_notes");
 </p>
 <p>
  <?php xl('Approximate Date of Next Visit','e'); ?>
-<input type="text" name="visitnote_Date_of_Next_Visit" id="visitnote_Date_of_Next_Visit" />
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value=Met_Goals" id="visitnote_Date_of_Next_Visit" />
+<input type="text" name="visitnote_Date_of_Next_Visit" id="visitnote_Date_of_Next_Visit" value="0000-00-00" />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met Goals" id="visitnote_Date_of_Next_Visit" />
 <?php xl('No further visits required Patient/Caregiver have met goals','e'); ?>
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met_max_potential" id="visitnote_No_further_visits_PC_Met_max_potential" />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met max potential" id="visitnote_No_further_visits_PC_Met_max_potential" />
 <?php xl('No further visits required. Patient/Caregiver have met maximum  potential that can be impacted by therapy.','e'); ?>
 </p></td>
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('PLAN','e'); ?></strong><br/>
     <p>
-      <input type="checkbox" name="visitnote_Plan_Type" value="Curr_Treatment_Appropriate" id="visitnote_Plan_Current_Treatment_Plan" />
+      <input type="checkbox" name="visitnote_Plan_Type" value="Current Treatment Appropriate" id="visitnote_Plan_Current_Treatment_Plan" />
 <?php xl('Current Treatment Plan Frequency and Duration is Appropriate','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="Initiate_Discharge" id="visitnote_Plan_Initiate_Discharge" />
+<input type="checkbox" name="visitnote_Plan_Type" value="Initiate Discharge" id="visitnote_Plan_Initiate_Discharge" />
 <?php xl('Initiate Discharge, physician order','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="May_require_treatment" id="visitnote_Plan_Require_Additional_Treatment" />
+<input type="checkbox" name="visitnote_Plan_Type" value="May require treatment" id="visitnote_Plan_Require_Additional_Treatment" />
 <?php xl('May require additional treatment session(s) to achieve Long Term Outcomes due to ','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="shortterm_memory" id="visitnote_Plan_Short_term_memory" />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="shortterm memory" id="visitnote_Plan_Short_term_memory" />
 <?php xl('short term memory difficulties','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Minimal_Support" id="visitnote_Plan_minimal_support" />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Minimal Support" id="visitnote_Plan_minimal_support" />
 <?php xl('minimal support systems','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="language_barriers" id="visitnote_Plan_Communication_language_barriers" />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Language barriers" id="visitnote_Plan_Communication_language_barriers" />
 <?php xl('communication, language barriers','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="Will_address_issues_by" id="visitnote_Plan_Address_above_issues" />
+<input type="checkbox" name="visitnote_Plan_Type" value="Will address issues by" id="visitnote_Plan_Address_above_issues" />
 <?php xl('Will address above issues by','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="physical_demonstration" id="visitnote_Plan_Providing_written_directions" />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="physical demonstration" id="visitnote_Plan_Providing_written_directions" />
 <?php xl('Providing written directions and/or physical demonstration','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community_support" id="visitnote_Plan_Establish_community_support" />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community support" id="visitnote_Plan_Establish_community_support" />
 <?php xl('establish community support systems','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home_adaptations" id="visitnote_Plan_Home_env_adaptations" />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations" id="visitnote_Plan_Home_env_adaptations" />
 <?php xl('home/environmental adaptations','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use_family/professionals" id="visitnote_Plan_Use_family_professionals" />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use family/professionals" id="visitnote_Plan_Use_family_professionals" />
 <?php xl('use family/professionals for interpretations as needed','e'); ?>
 </p> </td>
   </tr>

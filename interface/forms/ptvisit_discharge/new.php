@@ -41,12 +41,12 @@ formHeader("Form: visit_discharge");
   <tr>
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
     <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled/></td>
-    <td width="70"><strong><?php xl('Time In','e');?></strong></td>
+    <td ><strong><?php xl('Time In','e');?></strong></td>
     <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
-    <td width="70"><strong><?php xl('Time Out','e');?></strong> <br /></td>
+    <td ><strong><?php xl('Time Out','e');?></strong> <br /></td>
     <td><select name="dischargeplan_Time_Out" id="dischargeplan_Time_Out"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
-    <td width="70"><strong><?php xl('Date','e');?></strong></td>
-    <td width="140"><strong>
+    <td ><strong><?php xl('Date','e');?></strong></td>
+    <td ><strong>
     <input type='text' size='10' name='dischargeplan_date' id='dischargeplan_date'
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>

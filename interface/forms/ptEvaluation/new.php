@@ -352,7 +352,7 @@ formHeader("Form: evaluation");
         <td scope="row"><?php xl('SUPINE','e')?> <-><?php xl('SIT','e')?></td>
         <td><strong><select id="Evaluation_CMS_SUPINE_SIT" name="Evaluation_CMS_SUPINE_SIT">
 	<?php Mobility_status($GLOBALS['Selected']) ?></select></strong></td>
-        <td><?php xl('Other','e')?> <input type="text" id="" name=""></td>
+        <td><?php xl('Other','e')?> <input type="text" id="Evaluation_CMS_Other_text" name="Evaluation_CMS_Other_text"></td>
         <td><strong><select id="Evaluation_CMS_Other" name="Evaluation_CMS_Other">
 	<?php Mobility_status($GLOBALS['Selected']) ?></select></strong></td>
       </tr>     

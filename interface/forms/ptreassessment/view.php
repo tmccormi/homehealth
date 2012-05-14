@@ -120,7 +120,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_BP_Systolic"});?>" />
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Sitting") echo "checked";;?>/>
   <?php xl('Sitting','e')?></label>
 <label>
-  <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing " id="standing"
+  <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing" id="standing"
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Standing") echo "checked";;?>/>
   <?php xl('Standing','e')?> </label>
 <label>
@@ -219,7 +219,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
     <strong><?php xl('ADL/IADL REASSESSMENT','e')?></strong><br />
     <strong><?php xl('Drop Down Scale','e')?>  </strong>
-    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant  contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required. <strong>Balance Scale G=Good, F=Fair, P=Poor','e')?>
+    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant  contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required.','e')?>
     </strong></td></tr></table></td>
   </tr>
 
@@ -231,7 +231,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
         <td width="13%" align="center"><strong><?php xl('Current Status','e')?></strong></td>
 
         <td width="49%" align="center"><strong><?php xl('Describe progress related to mobility skills','e')?></strong><br />
-          <strong><?php xl('This can be a drop down for the 3 choices n/a, goal met etc','e')?></strong></td>
+          </td>
       </tr>
       <tr>
         <td scope="row"><?php xl('Rolling','e')?></td>
@@ -565,8 +565,7 @@ value="Hyper" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hyper") echo "c
 value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "checked";;?>/></td>
         <td align="center" rowspan="3"><strong>
           <textarea name="Reassessment_MS_ROM_Further_description" id="Reassessment_MS_ROM_Further_description" 
-rows="3" cols="30">
-<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description"});?> </textarea>
+rows="3" cols="30"><?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description"});?></textarea>
         </strong></td>
       </tr>
       <tr>
@@ -683,9 +682,7 @@ rows="3" cols="30">
 		value="Hyper" <?php if ($obj{"Reassessment_MS_ROM_Tonicity3"} == "Hyper") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_Tonicity3" id="Reassessment_MS_ROM_Tonicity3"
 		value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity3"} == "Hypo") echo "checked";;?>/></td>
-       <td align="center" rowspan="3"><textarea name="Reassessment_MS_ROM_Further_description1" id="Reassessment_MS_ROM_Further_description1" 
-rows="3" cols="30">
-<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description1"});?> </textarea></td>
+       <td align="center" rowspan="3"><textarea name="Reassessment_MS_ROM_Further_description1" id="Reassessment_MS_ROM_Further_description1" rows="3" cols="30"><?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description1"});?></textarea></td>
       </tr>
       <tr>
         <td align="center" scope="row">&nbsp;</th>
@@ -866,19 +863,19 @@ value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_Mobi
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
-<strong>PT continued treatment plan was communicated to and agreed upon by </strong>
+<strong><?php xl('PT continued treatment plan was communicated to and agreed upon by ','e')?></strong>
       <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Patient" id="Reassessment_PT_communicated_and_agreed_upon_by" 
 <?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "Patient") echo "checked";;?>/>
 <?php xl('Patient','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Physician" id="Reassessment_PT_communicated_and_agreed_upon_by" 
 <?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "Physician") echo "checked";;?>/>
 <?php xl('Physician','e')?>
-<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PT/ST" id="Reassessment_PT_communicated_and_agreed_upon_by" 
-<?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "PT/ST") echo "checked";;?>/>
-<?php xl('PT/ST','e')?><br />
-<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PTA/COTA" id="Reassessment_PT_communicated_and_agreed_upon_by" 
-<?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "PTA/COTA") echo "checked";;?>/>
-<?php xl('PTA/COTA','e')?>
+<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="OT/ST" id="Reassessment_PT_communicated_and_agreed_upon_by" 
+<?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "OT/ST") echo "checked";;?>/>
+<?php xl('OT/ST','e')?><br />
+<input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="PTA" id="Reassessment_PT_communicated_and_agreed_upon_by" 
+<?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "PTA") echo "checked";;?>/>
+<?php xl('PTA','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Skilled Nursing" id="Reassessment_PT_communicated_and_agreed_upon_by" 
 <?php if ($obj{"Reassessment_PT_communicated_and_agreed_upon_by"} == "Skilled Nursing") echo "checked";;?>/>
 <?php xl('Skilled Nursing','e')?>
@@ -898,7 +895,7 @@ value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_Mobi
 <?php xl('Home Exercise Program Upgraded','e')?><br>
   <input type="checkbox" name="Reassessment_AS_Falls_Management_Prevention" id="Reassessment_AS_Falls_Management_Prevention" 
 <?php if ($obj{"Reassessment_AS_Falls_Management_Prevention"} == "on") echo "checked";;?>/>
-<?php xl('Recommendations for Environmental Adaptations Reviewed','e')?>
+<?php xl('Falls Management/Prevention Program Implemented','e')?>
 <input type="checkbox" name="Reassessment_AS_Recommendations_for_SafetyIssues" id="Reassessment_AS_Recommendations_for_SafetyIssues" 
 <?php if ($obj{"Reassessment_AS_Recommendations_for_SafetyIssues"} == "on") echo "checked";;?>/>
 <?php xl('Recommendations for Safety Issues Implemented','e')?><br>

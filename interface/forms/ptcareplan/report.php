@@ -17,6 +17,7 @@ function ptcareplan_report($pid, $encounter, $cols, $id) {
     $value = "yes";
    }
    $key=ucwords(str_replace("_"," ",$key));
+   $key=ucwords(str_replace("PT"," ",$key));
    $key = str_replace("Careplan", "", $key);   
 if($value!="Please Select...") 
 {  

@@ -30,7 +30,7 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir;?>/forms/ptvisit_discharge/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitdischarge">
-<span class="title"><?php xl('Visit/Discharge Note','e');?></span><br><br>
+<h3 align="center"><?php xl('PHYSICAL THERAPY REVISIT/DISCHARGE NOTE','e');?></h3><br><br>
 <a href="javascript:top.restoreSession();document.visitdischarge.submit();"
 			class="link_submit"><?php xl(' [Save]','e')?></a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,14 +44,14 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
 
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
     <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled/></td>
-    <td width="70"><p><strong><?php xl('Time In','e');?></strong></p></td>
+    <td ><p><strong><?php xl('Time In','e');?></strong></p></td>
     <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In">
     <?php timeDropDown(stripslashes($obj{"dischargeplan_Time_In"}))?></select></td>
-    <td width="70"><p><strong><?php xl('Time Out','e');?></strong></p></td>
+    <td ><p><strong><?php xl('Time Out','e');?></strong></p></td>
     <td><select name="dischargeplan_Time_Out" id="dischargeplan_Time_Out">
     <?php timeDropDown(stripslashes($obj{"dischargeplan_Time_Out"}))?></select></td>
-    <td width="70"><strong><?php xl('Date','e');?></strong></td>
-    <td width="70"><strong>
+    <td ><strong><?php xl('Date','e');?></strong></td>
+    <td ><strong>
     <input type='text' size='10' name='dischargeplan_date' id='dischargeplan_date'
     value='<?php echo stripslashes($obj{"dischargeplan_date"});?>'
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
@@ -143,7 +143,7 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
       <p>
           <label>
     <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Alert"            
-    <?php if ($obj{"dischargeplan_Mental_Status_Alert"} == "Alert"){echo "checked";};?> />
+    <?php if ($obj{"dischargeplan_Mental_Status"} == "Alert"){echo "checked";};?> />
           <?php xl('Alert','e');?></label>
           <label>
             <input type="checkbox" name="dischargeplan_Mental_Status" value="Oriented" <?php if ($obj{"dischargeplan_Mental_Status"} == "Oriented"){echo "checked";};?> id="dischargeplan_Mental_Status_Oriented" />

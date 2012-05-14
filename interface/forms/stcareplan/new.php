@@ -407,7 +407,7 @@ value="Short Term Memory"/>
 value="Minimum support"/>
 <?php xl('minimal support systems','e')?>
 <input type="checkbox" name="careplan_May_require_additional_treatment_dueto" id="careplan_May_require_additional_treatment_dueto" 
-value="Language Barrier" <?php xl('communication, language  barriers','e')?>/><br />
+value="Language Barrier" /> <?php xl('communication, language  barriers','e')?><br />
 <input type="checkbox" name="careplan_Will_address_above_issues" id="careplan_Will_address_above_issues" />
        <?php xl(' Will address above issues by','e')?>
   <input type="checkbox" name="careplan_Will_address_above_issues_by" id="careplan_Will_address_above_issues_by" 

@@ -20,7 +20,7 @@ $obj = formFetch("forms_pt_visitnote", $_GET["id"]);
 <span class="title"><?php xl('Visit Notes','e');?></span><br></br>
 
 <a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
 <br></br>
@@ -165,7 +165,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
                 <td><label>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Medical_Restrictions" id="visitnote_Pat_Homebound_Medical_Restrictions" 
                   <?php if ($obj{"visitnote_Pat_Homebound_Medical_Restrictions"} == "on")	echo "checked";;?> />
-                  <?php xl('Medical Restrictions in','e'); ?>
+                  <?php xl('Medical Restrictions in','e'); ?></label><label>
                   <input type="text" name="visitnote_Pat_Homebound_Medical_Restrictions_In" size="35px" id="visitnote_Pat_Homebound_Medical_Restrictions_In" 
                  value="<?php echo stripslashes($obj{"visitnote_Pat_Homebound_Medical_Restrictions_In"});?>" >
                 </label></td>
@@ -423,17 +423,17 @@ value="<?php echo stripslashes($obj{"visitnote_FI_Demonstrates_Notes"});?>" >
 <input type="text" name="visitnote_Timed_Up_Go_Score" id="visitnote_Timed_Up_Go_Score" 
  value="<?php echo stripslashes($obj{"visitnote_Timed_Up_Go_Score"});?>" > 
     </strong> <strong> <?php xl('Interpretation','e'); ?> </strong>
-    <input type="checkbox" name="visitnote_Interpretation" value="No_Fall_Risk" id="visitnote_Interpretation"
-    <?php if ($obj{"visitnote_Interpretation"} == "No_Fall_Risk") echo "checked";;?> />
-<?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?> 
-<input type="checkbox" name="visitnote_Interpretation" value="Minimal_Fall_Risk" id="visitnote_Interpretation" 
- <?php if ($obj{"visitnote_Interpretation"} == "Minimal_Fall_Risk") echo "checked";;?> />
+    <input type="checkbox" name="visitnote_Interpretation" value="No Fall Risk" id="visitnote_Interpretation"
+    <?php if ($obj{"visitnote_Interpretation"} == "No Fall Risk") echo "checked";;?> />
+<strong><?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?> </strong>
+<input type="checkbox" name="visitnote_Interpretation" value="Minimal Fall Risk" id="visitnote_Interpretation" 
+ <?php if ($obj{"visitnote_Interpretation"} == "Minimal Fall Risk") echo "checked";;?> />
 <strong><?php xl('Minimal Fall Risk (11- 13 seconds)','e'); ?> </strong>
-<input type="checkbox" name="visitnote_Interpretation" value="Moderate_Fall_Risk" id="visitnote_Interpretation" 
- <?php if ($obj{"visitnote_Interpretation"} == "Moderate_Fall_Risk") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Interpretation" value="Moderate Fall Risk" id="visitnote_Interpretation" 
+ <?php if ($obj{"visitnote_Interpretation"} == "Moderate Fall Risk") echo "checked";;?> />
 <strong><?php xl('Moderate Fall Risk (13.5-19 seconds)','e'); ?> </strong>
-<input type="checkbox" name="visitnote_Interpretation" value="High_Fall_Risk" id="visitnote_Interpretation" 
- <?php if ($obj{"visitnote_Interpretation"} == "High_Fall_Risk") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Interpretation" value="High Fall Risk" id="visitnote_Interpretation" 
+ <?php if ($obj{"visitnote_Interpretation"} == "High Fall Risk") echo "checked";;?> />
 <strong><?php xl('High Risk for Falls (&gt;19 seconds)','e'); ?> </strong><br />
 <strong><?php xl('Other Tests/Scores/Interpretations','e'); ?> 
 <input type="text" name="visitnote_Other_Tests_Scores_Interpretations" size="100px" id="visitnote_Other_Tests_Scores_Interpretations" 
@@ -442,14 +442,14 @@ value="<?php echo stripslashes($obj{"visitnote_Other_Tests_Scores_Interpretation
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('PATIENT/CAREGIVER/FAMILY RESPONSE TO REVISIT','e'); ?></strong> 
-    <input type="checkbox" name="visitnote_Response_To_Revisit" value="Verbalized_Understanding" id="visitnote_Response_To_Revisit" 
-    <?php if ($obj{"visitnote_Response_To_Revisit"} == "Verbalized_Understanding") echo "checked";;?> />
+    <input type="checkbox" name="visitnote_Response_To_Revisit" value="Verbalized Understanding" id="visitnote_Response_To_Revisit" 
+    <?php if ($obj{"visitnote_Response_To_Revisit"} == "Verbalized Understanding") echo "checked";;?> />
 <?php xl('Verbalized Understanding','e'); ?>
-  <input type="checkbox" name="visitnote_Response_To_Revisit" value="Demonstrated_Task" id="visitnote_Response_To_Revisit" 
-  <?php if ($obj{"visitnote_Response_To_Revisit"} == "Demonstrated_Task") echo "checked";;?> />
+  <input type="checkbox" name="visitnote_Response_To_Revisit" value="Demonstrated Task" id="visitnote_Response_To_Revisit" 
+  <?php if ($obj{"visitnote_Response_To_Revisit"} == "Demonstrated Task") echo "checked";;?> />
 <?php xl('Demonstrated Task','e'); ?>
-<input type="checkbox" name="visitnote_Response_To_Revisit" value="Needed_Guidance" id="visitnote_Response_To_Revisit" 
-<?php if ($obj{"visitnote_Response_To_Revisit"} == "Needed_Guidance") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Response_To_Revisit" value="Needed Guidance" id="visitnote_Response_To_Revisit" 
+<?php if ($obj{"visitnote_Response_To_Revisit"} == "Needed Guidance") echo "checked";;?> />
 <?php xl('Needed Guidance/Re-Instruction','e'); ?><br />
 <?php xl('Other','e'); ?> <strong>
 <input type="text" size="100px" name="visitnote_Response_To_Revisit_Other" id="visitnote_Response_To_Revisit_Other" 
@@ -470,26 +470,27 @@ value="<?php echo stripslashes($obj{"visitnote_Response_To_Revisit_Other"});?>" 
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Physician" id="visitnote_DDW_Physician" 
 <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Physician") echo "checked";;?> />
 <?php xl('Physician','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PT_OT_ST" id="visitnote_DDW_PT_OT_ST" 
-<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "PT_OT_ST") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PT/OT/ST" id="visitnote_DDW_PT_OT_ST" 
+<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "PT/OT/ST") echo "checked";;?> />
 <?php xl('PTA','e'); ?>
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="PTA" id="visitnote_CPRW_Skilled_Nursing" 
 <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "PTA") echo "checked";;?> />
 <?php xl('PT/OT/ST','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Skilled_Nursing" id="visitnote_CPRW_Skilled_Nursing" 
-<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Skilled_Nursing") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Skilled Nursing" id="visitnote_CPRW_Skilled_Nursing" 
+<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Skilled Nursing") echo "checked";;?> />
 <?php xl('Skilled Nursing','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Caregiver_Family" id="visitnote_CPRW_Caregiver_Family" 
-<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Caregiver_Family") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Caregiver Family" id="visitnote_CPRW_Caregiver_Family" 
+<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Caregiver Family") echo "checked";;?> />
 <?php xl('Caregiver/Family','e'); ?>
-<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Case_Manager" id="visitnote_CPRW_Case_Manager" 
-<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Case_Manager") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Case Manager" id="visitnote_CPRW_Case_Manager" 
+<?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Case Manager") echo "checked";;?> />
 <?php xl('Case Manager','e'); ?> 
 <br /> <?php xl('Other','e'); ?>
 <input type="text" name="visitnote_CPRW_Other" size="75px" id="visitnote_CPRW_Other" 
 value="<?php echo stripslashes($obj{"visitnote_CPRW_Other"});?>" >
 <br />
-<input type="checkbox" name="visitnote_Careplan_Revised" id="visitnote_Careplan_Revised" />
+<input type="checkbox" name="visitnote_Careplan_Revised" id="visitnote_Careplan_Revised" 
+  <?php if ($obj{"visitnote_Careplan_Revised"} == "on") echo "checked";;?> />
 <strong><?php xl('CARE PLANS REVISED','e'); ?>
 <input type="text" size="75px" name="visitnote_Careplan_Revised_Notes" id="visitnote_Careplan_Revised_Notes" 
 value="<?php echo stripslashes($obj{"visitnote_Careplan_Revised_Notes"});?>" >
@@ -498,16 +499,16 @@ value="<?php echo stripslashes($obj{"visitnote_Careplan_Revised_Notes"});?>" >
   <tr>
     <td valign="top" scope="row">
     <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO','e'); ?></strong> 
-    <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Reprioritize_exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" 
-    <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Reprioritize_exercise") echo "checked";;?> />
+    <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Reprioritize exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" 
+    <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Reprioritize exercise") echo "checked";;?> />
 <?php xl('Progress/Re-prioritize exercise program','e'); ?>
-  <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Train_patient" id="visitnote_FSVR_Train_patient" 
-      <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Train_patient") echo "checked";;?> />
+  <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Train patient" id="visitnote_FSVR_Train_patient" 
+      <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Train patient") echo "checked";;?> />
 <?php xl('Train patient in additional skills such as','e'); ?>
 <input type="text" name="visitnote_Train_patient_Suchas_Notes" id="visitnote_Train_patient_Suchas_Notes" 
 value="<?php echo stripslashes($obj{"visitnote_Train_patient_Suchas_Notes"});?>" >
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Begin_Practice" id="visitnote_FSVR_Begin_Practice" 
-    <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Begin_Practice") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Begin Practice" id="visitnote_FSVR_Begin_Practice" 
+    <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Begin Practice") echo "checked";;?> />
 <?php xl('Begin/Practice','e'); ?>
 <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="IADLs" id="visitnote_FSVR_IADLs" 
     <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "IADLs") echo "checked";;?> />
@@ -533,55 +534,55 @@ value="<?php echo stripslashes($obj{"visitnote_FSVR_Other"});?>" >
  <?php xl('Approximate Date of Next Visit','e'); ?>
 <input type="text" name="visitnote_Date_of_Next_Visit" id="visitnote_Date_of_Next_Visit"
 value="<?php echo stripslashes($obj{"visitnote_Date_of_Next_Visit"});?>" >
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value=Met_Goals" id="visitnote_Date_of_Next_Visit" 
-  <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met_Goals") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met Goals" id="visitnote_Date_of_Next_Visit" 
+  <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met Goals") echo "checked";;?> />
 <?php xl('No further visits required Patient/Caregiver have met goals','e'); ?>
-<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met_max_potential" id="visitnote_No_further_visits_PC_Met_max_potential" 
-  <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met_max_potential") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met max potential" id="visitnote_No_further_visits_PC_Met_max_potential" 
+  <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met max potential") echo "checked";;?> />
 <?php xl('No further visits required. Patient/Caregiver have met maximum  potential that can be impacted by therapy.','e'); ?>
 </p></td>
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('PLAN','e'); ?></strong><br/>
     <p>
-      <input type="checkbox" name="visitnote_Plan_Type" value="Curr_Treatment_Appropriate" id="visitnote_Plan_Current_Treatment_Plan" 
-      <?php if ($obj{"visitnote_Plan_Type"} == "Curr_Treatment_Appropriate") echo "checked";;?> />
+      <input type="checkbox" name="visitnote_Plan_Type" value="Current Treatment Appropriate" id="visitnote_Plan_Current_Treatment_Plan" 
+      <?php if ($obj{"visitnote_Plan_Type"} == "Current Treatment Appropriate") echo "checked";;?> />
 <?php xl('Current Treatment Plan Frequency and Duration is Appropriate','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="Initiate_Discharge" id="visitnote_Plan_Initiate_Discharge" 
-<?php if ($obj{"visitnote_Plan_Type"} == "Initiate_Discharge") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Plan_Type" value="Initiate Discharge" id="visitnote_Plan_Initiate_Discharge" 
+<?php if ($obj{"visitnote_Plan_Type"} == "Initiate Discharge") echo "checked";;?> />
 <?php xl('Initiate Discharge, physician order','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="May_require_treatment" id="visitnote_Plan_Require_Additional_Treatment" 
-<?php if ($obj{"visitnote_Plan_Type"} == "May_require_treatment") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Plan_Type" value="May require treatment" id="visitnote_Plan_Require_Additional_Treatment" 
+<?php if ($obj{"visitnote_Plan_Type"} == "May require treatment") echo "checked";;?> />
 <?php xl('May require additional treatment session(s) to achieve Long Term Outcomes due to ','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="shortterm_memory" id="visitnote_Plan_Short_term_memory" 
-<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "shortterm_memory") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="shortterm memory" id="visitnote_Plan_Short_term_memory" 
+<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "shortterm memory") echo "checked";;?> />
 <?php xl('short term memory difficulties','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Minimal_Support" id="visitnote_Plan_minimal_support" 
-<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "Minimal_Support") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Minimal Support" id="visitnote_Plan_minimal_support" 
+<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "Minimal Support") echo "checked";;?> />
 <?php xl('minimal support systems','e'); ?>
-<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="language_barriers" id="visitnote_Plan_Communication_language_barriers" 
-<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "language_barriers") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Long_Term_Outcomes_Due_To" value="Language barriers" id="visitnote_Plan_Communication_language_barriers" 
+<?php if ($obj{"visitnote_Long_Term_Outcomes_Due_To"} == "Language barriers") echo "checked";;?> />
 <?php xl('communication, language barriers','e'); ?>
 </p>
 <p>
-<input type="checkbox" name="visitnote_Plan_Type" value="Will_address_issues_by" id="visitnote_Plan_Address_above_issues"
-<?php if ($obj{"visitnote_Plan_Type"} == "Will_address_issues_by") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Plan_Type" value="Will address issues by" id="visitnote_Plan_Address_above_issues"
+<?php if ($obj{"visitnote_Plan_Type"} == "Will address issues by") echo "checked";;?> />
 <?php xl('Will address above issues by','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="physical_demonstration" id="visitnote_Plan_Providing_written_directions" 
-<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "physical_demonstration") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="physical demonstration" id="visitnote_Plan_Providing_written_directions" 
+<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "physical demonstration") echo "checked";;?> />
 <?php xl('Providing written directions and/or physical demonstration','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community_support" id="visitnote_Plan_Establish_community_support" 
-<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "community_support") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community support" id="visitnote_Plan_Establish_community_support" 
+<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "community support") echo "checked";;?> />
 <?php xl('establish community support systems','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home_adaptations " id="visitnote_Plan_Home_env_adaptations" 
-<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "home_adaptations") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations " id="visitnote_Plan_Home_env_adaptations" 
+<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "home adaptations") echo "checked";;?> />
 <?php xl('home/environmental adaptations','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use_family/professionals" id="visitnote_Plan_Use_family_professionals" 
-<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "use_family/professionals") echo "checked";;?> />
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use family/professionals" id="visitnote_Plan_Use_family_professionals" 
+<?php if ($obj{"visitnote_Address_Above_Issues_By"} == "use family/professionals") echo "checked";;?> />
 <?php xl('use family/professionals for interpretations as needed','e'); ?>
 </p> </td>
   </tr>
