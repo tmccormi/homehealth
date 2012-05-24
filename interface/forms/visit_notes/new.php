@@ -19,6 +19,53 @@ formHeader("Form: visit_notes");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+	function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);	    	  
+		 	med_icd9.innerHTML= result['res'];	    	 
+	    	   	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/visit_notes/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	</script>
+
 </head>
 
 <body><h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT NOTE','e'); ?></h3>
@@ -35,7 +82,7 @@ formHeader("Form: visit_notes");
       <tr>
         <td scope="row"><strong><?php xl('Patient Name','e'); ?></strong></td>
         <td align="center" valign="top">
-        <input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled /></td>
+        <input type="text" id="patient_name" value="<?php patientName()?>" readonly /></td>
         <td><strong><?php xl('Time In','e'); ?></strong></td>
         <td><select name="visitnote_Time_In" id="visitnote_Time_In"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
         <td><strong><?php xl('Time Out','e'); ?></strong></td>
@@ -48,10 +95,10 @@ formHeader("Form: visit_notes");
     title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
-    id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    id='img_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
     title='<?php xl('Click here to choose a date','e'); ?>'>
     <script LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"visitnote_date_curr", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
+    Calendar.setup({inputField:"visitnote_date_curr", ifFormat:"%Y-%m-%d", button:"img_date"});
    </script>
 
         </td>
@@ -63,8 +110,9 @@ formHeader("Form: visit_notes");
       <input type="checkbox" name="visitnote_visit_type" value="visit" id="visitnote_TOV_Visit" />
 <?php xl('Visit','e'); ?>
 <input type="checkbox" name="visitnote_visit_type" value="visit_Supervisory" id="visitnote_TOV_Visit_Supervisory" />
-<?php xl('Visit and Supervisory Review Other','e'); ?> 
-<input type="text" size="50px" name="visitnote_TOV_Visit_Other" id="visitnote_TOV_Visit_Other" /></td>
+<?php xl('Visit and Supervisory Review','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Other','e'); ?> 
+<input type="text" style="width:460px" name="visitnote_TOV_Visit_Other" id="visitnote_TOV_Visit_Other" /></td>
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('VITAL SIGNS','e'); ?></strong></td>
@@ -75,15 +123,15 @@ formHeader("Form: visit_notes");
     <input type="checkbox" name="visitnote_Pulse_Rate" value="regular" id="visitnote_VS_Pulse_Regular" />
 <?php xl('Regular','e'); ?>
 <input type="checkbox" name="visitnote_Pulse_Rate" value="Irregular" id="visitnote_VS_Pulse_Irregular" />
-<?php xl('Irregular','e'); ?> &nbsp;
+<?php xl('Irregular','e'); ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Temperature','e'); ?>
  <input type="text" size="3px" name="visitnote_VS_Temperature" id="visitnote_VS_Temperature" /> 
  <input type="checkbox" name="visitnote_Temperature" value="Oral" id="visitnote_VS_Temperature_Oral" />
 <?php xl('Oral','e'); ?>
 <input type="checkbox" name="visitnote_Temperature" value="Temporal" id="visitnote_VS_Temperature_Temporal" />
 <?php xl('Temporal','e'); ?>&nbsp;
-<?php xl('Other','e'); ?> &nbsp;
-<input type="text" size="10px" name="visitnote_VS_Other" id="visitnote_VS_Other" />
+<?php xl('Other','e'); ?> 
+<input type="text" size="10px" name="visitnote_VS_Other" id="visitnote_VS_Other" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <?php xl('Respirations','e'); ?>
  <input type="text" size="3px" name="visitnote_VS_Respirations" id="visitnote_VS_Respirations" />
   <p><?php xl('Blood Pressure Systolic','e'); ?>
@@ -99,7 +147,8 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_BloodPrerssure_position" value="Standing" id="visitnote_VS_BP_Standing" />
 <?php xl('Standing','e'); ?>
 <input type="checkbox" name="visitnote_BloodPrerssure_position" value="Lying" id="visitnote_VS_BP_Lying" />
-<?php xl('Lying *O2 Sat','e'); ?> 
+<?php xl('Lying','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?>&nbsp;
 <input type="text" size="7px" name="visitnote_VS_BP_Sat" id="visitnote_VS_BP_Sat" /> *<?php xl('Physician ordered','e'); ?> </p></td>
 
   </tr>
@@ -108,7 +157,8 @@ formHeader("Form: visit_notes");
   <input type="checkbox" name="visitnote_Pain_Level" value="NoPain" id="visitnote_VS_Pain_Nopain" />
 <?php xl('No Pain','e'); ?>
 <input type="checkbox" name="visitnote_Pain_Level" value="Pain limits functional ability" id="visitnote_VS_Pain_Pain_limits" />
-<?php xl('Pain limits functional ability Intensity','e'); ?>
+<?php xl('Pain limits functional ability','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Intensity','e'); ?>
 <input type="text" name="visitnote_VS_Pain_Intensity" id="visitnote_VS_Pain_Intensity" />
 <input type="checkbox" name="visitnote_Pain_Intensity" value="Improve" id="visitnote_VS_Pain_Intensity_Improve" />
 <?php xl('Improve','e'); ?>
@@ -122,9 +172,11 @@ formHeader("Form: visit_notes");
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
-    <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem">
-					<?php ICD9_dropdown() ?>
-				</select></td>
+<input type="text" id="icd" size="15"/>
+<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">
+  <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem" style="display:none"> </select> </div>
+</td>
   </tr>
   <tr>
     <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px">
@@ -142,10 +194,10 @@ formHeader("Form: visit_notes");
                  <?php xl('Unable to leave home safely without assistance','e'); ?> </label></td>
               </tr>
               <tr>
-                <td>
+                <td >
                   <input type="checkbox" name="visitnote_Pat_Homebound_Medical_Restrictions"id="visitnote_Pat_Homebound_Medical_Restrictions" />
                   <?php xl('Medical Restrictions in','e'); ?>
-                  <input type="text" name="visitnote_Pat_Homebound_Medical_Restrictions_In" size="35px" id="visitnote_Pat_Homebound_Medical_Restrictions_In" />
+                  <input type="text" name="visitnote_Pat_Homebound_Medical_Restrictions_In" style="width:280px" id="visitnote_Pat_Homebound_Medical_Restrictions_In" />
                 </td>
               </tr>
               <tr>
@@ -178,7 +230,7 @@ formHeader("Form: visit_notes");
               </tr>
             </table>
             <p><?php xl('Other','e'); ?> 
-              <input type="text" name="visitnote_Pat_Homebound_Other" size="35px" id="visitnote_Pat_Homebound_Other" />
+              <input type="text" name="visitnote_Pat_Homebound_Other" style="width:370px" id="visitnote_Pat_Homebound_Other" />
             </p></td>
         </tr>
     </table>      
@@ -187,8 +239,9 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_Interventions_Caregiver" id="visitnote_Interventions_Caregiver" />
 <?php xl('Caregiver','e'); ?>
 <input type="checkbox" name="visitnote_Interventions_Patient_Caregiver" id="visitnote_Interventions_Patient_Caregiver" />
-<?php xl('Patient and Caregiver Other','e'); ?>
-<input type="text" name="visitnote_Interventions_Other" size="35px" id="visitnote_Interventions_Other" /></strong>
+<?php xl('Patient and Caregiver','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Other','e'); ?>
+<input type="text" name="visitnote_Interventions_Other" style="width:340px" id="visitnote_Interventions_Other" /></strong>
 <br /></td>
   </tr>
   <tr>
@@ -276,15 +329,15 @@ formHeader("Form: visit_notes");
             </tr>
           </table>
           <p><?php xl('Other','e'); ?>
-            <input type="text" name="visitnote_Interventions_Other1" size="35px" id="visitnote_Interventions_Other1" />
+            <input type="text" name="visitnote_Interventions_Other1" style="width:340px" id="visitnote_Interventions_Other1" />
           </p></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td valign="top" scope="row"><strong><?php xl('SP','e'); ?></strong><strong><?php xl('ECIFIC TRAINING THIS VISIT','e'); ?></strong>
-      <input type="text" name="visitnote_Specific_Training_Visit" size="100px" id="visitnote_Specific_Training_Visit" /><br />
-      <strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
+    <td valign="top" scope="row"><strong><?php xl('SPECIFIC TRAINING THIS VISIT','e'); ?></strong><br>
+      <textarea name="visitnote_Specific_Training_Visit" id="visitnote_Specific_Training_Visit" cols="118" rows="2"></textarea>
+      <br><strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
       <input type="checkbox" name="visitnote_changes_in_medications_Yes"  id="visitnote_changes_in_medications_Yes" />
 <?php xl('Yes','e'); ?>
 <input type="checkbox" name="visitnote_changes_in_medications_No" id="visitnote_changes_in_medications_No" />
@@ -297,41 +350,41 @@ formHeader("Form: visit_notes");
     </strong>
       <input type="checkbox" name="visitnote_Functional_Improvement_ADL" id="visitnote_Functional_Improvement_ADL" />
 <?php xl('ADL','e'); ?> 
-<input type="text" size="25px" name="visitnote_Functional_Improvement_ADL_Notes" id="visitnote_Functional_Improvement_ADL_Notes" />
+<input type="text" style="width:158px" name="visitnote_Functional_Improvement_ADL_Notes" id="visitnote_Functional_Improvement_ADL_Notes" />
 <input type="checkbox" name="visitnote_Functional_Improvement_ADL1" id="visitnote_Functional_Improvement_ADL1" />
 <?php xl('ADL','e'); ?>
-<input type="text" size="25px" name="visitnote_Functional_Improvement_ADL1_Notes" id="visitnote_Functional_Improvement_ADL1_Notes" />
+<input type="text" style="width:158px" name="visitnote_Functional_Improvement_ADL1_Notes" id="visitnote_Functional_Improvement_ADL1_Notes" />
 <input type="checkbox" name="visitnote_Functional_Improvement_IADL" id="visitnote_Functional_Improvement_IADL" />
 <?php xl('IADL','e'); ?> 
-<input type="text" size="25px" name="visitnote_Functional_Improvement_IADL_Notes" id="visitnote_Functional_Improvement_IADL_Notes" />
+<input type="text" style="width:158px" name="visitnote_Functional_Improvement_IADL_Notes" id="visitnote_Functional_Improvement_IADL_Notes" />
 <input type="checkbox" name="visitnote_Functional_Improvement_IADL1" id="visitnote_Functional_Improvement_IADL1" />
 <?php xl('IADL','e'); ?> 
-<input type="text" size="25px" name="visitnote_Functional_Improvement_IADL1_Notes" id="visitnote_Functional_Improvement_IADL1_Notes" /> 
+<input type="text" style="width:158px" name="visitnote_Functional_Improvement_IADL1_Notes" id="visitnote_Functional_Improvement_IADL1_Notes" /> 
 <br />
 <input type="checkbox" name="visitnote_Functional_Improvement_ROM" id="visitnote_Functional_Improvement_ROM" />
-<?php xl('ROM in','e'); ?>
-<input type="text" size="50px" name="visitnote_Functional_Improvement_ROM_In" id="visitnote_Functional_Improvement_ROM_In" /> 
+<?php xl('ROM in','e'); ?>&nbsp;
+<input type="text" style="width:800px" name="visitnote_Functional_Improvement_ROM_In" id="visitnote_Functional_Improvement_ROM_In" /><br>
 <input type="checkbox" name="visitnote_Functional_Improvement_SM" id="visitnote_Functional_Improvement_SM" />
-<?php xl('Safety Management in','e'); ?>
-<input type="text" name="visitnote_Functional_Improvement_SM_In" size="50px" id="visitnote_Functional_Improvement_SM_In" />
+<?php xl('Safety Management in','e'); ?>&nbsp;
+<input type="text" style="width:700px" name="visitnote_Functional_Improvement_SM_In" id="visitnote_Functional_Improvement_SM_In" />
 <br />
 <input type="checkbox" name="visitnote_Functional_Improvement_EA" id="visitnote_Functional_Improvement_EA" />
-<?php xl('Environment Adaptations including','e'); ?>
-<input type="text" size="100px"name="visitnote_Functional_Improvement_EA_including" id="visitnote_Functional_Improvement_EA_including" /> 
+<?php xl('Environment Adaptations including','e'); ?>&nbsp;
+<input type="text" style="width:615px" name="visitnote_Functional_Improvement_EA_including" id="visitnote_Functional_Improvement_EA_including" /> 
 <br />
 <input type="checkbox" name="visitnote_Functional_Improvement_AEU" id="visitnote_Functional_Improvement_AEU" />
-<?php xl('Adaptive Equipment Usage for','e'); ?>
-<input type="text" size="35px" name="visitnote_Functional_Improvement_AEU_For" id="visitnote_Functional_Improvement_AEU_For" />
+<?php xl('Adaptive Equipment Usage for','e'); ?>&nbsp;
+<input type="text" style="width:640px" name="visitnote_Functional_Improvement_AEU_For" id="visitnote_Functional_Improvement_AEU_For" /><br>
 <input type="checkbox" name="visitnote_Functional_Improvement_Car_Fam_Perf" id="visitnote_Functional_Improvement_Car_Fam_Perf" />
-<?php xl('Caregiver/Family Performance in','e'); ?>
-<input type="text" name="visitnote_Functional_Improvement_Car_Fam_Perf_In" size="35px" id="visitnote_Functional_Improvement_Car_Fam_Perf_In" />
+<?php xl('Caregiver/Family Performance in','e'); ?>&nbsp;
+<input type="text" style="width:620px" name="visitnote_Functional_Improvement_Car_Fam_Perf_In"  id="visitnote_Functional_Improvement_Car_Fam_Perf_In" />
 <br />
 <input type="checkbox" name="visitnote_Functional_Improvement_Perf_Home_Exer" id="visitnote_Functional_Improvement_Perf_Home_Exer" />
-<?php xl('Performance of Home Exercises for','e'); ?>
- <input type="text" size="100px" name="visitnote_Functional_Improvement_Perf_Home_Exer_For" id="visitnote_Functional_Improvement_Perf_Home_Exer_For" />
+<?php xl('Performance of Home Exercises for','e'); ?>&nbsp;
+ <input type="text" style="width:602px" name="visitnote_Functional_Improvement_Perf_Home_Exer_For" id="visitnote_Functional_Improvement_Perf_Home_Exer_For" />
  <br /> 
- <?php xl('Other','e'); ?>
-<input type="text" size="150px" name="visitnote_Functional_Improvement_Other" id="visitnote_Functional_Improvement_Other" /></td>
+ <?php xl('Other','e'); ?>&nbsp;
+<input type="text" style="width:900px" name="visitnote_Functional_Improvement_Other" id="visitnote_Functional_Improvement_Other" /></td>
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('Has the patient had a fall since the last visit? ','e'); ?>
@@ -343,7 +396,7 @@ formHeader("Form: visit_notes");
 <input type="text" name="visitnote_Timed_Up_Go_Score" id="visitnote_Timed_Up_Go_Score" /> 
     </strong> <strong> <?php xl('Interpretation','e'); ?> </strong>
     <input type="checkbox" name="visitnote_Fall_Risk" value="No Fall Risk" id="visitnote_Interpretation_No_Fall_Risk" />
-<?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?> 
+<strong><?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e'); ?> </strong>
 <input type="checkbox" name="visitnote_Fall_Risk" value="Minimal Fall Risk" id="visitnote_Interpretation_Minimal_Fall_Risk" />
 <strong><?php xl('Minimal Fall Risk (11- 13 seconds)','e'); ?> </strong>
 <input type="checkbox" name="visitnote_Fall_Risk" value="Moderate Fall Risk" id="visitnote_Interpretation_Moderate_Fall_Risk" />
@@ -351,7 +404,7 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_Fall_Risk" value="High Fall Risk" id="visitnote_Interpretation_High_Fall_Risk" />
 <strong><?php xl('High Risk for Falls (&gt;19 seconds)','e'); ?> </strong><br />
 <strong><?php xl('Other Tests/Scores/Interpretations','e'); ?> 
-<input type="text" name="visitnote_Other_Tests_Scores_Interpretations" size="100px" id="visitnote_Other_Tests_Scores_Interpretations" />
+<input type="text" name="visitnote_Other_Tests_Scores_Interpretations" style="width:670px" id="visitnote_Other_Tests_Scores_Interpretations" />
 </strong></td>
   </tr>
   <tr>
@@ -363,7 +416,7 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_Response" value="Needed Guidance" id="visitnote_RT_Revisit_Needed_Guidance" />
 <?php xl('Needed Guidance/Re-Instruction','e'); ?><br />
 <?php xl('Other','e'); ?> <strong>
-<input type="text"size="100px" name="visitnote_RT_Revisit_Other" id="visitnote_RT_Revisit_Other" />
+<input type="text" style="width:900px" name="visitnote_RT_Revisit_Other" id="visitnote_RT_Revisit_Other" />
 </strong></td>
   </tr>
   <tr>
@@ -383,13 +436,14 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_CarePlan_Reviewed_to" value="Caregiver Family" id="visitnote_CPRW_Caregiver_Family" />
 <?php xl('Caregiver/Family','e'); ?>
 <input type="checkbox" name="visitnote_CarePlan_Reviewed_to" value="Case Manager" id="visitnote_CPRW_Case_Manager" />
-<?php xl('Case Manager Other','e'); ?> <strong>
-<input type="text" name="visitnote_CPRW_Other" size="75px" id="visitnote_CPRW_Other" />
+<?php xl('Case Manager','e'); ?> &nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Other','e'); ?> <strong>
+<input type="text" name="visitnote_CPRW_Other" style="width:465px" id="visitnote_CPRW_Other" />
 </strong>
 <br />
 <input type="checkbox" name="visitnote_CP_Modifications_Include" id="visitnote_CP_Modifications_Include" />
-<strong><?php xl('CARE PLANS MODIFICATIONS INCLUDE','e'); ?>
-<input type="text" size="75px" name="visitnote_CP_Modifications_Include_Notes" id="visitnote_CP_Modifications_Include_Notes" />
+<strong><?php xl('CARE PLANS MODIFICATIONS INCLUDE','e'); ?>&nbsp;
+<input type="text" style="width:610px" name="visitnote_CP_Modifications_Include_Notes" id="visitnote_CP_Modifications_Include_Notes" />
 </strong></td>
   </tr>
   <tr>
@@ -398,7 +452,7 @@ formHeader("Form: visit_notes");
     <input type="checkbox" name="visitnote_further_Visit_Required" value="Reprioritize exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" />
 <?php xl('Progress/Re-prioritize exercise program','e'); ?>
   <input type="checkbox" name="visitnote_further_Visit_Required" value="Train patient in additional skills" id="visitnote_FSVR_Train_patient" />
-<?php xl('Train patient in additional skills such as','e'); ?>
+<?php xl('Train patient in additional skills such as','e'); ?><br>
 <input type="checkbox" name="visitnote_further_Visit_Required" value="Begin Practice" id="visitnote_FSVR_Begin_Practice" />
 <?php xl('Begin/Practice','e'); ?>
 <input type="checkbox" name="visitnote_further_Visit_Required" value="IADLs" id="visitnote_FSVR_IADLs" />
@@ -406,16 +460,26 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="visitnote_further_Visit_Required" value="ADLs" id="visitnote_FSVR_ADLs" />
 <?php xl('ADLs','e'); ?>
 <input type="checkbox" name="visitnote_further_Visit_Required" value="Caregiver/Family" id="visitnote_FSVR_Train_Caregiver_Family" />
-<?php xl('Train Caregiver/Family','e'); ?>
+<?php xl('Train Caregiver/Family','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Other','e'); ?>
 <strong>
-<input type="text" name="visitnote_FSVR_Other" id="visitnote_FSVR_Other" />
+<input type="text" style="width:420px" name="visitnote_FSVR_Other" id="visitnote_FSVR_Other" />
 </strong>
 </p>
 <p>
- <?php xl('Approximate Date of Next Visit','e'); ?>
-<input type="text" name="visitnote_Date_of_Next_Visit" id="visitnote_Date_of_Next_Visit" />
-<input type="checkbox" name="visitnote_No_further_visits" value="Met Goals" id="visitnote_Date_of_Next_Visit" />
+ <?php xl('Approximate Date of Next Visit','e'); ?>
+    <input type='text' size='20' name='visitnote_Date_of_Next_Visit' id='visitnote_Date_of_Next_Visit'
+    value='<?php echo $date ?>'
+    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
+    <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
+    id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    title='<?php xl('Click here to choose a date','e'); ?>'>
+    <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"visitnote_Date_of_Next_Visit", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
+   </script>
+
+<input type="checkbox" name="visitnote_No_further_visits" value="Met Goals" id="visitnote_No_further_visits" />
 <?php xl('No further visits required Patient/Caregiver have met goals','e'); ?>
 <input type="checkbox" name="visitnote_No_further_visits" value="Met max potential" id="visitnote_No_further_visits_PC_Met_max_potential" />
 <?php xl('No further visits required. Patient/Caregiver have met maximum  potential that can be impacted by therapy.','e'); ?>

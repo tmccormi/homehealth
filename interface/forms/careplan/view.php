@@ -19,6 +19,60 @@ include_once("../../calendar.inc");
 		line-height: 24px;
     }
 </style>
+
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+	function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);
+	    	 if(Dx=='med_dx_icd9')
+	    	 {
+		    	med_icd9.innerHTML= result['res'];
+	    	 }
+	    	 if(Dx=="trmnt_dx_icd9")
+	    	 {
+	    		 trmnt_icd9.innerHTML= result['res'];
+	    	 }
+	    	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/careplan/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	</script>
 </head>
 <body class="body_top">
 <?php
@@ -42,11 +96,11 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
     <td width="13%" align="center" valign="top" scope="row">
     <strong><?php xl('PATIENT NAME','e')?></strong></td>
     <td width="13%" align="center" valign="top"> 
-    <input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled></td>
+    <input type="text" id="patient_name" value="<?php patientName()?>" readonly /></td>
     <td width="20%" align="center" valign="top">
     <strong><?php xl('MR#','e')?></strong></td>
     <td width="15%" align="center" valign="top" class="bold" >
-    <input type="text" name="mr" id="mr" value="<?php  echo $_SESSION['pid']?>" disabled></td>
+    <input type="text" name="mr" id="mr" value="<?php  echo $_SESSION['pid']?>" readonly/> </td>
     <td width="22%" align="center" valign="top"><strong>DATE</strong></td>
     <td width="17%" align="center" valign="top" class="bold">
       <input type='text' size='10' name='date_curr' id='date_curr'
@@ -63,21 +117,65 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
 
   </tr>
   <tr>
-    <td colspan="2" align="center" valign="top" scope="row">
+    <td width="20%" align="center" valign="top" scope="row">
     <strong><?php xl('Med Dx/ Reason for OT intervention','e')?></strong></td>
-    <td align="center" valign="top" class="bold">
-    <select id="med_dx_icd9" name="med_dx_icd9"> <?php  ICD9_dropdown(stripslashes($obj{"med_dx_icd9"})) ?>  </select></td>
-    <td align="center" valign="top" class="bold">
+    <td width="30%" colspan="2" align="center" valign="top" class="bold">
+	<input type="text" id="icd" size="15"/>
+				<input type="button" value="Search" onclick="javascript:changeICDlist(med_dx_icd9,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">
+<?php if ($obj{"med_dx_icd9"} != "")
+{
+echo "<select id='med_dx_icd9' name='med_dx_icd9'>"; 
+echo "<option value=".stripslashes($obj{'med_dx_icd9'}).">". stripslashes($obj{'med_dx_icd9'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='med_dx_icd9' name='med_dx_icd9' style='display:none'> </select>";
+ }?>
+</div>
+</td>
+    <td width="20%" align="center" valign="top" class="bold">
     <?php xl('Treatment Dx','e')?></td>
-    <td colspan="2" align="center" valign="top" class="bold">
-    <select id="trmnt_dx_icd9" name="trmnt_dx_icd9"> <?php ICD9_dropdown(stripslashes($obj{"trmnt_dx_icd9"})) ?>  </select></td>
+    <td width="30%" colspan="2" align="center" valign="top" class="bold">
+	<input type="text" id="icd9" size="15"/>
+				<input type="button" value="Search" onclick="javascript:changeICDlist(trmnt_dx_icd9,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<div id="trmnt_icd9">    
+  
+<?php if ($obj{"trmnt_dx_icd9"} != "")
+{
+echo "<select id='trmnt_dx_icd9' name='trmnt_dx_icd9'>"; 
+echo "<option value=".stripslashes($obj{'trmnt_dx_icd9'}).">". stripslashes($obj{'trmnt_dx_icd9'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='trmnt_dx_icd9' name='trmnt_dx_icd9' style='display:none'> </select>";
+ }?>
+</div>
+
+</td>
+
   </tr>
 
   <tr>
     <td colspan="3" valign="top" scope="row"><strong>
     <?php xl('PROBLEMS REQUIRING OT INTERVENTION','e')?></strong></td>
     <td valign="top"><strong><?php xl('SOC Date','e')?></strong></td>
-    <td colspan="2" valign="top">&nbsp;</td>
+    <td colspan="2" valign="top">
+ <input type='text' size='10' name='SOC_Date' id='SOC_Date' 
+                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'
+					 value="<?php echo stripslashes($obj{"SOC_Date"});?>" readonly/>
+                                        <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+                                        height='22' id='soc_date' border='0' alt='[?]'
+                                        style='cursor: pointer; cursor: hand'
+                                        title='<?php xl('Click here to choose a date','e'); ?>'>
+                                        <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"SOC_Date", ifFormat:"%Y-%m-%d", button:"soc_date"});
+   </script>
+
+</td>
   </tr>
   <tr>
     <td colspan="3" valign="top" scope="row">
@@ -92,7 +190,7 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
               <?php xl('Decline in ADL skills','e')?></label>
               <br /></td>
             <td width="158" valign="top">
-            <input name="adl_skills_text"  id="adl_skills_text" type="text"  value="<?php echo stripslashes($obj{"adl_skills_text"});?>" >
+            <input name="adl_skills_text" style="width:180px" id="adl_skills_text" type="text"  value="<?php echo stripslashes($obj{"adl_skills_text"});?>" >
 
               &nbsp;</td>
           </tr>
@@ -103,7 +201,7 @@ echo "checked";;?>>
             </label>
               <?php xl('Decrease in ROM in','e')?> </td>
             <td valign="top"><label for="ROM in2"></label>
-              <input type="text" name="dec_rom_txt" id="dec_rom_txt" value="<?php echo stripslashes($obj{"dec_rom_txt"});?>" ></td>
+              <input type="text" style="width:180px" name="dec_rom_txt" id="dec_rom_txt" value="<?php echo stripslashes($obj{"dec_rom_txt"});?>" ></td>
           </tr>
           <tr>
             <td valign="top" scope="row"><label>
@@ -112,7 +210,7 @@ echo "checked";;?>>
             </label>
               <?php xl('Decline in IADL skills','e')?> </td>
             <td valign="top"><label for="IADL skills"></label>
-              <input type="text" name="iadl_skills_txt" id="iadl_skills_txt" value="<?php echo stripslashes($obj{"iadl_skills_txt"});?>" ></td>
+              <input type="text" style="width:180px" name="iadl_skills_txt" id="iadl_skills_txt" value="<?php echo stripslashes($obj{"iadl_skills_txt"});?>" ></td>
           </tr>
           <tr>
             <td valign="top" scope="row"><label>
@@ -120,7 +218,7 @@ echo "checked";;?>>
 echo "checked";;?>> 
               <?php xl('Decline in Functional Mobility in','e')?></label></td>
             <td valign="top"><label for="Mobility in"></label>
-              <input type="text" name="mobility_in" id="mobility_in" value="<?php echo stripslashes($obj{"mobility_in"});?>" >
+              <input type="text" style="width:180px" name="mobility_in" id="mobility_in" value="<?php echo stripslashes($obj{"mobility_in"});?>" >
 </td>
           </tr>
         </table>        </tr>
@@ -133,21 +231,21 @@ echo "checked";;?>>
           <label for="Decreased Safety Techniques in">
           <?php xl('Decreased Safety Techniques in','e')?></label> 
           <label for="techniques in others"></label>
-            <input type="text" name="safety_tech_txt" id="safety_tech_txt" value="<?php echo stripslashes($obj{"safety_tech_txt"});?>" >
+            <input type="text" style="width:240px" name="safety_tech_txt" id="safety_tech_txt" value="<?php echo stripslashes($obj{"safety_tech_txt"});?>" >
         
       </tr>
       <tr>
         <td width="35%" valign="top" scope="row"><?php xl('Other','e')?></td>
         <td width="24" valign="top">
           <label for="soc date_other_1"></label>
-          <input type="text" name="safety_tech_others1" id="safety_tech_others1"  value="<?php echo stripslashes($obj{"safety_tech_others1"});?>" >
+          <input type="text" style="width:400px" name="safety_tech_others1" id="safety_tech_others1"  value="<?php echo stripslashes($obj{"safety_tech_others1"});?>" >
         </td>
       </tr>
       <tr>
         <td valign="top" scope="row"><?php xl('Other','e')?></td>
         <td valign="top">
           <label for="soc date_other_2"></label>
-          <input type="text" name="safety_tech_others2" id="safety_tech_others2" value="<?php echo stripslashes($obj{"safety_tech_others2"});?>" >
+          <input type="text" style="width:400px" name="safety_tech_others2" id="safety_tech_others2" value="<?php echo stripslashes($obj{"safety_tech_others2"});?>" >
 </td> 
       </tr>
     </table></td>
@@ -157,13 +255,16 @@ echo "checked";;?>>
     <table width="100%" class="formtable">
     <tr>
     <td colspan="2" valign="top" scope="row">
-    <strong><?php xl('TREATMENT PLAN       FREQUENCY','e')?>
-    <input type="text" name="frequency" id="frequency" value="<?php echo stripslashes($obj{"frequency"});?>" >
-    </strong>    
-    <td colspan="2" align="left" valign="top"><strong><?php xl('DURATION','e')?>
-      <input type="text" name="duration" id="duration"  value="<?php echo stripslashes($obj{"duration"});?>" >
-    </strong></td>
-    <td colspan="2" align="left" valign="top"><strong><?php xl('EFFECTIVE DATE','e')?>  
+    <strong><?php xl('TREATMENT PLAN','e')?>
+    <br></td><tr><td><?php xl('Frequency & Duration : ','e')?>&nbsp;
+                                <input type="text" name="frequency" id="frequency" size="15px" value="<?php echo stripslashes($obj{"frequency"});?>"/>&nbsp;
+                                <?php xl('of times per','e')?>&nbsp;
+                                <select name="Freq_Duration1" id="Freq_Duration1" ><?php Freq_Duration(stripslashes($obj{"Freq_Duration1"})) ?></select>&nbsp;
+                                <?php xl('for','e')?>&nbsp;
+                                <input type="text" name="duration" id="duration" size="15px" value="<?php echo stripslashes($obj{"duration"});?>"/>&nbsp;
+                                <?php xl('of','e')?>&nbsp;
+                                <select name="Freq_Duration2" id="Freq_Duration2"><?php Freq_Duration(stripslashes($obj{"Freq_Duration2"})) ?></select>&nbsp;<?php xl('(s)','e')?><br>
+                                <strong><?php xl('EFFECTIVE DATE','e')?>&nbsp;&nbsp;    
     <input type="text" name="effective_date" id="effective_date" value="<?php echo stripslashes($obj{"effective_date"});?>"  readonly>
     </strong>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
@@ -265,7 +366,7 @@ echo "checked";;?>>
         </p>
       <p> <?php xl(' Other','e')?>
         <label for="0checkbox_3_ther"></label>
-        <input type="text" name="exercises_others" id="exercises_others" value="<?php echo stripslashes($obj{"exercises_others"});?>" >
+        <input type="text" name="exercises_others" id="exercises_others" value="<?php echo stripslashes($obj{"exercises_others"});?>" style="width:300px">
       </p>
       <p><br />
       </p>
@@ -274,50 +375,65 @@ echo "checked";;?>>
 
   <tr>
     <td colspan="6" valign="top">
-    <table width="100%" class="formtable" border="1">
-      <tr>
-    	  <td width="39%" valign="middle" scope="row"><strong>
-    	  <?php xl('Short Term Outcomes','e')?></strong>
-          </td>          
-    	  <td valign="middle"><strong><?php xl('Time','e')?></strong></td>
-    	  <td colspan="3" valign="top"><table width="100%" border="0" cellpadding="2px" class="formtable">
-
-    	    <tr>
-    	      <td width="320" valign="top" scope="row"><strong>
-    	      <?php xl('Short Term Outcomes','e')?></strong></td>
-    	      <td width="49" valign="top"><strong><?php xl('Time','e')?></strong></td>
-  	      </tr>
-  	    </table></td>
-  	  </tr>
-    	<tr>
-        <td valign="top" scope="row"><table width="100%" cellpadding="2px" class="formtable">
-
-      <tr>
-        <td valign="top" scope="row">
-          <p>
-            
-              <input type="checkbox" name="imp_adl_skills" id="imp_adl_skills" <?php if ($obj{"imp_adl_skills"} == "on")
-      echo "checked";;?>> 
-              <label><?php xl('Improve ADL skills in','e')?></label>             
-            <input type="text" size="12" name="imp_adl_skills_in" id="imp_adl_skills_in" value="<?php echo stripslashes($obj{"imp_adl_skills_in"});?>" >
-            <?php xl('to','e')?> 
-            <input type="text" size="12" name="imp_adl_skills_to" id="imp_adl_skills_to" value="<?php echo stripslashes($obj{"imp_adl_skills_to"});?>" >
-          <?php xl('assist.','e')?></p></td>
-        </tr>
-      <tr>
-        <td valign="top" scope="row"><label>
-          <input type="checkbox" name="imp_iadl_skills" id="imp_iadl_skills" <?php if ($obj{"imp_iadl_skills"} == "on")
+	
+	<table width="100%" border="2" class="formtable">
+						<tr>
+							<td width="40%" align="cenetr" scope="row"><strong><?php xl('Short Term Outcomes','e')?>
+							</strong>
+							</td>
+							<td width="10%" align="center"><strong><?php xl('Time','e')?> </strong></td>
+							<td width="40%"><strong><?php xl('Short Term Outcomes','e')?></strong></td>
+							<td width="10%" align="center"><strong><?php xl('Time','e')?> </strong></td>
+						</tr>
+							
+						
+	<tr>
+	<td valign="top" scope="row"><label>
+		<input type="checkbox" name="imp_adl_skills" id="imp_adl_skills" <?php if ($obj{"imp_adl_skills"} == "on") echo "checked";;?>>
+	</label><?php xl('Improve ADL skills in','e')?>           
+	<input type="text" size="12" name="imp_adl_skills_in" id="imp_adl_skills_in" value="<?php echo stripslashes($obj{"imp_adl_skills_in"});?>" >
+	<?php xl('to','e')?> 
+	<input type="text" size="12" name="imp_adl_skills_to" id="imp_adl_skills_to" value="<?php echo stripslashes($obj{"imp_adl_skills_to"});?>" >
+    <?php xl('assist.','e')?>
+	</td>
+										<td  align="left" valign="center">
+											<input type="text" name="shortterm_time" id="shortterm_time" size="10px" value="<?php echo stripslashes($obj{"shortterm_time"});?>">
+										</td>
+										<td scope="row">
+										<?php xl('Other','e')?><input type="text" style="width:400px" name="time_others1" id="time_others1" value="<?php echo stripslashes($obj{"time_others1"});?>" />
+										<br>
+										<?php xl('Other','e')?><input type="text" style="width:400px" name="time_others2" id="time_others2" value="<?php echo stripslashes($obj{"time_others2"});?>" />
+										</td>
+										<td  align="left" valign="center">
+											<input type="text" name="shortterm_time6" id="shortterm_time6" size="10px" value="<?php echo stripslashes($obj{"shortterm_time6"});?>">
+<br/>											<input type="text" name="shortterm_time7" id="shortterm_time7" size="10px" value="<?php echo stripslashes($obj{"shortterm_time7"});?>">
+										</td>
+									</tr>
+									
+									<tr>
+										<td valign="top" scope="row"><label>
+										<input type="checkbox" name="imp_iadl_skills" id="imp_iadl_skills" <?php if ($obj{"imp_iadl_skills"} == "on")
       echo "checked";;?>> 
          <?php xl(' Improve IADL skills in','e')?></label>
           <input type="text" size="12" name="imp_iadl_skills_in" id="imp_iadl_skills_in" value="<?php echo stripslashes($obj{"imp_iadl_skills_in"});?>" >
           <?php xl('to','e')?>
           <input type="text" size="12" name="imp_iadl_skills_to" id="imp_iadl_skills_to" value="<?php echo stripslashes($obj{"imp_iadl_skills_to"});?>" >         
         <?php xl('assist.','e')?>
-        </td>       
-        </tr>
-      <tr>
-        <td valign="top" scope="row"><label>
-          <input type="checkbox" name="wfl_Increase" id="wfl_Increase" <?php if ($obj{"wfl_Increase"} == "on")
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="shortterm_time1" id="shortterm_time1" size="10px" value="<?php echo stripslashes($obj{"shortterm_time1"});?>">
+										</td>
+										<td align="left" colspan="2">
+										    <strong><?php xl('Long Term Outcomes ','e')?></strong>
+										</td>
+										<td></td>
+										
+									</tr>
+									
+									
+									<tr>
+										<td valign="top" scope="row"><label> 
+										<input type="checkbox" name="wfl_Increase" id="wfl_Increase" <?php if ($obj{"wfl_Increase"} == "on")
       echo "checked";;?> > 
           <?php xl('Increase','e')?></label>             
               <input type="checkbox" name="wfl_details" id="wfl_details" <?php if ($obj{"wfl_details"} == "strength")
@@ -337,132 +453,121 @@ echo "checked";;?>>
               <?php xl('left','e')?></label> 
             
           <input type="text" size="12" name="increase_to" id="increase_to" value="<?php echo stripslashes($obj{"increase_to"});?>" >  
-          <?php xl('to WFL','e')?>      </td></tr>
-      <tr>
-        <td valign="top" scope="row"><label>
-
-          <input type="checkbox" name="perform" id="perform" <?php if ($obj{"perform"} == "on")
+          <?php xl('to WFL','e')?>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="shortterm_time2" id="shortterm_time2" size="10px" value="<?php echo stripslashes($obj{"shortterm_time2"});?>">
+										</td>
+										<td>
+										<label>               
+										<input type="checkbox" name="return_to_priorlevel" id="return_to_priorlevel" <?php if ($obj{"return_to_priorlevel"} == "on")
+echo "checked";;?>>						<?php xl('Return to prior level of function in','e')?>
+										</label>
+										<input type="text" name="return_priorlevel_in" id="return_priorlevel_in" style="width:200px" value="<?php echo stripslashes($obj{"return_priorlevel_in"});?>">
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="longterm_time" id="longterm_time" size="10px" value="<?php echo stripslashes($obj{"longterm_time"});?>">
+										</td>
+					
+										
+									</tr>
+									<tr>
+										<td valign="top" scope="row"><label> 
+										<input type="checkbox" name="perform" id="perform" <?php if ($obj{"perform"} == "on")
 echo "checked";;?>>
           <?php xl('Perform','e')?></label>
-          
           <input type="text" size="12" name="exercise_type" id="exercise_type" value="<?php echo stripslashes($obj{"exercise_type"});?>" >
           <?php xl('Exercises using written handout  with','e')?>     
-            <input type="text" size="12" name="exercise_prompts" id="exercise_prompts" value="<?php echo stripslashes($obj{"exercise_prompts"});?>" >
-          
-          <?php xl('verbal/physical prompts','e')?>        </td> </tr>
-      <tr>
-        <td valign="top" scope="row"><label>
-
-          <input type="checkbox" name="improve_safety" id="improve_safety" <?php if ($obj{"improve_safety"} == "on")
+          <input type="text" size="12" name="exercise_prompts" id="exercise_prompts" value="<?php echo stripslashes($obj{"exercise_prompts"});?>" >
+          <?php xl('verbal/physical prompts','e')?>
+		  
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="shortterm_time3" id="shortterm_time3" size="10px" value="<?php echo stripslashes($obj{"shortterm_time3"});?>">
+										</td>
+										<td><label>
+											<input type="checkbox" name="home_exercise" id="home_exercise" <?php if ($obj{"home_exercise"} == "on")
+echo "checked";;?>> 
+											<?php xl('Demonstrate ability to follow home exercise program','e')?></label>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="longterm_time1" id="longterm_time1" size="10px" value="<?php echo stripslashes($obj{"longterm_time1"});?>">
+										</td>								
+									</tr>
+									
+									
+									<tr>
+										<td valign="top" scope="row"><label> 
+										<input type="checkbox" name="improve_safety" id="improve_safety" <?php if ($obj{"improve_safety"} == "on")
 echo "checked";;?>>
           <?php xl('Improve safety techniques in','e')?></label>
-          
           <input type="text" size="12" name="safety_technique_in" id="safety_technique_in" value="<?php echo stripslashes($obj{"safety_technique_in"});?>" >
           <?php xl('to','e')?>
           <input type="text" size="12" name="safety_technique_to" id="safety_technique_to" value="<?php echo stripslashes($obj{"safety_technique_to"});?>" >
-  
-          <?php xl('assist.','e')?>        </td> </tr>
-      <tr>
-        <td valign="top" scope="row"><br />
-
-          <label>
-            <input type="checkbox" name="improve_mobility" id="improve_mobility" <?php if ($obj{"improve_mobility"} == "on")
+          <?php xl('assist.','e')?>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="shortterm_time4" id="shortterm_time4" size="10px" value="<?php echo stripslashes($obj{"shortterm_time4"});?>">
+										</td>
+										<td width="60%" scope="row">
+											<label><input type="checkbox" name="safety_at_home" id="safety_at_home" <?php if ($obj{"safety_at_home"} == "on")
+echo "checked";;?>>
+											<?php xl('Improve independence in safety awareness in home','e')?>
+											</label>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="longterm_time2" id="longterm_time2" size="10px" value="<?php echo stripslashes($obj{"longterm_time2"});?>">
+										</td>
+									</tr>
+									
+									<tr>
+										<td scope="row"><br /> <label> 
+										<input type="checkbox" name="improve_mobility" id="improve_mobility" <?php if ($obj{"improve_mobility"} == "on")
 echo "checked";;?>>
             <?php xl('Improve functional mobility in','e')?></label>
-           
             <input type="text" size="12" name="improve_mobility_in" id="improve_mobility_in" value="<?php echo stripslashes($obj{"improve_mobility_in"});?>" >
           <?php xl('to','e')?>
           <input type="text" name="improve_mobility_to" id="improve_mobility_to" value="<?php echo stripslashes($obj{"improve_mobility_to"});?>" size="12" >
             <?php xl('assist.','e')?>
-            </td> </tr>
-    </table>
-
-    <td width="9%" align="left" valign="top">
-      <label for="time1"></label>
-      <textarea name="shortterm_time" id="shortterm_time" cols="7" rows="21"><?php echo stripslashes($obj{"shortterm_time"});?></textarea>         
-    </td>
-    <td width="52%" colspan="3"><table width="100%" border="0" cellpadding="2px" class="formtable">
-      <tr>
-        <td scope="row"><?php xl('Other','e')?></td>
-        <td>
-          <input type="text" name="time_others1" id="time_others1" value="<?php echo stripslashes($obj{"time_others1"});?>" >
-        </td>
-        <td rowspan="2">
-      <label for="time1"></label>
-      <textarea name="time_others2" id="time_others2" cols="7" rows="5"> <?php echo stripslashes($obj{"time_others2"});?>
-      </textarea>
-    </td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('Other','e')?></td>
-        <td>
-          <input type="text" name="time_others3" id="time_others3" value="<?php echo stripslashes($obj{"time_others3"});?>" >
-        </td>
-        </tr>
-      <tr>
-        <td colspan="3" scope="row"><p><strong><?php xl('Long Term Outcomes','e')?>
-        </strong></p></tr>
-
-      <tr>
-        <td width="60%" scope="row">
-          <p>
-            <label>
-              <input type="checkbox" name="return_to_priorlevel" id="return_to_priorlevel" <?php if ($obj{"return_to_priorlevel"} == "on")
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="shortterm_time5" id="shortterm_time5" size="10px" value="<?php echo stripslashes($obj{"shortterm_time5"});?>">
+										</td>
+										<td scope="row"><label>
+											<input type="checkbox" name="envrn_changes_home"  id="envrn_changes_home" <?php if ($obj{"envrn_changes_home"} == "on")
 echo "checked";;?>>
-              <?php xl('Return to prior level of function in','e')?></label>
-            <label>
-              <?php xl('program','e')?></label>
-
-            <br />
-          </p>
-       </td>
-        <td>
-          <input type="text" name="return_priorlevel_in" id="return_priorlevel_in" value="<?php echo stripslashes($obj{"return_priorlevel_in"});?>" >
-</td>
-        
-        <td rowspan="5">
-      <label for="time1"></label>
-      <textarea name="longterm_time" id="longterm_time" cols="7" rows="6"><?php echo stripslashes($obj{"longterm_time"});?>
-      </textarea>
-
-    </td> 
-        </tr>
-      <tr>
-        <td width="60%" scope="row"><input type="checkbox" name="home_exercise" id="home_exercise" <?php if ($obj{"home_exercise"} == "on")
-echo "checked";;?>>
-<?php xl('Demonstrate ability to follow home exercise','e')?> </td>
-        <td>&nbsp;</td>
-        </tr>
-      <tr>
-        <td  width="60%" scope="row"><label>
-          <input type="checkbox" name="safety_at_home" id="safety_at_home" <?php if ($obj{"safety_at_home"} == "on")
-echo "checked";;?>>
-          <?php xl('Improve independence in safety awareness in home','e')?></label></td>
-        <td>&nbsp;</td>
-        </tr>
-      <tr>
-        <td  width="60%" scope="row">
-        <input type="checkbox" name="envrn_changes_home"  id="envrn_changes_home" <?php if ($obj{"envrn_changes_home"} == "on")
-echo "checked";;?>>
-<?php xl('Implement environmental changes in home to improve safety','e')?></td>
-        <td>&nbsp;</td>
-
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('Others','e')?></td>
-        <td>
-          <input type="text" name="longterm_others" id="longterm_others" value="<?php echo stripslashes($obj{"longterm_others"});?>" >
-        </td>
-        </tr>
-    </table></td>
-        </tr>
-    </table>
+											<?php xl('Implement environmental changes in home to improve safety','e')?></label>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="longterm_time3" id="longterm_time3" size="10px" value="<?php echo stripslashes($obj{"longterm_time3"});?>">
+										</td>
+									</tr>
+									
+									<tr>
+										<td >&nbsp;</td>
+										<td>&nbsp;</td>
+										<td scope="row"><?php xl('Other','e')?>
+											<input type="text" style="width:400px" name="time_others3" id="time_others3" value="<?php echo stripslashes($obj{"time_others3"});?>"/>
+										</td>
+										<td align="left" valign="center">
+											<input type="text" name="longterm_time4" id="longterm_time4" size="10px" value="<?php echo stripslashes($obj{"longterm_time4"});?>">
+										</td>
+									</tr>
+							
+							
+									
+					</table>
+	
+    
+	</td>
     </td>
   </tr>
   <tr>
     <td colspan="6" valign="top" scope="row"><p>
-    <strong><?php xl('ADDITIONAL  COMMENTS','e')?>
-    </strong></p></tr>
+    <strong><?php xl('ADDITIONAL COMMENTS','e')?>
+    </strong>
+	<input type="text" style="width:760px" name="additional_comments_text" id="additional_comments_text" value="<?php echo stripslashes($obj{"additional_comments_text"});?>" />
+	</p></tr>
   <tr>
     <th colspan="3" align="left" valign="middle" scope="row">
     <strong><?php xl('Rehab Potential','e')?></strong>
@@ -492,7 +597,7 @@ echo "checked";;?>>
         <?php xl('When Goals Are Met','e')?></label>
    </td>
     <td align="left" valign="middle"><p><?php xl('Other','e')?> 
-      <input type="text" name="rehabpotential_others" id="rehabpotential_others" value="<?php echo stripslashes($obj{"rehabpotential_others"});?>" >
+      <input type="text" style="width:120px" name="rehabpotential_others" id="rehabpotential_others" value="<?php echo stripslashes($obj{"rehabpotential_others"});?>" >
     </p> </td>
 
   </tr>
@@ -530,9 +635,9 @@ echo "checked";;?> value="family">
           <input type="checkbox" name="careplan_discharge_comm" id="careplan_discharge_comm" <?php if ($obj{"careplan_discharge_comm"} == "manager")
 echo "checked";;?> value="manager">
 
-          <?php xl('Case Manager','e')?><br />
+          <?php xl('Case Manager','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <?php xl('Other','e')?></label>
-        <input type="text" name="care_plan_discharge_other" id="careplan_discharge_comm" value="<?php echo stripslashes($obj{"care_plan_discharge_other"});?>" >
+        <input type="text" style="width:500px" name="care_plan_discharge_other" id="careplan_discharge_comm" value="<?php echo stripslashes($obj{"care_plan_discharge_other"});?>" >
   </td>
   </tr>
   <tr>
@@ -568,7 +673,7 @@ echo "checked";;?> value="memoryloss">
           <?php xl('short term memory difficulties','e')?>
           <input type="checkbox" name="addtn_treatment_req" id="addtn_treatment_req" <?php if ($obj{"addtn_treatment_req"} == "minsupport")
 echo "checked";;?> value="minsupport">
-          <?php xl('minimal support systems','e')?>
+          <?php xl('minimal support systems','e')?><br>
           <input type="checkbox" name="addtn_treatment_req" id="addtn_treatment_req" <?php if ($obj{"addtn_treatment_req"} == "langbarrier")
 echo "checked";;?> value="langbarrier">
           <?php xl('communication, language  barriers','e')?>
@@ -596,7 +701,7 @@ echo "checked";;?> value="writtendirections">
     <?php xl('Providing written directions  and/or physical demonstration','e')?> 
     <input type="checkbox" name="address_issues_options" id="communitysupport" <?php if ($obj{"address_issues_options"} == "communitysupport")
 echo "checked";;?> value="communitysupport">
-    <?php xl('establish community  support systems','e')?>
+    <?php xl('establish community  support systems','e')?><br>
     <input type="checkbox" name="address_issues_options" id="adaptations" <?php if ($obj{"address_issues_options"} == "adaptations")
 echo "checked";;?> value="adaptations">
     <?php xl('home/environmental adaptations','e')?>
@@ -604,7 +709,7 @@ echo "checked";;?> value="adaptations">
 echo "checked";;?> value="usefamily">
    <?php xl(' use family/professionals for interpretations as needed','e')?></p>
       <p><?php xl(' Other','e')?>
-  <input type="text" name="address_issues_others" id="address_issues_others" value="<?php echo stripslashes($obj{"address_issues_others"});?>" >
+  <input type="text" style="width:430px" name="address_issues_others" id="address_issues_others" value="<?php echo stripslashes($obj{"address_issues_others"});?>" >
       </p>
     </td>
   </tr>

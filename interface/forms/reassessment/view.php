@@ -10,6 +10,56 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);
+	    	 
+		    	med_icd9.innerHTML= result['res'];
+	    	 
+	    	 	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/reassessment/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	 
+	</script>
 </head>
 <body class="body_top">
 <?php
@@ -43,13 +93,16 @@ $obj = formFetch("forms_ot_Reassessment", $_GET["id"]);
 
         <td align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
         <td width="13%" align="center" valign="top"><input type="text"
-					name="patient_name" id="patient_name" value="<?php patientName()?>"
-					disabled /></td>
+					id="patient_name" value="<?php patientName()?>"
+					readonly /></td>
         <td align="center"><strong><?php xl('MR#','e')?></strong></td>
-        <td width="15%" align="center" valign="top" class="bold"><input
-					type="text" name="mr" id="mr"
-					value="<?php  echo $_SESSION['pid']?>" disabled /></td>
-					<td align="center"><strong><?php xl('REASSESS DATE','e')?></strong></td>
+        <td align="center" valign="top" class="bold">
+        <input type="text" name="mr" id="mr" size="7px" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
+        <td width="70"><p><strong><?php xl('Time In','e');?></strong></p></td>
+        <td><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_In"}))?></select></td>
+        <td width="70"><p><strong><?php xl('Time Out','e');?></strong></p></td>
+        <td><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_Out"}))?></select></td>
+	<td align="center"><strong><?php xl('DATE','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
@@ -77,8 +130,7 @@ $obj = formFetch("forms_ot_Reassessment", $_GET["id"]);
   <label>
     <input type="checkbox" name="Reassessment_Pulse_State" value="Irregular" id="Reassessment_Pulse_State" 
      <?php if ($obj{"Reassessment_Pulse_State"} == "Irregular") echo "checked";;?>/>
-    <?php xl('Irregular','e')?></label>
-  &nbsp; &nbsp; &nbsp;
+    <?php xl('Irregular','e')?></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <?php xl('Temperature','e')?>
      <input size="3px" type="text" name="Reassessment_Temperature" id="Reassessment_Temperature" 
       value="<?php echo stripslashes($obj{"Reassessment_Temperature"});?>" />
@@ -89,11 +141,10 @@ $obj = formFetch("forms_ot_Reassessment", $_GET["id"]);
      <label>
        <input type="checkbox" name="Reassessment_Temperature_type" value="Temporal" id="Reassessment_Temperature_type" 
         <?php if ($obj{"Reassessment_Temperature_type"} == "Temporal") echo "checked";;?>/>
-       <?php xl('Temporal','e')?></label>
-&nbsp;  &nbsp;
- &nbsp;   <?php xl('Other','e')?>
+       <?php xl('Temporal','e')?></label> &nbsp;
+       <?php xl('Other','e')?>
  <input type="text" size="3px" name="Reassessment_VS_other" id="Reassessment_VS_other"
-  value="<?php echo stripslashes($obj{"Reassessment_VS_other"});?>" />
+  value="<?php echo stripslashes($obj{"Reassessment_VS_other"});?>" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Respirations','e')?>
 <input type="text" size="3px" name="Reassessment_VS_Respirations" id="Reassessment_VS_Respirations" 
 value="<?php echo stripslashes($obj{"Reassessment_VS_Respirations"});?>" />
@@ -126,24 +177,23 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_BP_Systolic"});?>" />
 <label>
   <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Lying" id="lying" 
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Lying") echo "checked";;?>/>
-  <?php xl('Lying *O2 Sat','e')?>
-</label>  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" 
+   <?php xl('Lying','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?>
+   </label>  <input type="text" size="3px" name="Reassessment_VS_Sat" id="physician" 
   value="<?php echo stripslashes($obj{"Reassessment_VS_Sat"});?>" />
 
 <?php xl('*Physician ordered','e')?></td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
-
-	<input type="checkbox" name="Reassessment_VS_Pain" value="Pain" id="Reassessment_VS_Pain" 
-	 <?php if ($obj{"Reassessment_VS_Pain"} == "Reassessment_VS_Pain") echo "checked";;?>/>
-<?php xl('Pain','e')?>
+  <strong><?php xl('Pain','e')?></strong>
   <input type="checkbox" name="Reassessment_VS_Pain" value="No Pain" id="Reassessment_VS_Pain" 
    <?php if ($obj{"Reassessment_VS_Pain"} == "No Pain") echo "checked";;?>/>
 <?php xl('No Pain','e')?>
 <input type="checkbox" name="Reassessment_VS_Pain" value="Pain limits functional ability" id="Reassessment_VS_Pain" 
  <?php if ($obj{"Reassessment_VS_Pain"} == "Pain limits functional ability") echo "checked";;?>/>
-<?php xl('Pain limits functional ability Intensity','e')?>
+<?php xl('Pain limits functional ability','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Intensity','e'); ?>&nbsp;
 <input type="text" size="9px" name="Reassessment_VS_Pain_Intensity" id="Reassessment_VS_Pain_Intensity" 
 value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 <input type="checkbox" name="Reassessment_VS_Pain_Intensity_type" value="Improve" id="Reassessment_VS_Pain_Intensity_type" 
@@ -171,7 +221,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 <input type="checkbox" name="Reassessment_HR_Medical_Restrictions" id="Reassessment_HR_Medical_Restrictions" 
     <?php if ($obj{"Reassessment_HR_Medical_Restrictions"} == "on") echo "checked";;?>/>
 <?php xl('Medical Restrictions in','e')?> 
-<input type="text" size="30px" name="Reassessment_HR_Medical_Restrictions_In" id="Reassessment_HR_Medical_Restrictions_In"
+<input type="text" style="width:260px" name="Reassessment_HR_Medical_Restrictions_In" id="Reassessment_HR_Medical_Restrictions_In"
  value="<?php echo stripslashes($obj{"Reassessment_HR_Medical_Restrictions_In"});?>" />
 <br />
 <input type="checkbox" name="Reassessment_HR_SOB_upon_exertion" id="Reassessment_HR_SOB_upon_exertion" 
@@ -198,8 +248,8 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 <input type="checkbox" name="Reassessment_HR_Confusion" id="Reassessment_HR_Confusion" 
 <?php if ($obj{"Reassessment_HR_Confusion"} == "on") echo "checked";;?>/>
 <?php xl('Confusion, unable to go out of home alone','e')?><br />
-<?php xl('Other','e')?>
-<input type="text" size="35px" name="Reassessment_HR_Other" id="Reassessment_HR_Other" 
+<?php xl('Other','e')?>&nbsp;
+<input type="text" style="width:390px" name="Reassessment_HR_Other" id="Reassessment_HR_Other" 
  value="<?php echo stripslashes($obj{"Reassessment_HR_Other"});?>" /></td>
       </tr>
     </table></td>
@@ -208,8 +258,21 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
-    <select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem">
-    <?php ICD9_dropdown(stripslashes($obj{"Reassessment_TREATMENT_DX_Problem"})) ?></select></td></tr></table></td>
+<input type="text" id="icd" size="15"/>
+<input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">  
+<?php if ($obj{"Reassessment_TREATMENT_DX_Problem"})
+{
+echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem'>"; 
+echo "<option value=".stripslashes($obj{'Reassessment_TREATMENT_DX_Problem'}).">". stripslashes($obj{'Reassessment_TREATMENT_DX_Problem'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem' style='display:none'> </select>";
+ }?>
+</div>
+</td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
@@ -386,7 +449,8 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 
 	<input type="checkbox" name="Reassessment_Assistive_Devices" value="N/A" id="Reassessment_Assistive_Devices" 
 	<?php if ($obj{"Reassessment_Assistive_Devices"} == "N/A") echo "checked";;?>/>
-<strong><?php xl('N/A  Assistive Devices','e')?></strong>
+<strong><?php xl('N/A','e')?></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<strong><?php xl('Assistive Devices','e')?></strong>
 <input type="checkbox" name="Reassessment_Assistive_Devices" value="None" id="Reassessment_Assistive_Devices" 
 <?php if ($obj{"Reassessment_Assistive_Devices"} == "None") echo "checked";;?>/>
 <?php xl('None','e')?>
@@ -397,43 +461,44 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 <?php if ($obj{"Reassessment_Assistive_Devices"} == "Cane") echo "checked";;?>/>
 <?php xl('Cane Type','e')?>
 <label for="textfield"></label>
-  <input type="text" size="13px" name="Reassessment_Assistive_Devices_Cane_Type" id="Reassessment_Assistive_Devices_Cane_Type" 
+  <input type="text" size="22px" name="Reassessment_Assistive_Devices_Cane_Type" id="Reassessment_Assistive_Devices_Cane_Type" 
    value="<?php echo stripslashes($obj{"Reassessment_Assistive_Devices_Cane_Type"});?>" />
 
 <input type="checkbox" name="Reassessment_Assistive_Devices" value="Walker" id="Walker" 
 <?php if ($obj{"Reassessment_Assistive_Devices"} == "Walker") echo "checked";;?>/>
-<?php xl('Walker Type','e')?>
-<input type="text" size="13px" name="Reassessment_Assistive_Devices_Walker_Type" id="Reassessment_Assistive_Devices_Walker_Type" 
- value="<?php echo stripslashes($obj{"Reassessment_Assistive_Devices_Walker_Type"});?>" />
-<?php xl('Other','e')?>
-<input type="text" size="13px" name="Reassessment_Assistive_Devices_Other" id="Reassessment_Assistive_Devices_Other" 
+<?php xl('Walker Type','e')?>&nbsp;
+<input type="text" style="width:180px" name="Reassessment_Assistive_Devices_Walker_Type" id="Reassessment_Assistive_Devices_Walker_Type" 
+ value="<?php echo stripslashes($obj{"Reassessment_Assistive_Devices_Walker_Type"});?>" /><br>
+<?php xl('Other','e')?>&nbsp;
+<input type="text" style="width:870px" name="Reassessment_Assistive_Devices_Other" id="Reassessment_Assistive_Devices_Other" 
  value="<?php echo stripslashes($obj{"Reassessment_Assistive_Devices_Other"});?>" /> <strong><br />
 <?php xl('Timed Up and Go Score','e')?></strong>
-<input type="text" name="Reassessment_Timed_Up_Go_Score" id="Reassessment_Timed_Up_Go_Score" 
+<input type="text" style="width:170px" name="Reassessment_Timed_Up_Go_Score" id="Reassessment_Timed_Up_Go_Score" 
  value="<?php echo stripslashes($obj{"Reassessment_Timed_Up_Go_Score"});?>" />
 <strong><?php xl('Interpretation','e')?></strong> 
 <input type="checkbox" name="Reassessment_Interpretation_Risk_Types" value="No Fall Risk" id="Reassessment_Interpretation_Risk_Types" 
 <?php if ($obj{"Reassessment_Interpretation_Risk_Types"} == "No Fall Risk") echo "checked";;?>/>
-<?php xl('Independent-No Fall Risk (&lt; 11 seconds)','e')?>
+<strong><?php xl('Independent-No Fall Risk (','e')?>&lt; <?php xl('11 seconds)','e')?></strong>
 <br />
 <input type="checkbox" name="Reassessment_Interpretation_Risk_Types" value="Minimal Fall Risk" id="Reassessment_Interpretation_Risk_Types" 
 <?php if ($obj{"Reassessment_Interpretation_Risk_Types"} == "Minimal Fall Risk") echo "checked";;?>/>
-<strong><?php xl('Minimal Fall Risk</strong> (11- 13 seconds)','e')?> </strong>
+<strong><?php xl('Minimal Fall Risk (11- 13 seconds)','e')?> </strong>
 
 <input type="checkbox" name="Reassessment_Interpretation_Risk_Types" value="Moderate Fall Risk" id="Reassessment_Interpretation_Risk_Types" 
 <?php if ($obj{"Reassessment_Interpretation_Risk_Types"} == "Moderate Fall Risk") echo "checked";;?>/>
-<strong><?php xl('Moderate Fall Risk </strong>(13.5-19 seconds)','e')?></strong>
+<strong><?php xl('Moderate Fall Risk (13.5-19 seconds)','e')?></strong>
 <input type="checkbox" name="Reassessment_Interpretation_Risk_Types" value="High Risk for Falls" id="Reassessment_Interpretation_Risk_Types" 
 <?php if ($obj{"Reassessment_Interpretation_Risk_Types"} == "High Risk for Falls") echo "checked";;?>/>
-<strong><?php xl('High Risk for Falls','e')?></strong> <?php xl('(&gt;19 seconds)','e')?><br />
+<strong><?php xl('High Risk for Falls','e')?> <?php xl('(&gt;19 seconds)','e')?></strong><br />
 <strong><?php xl('Other Tests/Scores/Interpretations','e')?></strong> 
-<input type="text" name="Reassessment_Other_Interpretations" size="109px" id="Reassessment_Other_Interpretations" 
+<input type="text" style="width:640px" name="Reassessment_Other_Interpretations" id="Reassessment_Other_Interpretations" 
  value="<?php echo stripslashes($obj{"Reassessment_Other_Interpretations"});?>" />
 <br /> 
 <input type="checkbox" name="Reassessment_Interpretation_NA" value="N/A" id="Reassessment_Interpretation_NA" 
 <?php if ($obj{"Reassessment_Interpretation_NA"} == "N/A") echo "checked";;?>/><strong>
-<?php xl('N/A  Patient/Caregiver Continues to Have the Following Problems Achieving Goals with ADLs/IDLs','e')?></strong>
-<input type="text" name="Reassessment_Problems_Achieving_Goals" size="149px" id="Reassessment_Problems_Achieving_Goals" 
+<?php xl('N/A','e')?></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<strong><?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with ADLs/IDLs','e')?></strong>
+<input type="text" style="width:910px" name="Reassessment_Problems_Achieving_Goals" id="Reassessment_Problems_Achieving_Goals" 
  value="<?php echo stripslashes($obj{"Reassessment_Problems_Achieving_Goals"});?>" /></td></tr></table></td>
 
   </tr>
@@ -451,7 +516,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
      <?php xl(' The following environmental issues continue to exist','e')?><br />
 
     </label>
-    <input type="text" name="Reassessment_Environmental_Issues_Notes" size="149px" id="Reassessment_Environmental_Issues_Notes" 
+    <input type="text" style="width:910px" name="Reassessment_Environmental_Issues_Notes" id="Reassessment_Environmental_Issues_Notes" 
      value="<?php echo stripslashes($obj{"Reassessment_Environmental_Issues_Notes"});?>" /></td></tr></table></td>
   </tr>
   <tr>
@@ -579,9 +644,10 @@ value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "N/A")
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
 	<input type="checkbox" name="Reassessment_Compensatory_NA" id="Reassessment_Compensatory_NA" 
 <?php if ($obj{"Reassessment_Compensatory_NA"} == "on") echo "checked";;?>/>
-    <label for="checkbox5"><strong>
-    <?php xl('N/A   Patient/Caregiver Continues to Have the Following Problems Achieving Goals with the above skills','e')?><br />
-      <input type="text" name="Reassessment_Compensatory_Problems_Achieving_Goals" size="149px" id="Reassessment_Compensatory_Problems_Achieving_Goals" 
+    <label for="checkbox5">
+<strong><?php xl('N/A','e')?></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<strong><?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with the above skills','e')?><br />
+      <input type="text" style="width:910px" name="Reassessment_Compensatory_Problems_Achieving_Goals" id="Reassessment_Compensatory_Problems_Achieving_Goals" 
  value="<?php echo stripslashes($obj{"Reassessment_Compensatory_Problems_Achieving_Goals"});?>" />
     </strong></label></td></tr></table></td>
   </tr>
@@ -591,10 +657,10 @@ value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "N/A")
 	<strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL"  id="Reassessment_MS_ROM_All_Muscle_WFL" 
 <?php if ($obj{"Reassessment_MS_ROM_All_Muscle_WFL"} == "on") echo "checked";;?>/>
-<?php xl('All Muscle Strength is WFL','e')?>
+<?php xl('All Muscle Strength is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_MS_ROM_ALL_ROM_WFL" id="Reassessment_MS_ROM_ALL_ROM_WFL" 
 <?php if ($obj{"Reassessment_MS_ROM_ALL_ROM_WFL"} == "on") echo "checked";;?>/>
-<?php xl('All ROM is WFL','e')?>
+<?php xl('All ROM is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_MS_ROM_Following_Problem_areas" id="Reassessment_MS_ROM_Following_Problem_areas"
 <?php if ($obj{"Reassessment_MS_ROM_Following_Problem_areas"} == "on") echo "checked";;?>/>
 <?php xl('The following problem areas are','e')?></strong></td></tr></table></td>
@@ -627,7 +693,7 @@ value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "N/A")
         </tr>
       <tr>
         <td align="center" scope="row"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Problemarea_text" id="Reassessment_MS_ROM_Problemarea_text" 
+          <input type="text" size="40px" name="Reassessment_MS_ROM_Problemarea_text" id="Reassessment_MS_ROM_Problemarea_text" 
  value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text"});?>" />
         </strong></td>
         <td align="center"><strong>
@@ -654,13 +720,13 @@ value="Hyper" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hyper") echo "c
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_Tonicity" id="Reassessment_MS_ROM_Tonicity" 
 value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "checked";;?>/></td>
         <td align="center"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Further_description" id="Reassessment_MS_ROM_Further_description" 
+          <input type="text" size="40px" name="Reassessment_MS_ROM_Further_description" id="Reassessment_MS_ROM_Further_description" 
  value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description"});?>" />
         </strong></td>
       </tr>
       <tr>
         <td align="center" scope="row"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Problemarea_text1" id="Reassessment_MS_ROM_Problemarea_text1" 
+          <input type="text" size="40px" name="Reassessment_MS_ROM_Problemarea_text1" id="Reassessment_MS_ROM_Problemarea_text1" 
  			value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text1"});?>" />
         </strong></td>
 
@@ -687,7 +753,7 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_Tonicity1" id="Reassessment_MS_ROM_Tonicity1" 
 		value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity1"} == "Hypo") echo "checked";;?>/></td>
         <td align="center"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Further_description1" id="Reassessment_MS_ROM_Further_description1" 
+          <input type="text" size="40px" name="Reassessment_MS_ROM_Further_description1" id="Reassessment_MS_ROM_Further_description1" 
           value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description1"});?>" />
         </strong></td>
       </tr>
@@ -718,7 +784,7 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
       <tr>
         <td align="center" scope="row">&nbsp;</th>
           <strong>
-            <input type="text" name="Reassessment_MS_ROM_Problemarea_text2" id="Reassessment_MS_ROM_Problemarea_text2" 
+            <input type="text" size="40px" name="Reassessment_MS_ROM_Problemarea_text2" id="Reassessment_MS_ROM_Problemarea_text2" 
  		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text2"});?>" />
             </strong>
         <td align="center"><strong>
@@ -746,7 +812,7 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_Tonicity2" id="Reassessment_MS_ROM_Tonicity2"
 		value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity2"} == "Hypo") echo "checked";;?>/></td>
         <td align="center"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Further_description2" id="Reassessment_MS_ROM_Further_description2" 
+          <input type="text"  size="40px" name="Reassessment_MS_ROM_Further_description2" id="Reassessment_MS_ROM_Further_description2" 
  		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description2"});?>" />
         </strong></td>
       </tr>
@@ -754,16 +820,16 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
         <td align="center" scope="row">&nbsp;</th>
           <strong>
 
-            <input type="text" name="Reassessment_MS_ROM_Problemarea_text3" id="Reassessment_MS_ROM_Problemarea_text3"
- 		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text2"});?>" />
+            <input type="text" size="40px" name="Reassessment_MS_ROM_Problemarea_text3" id="Reassessment_MS_ROM_Problemarea_text3"
+ 		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text3"});?>" />
             </strong>
         <td align="center"><strong>
           <input type="text" name="Reassessment_MS_ROM_STRENGTH_Right3" size="2px" id="Reassessment_MS_ROM_STRENGTH_Right3" 
- 		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text2"});?>" />
+ 		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_STRENGTH_Right3"});?>" />
           <?php xl('/5','e')?></strong></td>
         <td align="center"><strong>
           <input type="text" name="Reassessment_MS_ROM_STRENGTH_Left3" size="2px" id="Reassessment_MS_ROM_STRENGTH_Left3" 
-		 value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problemarea_text2"});?>" />
+		 value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_STRENGTH_Left3"});?>" />
           <?php xl('/5','e')?></strong></td>
 
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_ROM3" id="Reassessment_MS_ROM_ROM3" 
@@ -781,7 +847,7 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
         <td align="center"><input type="checkbox" name="Reassessment_MS_ROM_Tonicity3" id="Reassessment_MS_ROM_Tonicity3" 
 		value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity3"} == "Hypo") echo "checked";;?>/></td>
         <td align="center"><strong>
-          <input type="text" name="Reassessment_MS_ROM_Further_description3" id="Reassessment_MS_ROM_Further_description3"
+          <input type="text" size="40px" name="Reassessment_MS_ROM_Further_description3" id="Reassessment_MS_ROM_Further_description3"
  		value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description3"});?>" />
 
         </strong></td>
@@ -793,20 +859,18 @@ value="Hypo" <?php if ($obj{"Reassessment_MS_ROM_Tonicity"} == "Hypo") echo "che
 	<td>
 <input type="checkbox" name="Reassessment_MS_ROM_NA" value="N/A" id="Reassessment_MS_ROM_NA" 
 <?php if ($obj{"Reassessment_MS_ROM_NA"} == "N/A") echo "checked";;?>/>
-	
-<?php xl('N/A   Patient/Caregiver Continues to Have the Following Problems Achieving Goals with','e')?>
-  <input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="Strength" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" 
+<strong><?php xl('N/A','e')?></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+<strong><?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with','e')?></strong>  
+<input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="Strength" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" 
 value="Hypo"<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} == "Strength") echo "checked";;?>/>
 <?php xl('Strength','e')?>
-
 <input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="ROM" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" 
 value="Hypo"<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} == "ROM") echo "checked";;?>/>
-<?php xl('ROM','e')?><br />
+<?php xl('ROM','e')?>
 <input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="Tone" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" 
 value="Hypo"<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} == "Tone") echo "checked";;?>/>
-
 <?php xl('Tone','e')?> <strong>
-<input type="text" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" size="138px" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" 
+<input type="text" style="width:910px" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" 
 value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description3"});?>" />
 </strong></td></tr></table></td>
   </tr>
@@ -825,13 +889,21 @@ value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description3"})
     <label for="checkbox13"><?php xl('Yes','e')?></label>
     <input type="checkbox" name="Reassessment_RO_Patient_Prior_Level_Function" id="Reassessment_RO_Patient_Prior_Level_Function" 
 value="No" <?php if ($obj{"Reassessment_RO_Patient_Prior_Level_Function"} == "No") echo "checked";;?>/>
-    <label for="checkbox14"><?php xl('No Has Patient Reached Their Prior Level of Function?','e')?><br />
+    <label for="checkbox14"><?php xl('No Has Patient Reached Their Prior Level of Function?','e')?>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('If No, Explain','e')?>&nbsp;
+<input type="text" style="width:600px" name="Reassessment_RO_Patient_Prior_Level_Function_No1" id="Reassessment_RO_Patient_Prior_Level_Function_No1" value="<?php echo stripslashes($obj{"Reassessment_RO_Patient_Prior_Level_Function_No1"});?>" />
+<br />
       <input type="checkbox" name="Reassessment_RO_Patient_Long_Term_Goals" id="Reassessment_RO_Patient_Long_Term_Goals" 
 value="Yes" <?php if ($obj{"Reassessment_RO_Patient_Long_Term_Goals"} == "Yes") echo "checked";;?>/>
       <?php xl('Yes','e')?>
       <input type="checkbox" name="Reassessment_RO_Patient_Long_Term_Goals" id="Reassessment_RO_Patient_Long_Term_Goals" 
 value="No" <?php if ($obj{"Reassessment_RO_Patient_Long_Term_Goals"} == "No") echo "checked";;?>/>
-   <?php xl(' No Has Patient Reached Their Long  Term Goals Established on Admission?','e')?><br />
+   <?php xl(' No Has Patient Reached Their Long  Term Goals Established on Admission?','e')?>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('If No, Explain','e')?>
+<input type="text" style="width:600px" name="Reassessment_RO_Patient_Prior_Level_Function_No2" id="Reassessment_RO_Patient_Prior_Level_Function_No2" value="<?php echo stripslashes($obj{"Reassessment_RO_Patient_Prior_Level_Function_No2"});?>" />
+<br /><br>
     <strong><?php xl('Skilled OT continues to be Reasonable and Necessary to','e')?></strong></label>
     <br />
 
@@ -853,7 +925,7 @@ value="Make Modifications" <?php if ($obj{"Reassessment_Skilled_OT_Reasonable_An
 <label for="checkbox14"><br />
   <?php xl('Other','e')?>
     <strong>
-    <input type="text" name="Reassessment_Skilled_OT_Other" size="142px" id="Reassessment_Skilled_OT_Other" 
+    <input type="text" style="width:870px" name="Reassessment_Skilled_OT_Other" id="Reassessment_Skilled_OT_Other" 
 value="<?php echo stripslashes($obj{"Reassessment_Skilled_OT_Other"});?>"/>
 
     </strong></label></td></tr></table></td>
@@ -861,25 +933,25 @@ value="<?php echo stripslashes($obj{"Reassessment_Skilled_OT_Other"});?>"/>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
     <?php xl('*Goals Changed/Adapted for ADLs','e')?></strong> <strong>
-      <input type="text" name="Reassessment_Goals_Changed_Adapted_For_ADLs" size="108px" id="Reassessment_Goals_Changed_Adapted_For_ADLs" 
+      <input type="text" style="width:640px" name="Reassessment_Goals_Changed_Adapted_For_ADLs" id="Reassessment_Goals_Changed_Adapted_For_ADLs" 
 value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_ADLs"});?>"/> 
 
       <br />
     </strong>
     <strong><?php xl('ADLs','e')?></strong><strong>
 
-    <input type="text" name="Reassessment_Goals_Changed_Adapted_For_ADLs1" size="141px" id="Reassessment_Goals_Changed_Adapted_For_ADLs1" 
+    <input type="text" style="width:870px" name="Reassessment_Goals_Changed_Adapted_For_ADLs1" id="Reassessment_Goals_Changed_Adapted_For_ADLs1" 
 value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_ADLs1"});?>" />
     <br />
     </strong>
     <strong><?php xl('IDLs','e')?>&nbsp;</strong><strong>
-    <input type="text" name="Reassessment_Goals_Changed_Adapted_For_IDLs" size="141px" id="Reassessment_Goals_Changed_Adapted_For_IDLs" 
+    <input type="text" style="width:870px" name="Reassessment_Goals_Changed_Adapted_For_IDLs" id="Reassessment_Goals_Changed_Adapted_For_IDLs" 
  value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_IDLs"});?>" />
     </strong>
     <strong><br />
     <?php xl('Other','e')?></strong><strong>
 
-    <input type="text" name="Reassessment_Goals_Changed_Adapted_For_Other" size="141px" id="Reassessment_Goals_Changed_Adapted_For_Other" 
+    <input type="text" style="width:860px" name="Reassessment_Goals_Changed_Adapted_For_Other" id="Reassessment_Goals_Changed_Adapted_For_Other" 
  value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_Other"});?>" />
     </strong></td></tr></table></td>
   </tr>
@@ -905,18 +977,22 @@ value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_ADLs
 <?php xl('Caregiver/Family','e')?>
 <input type="checkbox" name="Reassessment_OT_communicated_and_agreed_upon_by" value="Case Manager" id="Reassessment_OT_communicated_and_agreed_upon_by" 
 <?php if ($obj{"Reassessment_OT_communicated_and_agreed_upon_by"} == "Case Manager") echo "checked";;?>/>
-<?php xl('Case Manager Other','e')?></td></tr></table></td>
+<?php xl('Case Manager','e')?>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Other','e')?>&nbsp;
+<input type="text" style="width:310px" name="Reassessment_OT_communicated_and_agreed_upon_by_other" id="Reassessment_OT_communicated_and_agreed_upon_by_other" value="<?php echo stripslashes($obj{"Reassessment_OT_communicated_and_agreed_upon_by_other"});?>"/>
+</td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
 
-	<?php xl('ADDITIONAL  SERVICES PROVIDED  THIS VISIT','e')?></strong> 
+	<?php xl('ADDITIONAL  SERVICES PROVIDED  THIS VISIT','e')?></strong><br> 
 	<input type="checkbox" name="Reassessment_ADDITIONAL_SERVICES_Home_Exercise" id="Reassessment_ADDITIONAL_SERVICES_Home_Exercise" 
 <?php if ($obj{"Reassessment_ADDITIONAL_SERVICES_Home_Exercise"} == "on") echo "checked";;?>/>
-<?php xl('Home Exercise Program Upgraded','e')?>
+<?php xl('Home Exercise Program Upgraded','e')?><br>
   <input type="checkbox" name="Reassessment_ADDITIONAL_SERVICES_Recomme_Env_Adaptations"  id="Reassessment_ADDITIONAL_SERVICES_Recomme_Env_Adaptations" 
 <?php if ($obj{"Reassessment_ADDITIONAL_SERVICES_Recomme_Env_Adaptations"} == "on") echo "checked";;?>/>
-<?php xl('Recommendations for Environmental Adaptations Reviewed','e')?>
+<?php xl('Recommendations for Environmental Adaptations Reviewed','e')?><br>
 <input type="checkbox" name="Reassessment_ADDITIONAL_SERVICES_Recomme_SafetyIssues" id="Reassessment_ADDITIONAL_SERVICES_Recomme_SafetyIssues" 
 <?php if ($obj{"Reassessment_ADDITIONAL_SERVICES_Recomme_SafetyIssues"} == "on") echo "checked";;?>/>
 <?php xl('Recommendations for Safety Issues Implemented','e')?><br>
@@ -925,13 +1001,13 @@ value="<?php echo stripslashes($obj{"Reassessment_Goals_Changed_Adapted_For_ADLs
 
 <label for="checkbox17"><?php xl('Treatment for','e')?></label>
 <strong>
-<input type="text" name="Reassessment_ADDITIONAL_SERVICES_Treatment_for" size="134px" id="Reassessment_ADDITIONAL_SERVICES_Treatment_for" 
+<input type="text" style="width:790px" name="Reassessment_ADDITIONAL_SERVICES_Treatment_for" id="Reassessment_ADDITIONAL_SERVICES_Treatment_for" 
 value="<?php echo stripslashes($obj{"Reassessment_ADDITIONAL_SERVICES_Treatment_for"});?>" />
       <br />
 
 </strong>
       <?php xl('Other Services Provided','e')?><strong>
-      <input type="text" name="Reassessment_Other_Services_Provided" size="123px" id="Reassessment_Other_Services_Provided" 
+      <input type="text" style="width:730px" name="Reassessment_Other_Services_Provided" id="Reassessment_Other_Services_Provided" 
 value="<?php echo stripslashes($obj{"Reassessment_Other_Services_Provided"});?>" />
       </strong></td></tr></table></td>
   </tr>

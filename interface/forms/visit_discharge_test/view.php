@@ -12,6 +12,53 @@ require_once ("functions.php");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+	function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);
+	    	med_icd9.innerHTML= result['res'];
+	    	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/visit_discharge_test/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	</script>
 <style type="text/css">
     .formtable {
         font-size:14px;
@@ -43,7 +90,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
   <tr>
 
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
-    <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled/></td>
+    <td><input type="text" id="patient_name" value="<?php patientName()?>" readonly></td>
     <td width="70"><p><strong><?php xl('Time In','e');?></strong></p></td>
     <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In"><?php timeDropDown(stripslashes($obj{"dischargeplan_Time_In"}))?></select></td>
     <td width="70"><p><strong><?php xl('Time Out','e');?></strong></p></td>
@@ -79,7 +126,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
         <?php xl('Regular','e');?></label>
     <label>
         <input type="checkbox" name="dischargeplan_Vital_Signs_Regular" value="Irregular" <?php if ($obj{"dischargeplan_Vital_Signs_Regular"} == "Irregular"){echo "checked";};?> id="dischargeplan_Vital_Signs_Irregular" />
-        <?php xl('Irregular','e');?></label>&nbsp; &nbsp; &nbsp;
+        <?php xl('Irregular','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <?php xl('Temperature','e');?> <input size="5px" type="text" name ="dischargeplan_Vital_Signs_Temperature"  value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Temperature"});?>" id="dischargeplan_Vital_Signs_Temperature" />
      <label>
 
@@ -87,10 +134,9 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
         <?php xl('Oral','e');?></label>
      <label>
         <input type="checkbox" name="dischargeplan_Vital_Signs_Oral" value="Temporal" <?php if ($obj{"dischargeplan_Vital_Signs_Oral"} == "Temporal"){echo "checked";};?> id="dischargeplan_Vital_Signs_Temporal" />
-        <?php xl('Temporal','e');?></label>
-     &nbsp;  &nbsp;
- &nbsp;   <?php xl('Other','e');?> 
- <input type="text" size="9px" name="dischargeplan_Vital_Signs_other" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_other"});?>" id="dischargeplan_Vital_Signs_other" /> 
+        <?php xl('Temporal','e');?></label>&nbsp;
+       <?php xl('Other','e');?> 
+ <input type="text" size="10px" name="dischargeplan_Vital_Signs_other" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_other"});?>" id="dischargeplan_Vital_Signs_other" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <?php xl('Respirations    ','e');?><input type="text" size="5px" name="dischargeplan_Vital_Signs_Respirations" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Respirations"});?>" id="dischargeplan_Vital_Signs_Respirations" /> <br/>
  <?php xl('Blood Pressure Systolic    ','e');?><input type="text" size="5px" name="dischargeplan_Vital_Signs_BP_Systolic" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_BP_Systolic"});?>" id="dischargeplan_Vital_Signs_BP_Systolic" />/
 
@@ -111,8 +157,9 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
       <?php xl('Standing','e');?> </label>
      <label>
        <input type="checkbox" name="dischargeplan_Vital_Signs_Sitting" value="Lying" <?php if ($obj{"dischargeplan_Vital_Signs_Sitting"} == "Lying"){echo "checked";};?> id="dischargeplan_Vital_Signs_Lying" />
-     <?php xl('Lying *O2 Sat','e');?></label><label>
-     <input type="text" size="5px" name="dischargeplan_Vital_Signs_Sat" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Sat"});?>" id="dischargeplan_Vital_Signs_Sat" />
+     <?php xl('Lying','e'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?>&nbsp;
+      <input type="text" size="5px" name="dischargeplan_Vital_Signs_Sat" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Sat"});?>" id="dischargeplan_Vital_Signs_Sat" />
      </label> 
      <?php xl('*Physician ordered','e');?> 
      <br>
@@ -122,17 +169,29 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
           <label>
             <input type="checkbox" name="dischargeplan_Vital_Signs_chronic_condition" <?php if ($obj{"dischargeplan_Vital_Signs_chronic_condition"} == "on"){echo "checked";};?> id="dischargeplan_Vital_Signs_chronic_condition" />
             <?php xl('chronic condition under physicians care,','e');?></label>
-
           <label><br/>
             <input type="checkbox" name="dischargeplan_Vital_Signs_Patient_states"  <?php if ($obj{"dischargeplan_Vital_Signs_Patient_states"} == "on"){echo "checked";};?> id="dischargeplan_Vital_Signs_Patient_states" />
       <?php xl('Patient states current medical regime is managing his/her pain;','e');?></label>
-      <?php xl('Other','e');?> <input type="text" name="dischargeplan_Vital_Signs_Patient_states_other" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Patient_states_other"});?>" id="dischargeplan_Vital_Signs_Patient_states_other" size="60px"/>
+      <?php xl('Other','e');?> <input type="text" style="width:450px" name="dischargeplan_Vital_Signs_Patient_states_other" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Patient_states_other"});?>" id="dischargeplan_Vital_Signs_Patient_states_other" />
       <br /></tr>
        <tr>
     <td scope="row"></td></tr>
   <tr>
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
-    <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem"><?php ICD9_dropdown(stripslashes($obj{"dischargeplan_treatment_diagnosis_problem"}))?></select>
+    <input type="text" id="icd" size="15"/>
+<input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">
+ <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
+{
+echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem'>"; 
+echo "<option value=".stripslashes($obj{'dischargeplan_treatment_diagnosis_problem'}).">". stripslashes($obj{'dischargeplan_treatment_diagnosis_problem'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem' style='display:none'> </select>";
+ }?>   
+</div>
   </tr>
   <tr>
          <td scope="row"><p><strong><?php xl('Mental Status','e');?></strong></p>
@@ -155,9 +214,9 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
           <?php xl('Depressed','e');?></label>
           <label>
             <input type="checkbox" name="dischargeplan_Mental_Status" value="Agitated" <?php if ($obj{"dischargeplan_Mental_Status"} == "Agitated"){echo "checked";};?> id="dischargeplan_Mental_Status_Agitated" />
-          <?php xl('Agitated','e');?></label>
+          <?php xl('Agitated','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <?php xl('Other','e');?>
-          <input type="text" name="dischargeplan_Mental_Status_Other" value="<?php echo stripslashes($obj{"dischargeplan_Mental_Status_Other"});?>" id="dischargeplan_Mental_Status_Other" /><br />
+          <input type="text" style="width:350px" name="dischargeplan_Mental_Status_Other" value="<?php echo stripslashes($obj{"dischargeplan_Mental_Status_Other"});?>" id="dischargeplan_Mental_Status_Other" /><br />
           <?php xl('Based on cognitive impairment the following interventions have been provided by the home health agency','e');?>
           <label>
             <input type="checkbox" name="dischargeplan_Mental_Status_MSS"  <?php if ($obj{"dischargeplan_Mental_Status_MSS"} == "on"){echo "checked";};?> id="dischargeplan_Mental_Status_MSS" />
@@ -167,16 +226,17 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
           <?php xl('Caregiver Management Training','e');?></label>
           <label>
            <input type="checkbox" name="dischargeplan_Mental_Status_CCT"  <?php if ($obj{"dischargeplan_Mental_Status_CCT"} == "on"){echo "checked";};?> id="dischargeplan_Mental_Status_CCT" />	
-          <?php xl('Cognitive and/or Compensatory Training','e');?></label>
+          <?php xl('Cognitive and/or Compensatory Training','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <br>
            <?php xl('Other','e');?>
-          <input type="text" name="dischargeplan_Mental_Status_Other1" value="<?php echo stripslashes($obj{"dischargeplan_Mental_Status_Other1"});?>" id="dischargeplan_Mental_Status_Other1" />
+          <input type="text" style="width:900px" name="dischargeplan_Mental_Status_Other1" value="<?php echo stripslashes($obj{"dischargeplan_Mental_Status_Other1"});?>" id="dischargeplan_Mental_Status_Other1" />
           <br />
         </p>
 
   </tr>
   <tr>
   <td scope="row"><strong><?php xl('SPECIFIC TRAINING THIS VISIT','e');?></strong><br />
-  <textarea name="dischargeplan_specific_training_this_visit" id="dischargeplan_specific_training_this_visit" cols ="70" rows="2"  wrap="virtual name">
+  <textarea name="dischargeplan_specific_training_this_visit" id="dischargeplan_specific_training_this_visit" cols ="117" rows="2"  wrap="virtual name">
 <?php echo stripslashes($obj{"dischargeplan_specific_training_this_visit"});?></textarea>  
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
@@ -185,7 +245,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
         </tr>
 
         <tr>
-          <td width="31%" valign="top" scope="row">
+          <td width="30%" valign="top" scope="row">
             <table width="100%" class="formtable">
               <tr>
                 <td align="left"><label>
@@ -216,7 +276,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
                   <?php xl('Patient reached maximum rehab potential','e');?></label></td>
               </tr>
             </table>
-          <td width="42%" valign="top">
+          <td width="30%" valign="top">
             <table width="100%" class="formtable">
 
               <tr>
@@ -243,7 +303,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
               </tr>
             </table>
           </td>
-          <td width="27%" valign="top">
+          <td width="40%" valign="top">
             <table width="100%" class="formtable">
 
               <tr>
@@ -269,7 +329,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
               </tr>
             </table>
             <?php xl('Other','e');?>
-            <input type="text" name="dischargeplan_RfD_other" value="<?php echo stripslashes($obj{"dischargeplan_RfD_other"});?>" id="dischargeplan_RfD_other" />
+            <input type="text" style="width:300px" name="dischargeplan_RfD_other" value="<?php echo stripslashes($obj{"dischargeplan_RfD_other"});?>" id="dischargeplan_RfD_other" />
           </td>
         </tr>
          </table>
@@ -278,49 +338,49 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
     <td scope="row">&nbsp;</th>
   <strong><?php xl('Functional Improvements At Time of Discharge','e');?></strong></tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
+    <td scope="row"><table width="100%" border="0" cellpadding="2px" class="formtable">
         <tr>
 
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_ADL" <?php if ($obj{"dischargeplan_ToD_ADL"} == "on"){echo "checked";};?> id="dischargeplan_ToD_ADL" />
             <label for="ADL"><?php xl('ADL','e');?></label>
-            <input type="text" size="150%" name="dischargeplan_ToD_ADL_notes" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ADL_notes"});?>" id="dischargeplan_ToD_ADL_notes" /><br>
+            <input type="text" style="width:180px" name="dischargeplan_ToD_ADL_notes" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ADL_notes"});?>" id="dischargeplan_ToD_ADL_notes" /><br>
             </th>
             <input type="checkbox" name="dischargeplan_ToD_ADL1"  <?php if ($obj{"dischargeplan_ToD_ADL1"} == "on"){echo "checked";};?> id="dischargeplan_ToD_ADL1" />
             <label for="adl2"><?php xl('ADL','e');?></label>
 
-            <input type="text" size="15px" name="dischargeplan_ToD_ADL1_notes" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ADL1_notes"});?>" id="dischargeplan_ToD_ADL1_notes" />
+            <input type="text" style="width:200px" name="dischargeplan_ToD_ADL1_notes" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ADL1_notes"});?>" id="dischargeplan_ToD_ADL1_notes" />
             <input type="checkbox" name="dischargeplan_ToD_IADL"  <?php if ($obj{"dischargeplan_ToD_IADL"} == "on"){echo "checked";};?> id="dischargeplan_ToD_IADL" />
             <label for="IADL"><?php xl('IADL','e');?></label>
-            <input type="text" name="dischargeplan_ToD_IADL_notes" size="15px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_IADL_notes"});?>" id="dischargeplan_ToD_IADL_notes" />
+            <input type="text" style="width:200px" name="dischargeplan_ToD_IADL_notes"  value="<?php echo stripslashes($obj{"dischargeplan_ToD_IADL_notes"});?>" id="dischargeplan_ToD_IADL_notes" />
             <input type="checkbox" name="dischargeplan_ToD_IADL1"  <?php if ($obj{"dischargeplan_ToD_IADL1"} == "on"){echo "checked";};?> id="dischargeplan_ToD_IADL1" />
             <label for="IADL2"><?php xl('IADL','e');?></label>
-            <input type="text" name="dischargeplan_ToD_IADL1_notes" size="50px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_IADL1_notes"});?>" id="dischargeplan_ToD_IADL1_notes" />
+            <input type="text" name="dischargeplan_ToD_IADL1_notes" style="width:330px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_IADL1_notes"});?>" id="dischargeplan_ToD_IADL1_notes" />
 
-        </tr>
+        </tr><tr><td>
            <input type="checkbox" name="dischargeplan_ToD_ROM"  <?php if ($obj{"dischargeplan_ToD_ROM"} == "on"){echo "checked";};?> id="dischargeplan_ToD_ROM" />
             <label for="ROM in"><?php xl('ROM in','e');?></label>
-            <input type="text" name="dischargeplan_ToD_ROM_in" size="50px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ROM_in"});?>" id="dischargeplan_ToD_ROM_in" />
+            <input type="text" name="dischargeplan_ToD_ROM_in" style="width:840px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_ROM_in"});?>" id="dischargeplan_ToD_ROM_in" /><br>
             <input type="checkbox" name="dischargeplan_ToD_Safety_Management" <?php if ($obj{"dischargeplan_ToD_Safety_Management"} == "on"){echo "checked";};?> id="dischargeplan_ToD_Safety_Management" />
             <label for="Safety Management in"><?php xl('Safety Management in','e');?></label>
-            <input type="text" name="dischargeplan_ToD_Safety_Management_in" size="50px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Safety_Management_in"});?>" id="dischargeplan_ToD_Safety_Management_in" />
+            <input type="text" name="dischargeplan_ToD_Safety_Management_in" style="width:740px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Safety_Management_in"});?>" id="dischargeplan_ToD_Safety_Management_in" />
 
           </tr>
         <tr>
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_Env_Adaptations" <?php if ($obj{"dischargeplan_ToD_Env_Adaptations"} == "on"){echo "checked";};?> id="dischargeplan_ToD_Env_Adaptations" />
             <label for="Environment Adaptations including"><?php xl('Environment Adaptations including','e');?></label>
-            <input type="text" name="dischargeplan_ToD_Env_Adaptations_inc" size="120%" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Env_Adaptations_inc"});?>" id="dischargeplan_ToD_Env_Adaptations_inc" />
+            <input type="text" name="dischargeplan_ToD_Env_Adaptations_inc" style="width:660px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Env_Adaptations_inc"});?>" id="dischargeplan_ToD_Env_Adaptations_inc" />
           </td>
         </tr>
         <tr>
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_AE_Usage" <?php if ($obj{"dischargeplan_ToD_AE_Usage"} == "on"){echo "checked";};?> id="dischargeplan_ToD_AE_Usage" />
             <label for="Adaptive Equipment Usage for"><?php xl('Adaptive Equipment Usage for','e');?></label>
-            <input type="text" name="dischargeplan_ToD_AE_Usage_for" size="40px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_AE_Usage_for"});?>" id="dischargeplan_ToD_AE_Usage_for" />
+            <input type="text" name="dischargeplan_ToD_AE_Usage_for" style="width:690px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_AE_Usage_for"});?>" id="dischargeplan_ToD_AE_Usage_for" /><br>
             <input type="checkbox" name="dischargeplan_ToD_CF_Performance" <?php if ($obj{"dischargeplan_ToD_CF_Performance"} == "on"){echo "checked";};?> id="dischargeplan_ToD_CF_Performance" />
             <label for="Caregiver/Family Performance in"><?php xl('Caregiver/Family Performance in','e');?></label>
-            <input type="text" name="dischargeplan_ToD_CF_Performance_in" size="40px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_CF_Performance_in"});?>" id="dischargeplan_ToD_CF_Performance_in" />
+            <input type="text" name="dischargeplan_ToD_CF_Performance_in" style="width:670px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_CF_Performance_in"});?>" id="dischargeplan_ToD_CF_Performance_in" />
 
           </td>
         </tr>
@@ -328,18 +388,18 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
           <td align="left" scope="row">
             <input type="checkbox" name="dischargeplan_ToD_Per_Home_Exercises" <?php if ($obj{"dischargeplan_ToD_Per_Home_Exercises"} == "on"){echo "checked";};?> id="dischargeplan_ToD_Per_Home_Exercises" />
             <label for="Performance of Home Exercises for"><?php xl('Performance of Home Exercises for','e');?></label>
-            <input type="text" name="dischargeplan_ToD_Per_Home_Exercises_for" size="119%" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Per_Home_Exercises_for"});?>" id="dischargeplan_ToD_Per_Home_Exercises_for" />
+            <input type="text" name="dischargeplan_ToD_Per_Home_Exercises_for" style="width:650px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Per_Home_Exercises_for"});?>" id="dischargeplan_ToD_Per_Home_Exercises_for" />
           </td>
 
         </tr>
         <tr>
           <td align="left" scope="row"><p><?php xl('Other','e');?>
-            <input type="text" name="dischargeplan_ToD_Other" size="150%" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Other"});?>" id="dischargeplan_ToD_Other" />
+            <input type="text" name="dischargeplan_ToD_Other" style="width:870px" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Other"});?>" id="dischargeplan_ToD_Other" />
           </p></td>
         </tr>
         <tr>
           <td align="left" scope="row"><p><?php xl('Additional Comments Regarding Discharge Status of Patient','e');?>
-            <input type="text" name="dischargeplan_ToD_Status_of_Patient" size="100%" value="<?php echo stripslashes($obj{"dischargeplan_ToD_Status_of_Patient"});?>" id="dischargeplan_ToD_Status_of_Patient" />
+            <input type="text" name="dischargeplan_ToD_Status_of_Patient" style="width:520px"  value="<?php echo stripslashes($obj{"dischargeplan_ToD_Status_of_Patient"});?>" id="dischargeplan_ToD_Status_of_Patient" />
           </p></td>
 
         </tr>
@@ -383,19 +443,19 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
         <tr>
           <td><label>
             <input type="checkbox" name="dischargeplan_Discharge_anticipated" value="A Recommend follow-up treatment when patient returns to home" <?php if ($obj{"dischargeplan_Discharge_anticipated"} == "A Recommend follow-up treatment when patient returns to home"){echo "checked";};?> id="dischargeplan_Discharge_anticipated" />
-            <?php xl('A Recommend follow-up treatment when patient returns to home.','e');?></label></td>
+            <?php xl('Recommend follow-up treatment when patient returns to home.','e');?></label></td>
         </tr>
 
         <tr>
         <td><label>
-            <?php xl('not met (If goals partially met or not met please explain)','e');?></label>
+            <?php xl('Goals identified on care plan were','e');?></label>
             <input type="checkbox" name="dischargeplan_Recommendations_met" value="met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "met"){echo "checked";};?> id="dischargeplan_Recommendations_met" />
             <?php xl('met','e');?>
             <input type="checkbox" name="dischargeplan_Recommendations_met" value="partially met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "partially met"){echo "checked";};?> id="dischargeplan_Recommendations_partially" />
             <?php xl('partially met','e');?>
   <input type="checkbox" name="dischargeplan_Recommendations_met" value="not met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "not met"){echo "checked";};?> id="dischargeplan_Recommendations_not_met" />
             <?php xl('not met (If goals partially met or not met please explain)','e');?>
-  <input type="text" name="dischargeplan_Recommendations_not_met_note" size="50%" value="<?php echo stripslashes($obj{"dischargeplan_Recommendations_not_met_note"});?>" id="dischargeplan_Recommendations_not_met_note" />
+  <input type="text" name="dischargeplan_Recommendations_not_met_note" style="width:910px"  value="<?php echo stripslashes($obj{"dischargeplan_Recommendations_not_met_note"});?>" id="dischargeplan_Recommendations_not_met_note" />
             </td>
         </tr>
       </table>

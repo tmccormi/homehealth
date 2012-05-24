@@ -10,6 +10,59 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+	function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);
+	    	 if(Dx=='Evaluation_Reason_for_intervention')
+	    	 {
+		    	med_icd9.innerHTML= result['res'];
+	    	 }
+	    	 if(Dx=='Evaluation_TREATMENT_DX_OT_Problem')
+	    	 {
+	    		 trmnt_icd9.innerHTML= result['res'];
+	    	 }
+	    	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/evaluation/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	</script>
 </head>
 <body class="body_top">
 <?php
@@ -31,13 +84,16 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
         <tr>
           <td align="center" scope="row">
           <strong><?php xl('PATIENT NAME','e')?></strong></td>
-         <td width="13%" align="center" valign="top"><input type="text"
-					name="patient_name" id="patient_name" value="<?php patientName()?>"
-					disabled /></td>
+         <td width="13%" align="center" valign="top">
+         <input type="text" id="patient_name" value="<?php patientName()?>" readonly ></td>
           <td align="center"><strong><?php xl('MR#','e')?></strong></td>
-         <td width="15%" align="center" valign="top" class="bold"><input
-					type="text" name="mr" id="mr"
-					value="<?php  echo $_SESSION['pid']?>" disabled /></td>
+         <td width="15%" align="center" valign="top" class="bold">
+         <input	type="text" name="mr" id="mr" size="7px" value="<?php  echo $_SESSION['pid']?>" readonly/></td>
+		<td><strong><?php xl('Time In','e'); ?></strong></td>
+        <td><select name="Evaluation_Time_In" id="Evaluation_Time_In"><?php timeDropDown(stripslashes($obj{"Evaluation_Time_In"})) ?></select></td>
+        <td><strong><?php xl('Time Out','e'); ?></strong></td>
+        <td><select name="Evaluation_Time_Out" id="Evaluation_Time_Out"><?php timeDropDown(stripslashes($obj{"Evaluation_Time_Out"})) ?></select></td>
+
           <td align="center"><strong><?php xl('Date','e')?></strong></td>
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
@@ -45,11 +101,11 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_curr_date' border='0' alt='[?]'
+					height='22' id='img_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
 					title='<?php xl('Click here to choose a date','e'); ?>'> 
 					<script	LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"Evaluation_date", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
+    Calendar.setup({inputField:"Evaluation_date", ifFormat:"%Y-%m-%d", button:"img_date"});
    </script>
 				</td>
         </tr>
@@ -70,8 +126,8 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
       <label>
           <input type="checkbox" name="Evaluation_Pulse_State" value="Irregular" id="Evaluation_Pulse_State" 
           <?php if ($obj{"Evaluation_Pulse_State"} == "Irregular") echo "checked";;?>/>
-          <?php xl('Irregular','e')?> &nbsp; <?php xl('Temperature','e')?> </label>
-
+          <?php xl('Irregular','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <?php xl('Temperature','e')?> </label>
       <input type="text" size="3px" name="Evaluation_Temperature" id="Evaluation_Temperature" 
        value="<?php echo stripslashes($obj{"Evaluation_Temperature"});?>" />
        <input type="checkbox" name="Evaluation_Temperature_type" value="Oral" id="Evaluation_Temperature_type" 
@@ -79,10 +135,10 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 <?php xl('Oral','e')?>
 <input type="checkbox" name="Evaluation_Temperature_type" value="Temporal" id="Evaluation_Temperature_type" 
 <?php if ($obj{"Evaluation_Temperature_type"} == "Temporal") echo "checked";;?>/>
-<?php xl('Temporal','e')?>&nbsp;  
+<?php xl('Temporal','e')?>&nbsp;
      <?php xl('Other','e')?>
-     <input type="text"  size="3px" name="Evaluation_VS_other" id="Evaluation_VS_other" 
-     value="<?php echo stripslashes($obj{"Evaluation_VS_other"});?>" />&nbsp;  
+     <input type="text"  size="10px" name="Evaluation_VS_other" id="Evaluation_VS_other" 
+     value="<?php echo stripslashes($obj{"Evaluation_VS_other"});?>" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <?php xl('Respirations','e')?>
       <input type="text" size="3px" name="Evaluation_VS_Respirations" id="Evaluation_VS_Respirations" 
       value="<?php echo stripslashes($obj{"Evaluation_VS_Respirations"});?>" />
@@ -90,9 +146,10 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
       <?php xl('Blood Pressure Systolic','e')?>
       <input type="text" size="3px" name="Evaluation_VS_BP_Systolic" id="Evaluation_VS_BP_Systolic" 
         value="<?php echo stripslashes($obj{"Evaluation_VS_BP_Systolic"});?>" />
-         <?php xl('/ Diastolic','e')?> 
+         <?php xl('/','e')?> 
       <input type="text" size="3px" name="Evaluation_VS_BP_Diastolic" id="Evaluation_VS_BP_Diastolic" 
        value="<?php echo stripslashes($obj{"Evaluation_VS_BP_Diastolic"});?>" />
+       <?php xl('Diastolic','e')?>
       <label>
         <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Right" id="Evaluation_VS_BP_Body_Position" 
         <?php if ($obj{"Evaluation_VS_BP_Body_Position"} == "Right") echo "checked";;?>/>
@@ -114,13 +171,15 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
       <label>
             <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Lying" id="Evaluation_VS_BP_Body_Position" 
             <?php if ($obj{"Evaluation_VS_BP_Body_Position"} == "Lying") echo "checked";;?>/>
-            <?php xl('Lying *O2 Sat','e')?></label>
-      <input type="text" name="Evaluation_VS_Sat" size="3px" id="Evaluation_VS_Sat"
+      <?php xl('Lying','e'); ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?>
+            <input type="text" name="Evaluation_VS_Sat" size="3px" id="Evaluation_VS_Sat"
       value="<?php echo stripslashes($obj{"Evaluation_VS_Sat"});?>" />
 <?php xl('*Physician ordered ','e')?></p></td></tr></table></td></tr>
 
 <tr>
-<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td>Pain
+<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td>
+<strong><?php xl('Pain','e')?></strong>
   <label for="pulse3"></label>
   <label>
     <input type="checkbox" name="Evaluation_VS_Pain" value="pain" id="Evaluation_VS_Pain" 
@@ -129,12 +188,11 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   <label>
     <input type="checkbox" name="Evaluation_VS_Pain" value="nopain" id="Evaluation_VS_Pain" 
     <?php if ($obj{"Evaluation_VS_Pain"} == "nopain") echo "checked";;?>/>
-     <?php xl('Pain limits functional ability','e')?>&nbsp; <?php xl('Intensity','e')?> </label>
-
-  <input type="text" size="5px" name="Evaluation_VS_Pain_Intensity" id="Evaluation_VS_Pain_Intensity" 
+     <?php xl('Pain limits functional ability','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Intensity','e')?>   <input type="text" size="5px" name="Evaluation_VS_Pain_Intensity" id="Evaluation_VS_Pain_Intensity" 
   value="<?php echo stripslashes($obj{"Evaluation_VS_Pain_Intensity"});?>" />
-   <?php xl('0-10)  Location(s)','e')?>
-  <input type="text" size="25px" name="Evaluation_VS_Location" id="Evaluation_VS_Location" 
+  <?php xl('(0-10)','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <?php xl('Location(s)','e')?>
+  <input type="text" style="width:300px" name="Evaluation_VS_Location" id="Evaluation_VS_Location" 
   value="<?php echo stripslashes($obj{"Evaluation_VS_Location"});?>" />
   <br />
   <label>
@@ -145,9 +203,9 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   <input type="checkbox" name="Evaluation_VS_Pain" value="ChronicPain" id="Evaluation_VS_Pain " 
   <?php if ($obj{"Evaluation_VS_Pain"} == "ChronicPain") echo "checked";;?>/>
    <?php xl('Chronic pain','e')?></label>
-
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <?php xl('Other','e')?>
-  <input type="text" name="Evaluation_VS_Other1" size="56px" id="Evaluation_VS_Other1" 
+  <input type="text" name="Evaluation_VS_Other1" style="width:500px" id="Evaluation_VS_Other1" 
    value="<?php echo stripslashes($obj{"Evaluation_VS_Other1"});?>" />
   </td>
   </tr>
@@ -171,7 +229,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   <tr>
     <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
         <tr>
-          <td width="47%" valign="top" scope="row">
+          <td width="50%" valign="top" scope="row">
             <table width="100%">
                 <tr>
                   <td><label>
@@ -191,7 +249,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
                     <input type="checkbox" name="Evaluation_HR_Medical_Restrictions" id="Evaluation_HR_Medical_Restrictions" 
                     <?php if ($obj{"Evaluation_HR_Medical_Restrictions"} == "on") echo "checked";;?>/>
                     <?php xl('Medical Restrictions in','e')?>
-                    <input type="text" name="Evaluation_HR_Medical_Restrictions_In" size="30px"id="Evaluation_HR_Medical_Restrictions_In" 
+                    <input type="text" style="width:260px" name="Evaluation_HR_Medical_Restrictions_In" id="Evaluation_HR_Medical_Restrictions_In" 
                     value="<?php echo stripslashes($obj{"Evaluation_HR_Medical_Restrictions_In"});?>" />
                   </td>
                 </tr>
@@ -205,7 +263,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 					<?php xl('Pain with Travel','e')?> </td>
                 </tr>
               </table>
-          <td width="53%" valign="top">
+          <td width="50%" valign="top">
             <table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
 
               <tr>
@@ -232,8 +290,8 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 <?php xl('Confusion, unable to go out of home alone','e')?> </td>
               </tr>
               <tr>
-                <td><?php xl('Others','e')?>  
-                  <input type="text" name="Evaluation_HR_Other" size="35px" id="Evaluation_HR_Other" 
+                <td><?php xl('Other','e')?>  
+                  <input type="text" name="Evaluation_HR_Other" style="width:400px" id="Evaluation_HR_Other" 
                   value="<?php echo stripslashes($obj{"Evaluation_HR_Other"});?>" /></td>
               </tr>
               </table>
@@ -247,12 +305,37 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?>  </strong></td>
           <td align="center">
-          <select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention">
-          <?php ICD9_dropdown(stripslashes($obj{"Evaluation_Reason_for_intervention"})) ?></select></td>
+           <input type="text" id="icd" size="15"/>
+	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">
+<?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
+{
+echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention'>"; 
+echo "<option value=".stripslashes($obj{'Evaluation_Reason_for_intervention'}).">". stripslashes($obj{'Evaluation_Reason_for_intervention'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention' style='display:none'> </select>";
+ }?></div>
+</td>
           <td align="center"><strong><?php xl('TREATMENT DX/ OT Problem','e')?>  </strong></td>
           <td align="center">
-          <select id="Evaluation_TREATMENT_DX_OT_Problem" name="Evaluation_TREATMENT_DX_OT_Problem">
-          <?php ICD9_dropdown(stripslashes($obj{"Evaluation_TREATMENT_DX_OT_Problem"})) ?></select></td>
+         <input type="text" id="icd9" size="15"/>
+	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<div id="trmnt_icd9">    
+<?php if ($obj{"Evaluation_TREATMENT_DX_OT_Problem"} != "")
+{
+echo "<select id='Evaluation_TREATMENT_DX_OT_Problem' name='Evaluation_TREATMENT_DX_OT_Problem'>"; 
+echo "<option value=".stripslashes($obj{'Evaluation_TREATMENT_DX_OT_Problem'}).">". stripslashes($obj{'Evaluation_TREATMENT_DX_OT_Problem'})."</option>";
+echo "</select>";
+ } 
+ else 
+ { 
+ echo "<select id='Evaluation_TREATMENT_DX_OT_Problem' name='Evaluation_TREATMENT_DX_OT_Problem' style='display:none'> </select>";
+ }?>
+ </div>
+</td>
         </tr>
       </table>
   </tr>
@@ -263,37 +346,36 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
     <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
       <tr>
         <td scope="row"><strong><?php xl('PERTINENT MEDICAL HISTORY','e')?>  
-          <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" size="93px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" 
+          <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" style="width:700px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" 
           value="<?php echo stripslashes($obj{"Evaluation_PERTINENT_MEDICAL_HISTORY"});?>" />
         </strong></td>
       </tr>
       <tr>
-        <td scope="row"><strong><?php xl('MEDICAL/FUNCTIONAL PRECAUTIONS ','e')?>&nbsp; &nbsp; &nbsp;
+        <td scope="row"><strong><?php xl('MEDICAL/FUNCTIONAL PRECAUTIONS ','e')?></strong>&nbsp;
           <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="None" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" 
           <?php if ($obj{"Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS"} == "None") echo "checked";;?>/>
 <?php xl('None','e')?>
-
 <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="WB_Status" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" 
  <?php if ($obj{"Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS"} == "WB_Status") echo "checked";;?>/>
 <?php xl('WB Status ','e')?>
 <input type="text" name="Evaluation_MFP_WB_status" id="Evaluation_MFP_WB_status" 
-value="<?php echo stripslashes($obj{"Evaluation_MFP_WB_status"});?>"  /> &nbsp; &nbsp; &nbsp;
+value="<?php echo stripslashes($obj{"Evaluation_MFP_WB_status"});?>"  /> &nbsp;
         <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="Falls_Risks" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" 
         <?php if ($obj{"Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS"} == "Falls_Risks") echo "checked";;?>/>
-<?php xl('Falls Risks','e')?>
+<?php xl('Falls Risks','e')?>&nbsp;&nbsp;
 <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="SOB" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" 
 <?php if ($obj{"Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS"} == "SOB") echo "checked";;?>/>
-<?php xl('SOB Other','e')?></strong>
-          <strong>
-          <input type="text" name="Evaluation_MFP_Other" id="Evaluation_MFP_Other"  value="<?php echo stripslashes($obj{"Evaluation_MFP_Other"});?>" />
-          </strong></td>
+<?php xl('SOB','e')?><br>
+<?php xl('Other','e')?>
+           <input type="text" size="150px" name="Evaluation_MFP_Other" id="Evaluation_MFP_Other"  value="<?php echo stripslashes($obj{"Evaluation_MFP_Other"});?>" />
+          </td>
       </tr>
       <tr>
         <td scope="row"><strong>
 <?php xl('PRIOR LEVEL OF FUNCTIONING (PLOF) IN HOME ','e')?></strong>
        <?php xl('Self Care ADLs (Dressing, Grooming, Bathing, Feeding, Toileting) ','e')?> 
         <strong>
-        <input type="text" name="Evaluation_PRIOR_LEVEL_OF_FUNCTIONING" size="134px" id="Evaluation_PRIOR_LEVEL_OF_FUNCTIONING" 
+        <input type="text" name="Evaluation_PRIOR_LEVEL_OF_FUNCTIONING" size="160px" id="Evaluation_PRIOR_LEVEL_OF_FUNCTIONING" 
         value="<?php echo stripslashes($obj{"Evaluation_PRIOR_LEVEL_OF_FUNCTIONING"});?>" />
         </strong></td>
       </tr>
@@ -302,7 +384,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MFP_WB_status"});?>"  /> &nbsp; 
         <td scope="row"><strong>
 <?php xl('PLOF IADLs','e')?> </strong>
 <?php xl('(Meal Prep, Phone Use, Making Bed, Shopping,  Mail, Laundry, Money Mgt, Med Mgt)','e')?> <strong>
-          <input type="text" name="Evaluation_PLOF_IADLs" size="134px" id="Evaluation_PLOF_IADLs"  value="<?php echo stripslashes($obj{"Evaluation_PLOF_IADLs"});?>" />
+          <input type="text" name="Evaluation_PLOF_IADLs" size="160px" id="Evaluation_PLOF_IADLs"  value="<?php echo stripslashes($obj{"Evaluation_PLOF_IADLs"});?>" />
         </strong></td>
       </tr>
       <tr>
@@ -313,11 +395,11 @@ value="<?php echo stripslashes($obj{"Evaluation_MFP_WB_status"});?>"  /> &nbsp; 
 <?php xl('Yes','e')?>
 <input type="checkbox" name="Evaluation_FAMILY_CAREGIVER_SUPPORT" value="No" id="Evaluation_FAMILY_CAREGIVER_SUPPORT" 
 <?php if ($obj{"Evaluation_FAMILY_CAREGIVER_SUPPORT"} == "No") echo "checked";;?>/>
-<?php xl('No Relationship ','e')?>
-<input type="text" size="8px" name="Evaluation_FCS_Relationship" id="Evaluation_FCS_Relationship" 
-value="<?php echo stripslashes($obj{"Evaluation_FCS_Relationship"});?>" /> 
-
-<?php xl('PLOF # Visits in Community Weekly','e')?> 
+<?php xl('No','e')?>&nbsp;&nbsp;&nbsp;
+<?php xl('Relationship','e')?>
+<input type="text" size="15px" name="Evaluation_FCS_Relationship" id="Evaluation_FCS_Relationship" 
+value="<?php echo stripslashes($obj{"Evaluation_FCS_Relationship"});?>" />&nbsp;&nbsp;&nbsp; 
+<?php xl('PLOF # Visits in Community Weekly','e')?>&nbsp; 
 <input type="text" size="5px"name="Evaluation_Visits_in_Community" id="Evaluation_Visits_in_Community" 
 value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" /> 
         </strong></td>
@@ -327,7 +409,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
     <tr><td><strong><?php xl('ADL/FUNCTIONAL MOBILITY STATUS','e')?></strong><br />
 
-    <strong><?php xl('Drop down Scale','e')?> </strong>
+    <strong><?php xl('Scale','e')?> </strong>
 <?php xl(' U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no  assist required','e')?></td></tr></table></td></tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
@@ -348,8 +430,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
         <td><select id="Evaluation_ADL_TOILETING" name="Evaluation_ADL_TOILETING">
 			<?php Mobility_status(stripslashes($obj{"Evaluation_ADL_TOILETING"}))	?> </select></td>
         <td rowspan="6" align="center">
-        <textarea name="Evaluation_CI_ADL_COMMENTS" id="Evaluation_CI_ADL_COMMENTS" cols="25" rows="5">
-         <?php echo stripslashes($obj{"Evaluation_CI_ADL_COMMENTS"});?> </textarea></td>
+        <textarea name="Evaluation_CI_ADL_COMMENTS" id="Evaluation_CI_ADL_COMMENTS" cols="25" rows="5"><?php echo stripslashes($obj{"Evaluation_CI_ADL_COMMENTS"});?></textarea></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('UTENSIL-CUP USE','e')?></td>
@@ -417,8 +498,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
 			<?php Mobility_status(stripslashes($obj{"Evaluation_CI_ADL_MONEY_MANAGEMENT"}))	?> </select></td>
 
         <td rowspan="4" align="center">
-        <textarea name="Evaluation_CI_ADL_COMMENTS1" id="Evaluation_CI_ADL_COMMENTS1" cols="25" rows="5">
-         <?php echo stripslashes($obj{"Evaluation_CI_ADL_COMMENTS1"});?> </textarea></td>
+        <textarea name="Evaluation_CI_ADL_COMMENTS1" id="Evaluation_CI_ADL_COMMENTS1" cols="25" rows="5"><?php echo stripslashes($obj{"Evaluation_CI_ADL_COMMENTS1"});?></textarea></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('MEAL PREPARATION','e')?></td>
@@ -489,11 +569,11 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
 <?php xl('Stairs are in disrepair','e')?>
 <input type="checkbox" name="Evaluation_EnvBar_Fire_Extinguishers" id="Evaluation_EnvBar_Fire_Extinguishers" 
 <?php if ($obj{"Evaluation_EnvBar_Fire_Extinguishers"} == "on") echo "checked";;?>/>
-<?php xl('Fire extinguishers are not available Other','e')?><strong>
-
-<input type="text" size="115%" name="Evaluation_EnvBar_Other" id="Evaluation_EnvBar_Other" 
+<?php xl('Fire extinguishers are not available','e')?>&nbsp;&nbsp;
+<?php xl('Other','e')?>
+<input type="text" style="width:750px" name="Evaluation_EnvBar_Other" id="Evaluation_EnvBar_Other" 
 value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
-</strong></td></tr></table></td></tr>
+</td></tr></table></td></tr>
 <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
 <?php xl('COGNITION','e')?></strong></td></tr></table></td>
@@ -532,61 +612,24 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
 <input type="checkbox" name="Evaluation_COG_Canfollow" value="3" id="Evaluation_COG_Canfollow" 
  <?php if ($obj{"Evaluation_COG_Canfollow"} == "3") echo "checked";;?>/>
 <?php xl('3','e')?></label>    
-     <?php xl('or more Step-Directions   Comments ','e')?>
-     <input type="text" size="67px" name="Evaluation_COG_Comments" id="Evaluation_COG_Comments" 
+     <?php xl('or more Step-Directions','e')?>&nbsp;&nbsp;&nbsp;
+     <?php xl('Comments','e')?>
+     <input type="text" style="width:480px" name="Evaluation_COG_Comments" id="Evaluation_COG_Comments" 
      value="<?php echo stripslashes($obj{"Evaluation_COG_Comments"});?>" />
      </td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
-      <tr>
-        <td align="center" scope="row">&nbsp;</td>
-
-          <strong><?php xl('SKILL','e')?></strong>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?></strong></td>
-        <td align="center"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?> </strong></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('SAFETY AWARENESS','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Safety_Awareness" value="good" id="Evaluation_Skil_Safety_Awareness" 
-        <?php if ($obj{"Evaluation_Skil_Safety_Awareness"} == "good") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Safety_Awareness" value="fair" id="Evaluation_Skil_Safety_Awareness" 
-        <?php if ($obj{"Evaluation_Skil_Safety_Awareness"} == "fair") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Safety_Awareness" value="poor" id="Evaluation_Skil_Safety_Awareness" 
-        <?php if ($obj{"Evaluation_Skil_Safety_Awareness"} == "poor") echo "checked";;?>/></td>
-        <td>SHORT-TERM MEMORY</td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Shortterm_Memory" id="Evaluation_skil_Shortterm_Memory" value="good"
-        <?php if ($obj{"Evaluation_skil_Shortterm_Memory"} == "good") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Shortterm_Memory" id="Evaluation_skil_Shortterm_Memory" value="fair"
-        <?php if ($obj{"Evaluation_skil_Shortterm_Memory"} == "fair") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Shortterm_Memory" id="Evaluation_skil_Shortterm_Memory" value="poor"
-        <?php if ($obj{"Evaluation_skil_Shortterm_Memory"} == "poor") echo "checked";;?>/></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('ATTENTION SPAN','e')?> </td>
-
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Attention_Span" id="Evaluation_Skil_Attention_Span" value="good"
-        <?php if ($obj{"Evaluation_Skil_Attention_Span"} == "good") echo "checked";;?>/>
-          <label for="checkbox"></label></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Attention_Span" id="Evaluation_Skil_Attention_Span" value="fair"
-        <?php if ($obj{"Evaluation_Skil_Attention_Span"} == "fair") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Skil_Attention_Span" id="Evaluation_Skil_Attention_Span" value="poor"
-        <?php if ($obj{"Evaluation_Skil_Attention_Span"} == "poor") echo "checked";;?>/></td>
-        <td><?php xl('LONG-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory" value="good"
-        <?php if ($obj{"Evaluation_skil_Longterm_Memory"}=="good")  echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory" value="fair"
-        <?php if ($obj{"Evaluation_skil_Longterm_Memory"} == "fair") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory" value="poor"
-        <?php if ($obj{"Evaluation_skil_Longterm_Memory"} == "poor") echo "checked";;?>/></td>
-
-      </tr>
+        <tr>
+        <td scope="row" width="30%"><?php xl('SAFETY AWARENESS','e')?></td>
+        <td><select name="Evaluation_Skil_Safety_Awareness" id="Evaluation_Skil_Safety_Awareness"><?php Cognition_skills(stripslashes($obj{"Evaluation_Skil_Safety_Awareness"})) ?></select></td></tr>
+        <tr>
+        <td scope="row" width="30%"><?php xl('ATTENTION SPAN','e')?></td>
+       <td><select name="Evaluation_Skil_Attention_Span" id="Evaluation_Skil_Attention_Span"><?php Cognition_skills(stripslashes($obj{"Evaluation_Skil_Attention_Span"})) ?></select></td></tr>
+        <tr><td width="30%"><?php xl('SHORT-TERM MEMORY','e')?></td>
+        <td><select name="Evaluation_skil_Shortterm_Memory" id="Evaluation_skil_Shortterm_Memory"><?php Cognition_skills(stripslashes($obj{"Evaluation_skil_Shortterm_Memory"})) ?></select></td></tr>
+        <tr><td width="30%"><?php xl('LONG-TERM MEMORY','e')?></td>
+        <td><select name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory"><?php Cognition_skills(stripslashes($obj{"Evaluation_skil_Longterm_Memory"})) ?></select></td></tr> 
   </table></td>
   </tr>
   <tr>
@@ -670,10 +713,8 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
 <?php xl('Fair','e')?>
 <input type="checkbox" name="Evaluation_Activity_Tolerance_Type" value="Poor" id="Evaluation_Activity_Tolerance_Type" 
 <?php if ($obj{"Evaluation_Activity_Tolerance_Type"} == "Poor") echo "checked";;?>/>
-<?php xl('Poor','e')?>
-<input type="checkbox" name="Evaluation_AT_Minutes_Participate" id="Evaluation_AT_Minutes_Participate" 
-<?php if ($obj{"Evaluation_AT_Minutes_Participate"} == "on") echo "checked";;?>/>
-<?php xl('Number of Minutes Can Participate in a Task ','e')?>
+<?php xl('Poor','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Number of Minutes Can Participate in a Task ','e')?>&nbsp;
 <input type="text" size="22px" name="Evaluation_AT_Minutes_Participate_Note" id="part_task" 
 value="<?php echo stripslashes($obj{"Evaluation_AT_Minutes_Participate_Note"});?>" />
 <input type="checkbox" name="Evaluation_AT_SOB" id="Evaluation_AT_SOB" 
@@ -681,9 +722,9 @@ value="<?php echo stripslashes($obj{"Evaluation_AT_Minutes_Participate_Note"});?
 <?php xl('SOB','e')?><br>
 <input type="checkbox" name="Evaluation_AT_RHC_Impacts_Activity" id="Evaluation_AT_RHC_Impacts_Activity" 
 <?php if ($obj{"Evaluation_AT_RHC_Impacts_Activity"} == "on") echo "checked";;?>/>
-<?php xl('Respiratory/Heart Condition Impacts Activity Tolerance Comments ','e')?>
-
-<input type="text" size="61px" name="Evaluation_AT_Comments" id="Evaluation_AT_Comments" 
+<?php xl('Respiratory/Heart Condition Impacts Activity Tolerance','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Comments','e')?>&nbsp;
+<input type="text" style="width:410px" name="Evaluation_AT_Comments" id="Evaluation_AT_Comments" 
  value="<?php echo stripslashes($obj{"Evaluation_AT_Comments"});?>" /></td></tr></table></td>
   </tr>
   <tr>
@@ -691,15 +732,15 @@ value="<?php echo stripslashes($obj{"Evaluation_AT_Minutes_Participate_Note"});?
     <td><strong><?php xl('Patient has the following assistive devices','e')?></strong>
       <input type="checkbox" name="Evaluation_Assist_devices_Walker" id="Evaluation_Assist_devices_Walker" 
       <?php if ($obj{"Evaluation_Assist_devices_Walker"} == "on") echo "checked";;?>/>
-<?php xl('Walker-Type','e')?>
+<?php xl('Walker-Type','e')?>&nbsp;
 <input type="text" size="15px" name="Evaluation_Assist_devices_Walker_Type" id="Evaluation_Assist_devices_Walker_Type" 
 value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Walker_Type"});?>" />
 <input type="checkbox" name="Evaluation_Assist_devices_Wheelchair" id="Evaluation_Assist_devices_Wheelchair" 
 <?php if ($obj{"Evaluation_Assist_devices_Walker"} == "on") echo "checked";;?>/>
-<?php xl('Wheelchair','e')?>
+<?php xl('Wheelchair','e')?>&nbsp;&nbsp;
 <input type="checkbox" name="Evaluation_Assist_devices_Cane" id="Evaluation_Assist_devices_Cane" 
 <?php if ($obj{"Evaluation_Assist_devices_Cane"} == "on") echo "checked";;?>/>
-<?php xl('Cane Type','e')?>
+<?php xl('Cane Type','e')?>&nbsp;
 <input type="text" size="15px" name="Evaluation_Assist_devices_Cane_Type" id="Evaluation_Assist_devices_Cane_Type" 
 value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Cane_Type"});?>" /><br>
 <input type="checkbox" name="Evaluation_Assist_devices_Glasses_For_Read" id="Evaluation_Assist_devices_Glasses_For_Read" 
@@ -710,14 +751,15 @@ value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Cane_Type"});?>" 
 <?php xl('Glasses for distance','e')?>
 <input type="checkbox" name="Evaluation_Assist_devices_Hearing_Aid" id="Evaluation_Assist_devices_Hearing_Aid" 
 <?php if ($obj{"Evaluation_Assist_devices_Hearing_Aid"} == "on") echo "checked";;?>/>
-<?php xl('Hearing Aid Other','e')?> 
-<input type="text" name="Evaluation_Assist_devices_Other" id="Evaluation_Assist_devices_Other" size="62px"
+<?php xl('Hearing Aid','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Other','e')?>&nbsp;
+<input type="text" style="width:410px" name="Evaluation_Assist_devices_Other" id="Evaluation_Assist_devices_Other" 
 value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Other"});?>" /></td></tr></table></td>
   </tr>
   <tr>
     <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
 <?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
-      <strong><?php xl('Drop down Scale ','e')?></strong>
+      <strong><?php xl('Scale ','e')?></strong>
 <?php xl('N=Normal, G=Good, takes moderate challenges, F=Fair, maintain balance without contact, P=Poor maintain balance for 15 seconds or less, 0 no balance reaction','e')?>
     </td></tr></table></td>
 
@@ -762,8 +804,8 @@ value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Other"});?>" /></
     <?php xl('All ROM is WFL','e')?>
     <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="other Problem" id="Evaluation_MS_ROM_All_Muscle_WFL"
 <?php if ($obj{"Evaluation_MS_ROM_All_Muscle_WFL"} == "other Problem")  echo "checked";;?>/>
-    <?php xl('The following problem areas are','e')?>
-<input type="text" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas"
+    <?php xl('The following problem areas are','e')?>&nbsp;
+<input type="text" style="width:260px" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas"
 value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"});?>"/>
     </strong></td></tr></table></td>
   </tr>
@@ -793,7 +835,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
         <td align="center"><strong><?php xl('Hypo','e')?></strong></td>
         </tr>
       <tr>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text" id="Evaluation_MS_ROM_Problemarea_text" 
+        <td align="center" scope="row"><input type="text" size="35px" name="Evaluation_MS_ROM_Problemarea_text" id="Evaluation_MS_ROM_Problemarea_text" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Problemarea_text"});?>" /></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right" id="Evaluation_MS_ROM_STRENGTH_Right" 
          value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Right"});?>" />
@@ -816,13 +858,13 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity"} == "Hyper") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hypo"
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity"} == "Hypo") echo "checked";;?>/></td>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" 
+        <td align="center" scope="row"><input type="text" size="35px" name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" 
          value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description"});?>" /></td>
 
         </tr>
       <tr>
         <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" 
+        <input type="text" size="35px" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Problemarea_text1"});?>" /></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right1" id="Evaluation_MS_ROM_STRENGTH_Right1"
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Right1"});?>" />
@@ -845,12 +887,12 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
         <td align="center"><input type="checkbox" name="Evaluation_MS_ROM_Tonicity1" id="Evaluation_MS_ROM_Tonicity1" value="Hypo"
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity1"} == "Hypo") echo "checked";;?>/></td>
         <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Further_description1" id="Evaluation_MS_ROM_Further_description1" 
+        <input type="text" size="35px" name="Evaluation_MS_ROM_Further_description1" id="Evaluation_MS_ROM_Further_description1" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description1"});?>" /></td>
         </tr>
       <tr>
         <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" 
+        <input type="text" size="35px" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Problemarea_text2"});?>"/></td>
 
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right2" id="Evaluation_MS_ROM_STRENGTH_Right2"
@@ -875,11 +917,11 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity2"} == "Hypo") echo "checked";;?>/></td>
                
         <td align="center" scope="row">
-        <input type="text" name="Evaluation_MS_ROM_Further_description2" id="Evaluation_MS_ROM_Further_description2" 
+        <input type="text" size="35px" name="Evaluation_MS_ROM_Further_description2" id="Evaluation_MS_ROM_Further_description2" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description2"});?>" /></td>
         </tr>
       <tr>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text3" id="Evaluation_MS_ROM_Problemarea_text3" 
+        <td align="center" scope="row"><input type="text" size="35px" name="Evaluation_MS_ROM_Problemarea_text3" id="Evaluation_MS_ROM_Problemarea_text3" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Problemarea_text3"});?>"/></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right3" id="Evaluation_MS_ROM_STRENGTH_Right3" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Right3"});?>"/>
@@ -902,7 +944,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity3"} == "Hyper") echo "checked";;?>/></td>
         <td align="center"><input type="checkbox" name="Evaluation_MS_ROM_Tonicity3" id="Evaluation_MS_ROM_Tonicity3" value="Hypo"
         <?php if ($obj{"Evaluation_MS_ROM_Tonicity3"} == "Hypo") echo "checked";;?>/></td>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Further_description3" id="Evaluation_MS_ROM_Further_description3" 
+        <td align="center" scope="row"><input type="text" size="35px" name="Evaluation_MS_ROM_Further_description3" id="Evaluation_MS_ROM_Further_description3" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Further_description3"});?>" /></td>
 
         </tr>
@@ -910,15 +952,15 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
-      <td><strong>Comments 
-        <input type="text" size="122px" name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" 
+      <td><strong><?php xl('Comments','e')?> 
+        <input type="text" style="width:850px" name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Comments"});?>" />
       </strong></td></tr></table></td>
   </tr>
 
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
-    <td><strong>SUMMARY</strong></td></tr></table></td>
+    <td><strong><?php xl('SUMMARY','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
@@ -932,9 +974,19 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
 
 <input type="checkbox" name="Evaluation_Summary_Received_Physician_Orders" id="Evaluation_Summary_Received_Physician_Orders" 
 <?php if ($obj{"Evaluation_Summary_Received_Physician_Orders"} == "on") echo "checked";;?>/>
-<?php xl('Received physician orders for OT treatment and approximate next visit date will be','e')?>
-<input type="text" size="46px" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date" 
-value="<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>" /></td></tr></table></td>
+<?php xl('Received physician orders for OT treatment and approximate next visit date will be','e')?>&nbsp;
+<input type='text' size='20px' name='Evaluation_approximate_next_visit_date' id='Evaluation_approximate_next_visit_date'
+    value='<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>'
+    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+   onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
+    <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
+    id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    title='<?php xl('Click here to choose a date','e'); ?>'>
+    <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"Evaluation_approximate_next_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
+   </script>
+
+</td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
@@ -951,7 +1003,7 @@ value="<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?
 <?php xl('PT/ST','e')?>
 <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="COTA" id="Evaluation_OT_Evaulation_Communicated_Agreed" 
 <?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "COTA") echo "checked";;?>/>
-<?php xl('COTA','e')?>
+<?php xl('COTA','e')?><br>
 <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="Skilled_Nursing" id="Evaluation_OT_Evaulation_Communicated_Agreed" 
 <?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "Skilled_Nursing") echo "checked";;?>/>
 <?php xl('Skilled Nursing','e')?>
@@ -960,8 +1012,9 @@ value="<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?
 <?php xl('Caregiver/Family','e')?>
 <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="Case_Manager" id="Evaluation_OT_Evaulation_Communicated_Agreed" 
 <?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "Case_Manager") echo "checked";;?>/>
-<?php xl('Case Manager Others','e')?>
-<input type="text" size="77px" name="Evaluation_OT_Evaulation_Communicated_other" id="Evaluation_OT_Evaulation_Communicated_other" 
+<?php xl('Case Manager','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('Others ','e')?>
+<input type="text" style="width:530px" name="Evaluation_OT_Evaulation_Communicated_other" id="Evaluation_OT_Evaulation_Communicated_other" 
 value="<?php echo stripslashes($obj{"Evaluation_OT_Evaulation_Communicated_other"});?>" /></td></tr></table></td>
   </tr>
   <tr>
@@ -981,11 +1034,11 @@ value="<?php echo stripslashes($obj{"Evaluation_OT_Evaulation_Communicated_other
 <input type="checkbox" name="Evaluation_ASP_Treatment_For" id="Evaluation_ASP_Treatment_For" 
 <?php if ($obj{"Evaluation_ASP_Treatment_For"} == "on") echo "checked";;?>/>
 <?php xl('Treatment for','e')?>
-<input type="text" size="88px" name="Evaluation_ASP_Treatment_For_text" id="Evaluation_ASP_Treatment_For_text" 
+<input type="text" style="width:530px" name="Evaluation_ASP_Treatment_For_text" id="Evaluation_ASP_Treatment_For_text" 
 value="<?php echo stripslashes($obj{"Evaluation_ASP_Treatment_For_text"});?>" /> 
-<br />
-<?php xl('Initiated   Other','e')?>
-<input type="text" size="119px" name="Evaluation_ASP_Other" id="Evaluation_ASP_Other" 
+<?php xl('Initiated','e')?><br>
+<?php xl('Other','e')?>&nbsp;
+<input type="text" style="width:880px" name="Evaluation_ASP_Other" id="Evaluation_ASP_Other" 
 value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></table></td>
   </tr>
   <tr>
@@ -1001,16 +1054,16 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
 <?php xl('Teach patient compensatory techniques for adaptation','e')?>
 <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Train_patient_new_skills" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" 
 <?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Train_patient_new_skills") echo "checked";;?>/>
-<?php xl('Train patient in learning new skills;','e')?>
+<?php xl('Train patient in learning new skills;','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Other','e')?>
-<input type="text" size="117px" name="Evaluation_Skilled_OT_Other" id="Evaluation_Skilled_OT_Other" 
+<input type="text" style="width:730px" name="Evaluation_Skilled_OT_Other" id="Evaluation_Skilled_OT_Other" 
  value="<?php echo stripslashes($obj{"Evaluation_Skilled_OT_Other"});?>" /></td></tr></table></td>
   </tr>
   <tr>
 
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
     <td><strong><?php xl('ADDITIONAL COMMENTS ','e')?>
-      <input type="text" size="135px" name="Evaluation_Additional_Comments" id="Evaluation_Additional_Comments" 
+      <input type="text" style="width:930px" name="Evaluation_Additional_Comments" id="Evaluation_Additional_Comments" 
        value="<?php echo stripslashes($obj{"Evaluation_Additional_Comments"});?>" />
     </strong></td></tr></table></td>
   </tr>
