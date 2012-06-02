@@ -99,6 +99,7 @@ visitnote_Further_Skilled_Visits_Required ='".$_POST["visitnote_Further_Skilled_
 visitnote_Train_patient_Suchas_Notes ='".$_POST["visitnote_Train_patient_Suchas_Notes"]."',
 visitnote_FSVR_IADLs_Notes ='".$_POST["visitnote_FSVR_IADLs_Notes"]."',
 visitnote_FSVR_ADLs_Notes ='".$_POST["visitnote_FSVR_ADLs_Notes"]."',
+visitnote_Train_CareGiver_Family='".$_POST["visitnote_Train_CareGiver_Family"]."',
 visitnote_FSVR_Other ='".$_POST["visitnote_FSVR_Other"]."',
 visitnote_Date_of_Next_Visit ='".$_POST["visitnote_Date_of_Next_Visit"]."',
 visitnote_Plan_Type ='".$_POST["visitnote_Plan_Type"]."',

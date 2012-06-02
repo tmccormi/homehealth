@@ -145,5 +145,10 @@ Reassessment_AS_Recommendations_for_SafetyIssues_Notes longtext,
 Reassessment_AS_Treatment varchar(40),
 Reassessment_AS_Treatment_for longtext,
 Reassessment_Other_Services_Provided longtext,
-Reassessment_Therapist_Who_Provided_Reassessment varchar(255)
+Reassessment_Therapist_Who_Provided_Reassessment varchar(255),
+Reassessment_Time_In varchar(100),
+Reassessment_Time_Out varchar(100),
+Reassessment_RO_Long_Term_Goal_Not_Reached varchar(255),
+Reassessment_RO_Prior_Level_Function_Not_Reached varchar(255),
+Reassessment_PT_communicated_and_agreed_upon_by_Others varchar(100)
 ) ENGINE=MyISAM;

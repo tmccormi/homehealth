@@ -13,6 +13,8 @@ addForm($encounter, "Evaluation", $newid, "ptEvaluation", $pid, $userauthorized)
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_pt_Evaluation set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 Evaluation_date='".$_POST["Evaluation_date"]."',
+Evaluation_Time_In='".$_POST["Evaluation_Time_In"]."',
+Evaluation_Time_Out='".$_POST["Evaluation_Time_Out"]."',
 Evaluation_Pulse='".$_POST["Evaluation_Pulse"]."',
 Evaluation_Pulse_State='".$_POST["Evaluation_Pulse_State"]."',
 Evaluation_Temperature='".$_POST["Evaluation_Temperature"]."',

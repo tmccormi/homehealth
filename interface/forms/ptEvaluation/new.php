@@ -21,6 +21,60 @@ formHeader("Form: evaluation");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+
+<script>	
+	//Function to create an XMLHttp Object.
+	function pullAjax(){
+    var a;
+    try{
+      a=new XMLHttpRequest();
+    }
+    catch(b)
+    {
+      try
+      {
+        a=new ActiveXObject("Msxml2.XMLHTTP");
+      }catch(b)
+      {
+        try
+        {
+          a=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch(b)
+        {
+         return false;
+        }
+      }
+    }
+    return a;
+  }
+	
+	function changeICDlist(dx,code,rootdir)
+	  {
+	    site_root = rootdir; 
+	    Dx = dx.name;
+	    icd9code = code.value;	   	   
+	    obj=pullAjax();	   
+	    obj.onreadystatechange=function()
+	    {
+	      if(obj.readyState==4)
+	      {	
+	    	 eval("result = "+obj.responseText);
+	    	 if(Dx=='Evaluation_Reason_for_intervention')
+	    	 {
+		    	med_icd9.innerHTML= result['res'];
+	    	 }
+	    	 if(Dx=="Evaluation_TREATMENT_DX_PT_Problem")
+	    	 {
+	    		 trmnt_icd9.innerHTML= result['res'];
+	    	 }
+	    	 return true;	    	               
+	      }
+	    };
+	    obj.open("GET",site_root+"/forms/ptEvaluation/functions.php?code="+icd9code+"&Dx="+Dx,true);    
+	    obj.send(null);
+	  }	 
+	</script>
 </head>
 
 <body>
@@ -38,22 +92,27 @@ formHeader("Form: evaluation");
     <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="5px">
 
         <tr>
-          <td align="center" scope="row"><strong><?php xl('Patient Name','e')?></strong></td>
-         <td width="13%" align="center" valign="top"><input type="text"
-					name="patient_name" id="patient_name" value="<?php patientName()?>"
-					disabled /></td>
-          <td align="center"><strong><?php xl('MR#','e')?></strong></td>
+          <td width="5%"  align="center" scope="row"><strong><?php xl('Patient Name','e')?></strong></td>
+         <td width="15%" align="center" valign="top"><input type="text"
+					id="patient_name" value="<?php patientName()?>"
+					readonly/></td>
+          <td width="10%"  align="center"><strong><?php xl('MR#','e')?></strong></td>
           <td width="15%" align="center" valign="top" class="bold"><input
-					type="text" name="mr" id="mr"
-					value="<?php  echo $_SESSION['pid']?>" disabled /></td>
-          <td align="center"><strong><?php xl('Date','e')?></strong></td><td>
+				style="width:100%" type="text" name="mr" id="mr"
+					value="<?php  echo $_SESSION['pid']?>" readonly /></td>
 
-          <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
+		 <td width="5%"><strong><?php xl('Time In','e'); ?></strong></td>
+        <td width="9%"><select name="Evaluation_Time_In" id="Evaluation_Time_In"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
+        <td width="5%"><strong><?php xl('Time Out','e'); ?></strong></td>
+        <td width="9%"> <select name="Evaluation_Time_Out" id="Evaluation_Time_Out"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
+ 
+          <td width="5%" align="center"><strong><?php xl('Date','e')?></strong></td>
+<td width="20%" > <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
+	style='cursor: pointer; cursor: hand'
 					title='<?php xl('Click here to choose a date','e'); ?>'> 
 					<script	LANGUAGE="JavaScript">
     Calendar.setup({inputField:"Evaluation_date", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
@@ -74,17 +133,18 @@ formHeader("Form: evaluation");
                 <?php xl('Regular','e')?>
       
           <input type="checkbox" name="Evaluation_Pulse_State" value="Irregular" id="Evaluation_Pulse_State" />
-          <?php xl('Irregular','e')?> &nbsp; <?php xl('Temperature','e')?> 
+          <?php xl('Irregular','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Temperature','e')?> 
 
-      <input type="text" size="3px" name="Evaluation_Temperature" id="Evaluation_Temperature" /> 
+      <input type="text" size="5px" name="Evaluation_Temperature" id="Evaluation_Temperature" /> 
 	  <input type="checkbox" name="Evaluation_Temperature_type" value="Oral" id="Evaluation_Temperature_type" />
 <?php xl('Oral','e')?>
 <input type="checkbox" name="Evaluation_Temperature_type" value="Temporal" id="Evaluation_Temperature_type" />
 <?php xl('Temporal','e')?>&nbsp;  
      <?php xl('Other','e')?>
-     <input type="text"  size="3px" name="Evaluation_VS_other" id="Evaluation_VS_other" />&nbsp;  
+     <input type="text" style="width:70px" name="Evaluation_VS_other" id="Evaluation_VS_other" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 <?php xl('Respirations','e')?>
-      <input type="text" size="3px" name="Evaluation_VS_Respirations" id="Evaluation_VS_Respirations" />      
+      <input type="text" style="width:60px" name="Evaluation_VS_Respirations" id="Evaluation_VS_Respirations" />      <br/>
       <?php xl('Blood Pressure Systolic','e')?>
       <input type="text" size="3px" name="Evaluation_VS_BP_Systolic" id="Evaluation_VS_BP_Systolic" />
       <?php xl('/ Diastolic','e')?> 
@@ -103,22 +163,23 @@ formHeader("Form: evaluation");
             <?php xl('Standing','e')?>
       
             <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Lying" id="Evaluation_VS_BP_Body_Position" />
-            <?php xl('Lying *O2 Sat','e')?>
+            <?php xl('Lying','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php xl('*O','e')?> <sub> <?php xl('2','e')?></sub> <?php xl('Sat','e')?>
       <input type="text" name="Evaluation_VS_Sat" size="3px" id="Evaluation_VS_Sat" /> 
 <?php xl('*Physician ordered','e')?></td></tr></table></td></tr>
 
 <tr>
-<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td><?php xl('Pain','e')?>
+<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('Pain','e')?></strong>
  
   
     <input type="checkbox" name="Evaluation_VS_Pain" value="Pain" id="Evaluation_VS_Pain" />
     <?php xl('No Pain','e')?>
   
     <input type="checkbox" name="Evaluation_VS_Pain" value="No Pain" id="Evaluation_VS_Pain" />
-    <?php xl('Pain limits functional ability ','e')?> &nbsp; <?php xl('Intensity ','e')?>
+    <?php xl('Pain limits functional ability ','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Intensity ','e')?>
 
   <input type="text" size="5px" name="Evaluation_VS_Pain_Intensity" id="Evaluation_VS_Pain_Intensity" />
-  <?php xl('(0-10)  Location(s)','e')?>
+  <?php xl('(0-10)','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Location(s)','e')?>
   <input type="text" size="25px" name="Evaluation_VS_Location" id="Evaluation_VS_Location" />
   <br />
   
@@ -126,9 +187,9 @@ formHeader("Form: evaluation");
   <?php xl('Pain due to recent illness/injury','e')?>
   
   <input type="checkbox" name="Evaluation_VS_Pain" value="Chronic pain" id="Evaluation_VS_Pain " />
-  <?php xl('Chronic pain','e')?>
+  <?php xl('Chronic pain','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <?php xl('Other','e')?>
-  <input type="text" name="Evaluation_VS_Other1" size="56px" id="Evaluation_VS_Other1" />
+  <input type="text" name="Evaluation_VS_Other1" style="width:480px" id="Evaluation_VS_Other1" />
   </td>
   </tr>
   </table>
@@ -147,7 +208,7 @@ formHeader("Form: evaluation");
   <tr>
     <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
         <tr>
-          <td width="47%" valign="top" scope="row">
+          <td width="50%" valign="top" scope="row">
             <table width="100%">
                 <tr>
                   <td>
@@ -165,7 +226,7 @@ formHeader("Form: evaluation");
                   <td>
                     <input type="checkbox" name="Evaluation_HR_Medical_Restrictions" id="Evaluation_HR_Medical_Restrictions" />
                     <?php xl('Medical Restrictions in','e')?>
-                    <input type="text" name="Evaluation_HR_Medical_Restrictions_In" size="30px" id="Evaluation_HR_Medical_Restrictions_In" />
+                    <input type="text" name="Evaluation_HR_Medical_Restrictions_In" style="width:270px"  id="Evaluation_HR_Medical_Restrictions_In" />
                   </td>
                 </tr>
                 <tr>
@@ -176,7 +237,7 @@ formHeader("Form: evaluation");
 		<?php xl('Pain with Travel','e')?></td>
                 </tr>
               </table>
-          <td width="53%" valign="top">
+          <td width="50%" valign="top">
             <table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
               <tr>
                 <td>
@@ -199,8 +260,8 @@ formHeader("Form: evaluation");
 	  <?php xl('Multiple stairs to enter/exit home','e')?></td>
               </tr>
               <tr>
-                <td><?php xl('Others','e')?>
-                  <input type="text" name="Evaluation_HR_Other" size="35px" id="Evaluation_HR_Other" /></td>
+                <td><?php xl('Other','e')?>
+                  <input type="text" name="Evaluation_HR_Other" style="width:350px" id="Evaluation_HR_Other" /></td>
               </tr>
               </table>
           </td>
@@ -211,11 +272,22 @@ formHeader("Form: evaluation");
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for PT intervention','e')?></strong></td>
-          <td align="center"><strong><select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention">
-	   <?php ICD9_dropdown($GLOBALS['Selected']) ?></select></strong></td>
+          <td align="center">
+<input type="text" id="icd" size="15"/>
+<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<div id="med_icd9">
+<select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="display:none">
+</select></div>
+	  
+ </td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
-          <td align="center"><strong><select id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem">
-	 <?php ICD9_dropdown($GLOBALS['Selected']) ?></select></strong></td>
+          <td align="center">
+<input type="text" id="icd9" size="15"/>
+<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<div id="trmnt_icd9">
+<select id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem" style="display:none">					
+</select></div>	
+</td>
         </tr>
       </table>
   </tr>
@@ -228,23 +300,23 @@ formHeader("Form: evaluation");
     <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
       <tr>
         <td scope="row"><strong><?php xl('PERTINENT MEDICAL HISTORY','e')?>
-          <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" size="93px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" />
+          <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" style="width:680px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" />
         </strong></td>
       </tr>
 
       <tr>
-        <td scope="row"><strong><?php xl('MEDICAL/FUNCTIONAL PRECAUTIONS','e')?>&nbsp; &nbsp; &nbsp;
+        <td scope="row"><strong><?php xl('MEDICAL/FUNCTIONAL PRECAUTIONS','e')?>&nbsp;</strong>
           <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="None" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
           <?php xl('None','e')?>
   <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="WB Status" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
           <?php xl('WB Status','e')?> 
-  <input type="text" name="Evaluation_MFP_WB_status" id="Evaluation_MFP_WB_status" /> &nbsp; &nbsp; &nbsp;
+  <input type="text" name="Evaluation_MFP_WB_status" id="Evaluation_MFP_WB_status" /> 
           <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="Falls Risks" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
-          <?php xl('Falls Risks','e')?>
+          <?php xl('Falls Risks','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="checkbox" name="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" value="SOB" id="Evaluation_MEDICAL_FUNCTIONAL_PRECAUTIONS" />
-          <?php xl('SOB','e')?><br><?php xl('Other','e')?></strong>
+          <?php xl('SOB','e')?><br/><?php xl('Other','e')?>
           <strong>
-            <input type="text" name="Evaluation_MFP_Other" id="Evaluation_MFP_Other" />
+            <input type="text" size="150px"  name="Evaluation_MFP_Other" id="Evaluation_MFP_Other" />
             <br />
             <?php xl('PRIOR LEVEL OF MOBILITY IN HOME','e')?>
             </strong>
@@ -263,21 +335,21 @@ formHeader("Form: evaluation");
           
             <input type="checkbox" name="Evaluation_Prior_level_Mobility_Home" value="Wheelchair bound" id="CheckboxGroup10_4" />
             <?php xl('Wheelchair bound','e')?>
-          
+        <br/>  
             <?php xl('Other','e')?>
             <strong>
-              <input type="text" name="Evaluation_Prior_level_Mobility_Other" id="Evaluation_Prior_level_Mobility_Other" />
+              <input type="text" name="Evaluation_Prior_level_Mobility_Other" id="Evaluation_Prior_level_Mobility_Other"  style="width:92%" />
               </strong><br />
             <?php xl('# Stairs to Enter Front of House','e')?>
             <strong>
-              <input type="text" name="Evaluation_PLM_Stairs_Front_House" id="Evaluation_PLM_Stairs_Front_House" />
-              </strong>
+              <input type="text"  style="width:9%"  name="Evaluation_PLM_Stairs_Front_House" id="Evaluation_PLM_Stairs_Front_House" />
+              </strong>&nbsp;
             <?php xl('# Stairs to Enter Back of House','e')?>
             <strong>
-              <input type="text" name="Evaluation_PLM_Stairs_Back_House" id="Evaluation_PLM_Stairs_Back_House" /><br>
-              </strong><?php xl('# Stairs to Second Level','e')?>
+              <input type="text" style="width:9%" name="Evaluation_PLM_Stairs_Back_House" id="Evaluation_PLM_Stairs_Back_House" />
+             </strong>&nbsp;<?php xl('# Stairs to Second Level','e')?>
             <strong>
-              <input type="text" name="Evaluation_PLM_Stairs_Second_Level" id="Evaluation_PLM_Stairs_Second_Level" />
+              <input type="text"  style="width:9%"  name="Evaluation_PLM_Stairs_Second_Level" id="Evaluation_PLM_Stairs_Second_Level" />
               <br />
               <?php xl('PRIOR LEVEL OF MOBILITY IN COMMUNITY','e')?></strong>
 	    <input type="checkbox" name="Evaluation_Prior_level_Mobility_Community" value="Independent" id="CheckboxGroup10_5" />
@@ -295,32 +367,31 @@ formHeader("Form: evaluation");
 	<?php xl('Yes','e')?>
           
             <input type="checkbox" name="Evaluation_Family_Caregiver_Support" value="No" id="Evaluation_Family_Caregiver_Support" />
-            <?php xl('No','e')?>
+            <?php xl('No','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
            <?php xl('Who','e')?> <strong>
-              <input type="text" name="Evaluation_Family_Caregiver_Support_Who" id="Evaluation_Family_Caregiver_Support_Who" />
+              <input type="text" style="width:40%"  name="Evaluation_Family_Caregiver_Support_Who" id="Evaluation_Family_Caregiver_Support_Who" />
               </strong><br><?php xl('Previous # Visits into Community Weekly','e')?> <strong>
                 <input type="text" name="Evaluation_FC_Visits_Community_Weekly" id="Evaluation_FC_Visits_Community_Weekly" />
                 </strong><br />
             <?php xl('Additional Comments','e')?><strong>
-              <input size="100px" type="text" name="Evaluation_FC_Additional_Comments" id="Evaluation_FC_Additional_Comments" />
+              <input style="width:80%" type="text" name="Evaluation_FC_Additional_Comments" id="Evaluation_FC_Additional_Comments" />
             </strong></td>
       </tr>
     </table></td></tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
-<?php xl('CURRENT MOBILITY STATUS','e')?><br /></strong>
+<?php xl('CURRENT MOBILITY STATUS','e')?><br /> <?php xl('Scale','e')?> </strong>
 <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no','e')?>
 </td></tr></table></td></tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
       <tr>
-        <td width="23%" align="center" scope="row"><strong><?php xl('TASK','e')?></strong>
-          </th></td>
-        <td width="15%" align="center"><strong><?php xl('STATUS','e')?></strong></td>
-        <td width="27%" align="center"><strong><?php xl('TASK','e')?></strong></td>
-        <td width="12%" align="center"><strong><?php xl('STATUS','e')?></strong></td>
-        <td width="23%" align="center"><strong><?php xl('*COMMENTS','e')?></strong></td>
+        <td width="15%" align="center" scope="row"><strong><?php xl('TASK','e')?></strong></td>
+        <td width="10%" align="center"><strong><?php xl('STATUS','e')?></strong></td>
+        <td width="30%" align="center"><strong><?php xl('TASK','e')?></strong></td>
+        <td width="10%" align="center"><strong><?php xl('STATUS','e')?></strong></td>
+        <td width="25%"><strong><?php xl('*COMMENTS','e')?></strong></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('ROLLING RIGHT','e')?> </td>
@@ -330,7 +401,7 @@ formHeader("Form: evaluation");
         <td><strong><select id="Evaluation_CMS_SIT_STAND" name="Evaluation_CMS_SIT_STAND">
 	<?php Mobility_status($GLOBALS['Selected']) ?></strong></td>
         <td rowspan="5" align="center">
-	<textarea name="Evaluation_CMS_COMMENTS" id="Evaluation_CMS_COMMENTS" cols="25" rows="5"></textarea></td>
+	<textarea name="Evaluation_CMS_COMMENTS" style="width: 315px; height: 115px;" id="Evaluation_CMS_COMMENTS" cols="25" rows="5"></textarea></td>
       </tr>
       <tr>
         <td scope="row"><?php xl('ROLLING LEFT','e')?></td>
@@ -352,7 +423,7 @@ formHeader("Form: evaluation");
         <td scope="row"><?php xl('SUPINE','e')?> <-><?php xl('SIT','e')?></td>
         <td><strong><select id="Evaluation_CMS_SUPINE_SIT" name="Evaluation_CMS_SUPINE_SIT">
 	<?php Mobility_status($GLOBALS['Selected']) ?></select></strong></td>
-        <td><?php xl('Other','e')?> <input type="text" id="Evaluation_CMS_Other_text" name="Evaluation_CMS_Other_text"></td>
+        <td><?php xl('Other','e')?> <input type="text" style="width:80%"  id="Evaluation_CMS_Other_text" name="Evaluation_CMS_Other_text"></td>
         <td><strong><select id="Evaluation_CMS_Other" name="Evaluation_CMS_Other">
 	<?php Mobility_status($GLOBALS['Selected']) ?></select></strong></td>
       </tr>     
@@ -395,10 +466,10 @@ formHeader("Form: evaluation");
           <input type="checkbox" name="Evaluation_GS_Assistance" value="Independent" id="Evaluation_GS_Assistance" />
           <?php xl('Independent','e')?>
         <br />
-      <strong>  <?php xl('Distance/Time','e')?></strong>
+      <strong>  <?php xl('Distance/Time','e')?></strong> 
 
         <input type="text" id="Evaluation_GS_Distance_Time" name="Evaluation_GS_Distance_Time" />
-      <strong><?php xl('Surfaces','e')?></strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <strong><?php xl('Surfaces','e')?></strong>
       
           <input type="checkbox" name="Evaluation_GS_Surfaces" value="Level" id="Evaluation_GS_Surfaces" />
           <?php xl('Level','e')?>
@@ -430,19 +501,22 @@ formHeader("Form: evaluation");
           <?php xl('Standard Walker','e')?>
        <br />
         <?php xl('Other','e')?>       
-        <input type="text" size="115%" name="Evaluation_GS_Assistive_Devices_Other" id="Evaluation_GS_Assistive_Devices_Other" />
+        <input type="text" style="width:93%"   name="Evaluation_GS_Assistive_Devices_Other" id="Evaluation_GS_Assistive_Devices_Other" />
         <br />
         <strong><?php xl('Gait Deviations','e')?></strong> <?php xl('(E.g. Posture, Stride Length, Cadence, Foot Placement, Weight Shift)','e')?>
  <br/>
-       <input type="text"  size="115%" id="Evaluation_GS_Gait_Deviations" name="Evaluation_GS_Gait_Deviations" />
+       <input type="text" style="width:98%"  id="Evaluation_GS_Gait_Deviations" name="Evaluation_GS_Gait_Deviations" />
       </td></tr></table></td></tr>
       <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
-	<strong><?php xl('WHEELCHAIR SKILLS','e')?>
+	<strong><?php xl('WHEELCHAIR SKILLS','e')?> </strong>
       <input type="checkbox" name="Evaluation_WHEELCHAIR_SKILLS" id="Evaluation_WHEELCHAIR_SKILLS" />
       <?php xl('Not Applicable, Patient Ambulates','e')?>
-      <br />
-      <?php xl('Assistance','e')?></strong>
+ </strong></td></tr></table></td></tr>
+  <tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+      <td>
+	<strong> <?php xl('Assistance','e')?> </strong>
       
         <input type="checkbox" name="Evaluation_WS_Assistance" value="Dep" id="Evaluation_WS_Assistance" />
         <?php xl('Dep','e')?>
@@ -473,16 +547,16 @@ formHeader("Form: evaluation");
       <br />
       <strong> <?php xl('Distance/Time','e')?></strong>
       <input type="text" id="Evaluation_WS_Distance_Time" name="Evaluation_WS_Distance_Time" />
-      <strong><?php xl('Surfaces','e')?></strong>
+	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><?php xl('Surfaces','e')?></strong>
       
         <input type="checkbox" name="Evaluation_WS_Surfaces" value="Level" id="Evaluation_WS_Surfaces" />
         <?php xl('Level','e')?>
       
         <input type="checkbox" name="Evaluation_WS_Surfaces" value="Uneven" id="Evaluation_WS_Surfaces" />
         <?php xl('Uneven','e')?>      
-      
+      &nbsp;&nbsp;&nbsp;
         <?php xl('Other','e')?>
-        <input type="text" id="Evaluation_WS_Surfaces_other" name="Evaluation_WS_Surfaces_other" />
+        <input type="text" style="width:35%"  id="Evaluation_WS_Surfaces_other" name="Evaluation_WS_Surfaces_other" />
         <br />
         <strong> <?php xl('Patient Can Remove Footrests','e')?></strong> 
       
@@ -491,7 +565,7 @@ formHeader("Form: evaluation");
       
         <input type="checkbox" name="Evaluation_WS_Remove_Footrests" value="No" id="Evaluation_WS_Remove_Footrests" />
          <?php xl('No','e')?>            
-      <strong> <?php xl('Remove Armrests','e')?>
+	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> <?php xl('Remove Armrests','e')?>
         </strong>
       
         <input type="checkbox" name="Evaluation_WS_Remove_Armrests" value="Yes" id="Evaluation_WS_Remove_Armrests" />
@@ -499,7 +573,7 @@ formHeader("Form: evaluation");
       
         <input type="checkbox" name="Evaluation_WS_Remove_Armrests" value="No" id="Evaluation_WS_Remove_Armrests" />
         <?php xl('No','e')?>             
-      <strong><?php xl('Reposition in W/C','e')?></strong>
+	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('Reposition in W/C','e')?></strong>
       <input type="checkbox" name="Evaluation_WS_Reposition_WC" value="Yes" id="Evaluation_WS_Reposition_WC" />
         <?php xl('Yes','e')?>
       
@@ -515,7 +589,7 @@ formHeader("Form: evaluation");
      <input type="checkbox" name="Evaluation_WS_Posture_Alignment_Chair" value="Lordosis" id="Evaluation_WS_Posture_Alignment_Chair" />
       <?php xl('Lordosis','e')?><br />
       <?php xl('Other','e')?>
-    <input type="text" size="115%" name="Evaluation_WS_Other" id="Evaluation_WS_Other" />
+    <input type="text" style="width:93%"  name="Evaluation_WS_Other" id="Evaluation_WS_Other" />
     </td></tr></table></td>
   </tr>
   <tr>
@@ -527,7 +601,7 @@ formHeader("Form: evaluation");
       <?php xl('Alert','e')?>
 	<input type="checkbox" name="Evaluation_COG_Alert_type" value="Not Alert" id="Evaluation_COG_Alert_type" />
 	<?php xl('Not Alert','e')?> 
-      &nbsp; &nbsp;&nbsp; &nbsp;<?php xl('Oriented to','e')?> 
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<strong><?php xl('Oriented to','e')?> </strong>
       <input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Person" id="Evaluation_COG_Oriented_Type" />
       <?php xl('Person','e')?>
       <input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Place" id="Evaluation_COG_Oriented_Type" />
@@ -536,7 +610,7 @@ formHeader("Form: evaluation");
 	<?php xl('Date','e')?>
 	<input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Reason for Therapy" id="Evaluation_COG_Oriented_Type" />
       <?php xl('Reason for Therapy','e')?><br />
-      <?php xl('Can Follow','e')?>
+<strong><?php xl('Can Follow','e')?> </strong>
       <input type="checkbox" name="Evaluation_COG_Canfollow" value="1" id="Evaluation_COG_Canfollow" />
 	<?php xl('1','e')?>
       <input type="checkbox" name="Evaluation_COG_Canfollow" value="2" id="Evaluation_COG_Canfollow" />
@@ -544,7 +618,7 @@ formHeader("Form: evaluation");
       <input type="checkbox" name="Evaluation_COG_Canfollow" value="3" id="Evaluation_COG_Canfollow" />
       <?php xl('3','e')?>    
      <?php xl('or more Step-Directions','e')?> 
-&nbsp; &nbsp;<strong> <?php xl('Safety Awareness','e')?> </strong>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> <?php xl('Safety Awareness','e')?> </strong>
      <input type="checkbox" name="Evaluation_COG_Safety_Awareness" value="Good" id="Evaluation_COG_Safety_Awareness" /> 
      <?php xl('Good','e')?>
      <input type="checkbox" name="Evaluation_COG_Safety_Awareness" value="Fair" id="Evaluation_COG_Safety_Awareness" />
@@ -604,7 +678,7 @@ formHeader("Form: evaluation");
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
-    <strong><?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
+    <strong><?php xl('CURRENT BALANCE SKILLS','e')?><br/> <?php xl('Scale','e')?></strong>
       <?php xl('N=Normal, G=Good, takes moderate challenges, F=Fair, maintain balance without contact, P=Poor maintain balance for 15 seconds or less, 0 no balance reaction','e')?>
    </td></tr></table></td>
   </tr>
@@ -636,15 +710,15 @@ formHeader("Form: evaluation");
       </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
-	<tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
+    <td scope="row"><table width="100%;"  border="0px" cellspacing="0px" cellpadding="5px">
+	<tr><td width="100%" ><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
-      <?php xl('All Muscle Strength is WFL','e')?>
+      <?php xl('All Muscle Strength is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All ROM is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
-    <?php xl('All ROM is WFL','e')?>
+    <?php xl('All ROM is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="other Problem" id="Evaluation_MS_ROM_All_Muscle_WFL" />
-    <?php xl('The following problem areas are','e')?>
-<input type="text" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" />
+    <?php xl('The following problem areas are','e')?> &nbsp;
+<input type="text" style="width:25%" name="Evaluation_MS_ROM_Following_Problem_areas" id="Evaluation_MS_ROM_Following_Problem_areas" />
     </strong></td></tr></table></td>
   </tr>
   <tr>
@@ -671,7 +745,7 @@ formHeader("Form: evaluation");
         </tr>
       <tr>
         <td align="center" scope="row">
-      <input type="text" name="Evaluation_MS_ROM_Problemarea_text" id="Evaluation_MS_ROM_Problemarea_text" /></td>
+      <input type="text" name="Evaluation_MS_ROM_Problemarea_text" id="Evaluation_MS_ROM_Problemarea_text" size="35px" /></td>
 
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right" id="Evaluation_MS_ROM_STRENGTH_Right" /> 
           <?php xl('/ 5','e')?></td>
@@ -692,10 +766,10 @@ formHeader("Form: evaluation");
         <td align="center">
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity" id="Evaluation_MS_ROM_Tonicity" value="Hypo"/></td>
         <td align="center" rowspan="4">
-        <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="27" rows="7"></textarea>
+        <textarea name="Evaluation_MS_ROM_Further_description" id="Evaluation_MS_ROM_Further_description" cols="35" rows="10"></textarea>
         </tr>
       <tr>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" /></td>
+        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text1" id="Evaluation_MS_ROM_Problemarea_text1" size="35px"/></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right1" id="Evaluation_MS_ROM_STRENGTH_Right1" />
 	<?php xl('/ 5','e')?></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Left1" id="Evaluation_MS_ROM_STRENGTH_Left1" />
@@ -716,7 +790,7 @@ formHeader("Form: evaluation");
 	<input type="checkbox" name="Evaluation_MS_ROM_Tonicity1" id="Evaluation_MS_ROM_Tonicity1" value="Hypo"/></td>
         </tr>
       <tr>
-        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" /></td>
+        <td align="center" scope="row"><input type="text" name="Evaluation_MS_ROM_Problemarea_text2" id="Evaluation_MS_ROM_Problemarea_text2" size="35px"/></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right2" id="Evaluation_MS_ROM_STRENGTH_Right2" />
       <?php xl('/ 5','e')?></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Left2" id="Evaluation_MS_ROM_STRENGTH_Left2" />
@@ -738,7 +812,7 @@ formHeader("Form: evaluation");
         </tr>
       <tr>
         <td align="center" scope="row">
-	<input type="text" name="Evaluation_MS_ROM_Problemarea_text3" id="Evaluation_MS_ROM_Problemarea_text3" /></td>
+	<input type="text" name="Evaluation_MS_ROM_Problemarea_text3" id="Evaluation_MS_ROM_Problemarea_text3" size="35px"/></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Right3" id="Evaluation_MS_ROM_STRENGTH_Right3" />
 	<?php xl('/ 5','e')?></td>
         <td align="center"><input size="3px" type="text" name="Evaluation_MS_ROM_STRENGTH_Left3" id="Evaluation_MS_ROM_STRENGTH_Left3" />
@@ -761,9 +835,9 @@ formHeader("Form: evaluation");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table width="100%"  border="0px" cellspacing="0px" cellpadding="5px"><tr>
       <td><strong><?php xl('Comments','e')?>
-        <input type="text" size="122px" name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" />
+        <input type="text" style="width:85%"  name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" />
       </strong></td></tr></table></td>
   </tr>
   <tr>
@@ -796,8 +870,9 @@ formHeader("Form: evaluation");
 	    <input type="checkbox" name="Evaluation_EnvBar_Stairs_Disrepair" id="Evaluation_EnvBar_Stairs_Disrepair" />
 	    <?php xl('Stairs are in disrepair','e')?>
 	    <input type="checkbox" name="Evaluation_EnvBar_Fire_Extinguishers" id="Evaluation_EnvBar_Fire_Extinguishers" />
-	    <?php xl('Fire extinguishers are not available Other','e')?> 
-	    <input type="text" size="46px" name="Evaluation_EnvBar_Other" id="Evaluation_EnvBar_Other" /></td>
+	    <?php xl('Fire extinguishers are not available','e')?> 
+<br/><?php xl('Other','e')?> 
+	    <input type="text" style="width:90%" name="Evaluation_EnvBar_Other" id="Evaluation_EnvBar_Other" /></td>
       </tr>
     </table></td>
   </tr>
@@ -816,7 +891,13 @@ formHeader("Form: evaluation");
     <?php xl('Need physician orders for PT services with specific treatments, frequency, and duration. See OT Care Plan and/or 485','e')?><br />
     <input type="checkbox" name="Evaluation_Summary_Received_Physician_Orders" id="Evaluation_Summary_Received_Physician_Orders" />
     <?php xl('Received physician orders for PT treatment and approximate next visit date will be','e')?>
-    <input type="text" size="46px" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date" /></td></tr></table></td>
+    <input type="text" style="width:10%" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date"   title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'  onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_onset_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
+<script LANGUAGE="JavaScript"> 
+Calendar.setup({inputField:"Evaluation_approximate_next_visit_date", ifFormat:"%Y-%m-%d", button:"img_onset_date"});
+   </script>
+
+</td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
@@ -850,9 +931,9 @@ formHeader("Form: evaluation");
     <input type="checkbox" name="Evaluation_ASP_Treatment_For" id="Evaluation_ASP_Treatment_For" />
     <?php xl('Treatment for','e')?>
       <input type="text" size="88px" name="Evaluation_ASP_Treatment_For_text" id="Evaluation_ASP_Treatment_For_text" /> 
-      <br />
-    <?php xl('Initiated   Other','e')?>
-      <input type="text" size="88px" name="Evaluation_ASP_Other" id="Evaluation_ASP_Other" /></td></tr></table></td>
+       <?php xl('Initiated','e')?>
+<br/><?php xl('Other','e')?>
+      <input type="text" style="width:92%" name="Evaluation_ASP_Other" id="Evaluation_ASP_Other" /></td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
@@ -868,13 +949,13 @@ value="Teach Patient"/>
   <input type="checkbox" name="Evaluation_Skilled_PT_Reasonable_And_Necessary_To" id="Evaluation_Skilled_PT_Reasonable_And_Necessary_To"  
 value="Train Patient New Skills"/>
     <?php xl('Train patient in learning new skills','e')?>
-    <?php xl('Other','e')?>
-    <input type="text" size="117px" name="Evaluation_Skilled_PT_Other" id="Evaluation_Skilled_PT_Other" /></td></tr></table></td>
+<br/><?php xl('Other','e')?>
+    <input type="text" style="width:92%" name="Evaluation_Skilled_PT_Other" id="Evaluation_Skilled_PT_Other" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
+    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
     <?php xl('ADDITIONAL COMMENTS','e')?>
-      <input type="text" size="135px" name="Evaluation_Additional_Comments" id="Evaluation_Additional_Comments" />
+      <input type="text" style="width:76%" name="Evaluation_Additional_Comments" id="Evaluation_Additional_Comments" />
     </strong></td></tr></table></td>
   </tr>
   <tr>
