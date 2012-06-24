@@ -2,6 +2,28 @@
 require_once("../../globals.php");
 include_once("../../calendar.inc");
 require_once ("functions.php");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+    
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_pt_visit_discharge_note";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
+
 ?>
 <html>
 <head>
@@ -12,6 +34,11 @@ require_once ("functions.php");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -57,16 +84,49 @@ require_once ("functions.php");
 	    obj.open("GET",site_root+"/forms/ptvisit_discharge/functions.php?code="+icd9code+"&Dx="+Dx,true);    
 	    obj.send(null);
 	  }	 
+	  
+	  //for signature
+	  $(document).ready(function() {
+        var status = "";
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
+        });
+
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+            
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
+            });
+
+            
+            return false;
+        });
+    });
+
 	</script>
-<style type="text/css">
-    .formtable {
-        font-size:14px;
-		line-height: 24px;
-    }    
-	.formtable tr td {
-		line-height: 24px;
-    }
-</style>
+
 </head>
 
 <body class="body_top">
@@ -77,15 +137,10 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir;?>/forms/ptvisit_discharge/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitdischarge">
 <h3 align="center"><?php xl('PHYSICAL THERAPY REVISIT/DISCHARGE NOTE','e');?></h3><br><br>
-<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br></br>
-<table width="100%" padding="2px" border="1" cellpadding="2px" >
+
+<table width="100%" padding="2px" border="1" cellpadding="2px" class="formtable">
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="2px" >
+    <td scope="row"><table width="100%" border="1" cellpadding="2px"  class="formtable">
   <tr>
 
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
@@ -229,14 +284,14 @@ echo "</select>";
   <textarea name="dischargeplan_specific_training_this_visit" id="dischargeplan_specific_training_this_visit" cols ="115" rows="2"  wrap="virtual name">
 <?php echo stripslashes($obj{"dischargeplan_specific_training_this_visit"});?></textarea>  
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="2px" >
+    <td scope="row"><table width="100%" border="1" cellpadding="2px"  class="formtable">
         <tr>
           <td height="29" colspan="3" align="left" scope="row"><p><strong><?php xl('Reason for Discharge (Check all that apply)','e');?></strong></p></td>
         </tr>
 
         <tr>
           <td width="27%" valign="top" scope="row">
-            <table width="100%" >
+            <table width="100%"  class="formtable">
               <tr>
                 <td align="left"><label>
                   <input type="checkbox" name="dischargeplan_RfD_No_Further_Skilled" <?php if ($obj{"dischargeplan_RfD_No_Further_Skilled"} == "on"){echo "checked";};?> id="dischargeplan_RfD_No_Further_Skilled" />
@@ -267,7 +322,7 @@ echo "</select>";
               </tr>
             </table>
           <td width="25%" valign="top">
-            <table width="100%" >
+            <table width="100%"  class="formtable">
 
               <tr>
                 <td align="left"><label>
@@ -294,7 +349,7 @@ echo "</select>";
             </table>
           </td>
           <td width="45%" valign="top">
-            <table width="100%" >
+            <table width="100%"  class="formtable">
 
               <tr>
                 <td align="left"><label>
@@ -328,7 +383,7 @@ echo "</select>";
     <td scope="row">&nbsp;</th>
   <strong><?php xl('Functional Improvements At Time of Discharge','e');?></strong></tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="2px" >
+    <td scope="row"><table width="100%" border="1" cellpadding="2px"  class="formtable">
         <tr>
 
           <td align="left" scope="row">
@@ -402,7 +457,7 @@ echo "</select>";
   </tr>
   <tr>
     <td scope="row">
-      <table width="100%" >
+      <table width="100%"  class="formtable">
         <tr>
           <td><label>
             <input type="checkbox" name="dischargeplan_Comments_Recommendations" value="Discharge was anticipated" <?php if ($obj{"dischargeplan_Comments_Recommendations"} == "Discharge was anticipated"){echo "checked";};?> id="dischargeplan_Comments_Recommendations" />
@@ -448,7 +503,7 @@ echo "</select>";
       </table>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="2px" >
+    <td scope="row"><table width="100%" border="1" cellpadding="2px"  class="formtable">
       <tr>
         <td width="57%" scope="row"><strong><?php xl('Visit and Discharge Completed by Therapist Signature (Name/Title)','e');?></th>
         <td width="43%"><strong><?php xl('Electronic Signature','e');?></strong></td>
@@ -457,11 +512,62 @@ echo "</select>";
     </table>    </tr>
 </table>
 
-<table cellpadding="2px" border="1" width="100%" ><tr><td><table width="100%" border="0" class="formtable">
+<table cellpadding="2px" border="1" width="100%"  class="formtable"><tr><td><table width="100%" border="0" class="formtable">
 <tr><td colspan=3><strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong></td></tr>
 <tr><td colspan=3><strong><?php xl('By Signing below, MD agrees with discharge from Occupational Therapy services','e');?></strong></td></tr>
 <tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
 </table>
+<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+ <br></br>
 </form>
+<center>
+        <table class="formtable">
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="">
+            <p><center><span style="font-size:small;">
+                        <p id="login_prompt" style="font-size:small;">Enter your password to sign:</p>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" />
+			<label for="login_pass">Password: </label>
+			<input type="password" id="login_pass" name="login_pass" size="10" />
+                    </span>
+                </center></p>
+		<p>
+			<input type="submit" value="Sign" />
+		</p>
+	</form>
+</div>
+
 </body>
 </html>

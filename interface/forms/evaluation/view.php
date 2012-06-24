@@ -2,6 +2,28 @@
 include_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+    
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_ot_Evaluation";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
+
 ?>
 <html><head>
 <?php html_header_show();?>
@@ -10,6 +32,10 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -62,6 +88,47 @@ include_once("../../calendar.inc");
 	    obj.open("GET",site_root+"/forms/evaluation/functions.php?code="+icd9code+"&Dx="+Dx,true);    
 	    obj.send(null);
 	  }	 
+	  
+	  //for signature
+	  $(document).ready(function() {
+        var status = "";
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
+        });
+
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+            
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
+            });
+
+            
+            return false;
+        });
+    });
+
 	</script>
 </head>
 <body class="body_top">
@@ -73,14 +140,11 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
  <h3 align="center"><?php xl('OCCUPATIONAL THERAPY EVALUATION','e'); ?></h3>
 <br></br>
 
-<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
 <br></br>
-<table align="center"  border="1" cellpadding="0px" cellspacing="0px">
+<table align="center"  border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
     <td scope="row">
-    <table width="100%" border="1" cellspacing="0px" cellpadding="5px">
+    <table width="100%" border="1" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td align="center" scope="row">
           <strong><?php xl('PATIENT NAME','e')?></strong></td>
@@ -112,10 +176,10 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
       </table>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <strong><?php xl('Vital Signs','e')?> </strong></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table border="0" cellspacing="0px"  cellpadding="5px"><tr>
+    <td scope="row"><table border="0" cellspacing="0px"  cellpadding="5px" class="formtable"><tr>
     <td><?php xl('Pulse','e')?> <label for="pulse2"></label>
 
         <input type="text" name="Evaluation_Pulse" size="3px" id="Evaluation_Pulse"  value="<?php echo stripslashes($obj{"Evaluation_Pulse"});?>" >
@@ -178,7 +242,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 <?php xl('*Physician ordered ','e')?></p></td></tr></table></td></tr>
 
 <tr>
-<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td>
+<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
 <strong><?php xl('Pain','e')?></strong>
   <label for="pulse3"></label>
   <label>
@@ -212,7 +276,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   </table>
   </td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong>
 <?php xl('Please Note Contact MD if Vital Signs are Pulse ','e')?> &lt; 
 <?php xl('56  or ','e')?>&gt; <?php xl('120; Temperature ','e')?>&lt;
@@ -227,10 +291,10 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   </td></tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td width="50%" valign="top" scope="row">
-            <table width="100%">
+            <table width="100%" class="formtable">
                 <tr>
                   <td><label>
                     <strong><?php xl('HOMEBOUND REASON','e')?></strong> <br />
@@ -264,7 +328,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
                 </tr>
               </table>
           <td width="50%" valign="top">
-            <table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+            <table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
 
               <tr>
                 <td><label>
@@ -301,7 +365,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?>  </strong></td>
           <td align="center">
@@ -340,10 +404,10 @@ echo "</select>";
       </table>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('MEDICAL HISTORY AND PRIOR LEVEL OF FUNCTION ','e')?>  </strong></td></tr></table></td></tr>
     <tr>
-    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td scope="row"><strong><?php xl('PERTINENT MEDICAL HISTORY','e')?>  
           <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" style="width:700px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" 
@@ -406,13 +470,13 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
       </tr>
   </table></td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('ADL/FUNCTIONAL MOBILITY STATUS','e')?></strong><br />
 
     <strong><?php xl('Scale','e')?> </strong>
 <?php xl(' U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no  assist required','e')?></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="23%" align="center" scope="row"><strong><?php xl('ADL TASK','e')?></strong>
           </td>
@@ -529,10 +593,10 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('ENVIRONMENTAL BARRIERS/SAFETY ISSUES (Check all that apply)','e')?></strong></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_EnvBar_No_barriers" id="Evaluation_EnvBar_No_barriers" 
      <?php if ($obj{"Evaluation_EnvBar_No_barriers"} == "on") echo "checked";;?>/>
 <?php xl('No environmental barriers in home','e')?>
@@ -575,11 +639,11 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
 value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
 </td></tr></table></td></tr>
 <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
 <?php xl('COGNITION','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_COG_Alert_type" value="Alert" id="Evaluation_COG_Alert_type" 
     <?php if ($obj{"Evaluation_COG_Alert_type"} == "Alert") echo "checked";;?>/>
       <?php xl('Alert','e')?>
@@ -619,7 +683,7 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
      </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
         <td scope="row" width="30%"><?php xl('SAFETY AWARENESS','e')?></td>
         <td><select name="Evaluation_Skil_Safety_Awareness" id="Evaluation_Skil_Safety_Awareness"><?php Cognition_skills(stripslashes($obj{"Evaluation_Skil_Safety_Awareness"})) ?></select></td></tr>
@@ -633,12 +697,12 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
   </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?> </strong></td></tr></table></td>
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
         <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
@@ -704,7 +768,7 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
 <?php xl('Activity Tolerance','e')?> </strong>
       <input type="checkbox" name="Evaluation_Activity_Tolerance_Type" value="Good" id="Evaluation_Activity_Tolerance_Type" <?php if ($obj{"Evaluation_Activity_Tolerance_Type"} == "Good") echo "checked";;?>/>
 <?php xl('Good','e')?>
@@ -728,7 +792,7 @@ value="<?php echo stripslashes($obj{"Evaluation_AT_Minutes_Participate_Note"});?
  value="<?php echo stripslashes($obj{"Evaluation_AT_Comments"});?>" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('Patient has the following assistive devices','e')?></strong>
       <input type="checkbox" name="Evaluation_Assist_devices_Walker" id="Evaluation_Assist_devices_Walker" 
       <?php if ($obj{"Evaluation_Assist_devices_Walker"} == "on") echo "checked";;?>/>
@@ -757,7 +821,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Cane_Type"});?>" 
 value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Other"});?>" /></td></tr></table></td>
   </tr>
   <tr>
-    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
+    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
 <?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
       <strong><?php xl('Scale ','e')?></strong>
 <?php xl('N=Normal, G=Good, takes moderate challenges, F=Fair, maintain balance without contact, P=Poor maintain balance for 15 seconds or less, 0 no balance reaction','e')?>
@@ -765,7 +829,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Other"});?>" /></
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></th>
         <td align="center"><strong><?php xl('STATUS','e')?> </strong></td>
@@ -794,7 +858,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Assist_devices_Other"});?>" /></
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL"
 <?php if ($obj{"Evaluation_MS_ROM_All_Muscle_WFL"} == "All Muscle Strength is WFL")  echo "checked";;?>/>
@@ -810,7 +874,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row" ><strong><?php xl('PROBLEM AREA','e')?></strong></td>
         <td colspan="2" align="center"><strong><?php xl('STRENGTH','e')?></strong></td>
@@ -951,7 +1015,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
       <td><strong><?php xl('Comments','e')?> 
         <input type="text" style="width:850px" name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" 
         value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Comments"});?>" />
@@ -959,11 +1023,11 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('SUMMARY','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_Summary_OT_Evaluation_Only" id="Evaluation_Summary_OT_Evaluation_Only" 
     <?php if ($obj{"Evaluation_Summary_OT_Evaluation_Only"} == "on") echo "checked";;?>/>
 <?php xl('OT Evaluation only. No further indications of service','e')?></td>
@@ -989,7 +1053,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('OT Care Plan and Evaluation was communicated to and agreed upon by','e')?></strong>
       <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="Patient" id="Evaluation_OT_Evaulation_Communicated_Agreed"
       <?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "Patient") echo "checked";;?>/>
@@ -1018,7 +1082,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
 value="<?php echo stripslashes($obj{"Evaluation_OT_Evaulation_Communicated_other"});?>" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
       <td><strong><?php xl('ADDITIONAL SERVICES PROVIDED','e')?>
       </strong>
 
@@ -1043,7 +1107,7 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
 <?php xl('Skilled OT is Reasonable and Necessary to','e')?></strong>
             <br />
             <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Return_to_Prior_Level" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" 
@@ -1068,7 +1132,7 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="50%" scope="row"><strong><?php xl('Therapist Who Developed POC (Name and Title)','e')?></strong>
         </td>
@@ -1078,6 +1142,58 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
     </table></td>
   </tr>
 </table>
+<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
+
+
 </form>
+<!--for signature-->
+<center>
+        <table class="formtable">
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="">
+            <p><center><span style="font-size:small;">
+                        <p id="login_prompt" style="font-size:small;">Enter your password to sign:</p>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" />
+			<label for="login_pass">Password: </label>
+			<input type="password" id="login_pass" name="login_pass" size="10" />
+                    </span>
+                </center></p>
+		<p>
+			<input type="submit" value="Sign" />
+		</p>
+	</form>
+</div>
+
+
 </body>
 </html>

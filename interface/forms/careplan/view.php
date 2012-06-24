@@ -2,6 +2,28 @@
 include_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"||strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+    
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_ot_careplan";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
+
 ?>
 <html><head>
 <?php html_header_show();?>
@@ -10,15 +32,11 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-<style type="text/css">
-    .formtable {
-        font-size:14px;
-		line-height: 24px;
-    }    
-	.formtable tr td {
-		line-height: 24px;
-    }
-</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
 
 <script>	
 	//Function to create an XMLHttp Object.
@@ -72,6 +90,46 @@ include_once("../../calendar.inc");
 	    obj.open("GET",site_root+"/forms/careplan/functions.php?code="+icd9code+"&Dx="+Dx,true);    
 	    obj.send(null);
 	  }	 
+	  $(document).ready(function() {
+        var status = "";
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
+        });
+
+		//for Signature
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+            
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
+            });
+
+            
+            return false;
+        });
+    });
+
 	</script>
 </head>
 <body class="body_top">
@@ -84,11 +142,6 @@ $obj = formFetch("forms_ot_careplan", $_GET["id"]);
                 <h5 align="center">
                 <?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
                 </h5>
-<a href="javascript:top.restoreSession();document.careplan.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
  <br><br/>
 <table width="100%" border="1" cellpadding="2px" class="formtable">
 <tr> <td> </td></tr>
@@ -721,7 +774,60 @@ echo "checked";;?> value="usefamily">
     <?php xl('Electronic Signature','e')?></strong></td>
   </tr>  
 </table>
+<a href="javascript:top.restoreSession();document.careplan.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+
 </form>
+<!--for signature-->
+<center>
+        <table class="formtable">
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="">
+            <p><center><span style="font-size:small;">
+                        <p id="login_prompt" style="font-size:small;">Enter your password to sign:</p>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" />
+			<label for="login_pass">Password: </label>
+			<input type="password" id="login_pass" name="login_pass" size="10" />
+                    </span>
+                </center></p>
+		<p>
+			<input type="submit" value="Sign" />
+		</p>
+	</form>
+</div>
+<?php html_header_show();?>
+
 </body>
 
 </html>

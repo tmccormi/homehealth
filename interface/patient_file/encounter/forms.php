@@ -286,6 +286,14 @@ if (is_numeric($pid)) {
         // a link to edit the form
         echo "<div class='form_header_controls'>";
         echo "<a target='".
+				($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
+				"' href='$rootdir/patient_file/encounter/view_form.php?" .
+				"formname=" . $formdir . "&id=" . $iter['form_id'] .
+				"&action=review" . 
+				"' onclick='top.restoreSession()' class='css_button_small'><span>"  
+				. xl('Review & Sign') . "</span></a>";
+
+		echo "<a target='".
                 ($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
                 "' href='$rootdir/patient_file/encounter/view_form.php?" .
                 "formname=" . $formdir . "&id=" . $iter['form_id'] .

@@ -2,6 +2,28 @@
 include_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+    
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_pt_careplan";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
+
 ?>
 <html><head>
 <?php html_header_show();?>
@@ -10,11 +32,17 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
 
 <style type="text/css">
 .bold {
         font-weight: bold;
 }
+   
 </style>
 
 <script>	
@@ -69,6 +97,47 @@ include_once("../../calendar.inc");
 	    obj.open("GET",site_root+"/forms/ptcareplan/functions.php?code="+icd9code+"&Dx="+Dx,true);    
 	    obj.send(null);
 	  }	 
+	  
+	  //for signature
+	  $(document).ready(function() {
+        var status = "";
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
+        });
+
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+            
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
+            });
+
+            
+            return false;
+        });
+    });
+
 	</script>
 </head>
 <body class="body_top">
@@ -83,15 +152,9 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
 	<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
-		<a href="javascript:top.restoreSession();document.careplan.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br> <br/>
-<table align="center"  border="1px" cellspacing="0px" cellpadding="0px">
+<table align="center"  border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
   <tr>
     <td align="left" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
     <td width="33%" align="center" valign="top"><input type="text" size="40"
@@ -114,7 +177,7 @@ $obj = formFetch("forms_pt_careplan", $_GET["id"]);
 </td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
 
       <tr>
         <td width="20%" align="left" scope="row"><strong>
@@ -159,7 +222,7 @@ echo "</select>";
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" align="left" scope="row"><strong>
         <?php xl('PROBLEMS REQUIRING PT INTERVENTION','e')?></strong></td>         
@@ -178,7 +241,7 @@ echo "</select>";
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td valign="top" scope="row"><label>
           <input type="checkbox" name="careplan_PT_Decline_in_mobility" id="careplan_PT_Decline_in_mobility" 
@@ -237,7 +300,7 @@ echo "</select>";
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong><?php xl('TREATMENT PLAN       FREQUENCY','e')?></strong>                
 <br></td><tr><td><?php xl('Frequency & Duration : ','e')?>&nbsp;
@@ -263,7 +326,7 @@ echo "</select>";
      </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row" valign="top" width="25%">
         <input type="checkbox" name="careplan_Evaluation" id="careplan_Evaluation" 
@@ -562,7 +625,7 @@ value="<?php echo stripslashes($obj{"careplan_LTO_Improve_independence_safety_ho
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
 
 
 
@@ -573,7 +636,7 @@ value="<?php echo stripslashes($obj{"careplan_LTO_Improve_independence_safety_ho
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
 
         <td scope="row" width="40%" ><strong><?php xl('Rehab Potential','e')?></strong>
@@ -603,7 +666,7 @@ value="<?php echo stripslashes($obj{"careplan_LTO_Improve_independence_safety_ho
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong>
         <?php xl('PT Care Plan and Discharge was communicated to and agreed upon by','e')?> </strong>
@@ -644,7 +707,7 @@ style="width:90%"  value="<?php echo stripslashes($obj{"careplan_PT_communicated
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong>
         <?php xl('Patient/Caregiver/Family Response to Care Plan and Physical Therapy','e')?></strong></td>
@@ -653,7 +716,7 @@ style="width:90%"  value="<?php echo stripslashes($obj{"careplan_PT_communicated
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" scope="row"><label>
           <input type="checkbox" name="careplan_Agreeable_to_general_goals" id="careplan_Agreeable_to_general_goals" 
@@ -720,7 +783,7 @@ value="Orders Needed"  <?php if ($obj{"careplan_Physician_Orders"} == "Orders Ne
   
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" scope="row"><strong><?php xl('Therapist Who Developed POC','e')?> </strong>(Name and Title)
           </td>
@@ -731,6 +794,56 @@ value="Orders Needed"  <?php if ($obj{"careplan_Physician_Orders"} == "Orders Ne
   </tr>
   
 </table>
+<a href="javascript:top.restoreSession();document.careplan.submit();"
+                        class="link_submit"><?php xl(' [Save]','e')?></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
+<center>
+        <table class="formtable">
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="">
+            <p><center><span style="font-size:small;">
+                        <p id="login_prompt" style="font-size:small;">Enter your password to sign:</p>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" />
+			<label for="login_pass">Password: </label>
+			<input type="password" id="login_pass" name="login_pass" size="10" />
+                    </span>
+                </center></p>
+		<p>
+			<input type="submit" value="Sign" />
+		</p>
+	</form>
+</div>
+
 </body>
 </html>
