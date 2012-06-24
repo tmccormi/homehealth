@@ -3,9 +3,9 @@ var clickmap = function( args ) {
 	var f = true;
 	var counter = 0;
 
-	var fn_buildMarker = function( x, y, pos, annotation ) {
+	var fn_buildMarker = function( x, y, pos, annotation, id_val ) {
 	    var legendItem = $("<li class='legend-item'><b>" + pos + "</b> " + decodeURIComponent(annotation) + "</li>");
-		$(".legend .body ul").append( legendItem );
+		$("#legend"+id_val+" .body ul").append( legendItem );
 
 		var marker = $(".marker-template").clone();
 		    marker.attr("data-x", x).attr("data-y", y).attr("data-pos", pos).attr("id", new Date().getTime() ).attr("class", "marker")
@@ -25,10 +25,11 @@ var clickmap = function( args ) {
 		$(".marker").remove();
 		$(".legend-item").remove();
 		counter = 0; 
+		return false;
 	};
 
-	var fn_load = function( container, val ) {
-		fn_clear();
+	var fn_load = function( container, val, id_val ) {
+	//	fn_clear();
                 if ( !val ) return;
 		var coordinates = val.split("}");
 		for ( var i = 0; i < coordinates.length; i++ ) {
@@ -36,7 +37,7 @@ var clickmap = function( args ) {
 			if ( coordinate ) {
 				var info = coordinate.split("^");
 				var x = info[0]; var y = info[1]; var label = info[2]; var detail = info[3]; 
-				var marker = fn_buildMarker( x, y, label, detail );
+				var marker = fn_buildMarker( x, y, label, detail, id_val );
 				container.append(marker);
 				if ( fn_isnumber(label) ) {
 					counter = parseInt(label);
@@ -63,6 +64,7 @@ var clickmap = function( args ) {
 	var container = args.container;
         var data = args.data;
         var hideNav = args.hideNav;
+		var id_val = args.id_val;
 
 	container.mousemove( function() { f = true; });
 
@@ -130,7 +132,7 @@ var clickmap = function( args ) {
 	var btn_save = $("#btn_save");
 	btn_save.click( fn_save );
 
-	fn_load( container, data );
+	fn_load( container, data, id_val );
 
         if ( hideNav ) {
             $(".nav").hide();

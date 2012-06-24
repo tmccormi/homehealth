@@ -6,7 +6,7 @@ body {
 	margin: 20px;
 }
 
-#container {
+.container {
 	position: relative;
 	margin: 20px;	
 	border: 2px dashed;
