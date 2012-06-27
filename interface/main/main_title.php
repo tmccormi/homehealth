@@ -61,6 +61,16 @@ function showhideMenu() {
 		document.getElementById("showMenuLink").innerHTML = '<?php echo htmlspecialchars( xl('Show Menu'), ENT_QUOTES); ?>';
 	}
 }
+
+function openpopup()
+{
+	var left = (screen.width/2)-(300);
+	var top = (screen.height/2)-(100);
+	newwindow=window.open('finder/search_patient_popup.php','name','height=200px,width=600px,top='+top+',left='+left);
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
 </script>
 </head>
 <body class="body_title">
@@ -76,8 +86,12 @@ $res = sqlQuery("select * from users where username='".$_SESSION{"authUser"}."'"
 	<table cellspacing="0" cellpadding="1" style="margin:0px 0px 0px 3px;"><tr><td style="vertical-align:text-bottom;">
 		<a href='' class="css_button_small" style="margin:0px;vertical-align:top;" id='new0' onClick=" return top.window.parent.left_nav.loadFrame2('new0','RTop','new/new.php')">
 		<span><?php echo htmlspecialchars( xl('NEW PATIENT'), ENT_QUOTES) ?></span></a>
+		</td><td style="vertical-align:text-bottom;">
+		<a href='' class="css_button_small" style="margin:0px;vertical-align:top;" onClick="openpopup()">
+		<span><?php echo htmlspecialchars( xl('SEARCH PATIENT'), ENT_QUOTES) ?></span></a>
+		
 	</td></tr>
-	<tr><td valign="baseline"><B>
+	<tr><td valign="baseline" colspan="2"><B>
 		<a class="text" style='vertical-align:text-bottom;' href="main_title.php" id='showMenuLink' onclick='javascript:showhideMenu();return false;'><?php xl('Hide Menu','e'); ?></a></B>
 	</td></tr></table>
 <?php } else { ?>
