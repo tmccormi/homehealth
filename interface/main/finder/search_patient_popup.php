@@ -1,8 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="<?php echo $rootdir;?>/themes/style.css" type="text/css">
-<link rel="stylesheet" href="<?php echo $rootdir;?>/themes/style_oemr.css" type="text/css">
-<link rel="stylesheet" href="/openemr/interface/themes/style_oemr.css" type="text/css">
+<?php require_once("../../globals.php");?>
+<link rel='stylesheet' href='<?php echo $css_header ?>' type='text/css'>
 <script src="../../../library/js/jquery-1.6.4.min.js"></script>
 
 
@@ -52,6 +51,13 @@ xmlhttp.send();
 }
 
 </script>
+<script type="text/javascript">
+
+     $(document).ready(function () {
+         $("#searchbox").focus();
+     });
+
+ </script>
 </head>
 <body class="body_top">
 <center>
