@@ -24,6 +24,7 @@ careplan_SN_CARDIO_Assess ='".implode("#",$_POST["careplan_SN_CARDIO_Assess"])."
 careplan_SN_CARDIO_Assess_Other ='".$_POST["careplan_SN_CARDIO_Assess_Other"]."',
 careplan_SN_CARDIO_Teach ='".implode("#",$_POST["careplan_SN_CARDIO_Teach"])."',
 careplan_SN_CARDIO_Teach_Fluid ='".$_POST["careplan_SN_CARDIO_Teach_Fluid"]."',
+careplan_SN_CARDIO_Teach_Complications ='".$_POST["careplan_SN_CARDIO_Teach_Complications"]."',
 careplan_SN_CARDIO_Teach_Other ='".$_POST["careplan_SN_CARDIO_Teach_Other"]."',
 careplan_SN_CARDIO_PtPcgGoals ='".implode("#",$_POST["careplan_SN_CARDIO_PtPcgGoals"])."',
 cardi0_cal1 ='".$_POST["cardi0_cal1"]."',

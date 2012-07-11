@@ -87,11 +87,9 @@ table label, input { display:inherit !important; }
 <form method="post" id="submitForm"
 		action="<?php echo $rootdir;?>/forms/nursing_visitnote/save.php?mode=new" name="nursing_visitnote" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
   <h3 align="center">
-    <?php xl('SKILLED NURSING CARE PLAN','e')?>
+    <?php xl('SKILLED NURSE VISIT NOTE','e')?>
   </h3>
-  <h5 align="center">
-    <?php xl('(Information from this form populates the Plan of Care/485)','e'); ?>
-  </h5>
+
   <table width="100%" cellpadding="0px" cellspacing="0px" border="1" class="formtable">
   <tr>
     <td><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="0px">
@@ -140,7 +138,7 @@ table label, input { display:inherit !important; }
           <input type="checkbox" value="Visit" name="visitnote_type_of_visit" />
           <?php xl('Visit','e'); ?>
           <input type="checkbox" value="Visit and Supervisory Review Other" name="visitnote_type_of_visit" />
-          <?php xl('Visit and Supervisory Review Other','e'); ?>
+          <?php xl('Visit and Supervisory Review','e'); ?>
           <span class="padd"><strong>
           <?php xl('Other','e'); ?>
           </strong>
@@ -155,7 +153,7 @@ table label, input { display:inherit !important; }
     <table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
       <tr>
         <td scope="row"><strong>
-          <?php xl('Vital Signs','e'); ?>
+          <?php xl('VITAL SIGNS','e'); ?>
           </strong></td>
       </tr>
     </table>
@@ -203,11 +201,11 @@ table label, input { display:inherit !important; }
   <tr>
     <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
         <tr>
-          <td scope="row"> <?php xl('Pain','e')?>
+          <td scope="row"> <b><?php xl('Pain','e')?></b>
             <input type="checkbox" value="No Pain" name="visitnote_VS_Pain" />
             <?php xl('No Pain','e')?>
             <input type="checkbox" value="Pain limits functional ability" name="visitnote_VS_Pain" />
-            <?php xl('Pain limits functional ability','e')?>  <span class="padd"><strong><?php xl('Intensity'); ?> </strong>
+            <?php xl('Pain limits functional ability','e')?>  <span class="padd"><strong><?php xl('Intensity','e')?> </strong>
             <input type="text" size="15" name="visitnote_VS_Pain_Intensity" />
             </span> <span class="padd">
             <input type="checkbox" value="Improve" name="visitnote_VS_condition" />
@@ -225,32 +223,32 @@ table label, input { display:inherit !important; }
     <td scope="row"><table border="1px" width="100%" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td><strong>
-            <?php xl('Please Note Contact MD if Vital Signs are Pulse','e')?>
+            <?php xl('Please Note: Contact MD if Vital Signs are: Pulse','e')?>
             &lt;
             <?php xl('56 or','e')?>
             &gt;
-            <?php xl('120 Temperature ','e')?>
+            <?php xl('120; Temperature ','e')?>
             &lt;
-            <?php xl('56 or','e')?>
+            <?php xl('56 or','e')?>;
             &gt;
-            <?php xl('101 Respirations','e')?>
+            <?php xl('101; Respirations','e')?>
             &lt;
             <?php xl('10 or','e')?>
             &gt;
-            <?php xl('30','e')?>
+            <?php xl('30;','e')?>;
             <br />
             </strong> <strong>
             <?php xl('SBP','e')?>
             &lt;
             <?php xl('80 or','e')?>
             &gt;
-            <?php xl('190 DBP','e')?>
+            <?php xl('190; DBP','e')?>
             &lt;
             <?php xl('50 or','e')?>
             &gt;
-            <?php xl('100 Pain Significantly Impacts patients ability to participate. O2 Sat ','e')?>
+            <?php xl('100; Pain Significantly Impacts patients ability to participate. O2 Sat ','e')?>
             &lt;
-            <?php xl('90% after rest','e')?>
+            <?php xl('90% 2 min. rest','e')?>
             </strong></td>
         </tr>
       </table></td>
@@ -299,8 +297,10 @@ table label, input { display:inherit !important; }
             <input type="checkbox" value="Unable to leave home safely without assistance" name="visitnote_HR_Home_Bound[]" />
             <?php xl('Unable to leave home safely without assistance','e')?>
             <input type="checkbox" value="Wound" name="visitnote_HR_Home_Bound[]" />
-            <?php xl('Wound','e')?> <span class="padd"><strong><?php xl('Other','e')?></strong>
-            <input type="text" size="75" name="visitnote_HR_others" />
+            <?php xl('Wound','e')?> <span class="padd">
+			<br>
+			<?php xl('Other','e')?>
+            <input type="text" style="width:75%" name="visitnote_HR_others" />
             </span></td>
         </tr>
 		</table>
@@ -334,8 +334,10 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Chest Pain" name="visitnote_Cardiovascular[]" />
                   <?php xl('Chest Pain','e')?>
                   <input type="checkbox" value="Edema/Fluid Retention" name="visitnote_Cardiovascular[]" />
-                  <?php xl('Edema/Fluid Retention','e')?> <span class="padd"> <strong><?php xl('Other','e')?></strong>
-                  <input type="text" size="15" name="visitnote_Cardiovascular_other" />
+                  <?php xl('Edema/Fluid Retention','e')?> <span class="padd">
+				  <br>
+				  <?php xl('Other','e')?>
+                  <input type="text" style="width:75%" name="visitnote_Cardiovascular_other" />
                   </span></td>
               </tr>
             </table></td>
@@ -361,12 +363,12 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Caregiver" name="visitnote_endocrine[]" />
                   <?php xl('Caregiver','e')?>
                   <input type="checkbox" value="Nurse" name="visitnote_endocrine[]" />
-                  <?php xl('Nurse','e')?>  <strong><?php xl('Other','e')?></strong>
-                  <input type="text" size="15" name="visitnote_endocrine_other" />
+                  <?php xl('Nurse','e')?>&nbsp;&nbsp;<?php xl('Other','e')?>
+                  <input type="text" size="15" name="visitnote_endocrine_other" />&nbsp;
                   <input type="checkbox" value="Weight Loss/Gain" name="visitnote_endocrine[]" />
                   <?php xl('Weight Loss/Gain','e')?>
                   <input type="checkbox" value="Diet Compliance Blood Sugar Ranges" name="visitnote_endocrine[]" />
-                  <?php xl('Diet Compliance Blood Sugar Ranges','e')?>
+                   <?php xl('Diet Compliance','e')?> <span class="padd"><?php xl('Blood Sugar Ranges','e')?></span>
                   <input type="text" size="15" name="visitnote_endocrine_blood_sugar" />
                   <?php xl('Frequency of Monitoring','e')?>
                   <input type="text" size="15" name="visitnote_endocrine_frequency" />
@@ -401,7 +403,7 @@ table label, input { display:inherit !important; }
                  <?php xl('Nausea/Vomiting','e')?>
                   <input type="checkbox" value="ABD Distention" name="visitnote_Gastrointestinal[]" />
                   <?php xl('ABD Distention','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_Gastrointestinal_other" />
+                  <input type="text"  style="width:45%" name="visitnote_Gastrointestinal_other" />
                   </span></td>
               </tr>
             </table></td>
@@ -429,8 +431,8 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Pain/Burning" name="visitnote_Genitourinary_Incontinence[]" />
                   <?php xl('Pain/Burning','e')?>
                   <input type="checkbox" value="Feeling unable to Empty Bladder" name="visitnote_Genitourinary_Incontinence[]" />
-                  <?php xl('Feeling unable to Empty Bladder','e')?></span> <span class="padd"><strong><?php xl('Other','e')?></strong>
-                  <input type="text" size="15" name="visitnote_Genitourinary_others" />
+                  <?php xl('Feeling unable to Empty Bladder','e')?></span> <span class="padd"><?php xl('Other','e')?>
+                  <input type="text" style="width:30%"  name="visitnote_Genitourinary_others" />
                   </span></td>
               </tr>
             </table></td>
@@ -460,8 +462,8 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Skin Tears" name="visitnote_Integumentary[]" /> <br />
                   <?php xl('Skin Tears','e')?>
                   <input type="checkbox" value="Wound" name="visitnote_Integumentary[]" />
-                  <?php xl('Wound(s) (Refer to Assessment)','e')?> <span class="padd"><strong><?php xl('Other','e')?></strong>
-                  <input type="text" size="15" name="visitnote_Integumentary_other" />
+                  <?php xl('Wound(s) (Refer to Assessment)','e')?> <span class="padd"><?php xl('Other','e')?>
+                  <input type="text" style="width:55%" name="visitnote_Integumentary_other" />
                   </span></td>
               </tr>
             </table></td>
@@ -476,8 +478,8 @@ table label, input { display:inherit !important; }
                   <?php xl('Place','e')?>
                   <input type="checkbox" value="Date" name="visitnote_Mental_Emotional[]" />
                   <?php xl('Date','e')?>
-                  <input type="checkbox" value="Disoriented" name="visitnote_Mental_Emotional[]" />
-                  <?php xl('Disoriented','e')?>
+                  <span class="padd"><input type="checkbox" value="Disoriented" name="visitnote_Mental_Emotional[]" />
+                  <?php xl('Disoriented','e')?></span>
                   <input type="checkbox" value="Cooperative" name="visitnote_Mental_Emotional[]" />
                   <?php xl('Cooperative','e')?>
                   <input type="checkbox" value="Uncooperative" name="visitnote_Mental_Emotional[]" />
@@ -510,7 +512,7 @@ table label, input { display:inherit !important; }
                   <?php xl('Suicidal Ideation/Suicidal','e')?>
                   <input type="checkbox" value="Labile" name="visitnote_Mental_Emotional[]" />
                   <?php xl('Labile','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_Mental_Emotional_other" />
+                  <input type="text" style="width:45%" name="visitnote_Mental_Emotional_other" />
                   </span></td>
               </tr>
             </table></td>
@@ -529,7 +531,7 @@ table label, input { display:inherit !important; }
                   <?php xl('Poor Strength','e')?>
                   <input type="checkbox" value="Poor Endurance" name="visitnote_Musculoskeletal[]" />
                   <?php xl('Poor Endurance','e')?>
-                  <input type="checkbox" value="Limited Range of Motion (ROM) " name="visitnote_Musculoskeletal[]" />
+                  <input type="checkbox" value="Limited Range of Motion (ROM)" name="visitnote_Musculoskeletal[]" />
                   <?php xl('Limited Range of Motion (ROM)','e')?>
                   <input type="text" size="15" name="visitnote_Musculoskeletal_ROM" />
                   <input type="checkbox" value="Walking Steady" name="visitnote_Musculoskeletal[]" />
@@ -546,7 +548,7 @@ table label, input { display:inherit !important; }
                   <?php xl('Transfers With Assist','e')?>
                   <input type="checkbox" value="Transfers Without Assist" name="visitnote_Musculoskeletal[]" />
                   <?php xl('Transfers Without Assist','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_Musculoskeletal_other" /></td>
+                  <input type="text" style="width:23%" name="visitnote_Musculoskeletal_other" /></td>
               </tr>
             </table></td>
         </tr>
@@ -573,8 +575,8 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Swallowing Difficulty" name="visitnote_Neurological[]" />
                   <?php xl('Swallowing Difficulty','e')?>
                   <input type="checkbox" value="Seizure Activity" name="visitnote_Neurological[]" />
-                  <?php xl('Seizure Activity','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_Neurological_other" /></td>
+                  <?php xl('Seizure Activity','e')?> <span class="padd"><br><?php xl('Other','e')?>
+                  <input type="text" style="width:75%" name="visitnote_Neurological_other" /></td>
               </tr>
             </table></td>
         </tr>
@@ -596,8 +598,8 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Respiration Labored" name="visitnote_Respiratory[]" />
                   <?php xl('Respiration Labored','e')?>
                   <input type="checkbox" value="Respiration Unlabored Other" name="visitnote_Respiratory[]" />
-                  <?php xl('Respiration Unlabored Other','e')?>
-                  <input type="text" size="15" name="visitnote_Respiratory_other" />
+                  <?php xl('Respiration Unlabored','e')?><span class="padd"><?php xl('Other','e')?></span>&nbsp;
+                  <input type="text" style="width:41%" name="visitnote_Respiratory_other" />
                   <?php xl('(see above for O2 Sat)','e')?> </td>
               </tr>
             </table></td>
@@ -617,8 +619,8 @@ table label, input { display:inherit !important; }
                   <input type="text" size="15" name="visitnote_General_medical_lbs2" />
                   <?php xl('lbs','e')?>
                   <input type="checkbox" value="Medication Mgt" name="visitnote_General_medical[]" />
-                  <?php xl('Medication Mgt','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_General_medical_other" /></td>
+                  <?php xl('Medication Mgt','e')?><br><?php xl('Other','e')?>
+                  <input type="text" style="width:75%" name="visitnote_General_medical_other" /></td>
               </tr>
             </table></td>
         </tr>
@@ -630,9 +632,9 @@ table label, input { display:inherit !important; }
                   <?php xl('Patient','e')?>
                   <input type="checkbox" value="Caregiver" name="visitnote_services_provided[]" />
                   <?php xl('Caregiver','e')?> <span class="padd"><?php xl('Other','e')?>
-                  <input type="text" size="15" name="visitnote_services_provided_other" />
+                  <input type="text" style="width:20%" name="visitnote_services_provided_other" />
                   <strong><?php xl('G-Codes','e')?></strong>
-                  <input type="text" size="15" name="visitnote_g_codes" /></td>
+                  <input type="text" style="width:20%" name="visitnote_g_codes" /></td>
               </tr>
             </table></td>
         </tr>
@@ -640,45 +642,47 @@ table label, input { display:inherit !important; }
           <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
               <tr>
                 <td scope="row" width="50%"><input type="checkbox" value="G0154-Direct skilled services of a LPN/LVN or RN" name="visitnote_services_provided_options[]" />
-                  <?php xl('G0154-Direct skilled services of a LPN/LVN or RN','e')?> <br />
+                  <?php xl('<b>G0154</b>-Direct skilled services of a LPN/LVN or RN','e')?> <br />
                   <input type="checkbox" value="G0162-RN management and evaluation of plan of care" name="visitnote_services_provided_options[]" />
-                  <?php xl('G0162-RN management and evaluation of plan of care','e')?> <br />
+                  <?php xl('<b>G0162</b>-RN management and evaluation of plan of care','e')?> <br />
                   <input type="checkbox" value="G0163- LPN/LVN or RN for observation and assessment of organ system" name="visitnote_services_provided_options[]" />
-                  <?php xl('G0163- LPN/LVN or RN for observation and assessment of organ system','e')?> </td>
+                  <?php xl('<b>G0163</b>- LPN/LVN or RN for observation and assessment of organ system','e')?> </td>
                 <td scope="row"><input type="checkbox" value="G0164 RN Training and Education in" name="visitnote_services_provided_options[]" />
-                  <?php xl('G0164 RN Training and Education in','e')?>
-                  <input type="checkbox" value="Medication Management" name="visitnote_services_provided_options[]" />
+                  <?php xl('<b>G0164</b> RN Training and Education in','e')?>
+                  <table style="padding-left:15px;"><tr><td width="75%"><input type="checkbox" value="Medication Management" name="visitnote_RN_Training_and_Education[]" />
                  <?php xl('Medication Management','e')?> <br />
-                  <input type="checkbox" value="Disease Management" name="visitnote_services_provided_options[]" />
+                  <input type="checkbox" value="Disease Management" name="visitnote_RN_Training_and_Education[]" />
                   <?php xl('Disease Management','e')?>
-                  <input type="checkbox" value="Wound Care" name="visitnote_services_provided_options[]" />
+                  <input type="checkbox" value="Wound Care" name="visitnote_RN_Training_and_Education[]" />
                   <?php xl('Wound Care','e')?> <br />
-                  <input type="checkbox" value="Diet Management" name="visitnote_services_provided_options[]" />
+                  <input type="checkbox" value="Diet Management" name="visitnote_RN_Training_and_Education[]" />
                   <?php xl('Diet Management','e')?>
-                  <input type="checkbox" value="Oxygen Management" name="visitnote_services_provided_options[]" />
+                  <input type="checkbox" value="Oxygen Management" name="visitnote_RN_Training_and_Education[]" />
                   <?php xl('Oxygen Management','e')?>
-                  <strong><?php xl('Other','e')?></strong>
-                  <input type="text" size="15" name="visitnote_services_provided_options_other" /></td>
+                  <br><?php xl('Other','e')?>
+                  <input type="text" style="width:85%" name="visitnote_services_provided_options_other" />
+				  </td></tr></table>
+				  </td>
               </tr>
             </table></td>
         </tr>
         <tr>
           <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
               <tr>
-                <td scope="row"> <strong><?php xl('CLINICAL FINDINGS THIS VISIT','e')?></strong>
-                  <input type="text" size="15" name="visitnote_clinical_finding" />
+                <td scope="row"> <strong><?php xl('CLINICAL FINDINGS THIS VISIT','e')?></strong>&nbsp;
+                  <input type="text" style="width:70%" name="visitnote_clinical_finding" />
                   <br />
-                  <?php xl('SPECIFIC TEACHING/TRAINING THIS VISIT','e')?>
-                  <input type="text" size="15" name="visitnote_training_visit" />
+                  <b><?php xl('SPECIFIC TEACHING/TRAINING THIS VISIT','e')?></b>&nbsp;
+                  <input type="text" style="width:62%" name="visitnote_training_visit" />
                   <br />
-                  <?php xl('PATIENT/CAREGIVER/FAMILY RESPONSE TO TRAINING','e')?>
+                  <b><?php xl('PATIENT/CAREGIVER/FAMILY RESPONSE TO TRAINING','e')?></b>
                   <input type="checkbox" value="Verbalized Understanding" name="visitnote_response_to_training[]" />
                   <?php xl('Verbalized Understanding','e')?>
                   <input type="checkbox" value="Demonstrated Task" name="visitnote_response_to_training[]" />
                   <?php xl('Demonstrated Task','e')?>
-                  <input type="checkbox" value=" Needed Guidance/Re-Instruction" name="visitnote_response_to_training[]" />
-                  <?php xl('Needed Guidance/Re-Instruction Other','e')?>
-                  <input type="text" size="15" name="visitnote_response_to_training_other" /></td>
+                  <input type="checkbox" value="Needed Guidance/Re-Instruction" name="visitnote_response_to_training[]" />
+                  <?php xl('Needed Guidance/Re-Instruction','e')?><span class="padd"><?php xl('Other','e')?></span>&nbsp;
+                  <input type="text" style="width:81%" name="visitnote_response_to_training_other" /></td>
               </tr>
             </table></td>
         </tr>
@@ -702,7 +706,7 @@ table label, input { display:inherit !important; }
                   <?php xl('Initiate Discharge, physician order and summary of treatment','e')?>
                   <input type="checkbox" value="Modify Care Plan to include" name="visitnote_plot_for_next_visit" />
                   <?php xl('Modify Care Plan to include','e')?>
-                  <input type="text" size="15" name="visitnote_plot_for_next_visit_other" /></td>
+                  <input type="text" style="width:65%" name="visitnote_plot_for_next_visit_other" /></td>
               </tr>
             </table></td>
         </tr>
@@ -749,7 +753,7 @@ table label, input { display:inherit !important; }
                 <td scope="row"><strong><?php xl('Thorough and takes the time necessary to meet the patient\'s needs','e')?></strong></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_clinical_skills_appropriate_to_patient_need" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_clinical_skills_appropriate_to_patient_need" /></td>
-                <td scope="row"><strong><?php xl('>Demonstrates clinical skills appropriate to patient need','e')?></strong></td>
+                <td scope="row"><strong><?php xl('Demonstrates clinical skills appropriate to patient need','e')?></strong></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Follows_Infection_Control_Procedures" /></td>
@@ -764,7 +768,7 @@ table label, input { display:inherit !important; }
         <tr>
           <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
               <tr>
-                <td scope="row"><textarea name="visitnote_Additional_Instruction" rows="3" cols="50"></textarea></td>
+                <td scope="row"><b><?php xl('Additional Instruction/Training provided to LPN/LVN or HHA this visit','e')?></b><textarea name="visitnote_Additional_Instruction" rows="3" cols="98"></textarea></td>
               </tr>
             </table></td>
         </tr>
@@ -775,7 +779,7 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="YES" name="visitnote_Providing_wound" />
                   <?php xl('YES','e')?>
                   <input type="checkbox" value="NO" name="visitnote_Providing_wound" />
-                  <?php xl('NO IF YES','e')?> </td>
+                  <?php xl('NO IF YES scroll down','e')?> </td>
               </tr>
             </table></td>
         </tr>
@@ -813,7 +817,7 @@ echo $c->default_action();
 	 <td align="center"><?php xl('Comments','e')?></td>
 	</tr>
   <tr>
-    <th scope="row">Type of Wound <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?><input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
@@ -821,79 +825,79 @@ echo $c->default_action();
     <td rowspan="12"><textarea name="wound_Interventions" cols="30" rows="15"></textarea></td>
   </tr>
   <tr>
-    <th scope="row">Wound Status <input type="hidden" name="wound_label[]" value="Wound Status" /></th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?><input type="hidden" name="wound_label[]" value="Wound Status" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Wound Measurements Length <input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
-Width <input type="hidden" name="wound_label[]" value="Measurements Width" /> <br />
-Depth <input type="hidden" name="wound_label[]" value="Measurements Depth" /></th>
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?><input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
+<?php xl('Width','e')?> <input type="hidden" name="wound_label[]" value="Measurements Width" /> <br />
+<?php xl('Depth','e')?> <input type="hidden" name="wound_label[]" value="Measurements Depth" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /> <br /><input name="wound_value1[]" type="text" size="12" /> <br /><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /> <br /><input name="wound_value2[]" type="text" size="12" /> <br /><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /> <br /><input name="wound_value3[]" type="text" size="12" /> <br /><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /> <br /><input name="wound_value4[]" type="text" size="12" /> <br /><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Pressure Sore Stage <input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?><input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tunneling <input type="hidden" name="wound_label[]" value="Tunneling" /></th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?><input type="hidden" name="wound_label[]" value="Tunneling" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Undermining <input type="hidden" name="wound_label[]" value="Undermining" /></th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?><input type="hidden" name="wound_label[]" value="Undermining" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Drainage <input type="hidden" name="wound_label[]" value="Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?> <input type="hidden" name="wound_label[]" value="Drainage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Amount of Drainage <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?> <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Odor <input type="hidden" name="wound_label[]" value="Odor" /></th>
+    <th scope="row" align="right"><?php xl('Odor','e')?> <input type="hidden" name="wound_label[]" value="Odor" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tissue of Wound Base <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tissue of Surround Wound <input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?><input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Level of Pain with Wound <input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?><input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
@@ -911,7 +915,7 @@ Depth <input type="hidden" name="wound_label[]" value="Measurements Depth" /></t
 	 <td align="center"><?php xl('Comments','e')?></td>
 	</tr>
   <tr>
-    <th scope="row">Type of Wound </th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
@@ -919,79 +923,79 @@ Depth <input type="hidden" name="wound_label[]" value="Measurements Depth" /></t
     <td rowspan="12"><textarea name="wound_comments" cols="30" rows="15"></textarea></td>
   </tr>
   <tr>
-    <th scope="row">Wound Status</th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Wound Measurements Length <br />
-Width  <br />
-Depth </th>
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?><br />
+<?php xl('Width','e')?><br />
+<?php xl('Depth','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /> <br /><input name="wound_value5[]" type="text" size="12" /> <br /><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /> <br /><input name="wound_value6[]" type="text" size="12" /> <br /><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /> <br /><input name="wound_value7[]" type="text" size="12" /> <br /><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /> <br /><input name="wound_value8[]" type="text" size="12" /> <br /><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Pressure Sore Stage</th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tunneling</th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Undermining</th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Drainage</th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Amount of Drainage</th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Odor</th>
+    <th scope="row" align="right"><?php xl('Odor','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tissue of Wound Base</th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Tissue of Surround Wound</th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row">Level of Pain with Wound</th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>

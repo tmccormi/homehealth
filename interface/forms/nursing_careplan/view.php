@@ -2,6 +2,28 @@
 include_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+    
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_nursing_careplan";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
+
 ?>
 <html><head>
 <?php html_header_show();?>
@@ -10,15 +32,61 @@ include_once("../../calendar.inc");
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+    <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>//library/js/jquery-1.4.2.min.js"></script>
+
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 
 <style type="text/css">
 .bold {
 	font-weight: bold;
 }
-.formtable table { font-size:13px; }
 table label, input { display:inherit !important; }
 
 </style>
+<script type="text/javascript">
+$.noConflict();
+  jQuery(document).ready(function($) {
+        var status = "";
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
+        });
+
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+            
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
+            });
+
+            
+            return false;
+        });
+    });
+
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -71,7 +139,7 @@ $Interventions = explode("#",$obj{"Interventions"});
    <tr>
 
         <td width="19%" align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
-        <td width="20%" align="center"><input type="text"
+        <td width="30%" align="left">&nbsp;<input type="text" style="width:70%"
 				 id="patient_name" value="<?php patientName()?>"
 				readonly/></td>
         <td width="10%" align="center"><strong><?php xl('Certification/Recertification Period','e')?></strong></td>
@@ -85,7 +153,7 @@ $Interventions = explode("#",$obj{"Interventions"});
    <tr>
     <td scope="row"><strong>
         <?php xl('SN To Assess Vital Signs','e')?></strong>&nbsp;&nbsp;
-		<?php xl('The Parameters chosen in this section should populate every nursing visit note and therapy note for that patient','e')?>
+		<?php xl('( The Parameters chosen in this section should populate every nursing visit note and therapy note for that patient )','e')?>
 		<br>
 		<strong><?php xl('Contact MD if Vital Signs are:','e')?></strong>
 		<?php
@@ -98,7 +166,7 @@ $Interventions = explode("#",$obj{"Interventions"});
 				echo xl($key,'e').'&nbsp;';
 				}
           ?>
-		<input type="text" style="width:50%" name="careplan_Assess_Vital_Signs_Specify" id="careplan_Assess_Vital_Signs_Specify" value="<?php echo stripslashes($obj{"careplan_Assess_Vital_Signs_Specify"});?>" />
+		<input type="text" style="width:78%" name="careplan_Assess_Vital_Signs_Specify" id="careplan_Assess_Vital_Signs_Specify" value="<?php echo stripslashes($obj{"careplan_Assess_Vital_Signs_Specify"});?>" />
 				
 		</td>
 
@@ -114,9 +182,9 @@ $Interventions = explode("#",$obj{"Interventions"});
 				echo "<input type='checkbox' name='careplan_SN_Skilled_Assessment[]'  value='$key' $c />";
 				echo xl($key,'e').'&nbsp;';
 				}
-          ?>
+          ?> <br>
    <?php xl('Other','e')?>&nbsp;
-   <input type="text" style="width:58%" name="careplan_SN_Skilled_Assessment_Other" id="careplan_SN_Skilled_Assessment_Other" value="<?php echo stripslashes($obj{"careplan_SN_Skilled_Assessment_Other"});?>"/>
+   <input type="text" style="width:93%" name="careplan_SN_Skilled_Assessment_Other" id="careplan_SN_Skilled_Assessment_Other" value="<?php echo stripslashes($obj{"careplan_SN_Skilled_Assessment_Other"});?>"/>
    </td></tr>
    <tr><td align="left">
     <strong><?php xl('SYSTEMS INTERVENTION GOALS: (Check all that apply)','e')?></strong>
@@ -154,6 +222,7 @@ $Interventions = explode("#",$obj{"Interventions"});
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Weights" <?php if (in_array("Weights",$cardio_teach)) echo "checked";?>/><?php xl('Weights','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="S/Sxs of disease process" <?php if (in_array("S/Sxs of disease process",$cardio_teach)) echo "checked";?>/><?php xl('S/Sxs of disease process','e')?>&nbsp;
 	 <?php xl(', including management, controlling risk factors and identification of complications of','e')?>&nbsp;
+	 <input type="text" style="width:20%" name="careplan_SN_CARDIO_Teach_Complications" id="careplan_SN_CARDIO_Teach_Complications" value="<?php echo stripslashes($obj{"careplan_SN_CARDIO_Teach_Complications"});?>"/>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Benefits of lifestyle change including exercise, nutrition, and/or energy conservation" <?php if (in_array("Benefits of lifestyle change including exercise, nutrition, and/or energy conservation",$cardio_teach)) echo "checked";?>/><?php xl('Benefits of lifestyle change including exercise, nutrition, and/or energy conservation.','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Avoid straining" <?php if (in_array("Avoid straining",$cardio_teach)) echo "checked";?> /><?php xl('Avoid straining','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Avoid lifting > 10 lbs" <?php if (in_array("Avoid lifting > 10 lbs",$cardio_teach)) echo "checked";?>/><?php xl('Avoid lifting > 10 lbs','e')?>&nbsp;
@@ -377,7 +446,8 @@ $Interventions = explode("#",$obj{"Interventions"});
 	
 	<tr><td>
 	<strong><u><?php xl('SN TO PERFORM','e')?></u></strong> &nbsp;
-	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Insert/change Foley catheter" <?php if (in_array("Insert/change Foley catheter",$genito_perform)) echo "checked";?>/><?php xl('Insert/change Foley catheter Size','e')?>&nbsp;
+	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Insert/change Foley catheter" <?php if (in_array("Insert/change Foley catheter",$genito_perform)) echo "checked";?>/><?php xl('Insert/change Foley catheter','e')?>&nbsp;&nbsp;&nbsp;
+	<?php xl('Size','e')?>&nbsp;
 	<input type="text" style="width:20%" name="careplan_SN_GENITO_Perform_size" id="careplan_SN_GENITO_Perform_size" value="<?php echo stripslashes($obj{"careplan_SN_GENITO_Perform_size"});?>"/>
 	<?php xl('Every 28 -32 days and PRN malfunction per sterile technique.','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Obtain specimen UA, C& S" <?php if (in_array("Obtain specimen UA, C& S",$genito_perform)) echo "checked";?>/><?php xl('Obtain specimen UA, C& S as ','e')?>&nbsp;
@@ -767,7 +837,7 @@ $Interventions = explode("#",$obj{"Interventions"});
 	 <td align="center"><?php xl('Comments','e')?></td>
 	</tr>
   <tr>
-    <th scope="row"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[0];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[0];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[0];?>" size="12" /></td>
@@ -775,14 +845,14 @@ $Interventions = explode("#",$obj{"Interventions"});
     <td rowspan="12"><textarea name="Interventions" cols="30" rows="15"><?php echo $Interventions[0];?></textarea></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Status','e')?> <input type="hidden" name="wound_label[]" value="Wound Status" /></th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?> <input type="hidden" name="wound_label[]" value="Wound Status" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[1];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[1];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[1];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[1];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Measurements Length','e')?> <input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?> <input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
 <?php xl('Width','e')?> <input type="hidden" name="wound_label[]" value="Measurements Width" /> <br />
 <?php xl('Depth','e')?> <input type="hidden" name="wound_label[]" value="Measurements Depth" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[2];?>" size="12" /> <br /><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[3];?>" size="12" /> <br /><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[4];?>" size="12" /></td>
@@ -791,63 +861,63 @@ $Interventions = explode("#",$obj{"Interventions"});
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[2];?>" size="12" /> <br /><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[3];?>" size="12" /> <br /><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[4];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Pressure Sore Stage','e')?> <input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?> <input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[5];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[5];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[5];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[5];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tunneling','e')?> <input type="hidden" name="wound_label[]" value="Tunneling" /></th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?> <input type="hidden" name="wound_label[]" value="Tunneling" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[6];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[6];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[6];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[6];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Undermining','e')?> <input type="hidden" name="wound_label[]" value="Undermining" /></th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?> <input type="hidden" name="wound_label[]" value="Undermining" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[7];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[7];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[7];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[7];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Drainage','e')?> <input type="hidden" name="wound_label[]" value="Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?> <input type="hidden" name="wound_label[]" value="Drainage" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[8];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[8];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[8];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[8];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Amount of Drainage','e')?> <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?> <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[9];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[9];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[9];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[9];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Odor','e')?> <input type="hidden" name="wound_label[]" value="Odor" /></th>
+    <th scope="row" align="right"><?php xl('Odor','e')?> <input type="hidden" name="wound_label[]" value="Odor" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[10];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[10];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[10];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[10];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Wound Base','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[11];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[11];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[11];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[11];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Surround Wound','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[12];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[12];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[12];?>" size="12" /></td>
     <td><input name="wound_value4[]" type="text" value="<?php echo $wound_value4[12];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Level of Pain with Wound','e')?> <input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?> <input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
     <td><input name="wound_value1[]" type="text" value="<?php echo $wound_value1[13];?>" size="12" /></td>
     <td><input name="wound_value2[]" type="text" value="<?php echo $wound_value2[13];?>" size="12" /></td>
     <td><input name="wound_value3[]" type="text" value="<?php echo $wound_value3[13];?>" size="12" /></td>
@@ -865,7 +935,7 @@ $Interventions = explode("#",$obj{"Interventions"});
 	 <td align="center"><?php xl('Comments','e')?></td>
 	</tr>
   <tr>
-    <th scope="row"><?php xl('Type of Wound','e')?> </th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[0];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[0];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[0];?>" size="12" /></td>
@@ -873,14 +943,14 @@ $Interventions = explode("#",$obj{"Interventions"});
     <td rowspan="12"><textarea name="wound_comments" cols="30" rows="15"><?php echo $wound_comments[0];?></textarea></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Status','e')?></th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[1];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[1];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[1];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[1];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Measurements Length','e')?> <br />
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?> <br />
 <?php xl('Width','e')?>  <br />
 <?php xl('Depth','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[2];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[3];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[4];?>" size="12" /></td>
@@ -889,63 +959,63 @@ $Interventions = explode("#",$obj{"Interventions"});
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[2];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[3];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[4];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Pressure Sore Stage','e')?></th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[5];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[5];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[5];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[5];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tunneling','e')?></th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[6];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[6];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[6];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[6];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Undermining','e')?></th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[7];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[7];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[7];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[7];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Drainage','e')?></th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[8];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[8];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[8];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[8];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Amount of Drainage','e')?></th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[9];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[9];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[9];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[9];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Odor','e')?></th>
+    <th scope="row" align="right"><?php xl('Odor','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[10];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[10];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[10];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[10];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Wound Base','e')?></th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[11];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[11];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[11];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[11];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Surround Wound','e')?></th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[12];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[12];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[12];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[12];?>" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Level of Pain with Wound','e')?></th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[13];?>" size="12" /></td>
     <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[13];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[13];?>" size="12" /></td>
@@ -980,6 +1050,51 @@ $Interventions = explode("#",$obj{"Interventions"});
 
 
 </form>
+<center>
+        <table>
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="" style="width:166px;">
+            <center>
+                        <div id="login_prompt" style="font-size:small;">Enter your password to sign:</div>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" /><br>
+			<table><tr><td><label for="login_pass" style="font-size:small;">Password:</label></td><td> <input type="password" id="login_pass" name="login_pass" size="10" /></td></tr></table><br>
+                    
+                
+		
+			<input type="submit" value="Sign" />
+		
+		</center>
+	</form>
+</div>
+
 </body>
 </html>
 

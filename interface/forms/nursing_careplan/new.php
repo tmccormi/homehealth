@@ -12,7 +12,6 @@ formHeader("Form: nursing_careplan");
 .bold {
 	font-weight: bold;
 }
-.formtable table { font-size:13px; }
 table label, input { display:inherit !important; }
 
 </style>
@@ -40,7 +39,7 @@ table label, input { display:inherit !important; }
    <tr>
 
         <td width="19%" align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
-        <td width="25%" align="center"><input type="text"
+        <td width="30%" align="left">&nbsp;<input type="text" style="width:70%"
 					id="patient_name" value="<?php patientName()?>"
 					readonly /></td>
         <td width="9%" align="center"><strong><?php xl('Certification/Recertification Period','e')?></strong></td>
@@ -53,7 +52,7 @@ table label, input { display:inherit !important; }
     <td scope="row">
 
         <strong><?php xl('SN To Assess Vital Signs','e')?></strong>&nbsp;&nbsp;
-		<?php xl('The Parameters chosen in this section should populate every nursing visit note and therapy note for that patient','e')?>
+		<?php xl('( The Parameters chosen in this section should populate every nursing visit note and therapy note for that patient )','e')?>
 		<br>
 		<strong><?php xl('Contact MD if Vital Signs are:','e')?></strong>
 		<input type="checkbox" name="careplan_Assess_Vital_Signs[]"  value="Pulse <56 or >120" /><?php xl('Pulse <56 or >120;','e')?>&nbsp;
@@ -64,7 +63,7 @@ table label, input { display:inherit !important; }
 		<input type="checkbox" name="careplan_Assess_Vital_Signs[]"  value="Pain Significantly Impacts patients ability to participate" /><?php xl('Pain Significantly Impacts patients ability to participate;','e')?>&nbsp;
 		<input type="checkbox" name="careplan_Assess_Vital_Signs[]"  value="O2 Sat <90% after 2 minute rest" /><?php xl('O2 Sat <90% after 2 minute rest','e')?>&nbsp;
 		<input type="checkbox" name="careplan_Assess_Vital_Signs[]"  value="If parameters are different from above specify" /><?php xl('If parameters are different from above specify','e')?>&nbsp;
-		<input type="text" style="width:50%" name="careplan_Assess_Vital_Signs_Specify" id="careplan_Assess_Vital_Signs_Specify" />
+		<input type="text" style="width:78%" name="careplan_Assess_Vital_Signs_Specify" id="careplan_Assess_Vital_Signs_Specify" />
 		
 	</td>
 
@@ -81,9 +80,9 @@ table label, input { display:inherit !important; }
    <input type="checkbox" name="careplan_SN_Skilled_Assessment[]"  value="Musculoskeletal/Mobility" /><?php xl('Musculoskeletal/Mobility','e')?>&nbsp;
    <input type="checkbox" name="careplan_SN_Skilled_Assessment[]"  value="Neurological" /><?php xl('Neurological','e')?>&nbsp;
    <input type="checkbox" name="careplan_SN_Skilled_Assessment[]"  value="Respiratory" /><?php xl('Respiratory','e')?>&nbsp;
-   <input type="checkbox" name="careplan_SN_Skilled_Assessment[]"  value="General Medical" /><?php xl('General Medical','e')?>&nbsp;&nbsp;&nbsp;
+   <input type="checkbox" name="careplan_SN_Skilled_Assessment[]"  value="General Medical" /><?php xl('General Medical','e')?> <br>
    <?php xl('Other','e')?>&nbsp;
-   <input type="text" style="width:58%" name="careplan_SN_Skilled_Assessment_Other" id="careplan_SN_Skilled_Assessment_Other" />
+   <input type="text" style="width:93%" name="careplan_SN_Skilled_Assessment_Other" id="careplan_SN_Skilled_Assessment_Other" />
    </td></tr>
    <tr><td align="left">
     <strong><?php xl('SYSTEMS INTERVENTION GOALS: (Check all that apply)','e')?></strong>
@@ -101,10 +100,10 @@ table label, input { display:inherit !important; }
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Cough" /><?php xl('Cough','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="JVD/heptojugular reflex" /><?php xl('JVD/heptojugular reflex','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Peripheral pulses" /><?php xl('Peripheral pulses','e')?>&nbsp;
-	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Abnormal Lung Sounds" /><?php xl('Abnormal Lung Sounds','e')?>&nbsp;
-	 <input type="checkbox" style="display:none;" name="careplan_SN_CARDIO_Assess[]"  value="Weight" /><?php xl('Weight','e')?>&nbsp;
+	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Abnormal Lung Sounds" /><?php xl('Abnormal Lung Sounds','e')?>&nbsp;&nbsp;&nbsp;
+	 <input type="checkbox" style="display:none;visibility:hidden;" name="careplan_SN_CARDIO_Assess[]"  value="Weight" /><?php xl('Weight','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="gain" /><?php xl('gain','e')?>&nbsp;
-	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="loss" /><?php xl('loss','e')?>&nbsp;
+	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="loss" /><?php xl('loss','e')?>&nbsp;&nbsp;&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Abnormal Heart Sounds" /><?php xl('Abnormal Heart Sounds','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Chest Pain" /><?php xl('Chest Pain','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Assess[]"  value="Edema/Fluid Retention" /><?php xl('Edema/Fluid Retention','e')?>&nbsp;
@@ -128,6 +127,7 @@ table label, input { display:inherit !important; }
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Weights" /><?php xl('Weights','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="S/Sxs of disease process" /><?php xl('S/Sxs of disease process','e')?>&nbsp;
 	 <?php xl(', including management, controlling risk factors and identification of complications of','e')?>&nbsp;
+	 <input type="text" style="width:20%" name="careplan_SN_CARDIO_Teach_Complications" id="careplan_SN_CARDIO_Teach_Complications" />&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Benefits of lifestyle change including exercise, nutrition, and/or energy conservation" /><?php xl('Benefits of lifestyle change including exercise, nutrition, and/or energy conservation.','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Avoid straining" /><?php xl('Avoid straining','e')?>&nbsp;
 	 <input type="checkbox" name="careplan_SN_CARDIO_Teach[]"  value="Avoid lifting > 10 lbs" /><?php xl('Avoid lifting > 10 lbs','e')?>&nbsp;
@@ -242,7 +242,7 @@ table label, input { display:inherit !important; }
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="GT management including" /><?php xl('GT management including','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="site condition" /><?php xl('site condition','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="tube size/type" /><?php xl('tube size/type','e')?>&nbsp;
-	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="flushing" /><?php xl('flushing','e')?>&nbsp;
+	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="flushing" /><?php xl('flushing','e')?>&nbsp;&nbsp;&nbsp;
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="Ostomy site management including" /><?php xl('Ostomy site management including','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="Stoma size, appearance, need for appliance" /><?php xl('Stoma size, appearance, need for appliance','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GASTRO_Assess[]"  value="Diet Management" /><?php xl('Diet Management','e')?>&nbsp;
@@ -348,7 +348,8 @@ table label, input { display:inherit !important; }
 	
 	<tr><td>
 	<strong><u><?php xl('SN TO PERFORM','e')?></u></strong> &nbsp;
-	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Insert/change Foley catheter" /><?php xl('Insert/change Foley catheter Size','e')?>&nbsp;
+	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Insert/change Foley catheter" /><?php xl('Insert/change Foley catheter','e')?>&nbsp;&nbsp;&nbsp;
+	<?php xl('Size','e')?>&nbsp;
 	<input type="text" style="width:20%" name="careplan_SN_GENITO_Perform_size" id="careplan_SN_GENITO_Perform_size" />
 	<?php xl('Every 28 -32 days and PRN malfunction per sterile technique.','e')?>&nbsp;
 	<input type="checkbox" name="careplan_SN_GENITO_Perform[]"  value="Obtain specimen UA, C& S" /><?php xl('Obtain specimen UA, C& S as ','e')?>&nbsp;
@@ -711,7 +712,7 @@ table label, input { display:inherit !important; }
 	</tr>
 	
   <tr>
-    <th scope="row"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
@@ -719,14 +720,14 @@ table label, input { display:inherit !important; }
     <td rowspan="12"><textarea name="Interventions" cols="30" rows="15"></textarea></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Status','e')?> <input type="hidden" name="wound_label[]" value="Wound Status" /></th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?> <input type="hidden" name="wound_label[]" value="Wound Status" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Measurements Length','e')?> <input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?> <input type="hidden" name="wound_label[]" value="Measurements Length" /><br />
  <?php xl('Width','e')?><input type="hidden" name="wound_label[]" value="Measurements Width" /> <br />
  <?php xl('Depth','e')?><input type="hidden" name="wound_label[]" value="Measurements Depth" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /> <br /><input name="wound_value1[]" type="text" size="12" /> <br /><input name="wound_value1[]" type="text" size="12" /></td>
@@ -735,63 +736,63 @@ table label, input { display:inherit !important; }
     <td><input name="wound_value4[]" type="text" size="12" /> <br /><input name="wound_value4[]" type="text" size="12" /> <br /><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Pressure Sore Stage','e')?> <input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?> <input type="hidden" name="wound_label[]" value="Pressure Sore Stage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tunneling','e')?> <input type="hidden" name="wound_label[]" value="Tunneling" /></th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?> <input type="hidden" name="wound_label[]" value="Tunneling" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Undermining','e')?> <input type="hidden" name="wound_label[]" value="Undermining" /></th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?> <input type="hidden" name="wound_label[]" value="Undermining" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Drainage','e')?> <input type="hidden" name="wound_label[]" value="Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?> <input type="hidden" name="wound_label[]" value="Drainage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Amount of Drainage','e')?> <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?> <input type="hidden" name="wound_label[]" value="Amount of Drainage" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Odor','e')?> <input type="hidden" name="wound_label[]" value="Odor" /></th>
+    <th scope="row" align="right"><?php xl('Odor','e')?> <input type="hidden" name="wound_label[]" value="Odor" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Wound Base','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Wound Base" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Surround Wound','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?> <input type="hidden" name="wound_label[]" value="Tissue of Surround Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
     <td><input name="wound_value4[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Level of Pain with Wound','e')?> <input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?> <input type="hidden" name="wound_label[]" value="Level of Pain with Wound" /></th>
     <td><input name="wound_value1[]" type="text" size="12" /></td>
     <td><input name="wound_value2[]" type="text" size="12" /></td>
     <td><input name="wound_value3[]" type="text" size="12" /></td>
@@ -809,7 +810,7 @@ table label, input { display:inherit !important; }
 	 <td align="center"><?php xl('Comments','e')?></td>
 	</tr>
   <tr>
-    <th scope="row"><?php xl('Type of Wound','e')?> </th>
+    <th scope="row" align="right"><?php xl('Type of Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
@@ -817,14 +818,14 @@ table label, input { display:inherit !important; }
     <td rowspan="12"><textarea name="wound_comments" cols="30" rows="15"></textarea></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Status','e')?></th>
+    <th scope="row" align="right"><?php xl('Wound Status','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Wound Measurements Length','e')?> <br />
+    <th scope="row" align="right"><?php xl('Wound Measurements Length','e')?> <br />
 <?php xl('Width','e')?>  <br />
 <?php xl('Depth','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /> <br /><input name="wound_value5[]" type="text" size="12" /> <br /><input name="wound_value5[]" type="text" size="12" /></td>
@@ -833,63 +834,63 @@ table label, input { display:inherit !important; }
     <td><input name="wound_value8[]" type="text" size="12" /> <br /><input name="wound_value8[]" type="text" size="12" /> <br /><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Pressure Sore Stage','e')?> </th>
+    <th scope="row" align="right"><?php xl('Pressure Sore Stage','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tunneling','e')?> </th>
+    <th scope="row" align="right"><?php xl('Tunneling','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Undermining','e')?> </th>
+    <th scope="row" align="right"><?php xl('Undermining','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Drainage','e')?> </th>
+    <th scope="row" align="right"><?php xl('Drainage','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Amount of Drainage','e')?> </th>
+    <th scope="row" align="right"><?php xl('Amount of Drainage','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Odor','e')?> </th>
+    <th scope="row" align="right"><?php xl('Odor','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Wound Base','e')?> </th>
+    <th scope="row" align="right"><?php xl('Tissue of Wound Base','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Tissue of Surround Wound','e')?> </th>
+    <th scope="row" align="right"><?php xl('Tissue of Surround Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
     <td><input name="wound_value8[]" type="text" size="12" /></td>
   </tr>
   <tr>
-    <th scope="row"><?php xl('Level of Pain with Wound','e')?> </th>
+    <th scope="row" align="right"><?php xl('Level of Pain with Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>
     <td><input name="wound_value6[]" type="text" size="12" /></td>
     <td><input name="wound_value7[]" type="text" size="12" /></td>
@@ -915,7 +916,7 @@ table label, input { display:inherit !important; }
 </td>
 </tr></table>
 
-<a id="btn_save" href="javascript:void(0)" class="link_submit">
+<a id="btn_save" href="javascript:top.restoreSession();document.nursing_careplan.submit()" class="link_submit">
 <?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
