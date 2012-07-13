@@ -3,7 +3,7 @@ require_once("../../interface/globals.php");
 require_once("$srcdir/sql.inc");
 require_once("$srcdir/formatting.inc.php");
 $term = trim(strip_tags($_GET['term']));
-$qstring = "select id,fname,mname,lname,DOB,phone_home from patient_data WHERE (fname LIKE '%".$term."%') OR (lname LIKE '%".$term."%')";
+$qstring = "select id,pid,fname,mname,lname,DOB,phone_home from patient_data WHERE (fname LIKE '%".$term."%') OR (lname LIKE '%".$term."%')";
 $result = mysql_query($qstring);
 ?>
 <style>
@@ -33,11 +33,11 @@ while ($row = mysql_fetch_array($result,MYSQL_ASSOC))
 {
 ?>
 		<tr>
-			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["id"];?>')"><?php echo $row["fname"];?></a></td>
-			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["id"];?>')"><?php echo $row["lname"];?></a></td>
-			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["id"];?>')"><?php echo $row["DOB"];?></a></td>
-			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["id"];?>')"><?php echo $row["phone_home"];?></a></td>
-			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["id"];?>')"><?php echo $row["id"];?></a></td>
+			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["pid"];?>')"><?php echo $row["fname"];?></a></td>
+			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["pid"];?>')"><?php echo $row["lname"];?></a></td>
+			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["pid"];?>')"><?php echo $row["DOB"];?></a></td>
+			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["pid"];?>')"><?php echo $row["phone_home"];?></a></td>
+			<td width="100px" class="text"><a href="#" onclick="open_demography('<?php echo $row["pid"];?>')"><?php echo $row["pid"];?></a></td>
 		</tr>
 <?php
 }
