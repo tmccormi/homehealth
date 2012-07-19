@@ -132,7 +132,7 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_pt_visitnote", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/ptvisit_notes/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitnotes">
-<span class="title"><?php xl('Visit Notes','e');?></span><br></br>
+<h3 align="center"><?php xl('PHYSICAL THERAPY REVISIT NOTE','e'); ?></h3>
 
 <br></br>
 <table width="100%" border="1" cellpadding="2px" class="formtable">
@@ -151,10 +151,7 @@ $obj = formFetch("forms_pt_visitnote", $_GET["id"]);
 <?php timeDropDown(stripslashes($obj{"visitnote_Time_Out"})) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
-         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					value="<?php echo stripslashes($obj{"visitnote_visitdate"});?>"
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
-						 disabled />
+         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' value="<?php echo stripslashes($obj{"visitnote_visitdate"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
 		<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_visit_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 		<script	LANGUAGE="JavaScript">
@@ -256,7 +253,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"visitnote_Treatment_Diagnosis_Problem"} != "")
 {
 echo "<select id='visitnote_Treatment_Diagnosis_Problem' name='visitnote_Treatment_Diagnosis_Problem'>"; 
@@ -266,7 +263,7 @@ echo "</select>";
  else 
  { 
  echo "<select id='visitnote_Treatment_Diagnosis_Problem' name='visitnote_Treatment_Diagnosis_Problem' style='display:none'> </select>";
- }?></div>					
+ }?></span>					
 </td>
   </tr>
   <tr>
@@ -297,9 +294,9 @@ echo "</select>";
               </tr>
               <tr>
                 <td><label>
-                  <input type="checkbox" name="visitnote_Pat_Homebound_SOB_upon_exertion" id="visitnote_Pat_Homebound_SOB_upon_exertion" 
+                  <input type="checkbox" name="visitnote_Pat_Homebound_SOB_upon_exertion" id="visitnote_Pat_Homebound_SOB_upon_exertion" value="on"
                    <?php if ($obj{"visitnote_Pat_Homebound_SOB_upon_exertion"} == "on")	echo "checked";;?> />
-                  <?php xl('SOB upon exertion','e'); ?>
+                  <?php xl('SOB upon exertion','e'); ?></label><label>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Pain_with_Travel" id="visitnote_Pat_Homebound_Pain_with_Travel" 
                   <?php if ($obj{"visitnote_Pat_Homebound_Pain_with_Travel"} == "on")	echo "checked";;?> />
                   <?php xl('Pain with Travel','e'); ?></label></td>
@@ -317,10 +314,10 @@ echo "</select>";
                 <td><label>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Arrhythmia" id="visitnote_Pat_Homebound_Arrhythmia"
                    <?php if ($obj{"visitnote_Pat_Homebound_Arrhythmia"} == "on")	echo "checked";;?> >
-                  <?php xl('Arrhythmia','e'); ?>
+                  <?php xl('Arrhythmia','e'); ?></label><label>
                   <input type="checkbox" name="visitnote_Pat_Homebound_Bed_Bound" id="visitnote_Pat_Homebound_Bed_Bound"
                   <?php if ($obj{"visitnote_Pat_Homebound_Bed_Bound"} == "on")	echo "checked";;?> >                 
-<?php xl('Bed Bound','e'); ?>
+<?php xl('Bed Bound','e'); ?></label><label>
 <input type="checkbox" name="visitnote_Pat_Homebound_Residual_Weakness" id="visitnote_Pat_Homebound_Residual_Weakness" 
 <?php if ($obj{"visitnote_Pat_Homebound_Residual_Weakness"} == "on")	echo "checked";;?> >
 <?php xl('Residual Weakness','e'); ?></label></td>
@@ -481,7 +478,7 @@ value="Patient and Caregiver" <?php if ($obj{"visitnote_Interventions"} == "Pati
   <tr>
     <td valign="top" scope="row"><strong><?php xl('SPECIFIC TRAINING THIS REVISIT','e'); ?></strong><br/>
       <textarea name="visitnote_Specific_Training_Visit" id="visitnote_Specific_Training_Visit" 
-      value="<?php echo stripslashes($obj{"visitnote_Specific_Training_Visit"});?>" cols="118" rows="2" ></textarea>
+      style="width:100%" rows="2" ><?php echo stripslashes($obj{"visitnote_Specific_Training_Visit"});?></textarea>
       <br />
       <strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
       <input type="checkbox" name="visitnote_changes_in_medications" id="visitnote_changes_in_medications" value="Yes"
@@ -585,10 +582,10 @@ value="<?php echo stripslashes($obj{"visitnote_Response_To_Revisit_Other"});?>" 
   <tr>
     <td valign="top" scope="row"><strong>
     <input type="checkbox" name="visitnote_CarePlan_Reviewed" id="visitnote_CarePlan_Reviewed" 
-    <?php if ($obj{"visitnote_CarePlan_Reviewed_With"} == "on") echo "checked";;?> />
+    <?php if ($obj{"visitnote_CarePlan_Reviewed"} == "on") echo "checked";;?> />
 <?php xl('CARE PLAN REVIEWED WITH','e'); ?>
   <input type="checkbox" name="visitnote_Discharge_Discussed" id="visitnote_Discharge_Discussed" 
-  <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "on") echo "checked";;?> />
+  <?php if ($obj{"visitnote_Discharge_Discussed"} == "on") echo "checked";;?> />
 <?php xl('DISCHARGE DISCUSSED WITH','e'); ?></strong>
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Patient" id="visitnote_DDW_Patient" 
 <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Patient") echo "checked";;?> />
@@ -651,10 +648,10 @@ value="<?php echo stripslashes($obj{"visitnote_FSVR_ADLs_Notes"});?>" > -->
 <br/><input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Caregiver/Family" id="visitnote_FSVR_Train_Caregiver_Family" 
     <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Caregiver/Family") echo "checked";;?> />
 
-<?php xl('Train Caregiver/Family','e'); ?> <input type="text" name="visitnote_Train_CareGiver_Family" id="visitnote_Train_CareGiver_Family" style="width:76%" value="<?php echo stripslashes($obj{"visitnote_Train_CareGiver_Family"});?>"/>
+<?php xl('Train Caregiver/Family','e'); ?> 
 <br/><?php xl('Other','e'); ?>
 <strong>
-<input type="text" size="150px" name="visitnote_FSVR_Other" id="visitnote_FSVR_Other" 
+<input type="text" style="width:90%" name="visitnote_FSVR_Other" id="visitnote_FSVR_Other" 
 value="<?php echo stripslashes($obj{"visitnote_FSVR_Other"});?>" >
 </strong>
 </p>
@@ -667,10 +664,10 @@ onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' style="width:150p
                 <script LANGUAGE="JavaScript">
         Calendar.setup({inputField:"visitnote_Date_of_Next_Visit", ifFormat:"%Y-%m-%d", button:"img_Next_visit_date"});
        </script>
-
+<br>
 <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met Goals" id="visitnote_Date_of_Next_Visit" 
   <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met Goals") echo "checked";;?> />
-<?php xl('No further visits required Patient/Caregiver have met goals','e'); ?>
+<?php xl('No further visits required Patient/Caregiver have met goals','e'); ?><br>
 <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Met max potential" id="visitnote_No_further_visits_PC_Met_max_potential" 
   <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Met max potential") echo "checked";;?> />
 <?php xl('No further visits required. Patient/Caregiver have met maximum  potential that can be impacted by therapy.','e'); ?>
@@ -712,7 +709,7 @@ onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' style="width:150p
 <input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community support" id="visitnote_Plan_Establish_community_support" 
 <?php if ($obj{"visitnote_Address_Above_Issues_By"} == "community support") echo "checked";;?> />
 <?php xl('establish community support systems','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations " id="visitnote_Plan_Home_env_adaptations" 
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations" id="visitnote_Plan_Home_env_adaptations" 
 <?php if ($obj{"visitnote_Address_Above_Issues_By"} == "home adaptations") echo "checked";;?> />
 <?php xl('home/environmental adaptations','e'); ?>
 <input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use family/professionals" id="visitnote_Plan_Use_family_professionals" 

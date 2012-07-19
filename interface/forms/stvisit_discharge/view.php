@@ -243,11 +243,11 @@ $obj = formFetch("forms_st_visit_discharge_note", $_GET["id"]);
 
       <tr> <td>
       <strong> <?php xl('Pain','e');?> </strong>
-      <input type="checkbox" name="dischargeplan_Vital_Signs_Pain" value="No Pain" id="dischargeplan_Vital_Signs_Pain"  
-      <?php if ($obj{"dischargeplan_Vital_Signs_Pain"} == "No Pain"){echo "checked";};?>/>
+      <input type="checkbox" name="dischargeplan_Pain" value="No Pain"
+      <?php if ($obj{"dischargeplan_Pain"} == "No Pain"){echo "checked";}?>/>
        <?php xl('No Pain','e');?>
-      <input type="checkbox" name="dischargeplan_Vital_Signs_Pain" value="Pain limits functional ability" id="dischargeplan_Vital_Signs_Pain" 
-	<?php if ($obj{"dischargeplan_Vital_Signs_Pain"} == "Pain limits functional ability"){echo "checked";};?>/>
+      <input type="checkbox" name="dischargeplan_Pain" value="Pain limits functional ability"  
+	<?php if ($obj{"dischargeplan_Pain"} == "Pain limits functional ability"){echo "checked";}?>/>
       <?php xl('Pain limits functional ability','e');?>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Intensity','e');?>
       <input type="text" size="5px" name="dischargeplan_Vital_Signs_Pain_Intensity" id="dischargeplan_Vital_Signs_Pain_Intensity"  
@@ -284,7 +284,7 @@ $obj = formFetch("forms_st_visit_discharge_note", $_GET["id"]);
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
     <input type="text" id="icd9" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">  
+<span id="med_icd9">  
 <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
 {
 echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem'>"; 
@@ -295,7 +295,7 @@ echo "</select>";
  { 
  echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem' style='display:none'> </select>";
  }?>
- </div>  
+ </span>  
   </tr>
  
     <tr>
@@ -457,30 +457,30 @@ echo "</select>";
         <?php xl('Swallow','e');?></label>
 	<label>
               <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="Communication at discharge" id="dischargeplan_Functional_Ability_In" 
-	    <?php if ($obj{"dischargeplan_Functional_Ability_In"} == "Communication at discharge"){echo "checked";};?>/>
+	    <?php if ($obj{"dischargeplan_Functional_Ability_In"} == "Communication"){echo "checked";};?>/>
              <?php xl('Communication','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <?php xl('at Time of Discharge','e');?>
+             <?php xl('At Time of Discharge','e');?>
             <label>
-              <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="WFL" 
-<?php if ($obj{"dischargeplan_Functional_Ability_In"} == "WFL"){echo "checked";};?> id="dischargeplan_Functional_Ability_In" />
+              <input type="checkbox" name="dischargeplan_at_time_of_discharge" value="WFL" 
+<?php if ($obj{"dischargeplan_at_time_of_discharge"} == "WFL"){echo "checked";};?> id="dischargeplan_at_time_of_discharge" />
         <?php xl('WFL = within functional limits;','e');?></label> 
        <label>
-              <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="WFL with cues" 
-<?php if ($obj{"dischargeplan_Functional_Ability_In"} == "WFL with cues"){echo "checked";};?> id="dischargeplan_Functional_Ability_In" />
+              <input type="checkbox" name="dischargeplan_at_time_of_discharge" value="WFL with cues" 
+<?php if ($obj{"dischargeplan_at_time_of_discharge"} == "WFL with cues"){echo "checked";};?> id="dischargeplan_at_time_of_discharge" />
               <?php xl('WFL with cues;','e');?></label>
           <label>
-              <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="Mild impairment" 
-<?php if ($obj{"dischargeplan_Functional_Ability_In"} == "Mild impairment"){echo "checked";};?> id="dischargeplan_Functional_Ability_In" />
+              <input type="checkbox" name="dischargeplan_at_time_of_discharge" value="Mild impairment" 
+<?php if ($obj{"dischargeplan_at_time_of_discharge"} == "Mild impairment"){echo "checked";};?> id="dischargeplan_at_time_of_discharge" />
               <?php xl('Mild impairment;','e');?></label>
 
          <label>
-              <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="Moderate impairment" 
-<?php if ($obj{"dischargeplan_Functional_Ability_In"} == "Moderate impairment"){echo "checked";};?> id="dischargeplan_Functional_Ability_In" />
+              <input type="checkbox" name="dischargeplan_at_time_of_discharge" value="Moderate impairment" 
+<?php if ($obj{"dischargeplan_at_time_of_discharge"} == "Moderate impairment"){echo "checked";};?> id="dischargeplan_at_time_of_discharge" />
               <?php xl('Moderate impairment;','e');?></label>
 
 	      <label>
-              <input type="checkbox" name="dischargeplan_Functional_Ability_In" value="Severe impairment" id="dischargeplan_Functional_Ability_In" 
-		<?php if ($obj{"dischargeplan_Functional_Ability_In"} == "Severe impairment"){echo "checked";};?>/>
+              <input type="checkbox" name="dischargeplan_at_time_of_discharge" value="Severe impairment" id="dischargeplan_at_time_of_discharge" 
+		<?php if ($obj{"dischargeplan_at_time_of_discharge"} == "Severe impairment"){echo "checked";};?>/>
               <?php xl('Severe impairment','e');?></label>  </strong> 
 
   </tr>
@@ -537,7 +537,36 @@ echo "</select>";
 <table cellpadding="2px" border="1" width="100%" class="formtable"><tr><td><table width="100%" border="0" class="formtable">
 <tr><td colspan=3><strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong></td></tr>
 <tr><td colspan=3><strong><?php xl('By Signing below, MD agrees with discharge from Occupational Therapy services','e');?></strong></td></tr>
-<tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
+
+<tr>
+                        <td>
+                        <table border="1px" width="100%" class="formtable">
+                        <tr><td width="33%">
+                        <strong><?php xl('MD PRINTED NAME','e');?></strong><br>
+                        <input type="text" name="dischargeplan_md_printed_name" style="width:90%" value="<?php doctorname(); ?>" readonly="readonly">
+                        </td>
+                        <td width="33%">
+                        <strong><?php xl('MD Signature','e');?></strong><br>
+                        <input type="text" name="dischargeplan_md_signature" style="width:90%"  value="<?php echo stripslashes($obj{"dischargeplan_md_signature"});?>">
+                        </td>
+                        <td width="33%">
+                        <strong><?php xl('Date','e');?></strong><br>&nbsp;
+                        <input type='text' size='16' name='dischargeplan_md_signature_date' id='dischargeplan_md_signature_date'
+                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"dischargeplan_md_signature_date"};?>" readonly />
+                                        <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+                                        height='22' id='img_curr_date2' border='0' alt='[?]'
+                                        style='cursor: pointer; cursor: hand'
+                                        title='<?php xl('Click here to choose a date','e'); ?>'>
+                                        <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"dischargeplan_md_signature_date", ifFormat:"%Y-%m-%d", button:"img_curr_date2"});
+   </script>
+                        </td>
+                        </tr>
+                        </table>
+                        </td>
+                        </tr>
+
+</table></td></tr></table>
 </table>
 <a href="javascript:top.restoreSession();document.visitdischarge.submit();"
                         class="link_submit"><?php xl(' [Save]','e')?></a>

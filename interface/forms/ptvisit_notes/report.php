@@ -17,6 +17,7 @@ function ptvisit_notes_report($pid, $encounter, $cols, $id) {
     $value = "yes";
    }
    $key=ucwords(str_replace("_"," ",$key)); 
+   $value=ucwords(str_replace("_"," ",$value));
     $key = str_replace("Visitnote", "", $key);   
    print "<td valign='top'><span class='bold'>$key: </span><span class='text'>$value</span></td>\n";
    $count++;

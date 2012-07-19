@@ -9,7 +9,7 @@ $formDir = null;
 $pathSep = "/";
 if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
     $pathSep = "\\";
-
+    
 $formDirParts = explode($pathSep, __dir__);
 $formDir = $formDirParts[count($formDirParts) - 1];
 
@@ -38,9 +38,7 @@ $sigId = $esign->getNewestUnsignedSignature();
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-<script>
-
-
+<script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
     var a;
@@ -84,24 +82,25 @@ $sigId = $esign->getNewestUnsignedSignature();
 	    };
 	    obj.open("GET",site_root+"/forms/visit_discharge_test/functions.php?code="+icd9code+"&Dx="+Dx,true);    
 	    obj.send(null);
-	  }	
-             //for signature
-          $(document).ready(function() {
+	  }	 
+	  
+	  //for signature
+	  $(document).ready(function() {
         var status = "";
-
-        $("#signoff").fancybox({
-        'scrolling'             : 'no',
-        'titleShow'             : false,
-        'onClosed'              : function() {
-            $("#login_prompt").hide();
-
-        }
+        
+	$("#signoff").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	'onClosed'		: function() {
+	    $("#login_prompt").hide();
+            
+	}
         });
 
         $("#login_form").bind("submit", function() {
 
             document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
-
+            
             if ($("#login_pass").val().length < 1) {
                 $("#login_prompt").show();
                 $.fancybox.resize();
@@ -111,21 +110,20 @@ $sigId = $esign->getNewestUnsignedSignature();
             $.fancybox.showActivity();
 
             $.ajax({
-                type            : "POST",
-                cache   : false,
-                url             : "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
-                data            : $(this).serializeArray(),
-                success: function(data) {
-                        $.fancybox(data);
-                }
+		type		: "POST",
+		cache	: false,
+		url		: "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+		data		: $(this).serializeArray(),
+		success: function(data) {
+			$.fancybox(data);
+		}
             });
 
-
+            
             return false;
         });
     });
 
- 
 	</script>
 </head>
 
@@ -137,12 +135,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir;?>/forms/visit_discharge_test/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitdischarge">
 <h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT/DISCHARGE NOTE','e');?></h3><br>
-<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br></br>
+
 <table width="100%" padding="2px"border="1" cellpadding="2px" class="formtable">
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
@@ -239,7 +232,7 @@ $obj = formFetch("forms_ot_visit_discharge_note", $_GET["id"]);
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
     <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
  <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
 {
 echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem'>"; 
@@ -250,14 +243,14 @@ echo "</select>";
  { 
  echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem' style='display:none'> </select>";
  }?>   
-</div>
+</span>
   </tr>
   <tr>
          <td scope="row"><p><strong><?php xl('Mental Status','e');?></strong></p>
       <p>
           <label>
     <input type="checkbox" name="dischargeplan_Mental_Status"  id="dischargeplan_Mental_Status" value="Alert"
-    <?php if ($obj{"dischargeplan_Mental_Status_Alert"} == "Alert"){echo "checked";};?> />
+    <?php if ($obj{"dischargeplan_Mental_Status"} == "Alert"){echo "checked";};?> />
           <?php xl('Alert','e');?></label>
           <label>
             <input type="checkbox" name="dischargeplan_Mental_Status" value="Oriented" <?php if ($obj{"dischargeplan_Mental_Status"} == "Oriented"){echo "checked";};?> id="dischargeplan_Mental_Status_Oriented" />
@@ -510,9 +503,9 @@ echo "</select>";
             <?php xl('Goals identified on care plan were','e');?></label>
             <input type="checkbox" name="dischargeplan_Recommendations_met" value="met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "met"){echo "checked";};?> id="dischargeplan_Recommendations_met" />
             <?php xl('met','e');?>
-            <input type="checkbox" name="dischargeplan_Recommendations_met" value="partially met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "partially met"){echo "checked";};?> id="dischargeplan_Recommendations_partially" />
+            <input type="checkbox" name="dischargeplan_Recommendations_met" value="partially met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "partially met"){echo "checked";};?> id="dischargeplan_Recommendations_met" />
             <?php xl('partially met','e');?>
-  <input type="checkbox" name="dischargeplan_Recommendations_met" value="not met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "not met"){echo "checked";};?> id="dischargeplan_Recommendations_not_met" />
+  <input type="checkbox" name="dischargeplan_Recommendations_met" value="not met" <?php if ($obj{"dischargeplan_Recommendations_met"} == "not met"){echo "checked";};?> id="dischargeplan_Recommendations_met" />
             <?php xl('not met (If goals partially met or not met please explain)','e');?>
   <input type="text" name="dischargeplan_Recommendations_not_met_note" style="width:910px"  value="<?php echo stripslashes($obj{"dischargeplan_Recommendations_not_met_note"});?>" id="dischargeplan_Recommendations_not_met_note" />
             </td>
@@ -533,8 +526,30 @@ echo "</select>";
 <table cellpadding="2px" border="1" width="100%" class="formtable"><tr><td><table width="100%" border="0" class="formtable">
 <tr><td colspan=3><strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong></td></tr>
 <tr><td colspan=3><strong><?php xl('By Signing below, MD agrees with discharge from Occupational Therapy services','e');?></strong></td></tr>
-<tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
+<tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong>
+<input type="text" name="dischargeplan_md_name" value="<?php doctorname();?>" readonly>
+</td><td width='35%'>
+<strong><?php xl('MD Signature','e');?></strong>
+<input type="text" name="dischargeplan_md_signature" value="<?php echo stripslashes($obj{"dischargeplan_md_signature"});?>">
+</td><td>
+<strong><?php xl('Date','e');?></strong>
+<input type="text" name="dischargeplan_md_date" value="<?php echo stripslashes($obj{"dischargeplan_md_date"});?>" id='dischargeplan_md_date'
+    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+    <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
+    id='img_curr_date2' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    title='<?php xl('Click here to choose a date','e'); ?>'>
+    <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"dischargeplan_md_date", ifFormat:"%Y-%m-%d", button:"img_curr_date2"});
+   </script>
+   </td></tr></table>
+   </td></tr></table>
 </table>
+<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 <center>
         <table class="formtable">
@@ -558,26 +573,27 @@ echo "</select>";
                 </td></tr>
             </table>
         </center>
-<div style="display:none">
-        <form id="login_form" method="post" action="">
+    </body>
+    <div style="display:none">
+	<form id="login_form" method="post" action="">
             <p><center><span style="font-size:small;">
                         <p id="login_prompt" style="font-size:small;">Enter your password to sign:</p>
                         <input type="hidden" name="sig_status" value="approved" />
                         <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
                         <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
-                        <input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+			<input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
                         <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
                         <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
                         <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
                         <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" />
-                        <label for="login_pass">Password: </label>
-                        <input type="password" id="login_pass" name="login_pass" size="10" />
+			<label for="login_pass">Password: </label>
+			<input type="password" id="login_pass" name="login_pass" size="10" />
                     </span>
                 </center></p>
-                <p>
-                        <input type="submit" value="Sign" />
-                </p>
-        </form>
+		<p>
+			<input type="submit" value="Sign" />
+		</p>
+	</form>
 </div>
 
 </body>

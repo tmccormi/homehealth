@@ -90,8 +90,9 @@ dischargeplan_Recommendations_met='".$_POST["dischargeplan_Recommendations_met"]
 dischargeplan_Recommendations_partially='".$_POST["dischargeplan_Recommendations_partially"]."',
 dischargeplan_Recommendations_not_met='".$_POST["dischargeplan_Recommendations_not_met"]."',
 dischargeplan_Recommendations_not_met_note='".$_POST["dischargeplan_Recommendations_not_met_note"]."',
-dischargeplan_md_printed_name='".$_POST["dischargeplan_md_printed_name"]."',
-dischargeplan_md_signature='".$_POST["dischargeplan_md_signature"]."'
+dischargeplan_md_name='".$_POST["dischargeplan_md_name"]."',
+dischargeplan_md_signature='".$_POST["dischargeplan_md_signature"]."',
+dischargeplan_md_date='".$_POST["dischargeplan_md_date"]."'
 where id=$id");
 }
 $_SESSION["encounter"] = $encounter;

@@ -138,9 +138,7 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/evaluation/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="evaluation">
  <h3 align="center"><?php xl('OCCUPATIONAL THERAPY EVALUATION','e'); ?></h3>
-<br></br>
-
-<br></br>
+<br>
 <table align="center"  border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
     <td scope="row">
@@ -224,17 +222,17 @@ $obj = formFetch("forms_ot_Evaluation", $_GET["id"]);
              <?php xl('Left','e')?></label>
           
           <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Sitting" id="Evaluation_VS_BP_Body_Position" 
-            <?php if ($obj{"Evaluation_VS_BP_Body_Position"} == "Sitting") echo "checked";;?>/>
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Sitting" 
+            <?php if ($obj{"Evaluation_VS_BP_Body"} == "Sitting") echo "checked";;?>/>
               <?php xl('Sitting','e')?></label>
 
           <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Standing" id="Evaluation_VS_BP_Body_Position" 
-            <?php if ($obj{"Evaluation_VS_BP_Body_Position"} == "Standing") echo "checked";;?>/>
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Standing" 
+            <?php if ($obj{"Evaluation_VS_BP_Body"} == "Standing") echo "checked";;?>/>
             <?php xl('Standing','e')?></label>
       <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Lying" id="Evaluation_VS_BP_Body_Position" 
-            <?php if ($obj{"Evaluation_VS_BP_Body_Position"} == "Lying") echo "checked";;?>/>
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Lying"  
+            <?php if ($obj{"Evaluation_VS_BP_Body"} == "Lying") echo "checked";;?>/>
       <?php xl('Lying','e'); ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
       <?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?>
             <input type="text" name="Evaluation_VS_Sat" size="3px" id="Evaluation_VS_Sat"
@@ -536,7 +534,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
         <td scope="row"><?php xl('TOILET TRANSFERS','e')?></td>
         <td><select id="Evaluation_ADL_TOILET_TRANSFERS" name="Evaluation_ADL_TOILET_TRANSFERS">
 			<?php Mobility_status(stripslashes($obj{"Evaluation_ADL_TOILET_TRANSFERS"}))	?> </select></td>
-        <td><input type="text" name="Evaluation_ADL_OTHERS_TEXT" id="Evaluation_ADL_OTHERS_TEXT" /></td>
+        <td><input type="text" name="Evaluation_ADL_OTHERS_TEXT" id="Evaluation_ADL_OTHERS_TEXT"  value="<?php echo $obj{"Evaluation_ADL_OTHERS_TEXT"};?>"/></td>
        <td><select id="Evaluation_ADL_OTHERS" name="Evaluation_ADL_OTHERS">
 			<?php Mobility_status(stripslashes($obj{"Evaluation_ADL_OTHERS"}))	?> </select></td>
       </tr>
@@ -585,7 +583,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Visits_in_Community"});?>" />
         <td scope="row"><?php xl('GROCERY SHOPPING','e')?></td>
       <td><select id="Evaluation_CI_ADL_GROCERY_SHOPPING" name="Evaluation_CI_ADL_GROCERY_SHOPPING">
 			<?php Mobility_status(stripslashes($obj{"Evaluation_CI_ADL_GROCERY_SHOPPING"}))	?> </select></td>
-        <td>  <input type="text" name="Evaluation_CI_ADL_OTHERS_TEXT" id="Evaluation_CI_ADL_OTHERS_TEXT" /></td>
+        <td>  <input type="text" name="Evaluation_CI_ADL_OTHERS_TEXT" id="Evaluation_CI_ADL_OTHERS_TEXT"  value="<?php echo $obj{"Evaluation_CI_ADL_OTHERS_TEXT"};?>"/></td>
         <td><select id="Evaluation_CI_ADL_OTHERS" name="Evaluation_CI_ADL_OTHERS">
 			<?php Mobility_status(stripslashes($obj{"Evaluation_CI_ADL_OTHERS"}))	?> </select></td>
       </tr>
@@ -663,8 +661,8 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
 <input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Date" id="Evaluation_COG_Oriented_Type" 
  <?php if ($obj{"Evaluation_COG_Oriented_Type"} == "Date") echo "checked";;?>/>
 <?php xl('Date','e')?>
-<input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Reason_for_Therapy" id="Evaluation_COG_Oriented_Type" 
- <?php if ($obj{"Evaluation_COG_Oriented_Type"} == "Reason_for_Therapy") echo "checked";;?>/>
+<input type="checkbox" name="Evaluation_COG_Oriented_reason" value="Reason_for_Therapy" 
+ <?php if ($obj{"Evaluation_COG_Oriented_reason"} == "Reason_for_Therapy") echo "checked";;?>/>
 <?php xl('Reason for Therapy','e')?><br />
 <?php xl('Can Follow','e')?>
 <input type="checkbox" name="Evaluation_COG_Canfollow" value="1" id="Evaluation_COG_Canfollow" 
@@ -1062,7 +1060,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
   <?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "Physician") echo "checked";;?>/>
 <?php xl('Physician','e')?>
 <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="PT/ST" id="Evaluation_OT_Evaulation_Communicated_Agreed" 
-<?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "Patient") echo "checked";;?>/>
+<?php if ($obj{"Evaluation_OT_Evaulation_Communicated_Agreed"} == "PT/ST") echo "checked";;?>/>
 
 <?php xl('PT/ST','e')?>
 <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="COTA" id="Evaluation_OT_Evaulation_Communicated_Agreed" 
@@ -1087,16 +1085,16 @@ value="<?php echo stripslashes($obj{"Evaluation_OT_Evaulation_Communicated_other
       </strong>
 
         <input type="checkbox" name="Evaluation_ASP_Home_Exercise_Initiated" id="Evaluation_ASP_Home_Exercise_Initiated" 
-        <?php if ($obj{"Evaluation_ASP_Home_Exercise_Initiated"} == "on") echo "checked";;?>/>
-<?php xl('Exercise Program Initiated','e')?>
+        <?php if ($obj{"Evaluation_ASP_Home_Exercise_Initiated"} == "on") echo "checked";?> value="on"/>
+<?php xl('Home Exercise Program Initiated','e')?>
 <input type="checkbox" name="Evaluation_ASP_Environmental_Adaptations_Discussed" id="Evaluation_ASP_Environmental_Adaptations_Discussed" 
-   <?php if ($obj{"Evaluation_ASP_Environmental_Adaptations_Discussed"} == "on") echo "checked";;?>/>
-<?php xl('Recommendations for Environmental','e')?>
+   <?php if ($obj{"Evaluation_ASP_Environmental_Adaptations_Discussed"} == "on") echo "checked";?> value="on"/>
+<?php xl('Recommendations for Environmental Adaptations Discussed','e')?>
 <input type="checkbox" name="Evaluation_ASP_Safety_Issues_Discussed" id="Evaluation_ASP_Safety_Issues_Discussed" 
-<?php if ($obj{"Evaluation_ASP_Safety_Issues_Discussed"} == "on") echo "checked";;?>/>
+<?php if ($obj{"Evaluation_ASP_Safety_Issues_Discussed"} == "on") echo "checked";?> value="on"/>
 <?php xl('Recommendations for Safety Issues Discussed','e')?>
 <input type="checkbox" name="Evaluation_ASP_Treatment_For" id="Evaluation_ASP_Treatment_For" 
-<?php if ($obj{"Evaluation_ASP_Treatment_For"} == "on") echo "checked";;?>/>
+<?php if ($obj{"Evaluation_ASP_Treatment_For"} == "on") echo "checked";?> value="on"/>
 <?php xl('Treatment for','e')?>
 <input type="text" style="width:530px" name="Evaluation_ASP_Treatment_For_text" id="Evaluation_ASP_Treatment_For_text" 
 value="<?php echo stripslashes($obj{"Evaluation_ASP_Treatment_For_text"});?>" /> 
@@ -1111,14 +1109,14 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
 <?php xl('Skilled OT is Reasonable and Necessary to','e')?></strong>
             <br />
             <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Return_to_Prior_Level" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" 
-            <?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Evaluation_Skilled_OT_Reasonable_And_Necessary_To") echo "checked";;?>/>
-<?php xl('Return Patient to Their Prior Level of Function;','e')?>
+            <?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Return_to_Prior_Level") echo "checked";?>/>
+<?php xl('Return Patient to Their Prior Level of Function','e')?>
 <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Teach_patient_for_adaptation" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" 
-<?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Teach_patient_for_adaptation") echo "checked";;?>/>
+<?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Teach_patient_for_adaptation") echo "checked";?>/>
 <?php xl('Teach patient compensatory techniques for adaptation','e')?>
 <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Train_patient_new_skills" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" 
-<?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Train_patient_new_skills") echo "checked";;?>/>
-<?php xl('Train patient in learning new skills;','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
+<?php if ($obj{"Evaluation_Skilled_OT_Reasonable_And_Necessary_To"} == "Train_patient_new_skills") echo "checked";?>/>
+<?php xl('Train patient in learning new skills','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Other','e')?>
 <input type="text" style="width:730px" name="Evaluation_Skilled_OT_Other" id="Evaluation_Skilled_OT_Other" 
  value="<?php echo stripslashes($obj{"Evaluation_Skilled_OT_Other"});?>" /></td></tr></table></td>

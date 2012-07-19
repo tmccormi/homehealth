@@ -74,6 +74,9 @@ dischargeplan_Followup_Recommendations ='".$_POST["dischargeplan_Followup_Recomm
 dischargeplan_Goals_identified_on_careplan='".$_POST["dischargeplan_Goals_identified_on_careplan"]."',
 dischargeplan_Goals_notmet_explanation ='".$_POST["dischargeplan_Goals_notmet_explanation"]."',
 dischargeplan_Additional_Comments ='".$_POST["dischargeplan_Additional_Comments"]."'
+dischargeplan_md_printed_name='".$_POST["dischargeplan_md_name"]."'
+dischargeplan_md_signature ='".$_POST["dischargeplan_md_signature"]."'
+dischargeplan_md_date ='".$_POST["dischargeplan_md_date"]."'
 where id=$id");
 }
 $_SESSION["encounter"] = $encounter;

@@ -577,12 +577,11 @@ value="<?php echo stripslashes($obj{"careplan_STO_Safety_Techniques_Time"});?>">
 <td>
 <input type="checkbox" name="careplan_LTO_Improve_mobility" id="careplan_LTO_Improve_mobility" 
             <?php if ($obj{"careplan_LTO_Improve_mobility"} == "on") echo "checked";;?>/>
-            <?php xl('I','e')?></label>
           <?php xl('Improve mobility in','e')?>
 <input type="checkbox" name="careplan_LTO_Improve_mobility_Type" value="home" id="careplan_LTO_Improve_mobility_Type" 
             <?php if ($obj{"careplan_LTO_Improve_mobility_Type"} == "home") echo "checked";;?>/>
-           <?php xl('home','e')?></label>
-          <label>
+           <?php xl('home','e')?>
+          
             <input type="checkbox" name="careplan_LTO_Improve_mobility_Type" value="community" id="careplan_LTO_Improve_mobility_Type" 
             <?php if ($obj{"careplan_LTO_Improve_mobility_Type"} == "community") echo "checked";;?>/>          
             <?php xl('community','e')?>
@@ -693,7 +692,7 @@ value="<?php echo stripslashes($obj{"careplan_LTO_Improve_independence_safety_ho
             <?php xl('Skilled Nursing','e')?></label>
           <label>
             <input type="checkbox" name="careplan_PT_communicated_and_agreed_upon_by" value="Caregiver/Family" id="careplan_PT_communicated_and_agreed_upon_by" 
-             <?php if ($obj{"Reassessment_Temperature_type"} == "Caregiver/Family") echo "checked";;?>/>
+             <?php if ($obj{"careplan_PT_communicated_and_agreed_upon_by"} == "Caregiver/Family") echo "checked";;?>/>
             <?php xl('Caregiver/Family','e')?></label>
           <label>
             <input type="checkbox" name="careplan_PT_communicated_and_agreed_upon_by" value="Case Manager" id="careplan_PT_communicated_and_agreed_upon_by" 

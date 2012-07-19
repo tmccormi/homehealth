@@ -61,25 +61,12 @@ formHeader("Form: visit_discharge");
 	  }	 
 	</script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-<style type="text/css">
-    .formtable {
-        font-size:14px;
-		line-height: 24px;
-    }    
-	.formtable tr td {
-		line-height: 24px;
-    }
-</style>
 </head>
 
 <body>
 <form method=post action="<?php echo $rootdir;?>/forms/visit_discharge_test/save.php?mode=new" name="visitdischarge">
 <h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT/DISCHARGE NOTE','e')?> </h3>
-<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+
  <br></br>
 <table width="100%" padding="2px"border="1" cellpadding="2px" class="formtable">
   <tr>
@@ -179,8 +166,8 @@ formHeader("Form: visit_discharge");
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e');?> </strong>
 	<input type="text" id="icd" size="15"/>
 	<input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
-    <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem" style="display:none"></select> </div>
+<span id="med_icd9">
+    <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem" style="display:none"></select> </span>
 
   </tr>
   <tr>
@@ -443,9 +430,9 @@ formHeader("Form: visit_discharge");
             <?php xl('Goals identified on care plan were','e');?></label>
             <input type="checkbox" name="dischargeplan_Recommendations_met" value="met" id="dischargeplan_Recommendations_met" />
             <?php xl('met','e');?>
-            <input type="checkbox" name="dischargeplan_Recommendations_met" value="partially met" id="dischargeplan_Recommendations_partially" />
+            <input type="checkbox" name="dischargeplan_Recommendations_met" value="partially met" id="dischargeplan_Recommendations_met" />
             <?php xl('partially met','e');?>
-  <input type="checkbox" name="dischargeplan_Recommendations_met" value="not met " id="dischargeplan_Recommendations_not_met" />
+  <input type="checkbox" name="dischargeplan_Recommendations_met" value="not met" id="dischargeplan_Recommendations_met" />
             <?php xl('not met (If goals partially met or not met please explain)','e');?>
   <input type="text" name="dischargeplan_Recommendations_not_met_note" style="width:910px" id="dischargeplan_Recommendations_not_met_note" />
             </td>
@@ -467,8 +454,31 @@ formHeader("Form: visit_discharge");
 <table cellpadding="2px" border="1" width="100%" class="formtable"><tr><td><table width="100%" border="0" class="formtable">
 <tr><td colspan=3><strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong></td></tr>
 <tr><td colspan=3><strong><?php xl('By Signing below, MD agrees with discharge from Occupational Therapy services','e');?></strong></td></tr>
-<tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
+<tr><td width='35%'>
+<strong><?php xl('MD PRINTED NAME','e');?></strong>
+<input type="text" name="dischargeplan_md_name" value="<?php doctorname();?>" readonly>
+</td><td width='35%'>
+<strong><?php xl('MD Signature','e');?></strong>
+<input type="text" name="dischargeplan_md_signature" value="">
+</td><td>
+<strong><?php xl('Date','e');?></strong>
+<input type="text" name="dischargeplan_md_date" value="" id='dischargeplan_md_date'
+    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+    <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
+    id='img_curr_date2' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    title='<?php xl('Click here to choose a date','e'); ?>'>
+    <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"dischargeplan_md_date", ifFormat:"%Y-%m-%d", button:"img_curr_date2"});
+   </script>
+</td></tr></table>
+</td></tr></table>
 </table>
+<a href="javascript:top.restoreSession();document.visitdischarge.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 </body>
 </html>

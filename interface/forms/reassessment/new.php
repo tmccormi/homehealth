@@ -21,7 +21,6 @@ formHeader("Form: reassessment");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -81,29 +80,25 @@ function changeICDlist(dx,code,rootdir)
         <?php xl('19th Visit','e')?></label><label>
         <input type="checkbox" name="Reassessment_Visit_Count" value="Other Visit" id="Reassessment_Visit_Count" />
         <?php xl('Other Visit','e')?></label></h3>
-		<a href="javascript:top.restoreSession();document.reassessment.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+		
  <br></br> 
-<table align="center" border="1" cellpadding="0px" cellspacing="0px">
+<table align="center" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="0px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
       <tr>
 
-        <td align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
-        <td width="13%" align="center" valign="top"><input type="text"
+        <td width="10%" align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
+        <td width="15%" align="center" valign="top"><input type="text"
 					id="patient_name" value="<?php patientName()?>"
 					readonly/></td>
-        <td align="center"><strong><?php xl('MR#','e')?></strong></td>
-        <td align="center" valign="top" class="bold">
-        <input type="text" name="mr" id="mr" size="7px" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
-        <td width="70"><strong><?php xl('Time In','e');?></strong></td>
-        <td><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
-        <td width="70"><strong><?php xl('Time Out','e');?></strong> <br /></td>
-        <td><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
-	<td align="center"><strong><?php xl('DATE','e')?></strong></td>
+        <td width="4%" align="center"><strong><?php xl('MR#','e')?></strong></td>
+        <td width="10%" align="center" valign="top" class="bold">
+        <input type="text" name="mr" id="mr" size="10px" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
+        <td width="6%"><strong><?php xl('Time In','e');?></strong></td>
+        <td width="9%" ><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
+        <td width="7%"><strong><?php xl('Time Out','e');?></strong> <br /></td>
+        <td width="9%"><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
+	<td width="7%" align="center"><strong><?php xl('Reassess Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
@@ -119,7 +114,8 @@ function changeICDlist(dx,code,rootdir)
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+<strong><?php xl('Vital Signs','e')?></strong><br>
 <?php xl('Pulse','e')?>
   <label for="pulse"></label>
   <input type="text"  size="3px" name="Reassessment_Pulse" id="Reassessment_Pulse" />
@@ -155,7 +151,7 @@ function changeICDlist(dx,code,rootdir)
   <?php xl('Left','e')?></label>
 <label><input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Sitting" id="sitting" />
   <?php xl('Sitting','e')?></label>
-<label><input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing " id="standing" />
+<label><input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing" id="standing" />
  <?php xl('Standing','e')?> </label>
 <label>
   <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Lying" id="lying" />
@@ -166,7 +162,7 @@ function changeICDlist(dx,code,rootdir)
 <?php xl('*Physician ordered','e')?></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 
 <strong><?php xl('Pain','e')?></strong>
   <input type="checkbox" name="Reassessment_VS_Pain" value="No Pain" id="Reassessment_VS_Pain" />
@@ -184,7 +180,7 @@ function changeICDlist(dx,code,rootdir)
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="50%" valign="top" scope="row"><strong><?php xl('HOMEBOUND REASON','e')?><br />
         </strong>
@@ -221,24 +217,29 @@ function changeICDlist(dx,code,rootdir)
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9"> <select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none">
-</select></div>
+<span id="med_icd9"> <select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none">
+</select></span>
 
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('ADL/IADL REASSESSMENT','e')?></strong><br />
+    <strong><?php xl('Scale','e')?>&nbsp;</strong>
+    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required.','e')?><br>
+   <strong><?php xl('Balance Scale','e')?>&nbsp;</strong>
+   <?php xl('G=Good, F=Fair, P=Poor','e')?>
+
     </td></tr></table></td>
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px" class="formtable">
       <tr>
         <td width="25%" align="center" scope="row"><strong><?php xl('Self Mgt. Skills','e')?></strong></td>
         <td width="13%" align="center"><strong><?php xl('Initial','e')?> </strong><strong>Status</strong></td>
@@ -257,9 +258,9 @@ function changeICDlist(dx,code,rootdir)
         <select name="Reassessment_ADL_Feeding_Current_Status" id="Reassessment_ADL_Feeding_Current_Status">
         <?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Feeding_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Feeding_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Feeding_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Feeding_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Feeding_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Feeding_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -269,9 +270,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Initial_Status" id="Reassessment_ADL_Grooming_Oral_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Grooming_Oral_Current_Status" id="Reassessment_ADL_Grooming_Oral_Current_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Grooming_Oral_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Toileting_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -281,9 +282,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Toileting_Initial_Status" id="Reassessment_ADL_Toileting_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Toileting_Current_Status" id="Reassessment_ADL_Toileting_Current_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Toileting_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
 
@@ -293,9 +294,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Bath_shower_Initial_Status" id="Reassessment_ADL_Bath_shower_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Bath_shower_Current_Status" id="Reassessment_ADL_Bath_shower_Current_Status"><?php Mobility_status($GLOBALS['Selected'])	?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Bath_shower_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -305,9 +306,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Dressing_UB_LB_Current_Status" id="Reassessment_ADL_Dressing_UB_LB_Current_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
 
         <td><input type="checkbox" name="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Dressing_UB_LB_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -317,9 +318,9 @@ function changeICDlist(dx,code,rootdir)
 
         <td align="center"><strong><select name="Reassessment_ADL_Functional_Mobility_Current_Status" id="Reassessment_ADL_Functional_Mobility_Current_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Functional_Mobility_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -329,9 +330,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Home_Mgt_Initial_Status" id="Reassessment_ADL_Home_Mgt_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Home_Mgt_Current_Status" id="Reassessment_ADL_Home_Mgt_Current_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Home_Mgt_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -341,9 +342,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_Transportation_Initial_Status" id="Reassessment_ADL_Transportation_Initial_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_Transportation_Current_Status" id="Reassessment_ADL_Transportation_Current_Status"><?php Mobility_status($GLOBALS['Selected'])?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_Transportation_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_Transportation_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?> &nbsp;
   <input type="checkbox" name="Reassessment_ADL_Transportation_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_Transportation_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_Transportation_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_Transportation_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
 
@@ -353,9 +354,9 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_STANDING_BALANCE_Initial_Status" id="Reassessment_ADL_STANDING_BALANCE_Initial_Status"><?php Balance_skills($GLOBALS['Selected']) ?></select></strong></td>
         <td align="center"><strong><select name="Reassessment_ADL_STANDING_BALANCE_Current_Status" id="Reassessment_ADL_STANDING_BALANCE_Current_Status"><?php Balance_skills($GLOBALS['Selected']) ?></select></strong></td>
         <td><input type="checkbox" name="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_STANDING_BALANCE_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
@@ -365,16 +366,16 @@ function changeICDlist(dx,code,rootdir)
         <td align="center"><strong><select name="Reassessment_ADL_SITTING_BALANCE_Current_Status" id="Reassessment_ADL_SITTING_BALANCE_Current_Status"><?php Balance_skills($GLOBALS['Selected']) ?></select></strong></td>
 
         <td><input type="checkbox" name="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" />
-<?php xl('N/A','e')?>
+<?php xl('N/A','e')?>&nbsp;
   <input type="checkbox" name="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" value="Goal met" id="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" />
-<?php xl('Goal met','e')?>
+<?php xl('Goal met','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" value="Goals Not Met" id="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" />
 <?php xl('Goals Not Met (see Goals/Changed Adapted)','e')?></td>
       </tr>
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 
 	<input type="checkbox" name="Reassessment_Assistive_Devices" value="N/A" id="Reassessment_Assistive_Devices" />
 <strong><?php xl('N/A','e')?></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -416,11 +417,11 @@ function changeICDlist(dx,code,rootdir)
 
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('ENVIRONMENTAL BARRIERS/SAFETY ISSUES','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<input type="checkbox" name="Reassessment_Environmental_Barriers" id="Reassessment_Environmental_Barriers" value="No Issues"/>
     <label for="checkbox"><?php xl('No environmental barriers in home','e')?>  
       <input type="checkbox" name="Reassessment_Environmental_Barriers" id="Reassessment_Environmental_Barriers" value="Issues exists"/> 
@@ -429,11 +430,11 @@ function changeICDlist(dx,code,rootdir)
     <input type="text" style="width:910px" name="Reassessment_Environmental_Issues_Notes" id="Reassessment_Environmental_Issues_Notes" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('COMPENSATORY SKILLS','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1"  cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1"  cellspacing="0px" cellpadding="2px" class="formtable">
 
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
@@ -521,7 +522,7 @@ function changeICDlist(dx,code,rootdir)
 
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<input type="checkbox" name="Reassessment_Compensatory_NA" id="Reassessment_Compensatory_NA" />
     <label for="checkbox5">
 <strong><?php xl('N/A','e')?></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -532,18 +533,18 @@ function changeICDlist(dx,code,rootdir)
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
-      <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Reassessment_MS_ROM_All_Muscle_WFL" />
+      <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL" id="Reassessment_MS_ROM_All_Muscle_WFL" />
 <?php xl('All Muscle Strength is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="checkbox" name="Reassessment_MS_ROM_ALL_ROM_WFL" value="All ROM is WFL" id="Reassessment_MS_ROM_ALL_ROM_WFL" />
+<input type="checkbox" name="Reassessment_MS_ROM_ALL_ROM_WFL" id="Reassessment_MS_ROM_ALL_ROM_WFL" />
 <?php xl('All ROM is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="checkbox" name="Reassessment_MS_ROM_Following_Problem_areas" value="The following problem areas are" id="Reassessment_MS_ROM_Following_Problem_areas" />
+<input type="checkbox" name="Reassessment_MS_ROM_Following_Problem_areas" id="Reassessment_MS_ROM_Following_Problem_areas" />
 <?php xl('The following problem areas are','e')?></strong></td></tr></table></td>
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px" class="formtable">
       <tr>
         <td rowspan="2" align="center" scope="row"><strong><?php xl('INITIAL  PROBLEM  AREA(S)','e')?></strong></td>
         
@@ -688,7 +689,7 @@ function changeICDlist(dx,code,rootdir)
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr>
 	<td><input type="checkbox" name="Reassessment_MS_ROM_NA" value="N/A" id="Reassessment_MS_ROM_NA" />
 <strong><?php xl('N/A','e')?></strong>&nbsp;&nbsp;&nbsp;&nbsp;
 <strong><?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with','e')?></strong>
@@ -702,7 +703,7 @@ function changeICDlist(dx,code,rootdir)
 </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable">
 	<tr><td><strong><?php xl('REASSESSMENT OVERVIEW','e')?></strong></td></tr></table></td>
 
   </tr>
@@ -710,7 +711,7 @@ function changeICDlist(dx,code,rootdir)
     <td scope="row"></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<input type="checkbox" name="Reassessment_RO_Patient_Prior_Level_Function" id="Reassessment_RO_Patient_Prior_Level_Function" 
 	value="Yes" />
     <label for="checkbox13"><?php xl('Yes','e')?></label>
@@ -751,7 +752,7 @@ function changeICDlist(dx,code,rootdir)
     </strong></label></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong>
     <?php xl('*Goals Changed/Adapted for ADLs','e')?></strong> <strong>
       <input type="text" style="width:640px" name="Reassessment_Goals_Changed_Adapted_For_ADLs"  id="Reassessment_Goals_Changed_Adapted_For_ADLs" />
       <br />
@@ -771,7 +772,7 @@ function changeICDlist(dx,code,rootdir)
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong>
 <?php xl('OT continued treatment plan was communicated to and agreed upon by ','e')?></strong>
       <input type="checkbox" name="Reassessment_OT_communicated_and_agreed_upon_by" value="Patient" id="Reassessment_OT_communicated_and_agreed_upon_by" />
 <?php xl('Patient','e')?>
@@ -793,7 +794,7 @@ function changeICDlist(dx,code,rootdir)
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong>
 
 	<?php xl('ADDITIONAL  SERVICES PROVIDED  THIS VISIT','e')?></strong><br> 
 	<input type="checkbox" name="Reassessment_ADDITIONAL_SERVICES_Home_Exercise" id="Reassessment_ADDITIONAL_SERVICES_Home_Exercise" />
@@ -815,13 +816,18 @@ function changeICDlist(dx,code,rootdir)
       </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellpadding="5px" cellspacing="0px"><tr><td width="50%"><strong>
+    <td scope="row"><table width="100%" border="1px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td width="50%"><strong>
     <?php xl('Therapist Performing Reassessment(Name and Title)','e')?></strong></td>
      
     <td width="50%"><strong><?php xl('Electronic Signature','e')?></strong></td></tr></table></td>
 
   </tr>
 </table>
+<a href="javascript:top.restoreSession();document.reassessment.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 </body>
 </html>

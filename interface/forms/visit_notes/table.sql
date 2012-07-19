@@ -100,5 +100,8 @@ visitnote_No_further_visits varchar(100),
 treatment_Plan varchar(100),
 Additional_Treatment varchar(100),
 issues_Communication varchar(100),
-supervisor_visit varchar(100)
+supervisor_visit varchar(100),
+visitnote_Supervisory_visit_Observed varchar(100),
+visitnote_Supervisory_visit_Teaching_Training varchar(100),
+visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100)
 ) ENGINE=MyISAM;	

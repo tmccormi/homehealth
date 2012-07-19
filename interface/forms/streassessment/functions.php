@@ -47,6 +47,35 @@ foreach($Comm_status['status'] as $stat)
 }
 }
 
+function timeDropDown($sel)
+{
+echo "<option value='' selected='selected'>"."Please Select...". "</option>\n";
+          $start = strtotime('9:00am');
+          $end = strtotime('9:00pm');
+          $selected="";
+          if($sel!="new")
+          {
+            for ($i = $start; $i <= $end; $i += 900)
+            {
+                if($sel== date('g:i a', $i))
+                {
+                        $selected= "selected='selected'";
+                }
+                echo "<option value='".date('g:i a', $i)."'". $selected.">" . date('g:i a', $i).'</option>';
+                $selected="";
+            }
+          }
+          else
+          {
+            for ($i = $start; $i <= $end; $i += 900)
+            {
+                echo "<option value='".date('g:i a', $i)."'".">" . date('g:i a', $i).'</option>';
+            }
+          }
+}
+
+
+
 
 
 ?>

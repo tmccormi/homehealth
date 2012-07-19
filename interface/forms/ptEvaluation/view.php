@@ -139,10 +139,8 @@ include_once("$srcdir/api.inc");
 $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/ptEvaluation/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="evaluation">
-<h3 align="center"><?php xl('PHYSICAL THERAPY EVALUATION','e'); ?></h3></span><br></br>
+<h3 align="center"><?php xl('PHYSICAL THERAPY EVALUATION','e'); ?></h3></span>
 
-
-<br></br>
 <table align="center"  border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
     <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="5px" class="formtable">
@@ -369,7 +367,7 @@ $obj = formFetch("forms_pt_Evaluation", $_GET["id"]);
           <td align="center">
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
 {
 echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention'>"; 
@@ -380,13 +378,13 @@ echo "</select>";
  { 
  echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention' style='display:none'> </select>";
  }?>
-</div>
+</span>
 </td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 <input type="text" id="icd9" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<div id="trmnt_icd9">
+<span id="trmnt_icd9">
 <?php if ($obj{"Evaluation_TREATMENT_DX_PT_Problem"} != "")
 {
 echo "<select id='Evaluation_TREATMENT_DX_PT_Problem' name='Evaluation_TREATMENT_DX_PT_Problem'>"; 
@@ -397,7 +395,7 @@ echo "</select>";
  { 
  echo "<select id='med_dx_icd9' name='med_dx_icd9' style='display:none'> </select>";
  }?>
-</div>
+</span>
 
 </td>
         </tr>
@@ -518,7 +516,7 @@ echo "</select>";
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
 <?php xl('CURRENT MOBILITY STATUS','e')?> <br/><?php xl('Scale','e')?></strong>
-<?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no','e')?>
+<?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required','e')?>
 </td></tr></table></td></tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
@@ -725,7 +723,7 @@ echo "</select>";
         <input type="checkbox" name="Evaluation_WS_Surfaces" value="Uneven" id="Evaluation_WS_Surfaces" 
 	   <?php if ($obj{"Evaluation_WS_Surfaces"} == "Uneven")  echo "checked";;?>/>
         <?php xl('Uneven','e')?>      
-     &nbsp;&nbsp;&nbsp; 
+     <br>
         <?php xl('Other','e')?>
         <input type="text" style="width:35%" id="Evaluation_WS_Surfaces_other" name="Evaluation_WS_Surfaces_other" 
      value="<?php echo stripslashes($obj{"Evaluation_WS_Surfaces_other"});?>"/>
@@ -822,6 +820,7 @@ echo "</select>";
   </tr>
   <tr>
     <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
+      <tr><td colspan="8"><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr>
       <tr>
         <td align="center" scope="row">&nbsp;</th>
           <strong><?php xl('SKILL','e')?></strong>
@@ -1198,10 +1197,10 @@ Calendar.setup({inputField:"Evaluation_approximate_next_visit_date", ifFormat:"%
       </strong>
         <input type="checkbox" name="Evaluation_ASP_Home_Exercise_Initiated" id="Evaluation_ASP_Home_Exercise_Initiated"  
 <?php if ($obj{"Evaluation_ASP_Home_Exercise_Initiated"} == "on")  echo "checked";;?>/>
-    <?php xl('Exercise Program Initiated','e')?>
+    <?php xl('Home Exercise Program Initiated','e')?>
     <input type="checkbox" name="Evaluation_ASP_Falls_Management_Discussed" id="Evaluation_ASP_Falls_Management_Discussed" 
 <?php if ($obj{"Evaluation_ASP_Falls_Management_Discussed"} == "on")  echo "checked";;?>/>
-    <?php xl('Recommendations for Environmental','e')?>
+    <?php xl('Falls Management Discussed','e')?>
     <input type="checkbox" name="Evaluation_ASP_Safety_Issues_Discussed" id="Evaluation_ASP_Safety_Issues_Discussed"  
 <?php if ($obj{"Evaluation_ASP_Safety_Issues_Discussed"} == "on")  echo "checked";;?>/>
     <?php xl('Recommendations for Safety Issues Discussed','e')?>

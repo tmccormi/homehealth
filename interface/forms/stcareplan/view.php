@@ -238,22 +238,22 @@ value="<?php echo stripslashes($obj{"careplan_SOCDate"});?>"  readonly/>
     </table></td>
   </tr>
   <tr>
-    <td border="1" scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable">
+    <td border="1" scope="row"><table width="100%" border="1px" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td valign="top" scope="row"><label>
           <input type="checkbox" name="careplan_ST_Decline_in_Oral_Stage_Skills" id="careplan_ST_Decline_in_Oral_Stage_Skills" 
           <?php if ($obj{"careplan_ST_Decline_in_Oral_Stage_Skills"} == "on") echo "checked";;?>/>
           </label>
           <?php xl('Decline in Oral Stage Skills','e')?><br /></td>
-        <td valign="top"><input name="careplan_ST_Decline_in_Oral_Stage_Skills_Notes" type="text" style="width:250px" 
+        <td valign="top"><input name="careplan_ST_Decline_in_Oral_Stage_Skills_Notes" type="text" 
          value="<?php echo stripslashes($obj{"careplan_ST_Decline_in_Oral_Stage_Skills_Notes"});?>" />
 </td>
- <td valign="top" scope="row" width="15%">
+ <td valign="top" scope="row">
       <input type="checkbox" name="careplan_ST_Decreased_Comprehension" id="careplan_ST_Decreased_Comprehension" 
 <?php if ($obj{"careplan_ST_Decreased_Comprehension"} == "on") echo "checked";;?>/>
       <?php xl('Decreased Comprehension in','e')?>
           </td>
-        <td valign="top"><input type="text" style="width:300px" name="careplan_ST_Decreased_Comprehension_Note" id="careplan_ST_Decreased_Comprehension_Note" 
+        <td valign="top"><input type="text" name="careplan_ST_Decreased_Comprehension_Note" id="careplan_ST_Decreased_Comprehension_Note" 
  value="<?php echo stripslashes($obj{"careplan_ST_Decreased_Comprehension_Note"});?>" /></td>
      </tr>
 <tr>
@@ -261,12 +261,12 @@ value="<?php echo stripslashes($obj{"careplan_SOCDate"});?>"  readonly/>
         <?php if ($obj{"careplan_ST_Decrease_in_Pharyngeal_Stage"} == "on") echo "checked";;?>/>
           <label for="techniques in others">
           <?php xl('Decrease in Pharyngeal Stage Skills','e')?></label></td>
-        <td><input type="text" style="width:250px" name="careplan_ST_Decrease_in_Pharyngeal_Stage_Note" id="careplan_ST_Decrease_in_Pharyngeal_Stage_Note" 
+        <td><input type="text" name="careplan_ST_Decrease_in_Pharyngeal_Stage_Note" id="careplan_ST_Decrease_in_Pharyngeal_Stage_Note" 
         value="<?php echo stripslashes($obj{"careplan_ST_Decrease_in_Pharyngeal_Stage_Note"});?>" /></td>
       <td valign="top" scope="row">
 	<?php xl('Others','e')?> </td>
 	  <td>
-	  <input style="width:300px" type="text" name="careplan_ST_intervention_Other" id="careplan_ST_intervention_Other" 
+	  <input  type="text" name="careplan_ST_intervention_Other" id="careplan_ST_intervention_Other" 
     value="<?php echo stripslashes($obj{"careplan_ST_intervention_Other"});?>" />
           </td>
       	</tr>
@@ -276,12 +276,12 @@ value="<?php echo stripslashes($obj{"careplan_SOCDate"});?>"  readonly/>
            <?php if ($obj{"careplan_ST_Decline_in_Verbal_Expression"} == "on") echo "checked";;?>/>
         <?php xl('Decline in Verbal Expression','e')?></label> </td>
         <td valign="top"><label for="ROM in2"></label>
-          <input type="text" style="width:250px" name="careplan_ST_Decline_in_Verbal_Expression_Note" id="careplan_ST_Decline_in_Verbal_Expression_Note" 
+          <input type="text"  name="careplan_ST_Decline_in_Verbal_Expression_Note" id="careplan_ST_Decline_in_Verbal_Expression_Note" 
           value="<?php echo stripslashes($obj{"careplan_ST_Decline_in_Verbal_Expression_Note"});?>" /></td>
 	    <td valign="top" scope="row">
 	<?php xl('Others','e')?> </td>
 	  <td>
-	  <input style="width:300px" type="text" name="careplan_ST_intervention_Other1" id="careplan_ST_intervention_Other1" 
+	  <input  type="text" name="careplan_ST_intervention_Other1" id="careplan_ST_intervention_Other1" 
      value="<?php echo stripslashes($obj{"careplan_ST_intervention_Other1"});?>" />
           </td>
       </tr> 
@@ -292,9 +292,10 @@ value="<?php echo stripslashes($obj{"careplan_SOCDate"});?>"  readonly/>
         <?php if ($obj{"careplan_ST_Decline_in_NonVerbal_Expression"} == "on") echo "checked";;?>/>
           <label for="checkbox"><?php xl('Decline in Non-Verbal Expression','e')?></label></td>
         <td valign="top">
-        <input type="text" style="width:250px" name="careplan_ST_Decline_in_NonVerbal_Expression_Note" id="careplan_ST_Decline_in_NonVerbal_Expression_Note" 
+        <input type="text" name="careplan_ST_Decline_in_NonVerbal_Expression_Note" id="careplan_ST_Decline_in_NonVerbal_Expression_Note" 
          value="<?php echo stripslashes($obj{"careplan_ST_Decline_in_NonVerbal_Expression_Note"});?>" /></td>
-        </tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+		</tr>
      
     </table></td>
   </tr>
@@ -586,7 +587,7 @@ value="<?php echo stripslashes($obj{"careplan_Additional_Comments"});?>" /></td>
             <?php xl('Skilled Nursing','e')?></label>
           <label>
             <input type="checkbox" name="careplan_PT_communicated_and_agreed_upon_by" value="Caregiver/Family" id="careplan_PT_communicated_and_agreed_upon_by" 
-             <?php if ($obj{"Reassessment_Temperature_type"} == "Caregiver/Family") echo "checked";;?>/>
+             <?php if ($obj{"careplan_PT_communicated_and_agreed_upon_by"} == "Caregiver/Family") echo "checked";;?>/>
             <?php xl('Caregiver/Family','e')?></label>
           <label>
             <input type="checkbox" name="careplan_PT_communicated_and_agreed_upon_by" value="Case Manager" id="careplan_PT_communicated_and_agreed_upon_by" 

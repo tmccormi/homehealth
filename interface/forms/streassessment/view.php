@@ -135,6 +135,7 @@ $obj = formFetch("forms_st_Reassessment", $_GET["id"]);
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+<strong><?php xl('VITAL SIGNS','e')?></strong><br>
 <?php xl('Pulse','e')?>
   <label for="pulse"></label>
   <input type="text" style="width:5%" name="Reassessment_Pulse" id="Reassessment_Pulse" value="<?php echo stripslashes($obj{"Reassessment_Pulse"});?>" />
@@ -286,7 +287,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
         <td width="20%" align="center" scope="row"><strong><?php xl('Swallow/Communication Skills','e')?></strong></td>
         <td width="15%" align="center"><strong><?php xl('Initial','e')?> </strong><strong><?php xl('Status','e')?></strong></td>
         <td width="15%" align="center"><strong><?php xl('Current Status','e')?></strong></td>
-        <td width="50%" align="center"><strong><?php xl('Describe progress related to mobility skills','e')?></strong><br />
+        <td width="50%" align="center"><strong><?php xl('Describe progress related to current skills','e')?></strong><br />
          </td>
       </tr>
       <tr>

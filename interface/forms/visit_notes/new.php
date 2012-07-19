@@ -70,15 +70,12 @@ formHeader("Form: visit_notes");
 
 <body><h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT NOTE','e'); ?></h3>
 <form method=post action="<?php echo $rootdir;?>/forms/visit_notes/save.php?mode=new" name="visitnotes">
-<a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e'); ?>]</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+
 <br></br>
-<table width="100%" border="1" cellpadding="2px">
+<table width="100%" border="1" cellpadding="2px" class="formtable">
   <tr>
     <td scope="row">
-    <table width="100%" border="1" cellpadding="2px">
+    <table width="100%" border="1" cellpadding="2px" class="formtable">
       <tr>
         <td scope="row"><strong><?php xl('Patient Name','e'); ?></strong></td>
         <td align="center" valign="top">
@@ -174,14 +171,14 @@ formHeader("Form: visit_notes");
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
-  <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem" style="display:none"> </select> </div>
+<span id="med_icd9">
+  <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem" style="display:none"> </select> </span>
 </td>
   </tr>
   <tr>
-    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px">
+    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
         <tr>
-          <td valign="top" scope="row"><table width="100%">
+          <td valign="top" scope="row"><table width="100%" class="formtable">
               <tr>
                 <td><label>
                   <strong><?php xl('PATIENT CONTINUES TO BE HOMEBOUND DUE TO','e'); ?></strong><br />
@@ -209,7 +206,7 @@ formHeader("Form: visit_notes");
               </tr>
             </table>
           <td valign="top">
-            <table width="100%">
+            <table width="100%" class="formtable">
               <tr>
                 <td><label>
                   <input type="checkbox" name="visitnote_Pat_Homebound_mobility_ambulation" id="visitnote_Pat_Homebound_mobility_ambulation" />
@@ -245,10 +242,10 @@ formHeader("Form: visit_notes");
 <br /></td>
   </tr>
   <tr>
-    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px">
+    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
       <tr valign="top">
         <td scope="row">
-          <table width="100%">
+          <table width="100%" class="formtable">
             <tr>
               <td><label>
                 <input type="checkbox" name="visitnote_Home_Safety_Evaluation" id="visitnote_Home_Safety_Evaluation" />
@@ -282,7 +279,7 @@ formHeader("Form: visit_notes");
           </table>
         </td>
         <td>
-          <table width="100%">
+          <table width="100%" class="formtable">
             <tr>
               <td><label>
                 <input type="checkbox" name="visitnote_Therapeutic_Exercises" id="visitnote_Therapeutic_Exercises" />
@@ -311,7 +308,7 @@ formHeader("Form: visit_notes");
           </table>
         </form></td>
         <td>
-          <table width="100%">
+          <table width="100%" class="formtable">
             <tr>
               <td><label>
                 <input type="checkbox" name="visitnote_Teach_Home_Fall_Safety_Precautions" id="visitnote_Teach_Home_Fall_Safety_Precautions" />
@@ -338,11 +335,12 @@ formHeader("Form: visit_notes");
     <td valign="top" scope="row"><strong><?php xl('SPECIFIC TRAINING THIS VISIT','e'); ?></strong><br>
       <textarea name="visitnote_Specific_Training_Visit" id="visitnote_Specific_Training_Visit" cols="118" rows="2"></textarea>
       <br><strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
-      <input type="checkbox" name="visitnote_changes_in_medications_Yes"  id="visitnote_changes_in_medications_Yes" />
+      <input type="checkbox" name="visitnote_changes_in_medications_Yes"  id="visitnote_changes_in_medications_Yes" value="Yes"/>
 <?php xl('Yes','e'); ?>
-<input type="checkbox" name="visitnote_changes_in_medications_No" id="visitnote_changes_in_medications_No" />
+<input type="checkbox" name="visitnote_changes_in_medications_Yes" id="visitnote_changes_in_medications_No" value="No"/>
 <?php xl('No','e'); ?>
-      <br />     <?php xl('If yes, update medication profile','e'); ?> </strong><br />
+
+<br/> <?php xl('If yes, update medication profile','e'); ?> </strong><br />
     </td>
   </tr>
   <tr>
@@ -529,10 +527,18 @@ formHeader("Form: visit_notes");
 <input type="checkbox" name="supervisor_visit" value="Not Present" id="visitnote_Supervisorvisit_Not_Present" />
 <?php xl('Not Present','e'); ?>
 <input type="checkbox" name="supervisor_visit" value="Contacted visit" id="visitnote_Supervisorvisit_Contacted_regarding_visit" />
-<?php xl('Contacted regarding visit','e'); ?></td>
+<?php xl('Contacted regarding visit','e'); ?>
+<br><label> <?php xl('Observed','e')?> </label>
+<input type="text" style="width:40%"  name="visitnote_Supervisory_visit_Observed" id="visitnote_Supervisory_visit_Observed" />
+<label> <?php xl('Teaching/Training','e')?> </label>
+<input type="text" style="width:37%"  name="visitnote_Supervisory_visit_Teaching_Training" id="visitnote_Supervisory_visit_Teaching_Training" />
+<label> <?php xl('Patient/Family Discussion','e')?> </label>
+<input type="text" style="width:40%"  name="visitnote_Supervisory_visit_Patient_Family_Discussion" id="visitnote_Supervisory_visit_Patient_Family_Discussion" />
+
+</td>
   </tr>
   <tr>
-    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px">
+    <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
       <tr>
         <td width="50%" scope="row"><strong><?php xl('Therapist Signature ','e'); ?></strong><?php xl('(Name/Title)','e'); ?></td>
         <td width="50%"><strong><?php xl('Electronic Signature','e'); ?></strong></td>
@@ -540,6 +546,11 @@ formHeader("Form: visit_notes");
     </table></td>
   </tr>
   </table>
+  <a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e'); ?>]</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+
  </form>
 </body>
 </html>

@@ -12,13 +12,6 @@ formHeader("Form: careplan");
 .bold {
 	font-weight: bold;
 }
-    .formtable {
-        font-size:14px;
-		line-height: 24px;
-    }    
-	.formtable tr td {
-		line-height: 24px;
-    }
 </style>
 <style type="text/css">
 @import url(<?php echo $GLOBALS['webroot']?>/library/dynarch_calendar.css);</style>
@@ -91,11 +84,7 @@ formHeader("Form: careplan");
 		<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
-		<a href="javascript:top.restoreSession();document.careplan.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+		
  <br> <br/>
 		<table width="100%" border="1" cellpadding="2px" class="formtable">
 			<tr>
@@ -126,18 +115,18 @@ formHeader("Form: careplan");
 
 			</tr>
 			<tr>
-				<td width="20%" align="center" valign="top" scope="row">
+				<td width="20%" align="left" valign="top" scope="row">
 				<strong><?php xl('Med Dx/ Reason for OT intervention','e')?>
 				</strong></td>
-				<td width="30%" colspan="2" align="center" valign="top" class="bold">
+				<td width="30%" colspan="2" align="left" valign="top" class="bold">
 			<input type="text" id="icd" size="15"/>
 				<input type="button" value="Search" onclick="javascript:changeICDlist(med_dx_icd9,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <div id="med_icd9">
 				<select id="med_dx_icd9" name="med_dx_icd9" style="display:none">					
 				</select></div>
 </td>
-				<td width="20%" align="center" valign="top" class="bold"><?php xl('Treatment Dx','e')?></td>
-				<td width="30%" colspan="2" align="center" valign="top" class="bold">
+				<td width="20%" align="left" valign="top" class="bold"><?php xl('Treatment Dx','e')?></td>
+				<td width="30%" colspan="2" align="left" valign="top" class="bold">
 		<input type="text" id="icd9" size="15"/>
 				<input type="button" value="Search" onclick="javascript:changeICDlist(trmnt_dx_icd9,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <div id="trmnt_icd9"><select id="trmnt_dx_icd9" name="trmnt_dx_icd9" style="display:none" >
@@ -170,11 +159,11 @@ formHeader("Form: careplan");
 						<tr>
 							<td scope="row"><table width="100%" border="0" cellpadding="2px" class="formtable">
 									<tr>
-										<td width="50%" valign="top" scope="row"><label> 
+										<td valign="top" scope="row"><label> 
 										<input type="checkbox" name="adl_skills" id="adl_skills" /> 
 										<?php xl('Decline in ADL skills','e')?>
 										</label> <br /></td>
-										<td width="158" valign="top"><input name="adl_skills_text"
+										<td valign="top"><input name="adl_skills_text"
 											style="width:180px" id="adl_skills_text" type="text" /> &nbsp;</td>
 									</tr>
 									<tr>
@@ -211,21 +200,21 @@ formHeader("Form: careplan");
 								name="dec_safety_tech" id="dec_safety_tech" /> <label
 								for="Decreased Safety Techniques in"> <?php xl('Decreased Safety Techniques in','e')?>
 							</label> <label for="techniques in others"></label> <input
-								type="text" style="width:240px" name="safety_tech_txt" id="safety_tech_txt" />
+								type="text" name="safety_tech_txt" id="safety_tech_txt" />
 						
 						</tr>
 						<tr>
-							<td width="35%" valign="top" scope="row"><?php xl('Other','e')?>
+							<td valign="top" scope="row"><?php xl('Other','e')?>
 							</td>
-							<td width="24" valign="top"><label for="soc date_other_1"></label>
-								<input type="text" style="width:400px" name="safety_tech_others1"
+							<td valign="top"><label for="soc date_other_1"></label>
+								<input type="text" style="width:60%" name="safety_tech_others1"
 								id="safety_tech_others1" />
 							</td>
 						</tr>
 						<tr>
 							<td valign="top" scope="row"><?php xl('Other','e')?></td>
 							<td valign="top"><label for="soc date_other_2"></label> <input
-								type="text" style="width:400px" name="safety_tech_others2" id="safety_tech_others2" />
+								type="text" style="width:60%" name="safety_tech_others2" id="safety_tech_others2" />
 							
 							</td>
 						
@@ -343,9 +332,9 @@ formHeader("Form: careplan");
 											<input type="text" name="shortterm_time" id="shortterm_time" size="10px">
 										</td>
 										<td scope="row">
-										<?php xl('Other','e')?><input type="text" style="width:400px" name="time_others1" id="time_others1" />
+										<?php xl('Other','e')?><input type="text" style="width:60%" name="time_others1" id="time_others1" />
 										<br>
-										<?php xl('Other','e')?><input type="text" style="width:400px" name="time_others2" id="time_others2" />
+										<?php xl('Other','e')?><input type="text" style="width:60%" name="time_others2" id="time_others2" />
 										</td>
 										<td  align="left" valign="center">
 											<input type="text" name="shortterm_time6" id="shortterm_time6" size="10px">
@@ -467,7 +456,7 @@ formHeader("Form: careplan");
 										<td >&nbsp;</td>
 										<td>&nbsp;</td>
 										<td scope="row"><?php xl('Other','e')?>
-											<input type="text" style="width:400px" name="time_others3" id="time_others3" />
+											<input type="text" style="width:60%" name="time_others3" id="time_others3" />
 										</td>
 										<td align="left" valign="center">
 											<input type="text" name="longterm_time4" id="longterm_time4" size="10px">
@@ -532,9 +521,9 @@ formHeader("Form: careplan");
 						id="careplan_discharge_comm" value="family" /> <?php xl('Caregiver/Family','e')?>
 				</label> <label> <input type="checkbox"
 						name="careplan_discharge_comm" id="careplan_discharge_comm"
-						value="manager" /> <?php xl('Case Manager','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						value="manager" /> <?php xl('Case Manager','e')?><br>
 						<?php xl('Other','e')?>
-				</label> <input type="text" style="width:500px" name="care_plan_discharge_other"
+				</label> <input type="text" style="width:90%" name="care_plan_discharge_other"
 					id="care_plan_discharge_other" />
 				</td>
 			</tr>
@@ -614,6 +603,11 @@ formHeader("Form: careplan");
 				</strong></td>
 			</tr>	
 		</table>
+		<a href="javascript:top.restoreSession();document.careplan.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 		</form>
 </body>
 

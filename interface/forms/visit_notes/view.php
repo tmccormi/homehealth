@@ -134,11 +134,7 @@ $obj = formFetch("forms_ot_visitnote", $_GET["id"]);
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/visit_notes/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="visitnotes">
 <h3 align="center"><?php xl('OCCUPATIONAL THERAPY VISIT NOTE','e'); ?></h3>
-<br></br>
-<a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
+
 <br></br>
 <table width="100%" border="1" cellpadding="2px" class="formtable">
   <tr>
@@ -262,7 +258,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
 <input type="text" id="icd" size="15"/>
 				<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"visitnote_Treatment_Diagnosis_Problem"} != "")
 {
 echo "<select id='visitnote_Treatment_Diagnosis_Problem' name='visitnote_Treatment_Diagnosis_Problem'>"; 
@@ -274,7 +270,7 @@ echo "</select>";
  echo "<select id='visitnote_Treatment_Diagnosis_Problem' name='visitnote_Treatment_Diagnosis_Problem' style='display:none'> </select>";
  }?>
 
-</div>
+</span>
 
 
 </td>
@@ -470,9 +466,9 @@ echo "</select>";
       <textarea name="visitnote_Specific_Training_Visit" id="visitnote_Specific_Training_Visit" cols="118" rows="2"><?php echo stripslashes($obj{"visitnote_Specific_Training_Visit"});?></textarea>
       <br />
       <strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
-      <input type="checkbox" name="visitnote_changes_in_medications_Yes" id="visitnote_changes_in_medications_Yes" />
+      <input type="checkbox" name="visitnote_changes_in_medications_Yes" id="visitnote_changes_in_medications_Yes"  value="Yes" <?php if($obj{"visitnote_changes_in_medications_Yes"}=="Yes"){ echo "checked"; }?> />
 <?php xl('Yes','e'); ?>
-<input type="checkbox" name="visitnote_changes_in_medications_No" id="visitnote_changes_in_medications_No" />
+<input type="checkbox" name="visitnote_changes_in_medications_Yes" id="visitnote_changes_in_medications_No" value="No" <?php if($obj{"visitnote_changes_in_medications_Yes"}=="No"){ echo "checked"; }?>  />
 <?php xl('No','e'); ?>
       <br />     <?php xl('If yes, update medication profile','e'); ?> </strong><br />
     </td>
@@ -728,7 +724,18 @@ value="<?php echo stripslashes($obj{"visitnote_FSVR_Other"});?>" >
 <?php xl('Not Present','e'); ?>
 <input type="checkbox" name="supervisor_visit" value="Contacted visit" id="visitnote_Supervisorvisit_Contacted_regarding_visit" 
 <?php if ($obj{"supervisor_visit"} == "Contacted visit") echo "checked";;?> />
-<?php xl('Contacted regarding visit','e'); ?></td>
+<?php xl('Contacted regarding visit','e'); ?>
+<br/><label> <?php xl('Observed','e')?> </label>
+<input type="text" style="width:40%"  name="visitnote_Supervisory_visit_Observed" id="visitnote_Supervisory_visit_Observed"
+value="<?php echo stripslashes($obj{"visitnote_Supervisory_visit_Observed"});?>" >
+<label> <?php xl('Teaching/Training','e')?> </label>
+<input type="text" style="width:37%"  name="visitnote_Supervisory_visit_Teaching_Training" id="visitnote_Supervisory_visit_Teaching_Training"
+value="<?php echo stripslashes($obj{"visitnote_Supervisory_visit_Teaching_Training"});?>" >
+<label> <?php xl('Patient/Family Discussion','e')?> </label>
+<input type="text" style="width:40%"  name="visitnote_Supervisory_visit_Patient_Family_Discussion" id="visitnote_Supervisory_visit_Patient_Family_Discussion"
+value="<?php echo stripslashes($obj{"visitnote_Supervisory_visit_Patient_Family_Discussion"});?>" >
+
+</td>
   </tr>
   <tr>
     <td valign="top" scope="row"><table width="100%" border="1" cellpadding="2px" class="formtable">
@@ -739,6 +746,11 @@ value="<?php echo stripslashes($obj{"visitnote_FSVR_Other"});?>" >
     </table></td>
   </tr>
   </table>
+  <br></br>
+<a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
  </form>
 
 <!--for signature-->

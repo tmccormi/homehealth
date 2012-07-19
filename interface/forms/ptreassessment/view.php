@@ -182,6 +182,7 @@ $obj = formFetch("forms_pt_Reassessment", $_GET["id"]);
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+<strong><?php xl('Vital Signs','e')?></strong><br>
 <?php xl('Pulse','e')?>
   <label for="pulse"></label>
   <input type="text"  size="3px" name="Reassessment_Pulse" id="Reassessment_Pulse" value="<?php echo stripslashes($obj{"Reassessment_Pulse"});?>" />
@@ -269,7 +270,14 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
 <?php xl('Worse','e')?>
 <input type="checkbox" name="Reassessment_VS_Pain_Intensity_type" value="No Change" id="Reassessment_VS_Pain_Intensity_type" 
  <?php if ($obj{"Reassessment_VS_Pain_Intensity_type"} == "No Change") echo "checked";;?>/>
-<?php xl('No Change','e')?></td></tr></table></td>
+<?php xl('No Change','e')?></td>
+</tr>
+<tr>
+<td><strong>
+<?php xl('Please Note Contact MD if Vital Signs are Pulse <56 or >120 Temperature <56 or >101 Respirations <10 or >30
+SBP <80 or >190 DBP <50 or >100 Pain Significantly Impacts patients ability to participate. O2 Sat <90% after rest','e')?>
+</strong></td>
+</tr></table></td>
   </tr>
 
   <tr>
@@ -330,7 +338,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"Reassessment_TREATMENT_DX_Problem"} != "")
 {
 echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem'>"; 
@@ -340,7 +348,7 @@ echo "</select>";
  else 
  { 
  echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem' style='display:none'> </select>";
- }?> </div>
+ }?> </span>
 </td></tr></table></td>
   </tr>
   <tr>
@@ -602,12 +610,12 @@ value="<?php echo stripslashes($obj{"Reassessment_MS_STANDING_BALANCE_Current_D"
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
-	<input type="checkbox" name="Reassessment_Miscellaneous_NA" id="Reassessment_Miscellaneous_NA" 
-<?php if ($obj{"Reassessment_Miscellaneous_NA"} == "on") echo "checked";;?>/>
+	<input type="checkbox" name="Reassessment_Miscellaneous_NA" id="Reassessment_Miscellaneous_NA" value="N/A"
+<?php if ($obj{"Reassessment_Miscellaneous_NA"} == "N/A") echo "checked";;?>/>
     <label><strong>
     <?php xl('N/A','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="checkbox" name="Reassessment_Problems_Achieving_Goals_With" id="Reassessment_Problems_Achieving_Goals_With" 
-value="Endurance" <?php if ($obj{"Reassessment_Problems_Achieving_Goals_With"} == "Endurance") echo "checked";;?>/>
+      <input type="checkbox" name="Reassessment_Miscellaneous_NA" 
+value="Endurance" <?php if ($obj{"Reassessment_Miscellaneous_NA"} == "Endurance") echo "checked";;?>/>
 <label><?php xl('Endurance','e')?></label>
 <br/>
 <?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with','e')?></label><br />
@@ -631,7 +639,7 @@ value="<?php echo stripslashes($obj{"Reassessment_Problems_Achieving_Goals_With_
 <?php if ($obj{"Reassessment_MS_ROM_All_Muscle_WFL"} == "All Muscle Strength is WFL") echo "checked";;?>/>
 <?php xl('All Muscle Strength is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL" value="All ROM is WFL" id="Reassessment_MS_ROM_All_Muscle_WFL" 
-<?php if ($obj{"Reassessment_MS_ROM_ALL_ROM_WFL"} == "All ROM is WFL") echo "checked";;?>/>
+<?php if ($obj{"Reassessment_MS_ROM_All_Muscle_WFL"} == "All ROM is WFL") echo "checked";;?>/>
 <?php xl('All ROM is WFL','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL" value="other Problem" id="Reassessment_MS_ROM_All_Muscle_WFL"
 <?php if ($obj{"Reassessment_MS_ROM_All_Muscle_WFL"} == "other Problem") echo "checked";;?>/>
@@ -883,11 +891,11 @@ value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_STRENGTH_Right2"});?>" 
 </tr>
 <tr>
 <td scope="row"><table width="100%"  border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr>
-<td><strong><input type="checkbox" name="Reassessment_MS_ROM_NA" id="Reassessment_MS_ROM_NA" 
-<?php if ($obj{"Reassessment_MS_ROM_NA"} == "on") echo "checked";;?>/>
+<td><strong><input type="checkbox" name="Reassessment_MS_ROM_NA" id="Reassessment_MS_ROM_NA"  value="N/A"
+<?php if ($obj{"Reassessment_MS_ROM_NA"} == "N/A") echo "checked";;?>/>
 <?php xl('N/A','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-<input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="Tonicity" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" 
-<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} == "Tonicity") echo "checked";;?>/>
+<input type="checkbox" name="Reassessment_MS_ROM_NA" value="Tonicity" 
+<?php if ($obj{"Reassessment_MS_ROM_NA"} == "Tonicity") echo "checked";;?>/>
 
 <?php xl('Tonicity','e')?>
 <input type="text" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" style="width:80%" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" 

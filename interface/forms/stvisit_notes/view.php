@@ -148,10 +148,8 @@ $obj = formFetch("forms_st_visitnote", $_GET["id"]);
 <?php timeDropDown(stripslashes($obj{"visitnote_Time_Out"})) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
-         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					value="<?php echo stripslashes($obj{"visitnote_visitdate"});?>"
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
-						 disabled />
+         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' 
+					value="<?php echo stripslashes($obj{"visitnote_visitdate"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
 		<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_visit_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 		<script	LANGUAGE="JavaScript">
@@ -228,11 +226,11 @@ value="<?php echo stripslashes($obj{"visitnote_VS_BP_Sat"});?>" >
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('Pain','e'); ?></strong>
-  <input type="checkbox" name="visitnote_VS_Pain_paintype" value="Nopain" id="visitnote_VS_Pain_Nopain" 
-  <?php if ($obj{"visitnote_VS_Pain_paintype"} == "Nopain")	echo "checked";;?> />
+  <input type="checkbox" name="visitnote_VS_Pain" value="Nopain" id="visitnote_VS_Pain_Nopain" 
+  <?php if ($obj{"visitnote_VS_Pain"} == "Nopain")	echo "checked";;?> />
 <?php xl('No Pain','e'); ?>
-<input type="checkbox" name="visitnote_VS_Pain_paintype" value="Pain limits functional ability" id="visitnote_VS_Pain_Pain_limits" 
- <?php if ($obj{"visitnote_VS_Pain_paintype"} == "Pain limits functional ability")	echo "checked";;?> />
+<input type="checkbox" name="visitnote_VS_Pain" value="Pain limits functional ability" id="visitnote_VS_Pain_Pain_limits" 
+ <?php if ($obj{"visitnote_VS_Pain"} == "Pain limits functional ability")	echo "checked";;?> />
 <?php xl('Pain limits functional ability','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Intensity','e'); ?>
 <input type="text" name="visitnote_VS_Pain_Intensity" id="visitnote_VS_Pain_Intensity" 
@@ -258,7 +256,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
    <input type="text" id="icd" size="25"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"visitnote_Treatment_Diagnosis_Problem"} != "")
 {
 echo "<select id='visitnote_Treatment_Diagnosis_Problem' name='visitnote_Treatment_Diagnosis_Problem'>"; 
@@ -268,7 +266,7 @@ echo "</select>";
  else 
  { 
  echo "<select id='med_dx_icd9' name='med_dx_icd9' style='display:none'> </select>";
- }?></div>
+ }?></span>
 	</td>
   </tr>
   <tr>
@@ -422,8 +420,7 @@ value="Patient and Caregiver" <?php if ($obj{"visitnote_Interventions"} == "Pati
   </tr>
   <tr>
     <td valign="top" scope="row"><strong><?php xl('SPECIFIC TRAINING THIS VISIT','e'); ?></strong>
-      <textarea name="visitnote_Specific_Training_Visit" cols="100" id="visitnote_Specific_Training_Visit" 
-      value="<?php echo stripslashes($obj{"visitnote_Specific_Training_Visit"});?>" ></textarea>
+      <textarea name="visitnote_Specific_Training_Visit" cols="100" id="visitnote_Specific_Training_Visit"><?php echo stripslashes($obj{"visitnote_Specific_Training_Visit"});?></textarea>
       <br />
       <strong><?php xl('Has the patient had any changes in medications since the last visit?','e'); ?>
       <input type="checkbox" name="visitnote_changes_in_medications" id="visitnote_changes_in_medications" value="Yes"
@@ -503,11 +500,10 @@ value="<?php echo stripslashes($obj{"visitnote_Response_To_Visit_Other"});?>" >
   </tr>
   <tr>
     <td valign="top" scope="row"><strong>
-    <input type="checkbox" name="visitnote_CarePlan_Reviewed" id="visitnote_CarePlan_Reviewed" 
-    <?php if ($obj{"visitnote_CarePlan_Reviewed_With"} == "on") echo "checked";;?> />
+    
 <?php xl('CARE PLAN REVIEWED WITH','e'); ?>
   <input type="checkbox" name="visitnote_Discharge_Discussed" id="visitnote_Discharge_Discussed" 
-  <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "on") echo "checked";;?> />
+  <?php if ($obj{"visitnote_Discharge_Discussed"} == "on") echo "checked";;?> />
 <?php xl('DISCHARGE DISCUSSED WITH','e'); ?></strong>
 <input type="checkbox" name="visitnote_Discharge_Discussed_With" value="Patient" id="visitnote_DDW_Patient" 
 <?php if ($obj{"visitnote_Discharge_Discussed_With"} == "Patient") echo "checked";;?> />
@@ -611,7 +607,7 @@ Calendar.setup({inputField:"visitnote_Date_of_Next_Visit", ifFormat:"%Y-%m-%d", 
 <input type="checkbox" name="visitnote_Address_Above_Issues_By" value="community support" id="visitnote_Plan_Establish_community_support" 
 <?php if ($obj{"visitnote_Address_Above_Issues_By"} == "community support") echo "checked";;?> />
 <?php xl('establish community support systems','e'); ?>
-<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations " id="visitnote_Plan_Home_env_adaptations" 
+<input type="checkbox" name="visitnote_Address_Above_Issues_By" value="home adaptations" id="visitnote_Plan_Home_env_adaptations" 
 <?php if ($obj{"visitnote_Address_Above_Issues_By"} == "home adaptations") echo "checked";;?> />
 <?php xl('home/environmental adaptations','e'); ?>
 <input type="checkbox" name="visitnote_Address_Above_Issues_By" value="use family/professionals" id="visitnote_Plan_Use_family_professionals" 

@@ -81,6 +81,7 @@ dischargeplan_Recommendations_met varchar(100),
 dischargeplan_Recommendations_partially varchar(100),
 dischargeplan_Recommendations_not_met varchar(100),
 dischargeplan_Recommendations_not_met_note varchar(100),
-dischargeplan_md_printed_name varchar(255),
-dischargeplan_md_signature varchar(255)
+dischargeplan_md_name varchar(255),
+dischargeplan_md_signature varchar(255),
+dischargeplan_md_date DATE
 ) engine=MyISAM;	

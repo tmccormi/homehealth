@@ -362,7 +362,7 @@ $obj = formFetch("forms_st_Evaluation", $_GET["id"]);
           <td align="center">
 	<input type="text" id="icd" size="15"/>
 	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"Evaluation_Reason_for_intervention"}!= "")
 {
 echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention'>"; 
@@ -372,13 +372,13 @@ echo "</select>";
  else 
  { 
  echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention' style='display:none'> </select>";
- }?></div> 
+ }?></span> 
 	</td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 	<input type="text" id="icd9" size="15"/>
 	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<div id="trmnt_icd9">   
+<span id="trmnt_icd9">   
 <?php if ($obj{"Evaluation_TREATMENT_DX_Problem"} != "")
 {
 echo "<select id='Evaluation_TREATMENT_DX_Problem' name='Evaluation_TREATMENT_DX_Problem'>"; 
@@ -389,7 +389,7 @@ echo "</select>";
  { 
  echo "<select id='Evaluation_TREATMENT_DX_Problem' name='Evaluation_TREATMENT_DX_Problem' style='display:none'> </select>";
  }?>
- </div> 
+ </span> 
 	</td>
         </tr>
       </table>

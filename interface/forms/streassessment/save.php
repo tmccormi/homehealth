@@ -13,6 +13,8 @@ addForm($encounter, "Reassessment", $newid, "streassessment", $pid, $userauthori
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_st_Reassessment set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 Reassessment_visit_type='".$_POST["Reassessment_visit_type"]."',
+Reassessment_Time_In='".$_POST["Reassessment_Time_In"]."',
+Reassessment_Time_Out='".$_POST["Reassessment_Time_Out"]."',
 Reassessment_date ='".$_POST["Reassessment_date"]."',
 Reassessment_Pulse ='".$_POST["Reassessment_Pulse"]."',
 Reassessment_Pulse_State='".$_POST["Reassessment_Pulse_State"]."',
@@ -73,7 +75,9 @@ Reassessment_Skills_LONGTERM_MEMORY='".$_POST["Reassessment_Skills_LONGTERM_MEMO
 Reassessment_COMPENSATORY_SKILLS_NA='".$_POST["Reassessment_COMPENSATORY_SKILLS_NA"]."',
 Reassessment_CS_Problems_Achieving_Goals_With='".$_POST["Reassessment_CS_Problems_Achieving_Goals_With"]."',
 Reassessment_RO_Patient_Prior_Level_Function ='".$_POST["Reassessment_RO_Patient_Prior_Level_Function"]."',
+Reassessment_Prior_Level_Function_Not_Reached='".$_POST["Reassessment_Prior_Level_Function_Not_Reached"]."',
 Reassessment_RO_Patient_Long_Term_Goals ='".$_POST["Reassessment_RO_Patient_Long_Term_Goals"]."',
+Reassessment_Long_Term_Goals_Not_Reached='".$_POST["Reassessment_Long_Term_Goals_Not_Reached"]."',
 Reassessment_Skilled_ST_Reasonable_And_Necessary_To ='".$_POST["Reassessment_Skilled_ST_Reasonable_And_Necessary_To"]."',
 Reassessment_Skilled_ST_Compensatory_Strategies_Note='".$_POST["Reassessment_Skilled_ST_Compensatory_Strategies_Note"]."',
 Reassessment_Skilled_ST_Learning_New_Skills='".$_POST["Reassessment_Skilled_ST_Learning_New_Skills"]."',

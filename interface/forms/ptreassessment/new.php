@@ -12,6 +12,7 @@ formHeader("Form: reassessment");
 .bold {
 	font-weight: bold;
 }
+ 
 </style>
 <style type="text/css">
 @import url(<?php echo $GLOBALS['webroot']?>/library/dynarch_calendar.css);</style>
@@ -82,15 +83,9 @@ formHeader("Form: reassessment");
         <?php xl('19th Visit','e')?></label><label>
         <input type="checkbox" name="Reassessment_visit_type" value="Other Visit" id="Reassessment_visit_type" />
         <?php xl('Other Visit','e')?></label></h3>
-		<a href="javascript:top.restoreSession();document.reassessment.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br></br> 
-<table width="100%"  align="center" border="1" cellpadding="0px" cellspacing="0px">
+<table width="100%"  align="center" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="0px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
       <tr>
 
         <td width="10%" align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
@@ -123,7 +118,8 @@ formHeader("Form: reassessment");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+<strong><?php xl('Vital Signs','e')?></strong><br>
 <?php xl('Pulse','e')?>
   <label for="pulse"></label>
   <input type="text"  size="3px" name="Reassessment_Pulse" id="Reassessment_Pulse" />
@@ -179,7 +175,7 @@ formHeader("Form: reassessment");
 <?php xl('*Physician ordered','e')?></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 
 <strong><?php xl('Pain','e')?></strong>
   <input type="checkbox" name="Reassessment_VS_Pain" value="No Pain" id="Reassessment_VS_Pain" />
@@ -193,11 +189,18 @@ formHeader("Form: reassessment");
 <input type="checkbox" name="Reassessment_VS_Pain_Intensity_type" value="Worse" id="Reassessment_VS_Pain_Intensity_type" />
 <?php xl('Worse','e')?>
 <input type="checkbox" name="Reassessment_VS_Pain_Intensity_type" value="No Change" id="Reassessment_VS_Pain_Intensity_type" />
-<?php xl('No Change','e')?></td></tr></table></td>
+<?php xl('No Change','e')?></td>
+</tr>
+<tr>
+<td><strong>
+<?php xl('Please Note Contact MD if Vital Signs are Pulse <56 or >120 Temperature <56 or >101 Respirations <10 or >30
+SBP <80 or >190 DBP <50 or >100 Pain Significantly Impacts patients ability to participate. O2 Sat <90% after rest','e')?>
+</strong></td>
+</tr></table></td>
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="50%" valign="top" scope="row"><strong><?php xl('HOMEBOUND REASON','e')?><br />
         </strong>
@@ -236,16 +239,16 @@ formHeader("Form: reassessment");
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
-<select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none"></select></div>
+<span id="med_icd9">
+<select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none"></select></span>
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('MOBILITY REASSESSMENT','e')?></strong><br />
     <strong><?php xl('Scale','e')?>  </strong>
     <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant  contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required.','e')?>
@@ -253,7 +256,7 @@ formHeader("Form: reassessment");
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px" class="formtable">
       <tr>
         <td width="12%" align="center" scope="row"><strong><?php xl('Mobility Skills','e')?></strong></td>
         <td width="12%" align="center"><strong><?php xl('Initial','e')?> </strong><strong><?php xl('Status','e')?></strong></td>
@@ -360,7 +363,7 @@ formHeader("Form: reassessment");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 
 <input type="checkbox" name="Reassessment_Mobility_Reassessment_NA" id="Reassessment_Mobility_Reassessment_NA" />
 <strong><?php xl('N/A','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php xl('Assistive Devices','e')?></strong>
@@ -401,11 +404,11 @@ formHeader("Form: reassessment");
  
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1"  cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1"  cellspacing="0px" cellpadding="2px" class="formtable">
 
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
@@ -445,13 +448,13 @@ formHeader("Form: reassessment");
          </table></td>
 
   </tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
-	<input type="checkbox" name="Reassessment_Miscellaneous_NA" id="Reassessment_Miscellaneous_NA" />
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+	<input type="checkbox" name="Reassessment_Miscellaneous_NA" id="Reassessment_Miscellaneous_NA" value="N/A"/>
     <label><strong>
     <?php xl('N/A','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    
      
-<input type="checkbox" name="Reassessment_Problems_Achieving_Goals_With" id="Reassessment_Problems_Achieving_Goals_With" value="Endurance"/>
+<input type="checkbox" name="Reassessment_Miscellaneous_NA" id="Reassessment_Problems_Achieving_Goals_With" value="Endurance"/>
  <label><?php xl('Endurance','e')?></label>
 <br/> 
 <?php xl('Patient/Caregiver Continues to Have the Following Problems Achieving Goals with','e')?>
@@ -466,7 +469,7 @@ formHeader("Form: reassessment");
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Reassessment_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Reassessment_MS_ROM_All_Muscle_WFL" />
 <?php xl('All Muscle Strength is WFL','e')?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -478,7 +481,7 @@ formHeader("Form: reassessment");
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px">
+    <td scope="row"><table width="100%" border="1" cellspacing="0px" cellpadding="2px" class="formtable">
       <tr>
         <td rowspan="2" align="center" scope="row"><strong><?php xl('INITIAL  PROBLEM  AREA(S)','e')?></strong></td>
         
@@ -660,10 +663,10 @@ rows="6" cols="30" ></textarea></td>
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px"><tr>
-	<td><strong><input type="checkbox" name="Reassessment_MS_ROM_NA" id="Reassessment_MS_ROM_NA" />
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr>
+	<td><strong><input type="checkbox" name="Reassessment_MS_ROM_NA" id="Reassessment_MS_ROM_NA" value="N/A" />
 <?php xl('N/A','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="checkbox" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" value="Tonicity" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Type" /> 
+<input type="checkbox" name="Reassessment_MS_ROM_NA" value="Tonicity" /> 
 <?php xl('Tonicity','e')?> 
 <input type="text" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" style="width:80%" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" />
 <br/>
@@ -678,11 +681,11 @@ rows="6" cols="30" ></textarea></td>
 </tr></table></td>
   </tr>
  <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('ENVIRONMENTAL BARRIERS/SAFETY ISSUES','e')?></strong></td></tr></table></td>
   </tr>
 <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<input type="checkbox" name="Reassessment_Environmental_Barriers" id="Reassessment_Environmental_Barriers" value="No Issues"/>
     <label for="checkbox"><?php xl('No environmental barriers in home','e')?>  
       <input type="checkbox" name="Reassessment_Environmental_Barriers" id="Reassessment_Environmental_Barriers" value="Issues exists"/> 
@@ -691,7 +694,7 @@ rows="6" cols="30" ></textarea></td>
     <input type="text" name="Reassessment_Environmental_Issues_Notes" style="width:900px"  id="Reassessment_Environmental_Issues_Notes" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable">
 	<tr><td><strong><?php xl('REASSESSMENT OVERVIEW','e')?></strong></td></tr></table></td>
 
   </tr>
@@ -699,7 +702,7 @@ rows="6" cols="30" ></textarea></td>
     <td scope="row"></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%"  border="0px" cellpadding="5px" cellspacing="0px"><tr><td>
+    <td scope="row"><table width="100%"  border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
 	<input type="checkbox" name="Reassessment_RO_Patient_Prior_Level_Function" id="Reassessment_RO_Patient_Prior_Level_Function" 
 	value="Yes" />
     <label for="checkbox13"><?php xl('Yes','e')?></label>
@@ -736,7 +739,7 @@ id="eassessment_RO_Long_Term_Goal_Not_Reached" style="width:80%"/><br/>
     </strong></label></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%"  border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
+    <td scope="row"><table width="100%"  border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong>
     <?php xl('*Goals Changed/Adapted for Mobility','e')?></strong> <strong>
       <input type="text" name="Reassessment_Goals_Changed_Adapted_For_Mobility" style="width:62%" id="Reassessment_Goals_Changed_Adapted_For_Mobility" />
       <br />
@@ -755,7 +758,7 @@ id="eassessment_RO_Long_Term_Goal_Not_Reached" style="width:80%"/><br/>
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong><?php xl('PT continued treatment plan was communicated to and agreed upon by ','e')?></strong>
+    <td scope="row"><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong><?php xl('PT continued treatment plan was communicated to and agreed upon by ','e')?></strong>
       <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Patient" id="Reassessment_PT_communicated_and_agreed_upon_by" />
 <?php xl('Patient','e')?>
 <input type="checkbox" name="Reassessment_PT_communicated_and_agreed_upon_by" value="Physician" id="Reassessment_PT_communicated_and_agreed_upon_by" />
@@ -774,7 +777,7 @@ id="eassessment_RO_Long_Term_Goal_Not_Reached" style="width:80%"/><br/>
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table  width="100%" border="0px" cellpadding="5px" cellspacing="0px"><tr><td><strong>
+    <td scope="row"><table  width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td><strong>
 
 	<?php xl('ADDITIONAL  SERVICES PROVIDED  THIS VISIT','e')?></strong> <br/> 
 	<input type="checkbox" name="Reassessment_AS_Home_Exercise" id="Reassessment_AS_Home_Exercise" />
@@ -795,11 +798,16 @@ id="eassessment_RO_Long_Term_Goal_Not_Reached" style="width:80%"/><br/>
       </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="1px" cellpadding="5px" cellspacing="0px"><tr><td width="45%"><strong>
+    <td scope="row"><table border="1px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td width="45%"><strong>
     <?php xl('Therapist Performing Reassessment(Name and Title)','e')?></strong>   </td> 
     <td align="center" width="50%"><strong><?php xl('Electronic Signature','e')?></strong></td></tr></table></td>
   </tr>
 </table>
+<a href="javascript:top.restoreSession();document.reassessment.submit();"
+                        class="link_submit"><?php xl(' [Save]','e')?></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 </body>
 </html>

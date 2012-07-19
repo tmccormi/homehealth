@@ -21,6 +21,7 @@ formHeader("Form: careplan");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+	
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -84,15 +85,9 @@ formHeader("Form: careplan");
 		<h5 align="center">
 		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
 		</h5>
-		<a href="javascript:top.restoreSession();document.careplan.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br><br/>
-<table align="center"  border="1px" cellspacing="0px" cellpadding="0px">
+<table align="center"  border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
   <tr>
     <td align="left" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
     <td width="33%" align="center" valign="top"><input type="text" size='40' 
@@ -114,7 +109,7 @@ formHeader("Form: careplan");
 </td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
 
       <tr>
         <td width="20%" align="left" scope="row"><strong>
@@ -137,7 +132,7 @@ formHeader("Form: careplan");
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" align="left" scope="row"><strong>
         <?php xl('PROBLEMS REQUIRING PT INTERVENTION','e')?></strong></td>
@@ -158,39 +153,39 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"  ><table width="100%" border="0px" cellpadding="5px" cellspacing="0px">
+    <td scope="row"  ><table width="100%" border="0px" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
-        <td width="20%"  valign="top" scope="row"><label>
+        <td  valign="top" scope="row"><label>
           <input type="checkbox" name="careplan_PT_Decline_in_mobility" id="careplan_PT_Decline_in_mobility" />
           </label>
           <?php xl('Decline in mobility in','e')?><br /></td>
 
-        <td width="30%"  valign="top"><input style="width:270px"  name="careplan_PT_Decline_in_mobility_Note" type="text" />
+        <td  valign="top"><input style="width:270px"  name="careplan_PT_Decline_in_mobility_Note" type="text" />
 </td>
-        <td width="20%" ><input type="checkbox" name="careplan_PT_Decline_in_Balance" id="careplan_PT_Decline_in_Balance" />
+        <td ><input type="checkbox" name="careplan_PT_Decline_in_Balance" id="careplan_PT_Decline_in_Balance" />
           <?php xl('Decline in Balance in','e')?></label></td>
-        <td width="30%" ><input type="text" style="width:270px"  name="careplan_PT_Decline_in_Balance_Note" id="careplan_PT_Decline_in_Balance_Note" /></td>
+        <td ><input type="text" style="width:270px"  name="careplan_PT_Decline_in_Balance_Note" id="careplan_PT_Decline_in_Balance_Note" /></td>
       </tr>
       <tr>
-        <td width="20%"  valign="top" scope="row"><label>
+        <td valign="top" scope="row"><label>
           <input type="checkbox" name="careplan_PT_Decrease_in_ROM" id="careplan_PT_Decrease_in_ROM" />
         <?php xl('Decrease in ROM in','e')?></label> </td>
-        <td width="30%"  valign="top"><label for="ROM in2"></label>
+        <td  valign="top"><label for="ROM in2"></label>
           <input style="width:270px" type="text" name="careplan_PT_Decrease_in_ROM_Note" id="careplan_PT_Decrease_in_ROM_Note" /></td>
-        <td width="20%"  valign="top" scope="row"><input type="checkbox" name="careplan_PT_Decreased_Safety" id="careplan_PT_Decreased_Safety" />
+        <td valign="top" scope="row"><input type="checkbox" name="careplan_PT_Decreased_Safety" id="careplan_PT_Decreased_Safety" />
           <label for="checkbox"><?php xl('Decreased Safety in','e')?></label></td>
-        <td width="30%" valign="top"><input type="text" style="width:270px"  name="careplan_PT_Decreased_Safety_Note" id="careplan_PT_Decreased_Safety_Note" /></td>
+        <td valign="top"><input type="text" style="width:270px"  name="careplan_PT_Decreased_Safety_Note" id="careplan_PT_Decreased_Safety_Note" /></td>
 
         </tr>
       <tr>
-        <td width="20%"  valign="top" scope="row">
+        <td  valign="top" scope="row">
       <input type="checkbox" name="careplan_PT_Decline_in_Strength" id="careplan_PT_Decline_in_Strength" />
           <?php xl('Decline in Strength in','e')?></td>
-        <td width="30%" valign="top"><label for="IADL skills"></label>
+        <td valign="top"><label for="IADL skills"></label>
           <input type="text" style="width:270px"  name="careplan_PT_Decline_in_Strength_Note" id="careplan_PT_Decline_in_Strength_Note" /></td>
-        <td width="10%" valign="Right"><?php xl('Other','e')?></td>
+        <td valign="Right"><?php xl('Other','e')?></td>
 
-        <td width="40%" valign="top"><input type="text" style="width:270px"  name="careplan_PT_intervention_Other" id="careplan_PT_intervention_Other" /></td>
+        <td valign="top"><input type="text" style="width:270px"  name="careplan_PT_intervention_Other" id="careplan_PT_intervention_Other" /></td>
        </tr>
       <tr>
         <td valign="top" scope="row"><label>
@@ -203,7 +198,7 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong><?php xl('TREATMENT PLAN       FREQUENCY','e')?></strong>                
 		
@@ -229,7 +224,7 @@ formHeader("Form: careplan");
      </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="25%" scope="row" valign="top" width="30%">
         <input type="checkbox" name="careplan_Evaluation" id="careplan_Evaluation" />
@@ -338,7 +333,7 @@ formHeader("Form: careplan");
 <input type="checkbox"	name="careplan_STO_Increase_ROM" id="careplan_STO_Increase_ROM" />
 <?php xl('Increase ROM Of','e')?> </label>
 <input type="checkbox" name="careplan_STO_Increase_ROM_Side" id="careplan_STO_Increase_ROM_Side" value="right"/> <?php xl('right','e')?>
-<label><input type="checkbox" name="careplan_STO_Increase_Strength_Side" id="careplan_STO_Increase_Strength_Side" value="left"/> <?php xl('left','e')?> </label> 
+<label><input type="checkbox" name="careplan_STO_Increase_ROM_Side" id="careplan_STO_Increase_ROM_Side" value="left"/> <?php xl('left','e')?> </label> 
 <input type="text" name="careplan_STO_Increase_ROM_Note" id="careplan_STO_Increase_ROM_Note" size="12" /> <?php xl('(joints) to','e')?>
 <input type="text" name="careplan_STO_Increase_ROM_To" id="careplan_STO_Increase_ROM_To" size="12" /> 
 <?php xl('WFL','e')?>
@@ -379,7 +374,7 @@ formHeader("Form: careplan");
 </td></tr>
 <tr>
 <td valign="top" scope="row"><label> 
-<input type="checkbox" name="careplan_LTO_Demonstrate_ability_follow_home_exercise_Time" id="careplan_LTO_Demonstrate_ability_follow_home_exercise_Time" /> <?php xl('Improve safety techniques in','e')?>
+<input type="checkbox" name="careplan_STO_Improve_home_safety_techniques" id="careplan_STO_Improve_home_safety_techniques" /> <?php xl('Improve home safety techniques in','e')?>
 </label> 
 <input type="text" name="careplan_STO_Improve_home_safety_techniques_In" id="careplan_STO_Improve_home_safety_techniques_In" size="12" />
  <?php xl('to','e')?>
@@ -387,13 +382,13 @@ formHeader("Form: careplan");
  <?php xl('assist.','e')?>
 </td> <td align="left" valign="center"> 
 <input type="text" name="careplan_STO_Safety_Techniques_Time" id="careplan_STO_Safety_Techniques_Time" size="10px"></td><td width="60%" scope="row">
-<label><input type="checkbox" name="careplan_LTO_Improve_mobility" id="careplan_LTO_Improve_mobility" />
+<input type="checkbox" name="careplan_LTO_Improve_mobility" id="careplan_LTO_Improve_mobility" />
 <?php xl('Improve Mobility in','e')?>
 <input type="checkbox" name="careplan_LTO_Improve_mobility_Type" id="careplan_LTO_Improve_mobility_Type" value="home"/>
 <?php xl('Home','e')?>
 <input type="checkbox" name="careplan_LTO_Improve_mobility_Type" id="careplan_LTO_Improve_mobility_Type" value="community"/>
 <?php xl('Community','e')?>
-</label></td>	<td align="left" valign="center">
+</td>	<td align="left" valign="center">
 <input type="text" name="careplan_LTO_Improve_mobility_Time" id="careplan_LTO_Improve_mobility_Time" size="10px">
 </td></tr>
 <tr><td scope="row"><br /> <label>
@@ -429,7 +424,7 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
 
         <td width="40%" scope="row"><strong><?php xl('Rehab Potential','e')?></strong>
@@ -454,7 +449,7 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong>
         <?php xl('PT Care Plan and Discharge was communicated to and agreed upon by','e')?> </strong>
@@ -486,7 +481,7 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="0" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td scope="row"><strong>
         <?php xl('Patient/Caregiver/Family Response to Care Plan and Physical Therapy','e')?></strong></td>
@@ -495,7 +490,7 @@ formHeader("Form: careplan");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" scope="row"><label>
           <input type="checkbox" name="careplan_Agreeable_to_general_goals" id="careplan_Agreeable_to_general_goals" />
@@ -520,7 +515,7 @@ value="Short Term Memory"/>
 value="Minimum support"/>
 <?php xl('minimal support systems','e')?>
 <input type="checkbox" name="careplan_May_require_additional_treatment_dueto" id="careplan_May_require_additional_treatment_dueto" 
-value="Language Barrier" <?php xl('communication, language  barriers','e')?>/><br />
+value="Language Barrier"/> <?php xl('communication, language  barriers','e')?><br />
 <input type="checkbox" name="careplan_Will_address_above_issues" id="careplan_Will_address_above_issues" />
        <?php xl(' Will address above issues by','e')?>
   <input type="checkbox" name="careplan_Will_address_above_issues_by" id="careplan_Will_address_above_issues_by" 
@@ -553,7 +548,7 @@ value="Language Barrier" <?php xl('communication, language  barriers','e')?>/><b
   
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px">
+    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
       <tr>
         <td width="50%" scope="row"><strong><?php xl('Therapist Who Developed POC','e')?> </strong>(Name and Title)
           </td>
@@ -564,6 +559,11 @@ value="Language Barrier" <?php xl('communication, language  barriers','e')?>/><b
   </tr>
   
 </table>
+<a href="javascript:top.restoreSession();document.careplan.submit();"
+                        class="link_submit"><?php xl(' [Save]','e')?></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 </body>
 </html>

@@ -21,6 +21,7 @@ formHeader("Form: evaluation");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+	
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -80,16 +81,12 @@ formHeader("Form: evaluation");
 	<form method="post"
 		action="<?php echo $rootdir;?>/forms/evaluation/save.php?mode=new" name="evaluation">
 		<h3 align="center"><?php xl('OCCUPATIONAL THERAPY EVALUATION','e'); ?></h3>
-		<a href="javascript:top.restoreSession();document.evaluation.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
-			&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
- <br></br>
-<table align="center" border="1" cellpadding="0px" cellspacing="0px">
+		
+<br>
+<table align="center" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
   <tr>
     <td scope="row">
-    <table width="100%" border="1" cellspacing="0px" cellpadding="5px">
+    <table width="100%" border="1" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td align="center" scope="row">
           <strong><?php xl('PATIENT NAME','e')?></strong></td>
@@ -121,10 +118,10 @@ formHeader("Form: evaluation");
       </table>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <strong><?php xl('Vital Signs','e')?></strong></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table border="0" cellspacing="0px"  cellpadding="5px"><tr>
+    <td scope="row"><table border="0" cellspacing="0px"  cellpadding="5px" class="formtable"><tr>
     <td><?php xl('Pulse','e')?> <label for="pulse2"></label>
 
         <input type="text" name="Evaluation_Pulse" size="3px" id="Evaluation_Pulse" />
@@ -158,21 +155,21 @@ formHeader("Form: evaluation");
             <?php xl('Left','e')?></label>
           
           <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Sitting" id="Evaluation_VS_BP_Body_Position" />
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Sitting" />
             <?php xl('Sitting','e')?></label>
 
           <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Standing" id="Evaluation_VS_BP_Body_Position" />
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Standing" />
             <?php xl('Standing','e')?></label>
       <label>
-            <input type="checkbox" name="Evaluation_VS_BP_Body_Position" value="Lying" id="Evaluation_VS_BP_Body_Position" />
+            <input type="checkbox" name="Evaluation_VS_BP_Body" value="Lying" />
      <?php xl('Lying','e'); ?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('*O','e'); ?><sub><?php xl('2','e'); ?></sub><?php xl('Sat','e'); ?> 
          <input type="text" name="Evaluation_VS_Sat" size="3px" id="Evaluation_VS_Sat" /> 
 <?php xl('*Physician ordered','e')?> </p></td></tr></table></td></tr>
 
 <tr>
-<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('Pain','e')?></strong>
+<td scope="row"><table border="0" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong><?php xl('Pain','e')?></strong>
   <label for="pulse3"></label>
   <label>
     <input type="checkbox" name="Evaluation_VS_Pain" value="pain" id="Evaluation_VS_Pain" />
@@ -199,7 +196,7 @@ formHeader("Form: evaluation");
   </table>
   </td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong>
     <?php xl('Please Note Contact MD if Vital Signs are Pulse','e')?>&lt;<?php xl('56','e')?>
       <?php xl('or','e')?> &gt;<?php xl('120','e')?>; <?php xl('Temperature','e')?>
@@ -212,10 +209,10 @@ formHeader("Form: evaluation");
   </td></tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td width="50%" valign="top" scope="row">
-            <table width="100%">
+            <table width="100%" class="formtable">
                 <tr>
                   <td><label>
                     <strong><?php xl('HOMEBOUND REASON','e')?></strong> <br />
@@ -243,7 +240,7 @@ formHeader("Form: evaluation");
                 </tr>
               </table>
           <td width="50%" valign="top">
-            <table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+            <table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
 
               <tr>
                 <td><label>
@@ -274,7 +271,7 @@ formHeader("Form: evaluation");
   </tr>
 
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?></strong></td>
           <td align="center">                 
@@ -294,10 +291,10 @@ formHeader("Form: evaluation");
       </table>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('MEDICAL HISTORY AND PRIOR LEVEL OF FUNCTION','e')?> </strong></td></tr></table></td></tr>
     <tr>
-    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td scope="row"><strong><?php xl('PERTINENT MEDICAL HISTORY','e')?> 
           <input type="text" name="Evaluation_PERTINENT_MEDICAL_HISTORY" style="width:700px" id="Evaluation_PERTINENT_MEDICAL_HISTORY" />
@@ -347,13 +344,13 @@ formHeader("Form: evaluation");
       </tr>
   </table></td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('ADL/FUNCTIONAL MOBILITY STATUS','e')?></strong><br />
 
     <strong><?php xl('Scale','e')?></strong>
 <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no  assist required','e')?></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="23%" align="center" scope="row"><strong><?php xl('ADL TASK','e')?></strong>
           </th></td>
@@ -413,7 +410,7 @@ formHeader("Form: evaluation");
         <td scope="row"><?php xl('TOILET TRANSFERS','e')?></td>
         <td><select id="Evaluation_ADL_TOILET_TRANSFERS" name="Evaluation_ADL_TOILET_TRANSFERS">
 			<?php Mobility_status($GLOBALS['Selected'])	?> </select></td>
-        <td><input type="text" name="Evaluation_ADL_OTHERS_TEXT" id="Evaluation_ADL_OTHERS_TEXT" /></td>
+        <td><input type="text" name="Evaluation_ADL_OTHERS_TEXT" id="Evaluation_ADL_OTHERS_TEXT" value=""/></td>
        <td><select id="Evaluation_ADL_OTHERS" name="Evaluation_ADL_OTHERS">
 			<?php Mobility_status($GLOBALS['Selected'])	?> </select></td>
       </tr>
@@ -462,7 +459,7 @@ formHeader("Form: evaluation");
         <td scope="row"><?php xl('GROCERY SHOPPING','e')?></td>
       <td><select id="Evaluation_CI_ADL_GROCERY_SHOPPING" name="Evaluation_CI_ADL_GROCERY_SHOPPING">
 			<?php Mobility_status($GLOBALS['Selected'])	?> </select></td>
-        <td>  <input type="text" name="Evaluation_CI_ADL_OTHERS_TEXT" id="Evaluation_CI_ADL_OTHERS_TEXT" /></td>
+        <td>  <input type="text" name="Evaluation_CI_ADL_OTHERS_TEXT" id="Evaluation_CI_ADL_OTHERS_TEXT"  value=""/></td>
         <td><select id="Evaluation_CI_ADL_OTHERS" name="Evaluation_CI_ADL_OTHERS">
 			<?php Mobility_status($GLOBALS['Selected'])	?> </select></td>
       </tr>
@@ -470,10 +467,10 @@ formHeader("Form: evaluation");
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('ENVIRONMENTAL BARRIERS/SAFETY ISSUES (Check all that apply)','e')?></strong></td></tr></table></td></tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_EnvBar_No_barriers" id="Evaluation_EnvBar_No_barriers" />
 <?php xl('No environmental barriers in home','e')?>
 <input type="checkbox" name="Evaluation_EnvBar_No_Safety_Issues" id="Evaluation_EnvBar_No_Safety_Issues" />
@@ -502,11 +499,11 @@ formHeader("Form: evaluation");
 <input type="text" style="width:750px" name="Evaluation_EnvBar_Other" id="Evaluation_EnvBar_Other" />
 </td></tr></table></td></tr>
 <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong>
-<?php xl('COGNITION','e')?></strong></td></tr></table></td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong>
+<?php xl('COGNITION','e')?></strong></td></tr></table class="formtable"></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_COG_Alert_type" value="Alert" id="Evaluation_COG_Alert_type" />
       <?php xl('Alert','e')?>
 <input type="checkbox" name="Evaluation_COG_Alert_type" value="Not_Alert" id="Evaluation_COG_Alert_type" />
@@ -520,7 +517,7 @@ formHeader("Form: evaluation");
 <?php xl('Place','e')?>
 <input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Date" id="Evaluation_COG_Oriented_Type" />
 <?php xl('Date','e')?>
-<input type="checkbox" name="Evaluation_COG_Oriented_Type" value="Reason_for_Therapy" id="Evaluation_COG_Oriented_Type" />
+<input type="checkbox" name="Evaluation_COG_Oriented_reason" value="Reason_for_Therapy"/>
 <?php xl('Reason for Therapy','e')?><br />
 <?php xl('Can Follow','e')?>
 <input type="checkbox" name="Evaluation_COG_Canfollow" value="1" id="Evaluation_COG_Canfollow" />
@@ -535,7 +532,7 @@ formHeader("Form: evaluation");
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td scope="row" width="30%"><?php xl('SAFETY AWARENESS','e')?></td>
         <td><select name="Evaluation_Skil_Safety_Awareness" id="Evaluation_Skil_Safety_Awareness"><?php Cognition_skills($GLOBALS['Selected']) ?></select></td></tr>
@@ -549,12 +546,12 @@ formHeader("Form: evaluation");
   </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
     <tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr></table></td>
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
         <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
@@ -604,7 +601,7 @@ formHeader("Form: evaluation");
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
 <strong><?php xl('Activity Tolerance','e')?> </strong>
       <input type="checkbox" name="Evaluation_Activity_Tolerance_Type" value="Good" id="Evaluation_Activity_Tolerance_Type" />
 <?php xl('Good','e')?>
@@ -622,7 +619,7 @@ formHeader("Form: evaluation");
 <input type="text" style="width:410px" name="Evaluation_AT_Comments" id="Evaluation_AT_Comments" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('Patient has the following assistive devices','e')?></strong>
       <input type="checkbox" name="Evaluation_Assist_devices_Walker" id="Evaluation_Assist_devices_Walker" />
 <?php xl('Walker-Type','e')?>&nbsp;
@@ -642,14 +639,14 @@ formHeader("Form: evaluation");
 <input type="text" style="width:410px" name="Evaluation_Assist_devices_Other" id="Evaluation_Assist_devices_Other" /></td></tr></table></td>
   </tr>
   <tr>
-    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
+    <td height="67" scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong><?php xl('CURRENT BALANCE SKILLS','e')?></strong><br />
       <strong><?php xl('Scale','e')?> </strong>
 <?php xl('N=Normal, G=Good, takes moderate challenges, F=Fair, maintain balance without contact, P=Poor maintain balance for 15 seconds or less, 0 no balance reaction','e')?>
     </td></tr></table></td>
 
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></th>
         <td align="center"><strong><?php xl('STATUS','e')?></strong></td>
@@ -678,7 +675,7 @@ formHeader("Form: evaluation");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
         <tr><td><strong><?php xl('MUSCLE STRENGTH/FUNCTIONAL ROM EVALUATION','e')?><br />
       <input type="checkbox" name="Evaluation_MS_ROM_All_Muscle_WFL" value="All Muscle Strength is WFL" id="Evaluation_MS_ROM_All_Muscle_WFL" />
       <?php xl('All Muscle Strength is WFL','e')?>
@@ -690,7 +687,7 @@ formHeader("Form: evaluation");
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td align="center" scope="row"><strong><?php xl('PROBLEM AREA','e')?></strong></td>
         <td colspan="2" align="center"><strong><?php xl('STRENGTH','e')?></strong></td>
@@ -784,18 +781,18 @@ formHeader("Form: evaluation");
     </table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
       <td><strong><?php xl('Comments','e')?> 
         <input type="text" style="width:850px" name="Evaluation_MS_ROM_Comments" id="Evaluation_MS_ROM_Comments" />
       </strong></td></tr></table></td>
   </tr>
 
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('SUMMARY','e')?> </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
     <input type="checkbox" name="Evaluation_Summary_OT_Evaluation_Only" id="Evaluation_Summary_OT_Evaluation_Only" />
 <?php xl('OT Evaluation only. No further indications of service','e')?>
         <br />
@@ -820,7 +817,7 @@ formHeader("Form: evaluation");
 </td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl('OT Care Plan and Evaluation was communicated to and agreed upon by','e')?> </strong>
       <input type="checkbox" name="Evaluation_OT_Evaulation_Communicated_Agreed" value="Patient" id="Evaluation_OT_Evaulation_Communicated_Agreed" />
 
@@ -841,17 +838,17 @@ formHeader("Form: evaluation");
 <input type="text" style="width:530px" name="Evaluation_OT_Evaulation_Communicated_other" id="Evaluation_OT_Evaulation_Communicated_other" /></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
       <td><strong><?php xl('ADDITIONAL SERVICES PROVIDED','e')?>
       </strong>
 
-        <input type="checkbox" name="Evaluation_ASP_Home_Exercise_Initiated" id="Evaluation_ASP_Home_Exercise_Initiated" />
-<?php xl('Exercise Program Initiated','e')?>
-<input type="checkbox" name="Evaluation_ASP_Environmental_Adaptations_Discussed" id="Evaluation_ASP_Environmental_Adaptations_Discussed" />
-<?php xl('Recommendations for Environmental','e')?>
-<input type="checkbox" name="Evaluation_ASP_Safety_Issues_Discussed" id="Evaluation_ASP_Safety_Issues_Discussed" />
+        <input type="checkbox" name="Evaluation_ASP_Home_Exercise_Initiated" id="Evaluation_ASP_Home_Exercise_Initiated" value="on"/>
+<?php xl('Home Exercise Program Initiated','e')?>
+<input type="checkbox" name="Evaluation_ASP_Environmental_Adaptations_Discussed" id="Evaluation_ASP_Environmental_Adaptations_Discussed"  value="on"/>
+<?php xl('Recommendations for Environmental Adaptations Discussed','e')?>
+<input type="checkbox" name="Evaluation_ASP_Safety_Issues_Discussed" id="Evaluation_ASP_Safety_Issues_Discussed"  value="on"/>
 <?php xl('Recommendations for Safety Issues Discussed','e')?>
-<input type="checkbox" name="Evaluation_ASP_Treatment_For" id="Evaluation_ASP_Treatment_For" />
+<input type="checkbox" name="Evaluation_ASP_Treatment_For" id="Evaluation_ASP_Treatment_For" value="on" />
 <?php xl('Treatment for','e')?> 
 <input type="text" style="width:530px" name="Evaluation_ASP_Treatment_For_text" id="Evaluation_ASP_Treatment_For_text" /> 
 <?php xl('Initiated','e')?><br>
@@ -860,26 +857,26 @@ formHeader("Form: evaluation");
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr><td><strong><?php xl('Skilled OT is Reasonable and Necessary to','e')?></strong>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td><strong><?php xl('Skilled OT is Reasonable and Necessary to','e')?></strong>
             <br />
             <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Return_to_Prior_Level" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" />
-<?php xl('Return Patient to Their Prior Level of Function;','e')?> 
+<?php xl('Return Patient to Their Prior Level of Function','e')?> 
 <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Teach_patient_for_adaptation" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" />
 <?php xl(' Teach patient compensatory techniques for adaptation','e')?>
 <input type="checkbox" name="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" value="Train_patient_new_skills" id="Evaluation_Skilled_OT_Reasonable_And_Necessary_To" />
-<?php xl('Train patient in learning new skills;','e')?>&nbsp;&nbsp;&nbsp;&nbsp; 
+<?php xl('Train patient in learning new skills','e')?>&nbsp;&nbsp;&nbsp;&nbsp; 
 <?php xl('Other','e')?> 
 <input type="text" style="width:730px" name="Evaluation_Skilled_OT_Other" id="Evaluation_Skilled_OT_Other" /></td></tr></table></td>
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px"><tr>
+    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr>
     <td><strong><?php xl(' ADDITIONAL COMMENTS ','e')?>
       <input type="text" style="width:930px" name="Evaluation_Additional_Comments" id="Evaluation_Additional_Comments" />
     </strong></td></tr></table></td>
   </tr>
   <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px">
+    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
       <tr>
         <td width="50%" scope="row"><strong><?php xl('Therapist Who Developed POC (Name and Title)','e')?>  </strong>
         </td>
@@ -889,6 +886,11 @@ formHeader("Form: evaluation");
     </table></td>
   </tr>
 </table>
+<a href="javascript:top.restoreSession();document.evaluation.submit();"
+			class="link_submit"><?php xl(' [Save]','e')?></a>
+			&nbsp;&nbsp;&nbsp;
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 </body>
 </html>

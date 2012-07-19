@@ -193,7 +193,7 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
         <?php xl('Temporal','e');?></label>
      &nbsp; <?php xl('Other','e');?> 
  <input type="text" size="7px" name="dischargeplan_Vital_Signs_other" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_other"});?>" id="dischargeplan_Vital_Signs_other" /> 
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php xl('Respirations    ','e');?><input type="text" size="4x" name="dischargeplan_Vital_Signs_Respirations" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Respirations"});?>" id="dischargeplan_Vital_Signs_Respirations" /> <br/>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php xl('Respirations    ','e');?><input type="text" size="4x" name="dischargeplan_Vital_Signs_Respirations" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_Respirations"});?>" id="dischargeplan_Vital_Signs_Respirations" /> 
 <br/><?php xl('Blood Pressure','e')?>&nbsp;&nbsp; <?php xl('Systolic','e');?><input type="text" size="5px" name="dischargeplan_Vital_Signs_BP_Systolic" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_BP_Systolic"});?>" id="dischargeplan_Vital_Signs_BP_Systolic" />/
 
 <input type="text" size="5px" name="dischargeplan_Vital_Signs_BP_Diastolic" value="<?php echo stripslashes($obj{"dischargeplan_Vital_Signs_BP_Diastolic"});?>" id="dischargeplan_Vital_Signs_BP_Diastolic" />  <?php xl('Diastolic','e');?> 
@@ -237,7 +237,7 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
+<span id="med_icd9">
 <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
 {
 echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem'>"; 
@@ -247,7 +247,7 @@ echo "</select>";
  else 
  { 
  echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem' style='display:none'> </select>";
- }?></div>
+ }?></span>
 
 
   </tr>
@@ -290,7 +290,7 @@ echo "</select>";
         </tr>
 
         <tr>
-          <td width="27%" valign="top" scope="row">
+          <td width="33%" valign="top" scope="row">
             <table width="100%"  class="formtable">
               <tr>
                 <td align="left"><label>
@@ -321,7 +321,7 @@ echo "</select>";
                   <?php xl('Patient reached maximum rehab potential','e');?></label></td>
               </tr>
             </table>
-          <td width="25%" valign="top">
+          <td width="33%" valign="top">
             <table width="100%"  class="formtable">
 
               <tr>
@@ -348,7 +348,7 @@ echo "</select>";
               </tr>
             </table>
           </td>
-          <td width="45%" valign="top">
+          <td valign="top">
             <table width="100%"  class="formtable">
 
               <tr>
@@ -374,7 +374,7 @@ echo "</select>";
               </tr>
             </table>
             <?php xl('Other','e');?>
-            <input type="text" name="dischargeplan_RfD_other" value="<?php echo stripslashes($obj{"dischargeplan_RfD_other"});?>" id="dischargeplan_RfD_other"  style="width:85%" />
+            <input type="text" name="dischargeplan_RfD_other" value="<?php echo stripslashes($obj{"dischargeplan_RfD_other"});?>" id="dischargeplan_RfD_other"  style="width:80%" />
           </td>
         </tr>
          </table>
@@ -515,7 +515,25 @@ echo "</select>";
 <table cellpadding="2px" border="1" width="100%"  class="formtable"><tr><td><table width="100%" border="0" class="formtable">
 <tr><td colspan=3><strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong></td></tr>
 <tr><td colspan=3><strong><?php xl('By Signing below, MD agrees with discharge from Occupational Therapy services','e');?></strong></td></tr>
-<tr><td width='35%'><strong><?php xl('MD PRINTED NAME','e');?></strong></td><td width='35%'><strong><?php xl('MD Signature','e');?></strong></td><td><strong><?php xl('Date','e');?></strong></td></tr></table></td></tr></table>
+<tr><td width='35%'>
+<strong><?php xl('MD PRINTED NAME','e');?></strong>
+<input type="text" name="dischargeplan_md_printed_name" value="<?php echo $obj{"dischargeplan_md_printed_name"};?>" readonly>
+</td><td width='35%'>
+<strong><?php xl('MD Signature','e');?></strong>
+<input type="text" name="dischargeplan_md_signature" value="<?php echo $obj{"dischargeplan_md_signature"};?>">
+</td><td>
+<strong><?php xl('Date','e');?></strong>
+<input type="text" name="dischargeplan_md_date" value="<?php echo $obj{"dischargeplan_md_date"};?>" id='dischargeplan_md_date'
+    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+    <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
+    id='img_curr_date2' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
+    title='<?php xl('Click here to choose a date','e'); ?>'>
+    <script LANGUAGE="JavaScript">
+    Calendar.setup({inputField:"dischargeplan_md_date", ifFormat:"%Y-%m-%d", button:"img_curr_date2"});
+   </script>
+</td></tr></table>
+</td></tr></table>
 </table>
 <a href="javascript:top.restoreSession();document.visitdischarge.submit();"
 			class="link_submit"><?php xl(' [Save]','e')?></a>

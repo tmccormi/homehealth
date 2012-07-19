@@ -92,5 +92,16 @@ function ICD9SelDrop($Sel,$Dx)
           echo json_encode(array('res'  =>  $result));
  
  }
+ 
+  function doctorname()
+{
+	$select= sqlStatement("select fname,mname,lname from users where id=(select providerID from patient_data where pid= ".$_SESSION['pid'].")");
+	        while($Row=sqlFetchArray($select))
+{
+       echo $Row['lname']." ".$Row['mname']." ".$Row['fname'];
+	
+}
+	
+}
 
 ?>

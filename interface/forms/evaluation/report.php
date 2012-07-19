@@ -18,6 +18,7 @@ function evaluation_report($pid, $encounter, $cols, $id) {
    }
 
    $key=ucwords(str_replace("_"," ",$key)); 
+   $value=ucwords(str_replace("_"," ",$value)); 
     $key = str_replace("Evaluation", "", $key);   
 if($value!="Please Select...") 
 {

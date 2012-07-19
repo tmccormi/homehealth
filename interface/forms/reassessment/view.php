@@ -152,18 +152,18 @@ $obj = formFetch("forms_ot_Reassessment", $_GET["id"]);
     <td scope="row"><table width="100%" border="1" cellpadding="0px" cellspacing="0px" class="formtable">
       <tr>
 
-        <td align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
-        <td width="13%" align="center" valign="top"><input type="text"
-					id="patient_name" value="<?php patientName()?>"
+        <td width="5%" align="center" scope="row"><strong><?php xl('PATIENT NAME','e')?></strong></td>
+        <td width="15%" align="center" valign="top"><input type="text"
+					id="patient_name" size="24" value="<?php patientName()?>"
 					readonly /></td>
-        <td align="center"><strong><?php xl('MR#','e')?></strong></td>
-        <td align="center" valign="top" class="bold">
-        <input type="text" name="mr" id="mr" size="7px" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
-        <td width="70"><p><strong><?php xl('Time In','e');?></strong></p></td>
-        <td><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_In"}))?></select></td>
-        <td width="70"><p><strong><?php xl('Time Out','e');?></strong></p></td>
-        <td><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_Out"}))?></select></td>
-	<td align="center"><strong><?php xl('DATE','e')?></strong></td>
+        <td width="06%" align="center"><strong><?php xl('MR#','e')?></strong></td>
+        <td width="10%" align="center" valign="top" class="bold">
+        <input type="text" name="mr" id="mr" size="10px" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
+        <td width="5%"><p><strong><?php xl('Time In','e');?></strong></p></td>
+        <td width="9%"><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_In"}))?></select></td>
+        <td width="5%"><p><strong><?php xl('Time Out','e');?></strong></p></td>
+        <td width="9%"><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_Out"}))?></select></td>
+	<td align="center" width="9%"><strong><?php xl('Reassess Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
 					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
@@ -181,6 +181,7 @@ $obj = formFetch("forms_ot_Reassessment", $_GET["id"]);
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+<strong><?php xl('Vital Signs','e')?></strong><br>
 <?php xl('Pulse','e')?>
   <label for="pulse"></label>
   <input type="text"  size="3px" name="Reassessment_Pulse" id="Reassessment_Pulse" value="<?php echo stripslashes($obj{"Reassessment_Pulse"});?>" />
@@ -232,7 +233,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_BP_Systolic"});?>" />
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Sitting") echo "checked";;?>/>
   <?php xl('Sitting','e')?></label>
 <label>
-  <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing " id="standing"
+  <input type="checkbox" name="Reassessment_VS_BP_Body_Position" value="Standing" id="standing"
     <?php if ($obj{"Reassessment_VS_BP_Body_Position"} == "Standing") echo "checked";;?>/>
   <?php xl('Standing','e')?> </label>
 <label>
@@ -321,7 +322,7 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 <input type="text" id="icd" size="15"/>
 <input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">  
+<span id="med_icd9">  
 <?php if ($obj{"Reassessment_TREATMENT_DX_Problem"})
 {
 echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem'>"; 
@@ -332,12 +333,16 @@ echo "</select>";
  { 
  echo "<select id='Reassessment_TREATMENT_DX_Problem' name='Reassessment_TREATMENT_DX_Problem' style='display:none'> </select>";
  }?>
-</div>
+</span>
 </td></tr></table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('ADL/IADL REASSESSMENT','e')?></strong><br />
+    <strong><?php xl('Scale','e')?>&nbsp;</strong>
+    <?php xl('U=Unable*, Dep=Dependent, Max=needs 75-51% assist, Mod=needs 50-26%, Min=needs 25-1% assist, CG=constant contact guard, SBA=stand by assist, S=supervised, needs cues, Mod I=Independent with assistive devices, Independent=no assist required.','e')?><br>
+   <strong><?php xl('Balance Scale','e')?>&nbsp;</strong>
+   <?php xl('G=Good, F=Fair, P=Poor','e')?>
     </td></tr></table></td>
   </tr>
 
@@ -491,7 +496,7 @@ echo "</select>";
       <tr>
         <td scope="row"><?php xl('SITTING BALANCE  STATIC/DYNAMIC','e')?></td>
         <td align="center"><strong><select name="Reassessment_ADL_SITTING_BALANCE_Initial_Status" id="Reassessment_ADL_SITTING_BALANCE_Initial_Status"><?php Balance_skills(stripslashes($obj{"Reassessment_ADL_SITTING_BALANCE_Initial_Status"})) ?></select></strong></td>
-        <td align="center"><strong><select name="Reassessment_ADL_SITTING_BALANCE_Current_Status" id="Reassessment_ADL_SITTING_BALANCE_Current_Status"><?php Balance_skills(stripslashes($obj{"Reassessment_ADL_SITTING_BALANCE_Initial_Status"})) ?></select></strong></td>
+        <td align="center"><strong><select name="Reassessment_ADL_SITTING_BALANCE_Current_Status" id="Reassessment_ADL_SITTING_BALANCE_Current_Status"><?php Balance_skills(stripslashes($obj{"Reassessment_ADL_SITTING_BALANCE_Current_Status"})) ?></select></strong></td>
 
         <td><input type="checkbox" name="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" value="N/A" id="Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills" 
         <?php if ($obj{"Reassessment_ADL_SITTING_BALANCE_Describe_Mobility_Skills"} == "N/A") echo "checked";;?>/>
@@ -518,8 +523,8 @@ echo "</select>";
 <input type="checkbox" name="Reassessment_Assistive_Devices" value="W/C" id="Reassessment_Assistive_Devices" 
 <?php if ($obj{"Reassessment_Assistive_Devices"} == "W/C") echo "checked";;?>/>
 <?php xl('W/C','e')?>
-<input type="checkbox" name="W/C" value="Cane" id="Reassessment_Assistive_Devices" 
-<?php if ($obj{"Reassessment_Assistive_Devices"} == "Cane") echo "checked";;?>/>
+<input type="checkbox" name="Reassessment_Assistive_Devices" value="Cane" id="Reassessment_Assistive_Devices" 
+<?php if ($obj{"Reassessment_Assistive_Devices"} == "Cane") echo "checked";?>/>
 <?php xl('Cane Type','e')?>
 <label for="textfield"></label>
   <input type="text" size="22px" name="Reassessment_Assistive_Devices_Cane_Type" id="Reassessment_Assistive_Devices_Cane_Type" 
@@ -932,7 +937,7 @@ value="Hypo"<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} 
 value="Hypo"<?php if ($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Type"} == "Tone") echo "checked";;?>/>
 <?php xl('Tone','e')?> <strong>
 <input type="text" style="width:910px" name="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" id="Reassessment_MS_ROM_Problems_Achieving_Goals_Note" 
-value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Further_description3"});?>" />
+value="<?php echo stripslashes($obj{"Reassessment_MS_ROM_Problems_Achieving_Goals_Note"});?>" />
 </strong></td></tr></table></td>
   </tr>
   <tr>
