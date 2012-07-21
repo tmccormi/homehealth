@@ -806,34 +806,34 @@ foreach($obj as $k => $v) {
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_LPN_LVN_HHA_present" <?php if(in_array("YES",$visitnote_LPN_LVN_HHA_present)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_LPN_LVN_HHA_present" <?php if(in_array("NO",$visitnote_LPN_LVN_HHA_present)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('LPN/LVN or HHA present with this visit','e')?></strong></td>
+                <td scope="row"><?php xl('LPN/LVN or HHA present with this visit','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Aware_of_patients_code_status" <?php if(in_array("YES",$visitnote_Aware_of_patients_code_status)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Aware_of_patients_code_status" <?php if(in_array("NO",$visitnote_Aware_of_patients_code_status)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Aware of patient\'s code status','e')?></strong></td>
+                <td scope="row"><?php xl('Aware of patient\'s code status','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Follows_Care_Plan" <?php if(in_array("YES",$visitnote_Follows_Care_Plan)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Follows_Care_Plan" <?php if(in_array("NO",$visitnote_Follows_Care_Plan)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Follows Care Plan','e')?></strong></td>
+                <td scope="row"><?php xl('Follows Care Plan','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_polite_courteous_and_respectful" <?php if(in_array("YES",$visitnote_polite_courteous_and_respectful)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_polite_courteous_and_respectful" <?php if(in_array("NO",$visitnote_polite_courteous_and_respectful)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Was polite, courteous and respectful','e')?></strong></td>
+                <td scope="row"><?php xl('Was polite, courteous and respectful','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_time_necessary_to_meet_the_patients_needs" <?php if(in_array("YES",$visitnote_time_necessary_to_meet_the_patients_needs)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_time_necessary_to_meet_the_patients_needs" <?php if(in_array("NO",$visitnote_time_necessary_to_meet_the_patients_needs)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Thorough and takes the time necessary to meet the patient\'s needs','e')?></strong></td>
+                <td scope="row"><?php xl('Thorough and takes the time necessary to meet the patient\'s needs','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_clinical_skills_appropriate_to_patient_need" <?php if(in_array("YES",$visitnote_clinical_skills_appropriate_to_patient_need)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_clinical_skills_appropriate_to_patient_need" <?php if(in_array("NO",$visitnote_clinical_skills_appropriate_to_patient_need)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Demonstrates clinical skills appropriate to patient need','e')?></strong></td>
+                <td scope="row"><?php xl('Demonstrates clinical skills appropriate to patient need','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Follows_Infection_Control_Procedures" <?php if(in_array("YES",$visitnote_Follows_Infection_Control_Procedures)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Follows_Infection_Control_Procedures" <?php if(in_array("NO",$visitnote_Follows_Infection_Control_Procedures)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('Follows Infection Control Procedures including hand hygiene and bag technique','e')?></strong></td>
+                <td scope="row"><?php xl('Follows Infection Control Procedures including hand hygiene and bag technique','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Identifies_patient_issues" <?php if(in_array("YES",$visitnote_Identifies_patient_issues)) echo "checked"; ?> /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Identifies_patient_issues" <?php if(in_array("NO",$visitnote_Identifies_patient_issues)) echo "checked"; ?> /></td>
-                <td scope="row"><strong><?php xl('If applicable, Identifies patient issues during visit','e')?></strong></td>
+                <td scope="row"><?php xl('If applicable, Identifies patient issues during visit','e')?></td>
               </tr>
             </table></td>
         </tr>
@@ -882,12 +882,13 @@ echo $c->view_action($_GET['id']);
 	  
 	 <table width="100%" border="1px" cellspacing="0px" cellpadding="2px" class="formtable">
 	 	<tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
+		<th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
 	</tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
@@ -980,13 +981,13 @@ echo $c->view_action($_GET['id']);
 
 <table width="100%" border="1px" cellspacing="0px" cellpadding="2px" class="formtable">
   <tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
-	</tr>
+	<th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[0];?>" size="12" /></td>
@@ -1007,7 +1008,7 @@ echo $c->view_action($_GET['id']);
 <?php xl('Width','e')?>  <br />
 <?php xl('Depth','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[2];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[3];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[4];?>" size="12" /></td>
-    <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[2];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value5[3];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[4];?>" size="12" /></td>
+    <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[2];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[3];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[4];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[2];?>" size="12" /> <br /><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[3];?>" size="12" /> <br /><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[4];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[2];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[3];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[4];?>" size="12" /></td>
   </tr>

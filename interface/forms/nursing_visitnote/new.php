@@ -734,34 +734,34 @@ table label, input { display:inherit !important; }
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_LPN_LVN_HHA_present" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_LPN_LVN_HHA_present" /></td>
-                <td scope="row"><strong><?php xl('LPN/LVN or HHA present with this visit','e')?></strong></td>
+                <td scope="row"><?php xl('LPN/LVN or HHA present with this visit','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Aware_of_patients_code_status" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Aware_of_patients_code_status" /></td>
-                <td scope="row"><strong><?php xl('Aware of patient\'s code status','e')?></strong></td>
+                <td scope="row"><?php xl('Aware of patient\'s code status','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Follows_Care_Plan" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Follows_Care_Plan" /></td>
-                <td scope="row"><strong><?php xl('Follows Care Plan','e')?></strong></td>
+                <td scope="row"><?php xl('Follows Care Plan','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_polite_courteous_and_respectful" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_polite_courteous_and_respectful" /></td>
-                <td scope="row"><strong><?php xl('Was polite, courteous and respectful','e')?></strong></td>
+                <td scope="row"><?php xl('Was polite, courteous and respectful','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_time_necessary_to_meet_the_patients_needs" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_time_necessary_to_meet_the_patients_needs" /></td>
-                <td scope="row"><strong><?php xl('Thorough and takes the time necessary to meet the patient\'s needs','e')?></strong></td>
+                <td scope="row"><?php xl('Thorough and takes the time necessary to meet the patient\'s needs','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_clinical_skills_appropriate_to_patient_need" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_clinical_skills_appropriate_to_patient_need" /></td>
-                <td scope="row"><strong><?php xl('Demonstrates clinical skills appropriate to patient need','e')?></strong></td>
+                <td scope="row"><?php xl('Demonstrates clinical skills appropriate to patient need','e')?></td>
               </tr>
               <tr>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Follows_Infection_Control_Procedures" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Follows_Infection_Control_Procedures" /></td>
-                <td scope="row"><strong><?php xl('Follows Infection Control Procedures including hand hygiene and bag technique','e')?></strong></td>
+                <td scope="row"><?php xl('Follows Infection Control Procedures including hand hygiene and bag technique','e')?></td>
                 <td scope="row"><input type="checkbox" value="YES" name="visitnote_Identifies_patient_issues" /></td>
                 <td scope="row"><input type="checkbox" value="NO" name="visitnote_Identifies_patient_issues" /></td>
-                <td scope="row"><strong><?php xl('If applicable, Identifies patient issues during visit','e')?></strong></td>
+                <td scope="row"><?php xl('If applicable, Identifies patient issues during visit','e')?></td>
               </tr>
             </table></td>
         </tr>
@@ -810,11 +810,11 @@ echo $c->default_action();
 	  <table width="100%" border="1px" cellspacing="0px" cellpadding="2px" class="formtable">
 	  	<tr>
 	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('Comments','e')?></strong></td>
 	</tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?><input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
@@ -907,13 +907,13 @@ echo $c->default_action();
 
 <table width="100%" border="1px" cellspacing="0px" cellpadding="2px" class="formtable">
 <tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
-	</tr>
+	<th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?></th>
     <td><input name="wound_value5[]" type="text" size="12" /></td>

@@ -31,8 +31,7 @@ thirty_day_progress_note_topic_for_discussion='".$topic_for_discussion."',
 thirty_day_progress_note_topic_for_discussion_other='".$_POST["thirty_day_progress_note_topic_for_discussion_other"]."',
 thirty_day_progress_note_details_of_discussion='".$_POST["thirty_day_progress_note_details_of_discussion"]."',
 thirty_day_progress_note_details_for_resolutions='".$_POST["thirty_day_progress_note_details_for_resolutions"]."',
-thirty_day_progress_note_people_descipline_attending='".$_POST["thirty_day_progress_note_people_descipline_attending"]."',
-thirty_day_progress_note_clinical_name_title_completing ='".$_POST["thirty_day_progress_note_clinical_name_title_completing"]."'
+thirty_day_progress_note_people_descipline_attending='".$_POST["thirty_day_progress_note_people_descipline_attending"]."'
 where id=$id");
 }
 $_SESSION["encounter"] = $encounter;

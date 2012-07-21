@@ -204,7 +204,7 @@ $physician_order = explode("#",$obj{"physician_order"});
 			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>" <?php if($obj{"patient_lives"}=="With Spouse/Significant Other") echo "checked"; ?> ><?php xl('With Spouse/Significant Other','e');?></label>
 			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Family','e');?>" <?php if($obj{"patient_lives"}=="With Family") echo "checked"; ?> ><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><?php xl('Who:','e');?><input type="text" name="patient_lives_with_who" size="20" value="<?php echo stripslashes($obj{"patient_lives_with_who"});?>"></label><br>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Paid Help','e');?>" <?php if($obj{"patient_lives"}=="With Paid Help") echo "checked"; ?> ><?php xl('With Paid Help','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Paid Help','e');?>" <?php if($obj{"patient_lives"}=="With Paid Help") echo "checked"; ?> ><?php xl('With Paid Help','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_lives_other" style="width:80%" value="<?php echo stripslashes($obj{"patient_lives_other"});?>"></label><br>
 			<label><?php xl('Number of Hours Patient is Alone Each Day/Why ','e');?><input type="text" name="no_of_hours_patient_alone" style="width:40%" value="<?php echo stripslashes($obj{"no_of_hours_patient_alone"});?>"></label><br>
 		</td>
@@ -212,7 +212,7 @@ $physician_order = explode("#",$obj{"physician_order"});
 	<tr>
 		<td colspan="4"><strong><?php xl('Type of Housing: ','e');?></strong>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('House','e');?>" <?php if($obj{"type_of_housing"}=="House") echo "checked"; ?> ><?php xl('House','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>" <?php if($obj{"type_of_housing"}=="Appartment") echo "checked"; ?> ><?php xl('Appartment','e');?></label>
+			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>" <?php if($obj{"type_of_housing"}=="Apartment") echo "checked"; ?> ><?php xl('Apartment','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Mobile Home','e');?>" <?php if($obj{"type_of_housing"}=="Mobile Home") echo "checked"; ?> ><?php xl('Mobile Home','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Retirement Community','e');?>" <?php if($obj{"type_of_housing"}=="Retirement Community") echo "checked"; ?> ><?php xl('Retirement Community','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>" <?php if($obj{"type_of_housing"}=="Assisted Living Facility") echo "checked"; ?> ><?php xl('Assisted Living Facility','e');?></label>
@@ -237,7 +237,7 @@ $physician_order = explode("#",$obj{"physician_order"});
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Person','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Person") echo "checked"; ?> ><?php xl('Person','e');?></label>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Place','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Place") echo "checked"; ?> ><?php xl('Place','e');?></label>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Date','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Date") echo "checked"; ?> ><?php xl('Date','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;
-			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Disoriented','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Disoriented") echo "checked"; ?> ><?php xl('Disoriented','e');?></label><br>
+			<label><input type="checkbox" name="mental_status_disoriented" value="<?php xl('Disoriented','e');?>" <?php if($obj{"mental_status_disoriented"}=="Disoriented") echo "checked"; ?> ><?php xl('Disoriented','e');?></label><br>
 			<strong><?php xl('Impaired Mental Status Requires the following resources: ','e');?></strong>
 			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="None") echo "checked"; ?> ><?php xl('None','e');?></label>
 			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Family/Cregiver Support") echo "checked"; ?> ><?php xl('Family/Cregiver Support','e');?></label>
@@ -254,7 +254,7 @@ $physician_order = explode("#",$obj{"physician_order"});
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Moderate Assistance") echo "checked"; ?> ><?php xl('Requires Moderate Assistance','e');?></label>
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Minimal Assistance") echo "checked"; ?> ><?php xl('Requires Minimal Assistance','e');?></label>
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Supervision Only") echo "checked"; ?> ><?php xl('Requires Supervision Only','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>" <?php if($obj{"patient_adl_status"}=="Independent") echo "checked"; ?> ><?php xl('Independent','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>" <?php if($obj{"patient_adl_status"}=="Independent") echo "checked"; ?> ><?php xl('Independent','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_adl_status_other" style="width:70%" value="<?php echo stripslashes($obj{"patient_adl_status_other"});?>"></label>
 			
 		</td>
@@ -352,8 +352,8 @@ $physician_order = explode("#",$obj{"physician_order"});
 						<strong><?php xl('SOC Date','e');?></strong>
 					</td>
 					<td align="center" valign="middle" width="30%">
-						<input type='text' size='10' name='SOC_date' id='SOC_date2' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"SOC_date"};?>" readonly/> 
+						<input type='text' size='10' name='SOC_date2' id='SOC_date2' 
+						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"SOC_date2"};?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -435,7 +435,7 @@ $physician_order = explode("#",$obj{"physician_order"});
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('PT/OT/ST','e');?>" <?php if($obj{"msw_careplan_communicated_agreed"}=="PT/OT/ST") echo "checked"; ?> ><?php xl('PT/OT/ST','e');?></label>
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Skilled Nursing','e');?>" <?php if($obj{"msw_careplan_communicated_agreed"}=="Skilled Nursing") echo "checked"; ?> ><?php xl('Skilled Nursing','e');?></label>
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Caregiver/Family','e');?>" <?php if($obj{"msw_careplan_communicated_agreed"}=="Caregiver/Family") echo "checked"; ?> ><?php xl('Caregiver/Family','e');?></label>
-			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Case Manager','e');?>" <?php if($obj{"msw_careplan_communicated_agreed"}=="Case Manager") echo "checked"; ?> ><?php xl('Case Manager','e');?></label>
+			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Case Manager','e');?>" <?php if($obj{"msw_careplan_communicated_agreed"}=="Case Manager") echo "checked"; ?> ><?php xl('Case Manager','e');?></label><br>
 			<?php xl('Other: ','e');?><input type="text" name="msw_careplan_communicated_agreed_other" style="width:25%;" value="<?php echo stripslashes($obj{"msw_careplan_communicated_agreed_other"});?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</td>
 	</tr>

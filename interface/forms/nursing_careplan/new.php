@@ -703,12 +703,13 @@ table label, input { display:inherit !important; }
 	  ?>
 	<table width="100%" border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
 	<tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
+	<th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
 	</tr>
 	
   <tr>
@@ -803,11 +804,11 @@ table label, input { display:inherit !important; }
 <table width="100%" border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
   <tr>
 	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('Comments','e')?></strong></td>
 	</tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?> </th>
@@ -916,7 +917,7 @@ table label, input { display:inherit !important; }
 </td>
 </tr></table>
 
-<a id="btn_save" href="javascript:top.restoreSession();document.nursing_careplan.submit()" class="link_submit">
+<a id="btn_save" href="javascript:void(0)" class="link_submit">
 <?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"

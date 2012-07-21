@@ -17,6 +17,7 @@ function thirtyday_progress_note_report($pid, $encounter, $cols, $id) {
     $value = "yes";
    }
    $key=ucwords(str_replace("_"," ",$key));  
+   $key=ucwords(str_replace("Thirty Day Progress Note ","",$key)); 
    print "<td valign='top'><span class='bold'>$key: </span><span class='text'>$value</span></td>\n";
    $count++;
    if ($count == $cols) {

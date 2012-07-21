@@ -19,7 +19,7 @@ sqlInsert("update forms_dietary_visit set pid = {$_SESSION["pid"]},groupname='".
 dietary_visit_last_name ='".$_POST["dietary_visit_last_name"]."',
 dietary_visit_first_name ='".$_POST["dietary_visit_first_name"]."',
 dietary_visit_visit_date ='".$_POST["dietary_visit_visit_date"]."',
-dietary_visit_change_dietary_status_since_last_visit ='".implode("#",$_POST["dietary_visit_change_dietary_status_since_last_visit"])."',
+dietary_visit_change_dietary_status_since_last_visit ='".$_POST["dietary_visit_change_dietary_status_since_last_visit"]."',
 dietary_visit_patient_weight_lost_since_last_visit ='".$_POST["dietary_visit_patient_weight_lost_since_last_visit"]."',
 dietary_visit_patient_weight_lost_since_last_visit_others ='".$_POST["dietary_visit_patient_weight_lost_since_last_visit_others"]."',
 dietary_visit_new_factors_affecting_patient_weight ='".$_POST["dietary_visit_new_factors_affecting_patient_weight"]."',
@@ -27,7 +27,7 @@ dietary_visit_new_affecting_factors ='".$_POST["dietary_visit_new_affecting_fact
 dietary_visit_assessment_summary ='".$_POST["dietary_visit_assessment_summary"]."',
 dietary_visit_treatment_plan ='".$_POST["dietary_visit_treatment_plan"]."',
 dietary_visit_rd_signature ='".$_POST["dietary_visit_rd_signature"]."',
-dietary_visit_rd_signature_date ='".implode("#",$_POST["dietary_visit_rd_signature_date"])."'
+dietary_visit_rd_signature_date ='".$_POST["dietary_visit_rd_signature_date"]."'
 
 where id=$id");
 }

@@ -327,7 +327,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 <td width="40%" align="left" valign="top" colspan="6">
         <strong><?php xl('Date','e')?></strong>
                                 <input type='text' size='10' name='physician_orders_date1' id='physician_orders_date1'
-										value='<?php echo stripslashes($obj{"physician_orders_effective_date"});?>'
+										value='<?php echo stripslashes($obj{"physician_orders_date1"});?>'
                                         title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'

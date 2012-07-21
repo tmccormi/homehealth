@@ -67,6 +67,6 @@ dischargeplan_Goals_notmet_explanation text,
 dischargeplan_Additional_Comments text,
 dischargeplan_Therapist_Signature varchar(255),
 dischargeplan_md_printed_name varchar(255),
-dischargeplan_md_signature varchar(255)
+dischargeplan_md_signature varchar(255),
 dischargeplan_md_date DATE
 ) engine=MyISAM;

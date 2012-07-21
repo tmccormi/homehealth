@@ -176,6 +176,13 @@ health agency (Check all that apply)','e');?>&nbsp;&nbsp;
 			</tr>
 			
 			<tr>
+                        <td>
+                        <strong><?php xl('Physician Confirmation of Discharge Orders','e');?></strong><br>
+                        <strong><?php xl('By Signing below, MD agrees with discharge from these Home Health Services','e');?></strong><br>
+                        </td>
+                        </tr>
+			
+			<tr>
 			<td>
 			<table border="1px" width="100%" class="formtable">
 			<tr><td width="33%">

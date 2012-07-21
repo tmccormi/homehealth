@@ -103,10 +103,7 @@ $(document).ready(function() {
 	<form method="post"
 		action="<?php echo $rootdir;?>/forms/thirtyday_progress_note/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="thirtyday_progress_note">
 		<h3 align="center"><?php xl('30 DAY PROGRESS REPORT','e')?></h3>		
-		<h5 align="center">
-		<?php xl('(Information from this form goes to 485/Plan of care)','e'); ?>
-		</h5>
-		<br> <br/>
+		<br/>
 		<table width="100%" border="1" cellpadding="2px" class="formtable">
 			<tr>
 				<td width="13%" align="center" valign="top" scope="row">
@@ -237,7 +234,7 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<td colspan="3" valign="top" scope="row"><strong><?php xl('Clinician Name/Title Completing Note','e')?>
-				</strong> <input type="text" name="thirty_day_progress_note_clinical_name_title_completing" value="<?php echo $obj{"thirty_day_progress_note_clinical_name_title_completing"}; ?>"></td>
+				</strong></td>
 				<td colspan="3" valign="top"><strong><?php xl('Electronic Signature','e')?>
 				</strong></td>
 			</tr>	

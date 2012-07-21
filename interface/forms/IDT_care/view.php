@@ -217,12 +217,12 @@ $obj = formFetch("forms_idt_care", $_GET["id"]);
 			</tr>
 			<tr>
 				<td colspan="6" valign="top" scope="row"><strong> <?php xl('PEOPLE/DISCIPLINES ATTENDING','e')?>
-				</strong><br /><textarea name="idt_care_people_descipline_attending" rows="3" cols="98"><?php echo $obj{"idt_care_details_for_resolutions"}; ?></textarea>
+				</strong><br /><textarea name="idt_care_people_descipline_attending" rows="3" cols="98"><?php echo $obj{"idt_care_people_descipline_attending"}; ?></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3" valign="top" scope="row"><strong><?php xl('Clinician Name/Title Completing Note','e')?>
-				</strong><input type="text" name="idt_care_clinical_name_title_completing" value="<?php echo $obj{"idt_care_details_for_resolutions"}; ?>"></td>
+				</strong><input type="text" name="idt_care_clinical_name_title_completing" value="<?php echo $obj{"idt_care_clinical_name_title_completing"}; ?>"></td>
 				<td colspan="3" valign="top"><strong><?php xl('Electronic Signature','e')?>
 				</strong></td>
 			</tr>

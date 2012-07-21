@@ -107,7 +107,7 @@ formHeader("Form: dietary_assessment");
 <b><?php xl('Pressure Ulcers Present','e') ?></b>
 <input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
 <input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('1-3','e') ?>"/><?php xl(' 1-3 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('3','e') ?>"/><?php xl(' more than 3 ', 'e') ?><br/>
+<input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('more than 3','e') ?>"/><?php xl(' more than 3 ', 'e') ?><br/>
 <b><?php xl('Stage of Ulcers','e') ?></b>
 <input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 1','e') ?>"/><?php xl(' Stage 1 ', 'e') ?>
 <input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 2','e') ?>"/><?php xl(' Stage 2 ', 'e') ?>

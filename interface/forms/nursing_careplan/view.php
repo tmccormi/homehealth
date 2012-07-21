@@ -829,12 +829,14 @@ $Interventions = explode("#",$obj{"Interventions"});
 	  
 	 <table width="100%" border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
 	 <tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
+	   <th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
+
 	</tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?> <input type="hidden" name="wound_label[]" value="Type of Wound" /></th>
@@ -927,13 +929,13 @@ $Interventions = explode("#",$obj{"Interventions"});
 
 <table width="100%" border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
   <tr>
-	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('#','e')?></td>
-	 <td align="center"><?php xl('Comments','e')?></td>
-	</tr>
+	<th scope="row"><?php xl('Wound','e')?>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('Comments','e')?></strong></td>
+        </tr>
   <tr>
     <th scope="row" align="right"><?php xl('Type of Wound','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[0];?>" size="12" /></td>
@@ -954,7 +956,7 @@ $Interventions = explode("#",$obj{"Interventions"});
 <?php xl('Width','e')?>  <br />
 <?php xl('Depth','e')?> </th>
     <td><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[2];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[3];?>" size="12" /> <br /><input name="wound_value5[]" type="text" value="<?php echo $wound_value5[4];?>" size="12" /></td>
-    <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[2];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value5[3];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[4];?>" size="12" /></td>
+    <td><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[2];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[3];?>" size="12" /> <br /><input name="wound_value6[]" type="text" value="<?php echo $wound_value6[4];?>" size="12" /></td>
     <td><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[2];?>" size="12" /> <br /><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[3];?>" size="12" /> <br /><input name="wound_value7[]" type="text" value="<?php echo $wound_value7[4];?>" size="12" /></td>
     <td><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[2];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[3];?>" size="12" /> <br /><input name="wound_value8[]" type="text" value="<?php echo $wound_value8[4];?>" size="12" /></td>
   </tr>

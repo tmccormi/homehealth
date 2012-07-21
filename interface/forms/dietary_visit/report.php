@@ -17,7 +17,7 @@ function dietary_visit_report($pid, $encounter, $cols, $id) {
     $value = "yes";
    }
    $key=ucwords(str_replace("_"," ",$key));
-   $key = str_replace("Careplan", "", $key);   
+   $key = str_replace("Dietary Visit ", "", $key);   
 if($value!="Please Select...") 
 {  
    print "<td valign='top'><span class='bold'>$key: </span><span class='text'>$value</span></td>\n";

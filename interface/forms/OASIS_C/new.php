@@ -824,9 +824,9 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 					</td>
 					<td align="center" valign="top">
 						
-					  <?php xl('d.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" />
+					  <?php xl('d.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" />
 						
-							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" value="" onkeydown="fonChange(this,2,'noev')" />
+							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS__payment_diagnosis_v_code_or_e_code_1_e" value="" onkeydown="fonChange(this,2,'noev')" />
 					</td>
 					<td align="center" valign="top">
 						
@@ -852,9 +852,9 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 					</td>
 					<td align="center" valign="top">
 						
-					  <?php xl('e.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" />
+					  <?php xl('e.','e'); ?> <input name="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" />
 						
-							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" value="" onkeydown="fonChange(this,2,'noev')" />
+							<input type="text" style="width:40%" class="autosearch" id="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" value="" onkeydown="fonChange(this,2,'noev')" />
 					</td>
 					<td align="center" valign="top">
 						

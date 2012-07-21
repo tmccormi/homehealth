@@ -121,7 +121,7 @@ formHeader("Form: msw_careplan");
 			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>"><?php xl('With Spouse/Significant Other','e');?></label>
 			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Family','e');?>"><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><?php xl('Who:','e');?><input type="text" name="patient_lives_with_who" size="20" value=""></label><br>
-			<label><input type="checkbox" name="patient_lives_with_who" value="<?php xl('With Paid Help','e');?>"><?php xl('With Paid Help','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Paid Help','e');?>"><?php xl('With Paid Help','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_lives_other" style="width:80%" value=""></label><br>
 			<label><?php xl('Number of Hours Patient is Alone Each Day/Why ','e');?><input type="text" name="no_of_hours_patient_alone" style="width:40%" value=""></label><br>
 		</td>
@@ -129,7 +129,7 @@ formHeader("Form: msw_careplan");
 	<tr>
 		<td colspan="4"><strong><?php xl('Type of Housing: ','e');?></strong>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('House','e');?>"><?php xl('House','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>"><?php xl('Appartment','e');?></label>
+			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>"><?php xl('Apartment','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Mobile Home','e');?>"><?php xl('Mobile Home','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Retirement Community','e');?>"><?php xl('Retirement Community','e');?></label>
 			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>"><?php xl('Assisted Living Facility','e');?></label>
@@ -154,7 +154,7 @@ formHeader("Form: msw_careplan");
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Person','e');?>"><?php xl('Person','e');?></label>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Place','e');?>"><?php xl('Place','e');?></label>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Date','e');?>"><?php xl('Date','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;
-			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Disoriented','e');?>"><?php xl('Disoriented','e');?></label><br>
+			<label><input type="checkbox" name="mental_status_disoriented" value="<?php xl('Disoriented','e');?>"><?php xl('Disoriented','e');?></label><br>
 			<strong><?php xl('Impaired Mental Status Requires the following resources: ','e');?></strong>
 			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>"><?php xl('None','e');?></label>
 			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>"><?php xl('Family/Cregiver Support','e');?></label>
@@ -171,7 +171,7 @@ formHeader("Form: msw_careplan");
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>"><?php xl('Requires Moderate Assistance','e');?></label>
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>"><?php xl('Requires Minimal Assistance','e');?></label>
 			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>"><?php xl('Requires Supervision Only','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>"><?php xl('Independent','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>"><?php xl('Independent','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_adl_status_other" style="width:70%" value=""></label>
 			
 		</td>
@@ -269,7 +269,7 @@ formHeader("Form: msw_careplan");
 						<strong><?php xl('SOC Date','e');?></strong>
 					</td>
 					<td align="center" valign="middle" width="30%">
-						<input type='text' size='10' name='SOC_date' id='SOC_date2' 
+						<input type='text' size='10' name='SOC_date2' id='SOC_date2' 
 						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -352,7 +352,7 @@ formHeader("Form: msw_careplan");
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('PT/OT/ST','e');?>"><?php xl('PT/OT/ST','e');?></label>
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Skilled Nursing','e');?>"><?php xl('Skilled Nursing','e');?></label>
 			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Caregiver/Family','e');?>"><?php xl('Caregiver/Family','e');?></label>
-			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Case Manager','e');?>"><?php xl('Case Manager','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="checkbox" name="msw_careplan_communicated_agreed" value="<?php xl('Case Manager','e');?>"><?php xl('Case Manager','e');?></label><br>
 			<?php xl('Other: ','e');?><input type="text" name="msw_careplan_communicated_agreed_other" style="width:25%;" value="">
 		</td>
 	</tr>

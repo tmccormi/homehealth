@@ -832,9 +832,9 @@ $neuro_status_cognitive_symptoms=explode("#",$obj{"neuro_status_cognitive_sympto
 					</td>
 					<td align="center" valign="top">
 						
-					  <?php xl('d.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" value="<?php echo $OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e[0]; ?>" />
+					  <?php xl('d.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" value="<?php echo $OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e[0]; ?>" />
 						
-							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e"  onkeydown="fonChange(this,2,'noev')" value="<?php echo $OASIS_C_payment_diagnosis_v_code_or_e_code_1_e[0]; ?>" />
+							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS__payment_diagnosis_v_code_or_e_code_1_e"  onkeydown="fonChange(this,2,'noev')" value="<?php echo $OASIS__payment_diagnosis_v_code_or_e_code_1_e[0]; ?>" />
 					</td>
 					<td align="center" valign="top">
 						
@@ -860,9 +860,9 @@ $neuro_status_cognitive_symptoms=explode("#",$obj{"neuro_status_cognitive_sympto
 					</td>
 					<td align="center" valign="top">
 						
-					  <?php xl('e.','e'); ?> <input name="OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" value="<?php echo $OASIS_C_payment_diagnosis_V_or_E_code_not_allowed_1_e[0]; ?>" />
+					  <?php xl('e.','e'); ?> <input name="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" type="text" id="OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e" size="15" value="<?php echo $OASIS_payment_diagnosis_V_or_E_code_not_allowed_1_e[0]; ?>" />
 						
-							<input type="text" style="width:40%" class="autosearch" id="OASIS__payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" onkeydown="fonChange(this,2,'noev')" value="<?php echo $OASIS_C_payment_diagnosis_v_code_or_e_code_1_e[0]; ?>" />
+							<input type="text" style="width:40%" class="autosearch" id="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" name="OASIS_C_payment_diagnosis_v_code_or_e_code_1_e" onkeydown="fonChange(this,2,'noev')" value="<?php echo $OASIS_C_payment_diagnosis_v_code_or_e_code_1_e[0]; ?>" />
 					</td>
 					<td align="center" valign="top">
 						
