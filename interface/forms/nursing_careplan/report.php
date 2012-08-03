@@ -3,7 +3,7 @@ include_once("../../globals.php");
 include_once($GLOBALS["srcdir"] . "/api.inc");
 
 /* include our smarty derived controller class. */
-require('C_FormPainMap.class.php');
+include_once($GLOBALS['fileroot'] . '/interface/clickmap/C_FormPainMap.class.php');
 
 function nursing_careplan_report($pid, $encounter, $cols, $id) {
  $count = 0;
@@ -55,9 +55,9 @@ if($value!="Please Select...")
   print "</tr>\n</table>\n";
   
   if($chart == 1) { 
-		$c = new C_FormPainMap();
+		$c = new C_FormPainMap('nursing_careplan','painmap.png');
 		/* Render the form. */
-		echo $c->report_action($id);
+		echo $c->report_action($id,'nursing_careplan');
 	}	
 	if($label) {
 		for($i=0;$i<=7;$i++) {

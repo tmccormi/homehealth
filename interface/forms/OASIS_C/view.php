@@ -3,6 +3,27 @@ require_once("../../globals.php");
 include_once ("functions.php");
 include_once("../../calendar.inc");
 formHeader("Form: OASIS_C");
+require_once("$srcdir/ESign.class.php");
+include_once("$srcdir/sha1.js");
+// get the formDir
+$formDir = null;
+$pathSep = "/";
+if(strtolower(php_uname("s")) == "windows"|| strtolower(php_uname("s")) == "windows nt")
+    $pathSep = "\\";
+
+$formDirParts = explode($pathSep, __dir__);
+$formDir = $formDirParts[count($formDirParts) - 1];
+
+//get the form table -- currently manually set for each form - should be automated.
+$formTable = "forms_OASIS";
+
+if($formDir)
+    $registryRow = sqlQuery("select * from registry where directory = '$formDir'");
+
+$esign = new ESign();
+$esign->init($id, $formTable);
+
+$sigId = $esign->getNewestUnsignedSignature();
 ?>
 
 <html>
@@ -30,6 +51,9 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
+<script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
+<script type='text/javascript' src='../../../library/dialog.js'></script>
+<link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <script>
 	$(document).ready(function(){
 	   $('#oasis li div').click(function(){ $(this).next('ul').slideToggle('fast'); 
@@ -62,6 +86,47 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 		};
 		}
  </script>
+ <script type="text/javascript">
+  $(document).ready(function($) {
+        var status = "";
+
+        $("#signoff").fancybox({
+        'scrolling'             : 'no',
+        'titleShow'             : false,
+        'onClosed'              : function() {
+            $("#login_prompt").hide();
+
+        }
+        });
+
+        $("#login_form").bind("submit", function() {
+
+            document.getElementById("login_pass").value = SHA1(document.getElementById("login_pass").value);
+
+            if ($("#login_pass").val().length < 1) {
+                $("#login_prompt").show();
+                $.fancybox.resize();
+                return false;
+            }
+
+            $.fancybox.showActivity();
+
+            $.ajax({
+                type            : "POST",
+                cache   : false,
+                url             : "<?php echo $GLOBALS['rootdir'] . "/forms/$formDir/sign.php";?>",
+                data            : $(this).serializeArray(),
+                success: function(data) {
+                        $.fancybox(data);
+                }
+            });
+
+
+            return false;
+        });
+    });
+
+</script>
 </head>
 <?php
 $obj = formFetch("forms_OASIS", $_GET["id"]);
@@ -5363,5 +5428,50 @@ $neuro_status_cognitive_symptoms=explode("#",$obj{"neuro_status_cognitive_sympto
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 
 </form>
+
+<center>
+        <table>
+            <tr>
+                <td align="center">
+                    <?php if($action == "edit") { ?>
+                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <? } ?>
+                    </form>
+                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <?php if($action == "review") { ?>
+                    <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
+                    <? } ?>
+                </td>
+            </tr>
+            <tr><td>
+
+                    <div id="signature_log" name="signature_log">
+                        <?php $esign->getDefaultSignatureLog(true);?>
+                    </div>
+                </td></tr>
+            </table>
+        </center>
+ </body>
+    <div style="display:none">
+        <form id="login_form" method="post" action="" style="width:166px;">
+            <center>
+                        <div id="login_prompt" style="font-size:small;">Enter your password to sign:</div>
+                        <input type="hidden" name="sig_status" value="approved" />
+                        <input type="hidden" id="tid" name="tid" value="<?php echo $id;?>"/>
+                        <input type="hidden" id="table_name" name="table_name" value="<?php echo $formTable;?>"/>
+                        <input type="hidden" id="signature_uid" name="signature_uid" value="<?php echo $_SESSION['authUserID'];?>"/>
+                        <input type="hidden" id="signature_id" name="signature_id" value="<?php echo $sigId->getId();?>" />
+                        <input type="hidden" id="exam_name" name="exam_name" value="<?php echo $registryRow['nickname'];?>" />
+                        <input type="hidden" id="exam_pid" name="exam_pid" value="<?php echo $obj['pid'];?>" />
+                        <input type="hidden" id="exam_date" name="exam_date" value="<?php echo $obj['date'];?>" /><br>
+                        <table><tr><td><label for="login_pass" style="font-size:small;">Password:</label></td><td> <input type="password" id="login_pass" name="login_pass" size="10" /></td></tr></table><br>
+
+
+
+                        <input type="submit" value="Sign" />
+
+                </center>
+        </form>
+</div>
 </body>
 </html>

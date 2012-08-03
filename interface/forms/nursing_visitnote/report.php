@@ -4,7 +4,7 @@ include_once("../../globals.php");
 include_once($GLOBALS["srcdir"] . "/api.inc");
 
 /* include our smarty derived controller class. */
-require('C_FormPainMap.class.php');
+include_once($GLOBALS['fileroot'] . '/interface/clickmap/C_FormPainMap.class.php');
 
 function nursing_visitnote_report($pid, $encounter, $cols, $id) {
  $count = 0;
@@ -39,10 +39,10 @@ function nursing_visitnote_report($pid, $encounter, $cols, $id) {
     $value = "yes";
    }
    $key=ucwords(str_replace("_"," ",$key));
-   $key = str_replace("Careplan", "", $key);   
+   $key = str_replace("Visitnote", "", $key);   
 if($value!="Please Select...") 
 {  
-   print "<td valign='top'><span class='bold'>$key: </span><span class='text'>$value</span></td>\n";
+   print "<td valign='top'><span class='bold'> $key: </span><span class='text'>$value</span></td>\n";
 }
    $count++;
    if ($count == $cols) {
@@ -52,9 +52,9 @@ if($value!="Please Select...")
   }
   print "</tr>\n</table>\n";
 	if($chart == 1) { 
-		$c = new C_FormPainMap();
+		$c = new C_FormPainMap('nursing_visitnote','painmap.png');
 		/* Render the form. */
-		echo $c->report_action($id);
+		echo $c->report_action($id,'nursing_visitnote');
 	}	
 	if($label) {
 		for($i=0;$i<=7;$i++) {

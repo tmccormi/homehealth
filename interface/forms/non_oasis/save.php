@@ -218,6 +218,10 @@ non_oasis_summary_immun_explain  = '".$_POST["non_oasis_summary_immun_explain"].
 non_oasis_summary_written  = '".$_POST["non_oasis_summary_written"]."',
 non_oasis_summary_written_explain  = '".$_POST["non_oasis_summary_written_explain"]."',
 non_oasis_summary_demonstrates  = '".$_POST["non_oasis_summary_demonstrates"]."',
+detail ='".$_POST["detail"]."',
+label ='".$_POST["label"]."',
+process ='".$_POST["process"]."',
+data ='".$_POST["data"]."',
 non_oasis_summary_demonstrates_explain  = '".$_POST["non_oasis_summary_demonstrates_explain"]."' 
 
 where id=$id");

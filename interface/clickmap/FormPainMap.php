@@ -25,10 +25,11 @@ class FormPainMap extends AbstractClickmapModel {
      *
      * @var TABLE_NAME
      */
-    static $TABLE_NAME = "forms_nursing_careplan";
+    static $TABLE_NAME;
 
     /* Initializer. just alles parent's initializer. */
-    function FormPainMap($id="") {
+    function FormPainMap($tablename,$id="") {
+		FormPainMap::$TABLE_NAME = $tablename;
     	parent::AbstractClickmapModel(FormPainMap::$TABLE_NAME, $id);
     }
 

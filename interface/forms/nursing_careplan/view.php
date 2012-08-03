@@ -27,12 +27,17 @@ $sigId = $esign->getNewestUnsignedSignature();
 ?>
 <html><head>
 <?php html_header_show();?>
-<link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css">
+<link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css" />
 	<style type="text/css">@import url(<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.css);</style>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
     <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>//library/js/jquery-1.4.2.min.js"></script>
+
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
 
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
@@ -46,8 +51,7 @@ table label, input { display:inherit !important; }
 
 </style>
 <script type="text/javascript">
-$.noConflict();
-  jQuery(document).ready(function($) {
+  $(document).ready(function($) {
         var status = "";
         
 	$("#signoff").fancybox({
@@ -818,10 +822,10 @@ $Interventions = explode("#",$obj{"Interventions"});
 		require_once($GLOBALS['srcdir'].'/api.inc');
 
 		/* include our smarty derived controller class. */
-		require('C_FormPainMap.class.php');
+			include_once($GLOBALS['fileroot'] . '/interface/clickmap/C_FormPainMap.class.php');
 
 		/* Create a form object. */
-		$c = new C_FormPainMap();
+		$c = new C_FormPainMap('nursing_careplan','painmap.png');
 
 		/* Render a 'new form' page. */
 		echo $c->view_action($_GET['id']);

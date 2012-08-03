@@ -1,7 +1,5 @@
 <html>
 <head>
-    <script type="text/javascript" src="{php}echo $GLOBALS['webroot'];{/php}/library/js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="{php}echo $GLOBALS['webroot'];{/php}/library/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script type="text/javascript" src="{php}echo $GLOBALS['webroot'];{/php}/library/js/jquery.cookie.js"></script>
     <script type="text/javascript" src="{php}echo $GLOBALS['webroot'];{/php}/library/js/clickmap.js"></script>
 
@@ -10,10 +8,10 @@
 </head>
 <body>
 <div class="outer-container">
-	<div id="container{$form->id}" class="container">
+	<div id="container{$FORM_NAME}{$form->id}" class="container">
 		<img src="{$form->image}"/>
 	</div>
-	<div id="legend{$form->id}" class="legend">
+	<div id="legend{$FORM_NAME}{$form->id}" class="legend">
 		<div class="body">
 			<ul></ul>
 		</div>
@@ -54,12 +52,14 @@ var cancellink = '{$DONT_SAVE_LINK}';
 		var data = {/literal}{$form->data}{literal};
 		var hideNav = {/literal}{$form->hideNav}{literal};
 		var form_id = {/literal}"{$form->id}"{literal};
+		var form_name = {/literal}"{$FORM_NAME}"{literal};
 		clickmap( {
                         hideNav: hideNav,
                         data: data,
 						id_val: form_id,
+						form_name: form_name,
 			dropdownOptions: { label: optionsLabel, options: options },
-			container: $("#container"+form_id)
+			container: $("#container"+form_name+form_id)
 		} );
 	});
 {/literal}

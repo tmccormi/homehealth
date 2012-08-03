@@ -28,7 +28,10 @@ table label, input { display:inherit !important; }
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
 <script>	
 	//Function to create an XMLHttp Object.
 	function pullAjax(){
@@ -799,10 +802,10 @@ table label, input { display:inherit !important; }
 require_once($GLOBALS['srcdir'].'/api.inc');
 
 /* include our smarty derived controller class. */
-require('C_FormPainMap.class.php');
+require($GLOBALS['fileroot'] . '/interface/clickmap/C_FormPainMap.class.php');
 
 /* Create a form object. */
-$c = new C_FormPainMap();
+$c = new C_FormPainMap('nursing_visitnote','painmap.png');
 
 /* Render a 'new form' page. */
 echo $c->default_action();

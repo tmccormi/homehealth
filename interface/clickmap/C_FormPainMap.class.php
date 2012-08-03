@@ -12,10 +12,11 @@
  */
 
 /* Include the class we're extending. */
+$GLOBALS['form_name'] = "";
 require_once ($GLOBALS['fileroot'] . "/interface/clickmap/C_AbstractClickmap.php");
 
 /* included so that we can instantiate FormPainMap in createModel, to model the data contained in this form. */
-require_once ("FormPainMap.php");
+require_once ($GLOBALS['fileroot'] . "/interface/clickmap/FormPainMap.php");
 
 /**
  * @class C_FormPainMap
@@ -34,11 +35,14 @@ class C_FormPainMap extends C_AbstractClickmap {
      *
      * @var FORM_CODE
      */
-    static $FORM_CODE = "nursing_visitnote";
-
+    static $FORM_CODE;
+	public $image;
     /* initializer, just calls parent's initializer. */
-    public function C_FormPainMap() {
+    public function C_FormPainMap($form,$image) {
     	parent::C_AbstractClickmap();
+		C_FormPainMap::$FORM_CODE = $form;
+		$GLOBALS['form_name'] = $form;
+		$this->image = $image;
     }
 
     /**
@@ -49,7 +53,7 @@ class C_FormPainMap extends C_AbstractClickmap {
      */
     public function createModel($form_id = "") {
         if ( $form_id != "" ) {
-            return new FormPainMap($form_id);
+            return new FormPainMap("forms_".C_FormPainMap::$FORM_CODE,$form_id);
         } else {
             return new FormPainMap();
         }
@@ -59,7 +63,7 @@ class C_FormPainMap extends C_AbstractClickmap {
      * @brief return the path to the backing image relative to the webroot.
      */
     function getImage() {
-        return $GLOBALS['webroot'] . "/interface/forms/" . C_FormPainMap::$FORM_CODE ."/templates/painmap.png";
+        return $GLOBALS['webroot'] . "/interface/forms/" . C_FormPainMap::$FORM_CODE ."/templates/".$this->image;
     }
 
     /**

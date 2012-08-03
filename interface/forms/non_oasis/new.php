@@ -9,7 +9,7 @@ include_once("../../calendar.inc");
                         require_once($GLOBALS['srcdir'].'/api.inc');
 
                         /* include our smarty derived controller class. */
-                        require('C_FormPainMap.class.php');
+require($GLOBALS['fileroot'] . '/interface/clickmap/C_FormPainMap.class.php');
 formHeader("Form: non_oasis");
 ?>
 
@@ -131,7 +131,7 @@ parseInt($("#braden_friction").val()));
 </TD>
 <td align="right">
 <?php xl('Caregiver:','e')?>&nbsp;&nbsp;
-<input type="text" name="non_oasis_caregiver" size="15" />
+<input type="text" name="non_oasis_caregiver" size="15"/>
 &nbsp;&nbsp;
 
 <?php xl('Visit Date:','e')?>
@@ -576,7 +576,7 @@ xl("other","e");?>"><?php xl('other','e')?>
 </tr>
 </TABLE>
 
-<strong><?php xl('Temperature: Â°F','e')?></strong>&nbsp;&nbsp;
+<strong><?php xl('Temperature: °F','e')?></strong>&nbsp;&nbsp;
 <label><input type="radio" name="non_oasis_vital_temp" value="Oral"  id="non_oasis_vital_temp" />
 <?php xl('Oral','e')?></label> &nbsp;
 <label><input type="radio" name="non_oasis_vital_temp" value="Axillary"  id="non_oasis_vital_temp" />
@@ -1026,7 +1026,7 @@ id="braden_friction" value="0">
 
 						
                         /* Create a form object. */
-                        $c = new C_FormPainMap();
+                        $c = new C_FormPainMap('non_oasis','bodymap_man.png');
 
                         /* Render a 'new form' page. */
                         echo $c->default_action();
