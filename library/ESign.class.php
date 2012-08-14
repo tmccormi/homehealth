@@ -175,7 +175,7 @@ class ESign
     {
         $html = "";
         $html .= "<table width=100% cellspacing=0 cellpadding=2 style='border:1px black solid;font-size:small'>";
-        $html .= "<tr><td colspan=2 style='background-color: lightblue;text-align:center;'>e-Signature Log</td></tr>";
+        $html .= "<tr><td colspan=2 class='body_title' style='text-align:center;'>e-Signature Log</td></tr>";
 
         if(count($this->signed_signatures) > 0)
         {

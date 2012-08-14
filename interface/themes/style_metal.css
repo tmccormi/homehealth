@@ -1065,3 +1065,53 @@ height: 300px !important;
         line-height: 24px;
     }
 
+
+
+/*from ajax_calender*/
+#topToolbarRight {
+	background-color:#8497BF;
+    float: right;
+    width: 100%;
+	border-bottom:1px solid black;
+	border-TOP:1px solid black;
+}
+
+/* for the header row with provider names */
+
+.providerheader {
+    text-align: center;
+    background-color: #8CACBB;
+    width: 100%; 
+    overflow:hidden; 
+    border-bottom: 1px solid lightgrey;
+    white-space: nowrap;
+}
+
+.view2 {
+background-color:#8CACBB;
+font-size:10px;
+}
+
+.tabbg
+{
+background-color:#D7DFE7;
+}
+
+/*for datatables*/
+
+tr.odd {
+	background-color: #8497BF;
+}
+
+tr.even {
+	background-color: #FFFFFF;
+}
+
+tr.odd td.sorting_1 {
+	background-color: #FFFFFF;
+}
+
+tr.even td.sorting_1 {
+	background-color: #8497BF;
+}
+

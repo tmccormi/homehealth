@@ -188,7 +188,7 @@ document.onclick=HideTheAjaxDivs;
   </tr>
   <tr>
     <td colspan="3" align="left" >
-    <table width="455" border="0" cellspacing="0" cellpadding="10" bgcolor="#DEDEDE"><tr><td>
+    <table width="455" border="0" cellspacing="0" cellpadding="10" class="tabbg"><tr><td>
 	<table width="435" border="0" style="border:1px solid black" cellspacing="0" cellpadding="0">
 	  <tr height="5">
 	    <td width="5"  align="left" ></td>

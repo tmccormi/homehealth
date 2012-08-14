@@ -6,23 +6,23 @@ body {
 }
 
 a {
-  color: #0000cc;
+  color: #555658;
   text-decoration: none;
 }
 
 a:visited {
-  color: #0000cc;
+  color: #555658;
 }
 
 a:hover {
-  color: #ff5555;
+  color: #8cc63e;
 }
 
 .menu {
     font-family: sans-serif;
     font-style: italic;
     font-size: 11pt;
-    color: #0000cc;
+    color: #555658;
     text-decoration: none;
     text-align: left;
 }
@@ -40,7 +40,7 @@ a:hover {
     font-family: sans-serif;
     font-style: italic;
     font-size: 11pt;
-    color: #000000;
+    color: #555658;
     text-decoration: none;
     text-align: right;
 }
@@ -48,7 +48,7 @@ a:hover {
 .text {
     font-family: sans-serif;
     text-decoration: none;
-    color: #000000;
+    color: #555658;
     font-size: 10pt;
 }
 
@@ -56,7 +56,7 @@ a:hover {
     font-family: sans-serif;
     text-decoration: none;
     font-size: 10pt;
-    color: #880000;
+    color: #555658;
     font-weight: bold;
 }
 
@@ -64,7 +64,7 @@ a:hover {
     font-family: sans-serif;
     text-decoration: none;
     font-size: 10pt;
-    color: #000000;
+    color: #555658;
     font-weight: bold;
 }
 
@@ -77,7 +77,7 @@ a:hover {
 
 .small {
     text-decoration: none;
-    color: #000000;
+    color: #555658;
     font-family: sans-serif;
     font-size: 80%;
 }
@@ -148,7 +148,7 @@ a:hover {
     font-size: 12pt;
     font-weight: bold;
     text-decoration: none;
-    color: #000000;
+    color: #555658;
 }
 
 .title_bar_top {
@@ -156,18 +156,18 @@ a:hover {
     font-size: 13px;
     font-weight: bold;
     text-decoration: none;
-    color: #000000;
+    color: #555658;
 }
 
 /*=============================================================
  * Here we have taken variables from globals.php and turned them into CSS classes 
  * these should be used in place of the GLOBAL variables -- JRM March 2008
  *=============================================================*/
-.body_top { background-color: #94d6e7; margin: 8px }    /* $top_bg_line */
-.bgcolor2 { background-color: #94d6e7; }    /* $GLOBALS['style']['BGCOLOR2'] */
-.body_bottom { background: url('../pic/aquabg.gif') repeat; margin: 8px }  /* $bottom_bg_line */
-.body_title { background-color: #aaffff; }  /* $title_bg_line */
-.body_nav { background-color: #94d6e7; }    /* $nav_bg_line */
+.body_top { background-color: #c2e199; margin: 8px }    /* $top_bg_line */
+.bgcolor2 { background-color: #d4eab7; }    /* $GLOBALS['style']['BGCOLOR2'] */
+.body_bottom { background: url('../pic/aquabg.jpg') repeat; margin: 8px }  /* $bottom_bg_line */
+.body_title { background-color: #D4EAB7; }  /* $title_bg_line */
+.body_nav { background-color: #d4eab7; }    /* $nav_bg_line */
 .body_filler { background-color: #f7f0d5; } /* $login_filler_line */
 .body_login { background: url('../pic/aquabg.gif') repeat; } /* $login_body_line */
 .table_bg { background-color: #ccc; }           /* $table_bg */
@@ -175,7 +175,7 @@ a:hover {
 .textcolor11 { background-color: #222; }    /* $GLOBALS['style']['TEXTCOLOR11'] */
 .highlightcolor { background-color: #ddd; } /* $GLOBALS['style']['HIGHLIGHTCOLOR'] */
 .bottom_line { background: url('../pic/aquabg.gif') repeat; }    /* $GLOBALS['style']['BOTTOM_BG_LINE'] */
-.logobar { background-color: #24262c; height: 110px; }                 /* $GLOBALS['logoBarHeight'] */
+.logobar { background-color: #ffffff; height: 110px; }                 /* $GLOBALS['logoBarHeight'] */
 .navbar { height: 22px; }                   /* $GLOBALS['navBarHeight'] */
 .titlebar { height: 20px; }                 /* $GLOBALS['titleBarHeight'] */
 
@@ -207,7 +207,7 @@ font-size:9pt;
 font-weight:normal;
 border-style:solid;
 border-width:1px;
-border-color: #000000;
+border-color: #555658;
 background-color:transparent;
 }
 #addressbook_list .button {
@@ -593,7 +593,7 @@ font-weight: bold;
     border-top: 1px solid gray;
 }
 #addressbook_list tr.evenrow {
-    background-color:#ddddff;
+    background-color:#D4EAB7;
 }
 #addressbook_list tr.oddrow {
     background-color:#ffffff;
@@ -670,14 +670,14 @@ ul.tabNav li.current { padding-top: 0;
     vertical-align: bottom;
     text-align: left;
 }
-ul.tabNav a { background:#A7A7A7; border: 1px solid #dedede; border-width: 1px 1px 0; color: #333; display: block; padding: 4px 4px 5px 4px; text-decoration: none; }
-ul.tabNav li.current a { background:#D7DFE7 ;padding: 8px; }
+ul.tabNav a { background:#A7A7A7; border: 1px solid #8cc63e; border-width: 1px 1px 0; color: #535554; display: block; padding: 4px 4px 5px 4px; text-decoration: none; }
+ul.tabNav li.current a { background:#8cc63e ;padding: 8px; }
 
 div.tabContainer { clear: both; float: left; width: 100%; }
-div.tabContainer div.tab { border: 1px solid #dedede; color: #000; display: none; padding: 10px; }
+div.tabContainer div.tab { border: 1px solid #8cc63e; color: #000; display: none; padding: 10px; }
 div.tabContainer div.current { display: block; }
-div.tab { 	min-height: 180px; background: #DEDEDE none repeat scroll 0 0; margin-bottom: 10px;width:665px;}
-div.tab_long { 	min-height: 180px; background: #DEDEDE none repeat scroll 0 0; margin-bottom: 10px;width:100%;}
+div.tab { 	min-height: 180px; background: #8cc63e none repeat scroll 0 0; margin-bottom: 10px;width:665px;}
+div.tab_long { 	min-height: 180px; background: #8cc63e none repeat scroll 0 0; margin-bottom: 10px;width:100%;}
 div.tab p:last-child { margin-bottom: 0; }
 
 div.tab table td {
@@ -693,7 +693,7 @@ div.tab table td.data {
 }
 
 div.notab {
-    background: #D7DFE7 none repeat scroll 0 0; margin-bottom: 10px; width:100%;
+    background: #D4EAB7 none repeat scroll 0 0; margin-bottom: 10px; width:100%;
 }
 
 div.notab-right {
@@ -709,7 +709,7 @@ div.notab-right {
 }
 
 .summary_item {
-	 background:#D7DFE7; padding:8px;
+	 background:#D4EAB7; padding:8px;
 }
 
 /*
@@ -870,60 +870,79 @@ font-size:9pt;
 }
 
 #navigation-slide a{
-    background: #C8F0F7;
-    border-top: 2px solid #85F0F2;
-    color: #000;
+    /*background: #C8F0F7;
+    border-top: 2px solid #85F0F2;*/
+    color: #628e2a;
     display: block;
     font-weight: bold;
     padding: 5px 2px 5px 10px;
     width: 150px;
 }
 
+#navigation-slide ul li a.collapsed_lv2, #navigation-slide ul li a.expanded_lv2{
+	background: #999; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8CC63E', endColorstr='#FFFFFF'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#8CC63E), to(#FFFFFF)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #8CC63E,  #FFFFFF); /* for firefox 3.6+ */
+	color: #5fa003;
+}
+
+#navigation-slide ul ul a{
+	background:transparent;
+}
+
+#navigation-slide li:hover{
+	background:url('../pic/menu_hover.png');
+	background-repeat:repeat-x;
+}
+/*Colors changed*/
+/*
 #navigation-slide li a.collapsed{
-    background: #999; /* for non-css3 browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#BACBE3', endColorstr='#0061E8'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#BACBE3), to(#0061E8)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #BACBE3,  #0061E8); /* for firefox 3.6+ */
+    background: #999; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#8cc63e'); 
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#8cc63e)); 
+    background: -moz-linear-gradient(top,  #FFFFFF,  #8cc63e); 
 }
 
 #navigation-slide li a.expanded{
-    background: #999; /* for non-css3 browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061E8', endColorstr='#BACBE3'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#0061E8), to(#BACBE3)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #0061E8,  #BACBE3); /* for firefox 3.6+ */
+    background: #999; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cc63e', endColorstr='#FFFFFF'); 
+    background: -webkit-gradient(linear, left top, left bottom, from(#8cc63e), to(#FFFFFF));
+    background: -moz-linear-gradient(top,  #8cc63e,  #FFFFFF); 
 }
 
 #navigation-slide ul li a.collapsed_lv2{
-    background: #999; /* for non-css3 browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D2DEF7', endColorstr='#1E3463'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#D2DEF7), to(#1E3463)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #D2DEF7,  #1E3463); /* for firefox 3.6+ */
+    background: #999; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D2DEF7', endColorstr='#1E3463'); 
+    background: -webkit-gradient(linear, left top, left bottom, from(#D2DEF7), to(#1E3463)); 
+    background: -moz-linear-gradient(top,  #D2DEF7,  #1E3463); 
 }
 
 #navigation-slide ul li a.expanded_lv2{
-    background: #999; /* for non-css3 browsers */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1E3463', endColorstr='#D2DEF7'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#1E3463), to(#D2DEF7)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #1E3463,  #D2DEF7); /* for firefox 3.6+ */
+    background: #999; 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1E3463', endColorstr='#D2DEF7'); 
+    background: -webkit-gradient(linear, left top, left bottom, from(#1E3463), to(#D2DEF7));
+    background: -moz-linear-gradient(top,  #1E3463,  #D2DEF7); 
+	
 }
-
+*/
 #sddm li
 {	margin: 0;
 	padding: 0;
 	list-style: none;
         float:left;
-        border: 1px solid #94D6E7;
+        border: 1px solid transparent;
         background: #999; /* for non-css3 browsers */
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E8FFF', endColorstr='#CCD9EA'); /* for IE */
-        background: -webkit-gradient(linear, left top, left bottom, from(#3E8FFF), to(#CCD9EA)); /* for webkit browsers */
-        background: -moz-linear-gradient(top,  #3E8FFF,  #CCD9EA); /* for firefox 3.6+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8CC63E', endColorstr='#FFFFFF'); /* for IE */
+        background: -webkit-gradient(linear, left top, left bottom, from(#8CC63E), to(#FFFFFF)); /* for webkit browsers */
+        background: -moz-linear-gradient(top,  #8CC63E,  #FFFFFF); /* for firefox 3.6+ */
 }
 
 #sddm li a
 {	display: block;
 	margin: 0 1px 0 0;
 	padding: 4px 10px;
-	color: #004080;
+	color: #477a00;
 	text-align:left;
 	text-decoration: none;
 	font-size: 0.8em;
@@ -932,7 +951,7 @@ font-size:9pt;
 
 #sddm li a:hover
 {
-    background: #8ca3ee;
+    background: #8CC63E;
 }
 
 #sddm div
@@ -958,15 +977,15 @@ font-size:9pt;
     white-space:normal;
     text-align: left;
     text-decoration: none;
-    background: #dff4ff;
-    color: #2875DE;
+    background: #D4EAB7;
+    color: #477a00;
     font-size: 0.8em;
     font-weight:normal;
 }
 
 #sddm div a:hover
 {
-    background: #8ca3ee;
+    background: #8CC63E;
     color: #000000;
 }
 .text-area{
@@ -1065,11 +1084,11 @@ height: 300px !important;
 .formtable tr td {
         line-height: 24px;
     }
-
+	
 	
 /*from ajax_calender*/
 #topToolbarRight {
-	background-color:#368aff;
+	background-color:#8CC63E;
     float: right;
     width: 100%;
 	border-bottom:1px solid black;
@@ -1080,7 +1099,7 @@ height: 300px !important;
 
 .providerheader {
     text-align: center;
-    background-color: #94D6E7;
+    background-color: #D4EAB7;
     width: 100%; 
     overflow:hidden; 
     border-bottom: 1px solid lightgrey;
@@ -1088,19 +1107,19 @@ height: 300px !important;
 }
 
 .view2 {
-background-color:#94D6E7;
+background-color:#D4EAB7;
 font-size:10px;
 }
 
 .tabbg
 {
-background-color:#D7DFE7;
+background-color:#8CC63E;
 }
 
 /*for datatables*/
 
 tr.odd {
-	background-color: #AAFFFF;
+	background-color: #D4EAB7;
 }
 
 tr.even {
@@ -1112,5 +1131,5 @@ tr.odd td.sorting_1 {
 }
 
 tr.even td.sorting_1 {
-	background-color: #AAFFFF;
+	background-color: #D4EAB7;
 }

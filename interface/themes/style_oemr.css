@@ -1067,3 +1067,51 @@ height: 300px !important;
     }
 
 
+		
+/*from ajax_calender*/
+#topToolbarRight {
+	background-color:#fe874d;
+    float: right;
+    width: 100%;
+	border-bottom:1px solid black;
+	border-TOP:1px solid black;
+}
+
+/* for the header row with provider names */
+
+.providerheader {
+    text-align: center;
+    background-color: #FEDF98;
+    width: 100%; 
+    overflow:hidden; 
+    border-bottom: 1px solid lightgrey;
+    white-space: nowrap;
+}
+
+.view2 {
+background-color:#FEDF98;
+font-size:10px;
+}
+
+.tabbg
+{
+background-color:#FFFFFF;
+}
+
+/*for datatables*/
+
+tr.odd {
+	background-color: #FEDF98;
+}
+
+tr.even {
+	background-color: #FFFFFF;
+}
+
+tr.odd td.sorting_1 {
+	background-color: #FFFFFF;
+}
+
+tr.even td.sorting_1 {
+	background-color: #FEDF98;
+}

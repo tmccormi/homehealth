@@ -1,7 +1,10 @@
+<?php
+include_once("../../globals.php");
+?>
 <html>
 <head>
-<?php require_once("../../globals.php");?>
-<link rel='stylesheet' href='<?php echo $css_header ?>' type='text/css'>
+<link rel="stylesheet" href="<?php echo $rootdir;?>/themes/style.css" type="text/css">
+<link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css">
 <script src="../../../library/js/jquery-1.6.4.min.js"></script>
 
 

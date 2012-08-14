@@ -1066,4 +1066,65 @@ height: 300px !important;
         line-height: 24px;
     }
 
+	
+	
+
+
+/* Form styles */
+.formtable {
+        font-size:13px;
+        line-height: 24px;
+    }
+.formtable tr td {
+        line-height: 24px;
+    }
+	
+	
+/*from ajax_calender*/
+#topToolbarRight {
+	background-color:#61A0FF;
+    float: right;
+    width: 100%;
+	border-bottom:1px solid black;
+	border-TOP:1px solid black;
+}
+
+/* for the header row with provider names */
+
+.providerheader {
+    text-align: center;
+    background-color: #EAE6FF;
+    width: 100%; 
+    overflow:hidden; 
+    border-bottom: 1px solid lightgrey;
+    white-space: nowrap;
+}
+
+.view2 {
+background-color:#EAE6FF;
+font-size:10px;
+}
+
+.tabbg
+{
+background-color:#FFFFFF;
+}
+
+/*for datatables*/
+
+tr.odd {
+	background-color: #E2E4FF;
+}
+
+tr.even {
+	background-color: white;
+}
+
+tr.odd td.sorting_1 {
+	background-color: #D3D6FF;
+}
+
+tr.even td.sorting_1 {
+	background-color: #EAEBFF;
+}
 

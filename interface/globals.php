@@ -302,12 +302,12 @@ if ($GLOBALS['concurrent_layout']) {
 } else {
  $top_bg_line = ' bgcolor="#94d6e7" ';
  $GLOBALS['style']['BGCOLOR2'] = "#94d6e7";
- $bottom_bg_line = ' background="'.$rootdir.'/pic/aquabg.gif" ';
+ $bottom_bg_line = ' background="'.$rootdir.'/pic/aquabg.png" ';
  $title_bg_line = ' bgcolor="#aaffff" ';
  $nav_bg_line = ' bgcolor="#94d6e7" ';
 }
 $login_filler_line = ' bgcolor="#f7f0d5" ';
-$logocode = "<img src='$web_root/sites/" . $_SESSION['site_id'] . "/images/login_logo.gif'>";
+$logocode = "<img src='$web_root/sites/" . $_SESSION['site_id'] . "/images/login_logo.png'>";
 $linepic = "$rootdir/pic/repeat_vline9.gif";
 $table_bg = ' bgcolor="#cccccc" ';
 $GLOBALS['style']['BGCOLOR1'] = "#cccccc";

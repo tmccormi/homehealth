@@ -24,7 +24,7 @@ else
     echo "<a href='".$GLOBALS['webroot']."/interface/main/main.php' target='Main' class='menu' onclick='top.restoreSession()'>";
 [-/php-]
 [-php-] xl('Return to calendar','e'); [-/php-]</a>
-<div id="calsearch_params">
+<div id="calsearch_params" class="body_title">
 <form name="theform" id="theform" action="[-$FORM_ACTION-]" method="POST"> <!-- onsubmit="return top.restoreSession()"> -->
 [-php-] xl('Keywords','e'); [-/php-]: <input type="text" name="pc_keywords" id="pc_keywords" value="[-php-]echo htmlspecialchars(strip_escape_custom($_POST['pc_keywords']),ENT_QUOTES);[-/php-]" />
 <select name="pc_keywords_andor">
