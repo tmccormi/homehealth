@@ -495,8 +495,8 @@ $oasis_therapy_pt_goals_other = explode("#",$obj{"oasis_therapy_pt_goals_other"}
 				<input type='text' size='10' name='oasis_therapy_birth_date' value="<?php patientName("DOB")?>" readonly/> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender: ','e');?></strong>
-				<label><input type="radio" name="oasis_therapy_patient_gender" value="male" <?php if(patientName("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_therapy_patient_gender" value="female" <?php if(patientName("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_therapy_patient_gender" value="male" <?php if(patientGender("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_therapy_patient_gender" value="female" <?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
 			
 		</td>
 		<td valign="top">

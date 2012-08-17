@@ -131,3 +131,13 @@ function ICD9SelDrop($Sel,$Dx)
    
    }
    
+   
+function patientGender()
+ {
+        $select= sqlStatement("select sex from patient_data where pid=" .$_SESSION['pid']);
+        while($Row=sqlFetchArray($select))
+	{
+	  return $Row["sex"];
+	
+        }	
+}

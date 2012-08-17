@@ -62,7 +62,6 @@ function patientName($field)
         }	
 }
 
-
 function patientGender()
  {
         $select= sqlStatement("select sex from patient_data where pid=" .$_SESSION['pid']);

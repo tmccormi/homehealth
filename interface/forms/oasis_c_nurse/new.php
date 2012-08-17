@@ -345,9 +345,9 @@ function calc_avg()
 					<br>
 			<strong><?php xl('(M0069) Gender: ','e');?></strong>
 				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="male" 
-<?php if(patientName("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
+<?php if(patientGender("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
 				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="female" 
-<?php if(patientName("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+<?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
 			
 		</td>
 
