@@ -88,7 +88,7 @@ display:inline !important;
 		$('input:radio[name=oasis_c_nurse_pain_scale]')[scale].checked = true;
 		
 	}
-	
+
 
 function sum_braden_scale()
     {
@@ -3263,6 +3263,843 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 			</ul>
 		</li>
 
+		
+		
+		
+		
+		
+		
+		
+<li>
+	<div><a href="#" id="black">Professional Services</a> <span id="mod"><a href="#">(Expand)</a></span></div>
+			                    <ul>
+				<li>
+
+
+
+<h3 align="center"><?php xl('PROFESSIONAL SERVICES','e')?></h3>	
+
+
+<table class="formtable" border="1">
+<tr>
+	<td colspan="2" align="center">
+		<center><strong><?php xl("UTILIZE THIS SECTION TO ASSIST WITH COMPLETION OF THE 485 (OPTIONAL)","e");?></strong></center>
+	</td>
+</tr>
+<tr>
+	<td width="50%">
+		<strong><?php xl("VITAL SIGNS PARAMETER","e");?></strong><br />
+		<label><input type="radio" name="oasis_professional_vital_signs" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label>
+		<label><input type="radio" name="oasis_professional_vital_signs" value="Special MD Orders"><?php xl(' Special MD Orders','e')?></label>	
+	</td>
+	<td>
+		<strong><?php xl("SN TO PROVIDE SKILLED NURSING VISITS FOR:","e");?></strong>
+		<input type="text" name="oasis_professional_sn" value="" size="50">
+	</td>
+</tr>
+<tr valign="top">
+
+	<td>
+	
+	
+	<table class="formtable" border="1">
+	<tr>
+	<td width="30%">
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Heart Rate/Pulse:"><?php xl('Heart Rate/Pulse:','e')?></label>
+	</td>
+	<td>
+	<?php xl('Notify MD if heart rate','e')?>
+	</td>
+	<td>
+	<input type="text" name="oasis_professional_heart_rate0" value="" size="3">
+	<?php xl('> or <','e')?><input type="text" name="oasis_professional_heart_rate" value="" size="3">
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Temperature:"><?php xl('Temperature:','e')?></label>
+	</td>
+	<td>
+	<?php xl('Notify MD if temperature','e')?>
+	</td>
+	<td>
+	<input type="text" name="oasis_professional_temperature0" value="" size="3">
+	<?php xl('> or <','e')?><input type="text" name="oasis_professional_temperature" value="" size="3">
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Blood Pressure:"><?php xl('Blood Pressure:','e')?></label>
+	</td>
+	<td align="right">
+	<?php xl('Notify MD if &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; systolic','e')?>
+	</td>
+	<td>
+	<input type="text" name="oasis_professional_BP_systolic0" value="" size="3">
+	<?php xl('> or <','e')?><input type="text" name="oasis_professional_BP_systolic" value="" size="3">
+	</td>
+	</tr>
+	<tr>
+	<td>
+	&nbsp;
+	</td>
+	<td align="right">
+	<?php xl('diastolic','e')?>
+	</td>
+	<td>
+	<input type="text" name="oasis_professional_BP_diastolic0" value="" size="3">
+	<?php xl('> or <','e')?><input type="text" name="oasis_professional_BP_diastolic" value="" size="3">
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Respirations:"><?php xl('Respirations:','e')?></label>
+	</td>
+	<td>
+	<?php xl('Notify MD if respirations','e')?>
+	</td>
+	<td>
+	<input type="text" name="oasis_professional_respirations0" value="" size="3">
+	<?php xl('> or <','e')?><input type="text" name="oasis_professional_respirations" value="" size="3">
+	</td>
+	</tr>
+	
+	
+	<tr>
+	<td>
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="O2 sat level per random pulse oximetry:"><?php xl('O2 sat level per random pulse oximetry:','e')?></label>
+	</td>
+	<td>
+	<?php xl('Notify MD if < 88%','e')?>
+	</td>
+	<td>
+	&nbsp;
+	</td>
+	</tr>
+	
+	
+	<tr>
+	<td colspan="3">
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Other:"><?php xl('Other:','e')?></label>
+	<input type="text" name="oasis_professional_vital_other" value="">
+	</td>
+	</tr>
+	
+	<tr>
+	<td colspan="3">
+	<strong><?php xl('BLOOD GLUCOSE PARAMETER','e')?></strong><br />
+	<label><input type="radio" name="oasis_professional_blood_glucose" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label>
+	<label><input type="radio" name="oasis_professional_blood_glucose" value="Special MD Orders"><?php xl(' Special MD Orders','e')?></label>
+	</td>
+	</tr>
+	
+	
+	<tr>
+	<td colspan="3">
+	<label><input type="checkbox" name="oasis_professional_vital_parameter[]" value="Blood/Glucose:">
+	<?php xl('Blood/Glucose: Notify MD if BS is > ','e')?></label>
+	<input type="text" name="oasis_professional_blood_glucose_BS_gt" value="" size="3">
+	<?php xl('or < ','e')?>
+	<input type="text" name="oasis_professional_blood_glucose_BS_lt" value="" size="3">
+	</td>
+	</tr>
+	
+	<tr>
+	<td colspan="3">
+	<?php xl('May receive orders from:','e')?>
+	<input type="text" name="oasis_professional_receive_orders_from" value="">
+	</td>
+	</tr>
+	</table>
+		
+	</td>
+	
+	<td>
+	
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="RESPIRATORY / MEDICAL CASES"><?php xl('<strong>RESPIRATORY / MEDICAL CASES</strong>','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="O2 at liters per minute"><?php xl('O2 at liters per minute','e')?></label><br />
+	<label><input type="radio" name="oasis_professional_sn1" value="Continuous"><?php xl(' Continuous','e')?></label>
+	<label><input type="radio" name="oasis_professional_sn1" value="Intermittent"><?php xl(' Intermittent','e')?></label>
+	<label><input type="radio" name="oasis_professional_sn1" value="PRN"><?php xl(' PRN','e')?></label><br />
+	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: Every Visit"><?php xl(' Pulse Oximetry: Every Visit','e')?></label>
+	<input type="text" name="oasis_professional_sn_every_visit" value=""><br />
+	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: PRN Dyspnea"><?php xl(' Pulse Oximetry: PRN Dyspnea','e')?></label>
+	<br />
+	<textarea name="oasis_professional_sn_PRN_dyspnea" rows="3" cols="48"></textarea>
+	<br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="Teach Oxygen Use / Precautions"><?php xl('Teach Oxygen Use / Precautions','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="Teach Trach Care"><?php xl('Teach Trach Care','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="Administer Trach Care"><?php xl('Administer Trach Care','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="Other:"><?php xl('Other:','e')?></label>
+	<input type="text" name="oasis_professional_sn_other" value="">
+	</td>
+
+
+</tr>
+<tr>
+<td colspan="2">
+<center><strong><?php xl("SKILLED NURSE TO PROVIDE SKILLED NURSING VISITS FOR:","e");?></strong></center>
+
+	<table class="formtable" border="1">
+	<tr>
+	<td>
+	&nbsp;
+	</td>
+	<td colspan="2" align="center">
+	<strong><?php xl(' GOALS','e')?></strong>
+	</td>
+	</tr>
+	
+	
+	<tr>
+	<td>
+	<strong><?php xl('SN FREQUENCY/DURATION','e')?></strong><br />
+	<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="+ 2 PRN Visits For"><?php xl('+ 2 PRN Visits For','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="IV Complications"><?php xl('IV Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Tube Feeding Complications"><?php xl('Tube Feeding Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Tracheostomy Care Complications"><?php xl('Tracheostomy Care Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Catheter Care Complications"><?php xl('Catheter Care Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Wound Care Complications"><?php xl('Wound Care Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Ostomy Care Complications"><?php xl('Ostomy Care Complications','e')?></label><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Other"><?php xl('Other','e')?></label>
+	<input type="text" name="oasis_professional_sn_frequency_other" value="">
+	</td>
+	
+	<td valign="top">
+	<label><input type="checkbox" name="oasis_professional_goals[]" value="OBSERVATION AND ASSESSMENT OF THE PATIENT CONDITION">
+	<?php xl('<strong><u>OBSERVATION AND ASSESSMENT OF THE PATIENT\'S CONDITION</u></strong> (when there is a likelihood of a change in the patient\'s condition)','e')?>
+	</label><br />
+	</td>
+	
+	<td valign="top">
+	<?php xl('Patient\'s clinical distress will be managed by reducing and or limiting symptoms through skilled nursing\'s identification of changes in condition and timely treatment modifications.','e')?>
+	</td>
+	</tr>
+	
+	
+	<tr>
+	<td>
+	<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong><br />
+	<label><input type="checkbox" name="oasis_professional_sn_provide[]" value="Management of disease process"><?php xl('Management of disease process to include (refer to page 3 of Oasis - M1020). Assess vital signs and all body systems, knowledge of disease process and its associated care and treatment, medication, regimen, knowledge, and S/S of complications necessitating medical attention.','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_provide[]" value="Evaluate Cardiopulmonary Status"><?php xl('Evaluate Cardiopulmonary Status','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_provide[]" value="Evaluate Nutrition/Hydration/Elimination"><?php xl('Evaluate Nutrition/Hydration/Elimination','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_provide[]" value="Evaluate for S/S of Infections"><?php xl('Evaluate for S/S of Infections','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_provide[]" value="Teach Disease Process"><?php xl('Teach Disease Process','e')?></label><br />
+	</td>
+	<td valign="top">
+	<label><input type="checkbox" name="oasis_professional_goals[]" value="MANAGEMENT AND EVALUATION OF THE PATIENT CARE PLAN">
+	<?php xl('<strong><u>MANAGEMENT AND EVALUATION OF THE PATIENT CARE PLAN</u></strong> (where underlying conditions or complications require that only a Registered Nurse can ensure that essential non skilled care is achieving its purpose).','e')?></label><br />
+	</td>
+	<td valign="top">
+	<?php xl('Patient\'s essential non skilled care will achieve its purpose safely, adequately and correctly through skilled nursing interventions that manage and treat underlying conditions and complications to promote recovery and medical safety in view of the patient\'s overall condition.','e')?>
+	</td>
+	</tr>
+	</table>
+
+
+</td>
+
+
+</tr>
+
+<tr>
+<td align="center">
+<strong><?php xl('TEACHING AND TRAINING ACTIVITIES','e')?></strong>
+</td>
+<td align="center">
+<strong><?php xl('GOALS','e')?></strong>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Complications of disease process"><?php xl('Complications of disease process','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will verbalize the understanding of nature and complications of disease process this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Rationale for compliance with diet / activities / medications / treatment regime"><?php xl('Rationale for compliance with diet / activities / medications / treatment regime','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will verbalize and demonstrate the importance of diet, activities, medications and treatment this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Safety with activities of ADLs and/or IADLs and falls prevention"><?php xl('Safety with activities of ADLs and/or IADLs and falls prevention','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will demonstrate safety measures with ambulation, ADLs and/or IADLs, and falls prevention','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Effective hygiene care"><?php xl('Effective hygiene care','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will demonstrate effective hygiene care this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Signs and symptoms of infection"><?php xl('Signs and symptoms of infection','e')?></label>
+</td>
+<td>
+<?php xl('The patient will be free of infection this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Effective pain management"><?php xl('Effective pain management','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will demonstrate effective pain control at the patient\'s own comfort level as verbalized by patient/caregiver this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Wound care using aseptic technique"><?php xl('Wound care using aseptic technique','e')?></label>
+</td>
+<td>
+<?php xl('Patient/caregiver will verbalize and demonstrate effective wound care application while observing proper aseptic technique by the end of this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td align="right">
+<input type="checkbox" name="oasis_professional_teaching_activities[]" value="The patient wound site will be decreased to % by the end of this cert period">
+</td>
+<td>
+<?php xl('The patient\'s wound site will be decreased to ','e')?>
+<input type="text" name="oasis_professional_decreased_to" value="" size="10">
+<?php xl('% by the end of this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td align="right">
+<input type="checkbox" name="oasis_professional_teaching_activities[]" value="The patient wound site will be healed by the end of this cert period">
+</td>
+<td>
+<?php xl('The patient\'s wound site will be healed by the end of this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td align="right">
+<input type="checkbox" name="oasis_professional_teaching_activities[]" value="The patient infection will be resolved by the end of this cert period">
+</td>
+<td>
+<?php xl('The patient\'s infection will be resolved by the end of this cert period','e')?>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_professional_goal_other1" value="">
+</td>
+<td>
+<?php xl('Other:','e')?>
+<input type="text" name="oasis_professional_goal_other" value="">
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Teach Pt/CG S/S of IV Complications"><?php xl('Teach Pt/CG S/S of IV Complications','e')?></label>
+</td>
+<td rowspan="4">
+<?php xl('Patient/Caregiver will verbalize the understanding of nature, compliance, and competence of IV medication within this cert period','e')?>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Teach Pt/CG IV Site Care"><?php xl('Teach Pt/CG IV Site Care','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Teach Pt/CG Infusion Pump"><?php xl('Teach Pt/CG Infusion Pump','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_teaching_activities[]" value="Teach Pt/CG Complete Parenteral Nutrition"><?php xl('Teach Pt/CG Complete Parenteral Nutrition','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<strong><?php xl('SKILLED NURSE TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+<label><input type="checkbox" name="oasis_professional_skilled_nurse1[]" value="PICC">
+<strong><?php xl('PICC','e')?></strong>
+</label>
+<br />
+<label><input type="radio" name="oasis_professional_nurse_PICC" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label>
+<label><input type="radio" name="oasis_professional_nurse_PICC" value="Special MD Orders"><?php xl(' Special MD Orders','e')?></label><br />
+<?php xl('Flush with','e')?>
+<input type="text" name="oasis_PICC_socl_before" value="" size="4">
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_PICC_socl_percent_before" value="" size="4">
+<?php xl(' % Sodium Chloride before use,','e')?>
+
+<input type="text" name="oasis_PICC_socl_after" value="" size="4">
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_PICC_socl_percent_after" value="" size="4">
+<?php xl(' % Sodium Chloride after Infusion, follow<br />with','e')?>
+
+<input type="text" name="oasis_professional_heparin" value="" size="4">
+<?php xl(' CC Heparin (100 units/ml) per Lumen<br />','e')?>
+
+<?php xl('Dressing Change Week + PRN','e')?><input type="text" name="oasis_PICC_dressing_change" value="" size="10"><br />
+<?php xl('Injections Cap Change Week + PRN','e')?><input type="text" name="oasis_PICC_injection_cap" value="" size="10"><br />
+<?php xl('Extention Set Change Week + PRN','e')?><input type="text" name="oasis_PICC_extension_set" value="" size="10"><br />
+
+<label><input type="checkbox" name="oasis_professional_skilled_nurse1[]" value="PERIPHERAL I. V.">
+<strong><?php xl('PERIPHERAL I. V.','e')?></strong>
+</label>
+
+<label><input type="radio" name="oasis_professional_nurse_peripheral" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label>
+<label><input type="radio" name="oasis_professional_nurse_peripheral" value="Special MD Orders"><?php xl(' Special MD Orders','e')?></label><br />
+
+<?php xl('Flush with','e')?>
+<input type="text" name="oasis_peripheral_socl_before" value="" size="4">
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_peripheral_socl_percent_before" value="" size="4">
+<?php xl(' % Sodium Chloride before use,','e')?>
+
+<input type="text" name="oasis_peripheral_socl_after" value="" size="4">
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_peripheral_socl_percent_after" value="" size="4">
+<?php xl(' % Sodium Chloride after Infusion, follow<br />with','e')?>
+
+<input type="text" name="oasis_peripheral_heparin" value="" size="4">
+<?php xl(' CC Heparin (100 units/ml) per Lumen<br />','e')?>
+
+<?php xl('Peripheral Catheters must be changed hours to hours to prevent swelling and irritation at the entrey site that can lead to infection.','e')?>
+</td>
+<td>
+<label><input type="checkbox" name="oasis_professional_skilled_nurse1[]" value="PORT-A-CATH CARE">
+<strong><?php xl('PORT-A-CATH CARE','e')?></strong>
+</label>
+<label><input type="radio" name="oasis_professional_nurse_port" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label><br />
+<label><input type="radio" name="oasis_professional_nurse_port" value="Special MD Orders"><?php xl(' Special MD Orders','e')?></label><br />
+<label><input type="radio" name="oasis_professional_nurse_use" value="IF IN USE, access every week."><?php xl(' <strong><u>IF IN USE,</u></strong> access every week.','e')?></label>
+<br />
+<?php xl('Flush with','e')?>
+<input type="text" name="oasis_PORT_socl_before" value="" size="4">
+
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_PORT_socl_percent_before" value="" size="4">
+<?php xl(' % Sodium Chloride before use,','e')?>
+
+<input type="text" name="oasis_PORT_socl_after" value="" size="4">
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_PORT_socl_percent_after" value="" size="4">
+<?php xl(' % Sodium Chloride after Infusion, follow with','e')?>
+
+
+<input type="text" name="oasis_PORT_heparin" value="" size="4">
+<?php xl(' CC Heparin (100 units/ml) per Lumen<br />','e')?>
+
+<?php xl('Dressing Change Week + PRN','e')?><input type="text" name="oasis_PORT_dressing_change" value="" size="10"><br />
+<?php xl('Injections Cap Change Week + PRN','e')?><input type="text" name="oasis_PORT_injection_cap" value="" size="10"><br />
+<?php xl('Extention Set Change Week + PRN','e')?><input type="text" name="oasis_PORT_extension_set" value="" size="10"><br />
+<label><input type="radio" name="oasis_professional_nurse_use" value="IF NOT IN USE"><?php xl(' <strong><u>IF NOT IN USE</u></strong>, access q month and flush with','e')?></label>
+<input type="text" name="oasis_access_socl_after" value="" size="4">
+
+
+<?php xl(' CC of ','e')?>
+<input type="text" name="oasis_access_socl_percent_after" value="" size="4">
+<?php xl(' % Sodium Chloride after Infusion, follow with','e')?>
+
+
+<input type="text" name="oasis_access_heparin" value="" size="4">
+<?php xl(' CC Heparin (100 units/ml) per Lumen<br />','e')?>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_skilled_nurse1[]" value="2 PRN Visits for IV Complications"><?php xl('2 PRN Visits for IV Complications','e')?></label>
+<label><input type="checkbox" name="oasis_professional_skilled_nurse1[]" value="Anaphylaxis Protocol per M.D. Orders"><?php xl('Anaphylaxis Protocol per M.D. Orders','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<center><strong><?php xl("SKILLED NURSE TO PROVIDE SKILLED VISITS FOR:","e");?></strong></center>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_skilled_nurse2[]" value="ADMINISTRATION OF MEDICATIONS (injections) TO TREAT PATIENT ILLNESS OR INJURY"><?php xl('<strong>ADMINISTRATION OF MEDICATIONS (injections) TO TREAT PATIENT\'S ILLNESS OR INJURY</strong>','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_skilled_nurse2[]" value="DNR - Do Not Resuscitate"><?php xl('<strong>DNR</strong> - Do Not Resuscitate','e')?></label><br />
+<strong><?php xl('(must have MD order)','e')?></strong>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2">
+<center><strong><?php xl("SN TO PROVIDE SKILLED NURSING VISITS FOR:","e");?></strong></center>
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="TUBE FEEDINGS">
+<strong><?php xl('TUBE FEEDINGS','e')?></strong>
+</label><br />
+<label><input type="radio" name="oasis_professional_sn_nurse_tube" value="Nasogastric"><?php xl(' Nasogastric','e')?></label>
+<label><input type="radio" name="oasis_professional_sn_nurse_tube" value="Gastrostomy"><?php xl(' Gastrostomy','e')?></label>
+<label><input type="radio" name="oasis_professional_sn_nurse_tube" value="Jejunostomy"><?php xl(' Jejunostomy','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Other (specify)"><?php xl('Other (specify)','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse_tube_other" value=""><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Pump: (type / specify)"><?php xl('Pump: (type / specify)','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse_pump" value=""><br />
+<?php xl('Feedings:','e')?>
+<label><input type="checkbox" name="oasis_professional_sn_nurse_feedings" value="Bolus"><?php xl('Bolus','e')?></label>
+<label><input type="checkbox" name="oasis_professional_sn_nurse_feedings" value="Continuous Rate:"><?php xl('Continuous Rate:','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse_continuous_rate" value="">
+<br />
+<?php xl('Flush Protocol: (amt./specify)','e')?>
+<textarea name="oasis_professional_flush_protocol" rows="3" cols="48"></textarea><br>
+<?php xl('Formula','e')?>
+<input type="text" name="oasis_professional_formula" value=""><br />
+<?php xl('Performed by:','e')?>
+<label><input type="checkbox" name="oasis_sn_nurse_performed_by" value="Self"><?php xl('Self','e')?></label>
+<label><input type="checkbox" name="oasis_sn_nurse_performed_by" value="RN"><?php xl('RN','e')?></label>
+<label><input type="checkbox" name="oasis_sn_nurse_performed_by" value="CG"><?php xl('CG','e')?></label><br />
+<label><input type="checkbox" name="oasis_sn_nurse_performed_by" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_sn_nurse_performed_by_other" value="">
+<br />
+<?php xl('Dressing/Site care: (specify)','e')?>
+<input type="text" name="oasis_sn_nurse_dressing" value="">
+<br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_sn_nurse_dressing_other" value="">
+</td>
+
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="WOUND CARE (See Initial Visit)"><?php xl('<strong>WOUND CARE</strong> (See Initial Visit)','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Evaluate Wounds / Decubs Weekly"><?php xl('Evaluate Wounds / Decubs Weekly','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Teach pt/cg Wound Care / Dressing change"><?php xl('Teach pt/cg Wound Care / Dressing change','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Wound Vac (protocol):"><?php xl('Wound Vac (protocol):','e')?></label><br />
+<input type="text" name="oasis_sn_nurse_wound_vac" value=""><br />
+<?php xl('Using aseptic technique, irrigate with Normal Saline, pat dry, pack with black sponge and
+white foam to tunneling, cover with transparent dressing, occlude with trac pad, connect to
+125 mm/Hg continuous suction, Q visit','e')?><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse[]" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_sn_nurse_dressing_other1" value="">
+</td>
+
+</tr>
+
+
+
+</table>
+
+
+                        </li>
+                    </ul>
+                </li>
+
+
+
+<li>
+	<div><a href="#" id="black">Skilled Nurse To Provide Skilled Nursing Visits, HHA, MSW</a> <span id="mod"><a href="#">(Expand)</a></span></div>
+			                    <ul>
+				<li>
+<table class="formtable" border="1">
+
+<tr>
+	<td colspan="2" align="center">
+	<strong><?php xl('SKILLED NURSE TO PROVIDE SKILLED NURSING VISITS FOR (CONT)','e')?></strong>
+	</td>
+</tr>
+
+<tr>
+<td width="50%" align="center">
+<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+</td>
+<td align="center">
+<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse1[]" value="NASOPHARYNGAL AND TRACHEOSTOMY ASPIRATION">
+<strong><?php xl('NASOPHARYNGAL AND TRACHEOSTOMY ASPIRATION','e')?></strong></label><br />
+</td>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse1[]" value="OSTOMY CARE"><?php xl('<strong>OSTOMY CARE</strong>','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse1[]" value="During the post-operative period and in the presence of associated complications."><?php xl('During the post-operative period and in the presence of associated complications.','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse1[]" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse1_other" value="">
+<br />
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+</td>
+<td align="center">
+<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td>
+
+<table class="formtable" border="1">
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="CATHETER CARE due to loss of bladder control"><?php xl('<strong>CATHETER CARE</strong> due to loss of bladder control','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse2_fr" value="" size="4">
+<?php xl('Fr. with','e')?>
+<input type="text" name="oasis_professional_sn_nurse2_ml" value="" size="4">
+<?php xl('ml balloon','e')?>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="radio" name="oasis_catheter_std_protocol" value="Standard Protocol (will auto-fill text)"><?php xl(' Standard Protocol (will auto-fill text)','e')?></label>
+<label><input type="radio" name="oasis_catheter_std_protocol" value="Special MD Orders for Foley catheter"><?php xl(' Special MD Orders for Foley catheter','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Change Catheter Q"><?php xl('Change Catheter Q','e')?></label>
+<input type="text" name="oasis_catheter_MD" value="" size="4">
+<?php xl('per MD order','e')?>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Catheter Flush/Irrigation"><?php xl('Catheter Flush/Irrigation','e')?></label>
+<input type="text" name="oasis_catheter_weeks" value="" size="4">
+<?php xl('weeks with','e')?>
+<input type="text" name="oasis_catheter_normal_saline_from" value="" size="4">
+<?php xl('cc to','e')?>
+<input type="text" name="oasis_catheter_normal_saline_to" value="" size="4">
+<?php xl('cc of Normal Saline','e')?>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Skilled Nursing PRN">
+<?php xl('Skilled Nursing PRN visits for Foley catheter problems','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Urinanalysis (UA)"><?php xl('Urinanalysis (UA) and Culture & Sensitivity (C&S) with monthly catheter changes & PRN','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Suprapubic Catheter Insertion"><?php xl('Suprapubic Catheter Insertion every','e')?></label>
+<input type="text" name="oasis_catheter_insertion_weeks" value="" size="4">
+<?php xl('(weeks) with','e')?>
+<input type="text" name="oasis_catheter_insertion_fr" value="" size="4">
+<?php xl('Fr. with','e')?>
+<input type="text" name="oasis_catheter_insertion_ml" value="" size="4">
+<?php xl('ml balloon.','e')?>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Teach Care of Indwelling Catheter"><?php xl('Teach Care of Indwelling Catheter','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Teach Self - Cath"><?php xl('Teach Self - Cath','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Catheter care provided by M.D."><?php xl('Catheter care provided by M.D.','e')?></label>
+</td>
+</tr>
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Other"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_catheter_care_other" value="">
+</td>
+</tr>
+</table>
+
+</td>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="LABORATORY"><?php xl('<strong>LABORATORY</strong>','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Venipuncture for"><?php xl('Venipuncture for','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse2_venipuncture" value=""><br />
+<?php xl('Frequency','e')?><input type="text" name="oasis_professional_sn_nurse2_frequency" value=""><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Other1"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse2_other1" value=""><br />
+<strong><?php xl('SN TO PROVIDE SKILLED NURSING VISITS FOR:','e')?></strong>
+<br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="E. T. NURSE FOR CONSULTATION and EVAL"><?php xl('<strong>E. T. NURSE FOR CONSULTATION & EVAL</strong>','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="WOUND CARE EVALUATION"><?php xl('WOUND CARE EVALUATION','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="OSTOMY EVAL"><?php xl('OSTOMY EVAL','e')?></label><br />
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="Other2"><?php xl('Other','e')?></label>
+<input type="text" name="oasis_professional_sn_nurse2_other2" value="">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<strong><?php xl('HOME HEALTH AIDE/CERTIFIED NURSING ASSISTANT (HHA)','e')?></strong>
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<strong><?php xl('HHA VISIT FREQUENCY:','e')?></strong>
+</td>
+<td align="center">
+<strong><?php xl('Goals','e')?></strong>
+</td>
+</tr>
+
+<tr valign="top">
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="To provide hands-on Personal Care">
+<?php xl('To provide hands-on Personal Care & assistance with patient\'s ADLs (to maintain the patient\'s
+health or to facilitate treatment or to prevent deterioration of the patients health','e');?></label>
+</td>
+<td>
+<?php xl('Patient will be able to maintain personal care and prevent deterioration of his/her health','e')?>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2" align="center">
+<strong><?php xl('OTHER SERVICES ORDERED','e')?></strong>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="PHYSICAL THERAPY ASSESSMENT"><?php xl('<strong>PHYSICAL THERAPY ASSESSMENT</strong> To determine further needs for P. T. services for home health related to the treatment of the patient\'s illness or injury.','e')?></label>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="OCCUPATIONAL THERAPY ASSESSMENT"><?php xl('<strong>OCCUPATIONAL THERAPY ASSESSMENT</strong> To determine further needs for O. T. services for home health related to the treatment of the patient\'s illness or injury','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="SPEECH LANGUAGE PATHLOGY ASSESSMENT"><?php xl('<strong>SPEECH LANGUAGE PATHLOGY ASSESSMENT</strong> To determine further needs for Speech Therapy services for home health related to the treatment of the patient\'s illness or injury.','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="REGISTERED DIETICIAN ASSESSMENT"><?php xl('<strong>REGISTERED DIETICIAN ASSESSMENT</strong> To determine further needs for Dietary Nutritional Educational services for home health related to the treatment of the patient\'s illness or injury and to improve patient, family, and caregiver with knowledge related to all food groups.','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<strong><?php xl('MEDICAL SOCIAL WORKER (MSW)','e')?></strong>
+</td>
+</tr>
+
+<tr>
+<td>
+&nbsp;
+</td>
+<td align="center">
+<strong><?php xl('Goals','e')?></strong>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="To Evaluate and or resolve patients social or emotional problems that are expected to impede the effective treatment of the patient medical condition or rate of recovery"><?php xl('To Evaluate and or resolve patients social or emotional problems that are expected to impede the effective treatment of the patient\'s medical condition or rate of recovery','e')?></label>
+</td>
+<td>
+<?php xl('Patient\'s social and or emotional problems impeding rate of recovery and medical conditions will be limited or reduced through effective treatment by the Medical Social Worker','e')?>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<strong><?php xl('ORDERS','e')?></strong>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<label><input type="checkbox" name="oasis_professional_sn_nurse2[]" value="All homecare services to be placed on hold if patient is admitted to an in-patient facility and resumed when patient is discharged home from the facility."><?php xl('All homecare services to be placed on hold if patient is admitted to an in-patient facility and resumed when patient is discharged home from the facility.','e')?></label>
+</td>
+</tr>
+
+<tr>
+<td colspan="2">
+<center><strong><?php xl('SIGNATURE/DATES','e')?></strong></center><br />
+<?php xl('Patient/Caregiver (if applicable): Last Name: ','e')?>
+<input type="text" name="oasis_signature_last_name" value="">
+<?php xl(' First Name: ','e')?>
+<input type="text" name="oasis_signature_first_name" value="">
+<?php xl(' Middle Init: ','e')?>
+<input type="text" name="oasis_signature_middle_init" value="">
+</td>
+</tr>
+
+
+
+</table>
+				
+				
+				
+				</li>
+			</ul>
+		</li>
 
 
 

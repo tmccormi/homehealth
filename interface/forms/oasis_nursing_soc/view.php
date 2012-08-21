@@ -167,8 +167,8 @@ $(document).ready(function() {
     });
 	
 		
-var tot=0;
 function nut_sum(box,valu){
+var tot=parseInt($("#nutrition_total").val());
 if(box.checked)
 {
 tot=tot+valu;
@@ -4109,6 +4109,10 @@ blank in that row.','e');?>
 <br />
 <label><input type="checkbox" name="oasis_nutrition_eat_patt1[]" value="Weight Change:"  id="oasis_nutrition_eat_patt1" <?php if(in_array("Weight Change:",$oasis_nutrition_eat_patt1)) echo "checked"; ?>  />
 <?php xl('Weight Change:','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_eat_gain_or_loss" value="gain" <?php if($obj{"oasis_nutrition_eat_gain_or_loss"}=="gain") echo "checked"; ?> />
+<?php xl('Gain','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_eat_gain_or_loss" value="loss" <?php if($obj{"oasis_nutrition_eat_gain_or_loss"}=="loss") echo "checked"; ?> />
+<?php xl('Loss','e')?></label> &nbsp;
 <input type="text" name="oasis_nutrition_patt_gain" id="oasis_nutrition_patt_gain" size="10" value="<?php echo stripslashes($obj{"oasis_nutrition_patt_gain"});?>"  />&nbsp;
 <?php xl('lb. X','e')?>&nbsp;
 <label><input type="radio" name="oasis_nutrition_eat_patt1_gain_time" value="wk./"  id="oasis_nutrition_eat_patt1_gain_time"  <?php if($obj{"oasis_nutrition_eat_patt1_gain_time"}=="wk./") echo "checked"; ?> />
@@ -5109,7 +5113,7 @@ blank in that row.','e');?>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="3" <?php if($obj{"oasis_adl_use_telephone"}=="3") echo "checked"; ?> ><?php xl(' 3 - Able to answer the telephone only some of the time or is able to carry on only a limited conversation.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="4" <?php if($obj{"oasis_adl_use_telephone"}=="4") echo "checked"; ?> ><?php xl(' 4 - <u>Unable</u> to answer the telephone at all but can listen if assisted with equipment.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="5" <?php if($obj{"oasis_adl_use_telephone"}=="5") echo "checked"; ?> ><?php xl(' 5 - Totally unable to use the telephone.','e')?></label> <br>
-			<label><input type="radio" name="oasis_adl_use_telephone" value="6" <?php if($obj{"oasis_adl_use_telephone"}=="NA") echo "checked"; ?> ><?php xl(' NA - Patient does not have a telephone.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_use_telephone" value="NA" <?php if($obj{"oasis_adl_use_telephone"}=="NA") echo "checked"; ?> ><?php xl(' NA - Patient does not have a telephone.','e')?></label> <br>
 			<br />
 
 <table class="formtable" width="100%" border="1">
@@ -6226,6 +6230,7 @@ blank in that row.','e');?>
 <input type="text" name="oasis_appliances_equipments_phone"  value="<?php echo stripslashes($obj{"oasis_appliances_equipments_phone"});?>"  size="20">
 <br />
 <label><input type="checkbox" name="oasis_appliances_equipments[]" value="Other organization providing service:" <?php if(in_array("Other organization providing service:",$oasis_appliances_equipments)) echo "checked"; ?> ><?php xl('Other organization providing service:','e')?></label>
+<br />
 <textarea name="oasis_appliances_equipments_other_organizations" rows="3" cols="98">
 <?php echo stripslashes($obj{"oasis_appliances_equipments_other_organizations"});?>
 </textarea>

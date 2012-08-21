@@ -96,8 +96,9 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	
 	
 		
-var tot=0;
+
 function nut_sum(box,valu){
+var tot=parseInt($("#nutrition_total").val());
 if(box.checked)
 {
 tot=tot+valu;
@@ -3899,6 +3900,10 @@ blank in that row.','e');?>
 <br />
 <label><input type="checkbox" name="oasis_nutrition_eat_patt1[]" value="Weight Change:"  id="oasis_nutrition_eat_patt1" />
 <?php xl('Weight Change:','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_eat_gain_or_loss" value="gain"/>
+<?php xl('Gain','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_eat_gain_or_loss" value="loss" />
+<?php xl('Loss','e')?></label> &nbsp;
 <input type="text" name="oasis_nutrition_patt_gain" id="oasis_nutrition_patt_gain" size="10" />&nbsp;
 <?php xl('lb. X','e')?>&nbsp;
 <label><input type="radio" name="oasis_nutrition_eat_patt1_gain_time" value="wk./"  id="oasis_nutrition_eat_patt1_gain_time" />
@@ -4006,7 +4011,7 @@ blank in that row.','e');?>
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" readonly="true"/></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly="true"/></label>
 </td>
 </tr>
 </TABLE>
@@ -5990,6 +5995,7 @@ blank in that row.','e');?>
 <input type="text" name="oasis_appliances_equipments_phone" value="" size="20">
 <br />
 <label><input type="checkbox" name="oasis_appliances_equipments[]" value="Other organization providing service:"><?php xl('Other organization providing service:','e')?></label>
+<br />
 <textarea name="oasis_appliances_equipments_other_organizations" rows="3" cols="98"></textarea>
 
 
