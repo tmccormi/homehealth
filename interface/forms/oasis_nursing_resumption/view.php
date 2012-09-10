@@ -522,8 +522,10 @@ $oasis_therapy_respiratory_treatment = explode("#",$obj{"oasis_therapy_respirato
 				<input type='text' size='10' name='oasis_patient_birth_date' value="<?php patientName("DOB")?>" readonly/> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender:','e');?></b>
-				<label><input type="radio" name="oasis_patient_patient_gender" value="Male" <?php if(patientGender("sex")=="Male") {echo "checked";} ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_patient_patient_gender" value="Female" <?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" value="Male" <?php if($obj{"oasis_patient_patient_gender"}=="Male") echo "checked"; ?> disabled /> <?php xl('Male','e')?></label>
+				<label><input type="radio" value="Female" <?php if($obj{"oasis_patient_patient_gender"}=="Female") echo "checked"; ?> disabled /> <?php xl('Female','e')?></label>
+				 
+				<input type="hidden" name="oasis_patient_patient_gender" value="<?php echo stripslashes($obj{"oasis_patient_patient_gender"});?>" />
 			
 			<br>
 			<strong><?php xl('<u>(M0140)</u> Race/Ethnicity: (Mark all that apply.)','e');?></strong><br>
@@ -3706,6 +3708,16 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
+					<!--For B1 String-->
+					<form action="<?php echo $GLOBALS['webroot'] ?>/interface/reports/b1/oasis_interface.php" method="POST">
+					<input type="hidden" name="user" value="<?php echo $obj{"user"};?>">
+					<input type="hidden" name="pid" value="<?php echo $obj{"pid"};?>">
+					<input type="hidden" name="form_name" value="oasis_nursing_resumption">
+					<input type="hidden" name="table_name" value="forms_oasis_nursing_resumption">
+					<input type="hidden" name="form_id" value="<?php echo $_GET["id"];?>">
+					<input type="submit" value="Generate B1 String">
+					</form>
+					<!--For B1 String-->
                 </td>
             </tr>
             <tr><td>

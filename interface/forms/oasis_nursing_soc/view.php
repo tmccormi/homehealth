@@ -167,8 +167,9 @@ $(document).ready(function() {
     });
 	
 		
+		
 function nut_sum(box,valu){
-var tot=parseInt($("#nutrition_total").val());
+var tot=parseInt($("#nutrition_total").val())
 if(box.checked)
 {
 tot=tot+valu;
@@ -569,8 +570,11 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 				<input type='text' size='10' name='oasis_patient_birth_date' value="<?php patientName("DOB")?>" readonly/> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender:','e');?></b>
-				<label><input type="radio" name="oasis_patient_patient_gender" value="Male" <?php if(patientGender("sex")=="Male") {echo "checked";} ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_patient_patient_gender" value="Female" <?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" value="Male" <?php if($obj{"oasis_patient_patient_gender"}=="Male") echo "checked"; ?> disabled /> <?php xl('Male','e')?></label>
+				<label><input type="radio" value="Female" <?php if($obj{"oasis_patient_patient_gender"}=="Female") echo "checked"; ?> disabled /> <?php xl('Female','e')?></label>
+				 
+				<input type="hidden" name="oasis_patient_patient_gender" value="<?php echo stripslashes($obj{"oasis_patient_patient_gender"});?>" />
+			
 			
 			<br>
 			<strong><?php xl('<u>(M0140)</u> Race/Ethnicity: (Mark all that apply.)','e');?></strong><br>
@@ -2350,7 +2354,7 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Tense","e");?>" <?php if(in_array("Tense",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Tense','e')?></label>
 			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Restlessness","e");?>" <?php if(in_array("Restlessness",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Restlessness','e')?></label>
 			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Change in vital signs","e");?>" <?php if(in_array("Change in vital signs",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Change in vital signs','e')?></label><br>
-			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated]" value="<?php xl("Other","e");?>" <?php if(in_array("Other",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
+			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Other","e");?>" <?php if(in_array("Other",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
 			<input type="text" name="oasis_therapy_non_verbal_demonstrated_other" value="<?php echo $obj{"oasis_therapy_non_verbal_demonstrated_other"};?>"><br>
 			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Self-assessment","e");?>" <?php if(in_array("Self-assessment",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Self-assessment','e')?></label><br>
 			<label><input type="checkbox" name="oasis_therapy_non_verbal_demonstrated[]" value="<?php xl("Implications","e");?>" <?php if(in_array("Implications",$oasis_therapy_non_verbal_demonstrated)) echo "checked"; ?> ><?php xl('Implications:','e')?></label>
@@ -5300,7 +5304,7 @@ blank in that row.','e');?>
 <strong><?php xl("<u>(M2030)</u>","e");?></strong>
 			<?php xl("<strong>Management of Injectable Medications: </strong> <u>Patient's current ability</u> to prepare and take <u>all</u> prescribed injectable medications reliably and safely, including administration of correct dosage at the appropriate times/intervals. <strong><u>Excludes</u> IV medications.</strong>","e");?><br />
 			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="0" <?php if($obj{"oasis_adl_management_injectable_medications"}=="0") echo "checked"; ?> ><?php xl(' 0 - Able to independently take the correct oral medication(s) and proper dosage(s) at the correct times.','e')?></label> <br>
-			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="1" <?php if($obj{"oasis_adl_management_injectable_medications"}=="1") echo "checked"; ?> ><?php xl(' 1 - Able to take medication(s) at the correct times if:<br />(a) individual dosages are prepared in advance by another person; <u>OR</u><br />(b) another person develops a drug diary or chart.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="1" <?php if($obj{"oasis_adl_management_injectable_medications"}=="1") echo "checked"; ?> ><?php xl(' 1 - Able to take injectable medication(s) at the correct times if:<br />(a) individual syringes are prepared in advance by another person; <u>OR</u><br />(b) another person develops a drug diary or chart.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="2" <?php if($obj{"oasis_adl_management_injectable_medications"}=="2") echo "checked"; ?> ><?php xl(' 2 - Able to take medication(s) at the correct times if given reminders by another person based on the frequency of the injection','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="3" <?php if($obj{"oasis_adl_management_injectable_medications"}=="3") echo "checked"; ?> ><?php xl(' 3 - <u>Unable</u> to take injectable medication unless administered by another person.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_management_injectable_medications" value="NA" <?php if($obj{"oasis_adl_management_injectable_medications"}=="NA") echo "checked"; ?> ><?php xl(' NA - No injectable medications prescribed.','e')?></label> <br>
@@ -7150,6 +7154,16 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
+					<!--For B1 String-->
+					<form action="<?php echo $GLOBALS['webroot'] ?>/interface/reports/b1/oasis_interface.php" method="POST">
+					<input type="hidden" name="user" value="<?php echo $obj{"user"};?>">
+					<input type="hidden" name="pid" value="<?php echo $obj{"pid"};?>">
+					<input type="hidden" name="form_name" value="oasis_nursing_soc">
+					<input type="hidden" name="table_name" value="forms_oasis_nursing_soc">
+					<input type="hidden" name="form_id" value="<?php echo $_GET["id"];?>">
+					<input type="submit" value="Generate B1 String">
+					</form>
+					<!--For B1 String-->
                 </td>
             </tr>
             <tr><td>

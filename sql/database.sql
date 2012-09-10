@@ -3303,6 +3303,12 @@ insert into list_options (list_id, option_id, title, seq, option_value, mapping,
 insert into list_options (list_id, option_id, title, seq, option_value, mapping, notes) values('ptlistcols','DOB'       ,'Date of Birth' ,'40','3','','');
 insert into list_options (list_id, option_id, title, seq, option_value, mapping, notes) values('ptlistcols','pubpid'    ,'External ID'   ,'50','3','','');
 
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('lists', 'Branch', 'Branch', 222, 1, 0, '', '');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('Branch', 'N', 'N', 1, 0, 0, '', '');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('lists', 'Branch_State', 'Branch State', 223, 1, 0, '', '');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('Branch_State', 'NY', 'New York', 2, 0, 0, '', '');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('Branch_State', 'CA', 'California', 1, 0, 0, '', '');
+
 -- --------------------------------------------------------
 
 -- 
@@ -5266,3 +5272,22 @@ CREATE TABLE `product_warehouse` (
   PRIMARY KEY  (`pw_drug_id`,`pw_warehouse`)
 ) ENGINE=MyISAM;
 
+--
+-- Table structure for table `oasis_pdf`
+--
+
+CREATE TABLE IF NOT EXISTS `oasis_pdf` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user` varchar(100) NOT NULL,
+  `pid` int(10) NOT NULL,
+  `encounter` int(11) NOT NULL,
+  `form_name` varchar(100) NOT NULL,
+  `table_name` varchar(100) NOT NULL,
+  `form_id` int(10) NOT NULL,
+  `b1_string` text NOT NULL,
+  `generated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `analyse` varchar(50) NOT NULL,
+  `analyse_pdf` varchar(50) NOT NULL,
+  `filename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
