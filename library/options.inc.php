@@ -167,9 +167,13 @@ function generate_form_field($frow, $currvalue) {
       echo " onkeyup='maskkeyup(this,\"$tmp\")'";
       echo " onblur='maskblur(this,\"$tmp\")'";
     }
-    if (strpos($frow['edit_options'], '1') !== FALSE && strlen($currescaped) > 0)
+
+//(strpos($frow['edit_options'], '1') !== FALSE && strlen($currescaped) > 0)
+    if (strpos($frow['edit_options'], '1') !== FALSE)
       echo " readonly";
     echo " />";
+	if($field_id_esc == "physician_fax")
+	echo "(don't fax documents)";    
   }
 
   // long or multi-line text field
@@ -222,7 +226,7 @@ function generate_form_field($frow, $currvalue) {
       "AND ( authorized = 1 OR ( username = '' AND npi != '' ) ) " .
       "ORDER BY lname, fname");
     echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
-    echo "<option value=''>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
     while ($urow = sqlFetchArray($ures)) {
       $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
       $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
@@ -577,9 +581,14 @@ function generate_form_field($frow, $currvalue) {
       $option_id_esc = htmlspecialchars( $option_id, ENT_QUOTES);
       if ($count % $cols == 0) {
         if ($count) echo "</tr>";
-        echo "<tr>";
+        echo "<tr valign='top' style='font-size:0.8em;'>";
       }
-      echo "<td width='$tdpct%'>";
+
+	if($option_id_esc == "acute_care_facility")
+	echo "<td colspan='2'>";
+	else
+	echo "<td width='150'>";
+
       echo "<input type='radio' name='form_{$field_id_esc}' id='form_{$field_id_esc}[$option_id_esc]' value='$option_id_esc'";
       if ((strlen($currvalue) == 0 && $lrow['is_default']) ||
           (strlen($currvalue)  > 0 && $option_id == $currvalue))
@@ -780,6 +789,70 @@ function generate_form_field($frow, $currvalue) {
     }
     dropdown_facility($selected = $currvalue, $name = "form_$field_id_esc", $allow_unspecified = true, $allow_allfacilities = false);
   }
+
+
+
+
+//Hospital Drop Down
+  else if ($data_type == 36) {
+    $ures = sqlStatement("SELECT id,organization FROM users " .
+      "WHERE active = 1 " .
+      "AND ( authorized = 1 OR username = '' ) " .
+      "AND abook_type = 'hospital' " .
+      "ORDER BY organization");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description' >";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $org = htmlspecialchars( $urow['organization'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$org</option>";
+    }
+    echo "</select>";
+  }
+
+  //Agency Drop Down
+  else if ($data_type == 37) {
+    $ures = sqlStatement("SELECT id,organization FROM users " .
+      "WHERE active = 1 " .
+      "AND ( authorized = 1 OR username = '' ) " .
+      "AND abook_type = 'agency' " .
+      "ORDER BY organization");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description' >";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $org = htmlspecialchars( $urow['organization'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$org</option>";
+    }
+    echo "</select>";
+  }
+
+  // Display only internal users
+  else if ($data_type == 38) {
+    $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+      "WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) " .
+      "AND ( authorized = 1 OR ( username NOT LIKE '' ) ) " .
+      "ORDER BY lname, fname");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$uname</option>";
+    }
+    echo "</select>";
+  }
+
+
+
+
+
 
 }
 
@@ -1537,6 +1610,33 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars($urow['name'],ENT_NOQUOTES);
   }
 
+
+
+  // Hospital Name
+  else if ($data_type == 36) {
+    $urow = sqlQuery("SELECT organization FROM users " .
+      "WHERE id = ?", array($currvalue));
+    $org = $urow['organization'];
+    $s = htmlspecialchars($org,ENT_NOQUOTES);
+
+  }
+
+  // Agency Name
+  else if ($data_type == 37) {
+    $urow = sqlQuery("SELECT organization FROM users " .
+      "WHERE id = ?", array($currvalue));
+    $org = $urow['organization'];
+    $s = htmlspecialchars($org,ENT_NOQUOTES);
+
+  }
+
+    // Agency Name
+  else if ($data_type == 38) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
   return $s;
 }
 
@@ -1754,6 +1854,14 @@ function display_layout_tabs_data($formtype, $result1, $result2='') {
 					  $last_group = $this_group;
 					}
 
+					if($field_id == "other_physician" || $field_id == "attending_physician1"){
+					echo "<tr><td colspan='6'><hr /></td></tr>";
+					}
+
+					if($field_id == "referral_source1" || $field_id == "referral_admission_source"){
+					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
+					}
+
 					// Handle starting of a new row.
 					if (($titlecols > 0 && $cell_count >= $CPR) || $cell_count == 0) {
 					  disp_end_row();
@@ -1867,6 +1975,14 @@ function display_layout_tabs_data_editable($formtype, $result1, $result2='') {
 					  // totally skip generating the employer category, if it's disabled.
 					  if ($group_name === 'Employer' && $GLOBALS['omit_employers']) continue;
 					  $last_group = $this_group;
+					}
+
+					if($field_id == "other_physician" || $field_id == "attending_physician1"){
+					echo "<tr><td colspan='6'><hr /></td></tr>";
+					}
+
+					if($field_id == "referral_source1" || $field_id == "referral_admission_source"){
+					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
 					}
 
 					// Handle starting of a new row.

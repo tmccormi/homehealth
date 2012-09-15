@@ -40,25 +40,33 @@ form {
     padding: 3px;
 }
 #searchResultsHeader { 
-    width: 100%;
+    width: 96%;
     background-color: lightgrey;
-}
-#searchResultsHeader table { 
-    width: 96%;  /* not 100% because the 'searchResults' table has a scrollbar */
     border-collapse: collapse;
-}
-#searchResultsHeader th {
     font-size: 0.7em;
 }
-#searchResults {
+
+.searchResults {
     width: 100%;
     height: 80%;
     overflow: auto;
+    border-collapse: collapse;
+    background-color: white;
+    cursor: hand;
+    cursor: pointer;
+    font-size: 0.7em;
+    border-bottom: 1px solid #eee;
 }
+
+#setBorder{
+border-collapse: collapse;
+}
+
 
 .srName { width: 12%; }
 .srPhone { width: 11%; }
 .srSS { width: 11%; }
+.srAddress { width: 12%; }
 .srDOB { width: 8%; }
 .srID { width: 7%; }
 .srPID { width: 7%; }
@@ -68,19 +76,7 @@ form {
 .srDateNext { width: 11%; }
 .srMisc { width: 10%; }
 
-#searchResults table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-}
-#searchResults tr {
-    cursor: hand;
-    cursor: pointer;
-}
-#searchResults td {
-    font-size: 0.7em;
-    border-bottom: 1px solid #eee;
-}
+
 .oneResult { }
 .billing { color: red; font-weight: bold; }
 .highlight { 
@@ -112,6 +108,8 @@ function submitList(offset) {
 <input type='hidden' name='fstart'  value='<?php echo htmlspecialchars( $fstart, ENT_QUOTES); ?>' />
 
 <?php
+
+
 $MAXSHOW = 100; // maximum number of results to display at once
 
 //the maximum number of patient records to display:
@@ -124,6 +122,7 @@ echo "<input type='hidden' name='search_service_code' value='" .
   htmlspecialchars($search_service_code, ENT_QUOTES) . "' />\n";
 
 if ($popup) {
+
   echo "<input type='hidden' name='popup' value='1' />\n";
 
   // Construct WHERE clause and save search parameters as form fields.
@@ -169,12 +168,42 @@ if ($popup) {
     array_push($sqlBindArray, $search_service_code);
   }
 
+
+
+
+
+// User Check
+
+$currUser = $_SESSION['authUser'];
+
+$chkquery = "select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='$currUser'))";
+$groupName = sqlStatement($chkquery);
+$groupIDRes = sqlFetchArray($groupName);
+$accessGroup = $groupIDRes['name'];
+
+
+      if($accessGroup=='Front Office' || $accessGroup=='Administrators')
+      {
+	
+      }
+      else
+      {
+	 $currUserID = sqlStatement("select id from users where username='$currUser'");
+	 $currUserIDRes = sqlFetchArray($currUserID);
+	 $myUserID = $currUserIDRes['id'];
+	 $where.=" AND providerID = $myUserID ";
+      }
+
+
   $sql = "SELECT $given FROM patient_data " .
     "WHERE $where ORDER BY $orderby LIMIT $fstart, $sqllimit";
   $rez = sqlStatement($sql,$sqlBindArray);
   $result = array();
   while ($row = sqlFetchArray($rez)) $result[] = $row;
   _set_patient_inc_count($sqllimit, count($result), $where, $sqlBindArray);
+
+
+
 }
 else {
   $patient = $_REQUEST['patient'];
@@ -239,14 +268,22 @@ if ($fend > $count) $fend = $count;
  </tr>
 </table>
 
-<div id="searchResultsHeader">
-<table>
-<tr>
+<div>
+<table id="setBorder">
+<tr id="searchResultsHeader">
 <th class="srName"><?php echo htmlspecialchars( xl('Name'), ENT_NOQUOTES);?></th>
+<th class="srSOC"><?php echo htmlspecialchars( xl('SOC'), ENT_NOQUOTES);?></th>
 <th class="srPhone"><?php echo htmlspecialchars( xl('Phone'), ENT_NOQUOTES);?></th>
 <th class="srSS"><?php echo htmlspecialchars( xl('SS'), ENT_NOQUOTES);?></th>
+<th class="srAddress"><?php echo htmlspecialchars( xl('Address'), ENT_NOQUOTES);?></th>
 <th class="srDOB"><?php echo htmlspecialchars( xl('DOB'), ENT_NOQUOTES);?></th>
+<th class="srAge"><?php echo htmlspecialchars( xl('Age'), ENT_NOQUOTES);?></th>
 <th class="srID"><?php echo htmlspecialchars( xl('ID'), ENT_NOQUOTES);?></th>
+<th class="srSex"><?php echo htmlspecialchars( xl('Sex'), ENT_NOQUOTES);?></th>
+<th class="srAttendingPhysician"><?php echo htmlspecialchars( xl('Attending Physician'), ENT_NOQUOTES);?></th>
+<th class="srAreaDirector"><?php echo htmlspecialchars( xl('Area Director'), ENT_NOQUOTES);?></th>
+<th class="srCaseManager"><?php echo htmlspecialchars( xl('Case Manager'), ENT_NOQUOTES);?></th>
+<th class="srPriRefSource"><?php echo htmlspecialchars( xl('Primary Referal Source'), ENT_NOQUOTES);?></th>
 
 <?php if (empty($GLOBALS['patient_search_results_style'])) { ?>
 <th class="srPID"><?php echo htmlspecialchars( xl('PID'), ENT_NOQUOTES);?></th>
@@ -288,18 +325,17 @@ else {
 ?>
 
 </tr>
-</table>
-</div>
 
-<div id="searchResults">
-
-<table>
 <tr>
 <?php
 if ($result) {
     foreach ($result as $iter) {
-        echo "<tr class='oneresult' id='".htmlspecialchars( $iter['pid'], ENT_QUOTES)."'>";
+
+
+        echo "<tr class='oneresult searchResults' id='".htmlspecialchars( $iter['pid'], ENT_QUOTES)."'>";
         echo  "<td class='srName'>" . htmlspecialchars($iter['lname'] . ", " . $iter['fname']) . "</td>\n";
+	echo "<td class='srSOC'>" . htmlspecialchars( $iter['soc'], ENT_NOQUOTES) . "</td>";
+
         //other phone number display setup for tooltip
         $phone_biz = '';
         if ($iter{"phone_biz"} != "") {
@@ -320,13 +356,56 @@ if ($result) {
 	    htmlspecialchars( $iter['phone_home'], ENT_NOQUOTES) . "</td>\n";
         
         echo "<td class='srSS'>" . htmlspecialchars( $iter['ss'], ENT_NOQUOTES) . "</td>";
+
+
+	echo "<td class='srAddress'>";
+		echo htmlspecialchars( $iter['street'], ENT_NOQUOTES);
+		if(strlen(trim($iter['street']))) echo ", ";
+		echo htmlspecialchars( $iter['city'], ENT_NOQUOTES);
+		if(strlen(trim($iter['city']))) echo ", ";
+		echo htmlspecialchars( $iter['state'], ENT_NOQUOTES);
+		if(strlen(trim($iter['state']))) echo " - ";
+		echo htmlspecialchars( $iter['postal_code'], ENT_NOQUOTES);
+		if(strlen(trim($iter['postal_code']))) echo ", ";
+		echo htmlspecialchars( $iter['country_code'], ENT_NOQUOTES);
+	echo "</td>";
+
+
         if ($iter{"DOB"} != "0000-00-00 00:00:00") {
             echo "<td class='srDOB'>" . htmlspecialchars( $iter['DOB_TS'], ENT_NOQUOTES) . "</td>";
         } else {
             echo "<td class='srDOB'>&nbsp;</td>";
         }
-        
+
+        echo "<td class='srAge'>" . htmlspecialchars( $iter['age'], ENT_NOQUOTES) . "</td>";
         echo "<td class='srID'>" . htmlspecialchars( $iter['pubpid'], ENT_NOQUOTES) . "</td>";
+	echo "<td class='srSex'>" . htmlspecialchars( $iter['sex'], ENT_NOQUOTES) . "</td>";
+	echo "<td class='srAttendingPhysician'>" . htmlspecialchars( $iter['attending_physician'], ENT_NOQUOTES) . "</td>";
+
+$area_dirSt = sqlStatement("select fname, lname, mname from users where id = '".$iter['area_director']."'");
+$area_dir = sqlFetchArray($area_dirSt);
+
+	echo "<td class='srAreaDirector'>";
+		echo htmlspecialchars( $area_dir['lname'], ENT_NOQUOTES);
+		if(strlen(trim($area_dir['lname']))!=0 && strlen(trim($area_dir['fname']))!=0) echo ", ";
+		echo htmlspecialchars( $area_dir['fname'], ENT_NOQUOTES);
+		if(strlen(trim($area_dir['fname']))!=0) echo ", ";
+		echo htmlspecialchars( $area_dir['mname'], ENT_NOQUOTES);
+	echo "</td>";
+
+$case_manSt = sqlStatement("select fname, lname, mname from users where id = '".$iter['case_manager']."'");
+$case_man = sqlFetchArray($case_manSt);
+
+	echo "<td class='srCaseManager'>";
+		echo htmlspecialchars( $case_man['lname'], ENT_NOQUOTES);
+		if(strlen(trim($case_man['lname']))!=0 && strlen(trim($case_man['fname']))!=0) echo ", ";
+		echo htmlspecialchars( $case_man['fname'], ENT_NOQUOTES);
+		if(strlen(trim($case_man['fname']))!=0) echo ", ";
+		echo htmlspecialchars( $case_man['mname'], ENT_NOQUOTES);
+	echo "</td>";
+
+	echo "<td class='srPriRefSource'>" . htmlspecialchars( $iter['primary_referal_source'], ENT_NOQUOTES) . "</td>";
+
 
         if (empty($GLOBALS['patient_search_results_style'])) {
 

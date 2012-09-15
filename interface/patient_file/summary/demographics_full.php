@@ -81,6 +81,196 @@ $(document).ready(function(){
 		'frameWidth' : 650
 	});
 
+
+
+
+$('#form_hospital_name').change(function(){
+   var id=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?hospitalID='+id,
+    dataType: 'json',
+    success: function(data) {     
+
+
+$('#form_hospital_phone').val(data.phone);
+
+var mystreeta = data.street;
+var mystreetb = data.streetb;
+
+if(mystreeta && mystreetb)
+$('#form_hospital_address').val(data.street +", "+data.streetb);
+else if(mystreeta)
+$('#form_hospital_address').val(data.street);
+else
+$('#form_hospital_address').val(data.streetb);
+
+$('#form_hospital_city').val(data.city);
+$('#form_hospital_state').val(data.state);
+$('#form_hospital_zip').val(data.zip);
+
+
+    }
+  });
+
+})
+
+
+
+$('#form_agency_name').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?agencyID='+agid,
+    dataType: 'json',
+    success: function(data) {     
+
+var mystreeta = data.street;
+var mystreetb = data.streetb;
+
+if(mystreeta && mystreetb)
+$('#form_agency_address').val(data.street +", "+data.streetb);
+else if(mystreeta)
+$('#form_agency_address').val(data.street);
+else
+$('#form_agency_address').val(data.streetb);
+
+$('#form_agency_city').val(data.city);
+$('#form_agency_state').val(data.state);
+$('#form_agency_zip').val(data.zip);
+$('#form_agency_phone').val(data.phone);
+$('#form_agency_fax').val(data.fax);
+$('#form_agency_email').val(data.email);
+
+    }
+  });
+
+})
+
+
+$('#form_ref_providerID').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?refProviderID='+agid,
+    dataType: 'json',
+    success: function(data) {     
+
+$('#form_referral_fname').val(data.fname);
+$('#form_referral_lname').val(data.lname);
+$('#form_referral_company_name').val(data.organization);
+$('#form_referral_phone_no').val(data.phone);
+$('#form_referral_fax_no').val(data.fax);
+
+    }
+  });
+
+})
+
+
+$('#form_providerID').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?providerID='+agid,
+    dataType: 'json',
+    success: function(data) {     
+
+$('#form_physician_first_name').val(data.fname);
+$('#form_physician_last_name').val(data.lname);
+$('#form_physician_upin').val(data.upin);
+$('#form_physician_npi').val(data.npi);
+
+var mystreeta = data.street;
+var mystreetb = data.streetb;
+
+if(mystreeta && mystreetb)
+$('#form_physician_address').val(data.street +", "+data.streetb);
+else if(mystreeta)
+$('#form_physician_address').val(data.street);
+else
+$('#form_physician_address').val(data.streetb);
+
+$('#form_physician_city').val(data.city);
+$('#form_physician_state').val(data.state);
+$('#form_physician_zip').val(data.zip);
+$('#form_physician_phone').val(data.phone);
+$('#form_physician_fax').val(data.fax);
+
+
+
+    }
+  });
+
+})
+
+
+
+$('#form_other_physician').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?otPhyID='+agid,
+    dataType: 'json',
+    success: function(data) {     
+
+$('#form_otphy_fname').val(data.fname);
+$('#form_otphy_lname').val(data.lname);
+$('#form_otphy_upin').val(data.upin);
+$('#form_otphy_npi').val(data.npi);
+
+var mystreeta = data.street;
+var mystreetb = data.streetb;
+
+if(mystreeta && mystreetb)
+$('#form_otphy_address').val(data.street +", "+data.streetb);
+else if(mystreeta)
+$('#form_otphy_address').val(data.street);
+else
+$('#form_otphy_address').val(data.streetb);
+
+$('#form_otphy_city').val(data.city);
+$('#form_otphy_state').val(data.state);
+$('#form_otphy_zip').val(data.zip);
+$('#form_otphy_phone').val(data.phone);
+$('#form_otphy_fax').val(data.fax);
+
+    }
+  });
+
+})
+
+
+
+$('#form_attending_physician1').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?attPhyID='+agid,
+    dataType: 'json',
+    success: function(data) {     
+
+$('#form_attphy_fname').val(data.fname);
+$('#form_attphy_lname').val(data.lname);
+$('#form_attphy_upin').val(data.upin);
+$('#form_attphy_npi').val(data.npi);
+
+var mystreeta = data.street;
+var mystreetb = data.streetb;
+
+if(mystreeta && mystreetb)
+$('#form_attphy_address').val(data.street +", "+data.streetb);
+else if(mystreeta)
+$('#form_attphy_address').val(data.street);
+else
+$('#form_attphy_address').val(data.streetb);
+
+$('#form_attphy_city').val(data.city);
+$('#form_attphy_state').val(data.state);
+$('#form_attphy_zip').val(data.zip);
+$('#form_attphy_phone').val(data.phone);
+$('#form_attphy_fax').val(data.fax);
+
+    }
+  });
+
+})
+
+
 });
 
 var mypcc = '<?php echo $GLOBALS['phone_country_code'] ?>';

@@ -98,8 +98,8 @@ function allFramesLoaded() {
 <?php } else { ?>
   <frameset rows='100%,*' id='fsright' bordercolor='#999999' frameborder='1'>
 <?php } ?>
-   <frame src='<?php echo $frame1url ?>' name='RTop' scrolling='auto' />
-   <frame src='messages/messages.php?form_active=1' name='RBot' scrolling='auto' />
+   <frame src='messages/messages.php?form_active=1' name='RTop' scrolling='auto' />
+   <frame src='finder/dynamic_finder.php' name='RBot' scrolling='auto' />
   </frameset>
  </frameset>
 </frameset>
@@ -119,8 +119,8 @@ function allFramesLoaded() {
 <?php } else { ?>
   <frameset rows='100%,*' id='fsright' bordercolor='#999999' frameborder='1' border='4' framespacing='4'>
 <?php } ?>
-   <frame src='<?php echo $frame1url ?>' name='RTop' scrolling='auto' />
-   <frame src='messages/messages.php?form_active=1' name='RBot' scrolling='auto' />
+   <frame src='messages/messages.php?form_active=1' name='RTop' scrolling='auto' />
+   <frame src='finder/dynamic_finder.php' name='RBot' scrolling='auto' />
   </frameset>
  </frameset>
 </frameset>

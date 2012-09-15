@@ -72,6 +72,7 @@ $(document).ready(function() {
   // See: http://datatables.net/usage/columns and
   // http://datatables.net/release-datatables/extras/ColReorder/server_side.html
   "aoColumns": [ <?php echo $coljson; ?> ],
+  "aaSorting": [[ 1, "desc" ]],
   "aLengthMenu": [ 10, 25, 50, 100 ],
   "iDisplayLength": <?php echo empty($GLOBALS['gbl_pt_list_page_size']) ? '10' : $GLOBALS['gbl_pt_list_page_size']; ?>,
   // language strings are included so we can translate them
@@ -111,7 +112,8 @@ $(document).ready(function() {
   }
   else {
 <?php if ($GLOBALS['concurrent_layout']) { ?>
-   document.location.href = "../../patient_file/summary/demographics.php?set_pid=" + newpid;
+  // document.location.href = "../../patient_file/summary/demographics.php?set_pid=" + newpid;
+top.RTop.location = "../../patient_file/summary/demographics.php?set_pid=" + newpid;
 <?php } else { ?>
    top.location.href = "../../patient_file/patient_file.php?set_pid=" + newpid;
 <?php } ?>
@@ -137,10 +139,10 @@ function openNewTopWindow(pid) {
 </head>
 <body class="body_top">
 
-<div id="dynamic"><!-- TBD: id seems unused, is this div required? -->
+<div id="dynamic" style="font-size:12px;"><!-- TBD: id seems unused, is this div required? -->
 
 <!-- Class "display" is defined in demo_table.css -->
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="pt_table">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="pt_table" style="font-size:12px;">
  <thead>
   <tr>
 <?php echo $header0; ?>
