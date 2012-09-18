@@ -443,19 +443,29 @@ CREATE TABLE `oasis_pdf` (
 
 
 
+#IfMissingColumn patient_data soc
+ALTER TABLE patient_data ADD soc DATE DEFAULT NULL, ADD attending_physician varchar(225), ADD age INT(5) DEFAULT 0, ADD primary_referal_source varchar(225), ADD area_director INT(11) DEFAULT 0, ADD case_manager INT(11) DEFAULT 0;
+#EndIf
+
+
+#IfNotRow2D list_options list_id ptlistcols option_id soc
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','soc','SOC','11',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','address','Address','31',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','age','Age','41',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','sex','Sex','51',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','attending_physician','Attending Physician','60',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','area_director1','Area Director','61',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','case_manager1','Case Manager','62',0,0,'','');
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','primary_referal_source','Primary Referal Source','63',0,0,'','');
+#EndIf
 
 
 
-
-
-
-
-
-#IfNotRow2D list_options option_id hospital
+#IfNotRow2D list_options list_id abook_type option_id hospital
 INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','hospital','Hospital','40',0,1,'','');
 #EndIf
 
-#IfNotRow2D layout_options group_name 7Hospitalization
+#IfNotRow2D layout_options form_id DEM group_name 7Hospitalization
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hospital_name', '7Hospitalization', 'Hospital', '1','36','1','0','0','','1','3','','','Hospital','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hospital_phone', '7Hospitalization', 'Phone #', '2','2','1','20','63','','1','3','','1','Hospital Phone Number','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hospital_address', '7Hospitalization', 'Address', '3','2','1','20','225','','1','3','','1','Hospital Address','0');
@@ -471,11 +481,11 @@ ALTER TABLE patient_data ADD hospital_name varchar(100), ADD hospital_phone varc
 #EndIf
 
 
-#IfNotRow2D list_options option_id agency
+#IfNotRow2D list_options list_id abook_type option_id agency
 INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','agency','Agency','45',0,1,'','');
 #EndIf
 
-#IfNotRow2D layout_options group_name 8Agency
+#IfNotRow2D layout_options form_id DEM group_name 8Agency
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_name', '8Agency', 'Agency Name', '1','37','1','0','0','','1','3','','','Agency','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_rate', '8Agency', 'Rate', '2','2','1','11','11','','1','3','','','Agency Rate','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_address', '8Agency', 'Address', '3','2','1','20','225','','1','3','','1','Agency Address','0');
@@ -493,11 +503,11 @@ ALTER TABLE patient_data ADD agency_name varchar(100), ADD agency_rate varchar(1
 #EndIf
 
 
-#IfNotRow2D list_options option_id referring_physician
+#IfNotRow2D list_options list_id abook_type option_id referring_physician
 INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','referring_physician','Referring Physician','50',0,1,'','');
 #EndIf
 
-#IfNotRow2D layout_options group_name 9Referral
+#IfNotRow2D layout_options form_id DEM group_name 9Referral
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_date', '9Referral', 'Referral Date', '1','4','1','10','10','','1','3','','D','Referral Date','0');
 UPDATE `layout_options` SET `group_name` = '9Referral',
 `title` = 'Referrer' WHERE CONVERT( `layout_options`.`form_id` USING utf8 ) = 'DEM' AND CONVERT( `layout_options`.`field_id` USING utf8 ) = 'ref_providerID' AND `layout_options`.`seq` =2 LIMIT 1 ;
@@ -518,7 +528,7 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 #EndIf
 
 
-#IfNotRow2D list_options option_id facility_name
+#IfNotRow2D list_options list_id lists option_id facility_name
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'facility_name', 'Facility Name', '1', '0', '0', '', '');
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('facility_name', 'hospital', 'Hospital', '1', '0', '1', '', '');
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('facility_name', 'alf', 'ALF', '2', '0', '1', '', '');
@@ -536,13 +546,8 @@ ALTER TABLE patient_data ADD referral_date DATE DEFAULT NULL, ADD referral_fname
 #EndIf
 
 
-#IfNotRow2D list_options option_id physician
-INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','physician','Physician','55',0,1,'','');
-UPDATE `layout_options` SET `group_name` = '9Physician(s)',
-`title` = 'Primary Referring Physician' WHERE CONVERT( `layout_options`.`form_id` USING utf8 ) = 'DEM' AND CONVERT( `layout_options`.`field_id` USING utf8 ) = 'providerID' AND `layout_options`.`seq` =1 LIMIT 1 ;
-#EndIf
 
-#IfNotRow2D layout_options group_name 9Physician(s)
+#IfNotRow2D layout_options form_id DEM group_name 9Physician(s)
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'physician_first_name', '9Physician(s)', 'Physician First Name', '2','2','1','20','63','','1','3','','1','Physician First Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'physician_last_name', '9Physician(s)', 'Physician Last Name', '3','2','1','20','63','','1','3','','1','Physician Last Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'pecos_status', '9Physician(s)', 'Pecos Status', '4','2','1','20','63','','1','3','','','Pecos Status','0');
@@ -583,27 +588,34 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 #EndIf
 
 
+#IfNotRow2D list_options list_id abook_type option_id physician
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','physician','Physician','55',0,1,'','');
+UPDATE `layout_options` SET `group_name` = '9Physician(s)',
+`title` = 'Primary Referring Physician' WHERE CONVERT( `layout_options`.`form_id` USING utf8 ) = 'DEM' AND CONVERT( `layout_options`.`field_id` USING utf8 ) = 'providerID' AND `layout_options`.`seq` =1 LIMIT 1 ;
+#EndIf
+
+
 #IfMissingColumn patient_data physician_first_name
 ALTER TABLE patient_data ADD physician_first_name varchar(100), ADD physician_last_name varchar(100), ADD pecos_status varchar(100), ADD physician_upin varchar(20), ADD physician_npi varchar(20), ADD physician_address varchar(225), ADD physician_city varchar(20), ADD physician_state varchar(20), ADD physician_zip varchar(50), ADD physician_phone varchar(50), ADD physician_fax varchar(50), ADD other_physician varchar(100), ADD otphy_fname varchar(100), ADD otphy_lname varchar(100), ADD otphy_pecos_status varchar(100), ADD otphy_upin varchar(20), ADD otphy_npi varchar(20), ADD otphy_address varchar(225), ADD otphy_city varchar(20), ADD otphy_state varchar(20), ADD otphy_zip varchar(10), ADD otphy_phone varchar(50), ADD otphy_fax varchar(50), ADD otphy_comments varchar(225), ADD attending_physician1 varchar(100), ADD attphy_fname varchar(100), ADD attphy_lname varchar(100), ADD attphy_pecos_status varchar(100), ADD attphy_upin varchar(10), ADD attphy_npi varchar(10), ADD attphy_address varchar(225), ADD attphy_city varchar(20), ADD attphy_state varchar(20), ADD attphy_zip varchar(20), ADD attphy_phone varchar(50), ADD attphy_fax varchar(50), ADD attphy_comments varchar(225);
 #EndIf
 
 
-#IfNotRow2D list_options option_id outside_case_manager
+#IfNotRow2D list_options list_id abook_type option_id outside_case_manager
 INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','outside_case_manager','Outside Case Manager','60',0,1,'','');
 #EndIf
 
 
-#IfNotRow2D layout_options field_id area_director
+#IfNotRow2D layout_options form_id DEM field_id area_director
 INSERT INTO `layout_options` (`form_id` ,`field_id` ,`group_name` ,`title` ,`seq` ,`data_type` ,`uor` ,`fld_length` ,`max_length` ,`list_id` ,`titlecols` ,`datacols` ,`default_value` ,`edit_options` ,`description` ,`fld_rows`)VALUES ('DEM', 'area_director', '6Misc', 'Area Director', '19', '10', '1', '0', '0', '', '1', '3', '', '', 'Area Director', '0');
 #EndIf
 
 
-#IfNotRow2D layout_options field_id area_director
+#IfNotRow2D layout_options form_id DEM field_id case_manager
 INSERT INTO `layout_options` (`form_id` ,`field_id` ,`group_name` ,`title` ,`seq` ,`data_type` ,`uor` ,`fld_length` ,`max_length` ,`list_id` ,`titlecols` ,`datacols` ,`default_value` ,`edit_options` ,`description` ,`fld_rows`)VALUES ('DEM', 'case_manager', '6Misc', 'Case Manager', '20', '11', '1', '0', '0', '', '1', '3', '', '', 'Case Manager', '0');
 #EndIf
 
 
-#IfNotRow2D layout_options group_name 1Patient Info
+#IfNotRow2D layout_options form_id DEM group_name 1Patient Info
 UPDATE layout_options SET group_name="1Patient Info" WHERE group_name="1Who" OR group_name="2Contact";
 UPDATE layout_options SET seq=17 WHERE title="Address" AND group_name="1Patient Info";
 UPDATE layout_options SET seq=18 WHERE title="City" AND group_name="1Patient Info";

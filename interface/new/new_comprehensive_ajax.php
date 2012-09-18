@@ -7,8 +7,20 @@ function getHospitalDetails($userID){
 $res = sqlStatement($sql);
 $hospitalDetails = sqlFetchArray($res);
 
+
 if($hospitalDetails)
+{
+
+foreach($hospitalDetails as $fieldName => $curVal)
+{
+if($curVal==null)
+{
+$hospitalDetails[$fieldName]='';
+}
+}
+
 return json_encode($hospitalDetails);
+}
 else
 {
 $nullarray['phone']='';
@@ -28,7 +40,18 @@ $res = sqlStatement($sql);
 $agencyDetails = sqlFetchArray($res);
 
 if($agencyDetails)
+{
+
+foreach($agencyDetails as $fieldName => $curVal)
+{
+if($curVal==null)
+{
+$agencyDetails[$fieldName]='';
+}
+}
+
 return json_encode($agencyDetails);
+}
 else
 {
 $nullarray['phone']='';
@@ -50,7 +73,18 @@ $res = sqlStatement($sql);
 $referrerDetails = sqlFetchArray($res);
 
 if($referrerDetails)
+{
+
+foreach($referrerDetails as $fieldName => $curVal)
+{
+if($curVal==null)
+{
+$referrerDetails[$fieldName]='';
+}
+}
+
 return json_encode($referrerDetails);
+}
 else
 {
 $nullarray['fname']='';
@@ -68,8 +102,21 @@ function getProviderDetails($userID){
 $res = sqlStatement($sql);
 $providerDetails = sqlFetchArray($res);
 
+
+
 if($providerDetails)
+{
+
+foreach($providerDetails as $fieldName => $curVal)
+{
+if($curVal==null)
+{
+$providerDetails[$fieldName]='';
+}
+}
+
 return json_encode($providerDetails);
+}
 else
 {
 $nullarray['fname']='';
