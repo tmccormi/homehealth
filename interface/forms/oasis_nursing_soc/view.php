@@ -7154,17 +7154,7 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
-					<!--For B1 String-->
-					<form action="<?php echo $GLOBALS['webroot'] ?>/interface/reports/b1/oasis_interface.php" method="POST">
-					<input type="hidden" name="user" value="<?php echo $obj{"user"};?>">
-					<input type="hidden" name="pid" value="<?php echo $obj{"pid"};?>">
-					<input type="hidden" name="form_name" value="oasis_nursing_soc">
-					<input type="hidden" name="table_name" value="forms_oasis_nursing_soc">
-					<input type="hidden" name="form_id" value="<?php echo $_GET["id"];?>">
-					<input type="submit" value="Generate B1 String">
-					</form>
-					<!--For B1 String-->
-                </td>
+				</td>
             </tr>
             <tr><td>
 

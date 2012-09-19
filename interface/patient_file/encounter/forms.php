@@ -298,6 +298,14 @@ if (is_numeric($pid)) {
                 "' href='$rootdir/patient_file/encounter/view_form.php?" .
                 "formname=" . $formdir . "&id=" . $iter['form_id'] .
                 "' onclick='top.restoreSession()' class='css_button_small'><span>" . xl('Edit') . "</span></a>";
+				
+		echo "<a target='".
+                ($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
+                "' href='$rootdir/reports/b1/oasis_interface.php?" .
+                "user=" . $_SESSION['authUser'] . "&pid=" . $pid .
+                "&form_name=" . $formdir . "&table_name=forms_" . $formdir .
+				"&form_id=" . $iter['form_id'] .
+                "' onclick='top.restoreSession()' class='css_button_small'><span>" . xl('Generate B1 String') . "</span></a>";
 
         if (acl_check('admin', 'super') ) {
             if ( $formdir != 'newpatient') {
