@@ -32,8 +32,36 @@ while ($row = sqlFetchArray($res)) {
   $arow = array('DT_RowId' => 'pid_' . $row['pid']);
   
 
+
+$SOCfromPT = sqlFetchArray(sqlStatement("SELECT MAX(oasis_patient_soc_date) FROM forms_oasis_pt_soc where pid=".$row['pid']." AND (id IN (SELECT form_id from forms where deleted=0 AND pid=".$row['pid']." AND formdir='oasis_pt_soc'))"));
+$SOCfromNursing = sqlFetchArray(sqlStatement("SELECT MAX(oasis_patient_soc_date) FROM forms_oasis_nursing_soc where pid=".$row['pid']." AND (id IN (SELECT form_id from forms where deleted=0 AND pid=".$row['pid']." AND formdir='oasis_nursing_soc'))"));
+
+if($SOCfromPT['MAX(oasis_patient_soc_date)'] && $SOCfromNursing['MAX(oasis_patient_soc_date)'])
+{
+$SOCfromPTtime = strtotime($SOCfromPT['MAX(oasis_patient_soc_date)']);
+$SOCfromNursingtime = strtotime($SOCfromNursing['MAX(oasis_patient_soc_date)']);
+
+if($SOCfromPTtime > $SOCfromNursingtime)
+$updateSOC = sqlStatement("UPDATE patient_data set soc='".$SOCfromPT['MAX(oasis_patient_soc_date)']."' where pid=".$row['pid']."");
+else
+$updateSOC = sqlStatement("UPDATE patient_data set soc='".$SOCfromNursing['MAX(oasis_patient_soc_date)']."' where pid=".$row['pid']."");
+}
+else if($SOCfromPT['MAX(oasis_patient_soc_date)'])
+{
+$updateSOC = sqlStatement("UPDATE patient_data set soc='".$SOCfromPT['MAX(oasis_patient_soc_date)']."' where pid=".$row['pid']."");
+}
+else if($SOCfromNursing['MAX(oasis_patient_soc_date)'])
+{
+$updateSOC = sqlStatement("UPDATE patient_data set soc='".$SOCfromNursing['MAX(oasis_patient_soc_date)']."' where pid=".$row['pid']."");
+}
+else
+{
+$updateSOC = sqlStatement("UPDATE patient_data set soc=NULL where pid=".$row['pid']."");
+}
+
+
   //update block
-  $updateSOC = sqlStatement("UPDATE patient_data set soc=(SELECT MAX(OASIS_C_start_care_date) FROM forms_OASIS where pid=".$row['pid'].") where pid=".$row['pid']."");
+  //$updateSOC = sqlStatement("UPDATE patient_data set soc=(SELECT MAX(OASIS_C_start_care_date) FROM forms_OASIS where pid=".$row['pid'].") where pid=".$row['pid']."");
   $attPhy = sqlStatement("select fname, lname, mname from users where id=(select providerID from patient_data where pid=".$row['pid'].")");
   $attPhyRow = sqlFetchArray($attPhy);
   if($attPhy)

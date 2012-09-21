@@ -114,6 +114,180 @@ function image_widget($doc_id,$doc_catg)
         echo "</tr></table>";
 }
 
+
+
+
+/**********************************************************************************************/
+
+//Code for the update of patient_data
+
+if(isset($_SESSION['pid'])){
+
+$hospitalID = sqlStatement("select hospital_name from patient_data where pid=".$_SESSION['pid']."");
+$hospitalID = sqlFetchArray($hospitalID);
+
+if($hospitalID['hospital_name']!=NULL){
+$upHospData = sqlStatement("select phone,street,streetb,city,state,zip from users where id=".$hospitalID['hospital_name']."");
+$upHospData = sqlFetchArray($upHospData);
+
+if($upHospData){
+if($upHospData['street'] && $upHospData['streetb'])
+$upHospData['address'] = $upHospData['street'].", ".$upHospData['streetb'];
+else if($upHospData['street'])
+$upHospData['address'] = $upHospData['street'];
+else
+$upHospData['address'] = $upHospData['streetb'];
+
+$upHospData = sqlStatement("update patient_data SET hospital_phone='".$upHospData['phone']."',
+hospital_address = '".$upHospData['address']."',
+hospital_city = '".$upHospData['city']."',
+hospital_state = '".$upHospData['state']."',
+hospital_zip = '".$upHospData['zip']."' where pid=".$_SESSION['pid']."");
+}
+}
+
+$agencyID = sqlStatement("select agency_name from patient_data where pid=".$_SESSION['pid']."");
+$agencyID = sqlFetchArray($agencyID);
+
+if($agencyID['agency_name']!=NULL){
+
+$upAgencyData = sqlStatement("select phone,street,streetb,city,state,zip,fax,email from users where id=".$agencyID['agency_name']."");
+$upAgencyData = sqlFetchArray($upAgencyData);
+
+if($upAgencyData){
+if($upAgencyData['street'] && $upAgencyData['streetb'])
+$upAgencyData['address'] = $upAgencyData['street'].", ".$upAgencyData['streetb'];
+else if($upAgencyData['street'])
+$upAgencyData['address'] = $upAgencyData['street'];
+else
+$upAgencyData['address'] = $upAgencyData['streetb'];
+
+$upAgencyData = sqlStatement("update patient_data SET agency_phone='".$upAgencyData['phone']."',
+agency_address = '".$upAgencyData['address']."',
+agency_city = '".$upAgencyData['city']."',
+agency_state = '".$upAgencyData['state']."',
+agency_fax = '".$upAgencyData['fax']."',
+agency_email = '".$upAgencyData['email']."',
+agency_zip = '".$upAgencyData['zip']."' where pid=".$_SESSION['pid']."");
+}
+}
+
+$provID = sqlStatement("select primary_ref_physician from patient_data where pid=".$_SESSION['pid']."");
+$provID = sqlFetchArray($provID);
+
+if($provID['primary_ref_physician']!=NULL){
+$provData = sqlStatement("select fname,lname,upin,npi,phone,street,streetb,city,state,zip,fax from users where id=".$provID['primary_ref_physician']."");
+$provData = sqlFetchArray($provData);
+
+if($provData){
+if($provData['street'] && $provData['streetb'])
+$provData['address'] = $provData['street'].", ".$provData['streetb'];
+else if($provData['street'])
+$provData['address'] = $provData['street'];
+else
+$provData['address'] = $provData['streetb'];
+
+$provData = sqlStatement("update patient_data SET physician_phone='".$provData['phone']."',
+physician_address = '".$provData['address']."',
+physician_city = '".$provData['city']."',
+physician_state = '".$provData['state']."',
+physician_fax = '".$provData['fax']."',
+physician_first_name = '".$provData['fname']."',
+physician_last_name = '".$provData['lname']."',
+physician_upin = '".$provData['upin']."',
+physician_npi = '".$provData['npi']."',
+physician_zip = '".$provData['zip']."' where pid=".$_SESSION['pid']."");
+}
+}
+
+
+$otphyID = sqlStatement("select other_physician from patient_data where pid=".$_SESSION['pid']."");
+$otphyID = sqlFetchArray($otphyID);
+
+if($otphyID['other_physician']!=NULL){
+$otphyData = sqlStatement("select fname,lname,upin,npi,phone,street,streetb,city,state,zip,fax from users where id=".$otphyID['other_physician']."");
+$otphyData = sqlFetchArray($otphyData);
+
+if($otphyData){
+if($otphyData['street'] && $otphyData['streetb'])
+$otphyData['address'] = $otphyData['street'].", ".$otphyData['streetb'];
+else if($otphyData['street'])
+$otphyData['address'] = $otphyData['street'];
+else
+$otphyData['address'] = $otphyData['streetb'];
+
+$otphyData = sqlStatement("update patient_data SET otphy_phone='".$otphyData['phone']."',
+otphy_address = '".$otphyData['address']."',
+otphy_city = '".$otphyData['city']."',
+otphy_state = '".$otphyData['state']."',
+otphy_fax = '".$otphyData['fax']."',
+otphy_fname = '".$otphyData['fname']."',
+otphy_lname = '".$otphyData['lname']."',
+otphy_upin = '".$otphyData['upin']."',
+otphy_npi = '".$otphyData['npi']."',
+otphy_zip = '".$otphyData['zip']."' where pid=".$_SESSION['pid']."");
+}
+}
+
+
+$attphyID = sqlStatement("select attending_physician1 from patient_data where pid=".$_SESSION['pid']."");
+$attphyID = sqlFetchArray($attphyID);
+
+if($attphyID['attending_physician1']!=NULL){
+$attphyData = sqlStatement("select fname,lname,upin,npi,phone,street,streetb,city,state,zip,fax from users where id=".$attphyID['attending_physician1']."");
+$attphyData = sqlFetchArray($attphyData);
+
+if($attphyData){
+if($attphyData['street'] && $attphyData['streetb'])
+$attphyData['address'] = $attphyData['street'].", ".$attphyData['streetb'];
+else if($attphyData['street'])
+$attphyData['address'] = $attphyData['street'];
+else
+$attphyData['address'] = $attphyData['streetb'];
+
+$attphyData = sqlStatement("update patient_data SET attphy_phone='".$attphyData['phone']."',
+attphy_address = '".$attphyData['address']."',
+attphy_city = '".$attphyData['city']."',
+attphy_state = '".$attphyData['state']."',
+attphy_fax = '".$attphyData['fax']."',
+attphy_fname = '".$attphyData['fname']."',
+attphy_lname = '".$attphyData['lname']."',
+attphy_upin = '".$attphyData['upin']."',
+attphy_npi = '".$attphyData['npi']."',
+attphy_zip = '".$attphyData['zip']."' where pid=".$_SESSION['pid']."");
+}
+}
+
+
+$refproID = sqlStatement("select ref_providerID from patient_data where pid=".$_SESSION['pid']."");
+$refproID = sqlFetchArray($refproID);
+
+if($refproID){
+$refproData = sqlStatement("select fname,lname,organization,phone,fax from users where id=".$refproID['ref_providerID']."");
+$refproData = sqlFetchArray($refproData);
+
+$org = (string)$refproData['organization'];
+$org = mysql_escape_string($org);
+
+
+if($refproData){
+
+$refproData = sqlStatement("update patient_data SET referral_phone_no='".$refproData['phone']."',
+referral_fname = '".$refproData['fname']."',
+referral_lname = '".$refproData['lname']."',
+referral_company_name = '".$org."',
+referral_fax_no = '".$refproData['fax']."' where pid=".$_SESSION['pid']."");
+
+}
+}
+
+
+}
+
+
+/******************************************************************************************************/
+
+
 // Determine if the Vitals form is in use for this site.
 $tmp = sqlQuery("SELECT count(*) AS count FROM registry WHERE " .
   "directory = 'vitals' AND state = 1");

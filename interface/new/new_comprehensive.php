@@ -897,10 +897,10 @@ $('#form_referral_fax_no').val(data.fax);
 })
 
 
-$('#form_providerID').change(function(){
+$('#form_primary_ref_physician').change(function(){
    var agid=  $(this).val();
     $.ajax({
-    url: 'new_comprehensive_ajax.php?providerID='+agid,
+    url: 'new_comprehensive_ajax.php?primary_ref='+agid,
     dataType: 'json',
     success: function(data) {     
 

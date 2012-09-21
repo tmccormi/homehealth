@@ -165,10 +165,10 @@ $('#form_referral_fax_no').val(data.fax);
 })
 
 
-$('#form_providerID').change(function(){
+$('#form_primary_ref_physician').change(function(){
    var agid=  $(this).val();
     $.ajax({
-    url: 'demographics_ajax.php?providerID='+agid,
+    url: 'demographics_ajax.php?primary_ref_phy='+agid,
     dataType: 'json',
     success: function(data) {     
 

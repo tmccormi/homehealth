@@ -37,6 +37,8 @@ while ($row = sqlFetchArray($res)) {
   $coljson .= "{\"sName\": \"" . addcslashes($colname, "\t\r\n\"\\") . "\"}";
   ++$colcount;
 }
+
+
 ?>
 <html>
 <head>
@@ -136,6 +138,23 @@ function openNewTopWindow(pid) {
 
 </script>
 
+
+<?php
+/*
+$SOCfromPT = sqlFetchArray(sqlStatement("SELECT MAX(oasis_patient_soc_date) FROM forms_oasis_pt_soc where pid=6 AND (id IN (SELECT form_id from forms where deleted=0 AND pid=6 AND formdir='oasis_pt_soc'))"));
+
+$SOCfromNursing = sqlFetchArray(sqlStatement("SELECT MAX(oasis_patient_soc_date) FROM forms_oasis_nursing_soc where pid=6 AND (id IN (SELECT form_id from forms where deleted=0 AND pid=6 AND formdir='oasis_pt_soc'))"));
+
+if($SOCfromPT['MAX(oasis_patient_soc_date)'] && $SOCfromNursing['MAX(oasis_patient_soc_date)'])
+{
+//echo "<script type='text/javascript'> alert('".$SOCfromPT['MAX(oasis_patient_soc_date)']."');</script>";
+}
+
+echo "<script type='text/javascript'> alert('".$SOCfromPT['MAX(oasis_patient_soc_date)']."');</script>";
+*/
+?>
+
+
 </head>
 <body class="body_top">
 
@@ -169,6 +188,7 @@ function openNewTopWindow(pid) {
 <input type='hidden' name='languageChoice' value='<?php echo attr($_SESSION['language_choice']); ?>' />
 <input type='hidden' name='patientID'      value='0' />
 </form>
+
 
 </body>
 </html>

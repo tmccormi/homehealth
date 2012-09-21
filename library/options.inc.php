@@ -849,12 +849,44 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
+  // Display only external users
+  else if ($data_type == 39) {
+     $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+      "WHERE username LIKE '' " .
+      "ORDER BY lname, fname");
 
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$uname</option>";
+    }
+    echo "</select>";
+  }
 
-
+  //Referral Source1 Drop Down
+  else if ($data_type == 40) {
+    $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+      "WHERE abook_type = 'referral_source1' " .
+      "ORDER BY lname, fname");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$uname</option>";
+    }
+    echo "</select>";
+  }
 
 
 }
+
 
 function generate_print_field($frow, $currvalue) {
   global $rootdir, $date_init;
@@ -1630,8 +1662,22 @@ function generate_display_field($frow, $currvalue) {
 
   }
 
-    // Agency Name
+    // Internal Users Only
   else if ($data_type == 38) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
+    // External Users Only
+  else if ($data_type == 39) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
+    // External Users Only
+  else if ($data_type == 40) {
     $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
       "WHERE id = ?", array($currvalue) );
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);

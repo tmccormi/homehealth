@@ -107,9 +107,9 @@ else if(isset($_GET['refProviderID']))
 {
   echo getRefferrerDetails($_GET['refProviderID']);
 }
-else if(isset($_GET['providerID']))
+else if(isset($_GET['primary_ref_phy']))
 {
-  echo getProviderDetails($_GET['providerID']);
+  echo getProviderDetails($_GET['primary_ref_phy']);
 }
 else if(isset($_GET['otPhyID']))
 {
