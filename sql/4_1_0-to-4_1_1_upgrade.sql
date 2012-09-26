@@ -528,7 +528,7 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_company_name', '9Referral', 'Referrer Company Name', '5','2','1','20','63','','1','3','','1','Referrer Company Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_phone_no', '9Referral', 'Phone', '6','2','1','20','63','','1','3','','1','Referrer Phone Number','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_fax_no', '9Referral', 'Fax', '7','2','1','20','63','','1','3','','1','Referrer Fax Number','0');
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source1', '9Referral', 'Referral Source', '8','11','1','0','0','','1','3','','1','Referrer Source','0');
+
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_facility_name', '9Referral', 'Facility Name', '9','27','1','5','225','facility_name','1','3','','','Facility Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_phone_no', '9Referral', 'Phone', '10','2','1','20','63','','1','3','','','Referral Source Phone Number','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_fax', '9Referral', 'Fax', '11','2','1','20','63','','1','3','','','Referral Source Fax Number','0');
@@ -554,7 +554,7 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 #EndIf
 
 #IfMissingColumn patient_data referral_date
-ALTER TABLE patient_data ADD referral_date DATE DEFAULT NULL, ADD referral_fname varchar(100), ADD referral_lname varchar(100), ADD referral_company_name varchar(100), ADD referral_phone_no varchar(50), ADD referral_fax_no varchar(50), ADD referral_source1 varchar(100), ADD referral_source_facility_name varchar(100), ADD referral_source_phone_no varchar(50), ADD referral_source_fax varchar(50), ADD referral_source_protocol varchar(100), ADD referral_admission_source varchar(100), ADD referral_taken_by varchar(100), ADD referral_reason_not_visited varchar(100), ADD referral_comments varchar(225);
+ALTER TABLE patient_data ADD referral_date DATE DEFAULT NULL, ADD referral_fname varchar(100), ADD referral_lname varchar(100), ADD referral_company_name varchar(100), ADD referral_phone_no varchar(50), ADD referral_fax_no varchar(50), ADD referral_source_facility_name varchar(100), ADD referral_source_phone_no varchar(50), ADD referral_source_fax varchar(50), ADD referral_source_protocol varchar(100), ADD referral_admission_source varchar(100), ADD referral_taken_by varchar(100), ADD referral_reason_not_visited varchar(100), ADD referral_comments varchar(225);
 #EndIf
 
 
@@ -615,13 +615,7 @@ UPDATE layout_options SET data_type=39 WHERE field_id='other_physician';
 UPDATE layout_options SET data_type=39 WHERE field_id='attending_physician1';
 #EndIf
 
-#IfNotRow2D layout_options field_id ref_providerID data_type 39
-UPDATE layout_options SET data_type=39 WHERE field_id='ref_providerID';
-#EndIf
 
-#IfNotRow2D layout_options field_id referral_source1 data_type 40
-UPDATE layout_options SET data_type=40 WHERE field_id='referral_source1';
-#EndIf
 
 #IfNotRow2D layout_options field_id providerID group_name 3Choices
 UPDATE layout_options SET group_name="3Choices", seq=1, title="Provider" WHERE field_id="providerID";
@@ -650,10 +644,12 @@ ALTER TABLE patient_data ADD physician_first_name varchar(100), ADD physician_la
 INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','outside_case_manager','Outside Case Manager','60',0,1,'','');
 #EndIf
 
-#IfNotRow2D list_options list_id abook_type option_id referral_source1
-INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','referral_source1','Referral Source','65',0,1,'','');
-#EndIf
 
+#IfNotRow2D layout_options field_id referral_source group_name 9Referral
+UPDATE layout_options SET group_name='9Referral', seq=8, datacols=3, edit_options=1 WHERE field_id='referral_source';
+DELETE FROM layout_options WHERE field_id='referral_source1';
+DELETE FROM list_options WHERE option_id='referral_source1';
+#EndIf
 
 
 #IfNotRow2D list_options list_id lists option_id admit_status
@@ -670,9 +666,12 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'primary_ref_physician', '9Physician(s)', 'Primary Referring Physician', '1','39','1','20','63','','1','3','','1','Primary Referring Physician','0');
 #EndIf
 
-#IfNotRow2D layout_options field_id admit_status group_name 7Hospitalization
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ('DEM', 'admit_status', '7Hospitalization', 'Admit Status', 7, 1, 1, 0, 0, 'admit_status', 1, 3, '', '', 'Admit Status', 0);
+#IfNotRow2D layout_options field_id admit_status group_name 1Patient Info
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ('DEM', 'admit_status', '1Patient Info', 'Admit Status', 30, 1, 1, 0, 0, 'admit_status', 1, 3, '', '', 'Admit Status', 0);
+DELETE FROM layout_options WHERE field_id='admit_status' AND group_name='7Hospitalization';
 #EndIf
+
+
 
 #IfNotRow2D layout_options field_id hospital_admit_date seq 8
 UPDATE layout_options SET seq=8 WHERE field_id='hospital_admit_date';
@@ -712,3 +711,56 @@ UPDATE layout_options SET seq=27 WHERE title="Work Phone" AND group_name="1Patie
 UPDATE layout_options SET seq=28 WHERE title="Mobile Phone" AND group_name="1Patient Info";
 UPDATE layout_options SET seq=29 WHERE title="Contact Email" AND group_name="1Patient Info";
 #EndIf
+
+
+#IfNotRow2D layout_options field_id ref_providerID data_type 41
+UPDATE layout_options SET title="Internal Referrer",data_type=41 WHERE field_id="ref_providerID";
+#EndIf
+
+#IfNotRow2D list_options list_id abook_type option_id internal_referrer
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','internal_referrer','Internal Referrer','70',0,1,'','');
+#EndIf
+
+
+
+
+#IfNotRow2D registry state 0 directory oasis_nursing_resumption
+UPDATE registry SET name='HHA Referral', category='Skilled Nursing' WHERE name='Home Health Aide';
+UPDATE registry SET category='Skilled Nursing' WHERE name='HHA Visit Note';
+UPDATE registry SET category='Skilled Nursing' WHERE name='Clinical Summary';
+UPDATE registry SET name='HHA-Supervisor Visit' WHERE name='Supervisor Visit of Home Health Staff';
+UPDATE registry SET state=0, category='' WHERE category='Administrative';
+UPDATE registry SET category='' WHERE name='Vitals';
+UPDATE registry SET category='' WHERE category='Clinical';
+UPDATE registry SET category='MSW' WHERE category='Medsocialworker';
+UPDATE registry SET name='OASIS_C' WHERE directory='OASIS_C';
+UPDATE registry SET name='OASIS SOC/ROC-PT' WHERE directory='oasis_pt_soc';
+UPDATE registry SET name='OASIS SOC/ROC-Nursing' WHERE directory='oasis_nursing_soc';
+UPDATE registry SET name='OASIS Recert-Nursing' WHERE directory='oasis_c_nurse';
+UPDATE registry SET name='OASIS-C Transfer' WHERE directory='oasis_transfer';
+UPDATE registry SET name='OASIS Nursing Resumptions' WHERE directory='oasis_nursing_resumption';
+UPDATE registry SET name='OASIS Discharge' WHERE directory='oasis_discharge';
+UPDATE registry SET name='OASIS Recert-PT' WHERE directory='oasis_therapy_rectification';
+UPDATE registry SET name='OASIS Therapy Resumption' WHERE directory='oasis_therapy_resumption';
+UPDATE registry SET name='Non-OASIS Discharge Assessment',category='' WHERE directory='non_oasis';
+UPDATE registry SET name='OASIS_C' WHERE directory='OASIS_C';
+UPDATE registry SET category='Skilled Nursing' WHERE directory='oasis_adult_assessment';
+UPDATE registry SET state=0 WHERE directory='oasis_nursing_resumption';
+UPDATE registry SET state=0 WHERE directory='oasis_therapy_resumption';
+UPDATE registry SET state=0 WHERE directory='OASIS_C';
+UPDATE registry SET category='' WHERE category='Progress Notes';
+UPDATE registry SET category='Skilled Nursing' WHERE directory='discharge_summary';
+UPDATE registry SET category='Skilled Nursing' WHERE directory='IDT_care';
+#EndIf
+
+
+
+
+
+
+
+
+
+
+
+

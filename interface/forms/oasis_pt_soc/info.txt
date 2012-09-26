@@ -1,1 +1,1 @@
-Oasis-C PT SOC/ROC
+OASIS SOC/ROC-PT
