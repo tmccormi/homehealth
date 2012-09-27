@@ -884,6 +884,70 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
+  //Internal Referrer Drop Down
+  else if ($data_type == 41) {
+    $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+      "WHERE abook_type = 'internal_referrer' " .
+      "ORDER BY lname, fname");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$uname</option>";
+    }
+    echo "</select>";
+  }
+
+  //Internal User (Physician and Clinician Only) Drop Down
+  else if ($data_type == 42) {
+$count=0;
+$validUsernames = sqlStatement("SELECT username FROM users WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) AND authorized = 1 ORDER BY lname, fname");
+
+while ($row = sqlFetchArray($validUsernames)) {
+
+$checkUsers = sqlStatement("select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$row['username']."'))");
+
+while ($currUser = sqlFetchArray($checkUsers)){
+
+if($currUser['name'] == "Physicians" || $currUser['name'] == "Clinicians"){
+
+if($count==0)
+{
+$userNamesToTake = "'".$row['username']."'";
+$condition = "username IN (".$userNamesToTake.")";
+$count++;
+}
+else{
+$userNamesToTake = $userNamesToTake.",'".$row['username']."'";
+$condition = "username IN (".$userNamesToTake.")";
+}
+}
+else
+{
+if(!$condition)
+$condition = " password = '1'";
+}
+}
+}
+
+    $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+      "WHERE " .$condition.
+      " ORDER BY lname, fname");
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    while ($urow = sqlFetchArray($ures)) {
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      echo "<option value='$optionId'";
+      if ($urow['id'] == $currvalue) echo " selected";
+      echo ">$uname</option>";
+    }
+    echo "</select>";
+  }
+
 
 }
 
@@ -1676,8 +1740,22 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
   }
 
-    // External Users Only
+    // Referral Source Only
   else if ($data_type == 40) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
+    // Internal Referrer Only
+  else if ($data_type == 41) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
+    // Internal Users (Clinicians and Physicians Only)
+  else if ($data_type == 42) {
     $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
       "WHERE id = ?", array($currvalue) );
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);

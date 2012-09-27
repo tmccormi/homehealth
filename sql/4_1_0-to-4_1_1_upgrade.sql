@@ -756,7 +756,9 @@ UPDATE registry SET category='Skilled Nursing' WHERE directory='IDT_care';
 
 
 
-
+#IfNotRow2D layout_options field_id providerID data_type 42
+UPDATE layout_options SET data_type=42 WHERE field_id="providerID";
+#EndIf
 
 
 
