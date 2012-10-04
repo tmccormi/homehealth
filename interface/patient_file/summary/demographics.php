@@ -121,7 +121,8 @@ function image_widget($doc_id,$doc_catg)
 
 //Code for the update of patient_data
 
-if(isset($_SESSION['pid'])){
+if(isset($_SESSION['pid']) && trim($_SESSION['pid'])!=''){
+
 
 $hospitalID = sqlStatement("select hospital_name from patient_data where pid=".$_SESSION['pid']."");
 $hospitalID = sqlFetchArray($hospitalID);
@@ -146,10 +147,11 @@ hospital_zip = '".$upHospData['zip']."' where pid=".$_SESSION['pid']."");
 }
 }
 
+
 $agencyID = sqlStatement("select agency_name from patient_data where pid=".$_SESSION['pid']."");
 $agencyID = sqlFetchArray($agencyID);
 
-if($agencyID['agency_name']!=NULL){
+if($agencyID['agency_name']){
 
 $upAgencyData = sqlStatement("select phone,street,streetb,city,state,zip,fax,email from users where id=".$agencyID['agency_name']."");
 $upAgencyData = sqlFetchArray($upAgencyData);
@@ -171,6 +173,7 @@ agency_email = '".$upAgencyData['email']."',
 agency_zip = '".$upAgencyData['zip']."' where pid=".$_SESSION['pid']."");
 }
 }
+
 
 $provID = sqlStatement("select primary_ref_physician from patient_data where pid=".$_SESSION['pid']."");
 $provID = sqlFetchArray($provID);
@@ -257,7 +260,6 @@ attphy_npi = '".$attphyData['npi']."',
 attphy_zip = '".$attphyData['zip']."' where pid=".$_SESSION['pid']."");
 }
 }
-
 
 $refproID = sqlStatement("select ref_providerID from patient_data where pid=".$_SESSION['pid']."");
 $refproID = sqlFetchArray($refproID);

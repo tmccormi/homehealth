@@ -948,8 +948,6 @@ $condition = " password = '1'";
     echo "</select>";
   }
 
-=======
->>>>>>> Internal Referrer fix
 
 }
 
@@ -1756,7 +1754,7 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
   }
 
-<<<<<<< HEAD
+
     // Internal Users (Clinicians and Physicians Only)
   else if ($data_type == 42) {
     $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
@@ -1764,8 +1762,7 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
   }
 
-=======
->>>>>>> Internal Referrer fix
+
   return $s;
 }
 
