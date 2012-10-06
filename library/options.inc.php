@@ -901,7 +901,7 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
-  //Internal User (Physician and Clinician Only) Drop Down
+  //Internal User (Physician and Clinician Only) Drop Down (Physical Therapist, Speech Therapist and Nurse - Newly added roles)
   else if ($data_type == 42) {
 $count=0;
 $validUsernames = sqlStatement("SELECT username FROM users WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) AND authorized = 1 ORDER BY lname, fname");
@@ -912,7 +912,7 @@ $checkUsers = sqlStatement("select name from gacl_aro_groups where id=(select gr
 
 while ($currUser = sqlFetchArray($checkUsers)){
 
-if($currUser['name'] == "Physicians" || $currUser['name'] == "Clinicians"){
+if($currUser['name'] == "Physicians" || $currUser['name'] == "Clinicians" || $currUser['name'] == "Physical Therapist" || $currUser['name'] == "Speech Therapist" || $currUser['name'] == "Nurse" ){
 
 if($count==0)
 {
@@ -1984,7 +1984,7 @@ function display_layout_tabs_data($formtype, $result1, $result2='') {
 					echo "<tr><td colspan='6'><hr /></td></tr>";
 					}
 
-					if($field_id == "referral_source1" || $field_id == "referral_admission_source"){
+					if($field_id == "referral_source" || $field_id == "referral_admission_source"){
 					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
 					}
 
@@ -2107,7 +2107,7 @@ function display_layout_tabs_data_editable($formtype, $result1, $result2='') {
 					echo "<tr><td colspan='6'><hr /></td></tr>";
 					}
 
-					if($field_id == "referral_source1" || $field_id == "referral_admission_source"){
+					if($field_id == "referral_source" || $field_id == "referral_admission_source"){
 					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
 					}
 

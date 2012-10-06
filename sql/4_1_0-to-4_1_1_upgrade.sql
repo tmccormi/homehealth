@@ -608,22 +608,37 @@ UPDATE `layout_options` SET `group_name` = '9Physician(s)',
 
 
 #IfNotRow2D layout_options field_id other_physician data_type 39
-UPDATE layout_options SET data_type=39 WHERE field_id='other_physician';
+UPDATE layout_options SET data_type=39, fld_length=20 WHERE field_id='other_physician';
 #EndIf
 
 #IfNotRow2D layout_options field_id attending_physician1 data_type 39
-UPDATE layout_options SET data_type=39 WHERE field_id='attending_physician1';
+UPDATE layout_options SET data_type=39, fld_length=20 WHERE field_id='attending_physician1';
 #EndIf
 
+#IfNotRow2D layout_options field_id hospital_name data_type 36
+UPDATE layout_options SET data_type=36 WHERE field_id='hospital_name';
+#EndIf
+
+#IfNotRow2D layout_options field_id agency_name data_type 37
+UPDATE layout_options SET data_type=37 WHERE field_id='agency_name';
+#EndIf
 
 
 #IfNotRow2D layout_options field_id providerID group_name 3Choices
 UPDATE layout_options SET group_name="3Choices", seq=1, title="Provider" WHERE field_id="providerID";
 #EndIf
 
+#IfNotRow2D layout_options field_id ref_providerID group_name 9Referral
+UPDATE layout_options SET group_name="9Referral", seq=2, description="Internal Referrer" WHERE field_id="ref_providerID";
+#EndIf
+
 
 #IfNotRow2D layout_options field_id primary_ref_physician group_name 9Physician(s)
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'primary_ref_physician', '9Physician(s)', 'Primary Referring Physician', '1','39','1','20','63','','1','3','','1','Primary Referring Physician','0');
+#EndIf
+
+#IfNotRow2D layout_options field_id primary_ref_physician data_type 39
+UPDATE layout_options SET data_type=39, fld_length=20 WHERE field_id='primary_ref_physician';
 #EndIf
 
 #IfNotRow2D layout_options field_id attending_physician1 group_name 9Physician(s)
@@ -758,6 +773,75 @@ UPDATE registry SET category='Skilled Nursing' WHERE directory='IDT_care';
 
 #IfNotRow2D layout_options field_id providerID data_type 42
 UPDATE layout_options SET data_type=42 WHERE field_id="providerID";
+#EndIf
+
+
+
+
+#IfNotRow gacl_aro_groups value phytherapist
+UPDATE gacl_aro_groups_id_seq SET id=id+1;
+UPDATE gacl_acl_seq SET id=id+1;
+INSERT INTO gacl_aro_groups (id, parent_id, lft, rgt, name, value) SELECT (SELECT id FROM gacl_aro_groups_id_seq), 12, MAX(lft)+2, MAX(rgt)+2, 'Physical Therapist', 'phytherapist' FROM gacl_aro_groups;
+CREATE TEMPORARY TABLE max_rgt (SELECT MAX(rgt) AS rgt FROM gacl_aro_groups);
+UPDATE gacl_aro_groups SET rgt=(SELECT rgt FROM max_rgt)+1 WHERE parent_id=0;
+DROP TABLE max_rgt;
+
+INSERT INTO gacl_acl (id,section_value,allow,enabled,return_value,note,updated_date) VALUES((SELECT id FROM gacl_acl_seq),'system',1,1,'write','Things that sub clinicians can read and modify',UNIX_TIMESTAMP(NOW()));
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','relaxed');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','demo');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','docs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','med');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'sensitivities','normal');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'admin','drugs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','coding');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','appt');
+INSERT INTO gacl_aro_groups_map (acl_id,group_id) VALUES ((SELECT id FROM gacl_acl_seq),(SELECT id FROM gacl_aro_groups_id_seq));
+#EndIf
+
+#IfNotRow gacl_aro_groups value sptherapist
+UPDATE gacl_aro_groups_id_seq SET id=id+1;
+UPDATE gacl_acl_seq SET id=id+1;
+INSERT INTO gacl_aro_groups (id, parent_id, lft, rgt, name, value) SELECT (SELECT id FROM gacl_aro_groups_id_seq), 12, MAX(lft)+2, MAX(rgt)+2, 'Speech Therapist', 'sptherapist' FROM gacl_aro_groups;
+CREATE TEMPORARY TABLE max_rgt (SELECT MAX(rgt) AS rgt FROM gacl_aro_groups);
+UPDATE gacl_aro_groups SET rgt=(SELECT rgt FROM max_rgt)+1 WHERE parent_id=0;
+DROP TABLE max_rgt;
+
+INSERT INTO gacl_acl (id,section_value,allow,enabled,return_value,note,updated_date) VALUES((SELECT id FROM gacl_acl_seq),'system',1,1,'write','Things that sub clinicians can read and modify',UNIX_TIMESTAMP(NOW()));
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','relaxed');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','demo');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','docs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','med');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'sensitivities','normal');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'admin','drugs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','coding');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','appt');
+INSERT INTO gacl_aro_groups_map (acl_id,group_id) VALUES ((SELECT id FROM gacl_acl_seq),(SELECT id FROM gacl_aro_groups_id_seq));
+#EndIf
+
+#IfNotRow gacl_aro_groups value nurse
+UPDATE gacl_aro_groups_id_seq SET id=id+1;
+UPDATE gacl_acl_seq SET id=id+1;
+INSERT INTO gacl_aro_groups (id, parent_id, lft, rgt, name, value) SELECT (SELECT id FROM gacl_aro_groups_id_seq), 12, MAX(lft)+2, MAX(rgt)+2, 'Nurse', 'nurse' FROM gacl_aro_groups;
+CREATE TEMPORARY TABLE max_rgt (SELECT MAX(rgt) AS rgt FROM gacl_aro_groups);
+UPDATE gacl_aro_groups SET rgt=(SELECT rgt FROM max_rgt)+1 WHERE parent_id=0;
+DROP TABLE max_rgt;
+
+INSERT INTO gacl_acl (id,section_value,allow,enabled,return_value,note,updated_date) VALUES((SELECT id FROM gacl_acl_seq),'system',1,1,'write','Things that sub clinicians can read and modify',UNIX_TIMESTAMP(NOW()));
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','relaxed');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','demo');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','docs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','med');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','notes');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'sensitivities','normal');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'admin','drugs');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'encounters','coding');
+INSERT INTO gacl_aco_map (acl_id,section_value,value) VALUES ((SELECT id FROM gacl_acl_seq),'patients','appt');
+INSERT INTO gacl_aro_groups_map (acl_id,group_id) VALUES ((SELECT id FROM gacl_acl_seq),(SELECT id FROM gacl_aro_groups_id_seq));
 #EndIf
 
 

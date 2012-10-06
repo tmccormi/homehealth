@@ -38,6 +38,34 @@ function updateRegistered ( $id, $mod )
 
 function getRegistered ( $state="1", $limit="unlimited", $offset="0")
 {
+
+/*************************************************/
+$currUser = $_SESSION['authUser'];
+$userroles=sqlStatement("select name from gacl_aro_groups where id in (select group_id from gacl_groups_aro_map where aro_id in (select id from gacl_aro where value='$currUser'))");
+/*************************************************/
+
+$roleslist=array();
+while($userroles1 = sqlFetchArray($userroles))
+{
+array_push($roleslist,$userroles1['name']);
+}
+
+if(in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist))
+{
+	$sql = "select * from registry where state like \"$state\" AND (category='' OR ISNULL(category)) order by priority, name";
+	if ($limit != "unlimited")
+		$sql .= " limit $limit, $offset";
+	$res = sqlStatement($sql);
+	if ($res)
+	for($iter=0; $row=sqlFetchArray($res); $iter++)
+	{
+		$all[$iter] = $row;
+	}
+	else
+		return false;
+	return $all;
+}
+
 	$sql = "select * from registry where state like \"$state\" order by priority, name";
 	if ($limit != "unlimited")
 		$sql .= " limit $limit, $offset";

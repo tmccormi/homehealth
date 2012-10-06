@@ -151,6 +151,28 @@ function myGetRegistered($state="1", $limit="unlimited", $offset="0") {
   return $all;
 }
 
+
+/*************************************************/
+$currUser = $_SESSION['authUser'];
+$userroles=sqlStatement("select name from gacl_aro_groups where id in (select group_id from gacl_groups_aro_map where aro_id in (select id from gacl_aro where value='$currUser'))");
+/*************************************************/
+
+$roleslist=array();
+while($userroles1 = sqlFetchArray($userroles))
+{
+array_push($roleslist,$userroles1['name']);
+}
+
+/*
+if(in_array('Clinician Inter',$roleslist)){
+echo "<script>alert('in aray');</script>";
+}
+
+echo "<pre>";
+print_r($roleslist);
+echo "</pre>";
+*/
+
 $reg = myGetRegistered();
 $old_category = '';
 
@@ -170,13 +192,17 @@ if (!empty($reg)) {
     if ($new_nickname != '') {$nickname = $new_nickname;}
     else {$nickname = $entry['name'];}
     if ($old_category != $new_category) {
+
+if((in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist)) && $new_category!='Interdisciplinary' ){
+continue;
+}
       $new_category_ = $new_category;
       $new_category_ = str_replace(' ','_',$new_category_);
       if ($old_category != '') {$StringEcho.= "</table></div></li>";}
       $StringEcho.= "<li><a href='JavaScript:void(0);' onClick=\"mopen('$DivId');\" >$new_category</a><div id='$DivId' style='z-index:5;'><table border='0' cellspacing='0' cellpadding='0'>";
       $old_category = $new_category;
       $DivId++;
-    }
+   }
     $StringEcho.= "<tr><td style='border-top: 1px solid #000000;padding:0px;'><a onclick=\"openNewForm('" . $rootdir .'/patient_file/encounter/load_form.php?formname=' .urlencode($entry['directory']) .
     "')\" href='JavaScript:void(0);'>" . xl_form_title($nickname) . "</a></td></tr>";
   }
