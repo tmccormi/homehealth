@@ -717,9 +717,9 @@ function goHome() {
  //This function writes the drop down in the top frame.
  //It is called when a new patient is create/selected from the search menu.
   var str = '<Select class="text" id="EncounterHistory" onchange="{top.restoreSession();toencounter(this.options[this.selectedIndex].value)}">';
-  str+='<option value=""><?php echo htmlspecialchars( xl('Encounter History'), ENT_QUOTES) ?></option>';
+  str+='<option value=""><?php echo htmlspecialchars( xl('Episode History'), ENT_QUOTES) ?></option>';
   str+='<option value="New Encounter"><?php echo htmlspecialchars( xl('New Encounter'), ENT_QUOTES) ?></option>';
-  str+='<option value="Past Encounter List"><?php echo htmlspecialchars( xl('Past Encounter List'), ENT_QUOTES) ?></option>';
+  str+='<option value="Past Encounter List"><?php echo htmlspecialchars( xl('Past Episode List'), ENT_QUOTES) ?></option>';
   for(CountEncounter=0;CountEncounter<EncounterDateArray.length;CountEncounter++)
    {
     str+='<option value="'+EncounterIdArray[CountEncounter]+'~'+EncounterDateArray[CountEncounter]+'">'+EncounterDateArray[CountEncounter]+'-'+CalendarCategoryArray[CountEncounter]+'</option>';

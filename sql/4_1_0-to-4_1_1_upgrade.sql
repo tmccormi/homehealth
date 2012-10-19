@@ -845,8 +845,40 @@ INSERT INTO gacl_aro_groups_map (acl_id,group_id) VALUES ((SELECT id FROM gacl_a
 #EndIf
 
 
+#IfNotTable episodes
+CREATE TABLE `episodes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `updatedate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `episode_number` TINYINT NOT NULL,
+  `description` varchar(60) DEFAULT NULL,
+  `episode_start_date` DATE DEFAULT NULL,
+  `episode_length` TINYINT DEFAULT 60,
+  `episode_end_date` DATE DEFAULT NULL,
+  `admit_status` varchar(30) DEFAULT NULL,
+  `active` varchar(10) DEFAULT NULL,
+  `reminder` varchar(10) DEFAULT NULL,
+  `pid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM;
+#EndIf
 
 
+#IfNotTable episode_num
+CREATE TABLE `episode_num` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM;
+
+INSERT INTO episode_num VALUES();
+#EndIf
+
+#IfMissingColumn form_encounter episode_id
+ALTER TABLE form_encounter ADD episode_id int(11);
+#EndIf
+
+#IfMissingColumn dated_reminders episode_id
+ALTER TABLE dated_reminders ADD episode_id int(11) DEFAULT NULL;
+#EndIf
 
 
 

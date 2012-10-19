@@ -2394,6 +2394,13 @@ function dropdown_facility($selected = '', $name = 'form_facility', $allow_unspe
 // $forceExpandAlways is a flag to force the widget to always be expanded
 //
 function expand_collapse_widget($title, $label, $buttonLabel, $buttonLink, $buttonClass, $linkMethod, $bodyClass, $auth, $fixedWidth, $forceExpandAlways=false) {
+
+$pid = $_SESSION['pid'];
+$maxupdatedate = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$pid."' AND active='Yes'"));
+
+if($maxupdatedate["MAX(updatedate)"]!='' || $maxupdatedate["MAX(updatedate)"]!=null)
+$curr_episode=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\';'));
+
   if ($fixedWidth) {
     echo "<div class='section-header'>";
   }
@@ -2404,6 +2411,12 @@ function expand_collapse_widget($title, $label, $buttonLabel, $buttonLink, $butt
   if ($auth) {
     // show button, since authorized
     // first prepare class string
+
+    if($title == 'Episodes'){
+	echo "<td><a href='episode_add.php' class='iframe_medium css_button_small'><span>New</span></a></td>";
+    }
+	if($title == 'Episodes' && isset($curr_episode)){
+
     if ($buttonClass) {
       $class_string = "css_button_small ".htmlspecialchars( $buttonClass, ENT_NOQUOTES);
     }
@@ -2426,6 +2439,33 @@ function expand_collapse_widget($title, $label, $buttonLabel, $buttonLink, $butt
     }
     echo "><span>" .
       htmlspecialchars( $buttonLabel, ENT_NOQUOTES) . "</span></a></td>";
+
+}else if($title!='Episodes'){
+
+    if ($buttonClass) {
+      $class_string = "css_button_small ".htmlspecialchars( $buttonClass, ENT_NOQUOTES);
+    }
+    else {
+      $class_string = "css_button_small";
+    }
+    // next, create the link
+    if ($linkMethod == "javascript") {
+      echo "<td><a class='" . $class_string . "' href='javascript:;' onclick='" . $buttonLink . "'";
+    }
+    else {
+      echo "<td><a class='" . $class_string . "' href='" . $buttonLink . "'";
+      if (!isset($_SESSION['patient_portal_onsite'])) {
+        // prevent an error from occuring when calling the function from the patient portal
+        echo " onclick='top.restoreSession()'";
+      }
+    }
+    if (!$GLOBALS['concurrent_layout']) {
+      echo " target='Main'";
+    }
+    echo "><span>" .
+      htmlspecialchars( $buttonLabel, ENT_NOQUOTES) . "</span></a></td>";
+
+}
   }
   if ($forceExpandAlways){
     // Special case to force the widget to always be expanded

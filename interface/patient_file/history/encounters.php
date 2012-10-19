@@ -128,8 +128,24 @@ function generatePageElement($start,$pagesize,$billing,$issue,$text)
 
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/js/ajtooltip.js"></script>
-
+<style>
+ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
+#oasis li { padding:5px 0px;}
+#oasis li div { border-bottom:0px solid #000000; padding:5px 0px; }
+#oasis li a#black { color:#000000; font-weight:bold; }
+#oasis li ul { display:none; }
+</style>
 <script language="JavaScript">
+
+
+	$(document).ready(function(){
+	   $('#first').slideToggle('fast');
+
+	   $('#oasis li div').click(function(){ $(this).next('ul').slideToggle('fast'); 
+		var text = ($(this).children('span').children('a').text() == '(Expand)') ? '(Collapse)' : '(Expand)';
+		$(this).children('span').children('a').text(text);
+	});
+	});
 
 //function toencounter(enc, datestr) {
 function toencounter(rawdata) {
@@ -220,7 +236,7 @@ if ($issue) {
   echo htmlspecialchars($tmp['title'], ENT_NOQUOTES);
 }
 else {
-  echo htmlspecialchars(xl('Past Encounters and Documents'), ENT_NOQUOTES);
+  echo htmlspecialchars(xl('Past Episodes and Documents'), ENT_NOQUOTES);
 }
 ?>
 </font>
@@ -262,10 +278,12 @@ $getStringForPage="&pagesize=".$pagesize."&pagestart=".$pagestart;
 <a href='encounters.php?billing=1&issue=<?php echo $issue.$getStringForPage; ?>' onclick='top.restoreSession()' style='font-size:8pt'>(<?php echo htmlspecialchars( xl('To Billing View'), ENT_NOQUOTES); ?>)</a>
 <?php } ?>
 
-<span style="float:right">
-    <?php echo htmlspecialchars( xl('Results per page'), ENT_NOQUOTES); ?>:
-    <select id="selPagesize" billing="<?php echo htmlspecialchars($billing_view,ENT_QUOTES); ?>" issue="<?php echo htmlspecialchars($issue,ENT_QUOTES); ?>" pagestart="<?php echo htmlspecialchars($pagestart,ENT_QUOTES); ?>" >
+<!-- <span style="float:right">
+    <?php //echo htmlspecialchars( xl('Results per page'), ENT_NOQUOTES); ?>:  -->
+<!--    <select id="selPagesize" billing="<?php //echo htmlspecialchars($billing_view,ENT_QUOTES); ?>" issue="<?php //echo htmlspecialchars($issue,ENT_QUOTES); ?>" pagestart="<?php //echo htmlspecialchars($pagestart,ENT_QUOTES); ?>" >
+-->
 <?php
+/*
     $pagesizes=array(5,10,15,20,25,50,0);
     for($idx=0;$idx<count($pagesizes);$idx++)
     {
@@ -289,12 +307,54 @@ $getStringForPage="&pagesize=".$pagesize."&pagestart=".$pagestart;
         echo "</OPTION>";
         
     }
+*/
+$pagesize=0;
 ?>
     </select>
 </span>
 
 <br>
 
+<ul id="oasis">
+	<li>
+
+<?php
+$pid = $_SESSION['pid'];
+
+
+/*
+$qry1=sqlStatement("SELECT episode_id FROM form_encounter WHERE pid='".$pid."'");
+
+$epi_from_enc=array();
+
+while($res1=sqlFetchArray($qry1))
+$epi_from_enc[] = $res1['episode_id'];
+
+echo "<pre>";
+print_r($epi_from_enc);
+echo "</pre>";
+*/
+
+$qry=sqlStatement("SELECT * from (SELECT id, description, active FROM episodes WHERE pid='".$pid."' AND active='Yes' ORDER BY updatedate DESC) as T UNION ALL SELECT *from (SELECT id, description, active FROM episodes WHERE pid='".$pid."' AND active='No' ORDER BY updatedate DESC)as P");
+
+$count=0;
+
+while($epi_desc = sqlFetchArray($qry)){
+//echo "<script>alert('".$epi_desc['id']."');</script>";
+
+?>
+
+		<div><a href="#" id="black" ><?php echo $epi_desc['description']."  "; 
+
+if($epi_desc['active']=='Yes')
+echo "<font style='font-size:10pt;font-weight:normal;color:#808080;'>(Active)</font>";
+else
+echo "<font style='font-size:10pt;font-weight:normal;color:#808080;'>(Inactive)</font>";
+
+?>
+</a> <span id="mod"><a href="#"><?php if($count==0){echo "(Collapse)";}else{echo "(Expand)";} ?></a></span></div>
+			<ul <?php if($count==0){echo "id='first'";} ?> >
+				<li>
 <table>
  <tr class='text'>
   <th><?php echo htmlspecialchars( xl('Date'), ENT_NOQUOTES); ?></th>
@@ -349,7 +409,7 @@ $sqlBindArray = array();
 
 $from = "FROM form_encounter AS fe " .
   "JOIN forms AS f ON f.pid = fe.pid AND f.encounter = fe.encounter AND " .
-  "f.formdir = 'newpatient' AND f.deleted = 0 ";
+  "f.formdir = 'newpatient' AND f.deleted = 0 AND fe.episode_id = '".$epi_desc['id']."'";
 if ($issue) {
   $from .= "JOIN issue_encounter AS ie ON ie.pid = ? AND " .
     "ie.list_id = ? AND ie.encounter = fe.encounter ";
@@ -382,11 +442,14 @@ if(($upper>$numRes) || ($pagesize==0))
 
 if(($pagesize > 0) && ($pagestart>0))
 {
+$pagesize=0;
     generatePageElement($pagestart-$pagesize,$pagesize,$billing_view,$issue,"&lArr;" . htmlspecialchars( xl("Prev"), ENT_NOQUOTES) . " ");
 }
-echo ($pagestart + 1)."-".$upper." " . htmlspecialchars( xl('of'), ENT_NOQUOTES) . " " .$numRes;
+echo ($pagestart + 1)."-".$upper/*." " . htmlspecialchars( xl('of'), ENT_NOQUOTES) . " " .$numRes*/;
+
 if(($pagesize>0) && ($pagestart+$pagesize <= $numRes))
 {
+$pagesize=0;
     generatePageElement($pagestart+$pagesize,$pagesize,$billing_view,$issue," " . htmlspecialchars( xl("Next"), ENT_NOQUOTES) . "&rArr;");
 }
 
@@ -571,7 +634,7 @@ while ($result4 = sqlFetchArray($res4)) {
                 if ($billing_view && $accounting_enabled) {
                     if ($INTEGRATED_AR) {
                         $tmp = sqlQuery("SELECT id FROM form_encounter WHERE " .
-                                    "pid = ? AND encounter = ?", array($pid,$result4['encounter']) );
+                                    "pid = ? AND episode_id = '".$epi_desc['id']."' AND encounter = ?", array($pid,$result4['encounter']) );
                         $arid = 0 + $tmp['id'];
                         if ($arid) $arinvoice = ar_get_invoice_summary($pid, $result4['encounter'], true);
                     }
@@ -727,9 +790,23 @@ while ($drow /* && $count <= $N */) {
     showDocument($drow);
     $drow = sqlFetchArray($dres);
 }
+
+if($upper==0){
+echo "<tr><td colspan='6' align='center' height='50px' style='font-size:10pt;'><strong>No Encounters in This Episode</strong></td></tr>";
+}
+
 ?>
 
 </table>
+</li>
+</ul>
+<?php
+$count++;
+}
+?>
+
+</li>
+</ul>
 
 </div> <!-- end 'encounters' large outer DIV -->
 

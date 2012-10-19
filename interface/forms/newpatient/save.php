@@ -23,6 +23,7 @@ $billing_facility = formData('billing_facility');
 $reason           = formData('reason');
 $mode             = formData('mode');
 $referral_source  = formData('form_referral_source');
+$episode_id       = formData('episode_id');
 
 $facilityresult = sqlQuery("select name FROM facility WHERE id = $facility_id");
 $facility = $facilityresult['name'];
@@ -51,7 +52,8 @@ if ($mode == 'new')
       "referral_source = '$referral_source', " .
       "pid = '$pid', " .
       "encounter = '$encounter', " .
-      "provider_id = '$provider_id'"),
+      "provider_id = '$provider_id'," .
+      "episode_id = '$episode_id'"),
     "newpatient", $pid, $userauthorized, $date);
 }
 else if ($mode == 'update')
@@ -73,7 +75,8 @@ else if ($mode == 'update')
     "facility_id = '$facility_id', " .
     "billing_facility = '$billing_facility', " .
     "sensitivity = '$sensitivity', " .
-    "referral_source = '$referral_source' " .
+    "referral_source = '$referral_source', " .
+    "episode_id = '$episode_id' " .
     "WHERE id = '$id'");
 }
 else {

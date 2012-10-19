@@ -5527,3 +5527,34 @@ CREATE TABLE IF NOT EXISTS `eSignatures` (
   `signed` int(11) NOT NULL DEFAULT '0' COMMENT '0 or not 0 - reflects signature record signed/not signed/ or signed with some exception to be determined. ',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+DROP TABLE IF EXISTS `episodes`;
+CREATE TABLE `episodes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `updatedate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `episode_number` TINYINT NOT NULL,
+  `description` varchar(60) DEFAULT NULL,
+  `episode_start_date` DATE DEFAULT NULL,
+  `episode_length` TINYINT DEFAULT 60,
+  `episode_end_date` DATE DEFAULT NULL,
+  `admit_status` varchar(30) DEFAULT NULL,
+  `active` varchar(10) DEFAULT NULL,
+  `reminder` varchar(10) DEFAULT NULL,
+  `pid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM;
+
+
+DROP TABLE IF EXISTS `episode_num`;
+CREATE TABLE `episode_num` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM;
+
+INSERT INTO episode_num VALUES();
+
+ALTER TABLE form_encounter ADD episode_id int(11);
+
+ALTER TABLE dated_reminders ADD episode_id int(11) DEFAULT NULL;
+

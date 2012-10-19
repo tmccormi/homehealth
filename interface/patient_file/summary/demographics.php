@@ -290,6 +290,10 @@ referral_fax_no = '".$refproData['fax']."' where pid=".$_SESSION['pid']."");
 /******************************************************************************************************/
 
 
+
+
+
+
 // Determine if the Vitals form is in use for this site.
 $tmp = sqlQuery("SELECT count(*) AS count FROM registry WHERE " .
   "directory = 'vitals' AND state = 1");
@@ -568,6 +572,35 @@ $(document).ready(function(){
 
 });
 
+
+/*********************************  New Episode Fancy Box  ***************************/
+
+$(document).ready(function(){
+
+    // fancy box
+    enable_modals();
+
+    tabbify();
+
+    // special size for
+	$(".iframe_medium").fancybox( {
+		'overlayOpacity' : 0.0,
+		'showCloseButton' : true,
+		'frameHeight' : 450,
+		'frameWidth' : 660
+	});
+	
+	$(function(){
+		// add drag and drop functionality to fancybox
+		$("#fancy_outer").easydrag();
+	});
+});
+
+
+
+
+
+
 // JavaScript stuff to do when a new patient is set.
 //
 function setMyPatient() {
@@ -623,6 +656,9 @@ $(window).load(function() {
 </head>
 
 <body class="body_top">
+
+
+
 
 <a href='../reminder/active_reminder_popup.php' id='reminder_popup_link' style='visibility: false;' class='iframe' onclick='top.restoreSession()'></a>
 
@@ -745,6 +781,7 @@ if ($GLOBALS['patient_id_category_name']) {
       <tr<?php if ($GLOBALS['athletic_team']) echo " style='display:none;'"; ?>>
        <td>
 <?php
+/*
 // Billing expand collapse widget
 $widgetTitle = xl("Billing");
 $widgetLabel = "billing";
@@ -764,9 +801,11 @@ else {
 expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
   $widgetButtonLink, $widgetButtonClass, $linkMethod, $bodyClass,
   $widgetAuth, $fixedWidth, $forceExpandAlways);
+*/
 ?>
         <br>
 <?php
+/*
  if ($GLOBALS['oer_config']['ws_accounting']['enabled']) {
  // Show current balance and billing note, if any.
   echo "        <div style='margin-left: 10px; margin-right: 10px'>" .
@@ -795,7 +834,99 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
   }
   echo "</div><br>";
  }
+
+*/
 ?>
+
+<?php
+
+$pid = $_SESSION['pid'];
+if ($GLOBALS['oer_config']['ws_accounting']['enabled']) {
+$maxupdatedate = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$pid."' AND active='Yes'"));
+
+if($maxupdatedate["MAX(updatedate)"]!='' || $maxupdatedate["MAX(updatedate)"]!=null)
+$curr_episode=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\';'));
+
+
+
+// Episodes expand collapse widget
+$widgetTitle = xl("Episodes");
+$widgetLabel = "episodes";
+$widgetButtonLabel = xl("Edit");
+$widgetButtonLink = "episode_edit.php?epi_num=".$curr_episode['episode_number']."";
+$widgetButtonClass = "iframe_medium css_button_small";
+$linkMethod = "html";
+$bodyClass = "notab";
+$widgetAuth = true;
+$fixedWidth = true;
+//$forceExpandAlways = true;
+
+expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
+  $widgetButtonLink, $widgetButtonClass, $linkMethod, $bodyClass,
+  $widgetAuth, $fixedWidth, $forceExpandAlways);
+?>
+        <br>
+
+
+<?php
+
+echo "<div style='margin-left: 10px; margin-right: 10px' id='dem'>";
+/*
+echo "<a href='episode_add.php' class='iframe_medium css_button_small'><span>New</span></a>";
+
+if(isset($curr_episode)){
+echo "<a href='episode_edit.php?epi_num=".$curr_episode['episode_number']."' class='iframe_medium css_button_small'><span>Edit</span></a><br /><br />";
+}
+else{
+echo "<br /><br />";
+}
+*/
+if(isset($curr_episode))
+{
+
+echo '<table border="0" cellpadding="0">
+<tbody>
+<tr><td class="label" colspan="1">'.xl('Description:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['description']).'</td>
+<td width="80px">&nbsp;</td>
+<td class="label" colspan="1">'.xl('Admit Status:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['admit_status']).'</td></tr>
+
+<tr><td class="label" colspan="1">'.xl('Episode Start Date:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['episode_start_date']).'</td>
+<td width="80px">&nbsp;</td>
+<td class="label" colspan="1">'.xl('Active:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['active']).'</td></tr>
+
+<tr><td class="label" colspan="1">'.xl('Episode Length:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['episode_length']).'</td>
+<td width="80px">&nbsp;</td>
+<td class="label" colspan="1">'.xl('Reminder:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['reminder']).'</td></tr>
+
+<tr><td class="label" colspan="1">'.xl('Episode End Date:').'</td>
+<td class="text data" colspan="1">';
+if($curr_episode['episode_end_date']=='0000-00-00'){}else {echo $curr_episode['episode_end_date'];}
+echo '</td></tr></tbody></table>';
+
+$_SESSION['current_episode']=$curr_episode['description'];
+
+}
+else
+{
+echo "<p class='label' style='text-align:left !important'>No Current Active Episodes</p>";
+$_SESSION['current_episode']='';
+}
+
+echo "<br /></div>";
+
+}
+
+?>
+
+
+
+
         </div> <!-- required for expand_collapse_widget -->
        </td>
       </tr>
@@ -1441,5 +1572,8 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
 </script>
 <?php } ?>
 
+<script>
+parent.RBot.location.reload();
+</script>
 </body>
 </html>

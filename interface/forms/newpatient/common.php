@@ -75,6 +75,23 @@ $ires = sqlStatement("SELECT id, type, title, begdate FROM lists WHERE " .
  function saveClicked() {
   var f = document.forms[0];
 
+
+<?php
+$pid = $_SESSION['pid'];
+$maxupdatedate = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$pid."' AND active='Yes'"));
+
+if($maxupdatedate["MAX(updatedate)"]!='' || $maxupdatedate["MAX(updatedate)"]!=null)
+$curr_episode=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\';'));
+
+if(!isset($curr_episode))
+{
+echo "alert('Please Create an Active Episode to Create an Encounter');";
+echo "return;";
+echo "location.reload();";
+}
+
+?>
+
 <?php if (!$GLOBALS['athletic_team']) { ?>
   var category = document.forms[0].pc_catid.value;
   if ( category == '_blank' ) {
@@ -93,6 +110,7 @@ $ires = sqlStatement("SELECT id, type, title, begdate FROM lists WHERE " .
    }
   }
 <?php } ?>
+
   top.restoreSession();
   f.submit();
  }
@@ -151,7 +169,66 @@ ajax_bill_loc(pid,dte,facility);
     </div>
  </div>
 
-<br> <br>
+<div style="clear:left; font-size:14px;">
+<br />
+<?php
+
+
+$pid = $_SESSION['pid'];
+//echo "<script>alert('".$_SESSION['pid']."');</script>";
+
+$maxupdatedate1 = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$pid."' AND active='Yes'"));
+
+if($maxupdatedate1["MAX(updatedate)"]!='' || $maxupdatedate1["MAX(updatedate)"]!=null)
+$curr_episode1=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate1["MAX(updatedate)"].'\''));
+
+$currUser = $_SESSION['authUser'];
+
+$chkquery = "select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$currUser."'))";
+$groupName = sqlStatement($chkquery);
+$groupIDRes = sqlFetchArray($groupName);
+
+$accessGroup = $groupIDRes['name'];
+
+if ($viewmode && $accessGroup=='Administrators') {
+
+$all_episodes=sqlStatement("select id, description from episodes where pid='".$pid."' AND active='Yes'");
+$all_episodes_test=sqlStatement("select id, description from episodes where pid='".$pid."' AND active='Yes'");
+
+echo "<strong>Episode: </strong>";
+echo "<select name='episode_id' id='episode_id'>";
+
+$test=sqlFetchArray($all_episodes_test);
+
+if($test['id']==''||$test['id']==null)
+echo "<option value=''> </option>";
+
+while($all_episodes1=sqlFetchArray($all_episodes))
+{
+echo "<option value='".$all_episodes1['id']."'";
+
+if($result['episode_id']==$all_episodes1['id']){
+echo " selected='selected'";
+}
+echo ">".$all_episodes1['description']."</option>";
+}
+echo "</select>";
+}
+else if ($viewmode && $accessGroup!='Administrators') {
+
+$epi=sqlFetchArray(sqlStatement("SELECT description FROM episodes WHERE id='".$result['episode_id']."'"));
+
+echo "<p><strong>Episode: </strong>".$epi['description']."</p>";
+echo "<input type='hidden' name='episode_id' value='".$result['episode_id']."' />";
+}
+else{
+echo "<p><strong>Current Episode: </strong>".$_SESSION['current_episode']."</p>";
+echo "<input type='hidden' name='episode_id' value='".$curr_episode1['id']."' />";
+}
+
+
+?>
+</div>
 
 <table width='96%'>
 
