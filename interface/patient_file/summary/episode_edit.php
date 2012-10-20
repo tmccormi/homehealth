@@ -157,10 +157,7 @@ if(document.getElementById('episode_length').value.length < 1){
 $('#episode_length').css({'border':'1px solid red','background-color':'#FBEDBB'});
 err_indicator=1;
 }
-if(document.getElementById('episode_admit_status').value.length < 1){
-$('#episode_admit_status').css({'border':'1px solid red','background-color':'#FBEDBB'});
-err_indicator=1;
-}
+
 
 if(err_indicator==0)
 {
@@ -309,7 +306,7 @@ echo $epi_to_edit['episode_end_date'];
 </td>
 <td align="left">
 <select name="episode_admit_status" id="episode_admit_status">
-<option value=""></option>
+<option value=""><?php xl('Unassigned','e')?></option>
 
 <?php
 $qry3 = sqlStatement("SELECT title FROM list_options WHERE list_id='admit_status'");

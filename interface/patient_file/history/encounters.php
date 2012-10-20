@@ -61,6 +61,9 @@ $issue = empty($_GET['issue']) ? 0 : 0 + $_GET['issue'];
 $tmp = sqlQuery("select authorized from users " .
   "where id = ?", array($_SESSION['authUserID']) );
 $billing_view = ($tmp['authorized'] || $GLOBALS['athletic_team']) ? 0 : 1;
+
+$billing_view=0; //Setting Default View to Clinical
+
 if (isset($_GET['billing']))
   $billing_view = empty($_GET['billing']) ? 0 : 1;
 
@@ -352,8 +355,8 @@ else
 echo "<font style='font-size:10pt;font-weight:normal;color:#808080;'>(Inactive)</font>";
 
 ?>
-</a> <span id="mod"><a href="#"><?php if($count==0){echo "(Collapse)";}else{echo "(Expand)";} ?></a></span></div>
-			<ul <?php if($count==0){echo "id='first'";} ?> >
+</a> <span id="mod"><a href="#"><?php if(isset($_GET['epi_id_exp']) && $_GET['epi_id_exp']==$epi_desc['id']){echo "(Collapse)";}else if(isset($_GET['epi_id_exp']) && $_GET['epi_id_exp']!=$epi_desc['id']){echo "(Expand)";}else{ if($count==0){echo "(Collapse)";}else{echo "(Expand)";}} ?></a></span></div>
+			<ul <?php if(isset($_GET['epi_id_exp']) && $_GET['epi_id_exp']==$epi_desc['id']){echo "id='first'";}else if(isset($_GET['epi_id_exp']) && $_GET['epi_id_exp']!=$epi_desc['id']){}else{if($count==0){echo "id='first'";}} ?> >
 				<li>
 <table>
  <tr class='text'>

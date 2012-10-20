@@ -619,6 +619,7 @@ function setMyPatient() {
  var EncounterIdArray = new Array;
  var Count = 0;
 <?php
+/*
   //Encounter details are stored to javacript as array.
   $result4 = sqlStatement("SELECT fe.encounter,fe.date,openemr_postcalendar_categories.pc_catname FROM form_encounter AS fe ".
     " left join openemr_postcalendar_categories on fe.pc_catid=openemr_postcalendar_categories.pc_catid  WHERE fe.pid = ? order by fe.date desc", array($pid));
@@ -632,7 +633,22 @@ function setMyPatient() {
 <?php
     }
   }
+*/
 ?>
+
+<?php
+  //Encounter details are stored to javacript as array.
+  $qry=sqlStatement("SELECT * from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='Yes' ORDER BY updatedate DESC) as T UNION ALL SELECT *from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='No' ORDER BY updatedate DESC)as P");
+while($epi_desc = sqlFetchArray($qry)){
+?>
+ EncounterIdArray[Count] = '<?php echo htmlspecialchars($epi_desc['id'], ENT_QUOTES); ?>';
+ EncounterDateArray[Count] = '<?php echo htmlspecialchars(oeFormatShortDate(date("Y-m-d", strtotime($epi_desc['updatedate']))), ENT_QUOTES); ?>';
+ CalendarCategoryArray[Count] = '<?php echo htmlspecialchars(xl_appt_category($epi_desc['description']), ENT_QUOTES); ?>';
+ Count++;
+<?php
+    }
+?>
+
  parent.left_nav.setPatientEncounter(EncounterIdArray,EncounterDateArray,CalendarCategoryArray);
 <?php } // end setting new pid ?>
  parent.left_nav.setRadio(window.name, 'dem');
@@ -1574,6 +1590,25 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
 
 <script>
 parent.RBot.location.reload();
+
+ var EncounterDateArray = new Array;
+ var CalendarCategoryArray = new Array;
+ var EncounterIdArray = new Array;
+ var Count = 0;
+<?php
+  //Encounter details are stored to javacript as array.
+  $qry=sqlStatement("SELECT * from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='Yes' ORDER BY updatedate DESC) as T UNION ALL SELECT *from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='No' ORDER BY updatedate DESC)as P");
+while($epi_desc = sqlFetchArray($qry)){
+?>
+ EncounterIdArray[Count] = '<?php echo htmlspecialchars($epi_desc['id'], ENT_QUOTES); ?>';
+ EncounterDateArray[Count] = '<?php echo htmlspecialchars(oeFormatShortDate(date("Y-m-d", strtotime($epi_desc['updatedate']))), ENT_QUOTES); ?>';
+ CalendarCategoryArray[Count] = '<?php echo htmlspecialchars(xl_appt_category($epi_desc['description']), ENT_QUOTES); ?>';
+ Count++;
+<?php
+    }
+?>
+
+ parent.left_nav.setPatientEncounter(EncounterIdArray,EncounterDateArray,CalendarCategoryArray);
 </script>
 </body>
 </html>

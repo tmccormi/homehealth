@@ -44,12 +44,14 @@ function toencounter(rawdata) {
 <?php if ($GLOBALS['concurrent_layout']) { ?>
     parent.left_nav.setEncounter(datestr, enc, frame);
     parent.left_nav.setRadio(frame, 'enc');
-    top.frames[frame].location.href  = '../patient_file/encounter/encounter_top.php?set_encounter=' + enc;
+    top.frames[frame].location.href  = '../patient_file/history/encounters.php?epi_id_exp=' + enc;
+   // top.frames[frame].location.href  = '../patient_file/encounter/encounter_top.php?set_encounter=' + enc;
 <?php } else { ?>
     top.Title.location.href = '../patient_file/encounter/encounter_title.php?set_encounter='   + enc;
     top.Main.location.href  = '../patient_file/encounter/patient_encounter.php?set_encounter=' + enc;
 <?php } ?>
 }
+
 function showhideMenu() {
 	var m = parent.document.getElementById("fsbody");
 	var targetWidth = '0,*';
@@ -114,7 +116,7 @@ $res = sqlQuery("select * from users where username='".$_SESSION{"authUser"}."'"
 		</div></td></tr>
 	<tr><td valign="baseline" align="center">	
         <div style='display:none' class='text' id="current_encounter_block" >
-            <span class='text'><?php xl('Selected Encounter','e'); ?>:&nbsp;</span><span class='title_bar_top' id="current_encounter"><b><?php xl('None','e'); ?></b></span>
+            <span class='text'><?php xl('Selected Episode','e'); ?>:&nbsp;</span><span class='title_bar_top' id="current_encounter"><b><?php xl('None','e'); ?></b></span>
         </div></td></tr></table>
 </td>
 
