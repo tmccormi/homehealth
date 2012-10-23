@@ -1127,9 +1127,9 @@ tr.even {
 }
 
 tr.odd td.sorting_1 {
-	background-color: #FFFFFF;
+	background-color: #D4EAB7;
 }
 
 tr.even td.sorting_1 {
-	background-color: #D4EAB7;
+	background-color: #FFFFFF;
 }

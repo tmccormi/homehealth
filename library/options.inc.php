@@ -1984,7 +1984,11 @@ function display_layout_tabs_data($formtype, $result1, $result2='') {
 					echo "<tr><td colspan='6'><hr /></td></tr>";
 					}
 
-					if($field_id == "referral_source" || $field_id == "referral_admission_source"){
+					if($field_id == "referral_source" || $field_id == "referral_admission_source" || $field_id == "referral_taken_by"){
+					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
+					}
+
+					if($field_id == "referral_date"){
 					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
 					}
 
@@ -2107,7 +2111,11 @@ function display_layout_tabs_data_editable($formtype, $result1, $result2='') {
 					echo "<tr><td colspan='6'><hr /></td></tr>";
 					}
 
-					if($field_id == "referral_source" || $field_id == "referral_admission_source"){
+					if($field_id == "referral_source" || $field_id == "referral_admission_source"  || $field_id == "referral_taken_by"){
+					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
+					}
+
+					if($field_id == "referral_date"){
 					echo "<tr><td colspan='6'>&nbsp;</td></tr>";
 					}
 

@@ -523,7 +523,7 @@ INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_date', '9Referral', 'Referral Date', '1','4','1','10','10','','1','3','','D','Referral Date','0');
 UPDATE `layout_options` SET `group_name` = '9Referral',
 `title` = 'Referrer' WHERE CONVERT( `layout_options`.`form_id` USING utf8 ) = 'DEM' AND CONVERT( `layout_options`.`field_id` USING utf8 ) = 'ref_providerID' AND `layout_options`.`seq` =2 LIMIT 1 ;
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_fname', '9Referral', 'Referrer First Name', '3','2','1','20','63','','1','3','','1','Referrer First Name','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_fname', '9Referral', 'Referrer First Name', '4','2','1','20','63','','1','3','','1','Referrer First Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_lname', '9Referral', 'Referrer Last Name', '4','2','1','20','63','','1','3','','1','Referrer Last Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_company_name', '9Referral', 'Referrer Company Name', '5','2','1','20','63','','1','3','','1','Referrer Company Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_phone_no', '9Referral', 'Phone', '6','2','1','20','63','','1','3','','1','Referrer Phone Number','0');
@@ -878,6 +878,177 @@ ALTER TABLE form_encounter ADD episode_id int(11);
 
 #IfMissingColumn dated_reminders episode_id
 ALTER TABLE dated_reminders ADD episode_id int(11) DEFAULT NULL;
+#EndIf
+
+
+
+#IfNotRow2D layout_options field_id medicare_number group_name 1Patient Info
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'medicare_number', '1Patient Info', 'Medicare Number', '31','2','1','20','63','','1','1','','','Medicare Number','0');
+#EndIf
+
+#IfMissingColumn patient_data medicare_number
+ALTER TABLE patient_data ADD medicare_number varchar(10);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id medicaid_number group_name 1Patient Info
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'medicaid_number', '1Patient Info', 'Medicaid Number', '32','2','1','20','63','','1','1','','','Medicaid Number','0');
+#EndIf
+
+#IfMissingColumn patient_data medicaid_number
+ALTER TABLE patient_data ADD medicaid_number varchar(10);
+#EndIf
+
+#IfNotRow2D layout_options field_id hmo_ppo_number group_name 1Patient Info
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hmo_ppo_number', '1Patient Info', 'HMO/PPO Number', '33','2','1','20','63','','1','1','','','HMO/PPO Number','0');
+#EndIf
+
+#IfMissingColumn patient_data hmo_ppo_number
+ALTER TABLE patient_data ADD hmo_ppo_number varchar(10);
+#EndIf
+
+
+
+#IfNotRow2D list_options list_id ptlistcols option_id admit_status
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','admit_status','Admit Status','12',0,1,'','');
+DELETE FROM list_options WHERE option_id='pubpid';
+#EndIf
+
+
+
+#IfNotRow2D layout_options form_id DEM group_name 3Preferences
+UPDATE layout_options SET group_name="3Preferences" WHERE group_name="3Choices";
+DELETE FROM layout_options WHERE field_id='hipaa_notice' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_imm_reg_use' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_health_info_ex' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_imm_info_share' AND group_name='3Preferences';
+#EndIf
+
+
+#IfNotRow2D layout_options field_id providerID title Physician
+UPDATE layout_options SET group_name="3Preferences", seq=1, title="Physician" WHERE field_id="providerID";
+#EndIf
+
+
+
+#IfNotRow2D layout_options field_id emp_off_num group_name 4Employer
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'emp_off_num', '4Employer', 'Office Number', '8','2','1','20','63','','1','1','','','Office Number','0');
+#EndIf
+
+#IfMissingColumn patient_data emp_off_num
+ALTER TABLE patient_data ADD emp_off_num varchar(10);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id emp_fax_num group_name 4Employer
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'emp_fax_num', '4Employer', 'Fax Number', '9','2','1','20','63','','1','1','','','Fax Number','0');
+#EndIf
+
+#IfMissingColumn patient_data emp_fax_num
+ALTER TABLE patient_data ADD emp_fax_num varchar(10);
+#EndIf
+
+#IfNotRow2D layout_options field_id ok_to_contact group_name 4Employer
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'ok_to_contact', '4Employer', 'OK to Contact', '10','1','1','0','0','yesnona','1','1','','','OK to Contact','0');
+#EndIf
+
+#IfMissingColumn patient_data ok_to_contact
+ALTER TABLE patient_data ADD ok_to_contact varchar(10);
+#EndIf
+
+
+#IfNotRow2D layout_options form_id DEM group_name 5Background
+UPDATE layout_options SET group_name="5Background" WHERE group_name="5Stats";
+#EndIf
+
+#IfNotRow2D layout_options field_id language title Primary Language Spoken
+UPDATE layout_options SET group_name="5Background", seq=1, title="Primary Language Spoken" WHERE field_id="language";
+#EndIf
+
+
+#IfNotRow2D layout_options field_id secondary_language group_name 5Background
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'secondary_language', '5Background', 'Secondary Language Spoken', '2','26','1','0','0','language','1','1','','','Secondary Language Spoken','0');
+#EndIf
+
+#IfMissingColumn patient_data secondary_language
+ALTER TABLE patient_data ADD secondary_language varchar(100);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id family_size title Number of Children
+UPDATE layout_options SET group_name="5Background", title="Number of Children" WHERE field_id="family_size";
+#EndIf
+
+
+
+#IfNotRow2D layout_options field_id grand_childrens group_name 5Background
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'grand_childrens', '5Background', 'Number of Grand Children', '5','2','1','20','63','','1','1','','','Number of Grand Children','0');
+#EndIf
+
+#IfMissingColumn patient_data grand_childrens
+ALTER TABLE patient_data ADD grand_childrens varchar(10);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id hospital_admit_date title Last Admission Date
+UPDATE layout_options SET group_name="7Hospitalization", title="Last Admission Date" WHERE field_id="hospital_admit_date";
+#EndIf
+
+#IfNotRow2D layout_options field_id hospital_dc_date title Last Discharge Date
+UPDATE layout_options SET group_name="7Hospitalization", title="Last Discharge Date" WHERE field_id="hospital_dc_date";
+#EndIf
+
+#IfNotRow2D layout_options group_name 9Referral field_id area_director
+UPDATE layout_options SET group_name="9Referral", seq=0 WHERE field_id="area_director";
+#EndIf
+
+#IfNotRow2D layout_options group_name 9Referral field_id case_manager
+UPDATE layout_options SET group_name="9Referral", seq=0 WHERE field_id="case_manager";
+DELETE FROM layout_options WHERE group_name='6Misc';
+DELETE FROM layout_options WHERE field_id='referral_admission_source' AND group_name='9Referral';
+#EndIf
+
+#IfNotRow2D list_options list_id lists option_id referraltype
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'referraltype', 'Type of Referral', '1', '0', '0', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'physician', 'Physician', '1', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'hospital', 'Hospital', '2', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'snf', 'SNF', '3', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'alf', 'ALF', '4', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'board_care', 'Board and Care', '5', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'vendor', 'Vendor', '6', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'family', 'Family', '7', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'self', 'Self', '8', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'other', 'Other', '9', '0', '1', '', '');
+#EndIf
+
+
+
+#IfNotRow2D layout_options field_id type_of_referral group_name 9Referral
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'type_of_referral', '9Referral', 'Type of Referral', '2','1','1','0','0','referraltype','1','1','','','Type of Referral','0');
+#EndIf
+
+#IfMissingColumn patient_data type_of_referral
+ALTER TABLE patient_data ADD type_of_referral varchar(10);
+#EndIf
+
+#IfNotRow2D layout_options field_id type_of_referral_other group_name 9Referral
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'type_of_referral_other', '9Referral', 'Other', '3','2','1','20','63','','1','3','','1','Other','0');
+#EndIf
+
+#IfMissingColumn patient_data type_of_referral_other
+ALTER TABLE patient_data ADD type_of_referral_other varchar(100);
+#EndIf
+
+#IfNotRow2D layout_options field_id referral_fname seq 4
+UPDATE layout_options SET seq=4 WHERE field_id="referral_fname";
+#EndIf
+
+
+#IfNotRow2D list_options list_id lists option_id yesnona
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'yesnona', 'Yes No NA', '1', '0', '0', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'yes', 'Yes', '1', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'no', 'No', '2', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'na', 'N/A', '3', '0', '1', '', '');
 #EndIf
 
 

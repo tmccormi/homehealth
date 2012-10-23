@@ -381,6 +381,25 @@ while ($row = sqlFetchArray($res)) {
       $arow[] = $case_mgr_name;
     }
 
+     else if ($colname == 'admit_status') {
+      if($row['admit_status']=="pre_admit"){
+	$arow[]="Pre-Admit";
+	}
+      else if($row['admit_status']=="admit"){
+	$arow[]="Admit";
+	}
+      else if($row['admit_status']=="discharge"){
+	$arow[]="Discharge";
+	}
+      else if($row['admit_status']=="non_admit"){
+	$arow[]="Non-Admit";
+	}
+      else{
+	$arow[]="";
+	}
+    }
+
+
 /*  preg_match('^[a-zA-Z0-9]*$',$case_mgr_name)
    else if ($colname == 'area_director1') {
       $name = $row['ulname'];

@@ -1525,7 +1525,7 @@ expand_collapse_widget($widgetTitle, $widgetLabel, $widgetButtonLabel,
         } // end if crw
 
 	// appointments expand collapse widget
-	$widgetTitle = xl("Appointments");
+	$widgetTitle = xl("Schedule");
 	$widgetLabel = "appointments";
 	$widgetButtonLabel = xl("Add");
 	$widgetButtonLink = "return newEvt();";

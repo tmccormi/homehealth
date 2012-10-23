@@ -4,7 +4,7 @@ require_once("{$GLOBALS['srcdir']}/sql.inc");
 if (!empty($GLOBALS['ippf_specific'])) {
   $ISSUE_TYPES = array(
     // table type, plural, singular, abbrev, style, force show patient summary screen
-    'medical_problem' => array(xl('Medical Problems'),xl('Problem')      ,xl('P'),0,1),
+    'medical_problem' => array(xl('Medical Diagnoses'),xl('Problem')      ,xl('P'),0,1),
     'allergy'         => array(xl('Allergies')       ,xl('Allergy')      ,xl('Y'),0,1),
     'medication'      => array(xl('Medications')     ,xl('Medication')   ,xl('M'),0,1),
     'surgery'         => array(xl('Surgeries')       ,xl('Surgery')      ,xl('S'),0,0),
@@ -16,7 +16,7 @@ if (!empty($GLOBALS['ippf_specific'])) {
 else if (!empty($GLOBALS['athletic_team'])) {
   $ISSUE_TYPES = array(
     'football_injury' => array(xl('Football Injuries'),xl('Injury') ,xl('I'),2,1),
-    'medical_problem' => array(xl('Medical Problems') ,xl('Medical'),xl('P'),0,0),
+    'medical_problem' => array(xl('Medical Diagnoses') ,xl('Medical'),xl('P'),0,0),
     'allergy'         => array(xl('Allergies')        ,xl('Allergy'),xl('A'),1,0),
     'general'         => array(xl('General')          ,xl('General'),xl('G'),1,0),
   );
@@ -24,7 +24,7 @@ else if (!empty($GLOBALS['athletic_team'])) {
 else { // default version
   $ISSUE_TYPES = array(
     // table type, plural, singular, abbrev, style, force show patient summary screen
-    'medical_problem' => array(xl('Medical Problems'),xl('Problem')   ,xl('P'),0,1),
+    'medical_problem' => array(xl('Medical Diagnoses'),xl('Problem')   ,xl('P'),0,1),
     'allergy'         => array(xl('Allergies')       ,xl('Allergy')   ,xl('A'),0,1),
     'medication'      => array(xl('Medications')     ,xl('Medication'),xl('M'),0,1),
     'surgery'         => array(xl('Surgeries')       ,xl('Surgery')   ,xl('S'),0,0),

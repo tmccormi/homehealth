@@ -270,8 +270,27 @@ $('#form_attphy_fax').val(data.fax);
 
 })
 
+$('#form_type_of_referral').change(function(){
+
+var typ = $(this).val();
+if(typ == 'other'){
+$('#form_type_of_referral_other').removeAttr("readonly");
+}
+else{
+$('#form_type_of_referral_other').val('');
+$('#form_type_of_referral_other').attr("readonly", "readonly");
+}
+
+})
+
+var typ1 = $('#form_type_of_referral').val();
+if(typ1 == 'other'){
+$('#form_type_of_referral_other').removeAttr("readonly");
+}
 
 });
+
+
 
 var mypcc = '<?php echo $GLOBALS['phone_country_code'] ?>';
 

@@ -574,6 +574,7 @@ CREATE TABLE `dated_reminders` (
   `message_processed` tinyint(1) NOT NULL DEFAULT '0',
   `processed_date` timestamp NULL DEFAULT NULL,
   `dr_processed_by` int(11) NOT NULL,
+  `episode_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dr_id`),
   KEY `dr_from_ID` (`dr_from_ID`,`dr_message_due_date`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1;
@@ -1070,6 +1071,7 @@ CREATE TABLE `form_encounter` (
   `invoice_refno` varchar(31) NOT NULL DEFAULT '',
   `referral_source` varchar(31) NOT NULL DEFAULT '',
   `billing_facility` INT(11) NOT NULL DEFAULT 0,
+  `episode_id` int(11),
   PRIMARY KEY  (`id`),
   KEY `pid_encounter` (`pid`, `encounter`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
@@ -2198,7 +2200,7 @@ INSERT INTO `layout_options` VALUES ('DEM', 'phone_home', '2Contact', 'Home Phon
 INSERT INTO `layout_options` VALUES ('DEM', 'phone_biz', '2Contact', 'Work Phone', 11, 2, 1, 20, 63, '', 1, 1, '', 'P', 'Work Phone Number', 0);
 INSERT INTO `layout_options` VALUES ('DEM', 'phone_cell', '2Contact', 'Mobile Phone', 12, 2, 1, 20, 63, '', 1, 1, '', 'P', 'Cell Phone Number', 0);
 INSERT INTO `layout_options` VALUES ('DEM', 'email', '2Contact', 'Contact Email', 13, 2, 1, 30, 95, '', 1, 1, '', '', 'Contact Email Address', 0);
-INSERT INTO `layout_options` VALUES ('DEM', 'providerID', '3Choices', 'Provider', 1, 42, 1, 0, 0, '', 1, 3, '', '', 'Provider', 0);
+INSERT INTO `layout_options` VALUES ('DEM', 'providerID', '3Choices', 'Physician', 1, 42, 1, 0, 0, '', 1, 3, '', '', 'Physician', 0);
 INSERT INTO `layout_options` VALUES ('DEM', 'ref_providerID', '3Choices', 'Internal Referrer', 2, 11, 1, 0, 0, '', 1, 3, '', '', 'Internal Referrer', 0);
 INSERT INTO `layout_options` VALUES ('DEM', 'pharmacy_id', '3Choices', 'Pharmacy', 3, 12, 1, 0, 0, '', 1, 3, '', '', 'Preferred Pharmacy', 0);
 INSERT INTO `layout_options` VALUES ('DEM', 'hipaa_notice', '3Choices', 'HIPAA Notice Received', 4, 1, 1, 0, 0, 'yesno', 1, 1, '', '', 'Did you receive a copy of the HIPAA Notice?', 0);
@@ -2329,9 +2331,7 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_date', '9Referral', 'Referral Date', '1','4','1','10','10','','1','3','','D','Referral Date','0');
 
-UPDATE layout_options SET group_name='9Referral' data_type=41 WHERE field_id='ref_providerID';
-
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_fname', '9Referral', 'Referrer First Name', '3','2','1','20','63','','1','3','','1','Referrer First Name','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_fname', '9Referral', 'Referrer First Name', '4','2','1','20','63','','1','3','','1','Referrer First Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_lname', '9Referral', 'Referrer Last Name', '4','2','1','20','63','','1','3','','1','Referrer Last Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_company_name', '9Referral', 'Referrer Company Name', '5','2','1','20','63','','1','3','','1','Referrer Company Name','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_phone_no', '9Referral', 'Phone', '6','2','1','20','63','','1','3','','1','Referrer Phone Number','0');
@@ -2341,10 +2341,9 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_phone_no', '9Referral', 'Phone', '10','2','1','20','63','','1','3','','','Referral Source Phone Number','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_fax', '9Referral', 'Fax', '11','2','1','20','63','','1','3','','','Referral Source Fax Number','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_source_protocol', '9Referral', 'Protocol', '12','2','1','20','63','','1','3','','','Referral Source Protocol','0');
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_admission_source', '9Referral', 'Admission Source', '13','2','1','20','63','','1','3','','','Referral Source Admission Source','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_taken_by', '9Referral', 'Referral Taken By', '14','2','1','20','63','','1','3','','','Referral Taken By','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_reason_not_visited', '9Referral', 'Reason If not visited within 48 hours', '15','2','1','20','63','','1','3','','','Reason If not visited within 48 hours','0');
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_comments', '9Referral', 'Comments1', '16','2','1','20','63','','1','3','','','Comments by Referral','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'referral_comments', '9Referral', 'Comments', '16','2','1','20','63','','1','3','','','Comments by Referral','0');
 
 
 
@@ -2391,7 +2390,11 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 INSERT INTO `layout_options` (`form_id` ,`field_id` ,`group_name` ,`title` ,`seq` ,`data_type` ,`uor` ,`fld_length` ,`max_length` ,`list_id` ,`titlecols` ,`datacols` ,`default_value` ,`edit_options` ,`description` ,`fld_rows`) VALUES ('DEM', 'area_director', '6Misc', 'Area Director', '19', '10', '1', '0', '0', '', '1', '3', '', '', 'Area Director', '0');
 INSERT INTO `layout_options` (`form_id` ,`field_id` ,`group_name` ,`title` ,`seq` ,`data_type` ,`uor` ,`fld_length` ,`max_length` ,`list_id` ,`titlecols` ,`datacols` ,`default_value` ,`edit_options` ,`description` ,`fld_rows`) VALUES ('DEM', 'case_manager', '6Misc', 'Case Manager', '20', '11', '1', '0', '0', '', '1', '3', '', '', 'Case Manager', '0');
 
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'medicare_number', '1Patient Info', 'Medicare Number', '31','2','1','20','63','','1','1','','','Medicare Number','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'medicaid_number', '1Patient Info', 'Medicaid Number', '32','2','1','20','63','','1','1','','','Medicaid Number','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hmo_ppo_number', '1Patient Info', 'HMO/PPO Number', '33','2','1','20','63','','1','1','','','HMO/PPO Number','0');
 
+UPDATE layout_options SET group_name='9Referral' data_type=41 WHERE field_id='ref_providerID';
 
 UPDATE layout_options SET group_name="1Patient Info" WHERE group_name="1Who" OR group_name="2Contact";
 
@@ -2409,6 +2412,45 @@ UPDATE layout_options SET seq=26 WHERE title="Home Phone" AND group_name="1Patie
 UPDATE layout_options SET seq=27 WHERE title="Work Phone" AND group_name="1Patient Info";
 UPDATE layout_options SET seq=28 WHERE title="Mobile Phone" AND group_name="1Patient Info";
 UPDATE layout_options SET seq=29 WHERE title="Contact Email" AND group_name="1Patient Info";
+
+
+UPDATE layout_options SET group_name="3Preferences" WHERE group_name="3Choices";
+DELETE FROM layout_options WHERE field_id='hipaa_notice' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_imm_reg_use' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_health_info_ex' AND group_name='3Preferences';
+DELETE FROM layout_options WHERE field_id='allow_imm_info_share' AND group_name='3Preferences';
+
+UPDATE layout_options SET group_name="3Preferences", seq=1, title="Physician" WHERE field_id="providerID";
+UPDATE layout_options SET group_name="5Background" WHERE group_name="5Stats";
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'emp_off_num', '4Employer', 'Office Number', '8','2','1','20','63','','1','1','','','Office Number','0');
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'emp_fax_num', '4Employer', 'Fax Number', '9','2','1','20','63','','1','1','','','Fax Number','0');
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'ok_to_contact', '4Employer', 'OK to Contact', '10','1','1','0','0','yesnona','1','1','','','OK to Contact','0');
+
+UPDATE layout_options SET group_name="5Background", seq=1, title="Primary Language Spoken" WHERE field_id="language";
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'secondary_language', '5Background', 'Secondary Language Spoken', '2','26','1','0','0','language','1','1','','','Secondary Language Spoken','0');
+
+UPDATE layout_options SET group_name="5Background", title="Number of Children" WHERE field_id="family_size";
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'grand_childrens', '5Background', 'Number of Grand Children', '5','2','1','20','63','','1','1','','','Number of Grand Children','0');
+
+UPDATE layout_options SET group_name="7Hospitalization", title="Last Admission Date" WHERE field_id="hospital_admit_date";
+
+UPDATE layout_options SET group_name="7Hospitalization", title="Last Discharge Date" WHERE field_id="hospital_dc_date";
+
+UPDATE layout_options SET group_name="9Referral", seq=0 WHERE field_id="area_director";
+
+UPDATE layout_options SET group_name="9Referral", seq=0 WHERE field_id="case_manager";
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'type_of_referral', '9Referral', 'Type of Referral', '2','1','1','0','0','referraltype','1','1','','','Type of Referral','0');
+
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'type_of_referral_other', '9Referral', 'Other', '3','2','1','20','63','','1','1','','1','Other','0');
+
+
+
 
 
 
@@ -3936,6 +3978,16 @@ CREATE TABLE `patient_data` (
   `attphy_phone` varchar(50),
   `attphy_fax` varchar(50),
   `attphy_comments` varchar(225),
+  `medicare_number` varchar(10),
+  `medicaid_number` varchar(10),
+  `hmo_ppo_number` varchar(10),
+  `emp_off_num` varchar(10),
+  `emp_fax_num` varchar(10),
+  `ok_to_contact` varchar(10),
+  `secondary_language` varchar(100),
+  `grand_childrens` varchar(10),
+  `type_of_referral` varchar(10),
+  `type_of_referral_other` varchar(100),
   UNIQUE KEY `pid` (`pid`),
   KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
@@ -5419,6 +5471,26 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('admit_status', 'discharge', 'Discharge', '3', '0', '1', '', '');
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('admit_status', 'non_admit', 'Non-Admit', '4', '0', '1', '', '');
 
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('ptlistcols','admit_status','Admit Status','12',0,1,'','');
+DELETE FROM list_options WHERE option_id='pubpid';
+
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'referraltype', 'Type of Referral', '1', '0', '0', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'physician', 'Physician', '1', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'hospital', 'Hospital', '2', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'snf', 'SNF', '3', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'alf', 'ALF', '4', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'board_care', 'Board and Care', '5', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'vendor', 'Vendor', '6', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'family', 'Family', '7', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'self', 'Self', '8', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'other', 'Other', '9', '0', '1', '', '');
+
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'yesnona', 'Yes No NA', '1', '0', '0', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'yes', 'Yes', '1', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'no', 'No', '2', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('yesnona', 'na', 'N/A', '3', '0', '1', '', '');
+
+
 -- --------------------------------------------------------
 
 -- 
@@ -5554,7 +5626,4 @@ CREATE TABLE `episode_num` (
 
 INSERT INTO episode_num VALUES();
 
-ALTER TABLE form_encounter ADD episode_id int(11);
-
-ALTER TABLE dated_reminders ADD episode_id int(11) DEFAULT NULL;
-
+DELETE FROM layout_options WHERE group_name='6Misc';
