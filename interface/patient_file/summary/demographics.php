@@ -902,6 +902,14 @@ if(isset($curr_episode))
 
 echo '<table border="0" cellpadding="0">
 <tbody>
+
+<tr><td class="label" colspan="1">'.xl('Episode ID:').'</td>
+<td class="text data" colspan="1">'.xl($curr_episode['id']).'</td>
+<td width="80px">&nbsp;</td>
+<td class="label" colspan="1">&nbsp;</td>
+<td class="text data" colspan="1">&nbsp;</td></tr>
+
+
 <tr><td class="label" colspan="1">'.xl('Description:').'</td>
 <td class="text data" colspan="1">'.xl($curr_episode['description']).'</td>
 <td width="80px">&nbsp;</td>

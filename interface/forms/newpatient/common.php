@@ -125,6 +125,14 @@ var facility=document.forms[0].facility_id.value;
 ajax_bill_loc(pid,dte,facility);
 }
 </script>
+
+<style>
+#episode_id{
+width: 200;
+}
+</style>
+
+
 </head>
 
 <?php if ($viewmode) { ?>
@@ -210,7 +218,8 @@ echo "<option value='".$all_episodes1['id']."'";
 if($result['episode_id']==$all_episodes1['id']){
 echo " selected='selected'";
 }
-echo ">".$all_episodes1['description']."</option>";
+//echo ">".$all_episodes1['description']."</option>"; - Removed as ID is needed as Selection
+echo ">".$all_episodes1['id']." - ".$all_episodes1['description']."</option>";
 }
 echo "</select>";
 }
@@ -218,11 +227,13 @@ else if ($viewmode && $accessGroup!='Administrators') {
 
 $epi=sqlFetchArray(sqlStatement("SELECT description FROM episodes WHERE id='".$result['episode_id']."'"));
 
-echo "<p><strong>Episode: </strong>".$epi['description']."</p>";
+//echo "<p><strong>Episode: </strong>".$epi['description']."</p>"; - Removed as ID is needed as Selection
+echo "<p><strong>Episode: </strong>".$result['episode_id']." - ".$epi['description']."</p>";
 echo "<input type='hidden' name='episode_id' value='".$result['episode_id']."' />";
 }
 else{
-echo "<p><strong>Current Episode: </strong>".$_SESSION['current_episode']."</p>";
+//echo "<p><strong>Current Episode: </strong>".$_SESSION['current_episode']."</p>"; - Removed as ID is needed as Selection
+echo "<p><strong>Current Episode: </strong>".$curr_episode1['id']." - ".$_SESSION['current_episode']."</p>";
 echo "<input type='hidden' name='episode_id' value='".$curr_episode1['id']."' />";
 }
 

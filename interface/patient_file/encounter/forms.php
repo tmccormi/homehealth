@@ -471,6 +471,27 @@ $(document).ready(function(){
     }
 });
 
+
+
+ var EncounterDateArray = new Array;
+ var CalendarCategoryArray = new Array;
+ var EncounterIdArray = new Array;
+ var Count = 0;
+<?php
+  //Encounter details are stored to javacript as array.
+  $qry=sqlStatement("SELECT * from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='Yes' ORDER BY updatedate DESC) as T UNION ALL SELECT *from (SELECT id, updatedate, description, active FROM episodes WHERE pid='".$pid."' AND active='No' ORDER BY updatedate DESC)as P");
+while($epi_desc = sqlFetchArray($qry)){
+?>
+ EncounterIdArray[Count] = '<?php echo htmlspecialchars($epi_desc['id'], ENT_QUOTES); ?>';
+ EncounterDateArray[Count] = '<?php echo htmlspecialchars(oeFormatShortDate(date("Y-m-d", strtotime($epi_desc['updatedate']))), ENT_QUOTES); ?>';
+ CalendarCategoryArray[Count] = '<?php echo htmlspecialchars(xl_appt_category($epi_desc['description']), ENT_QUOTES); ?>';
+ Count++;
+<?php
+    }
+?>
+
+top.left_nav.setPatientEncounter(EncounterIdArray,EncounterDateArray,CalendarCategoryArray);
+
 </script>
 
 </html>

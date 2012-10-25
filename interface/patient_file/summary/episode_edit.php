@@ -149,6 +149,13 @@ if(document.getElementById('episode_description').value.length < 1){
 $('#episode_description').css({'border':'1px solid red','background-color':'#FBEDBB'});
 err_indicator=1;
 }
+if(document.getElementById('episode_description').value.length > 60){
+$('#episode_description').css({'border':'1px solid red','background-color':'#FBEDBB'});
+$('#warning').css({'display':'inline'});
+err_indicator=1;
+}else{
+$('#warning').css({'display':'none'});
+}
 if(document.getElementById('episode_start_date').value.length < 1){
 $('#episode_start_date').css({'border':'1px solid red','background-color':'#FBEDBB'});
 err_indicator=1;
@@ -191,6 +198,14 @@ height:25px;
 .label{
 //text-align:left !important;
 }
+
+
+#warning{
+font-size:7pt;
+color:red;
+display:none;
+}
+
 </style>
 
 
@@ -215,6 +230,13 @@ $epi_to_edit=sqlFetchArray($epi_edit);
 </a>
 </td></tr></table>
 
+<?php
+
+$qry6 = sqlStatement("SELECT id FROM episodes WHERE episode_number=".$_GET['epi_num']."");
+$curr_epi_id = sqlFetchArray($qry6);
+?>
+
+<br /><?php xl('Episode ID: ','e')?><?php echo $curr_epi_id['id']; ?><br /><br />
 
 <form name='new_episode' method='post'  target="_parent" action="episode_edit.php?epi_num=<?php echo $_GET['epi_num']; ?>" onsubmit='return top.restoreSession()'>
 <input type="hidden" name="flag" id="flag" value="no" />
@@ -223,8 +245,8 @@ $epi_to_edit=sqlFetchArray($epi_edit);
 
 <tr>
 <td colspan="2">
-<?php xl('Description:','e')?><br />
-<textarea name="episode_description" id="episode_description" rows="6" cols="48">
+<?php xl('Description:','e')?>&nbsp;&nbsp;<span id="warning"><?php xl('Should not Exceed 60 Characters','e')?></span><br />
+<textarea name="episode_description" id="episode_description" rows="2" cols="48">
 <?php
 echo $epi_to_edit['description'];
 ?>

@@ -347,7 +347,7 @@ while($epi_desc = sqlFetchArray($qry)){
 
 ?>
 
-		<div><a href="#" id="black" ><?php echo $epi_desc['description']."  "; 
+		<div><a href="#" id="black" ><?php echo $epi_desc['id']." - "; ?><?php echo $epi_desc['description']."  "; 
 
 if($epi_desc['active']=='Yes')
 echo "<font style='font-size:10pt;font-weight:normal;color:#808080;'>(Active)</font>";
