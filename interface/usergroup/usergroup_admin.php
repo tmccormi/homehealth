@@ -65,6 +65,10 @@ if ($_GET["privatemode"]=="user_admin") {
         $tqvar = formData('npi','G');
         sqlStatement("update users set npi='$tqvar' where id={$_GET["id"]}");
       }
+      //if ($_GET["agency_area"]) {
+	  $tqvar = formData('agency_area','G');
+	  sqlStatement("update users set agency_area='$tqvar' where id={$_GET["id"]}");
+      //}
       if ($_GET["taxonomy"]) {
         $tqvar = formData('taxonomy','G');
         sqlStatement("update users set taxonomy = '$tqvar' where id= {$_GET["id"]}");
@@ -151,6 +155,8 @@ if ($_GET["privatemode"]=="user_admin") {
         $tqvar = formData('ssi_relayhealth','G');
         sqlStatement("update users set ssi_relayhealth = '$tqvar' where id = {$_GET["id"]}");
       }
+
+
 
       $tqvar  = $_GET["authorized"] ? 1 : 0;
       $actvar = $_GET["active"]     ? 1 : 0;
@@ -239,6 +245,7 @@ if (isset($_POST["mode"])) {
         "', irnpool = '"       . trim(formData('irnpool'      )) .
         "', calendar = '"      . $calvar                         .
         "', pwd_expiration_date = '" . trim("$exp_date") .
+	"', agency_area = '" . trim(formData('agency_area')) .
         "'");
       //set the facility name from the selected facility_id
       sqlStatement("UPDATE users, facility SET users.facility = facility.name WHERE facility.id = '" . trim(formData('facility_id')) . "' AND users.username = '" . trim(formData('rumple')) . "'");

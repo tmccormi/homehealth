@@ -1052,4 +1052,17 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 #EndIf
 
 
+#IfNotRow2D list_options list_id lists option_id agencyarea
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'agencyarea', 'Agency Area', '1', '0', '0', '', '');
+#EndIf
+
+
+#IfMissingColumn users agency_area
+ALTER TABLE users ADD agency_area varchar(60);
+#EndIf
+
+
+
+
+
 

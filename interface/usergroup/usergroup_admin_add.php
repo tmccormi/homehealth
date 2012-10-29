@@ -299,6 +299,23 @@ echo generate_select_list('irnpool', 'irnpool', '',
   <td><textarea name=info style="width:120px;" cols=27 rows=4 wrap=auto></textarea></td>
 
   </tr>
+  <tr>
+<td><span class="text"><?php xl('Agency Area','e'); ?>: </span></td>
+<td>
+<select name='agency_area'>
+<?php
+$res = sqlStatement("select option_id, title from list_options where list_id = 'agencyarea'");
+print "<option value=''>Unassigned</option>\n";
+for ($iter = 0;$row = sqlFetchArray($res);$iter++)
+  $result[$iter] = $row;
+foreach ($result as $iter) {
+  print "<option value='".$iter{"option_id"}."'>" . $iter{"title"} . "</option>\n";
+}
+?>
+</select>
+</td>
+<td colspan="2">&nbsp;</td>
+</tr>
   <tr height="25"><td colspan="4">&nbsp;</td></tr>
 <?php
  }
@@ -402,6 +419,7 @@ if (empty($GLOBALS['disable_non_default_groups'])) {
   }
 }
 ?>
+
 
 <script language="JavaScript">
 <?php

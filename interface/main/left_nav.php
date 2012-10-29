@@ -553,6 +553,8 @@ function genFindBlock() {
 function goHome() {
     top.frames['RTop'].location='messages/messages.php?form_active=1';
     top.frames['RBot'].location='finder/dynamic_finder.php';
+    top.frames['Title'].location.reload();
+	document.location.reload();
 }
 
  // Reference to the search.php window.
@@ -1185,14 +1187,16 @@ if (!empty($reg)) {
     </ul>
   </li>
 <?php } ?>
-  <li><a class="collapsed" id="proimg" ><span><?php xl('Procedures','e') ?></span></a>
+<!--
+  <li><a class="collapsed" id="proimg" ><span><?php// xl('Procedures','e'); ?></span></a>
     <ul>
-      <?php genTreeLink('RTop','ort',xl('Configuration')); ?>
-      <?php genTreeLink('RTop','orp',xl('Pending Review')); ?>
-      <?php genTreeLink('RTop','orr',xl('Patient Results')); ?>
-      <?php genTreeLink('RTop','orb',xl('Batch Results')); ?>
+      <?php// genTreeLink('RTop','ort',xl('Configuration')); ?>
+      <?php// genTreeLink('RTop','orp',xl('Pending Review')); ?>
+      <?php// genTreeLink('RTop','orr',xl('Patient Results')); ?>
+      <?php// genTreeLink('RTop','orb',xl('Batch Results')); ?>
     </ul>
   </li>
+-->
   <?php
   $newcrop_user_role=sqlQuery("select newcrop_user_role from users where username='".$_SESSION['authUser']."'");
   if($newcrop_user_role['newcrop_user_role'] && $GLOBALS['erx_enable']) { ?>

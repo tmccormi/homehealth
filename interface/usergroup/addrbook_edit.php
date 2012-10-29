@@ -154,7 +154,8 @@ td { font-size:10pt; }
     "phonew2 = "      . invalue('form_phonew2')      . ", " .
     "phonecell = "    . invalue('form_phonecell')    . ", " .
     "fax = "          . invalue('form_fax')          . ", " .
-    "notes = "        . invalue('form_notes')        . " "  .
+    "notes = "        . invalue('form_notes')        . ", "  .
+    "agency_area = "        . invalue('form_agency_area')        . " "  .
     "WHERE id = '" . add_escape_custom($userid) . "'";
     sqlStatement($query);
 
@@ -167,7 +168,7 @@ td { font-size:10pt; }
     "specialty, organization, valedictory, assistant, billname, email, url, " .
     "street, streetb, city, state, zip, " .
     "street2, streetb2, city2, state2, zip2, " .
-    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type "            .
+    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type, agency_area "            .
     ") VALUES ( "                        .
     "'', "                               . // username
     "'', "                               . // password
@@ -209,7 +210,8 @@ td { font-size:10pt; }
     invalue('form_phonecell')     . ", " .
     invalue('form_fax')           . ", " .
     invalue('form_notes')         . ", " .
-    invalue('form_abook_type')    . " "  .
+    invalue('form_abook_type')    . ", "  .
+    invalue('form_agency_area')    . " "  .
    ")");
 
   }
@@ -453,6 +455,16 @@ td { font-size:10pt; }
   <td>
    <textarea rows='3' cols='40' name='form_notes' style='width:100%'
     wrap='virtual' class='inputtext' /><?php echo text($row['notes']) ?></textarea>
+  </td>
+ </tr>
+
+ <tr>
+  <td nowrap><b><?php echo xlt('Agency Area'); ?>:</b></td>
+  <td>
+
+<?php
+ generate_form_field(array('data_type'=>1,'field_id'=>'agency_area','list_id'=>'agencyarea','empty_title'=>'Unassigned'), $row['agency_area']);
+?>
   </td>
  </tr>
 

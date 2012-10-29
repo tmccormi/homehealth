@@ -116,6 +116,11 @@ if ($_GET["mode"] == "update") {
     sqlStatement("update users set ssi_relayhealth = '$tqvar' where id = {$_GET["id"]}");
   }
 
+  //if ($_GET["agency_area"]) {
+      $tqvar = formData('agency_area','G');
+      sqlStatement("update users set agency_area='$tqvar' where id={$_GET["id"]}");
+ // }
+
   $tqvar  = $_GET["authorized"] ? 1 : 0;
   $actvar = $_GET["active"]     ? 1 : 0;
   $calvar = $_GET["calendar"]   ? 1 : 0;
@@ -182,6 +187,7 @@ parent.$.fn.fancybox.close();
 <script src="checkpwd_validation.js" type="text/javascript"></script>
 
 <script language="JavaScript">
+
 function checkChange()
 {
   alert("<?php echo addslashes(xl('If you change e-RX Role for ePrescription, it may affect the ePrescription workflow. If you face any difficulty, contact your ePrescription vendor.'));?>");
@@ -542,6 +548,30 @@ echo generate_select_list('irnpool', 'irnpool', $iter['irnpool'],
   <td><textarea style="width:150px;" name="comments" wrap=auto rows=4 cols=25><?php echo $iter["info"];?></textarea></td>
 
   </tr>
+
+<tr>
+<td><span class=text><?php xl('Agency Area','e'); ?>:</span></td>
+<td>
+<select name='agency_area' id='agency_area'>
+<?php
+$res = sqlStatement("select option_id, title from list_options where list_id = 'agencyarea'");
+print "<option value=''>Unassigned</option>\n";
+for ($iter1 = 0;$row = sqlFetchArray($res);$iter1++)
+  $result[$iter1] = $row;
+foreach ($result as $iter1) {
+  print "<option value='".$iter1{"option_id"}."'";
+
+if($iter["agency_area"]==$iter1{"option_id"})
+echo " selected='selected'";
+
+echo ">" . $iter1{"title"} . "</option>\n";
+}
+?>
+</select>
+</td>
+</tr>
+
+
   <tr height="20" valign="bottom">
   <td colspan="4" class="text">
   <font class="mandatory">*</font> <?php xl('Leave blank to keep password unchanged.','e'); ?>
@@ -551,6 +581,8 @@ Display red alert if entered password matched one of last three passwords/Displa
   <div class="redtext" id="error_message">&nbsp;</div>
   </td>
   </tr>
+
+
 <?php
  }
 ?>
