@@ -550,12 +550,20 @@ function genFindBlock() {
   f.popups.disabled = (active_pid == 0);
  }
 
+
 function goHome() {
-    top.frames['RTop'].location='messages/messages.php?form_active=1';
-    top.frames['RBot'].location='finder/dynamic_finder.php';
-    top.frames['Title'].location.reload();
-	document.location.reload();
+	$.ajax({
+	  type: "POST",
+	  url: "<?php echo $GLOBALS['webroot'] ?>/library/ajax/unset_session_ajax.php",
+	  data: { func: "unset_pid"},
+	  success:function( msg ) {
+		clearPatient();
+		top.frames['RTop'].location='messages/messages.php?form_active=1';
+		top.frames['RBot'].location='finder/dynamic_finder.php';
+	  }
+	});
 }
+
 
  // Reference to the search.php window.
  var my_window;
@@ -1312,13 +1320,16 @@ if (!empty($reg)) {
         </ul>
       </li>
 <?php } ?>
-      <li><a class="collapsed_lv2"><span><?php xl('Procedures','e') ?></span></a>
-        <ul>
-          <?php genPopLink(xl('Pending Res'),'../orders/pending_orders.php'); ?>
-          <?php if (!empty($GLOBALS['code_types']['IPPF'])) genPopLink(xl('Pending F/U'),'../orders/pending_followup.php'); ?>
-          <?php genPopLink(xl('Statistics'),'../orders/procedure_stats.php'); ?>
-        </ul>
-      </li>
+<!--
+  <li><a class="collapsed" id="proimg" ><span><?php// xl('Procedures','e'); ?></span></a>
+    <ul>
+      <?php// genTreeLink('RTop','ort',xl('Configuration')); ?>
+      <?php// genTreeLink('RTop','orp',xl('Pending Review')); ?>
+      <?php// genTreeLink('RTop','orr',xl('Patient Results')); ?>
+      <?php// genTreeLink('RTop','orb',xl('Batch Results')); ?>
+    </ul>
+  </li>
+-->
 <?php if (! $GLOBALS['simplified_demographics']) { ?>
       <li><a class="collapsed_lv2"><span><?php xl('Insurance','e') ?></span></a>
         <ul>

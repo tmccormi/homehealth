@@ -88,8 +88,68 @@ return json_encode($nullarray);
 }
 }
 
+function getTypeUsers($user_type){
+
+if($user_type!=""){
+$sql = "SELECT id, fname, lname, specialty FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
+$res = sqlStatement($sql);
+$users_list=" ";
+while($urow=sqlFetchArray($res))
+{
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      $users_list.= "<option value='".$optionId."'>".$uname."</option>";
+}
+if($users_list)
+return json_encode($users_list);
+else
+{
+$no_list="";
+return json_encode($no_list);
+}
+}
+else
+{
+$no_list="";
+return json_encode($no_list);
+}
+}
 
 
+function getTypeUsersOnLoad($user_type){
+
+$curr_pid=$_SESSION["pid"];
+$psql = "SELECT ref_providerID from patient_data WHERE pid=".$curr_pid."";
+$pres = sqlStatement($psql);
+$purow=sqlFetchArray($pres);
+
+if($user_type!=""){
+$sql = "SELECT id, fname, lname, specialty FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
+$res = sqlStatement($sql);
+$users_list=" ";
+while($urow=sqlFetchArray($res))
+{
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+      $users_list.="<option value='".$optionId."'";
+      if ($urow['id'] == $purow['ref_providerID'])
+      {$users_list.=" selected";}
+      $users_list.=">".$uname."</option>";
+}
+if($users_list)
+return json_encode($users_list);
+else
+{
+$no_list="";
+return json_encode($no_list);
+}
+}
+else
+{
+$no_list="";
+return json_encode($no_list);
+}
+}
 
 
 
@@ -119,9 +179,14 @@ else if(isset($_GET['attPhyID']))
 {
   echo getProviderDetails($_GET['attPhyID']);
 }
-
-
-
+else if(isset($_GET['type']))
+{
+  echo getTypeUsers($_GET['type']);
+}
+else if(isset($_GET['ontype']))
+{
+  echo getTypeUsersOnLoad($_GET['ontype']);
+}
 
 
 ?>

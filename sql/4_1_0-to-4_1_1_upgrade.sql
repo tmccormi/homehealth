@@ -1018,7 +1018,7 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'vendor', 'Vendor', '6', '0', '1', '', '');
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'family', 'Family', '7', '0', '1', '', '');
 INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'self', 'Self', '8', '0', '1', '', '');
-INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'other', 'Other', '9', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'other', 'Other', '10', '0', '1', '', '');
 #EndIf
 
 
@@ -1028,7 +1028,7 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 #EndIf
 
 #IfMissingColumn patient_data type_of_referral
-ALTER TABLE patient_data ADD type_of_referral varchar(10);
+ALTER TABLE patient_data ADD type_of_referral varchar(70);
 #EndIf
 
 #IfNotRow2D layout_options field_id type_of_referral_other group_name 9Referral
@@ -1061,6 +1061,48 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 ALTER TABLE users ADD agency_area varchar(60);
 #EndIf
 
+
+#IfNotRow2D list_options list_id abook_type option_id snf
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','snf','SNF','72',0,1,'','');
+#EndIf
+
+#IfNotRow2D list_options list_id abook_type option_id alf
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','alf','ALF','74',0,1,'','');
+#EndIf
+
+#IfNotRow2D list_options list_id abook_type option_id board_care
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','board_care','Board and Care','76',0,1,'','');
+#EndIf
+
+#IfNotRow2D list_options list_id abook_type option_id family
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','family','Family','78',0,1,'','');
+#EndIf
+
+#IfNotRow2D list_options list_id abook_type option_id self
+INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`, `option_value`, `mapping`, `notes`) VALUES('abook_type','self','Self','80',0,1,'','');
+#EndIf
+
+#IfNotRow2D list_options list_id referraltype option_id internal_referrer
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('referraltype', 'internal_referrer', 'Internal Referrer', '9', '0', '1', '', '');
+#EndIf
+
+#IfNotRow2D layout_options field_id ref_providerID data_type 43
+UPDATE layout_options SET data_type=43, title="Referrer",seq=4 WHERE field_id="ref_providerID";
+#EndIf
+
+#IfNotRow3D list_options list_id referraltype option_id other seq 10
+UPDATE `list_options` SET seq=10 WHERE option_id="other" AND list_id="referraltype";
+ALTER TABLE patient_data MODIFY type_of_referral varchar(70);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id pref_other group_name 3Preferences
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'pref_other', '3Preferences', 'Other', '15','2','1','20','63','','1','3','','','Other Preferences','0');
+#EndIf
+
+#IfMissingColumn patient_data pref_other
+ALTER TABLE patient_data ADD pref_other varchar(70);
+#EndIf
 
 
 

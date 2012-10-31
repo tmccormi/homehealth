@@ -270,6 +270,28 @@ $('#form_attphy_fax').val(data.fax);
 
 })
 
+
+$('#form_type_of_referral').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'demographics_ajax.php?type='+agid,
+    dataType: 'json',
+    success: function(data) {
+
+$('#form_ref_providerID').html('<option value="0">Unassigned</option>'+data);
+
+$('#form_referral_fname').val('');
+$('#form_referral_lname').val('');
+$('#form_referral_company_name').val('');
+$('#form_referral_phone_no').val('');
+$('#form_referral_fax_no').val('');
+
+    }
+  });
+
+})
+
+
 $('#form_type_of_referral').change(function(){
 
 var typ = $(this).val();
@@ -287,6 +309,15 @@ var typ1 = $('#form_type_of_referral').val();
 if(typ1 == 'other'){
 $('#form_type_of_referral_other').removeAttr("readonly");
 }
+
+var agid=  $('#form_type_of_referral').val();
+$.ajax({
+url: 'demographics_ajax.php?ontype='+agid,
+dataType: 'json',
+success: function(data) {
+$('#form_ref_providerID').html('<option value="0">Unassigned</option>'+data);
+}
+});
 
 });
 

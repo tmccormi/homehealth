@@ -948,6 +948,13 @@ $condition = " password = '1'";
     echo "</select>";
   }
 
+  //Internal Referrer Drop Down
+  else if ($data_type == 43) {
+    echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
+    echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+    echo "</select>";
+  }
+
 
 }
 
@@ -1757,6 +1764,13 @@ function generate_display_field($frow, $currvalue) {
 
     // Internal Users (Clinicians and Physicians Only)
   else if ($data_type == 42) {
+    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
+      "WHERE id = ?", array($currvalue) );
+    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
+  }
+
+    // Internal Users (Clinicians and Physicians Only)
+  else if ($data_type == 43) {
     $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
       "WHERE id = ?", array($currvalue) );
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
