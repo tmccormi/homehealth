@@ -2119,7 +2119,7 @@ function form_validation(form_name)
 		{
 			if(oasis_therapy_pressure_ulcer_current_no_indicator==0)
 			{
-				alert('Please enter Current Number of Stage I Pressure Ulcers (M1322) **');
+				alert('Please enter Current Number of Stage I Pressure Ulcers (M1322)');
 				
 			if($('#integumentary_status').css('display') == 'none')
 			{

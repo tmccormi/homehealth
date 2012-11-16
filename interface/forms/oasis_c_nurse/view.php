@@ -118,9 +118,6 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 
 
 
-
-
-
 </style>
 
 <?php html_header_show();?>
@@ -132,7 +129,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 
 
 
-
+<!--For Form Validation--><script src="<?php echo $GLOBALS['webroot'] ?>/library/js/form_validation.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
@@ -278,7 +275,7 @@ $(document).ready(function() {
 
 <form method="post" id="submitForm"
 
-		action="<?php echo $rootdir?>/forms/oasis_c_nurse/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="oasis_c_nurse" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir?>/forms/oasis_c_nurse/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="oasis_c_nurse" enctype="multipart/form-data">
 
 
 
@@ -328,7 +325,7 @@ $(document).ready(function() {
 <ul id="oasis">
                 <li>
                     <div><a href="#" id="black">Patient Tracking Information &amp; Clinical Record Items</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-                    <ul>
+                    <ul id="patient_track_info">
 
 
 <!-- *********************  Pain & Nutrition   ******************** -->
@@ -500,10 +497,10 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 
 
 			<strong><?php xl('(M0069) Gender: ','e');?></strong>
-				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="male" 
-<?php if(patientGender("sex")=="Male") echo "checked"; ?>  ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="female" 
-<?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_c_nurse_patient_gender" id="male" value="male" 
+<?php if(patientGender("sex")=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?>  ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_c_nurse_patient_gender" id="female" value="female" 
+<?php if(patientGender("sex")=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
 			
 		</td>
 
@@ -568,13 +565,13 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 			<b><?php xl('(M0100) This Assessment is Currently Being Completed for the Following Reason: ','e');?></b>
 <br />
 <u><b><?php xl('Follow-Up ','e');?></b></u><br />
-				<label><input type="radio" name="oasis_c_nurse_follow_up" value="4" 
+				<label><input id="m0100" type="radio" name="oasis_c_nurse_follow_up" value="4" 
 <?php if($obj{"oasis_c_nurse_follow_up"}=="4") echo "checked"; ?> ><?php xl(' 4 - Recertification (follow-up) reassessment <strong>[Go to M0110]</strong>','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_follow_up" value="5" 
 <?php if($obj{"oasis_c_nurse_follow_up"}=="5") echo "checked"; ?> ><?php xl(' 5 - Other follow-up <strong>[Go to M0110]</strong>','e');?></label>
 <hr />
 			<strong><?php xl('(M0110) Episode Timing:','e') ?></strong><?php xl(' Is the Medicare home health payment episode for which this assessment will define a case mix group an "early" episode or a "later" episode in the patient"s current sequence of adjacent Medicare home health payment episodes? ','e');?><br />
-				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="1" 
+				<label><input id="m0110" type="radio" name="oasis_c_nurse_episode_timing" value="1" 
 <?php if($obj{"oasis_c_nurse_episode_timing"}=="1") echo "checked"; ?> ><?php xl(' 1 - Early','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="2" 
 <?php if($obj{"oasis_c_nurse_episode_timing"}=="2") echo "checked"; ?> ><?php xl(' 2 - Later','e');?></label><br />
@@ -1187,22 +1184,22 @@ blank in that row.','e');?>
 				<tr>
 					<td></td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_0.png" border="0" onclick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_0.png" border="0" onclick="select_pain(0)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_2.png" border="0" onclick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_2.png" border="0" onclick="select_pain(1)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_4.png" border="0" onclick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_4.png" border="0" onclick="select_pain(2)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_6.png" border="0" onclick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_6.png" border="0" onclick="select_pain(3)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_8.png" border="0" onclick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_8.png" border="0" onclick="select_pain(4)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_10.png" border="0" onclick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -1904,7 +1901,7 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
 
 <li>
                     <div><a href="#" id="black">Integumentary Status(Contd) &amp; Vital Signs</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-                    <ul>
+                    <ul id="integumentary_status">
 <!-- *********************  Integumentary Status(Contd) & Vital Signs   ******************** -->
                         <li>
 
@@ -2026,7 +2023,7 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
 	<tr>
 		<td width="50%">
 			<strong><?php xl("<u>(M1322)</u> Current Number of Stage I Pressure Ulcers: ","e");?></strong> <?php xl("Intact skin with non-blanchable redness of a localized area usually over a bony prominence. The area may be painful, firm, soft, warmer or cooler as compared to adjacent tissue.","e");?><br>
-			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="0"
+			<label><input id="m1322" type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="0"
  <?php if($obj{"oasis_c_nurse_current_ulcer_stage1"}=="0") echo "checked"; ?> >0</label> 
 			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="1"
  <?php if($obj{"oasis_c_nurse_current_ulcer_stage1"}=="1") echo "checked"; ?> >1</label> 
@@ -2087,7 +2084,7 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
 			<br><hr />
 			
 			<strong><?php xl("<u>(M1340)</u>","e");?></strong> <?php xl("Does this patient have a ","e");?> <strong><?php xl("Surgical Wound?","e");?></strong><br>
-			<label><input type="radio" name="oasis_c_nurse_surgical_wound" value="0"
+			<label><input id="m1340" type="radio" name="oasis_c_nurse_surgical_wound" value="0"
  <?php if($obj{"oasis_c_nurse_surgical_wound"}=="0") echo "checked"; ?> ><?php xl(' 0 - No <b>[Go to M1350]</b> ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_surgical_wound" value="1"
  <?php if($obj{"oasis_c_nurse_surgical_wound"}=="1") echo "checked"; ?> ><?php xl(' 1 - Yes, patient has at least one (observable) surgical wound ','e')?></label> <br>
@@ -2110,7 +2107,7 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
 			<?php xl("Does this patient have a ","e");?> 
 			<strong><?php xl(" Skin Lesion or Open Wound, ","e");?></strong> 
 			<?php xl("excluding bowel ostomy, other than those described above ","e");?><u><?php xl("that is receiving intervention","e");?></u><?php xl(" by the home health agency?","e");?><br>
-			<label><input type="radio" name="oasis_c_nurse_skin_lesion" value="0"
+			<label><input id="m1350" type="radio" name="oasis_c_nurse_skin_lesion" value="0"
  <?php if($obj{"oasis_c_nurse_skin_lesion"}=="0") echo "checked"; ?> ><?php xl(' 0 - No ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_skin_lesion" value="1"
  <?php if($obj{"oasis_c_nurse_skin_lesion"}=="1") echo "checked"; ?> ><?php xl(' 1 - Yes ','e')?></label> <br>
@@ -2787,7 +2784,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 
 			<strong><?php xl("(M1620)","e");?></strong>
 			<strong><?php xl(" Bowel Incontinence Frequency:","e");?></strong> <br />
-			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="0"
+			<label><input id="m1620" type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="0"
  <?php if($obj{"oasis_c_nurse_elimination_bowel_incontinence"}=="0") echo "checked"; ?> ><?php xl(' 0 - Very rarely or never has bowel incontinence','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="1"
  <?php if($obj{"oasis_c_nurse_elimination_bowel_incontinence"}=="1") echo "checked"; ?> ><?php xl(' 1 - Less than once weekly','e')?></label> <br>
@@ -5272,7 +5269,7 @@ health or to facilitate treatment or to prevent deterioration of the patients he
 
 </ul>
 
-<a href="javascript:top.restoreSession();document.oasis_c_nurse.submit();" id="btn_save" 
+<a href="javascript:top.restoreSession();form_validation('oasis_c_nurse');" 
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;"

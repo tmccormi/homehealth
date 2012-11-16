@@ -38,7 +38,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
 
-
+<!--For Form Validation--><script src="<?php echo $GLOBALS['webroot'] ?>/library/js/form_validation.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
@@ -184,7 +184,7 @@ function calc_avg()
 <ul id="oasis">
                 <li>
                     <div><a href="#" id="black">Patient Tracking Information &amp; Clinical Record Items</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-                    <ul>
+                    <ul id="patient_track_info">
 
 
 <!-- *********************  Pain & Nutrition   ******************** -->
@@ -344,10 +344,10 @@ function calc_avg()
 <input type="text" name="oasis_c_nurse_birth_date" value="<?php patientName("DOB")?>" readonly="true">
 					<br>
 			<strong><?php xl('(M0069) Gender: ','e');?></strong>
-				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="male" 
-<?php if(patientGender("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_c_nurse_patient_gender" value="female" 
-<?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_c_nurse_patient_gender" id="male" value="male" 
+<?php if(patientGender("sex")=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_c_nurse_patient_gender" id="female" value="female" 
+<?php if(patientGender("sex")=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
 			
 		</td>
 
@@ -394,11 +394,11 @@ function calc_avg()
 <b><?php xl('(M0100) This Assessment is Currently Being Completed for the Following Reason: ','e');?></b>
 <br />
 <u><b><?php xl('Follow-Up ','e');?></b></u><br />
-				<label><input type="radio" name="oasis_c_nurse_follow_up" value="4"><?php xl(' 4 - Recertification (follow-up) reassessment <strong>[Go to M0110]</strong>','e');?></label><br />
+				<label><input id="m0100" type="radio" name="oasis_c_nurse_follow_up" value="4"><?php xl(' 4 - Recertification (follow-up) reassessment <strong>[Go to M0110]</strong>','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_follow_up" value="5"><?php xl(' 5 - Other follow-up <strong>[Go to M0110]</strong>','e');?></label>
 <hr />
 			<strong><?php xl('(M0110) Episode Timing:','e') ?></strong><?php xl(' Is the Medicare home health payment episode for which this assessment will define a case mix group an "early" episode or a "later" episode in the patient"s current sequence of adjacent Medicare home health payment episodes? ','e');?><br />
-				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="1"><?php xl(' 1 - Early','e');?></label><br />
+				<label><input id="m0110" type="radio" name="oasis_c_nurse_episode_timing" value="1"><?php xl(' 1 - Early','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="2"><?php xl(' 2 - Later','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="UK"><?php xl(' UK - Unknown','e');?></label><br />
 				<label><input type="radio" name="oasis_c_nurse_episode_timing" value="NA"><?php xl(' NA - Not Applicable: No Medicare case mix group to be defined by this assessment.','e');?></label>
@@ -976,22 +976,22 @@ blank in that row.','e');?>
 				<tr align="center">
 					<td></td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_0.png" border="0" onclick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_0.png" border="0" onclick="select_pain(0)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_2.png" border="0" onclick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_2.png" border="0" onclick="select_pain(1)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_4.png" border="0" onclick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_4.png" border="0" onclick="select_pain(2)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_6.png" border="0" onclick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_6.png" border="0" onclick="select_pain(3)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_8.png" border="0" onclick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_8.png" border="0" onclick="select_pain(4)">
 					</td>
 					<td>
-						<img src="../../clickmap/pain_scale/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_10.png" border="0" onclick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -1623,7 +1623,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 
 <li>
                     <div><a href="#" id="black">Integumentary Status(Contd) &amp; Vital Signs</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-                                       <ul>
+                                       <ul id="integumentary_status">
 <!-- *********************  Integumentary Status(Contd) & Vital Signs   ******************** -->
                         <li>
 
@@ -1745,7 +1745,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 	<tr>
 		<td width="50%">
 			<strong><?php xl("<u>(M1322)</u> Current Number of Stage I Pressure Ulcers: ","e");?></strong> <?php xl("Intact skin with non-blanchable redness of a localized area usually over a bony prominence. The area may be painful, firm, soft, warmer or cooler as compared to adjacent tissue.","e");?><br>
-			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="0">0</label> 
+			<label><input id="m1322" type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="0">0</label> 
 			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="1">1</label> 
 			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="2">2</label> 
 			<label><input type="radio" name="oasis_c_nurse_current_ulcer_stage1" value="3">3</label> 
@@ -1783,7 +1783,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			<br><hr />
 			
 			<strong><?php xl("<u>(M1340)</u>","e");?></strong> <?php xl("Does this patient have a ","e");?> <strong><?php xl("Surgical Wound?","e");?></strong><br>
-			<label><input type="radio" name="oasis_c_nurse_surgical_wound" value="0"><?php xl(' 0 - No <b>[Go to M1350]</b> ','e')?></label> <br>
+			<label><input id="m1340" type="radio" name="oasis_c_nurse_surgical_wound" value="0"><?php xl(' 0 - No <b>[Go to M1350]</b> ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_surgical_wound" value="1"><?php xl(' 1 - Yes, patient has at least one (observable) surgical wound ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_surgical_wound" value="2"><?php xl(' 2 - Surgical wound known but not observable due to non-removable dressing <b>[Go to M1350]</b> ','e')?></label> <br>
 			<br><hr />
@@ -1799,7 +1799,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			<?php xl("Does this patient have a ","e");?> 
 			<strong><?php xl(" Skin Lesion or Open Wound, ","e");?></strong> 
 			<?php xl("excluding bowel ostomy, other than those described above ","e");?><u><?php xl("that is receiving intervention","e");?></u><?php xl(" by the home health agency?","e");?><br>
-			<label><input type="radio" name="oasis_c_nurse_skin_lesion" value="0"><?php xl(' 0 - No ','e')?></label> <br>
+			<label><input id="m1350" type="radio" name="oasis_c_nurse_skin_lesion" value="0"><?php xl(' 0 - No ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_skin_lesion" value="1"><?php xl(' 1 - Yes ','e')?></label> <br>
 			<br><br>
 		</td>
@@ -2190,7 +2190,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<strong><?php xl("(M1620)","e");?></strong>
 			<strong><?php xl(" Bowel Incontinence Frequency:","e");?></strong> <br />
-			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="0"><?php xl(' 0 - Very rarely or never has bowel incontinence','e')?></label> <br>
+			<label><input id="m1620" type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="0"><?php xl(' 0 - Very rarely or never has bowel incontinence','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="1"><?php xl(' 1 - Less than once weekly','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="2"><?php xl(' 2 - One to three times weekly ','e')?></label> <br>
 			<label><input type="radio" name="oasis_c_nurse_elimination_bowel_incontinence" value="3"><?php xl(' 3 - Four to six times weekly','e')?></label> <br>
@@ -4126,7 +4126,7 @@ health or to facilitate treatment or to prevent deterioration of the patients he
 
 </ul>
 
-<a href="javascript:top.restoreSession();document.oasis_c_nurse.submit();" id="btn_save" 
+<a href="javascript:top.restoreSession();form_validation('oasis_c_nurse');" id="btn_save" 
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;"

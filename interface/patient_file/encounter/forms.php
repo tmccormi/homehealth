@@ -299,6 +299,8 @@ if (is_numeric($pid)) {
                 "formname=" . $formdir . "&id=" . $iter['form_id'] .
                 "' onclick='top.restoreSession()' class='css_button_small'><span>" . xl('Edit') . "</span></a>";
 				
+		if($formdir == 'oasis_c_nurse' || $formdir == 'oasis_discharge' || $formdir == 'oasis_nursing_soc' || $formdir == 'oasis_pt_soc' || $formdir == 'oasis_therapy_rectification' || $formdir == 'oasis_transfer')
+		{
 		echo "<a target='".
                 ($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
                 "' href='$rootdir/reports/b1/oasis_interface.php?" .
@@ -306,6 +308,7 @@ if (is_numeric($pid)) {
                 "&form_name=" . $formdir . "&table_name=forms_" . $formdir .
 				"&form_id=" . $iter['form_id'] .
                 "' onclick='top.restoreSession()' class='css_button_small'><span>" . xl('Generate B1 String') . "</span></a>";
+		}
 
         if (acl_check('admin', 'super') ) {
             if ( $formdir != 'newpatient') {
