@@ -34,6 +34,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+<!--For Form Validaion--><script src="<?php echo $GLOBALS['webroot'] ?>/library/js/form_validation.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
 <script>
 	$(document).ready(function(){
@@ -161,7 +162,7 @@ $("#nutrition_total").val(tot);
 <ul id="oasis">
 	<li>
 		<div><a href="#" id="black">Patient Tracking Information, Clinical Record Items</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="patient_track_info">
 				<li>	
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -273,8 +274,8 @@ $("#nutrition_total").val(tot);
 				<input type='text' size='10' name='oasis_therapy_birth_date' value="<?php patientName("DOB");?>" readonly /> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender: ','e');?></strong>
-				<label><input type="radio" name="oasis_therapy_patient_gender" value="male" <?php if(patientGender("sex")=="Male") echo "checked"; ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_therapy_patient_gender" value="female" <?php if(patientGender("sex")=="Female") echo "checked"; ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_therapy_patient_gender" id="male" value="male" <?php if(patientGender("sex")=="Male"){echo "checked='checked'";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_therapy_patient_gender" id="female" value="female" <?php if(patientGender("sex")=="Female"){echo "checked='checked'";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
 			
 		</td>
 		<td valign="top">
@@ -298,7 +299,7 @@ $("#nutrition_total").val(tot);
 			<br>
 			<hr>
 			<strong><?php xl('<u>(M0100)</u> This Assessment is Currently Being Completed for the Following Reason: <u>Discharge from Agency - Not to an Inpatient Facility</u> ','e');?></strong><br>
-				<label><input type="radio" name="oasis_therapy_follow_up" value="8"><?php xl(' 8 - Death at home <b><i>[ Go to M0903 ]</i></b>','e');?></label><br>
+				<label><input type="radio" id="m0100" name="oasis_therapy_follow_up" value="8"><?php xl(' 8 - Death at home <b><i>[ Go to M0903 ]</i></b>','e');?></label><br>
 				<label><input type="radio" name="oasis_therapy_follow_up" value="9"><?php xl(' 9 - Discharge from agency <b><i>[ Go to M1040 ]</i></b>','e');?></label>
 		</td>
 	</tr>
@@ -308,7 +309,7 @@ $("#nutrition_total").val(tot);
 		</li>
 		<li>
 			<div><a href="#" id="black">Patient History and diagnosis, Sensory Status</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="patient_history_diagnosis">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -319,13 +320,13 @@ $("#nutrition_total").val(tot);
 	<tr>
 		<td>
 			<?php xl('<b><u>(M1040)</u> Influenza Vaccine:</b> Did the patient receive the influenza vaccine from your agency for this year\'s influenza season (October 1 through March 31) during this episode of care? ','e');?><br>
-			<label><input type="radio" name="oasis_influenza_vaccine" value="0"><?php xl(' 0 - No','e');?></label><br>
+			<label><input type="radio" id="m1040" name="oasis_influenza_vaccine" value="0"><?php xl(' 0 - No','e');?></label><br>
 			<label><input type="radio" name="oasis_influenza_vaccine" value="1"><?php xl(' 1 - Yes <b><i>[ Go to M1050 ]</i></b>','e');?></label><br>
 			<label><input type="radio" name="oasis_influenza_vaccine" value="2"><?php xl(' 2 - NA - Does not apply because entire episode of care (SOC/ROC to Transfer/Discharge) is outside this influenza season. <b><i>[ Go to M1050 ]</i></b>','e');?></label><br>
 		</td>
 		<td valign="top">
 			<?php xl('<b><u>(M1050)</u> Pneumococcal Vaccine:</b> Did the patient receive pneumococcal polysaccharide vaccine (PPV) from your agency during this episode of care (SOC/ROC to Transfer/Discharge)?','e');?><br>
-			<label><input type="radio" name="oasis_pneumococcal_vaccine" value="0"><?php xl(' 0 - No','e');?></label><br>
+			<label><input type="radio" id="m1050" name="oasis_pneumococcal_vaccine" value="0"><?php xl(' 0 - No','e');?></label><br>
 			<label><input type="radio" name="oasis_pneumococcal_vaccine" value="1"><?php xl(' 1 - Yes <b><i>[ Go to M1500 at TRN; Go to M1230 at DC ]</i></b>','e');?></label><br>
 		</td>
 	</tr>
@@ -357,7 +358,7 @@ $("#nutrition_total").val(tot);
 	<tr>
 		<td colspan="2">
 			<strong><?php xl('<u>(M1230)</u> Speech and Oral (Verbal) Expression of Language (in patient\'s own language):','e');?></strong><br>
-			<label><input type="radio" name="oasis_speech_and_oral" value="0"><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
+			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0"><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="1"><?php xl(' 1 - Minimal difficulty in expressing ideas and needs (may take extra time; makes occasional errors in word choice, grammar or speech intelligibility; needs minimal prompting or assistance).','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="2"><?php xl(' 2 - Expresses simple ideas or needs with moderate difficulty (needs prompting or assistance, errors in word choice, organization or speech intelligibility). Speaks in phrases or short sentences.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="3"><?php xl(' 3 - Has severe difficulty expressing basic ideas or needs and requires maximal assistance or guessing by listener. Speech limited to single words or short phrases.','e');?></label><br>
@@ -901,7 +902,7 @@ $("#nutrition_total").val(tot);
 		</li>
 		<li>
 			<div><a href="#" id="black">Integumentary Status, Respiratory Status, Cardiac Status, Elimination Status</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="integumentary_status">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -918,7 +919,18 @@ $("#nutrition_total").val(tot);
 		<td>
 			<strong><?php xl('<u>(M1307)</u> The Oldest Non-epithelialized Stage II Pressure Ulcer </strong> that is present at discharge','e'); ?><br>
 			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="1"><?php xl(' 1 - Was present at the most recent SOC/ROC assessment','e')?></label><br>
-			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="2"><?php xl(' 2 - Developed since the most recent SOC/ROC assessment: record date pressure ulcer first identified:','e')?></label><br>
+			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="2"><?php xl(' 2 - Developed since the most recent SOC/ROC assessment: record date pressure ulcer first identified:','e')?></label>
+<input type='text' size='10' name='oasis_therapy_integumentary_status_stage2_date' id='oasis_therapy_integumentary_status_stage2_date' 
+						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+						height='22' id='img_curr_date79' border='0' alt='[?]'
+						style='cursor: pointer; cursor: hand'
+						title='<?php xl('Click here to choose a date','e'); ?>'> 
+						<script	LANGUAGE="JavaScript">
+							Calendar.setup({inputField:"oasis_therapy_integumentary_status_stage2_date", ifFormat:"%Y-%m-%d", button:"img_curr_date79"});
+						</script>
+
+<br>
 			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="NA"><?php xl(' NA - No non-epithelialized Stage II pressure ulcers are present at discharge','e')?></label>
 		</td>
 	</tr>
@@ -1438,7 +1450,7 @@ $("#nutrition_total").val(tot);
 			<br>
 			<hr>
 			<strong><?php xl('<u>(M1320)</u> Status of Most Problematic (Observable) Pressure Ulcer:','e');?></strong><br>
-			<label><input type="radio" name="oasis_therapy_pressure_ulcer_problematic_status" value="0"><?php xl(' 0 - Newly epithelialized','e')?></label><br>
+			<label><input id="m1320" type="radio" name="oasis_therapy_pressure_ulcer_problematic_status" value="0"><?php xl(' 0 - Newly epithelialized','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_problematic_status" value="1"><?php xl(' 1 - Fully granulating','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_problematic_status" value="2"><?php xl(' 2 - Early/partial granulation','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_problematic_status" value="3"><?php xl(' 3 - Not healing','e')?></label><br>
@@ -1446,7 +1458,7 @@ $("#nutrition_total").val(tot);
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1322)</u>Current Number of Stage I Pressure Ulcers:</b> Intact skin with non-blanchable redness of a localized area usually over a bony prominence. The area may be painful, firm, soft, warmer or cooler as compared to adjacent tissue.','e');?><br>
-			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="0"><?php xl(' 0 ','e')?></label>
+			<label><input type="radio" id="m1322" name="oasis_therapy_pressure_ulcer_current_no" value="0"><?php xl(' 0 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="1"><?php xl(' 1 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="2"><?php xl(' 2 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="3"><?php xl(' 3 ','e')?></label>
@@ -1486,7 +1498,7 @@ $("#nutrition_total").val(tot);
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1340)</u></b> Does this patient have a <b>Surgical Wound?</b>','e');?><br>
-			<label><input type="radio" name="oasis_therapy_surgical_wound" value="0"><?php xl(' 0 - No <b><i>[ Go to M1350 ]</i></b> ','e')?></label><br>
+			<label><input type="radio" id="m1340" name="oasis_therapy_surgical_wound" value="0"><?php xl(' 0 - No <b><i>[ Go to M1350 ]</i></b> ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_surgical_wound" value="1"><?php xl(' 1 - Yes, patient has at least one (observable) surgical wound ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_surgical_wound" value="2"><?php xl(' 2 - Surgical wound known but not observable due to non-removable dressing <b><i>[ Go to M1350 ] </i></b>','e')?></label><br>
 			
@@ -1503,7 +1515,7 @@ $("#nutrition_total").val(tot);
 	<tr>
 		<td>
 			<?php xl('<b><u>(M1350)</u></b> Does this patient have a <b>Skin Lesion or Open Wound</b>, excluding bowel ostomy, other than those described above <u>that is receiving intervention</u> by the home health agency?','e');?><br>
-			<label><input type="radio" name="oasis_therapy_skin_lesion" value="0"><?php xl(' 0 - No ','e')?></label><br>
+			<label><input type="radio" id="m1350" name="oasis_therapy_skin_lesion" value="0"><?php xl(' 0 - No ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_skin_lesion" value="1"><?php xl(' 1 - Yes ','e')?></label><br>
 			<br>
 			<hr>
@@ -1574,7 +1586,7 @@ $("#nutrition_total").val(tot);
 			<center><strong><?php xl("CARDIAC STATUS","e");?></strong></center>
 			<strong><?php xl("<u>(M1500)</u>Symptoms in Heart Failure Patients:","e");?></strong>
 			<?php xl(" If patient has been diagnosed with heart failure, did the patient exhibit symptoms indicated by clinical heart failure guidelines (including dyspnea, orthopnea, edema, or weight gain) at any point since the previous OASIS assessment? ","e");?><br>
-			<label><input type="radio" name="oasis_cardiac_status_symptoms" value="0"><?php xl(' 0 - No <b><i>[ Go to M2004 at TRN; Go to M1600 at DC ]</i></b> ','e')?></label><br>
+			<label><input type="radio" id="m1500" name="oasis_cardiac_status_symptoms" value="0"><?php xl(' 0 - No <b><i>[ Go to M2004 at TRN; Go to M1600 at DC ]</i></b> ','e')?></label><br>
 			<label><input type="radio" name="oasis_cardiac_status_symptoms" value="1"><?php xl(' 1 - Yes ','e')?></label><br>
 			<label><input type="radio" name="oasis_cardiac_status_symptoms" value="2"><?php xl(' 2 - Not assessed <b><i>[Go to M2004 at TRN; Go to M1600 at DC ]</i></b> ','e')?></label><br>
 			<label><input type="radio" name="oasis_cardiac_status_symptoms" value="NA"><?php xl(' NA - Patient does not have diagnosis of heart failure <b><i>[Go to M2004 at TRN; Go to M1600 at DC ]</i></b> ','e')?></label><br>
@@ -1594,7 +1606,7 @@ $("#nutrition_total").val(tot);
 			<hr>
 			<center><strong><?php xl("ELIMINATION STATUS","e");?></strong></center>
 			<?php xl("<b><u>(M1600)</u></b> Has this patient been treated for a <b>Urinary Tract Infection</b> in the past 14 days?","e");?><br>
-			<label><input type="radio" name="oasis_elimination_status_tract_infection" value="0"><?php xl(' 0 - No ','e')?></label> <br>
+			<label><input type="radio" id="m1600" name="oasis_elimination_status_tract_infection" value="0"><?php xl(' 0 - No ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_tract_infection" value="1"><?php xl(' 1 - Yes ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_tract_infection" value="NA"><?php xl(' NA - Patient on prophylactic treatment ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_tract_infection" value="UK"><?php xl(' UK - Unknown <b>[Omit "UK" option on DC]</b> ','e')?></label> <br>
@@ -1618,7 +1630,7 @@ $("#nutrition_total").val(tot);
 			<br>
 			<hr>
 			<strong><?php xl("<u>(M1620)</u> Bowel Incontinence Frequency:","e");?></strong><br>
-			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="0"><?php xl(' 0 - Very rarely or never has bowel incontinence ','e')?></label> <br>
+			<label><input type="radio" id="m1620" name="oasis_elimination_status_bowel_incontinence" value="0"><?php xl(' 0 - Very rarely or never has bowel incontinence ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="1"><?php xl(' 1 - Less than once weekly ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="2"><?php xl(' 2 - One to three times weekly ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="3"><?php xl(' 3 - Four to six times weekly ','e')?></label> <br>
@@ -1709,7 +1721,7 @@ $("#nutrition_total").val(tot);
 		</li>
 		<li>
 			<div><a href="#" id="black">ADL/IADLs, Medications</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="adl_iadls">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -1848,7 +1860,7 @@ $("#nutrition_total").val(tot);
 			<center><strong><?php xl('MEDICATIONS','e')?></strong></center>
 			<strong><?php xl("<u>(M2004)</u>","e");?></strong>
 			<?php xl("<strong>Medication Intervention: </strong> If there were any clinically significant medication issues since the previous OASIS assessment, was a physician or the physician-designee contacted within one calendar day of the assessment to resolve clinically significant medication issues, including reconciliation?","e");?><br />
-			<label><input type="radio" name="oasis_medication_intervention" value="0"><?php xl(' 0 - No','e')?></label> <br>
+			<label><input type="radio" id="m2004" name="oasis_medication_intervention" value="0"><?php xl(' 0 - No','e')?></label> <br>
 			<label><input type="radio" name="oasis_medication_intervention" value="1"><?php xl(' 1 - Yes','e')?></label> <br>
 			<label><input type="radio" name="oasis_medication_intervention" value="NA"><?php xl(' NA - No clinically significant medication issues identified since the previous OASIS assessment','e')?></label> <br>
 			
@@ -1893,7 +1905,7 @@ $("#nutrition_total").val(tot);
 		</li>
 		<li>
 			<div><a href="#" id="black">Care Management, Emergent Care, Data items collected</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="care_management">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -2199,7 +2211,7 @@ $("#nutrition_total").val(tot);
 						<?php xl("Diabetic foot care including monitoring for the presence of skin lesions on the lower extremities and patient/caregiver education on proper foot care","e");?>
 					</td>
 					<td>
-						<label><input type="radio" name="oasis_data_items_a" value="0">0</label>
+						<label><input type="radio" id="m2400" name="oasis_data_items_a" value="0">0</label>
 					</td>
 					<td>
 						<label><input type="radio" name="oasis_data_items_a" value="1">1</label>
@@ -2335,6 +2347,46 @@ $("#nutrition_total").val(tot);
 			
 		</td>
 	</tr>
+	<tr>
+<td valign="top"><strong>
+<?php xl("(M2430)","e");?></strong><strong><?php xl("Reason for Hospitalization:","e");?></strong><?php xl(" For what reason(s) did the patient require hospitalization? ","e");?><strong><?php xl("(Mark all that apply.)","e");?></strong><br>
+<input type="checkbox" id="m2430" name="Reason_for_Hospitalization[]" value="Improper medication administration, medication side effects, toxicity, anaphylaxis" /> <?php xl("1 - Improper medication administration, medication side effects, toxicity, anaphylaxis","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Injury caused by fall" /> <?php xl("2 - Injury caused by fall","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Respiratory infection (e.g., pneumonia, bronchitis)" /> <?php xl("3 - Respiratory infection (e.g., pneumonia, bronchitis)","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Other respiratory problem" /> <?php xl("4 - Other respiratory problem","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Heart failure (e.g., fluid overload)" /> <?php xl("5 - Heart failure (e.g., fluid overload)","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Cardiac dysrhythmia (irregular heartbeat)" /> <?php xl("6 - Cardiac dysrhythmia (irregular heartbeat)","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Myocardial infarction or chest pain" /> <?php xl("7 - Myocardial infarction or chest pain","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Other heart disease" /> <?php xl("8 - Other heart disease","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Stroke (CVA) or TIA" /> <?php xl("9 - Stroke (CVA) or TIA","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Hypo/Hyperglycemia, diabetes out of control" /> <?php xl("10 - Hypo/Hyperglycemia, diabetes out of control","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="GI bleeding, obstruction, constipation, impaction" /> <?php xl("11 - GI bleeding, obstruction, constipation, impaction","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Dehydration, malnutrition" /> <?php xl("12 - Dehydration, malnutrition","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Urinary tract infection" /> <?php xl("13 - Urinary tract infection","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="IV catheter-related infection or complication" /> <?php xl("14 - IV catheter-related infection or complication","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Wound infection or deterioration" /> <?php xl("15 - Wound infection or deterioration","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Uncontrolled pain" /> <?php xl("16 - Uncontrolled pain","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Acute mental/behavioral health problem" /> <?php xl("17 - Acute mental/behavioral health problem","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Deep vein thrombosis, pulmonary embolus" /> <?php xl("18 - Deep vein thrombosis, pulmonary embolus","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Scheduled treatment or procedure" /> <?php xl("19 - Scheduled treatment or procedure","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="Other than above reasons" /> <?php xl("20 - Other than above reasons","e");?><br>
+<input type="checkbox" name="Reason_for_Hospitalization[]" value="UK - Reason unknown" /> <?php xl("UK - Reason unknown","e");?>
+<strong><i><?php xl("[ Go to M0903 ]","e");?></i></strong>
+</td>
+
+<td valign="top"><strong>
+<?php xl("(M2440)","e");?></strong><?php xl("For what ","e");?><strong><?php xl("Reason(s)","e");?></strong><?php xl(" was the patient ","e");?><strong><?php xl("Admitted","e");?></strong><?php xl(" to a ","e");?><strong><?php xl("Nursing Home? (Mark all that apply.)","e");?></strong><br>
+<input type="checkbox" id="m2440" name="patient_Admitted_to_a_Nursing_Home[]" value="Therapy services" /> <?php xl("1 - Therapy services","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Respite care" /> <?php xl("2 - Respite care","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Hospice care" /> <?php xl("3 - Hospice care","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Permanent placement" /> <?php xl("4 - Permanent placement","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Unsafe for care at home" /> <?php xl("5 - Unsafe for care at home","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Other" /> <?php xl("6 - Other","e");?><br>
+<input type="checkbox" name="patient_Admitted_to_a_Nursing_Home[]" value="Unknown" /> <?php xl("UK - Unknown","e");?>
+<strong><i><?php xl("[ Go to M0903 ]","e");?></i></strong>
+</td>
+	</tr>
+
 </table>
 				</li>
 			</ul>
@@ -2800,7 +2852,7 @@ $("#nutrition_total").val(tot);
 		</li>
 		<li>
 			<div><a href="#" id="black">Summary</a> <span id="mod"><a href="#">(Expand)</a></span></div>
-			<ul>
+			<ul id="summary">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
 	<tr>
@@ -3099,7 +3151,7 @@ $("#nutrition_total").val(tot);
 		</li>
 </ul>
 <!--<a id="btn_save" href="javascript:void(0)" class="link_submit"><?php xl(' [Save]','e')?></a>-->
-<a id="btn_save" href="javascript:top.restoreSession();document.oasis_discharge.submit();"
+<a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_discharge');"
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;" onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

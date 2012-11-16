@@ -66,7 +66,7 @@ if($_POST["func"]=="Select")
 		<tr>
 			<td><?php echo $row["pid"];?></td>
 			<td><?php echo $row["user"];?></td>
-			<td><?php echo $row["form_name"];?></td>
+			<td><?php echo ucwords(str_replace("_"," ",$row["form_name"]));?></td>
 			<td><?php echo $row["encounter"];?></td>
 			<td><?php echo $row["analyse"];?></td>
 			<td><?php echo $row["analyse_pdf"];?></td>

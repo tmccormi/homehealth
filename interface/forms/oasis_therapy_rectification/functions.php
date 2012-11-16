@@ -47,7 +47,7 @@ function VisitDate()
         $select= sqlStatement("select date from form_encounter where pid=" .$_SESSION['pid']." and encounter=".$GLOBALS['encounter']);
         while($Row=sqlFetchArray($select))
         {
-          $value= $Row['date'];
+          $value= date('Y-m-d',strtotime($Row['date']));
         echo $value;
         }
 }  

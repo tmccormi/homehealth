@@ -21,6 +21,10 @@ formHeader("Form: oasis_transfer");
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+<!--For Form Validaion--><script src="<?php echo $GLOBALS['webroot'] ?>/library/js/form_validation.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
 </head>
 
 <body>
@@ -53,6 +57,23 @@ formHeader("Form: oasis_transfer");
 </tr>
 <tr><td><hr></td></tr>
 <tr>
+<td>
+<strong>
+<?php xl('<u>(M0030)</u> Start of Care Date:','e');?></strong>
+				<input type='text' size='10' name='oasis_therapy_soc_date' id='oasis_therapy_soc_date' 
+					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+					height='22' id='img_curr_date2' border='0' alt='[?]'
+					style='cursor: pointer; cursor: hand'
+					title='<?php xl('Click here to choose a date','e'); ?>'> 
+					<script	LANGUAGE="JavaScript">
+						Calendar.setup({inputField:"oasis_therapy_soc_date", ifFormat:"%Y-%m-%d", button:"img_curr_date2"});
+					</script>
+					<br>
+</td>
+</tr>
+<tr><td><hr></td></tr>
+<tr>
 <td><b><u><?php xl('(M0090)','e')?></u> <?php xl('Date Assessment Completed','e')?> </b>
 
 <input type="text" name="oasistransfer_Assessment_Completed_Date" size="10" title='<?php xl('yyyy-mm-dd Assessment Completed Date','e'); ?>'
@@ -71,7 +92,7 @@ formHeader("Form: oasis_transfer");
 </tr>
 <tr><td><b><u><?php xl('Transfer to an Inpatient Facility','e');?></u></b></td></tr>
 <tr><td>
-<input type="radio" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency">
+<input type="radio" id="m0100" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency">
 <?php xl('6-Transfered to an InPatient Facility-patient not discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Discharged_from_Agency">
 <?php xl('7-Transfered to an InPatient Facility-patient discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
@@ -84,7 +105,7 @@ formHeader("Form: oasis_transfer");
 <tr><td><b><u><?php xl('(M1040)','e')?></u> 
 <?php xl("Influenza Vaccine:",'e')?></b> <?php xl("Did the patient receive the influenza vaccine from your agency for this 
 year's influenza season (October 1 through March 31) during this episode of care?",'e')?></td></tr>
-<tr><td> <input type="radio" name="oasistransfer_Influenza_Vaccine_received" value="No"/>
+<tr><td> <input type="radio" id="m1040" name="oasistransfer_Influenza_Vaccine_received" value="No"/>
 <?php xl('0 - No','e')?> <br/>
 <input type="radio" name="oasistransfer_Influenza_Vaccine_received" value="Yes"/>
 <?php xl('1 - Yes','e')?> <b>
@@ -121,7 +142,7 @@ influenza vaccine from your agency during this episode of care, state reason:','
 <b><u><?php xl('(M1050)','e')?></u><?php xl('Pneumococcal Vaccine:','e')?></b><?php xl('Did the patient receive pneumococcal polysaccharide
 vaccine (PPV) from your agency during this episode of care (SOC/ROC to
 Transfer/Discharge)?','e')?><br/>
-<input type="radio" name="oasistransfer_Pneumococcal_Vaccine_Recieved" value="No"/>
+<input type="radio" id="m1050" name="oasistransfer_Pneumococcal_Vaccine_Recieved" value="No"/>
 <?php xl('0 - No','e')?><br/>
 <input type="radio" name="oasistransfer_Pneumococcal_Vaccine_Recieved" value="Yes"/>
 <?php xl('1 - Yes','e')?><b>
@@ -228,7 +249,7 @@ physician-ordered plan of care AND implemented?','e')?>
 
 <tr><td valign="top"><?php xl('a','e')?></td><td valign="top"><?php xl('Diabetic foot care including monitoring for the presence of skin lesions on the lower
 extremities and patient/caregiver education on proper foot care','e')?></td><td>
-<input type="radio" name="oasistransfer_Diabetic_foot_care" value="No"/><center><?php xl('0','e')?></center></td>
+<input type="radio" id="m2400" name="oasistransfer_Diabetic_foot_care" value="No"/><center><?php xl('0','e')?></center></td>
 <td><input type="radio" name="oasistransfer_Diabetic_foot_care" value="Yes"/><center><?php xl('1','e')?></center></td>
 <td><input type="radio" name="oasistransfer_Diabetic_foot_care" value="NA"/><center><?php xl('na','e')?></center></td>
 <td valign="top"><?php xl('Patient is not diabetic or is bilateral amputee','e')?></td></tr>
@@ -296,13 +317,25 @@ Transfer/Discharge), state reason:','e')?></td></tr>
 </td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td><hr/></td></tr>
+<tr>
+		<td colspan="2">
+			<strong><?php xl('<u>(M1230)</u> Speech and Oral (Verbal) Expression of Language (in patient\'s own language):','e');?></strong><br>
+			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0"><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
+			<label><input type="radio" name="oasis_speech_and_oral" value="1"><?php xl(' 1 - Minimal difficulty in expressing ideas and needs (may take extra time; makes occasional errors in word choice, grammar or speech intelligibility; needs minimal prompting or assistance).','e');?></label><br>
+			<label><input type="radio" name="oasis_speech_and_oral" value="2"><?php xl(' 2 - Expresses simple ideas or needs with moderate difficulty (needs prompting or assistance, errors in word choice, organization or speech intelligibility). Speaks in phrases or short sentences.','e');?></label><br>
+			<label><input type="radio" name="oasis_speech_and_oral" value="3"><?php xl(' 3 - Has severe difficulty expressing basic ideas or needs and requires maximal assistance or guessing by listener. Speech limited to single words or short phrases.','e');?></label><br>
+			<label><input type="radio" name="oasis_speech_and_oral" value="4"><?php xl(' 4 - <u>Unable</u> to express basic needs even with maximal prompting or assistance but is not comatose or unresponsive (e.g., speech is nonsensical or unintelligible).','e');?></label><br>
+			<label><input type="radio" name="oasis_speech_and_oral" value="5"><?php xl(' 5 - Patient nonresponsive or unable to speak.','e');?></label><br>
+		</td>
+	</tr>
+<tr><td><hr/></td></tr>
 <tr><td><center><b><?php xl('CARDIAC STATUS','e')?></b></center></td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td><b><u><?php xl('(M1500)','e')?></u><?php xl('Symptoms in Heart Failure Patients:','e')?></b><?php xl('If patient has been diagnosed with
 heart failure, did the patient exhibit symptoms indicated by clinical heart failure guidelines (including dyspnea, orthopnea, edema, 
 or weight gain) at any point since the previous OASIS assessment?','e')?></td></tr>
 <tr><td> 
-<input type="radio" name="oasistransfer_Cardiac_Status" value="patient_didnot_Exhibit_Symptoms"/>
+<input type="radio" id="m1500" name="oasistransfer_Cardiac_Status" value="patient_didnot_Exhibit_Symptoms"/>
 <?php xl('0 - No','e')?>&nbsp;<b><?php xl('[ Go to M2004 at TRN; Go to M1600 at DC ]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Cardiac_Status" value="patient_Exhibited_Symptoms"/>
 <?php xl('1-Yes','e')?><br/>
@@ -338,6 +371,15 @@ change in visit frequency, telehealth, etc.)','e')?><br/>
 </td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td><hr/></td></tr>
+<tr><td>
+<center><strong><?php xl("ELIMINATION STATUS","e");?></strong></center>
+<?php xl("<b><u>(M1600)</u></b> Has this patient been treated for a <b>Urinary Tract Infection</b> in the past 14 days?","e");?><br>
+<label><input type="radio" id="m1600" name="oasis_elimination_status_tract_infection" value="0"><?php xl(' 0 - No ','e')?></label> <br>
+<label><input type="radio" name="oasis_elimination_status_tract_infection" value="1"><?php xl(' 1 - Yes ','e')?></label> <br>
+<label><input type="radio" name="oasis_elimination_status_tract_infection" value="NA"><?php xl(' NA - Patient on prophylactic treatment ','e')?></label> <br>
+<label><input type="radio" name="oasis_elimination_status_tract_infection" value="UK"><?php xl(' UK - Unknown <b>[Omit "UK" option on DC]</b> ','e')?></label> <br>
+</td></tr>
+<tr><td><hr/></td></tr>
 
 <tr><td><center><b><?php xl('MEDICATIONS','e')?></b></center></td></tr>
 <tr><td>&nbsp;</td></tr>
@@ -347,7 +389,7 @@ medication issues, including reconciliation?','e')?>
 </td></tr>
 
 <tr><td>
-<input type="radio" name="oasistransfer_Medication_Intervention" value="reconcillation_NotDone"/>
+<input type="radio" id="m2004" name="oasistransfer_Medication_Intervention" value="reconcillation_NotDone"/>
 <?php xl('0 - No','e')?><br/>
 <input type="radio" name="oasistransfer_Medication_Intervention" value="reconcillation_Done"/>
 <?php xl('1 - Yes','e')?><br/>
@@ -399,7 +441,7 @@ hospitalization?','e')?> <b><?php xl(' (Mark all that apply.)','e')?></b>
 </td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td>
-<input type="checkbox" name="oasistransfer_Hospitalized_for_Improper_medication">
+<input type="checkbox" id="m2430" name="oasistransfer_Hospitalized_for_Improper_medication">
 <?php xl('1 - Improper medication administration, medication side effects, toxicity,anaphylaxis','e')?><br/>
 
 <input type="checkbox" name="oasistransfer_Hospitalized_for_Injury_caused_by_fall">
@@ -471,7 +513,7 @@ hospitalization?','e')?> <b><?php xl(' (Mark all that apply.)','e')?></b>
 </td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr><td>
-<input type="checkbox" name="oasistransfer_Admitted_in_NursingHome_for_Theraphy_Services">
+<input type="checkbox" id="m2440" name="oasistransfer_Admitted_in_NursingHome_for_Theraphy_Services">
 <?php xl('1 - Therapy services','e')?><br/>
 
 <input type="checkbox" name="oasistransfer_Admitted_in_NursingHome_for_Respite_care">
@@ -626,7 +668,7 @@ hospitalization?','e')?> <b><?php xl(' (Mark all that apply.)','e')?></b>
 
 </table>
 
-<a href="javascript:top.restoreSession();document.oasistransfer.submit();"
+<a href="javascript:top.restoreSession();form_validation('oasistransfer');"
                         class="link_submit"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
