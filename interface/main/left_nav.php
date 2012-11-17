@@ -779,13 +779,13 @@ function getEncounterTargetFrame( name ) {
   syncRadios();
   var encounter_block = $(parent.Title.document.getElementById('current_encounter_block'));
   var encounter = $(parent.Title.document.getElementById('current_encounter'));
-  var estr = '<a href=\'javascript:;\' onclick="parent.left_nav.loadCurrentEncounterFromTitle()"><b>' + edate + ' (' + eid + ')</b></a>';
+  var estr = '<a href=\'javascript:;\' onclick="parent.left_nav.loadCurrentEncounterFromTitle(' + eid + ')"><b>' + edate + ' (' + eid + ')</b></a>';
   encounter.html( estr );
   encounter_block.show();
  }
 
- function loadCurrentEncounterFromTitle() {
-      top.frames[ parent.left_nav.getEncounterTargetFrame('enc') ].location='../patient_file/encounter/encounter_top.php';
+ function loadCurrentEncounterFromTitle(eid) {
+      top.frames[ parent.left_nav.getEncounterTargetFrame('enc') ].location='../patient_file/history/encounters.php?epi_id_exp=' + eid + '';
  }
 
  // You must call this if you delete the active patient (or if for any other

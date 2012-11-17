@@ -31,6 +31,12 @@ while ($row = sqlFetchArray($res)) {
   // Each <tr> will have an ID identifying the patient.
   $arow = array('DT_RowId' => 'pid_' . $row['pid']);
   
+$maxupdatedate = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$row['pid']."' AND active='Yes'"));
+
+if($maxupdatedate["MAX(updatedate)"]!='' || $maxupdatedate["MAX(updatedate)"]!=null){
+$admit=sqlFetchArray(sqlStatement('SELECT admit_status FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\' AND pid=\''.$row['pid'].'\';'));
+$update_admit_status = sqlStatement("UPDATE patient_data set admit_status='".$admit['admit_status']."' where pid=".$row['pid']."");
+}
 
 
 $SOCfromPT = sqlFetchArray(sqlStatement("SELECT MAX(oasis_patient_soc_date) FROM forms_oasis_pt_soc where pid=".$row['pid']." AND (id IN (SELECT form_id from forms where deleted=0 AND pid=".$row['pid']." AND formdir='oasis_pt_soc'))"));
@@ -380,35 +386,6 @@ while ($row = sqlFetchArray($res)) {
 	}
       $arow[] = $case_mgr_name;
     }
-
-     else if ($colname == 'admit_status') {
-      if($row['admit_status']=="pre_admit"){
-	$arow[]="Pre-Admit";
-	}
-      else if($row['admit_status']=="admit"){
-	$arow[]="Admit";
-	}
-      else if($row['admit_status']=="discharge"){
-	$arow[]="Discharge";
-	}
-      else if($row['admit_status']=="non_admit"){
-	$arow[]="Non-Admit";
-	}
-      else{
-	$arow[]="";
-	}
-    }
-
-
-/*  preg_match('^[a-zA-Z0-9]*$',$case_mgr_name)
-   else if ($colname == 'area_director1') {
-      $name = $row['ulname'];
-      if ($name && $row['ufname']) $name .= ', ';
-     if ($row['ufname']) $name .= $row['ufname'];
-    // if ($row['mname']) $name .= ' ' . $row['mname'];
-      $arow[] = $name;
-    }
-*/
 
     else if ($colname == 'DOB' || $colname == 'soc' || $colname == 'regdate' || $colname == 'ad_reviewed' || $colname == 'userdate1') {
       $arow[] = oeFormatShortDate($row[$colname]);

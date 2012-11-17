@@ -1089,3 +1089,6 @@ ALTER TABLE forms_oasis_transfer ADD oasis_elimination_status_tract_infection va
 ALTER TABLE forms_oasis_transfer MODIFY oasistransfer_Visit_Date DATE;
 #EndIf
 
+#IfRow2D form_id DEM field_id admit_status
+DELETE FROM layout_options WHERE field_id='admit_status' AND group_name='1Patient Info';
+#EndIf

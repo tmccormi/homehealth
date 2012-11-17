@@ -861,7 +861,7 @@ if ($GLOBALS['oer_config']['ws_accounting']['enabled']) {
 $maxupdatedate = sqlFetchArray(sqlStatement("select MAX(updatedate) from episodes where pid='".$pid."' AND active='Yes'"));
 
 if($maxupdatedate["MAX(updatedate)"]!='' || $maxupdatedate["MAX(updatedate)"]!=null)
-$curr_episode=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\';'));
+$curr_episode=sqlFetchArray(sqlStatement('SELECT *FROM episodes WHERE updatedate=\''.$maxupdatedate["MAX(updatedate)"].'\' AND pid=\''.$pid.'\';'));
 
 
 
