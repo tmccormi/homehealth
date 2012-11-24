@@ -144,7 +144,7 @@ $obj = formFetch("forms_pt_visit_discharge_note", $_GET["id"]);
   <tr>
 
     <td scope="row"><strong><?php xl('Patient Name','e');?></strong></th>
-    <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" disabled/></td>
+    <td><input type="text" name="patient_name" id="patient_name" value="<?php patientName()?>" readonly/></td>
     <td ><p><strong><?php xl('Time In','e');?></strong></p></td>
     <td><select name="dischargeplan_Time_In" id="dischargeplan_Time_In">
     <?php timeDropDown(stripslashes($obj{"dischargeplan_Time_In"}))?></select></td>

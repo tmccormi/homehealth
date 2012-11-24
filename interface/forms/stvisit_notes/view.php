@@ -628,7 +628,7 @@ Calendar.setup({inputField:"visitnote_Date_of_Next_Visit", ifFormat:"%Y-%m-%d", 
 <a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e');?>]</a>
  </form>
  
  <center>

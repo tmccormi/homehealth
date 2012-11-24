@@ -10,7 +10,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_st_visit_discharge_note", $_POST, $_GET["id"],$userauthorized);
-addForm($encounter, "Visit Discharge", $newid, "stvisit_discharge", $pid, $userauthorized);
+addForm($encounter, "ST Visit Discharge", $newid, "stvisit_discharge", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_st_visit_discharge_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1,date = NOW(), 

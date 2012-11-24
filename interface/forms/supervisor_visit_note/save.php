@@ -14,7 +14,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_supervisor_visit_note", $addnew, $_GET["id"], $userauthorized);
-addForm($encounter, "Supervisor Visit of Home Health Staff", $newid, "supervisor_visit_note", $pid, $userauthorized);
+addForm($encounter, "HHA-Supervisor Visit", $newid, "supervisor_visit_note", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_supervisor_visit_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),

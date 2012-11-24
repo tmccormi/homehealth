@@ -12,7 +12,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_oasis_nursing_soc", $addnew, $_GET["id"], $userauthorized);
-addForm($encounter, "Oasis Nursing SOC", $newid,'oasis_nursing_soc', $pid, $userauthorized);
+addForm($encounter, "OASIS SOC/ROC-Nursing", $newid,'oasis_nursing_soc', $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 $search_qry = array();

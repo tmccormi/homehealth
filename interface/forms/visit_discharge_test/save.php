@@ -10,7 +10,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_ot_visit_discharge_note", $_POST, $_GET["id"],$userauthorized);
-addForm($encounter, "Visit Discharge", $newid, "visit_discharge_test", $pid, $userauthorized);
+addForm($encounter, "OT Visit Discharge", $newid, "visit_discharge_test", $pid, $userauthorized);
 
  }
 elseif ($_GET["mode"] == "update") {

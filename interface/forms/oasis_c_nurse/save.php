@@ -14,7 +14,7 @@ if ($_GET["mode"] == "new"){
 
 
 $newid = formSubmit("forms_oasis_c_nurse", $addnew, $_GET["id"], $userauthorized);
-addForm($encounter, "Oasis-C Nurse Recertification", $newid,'oasis_c_nurse', $pid, $userauthorized);
+addForm($encounter, "OASIS Recert-Nursing", $newid,'oasis_c_nurse', $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 $search_qry = array();

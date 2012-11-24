@@ -10,7 +10,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_pt_visit_discharge_note", $_POST, $_GET["id"],$userauthorized);
-addForm($encounter, "Visit Discharge", $newid, "ptvisit_discharge", $pid, $userauthorized);
+addForm($encounter, "PT Visit Discharge", $newid, "ptvisit_discharge", $pid, $userauthorized);
 
 }
 elseif ($_GET["mode"] == "update") {
@@ -73,9 +73,9 @@ dischargeplan_Comments_Recommendations='".$_POST["dischargeplan_Comments_Recomme
 dischargeplan_Followup_Recommendations ='".$_POST["dischargeplan_Followup_Recommendations"]."',
 dischargeplan_Goals_identified_on_careplan='".$_POST["dischargeplan_Goals_identified_on_careplan"]."',
 dischargeplan_Goals_notmet_explanation ='".$_POST["dischargeplan_Goals_notmet_explanation"]."',
-dischargeplan_Additional_Comments ='".$_POST["dischargeplan_Additional_Comments"]."'
-dischargeplan_md_printed_name='".$_POST["dischargeplan_md_name"]."'
-dischargeplan_md_signature ='".$_POST["dischargeplan_md_signature"]."'
+dischargeplan_Additional_Comments ='".$_POST["dischargeplan_Additional_Comments"]."',
+dischargeplan_md_printed_name='".$_POST["dischargeplan_md_name"]."',
+dischargeplan_md_signature ='".$_POST["dischargeplan_md_signature"]."',
 dischargeplan_md_date ='".$_POST["dischargeplan_md_date"]."'
 where id=$id");
 }

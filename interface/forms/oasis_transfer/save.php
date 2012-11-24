@@ -7,7 +7,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_oasis_transfer", $_POST, $_GET["id"], $userauthorized);
-addForm($encounter, "Oasis-c Transfer", $newid, "oasis_transfer", $pid, $userauthorized);
+addForm($encounter, "OASIS-C Transfer", $newid, "oasis_transfer", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_oasis_transfer set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),

@@ -758,7 +758,7 @@ value="<?php echo stripslashes($obj{"visitnote_Supervisory_visit_Patient_Family_
 <a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
- onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
+ onclick="top.restoreSession()">[<?php xl('Don\'t Save','e');?>]</a>
  </form>
 </body>
 <center>

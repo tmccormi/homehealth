@@ -8,7 +8,7 @@ if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_ot_careplan", $_POST, $_GET["id"], $userauthorized);
-addForm($encounter, "Care plan", $newid, "careplan", $pid, $userauthorized);
+addForm($encounter, "OT Care plan", $newid, "careplan", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
 sqlInsert("update forms_ot_careplan set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
