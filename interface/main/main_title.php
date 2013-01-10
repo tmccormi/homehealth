@@ -97,10 +97,10 @@ $res = sqlQuery("select * from users where username='".$_SESSION{"authUser"}."'"
 		<span><?php echo htmlspecialchars( xl('SEARCH PATIENT'), ENT_QUOTES) ?></span></a>
 		
 	</td></tr>
-	<tr><td valign="baseline"><B>
+	<tr><td style="vertical-align:text-bottom;"><B>
 		<a class="text" style='vertical-align:text-bottom;' href="main_title.php" id='showMenuLink' onclick='javascript:showhideMenu();return false;'><?php xl('Hide Menu','e'); ?></a>
 </B>
-	</td><td>
+	</td><td  style="vertical-align:text-bottom;">
 		<a href='' class="css_button_small" style="margin:0px;vertical-align:top;display:none;" id='clear_active' onClick="javascript:parent.left_nav.clearactive();return false;">
 		<span><?php echo htmlspecialchars( xl('CLEAR ACTIVE PATIENT'), ENT_QUOTES); ?></span></a>
 	</td></tr></table>
