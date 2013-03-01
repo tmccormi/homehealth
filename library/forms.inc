@@ -133,4 +133,12 @@ function getFormNameByFormdir ($formdir)
 {
 	return sqlQuery("select form_name from forms where formdir='$formdir'");
 }
+
+function b1_replacement($position,$b1_string){
+if($b1_string[$position] == ' '){
+$b1_string = substr_replace($b1_string,'  ',$position-1,2);
+}
+return $b1_string;
+}
+
 ?>

@@ -2221,7 +2221,6 @@ function form_validation(form_name)
 			if($('#integumentary_status').css('display') == 'none')
 			{
 			$('#integumentary_status').slideToggle('fast', function(){
-			  alert('no prob till here - inside intr');
 			$('#m1350').css('border','1px solid red').focus();
 			});
 			}

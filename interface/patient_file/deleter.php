@@ -11,6 +11,8 @@
  require_once("$srcdir/acl.inc");
  require_once("$srcdir/sl_eob.inc.php");
 
+ini_set("soap.wsdl_cache_enabled","0");
+
  $patient     = $_REQUEST['patient'];
  $encounterid = $_REQUEST['encounterid'];
  $formid      = $_REQUEST['formid'];
@@ -97,8 +99,12 @@ function form_delete($formdir, $formid) {
   $formdir = ($formdir == 'newpatient') ? 'encounter' : $formdir;
   if (substr($formdir,0,3) == 'LBF')
     row_delete("lbf_data", "form_id = '$formid'");
-  else
+  else{
+if($formdir == 'encounter' || $formdir == 'vitals' || $formdir == 'misc_billing_options')
     row_delete("form_$formdir", "id = '$formid'");
+else
+    row_delete("forms_$formdir", "id = '$formid'");
+}
 }
 
 // Delete a specified document including its associated relations and file.
@@ -190,9 +196,25 @@ function popup_close() {
    }
 
    row_delete("patient_data", "pid = '$patient'");
+
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice']);
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+try{
+$result3 = $client->DeleteDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_id' => $patient));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+}
   }
   else if ($encounterid) {
    if (!acl_check('admin', 'super')) die("Not authorized!");
+
+$synergy_id = sqlFetchArray(sqlStatement("SELECT synergy_id FROM form_encounter where encounter = ".$encounterid.""));
+
    row_modify("billing", "activity = 0", "encounter = '$encounterid'");
    delete_drug_sales(0, $encounterid);
    row_delete("ar_activity", "encounter = '$encounterid'");
@@ -203,6 +225,20 @@ function popup_close() {
     form_delete($row['formdir'], $row['form_id']);
    }
    row_delete("forms", "encounter = '$encounterid'");
+
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice']);
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+try{
+$result3 = $client->DeleteVisitNote(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_id' => $_SESSION['pid'], 'synergy_id' => $synergy_id['synergy_id']));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+}
+
   }
   else if ($formid) {
    if (!acl_check('admin', 'super')) die("Not authorized!");

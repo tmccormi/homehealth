@@ -488,8 +488,7 @@ INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, 
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'hospital_dc_date', '7Hospitalization', 'D/C Date', '8','4','1','10','10','','1','3','','D','Hospital D/C Date','0');
 #EndIf
 
-#IfMissingColumn patient_data hospital_name
-ALTER TABLE patient_data ADD hospital_name varchar(100), ADD hospital_phone varchar(50), ADD hospital_address varchar(100), ADD hospital_city varchar(20), ADD hospital_state varchar(20), ADD hospital_zip varchar(10), ADD hospital_admit_date DATE DEFAULT NULL, ADD hospital_dc_date DATE DEFAULT NULL;
+#IfMissingColumn patient_data hospital_nameALTER TABLE patient_data ADD hospital_name varchar(100), ADD hospital_phone varchar(50), ADD hospital_address varchar(100), ADD hospital_city varchar(20), ADD hospital_state varchar(20), ADD hospital_zip varchar(10), ADD hospital_admit_date DATE DEFAULT NULL, ADD hospital_dc_date DATE DEFAULT NULL;
 #EndIf
 
 
@@ -498,7 +497,7 @@ INSERT INTO `list_options` (`list_id`, `option_id`, `title`, `seq`, `is_default`
 #EndIf
 
 #IfNotRow2D layout_options form_id DEM group_name 8Agency
-INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_name', '8Agency', 'Agency Name', '1','37','1','0','0','','1','3','','','Agency','0');
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_name', '8Agency', 'Agency Name', '1','37','2','0','0','','1','3','','','Agency','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_rate', '8Agency', 'Rate', '2','2','1','11','11','','1','3','','','Agency Rate','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_address', '8Agency', 'Address', '3','2','1','20','225','','1','3','','1','Agency Address','0');
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'agency_city', '8Agency', 'City', '4','2','1','20','63','','1','3','','1','Agency City','0');
@@ -1060,34 +1059,6 @@ INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default`
 ALTER TABLE users ADD agency_area varchar(60);
 #EndIf
 
-
-
-
-#IfMissingColumn forms_oasis_discharge oasis_therapy_integumentary_status_stage2_date
-ALTER TABLE forms_oasis_discharge ADD oasis_therapy_integumentary_status_stage2_date DATE;
-#EndIf
-
-#IfMissingColumn forms_oasis_discharge Reason_for_Hospitalization
-ALTER TABLE forms_oasis_discharge ADD Reason_for_Hospitalization text;
-#EndIf
-
-#IfMissingColumn forms_oasis_discharge patient_Admitted_to_a_Nursing_Home
-ALTER TABLE forms_oasis_discharge ADD patient_Admitted_to_a_Nursing_Home text;
-#EndIf
-
-
-#IfMissingColumn forms_oasis_transfer oasis_therapy_soc_date
-ALTER TABLE forms_oasis_transfer ADD oasis_therapy_soc_date date;
-#EndIf
-
-#IfMissingColumn forms_oasis_transfer oasis_speech_and_oral
-ALTER TABLE forms_oasis_transfer ADD oasis_speech_and_oral varchar(50);
-#EndIf
-
-#IfMissingColumn forms_oasis_transfer oasis_elimination_status_tract_infection
-ALTER TABLE forms_oasis_transfer ADD oasis_elimination_status_tract_infection varchar(50);
-ALTER TABLE forms_oasis_transfer MODIFY oasistransfer_Visit_Date DATE;
-#EndIf
 
 #IfRow2D form_id DEM field_id admit_status
 DELETE FROM layout_options WHERE field_id='admit_status' AND group_name='1Patient Info';
@@ -2021,6 +1992,9 @@ oasis_therapy_patient_gender varchar(6),
 oasis_therapy_discipline_person varchar(1),
 oasis_therapy_date_assessment_completed DATE,
 oasis_therapy_follow_up varchar(1),
+oasis_therapy_certification varchar(1),
+oasis_therapy_date_last_contacted_physician DATE,
+oasis_therapy_date_last_seen_by_physician DATE,
 oasis_influenza_vaccine varchar(1),
 oasis_pneumococcal_vaccine varchar(1),
 oasis_reason_influenza_vaccine varchar(1),
@@ -7471,6 +7445,33 @@ CREATE TABLE `forms_nursing_visitnote` (
 ) ENGINE=MyISAM;
 #EndIf
 
+
+#IfMissingColumn forms_oasis_discharge oasis_therapy_integumentary_status_stage2_date
+ALTER TABLE forms_oasis_discharge ADD oasis_therapy_integumentary_status_stage2_date DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge Reason_for_Hospitalization
+ALTER TABLE forms_oasis_discharge ADD Reason_for_Hospitalization text;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge patient_Admitted_to_a_Nursing_Home
+ALTER TABLE forms_oasis_discharge ADD patient_Admitted_to_a_Nursing_Home text;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasis_therapy_soc_date
+ALTER TABLE forms_oasis_transfer ADD oasis_therapy_soc_date date;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasis_speech_and_oral
+ALTER TABLE forms_oasis_transfer ADD oasis_speech_and_oral varchar(50);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasis_elimination_status_tract_infection
+ALTER TABLE forms_oasis_transfer ADD oasis_elimination_status_tract_infection varchar(50);
+ALTER TABLE forms_oasis_transfer MODIFY oasistransfer_Visit_Date DATE;
+#EndIf
+
+
 #IfNotRow registry directory nursing_visitnote
 INSERT INTO `registry` VALUES ('Nursing Visitnote', 1, 'nursing_visitnote', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'Skilled Nursing', '');
 #EndIf
@@ -7479,11 +7480,498 @@ INSERT INTO `registry` VALUES ('Nursing Visitnote', 1, 'nursing_visitnote', id=i
 UPDATE registry SET category='Skilled Nursing' WHERE directory='nursing_visitnote';
 #EndIf
 
+--  Insert Address 2 for Synergy
+#IfNotRow2D layout_options field_id street2 group_name 1Patient Info
+INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'street2', '1Patient Info', 'Address 2', 17, 2, 1, 25, 63, '', 1, 1, '', 'C', 'Street and Place', 0);
+UPDATE layout_options SET title='Address 1' WHERE field_id='street';
+#EndIf
+
+#IfMissingColumn patient_data street2
+ALTER TABLE patient_data ADD street2 varchar(255) NOT NULL default '';
+#EndIf
+
+#IfMissingColumn form_encounter caregiver
+ALTER TABLE form_encounter ADD caregiver varchar(150);
+#EndIf
+
+#IfMissingColumn form_encounter time_in
+ALTER TABLE form_encounter ADD time_in varchar(10);
+#EndIf
+
+#IfMissingColumn form_encounter time_out
+ALTER TABLE form_encounter ADD time_out varchar(10);
+#EndIf
+
+#IfMissingColumn form_encounter billing_units
+ALTER TABLE form_encounter ADD billing_units varchar(50);
+#EndIf
+
+#IfMissingColumn form_encounter billing_insurance
+ALTER TABLE form_encounter ADD billing_insurance varchar(10);
+#EndIf
+
+#IfMissingColumn form_encounter notes_in
+ALTER TABLE form_encounter ADD notes_in varchar(10);
+#EndIf
+
+#IfMissingColumn form_encounter verified
+ALTER TABLE form_encounter ADD verified varchar(10);
+#EndIf
+
+#IfMissingColumn form_encounter type_of_service
+ALTER TABLE form_encounter ADD type_of_service varchar(50);
+#EndIf
+
+#IfMissingColumn form_encounter modifier_1
+ALTER TABLE form_encounter ADD modifier_1 varchar(2);
+#EndIf
+
+#IfMissingColumn form_encounter modifier_2
+ALTER TABLE form_encounter ADD modifier_2 varchar(2);
+#EndIf
+
+#IfMissingColumn form_encounter modifier_3
+ALTER TABLE form_encounter ADD modifier_3 varchar(2);
+#EndIf
+
+#IfMissingColumn form_encounter modifier_4
+ALTER TABLE form_encounter ADD modifier_4 varchar(2);
+#EndIf
+
+
+-- Added for Synergy
+
+-- OASIS-C DISCHARGE ASSESSMENT
+
+#IfMissingColumn forms_oasis_discharge oasis_therapy_certification
+ALTER TABLE forms_oasis_discharge ADD oasis_therapy_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_therapy_date_last_contacted_physician
+ALTER TABLE forms_oasis_discharge ADD oasis_therapy_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_therapy_date_last_seen_by_physician
+ALTER TABLE forms_oasis_discharge ADD oasis_therapy_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_mental_status
+ALTER TABLE forms_oasis_discharge ADD oasis_mental_status varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_mental_status_other
+ALTER TABLE forms_oasis_discharge ADD oasis_mental_status_other varchar(100) DEFAULT NULL;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_functional_limitations
+ALTER TABLE forms_oasis_discharge ADD oasis_functional_limitations varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_functional_limitations_other
+ALTER TABLE forms_oasis_discharge ADD oasis_functional_limitations_other varchar(100) DEFAULT NULL;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_prognosis
+ALTER TABLE forms_oasis_discharge ADD oasis_prognosis varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_safety_measures
+ALTER TABLE forms_oasis_discharge ADD oasis_safety_measures text;
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_safety_measures_other
+ALTER TABLE forms_oasis_discharge ADD oasis_safety_measures_other varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_dme_iv_supplies
+ALTER TABLE forms_oasis_discharge ADD oasis_dme_iv_supplies varchar(225);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_dme_iv_supplies_other
+ALTER TABLE forms_oasis_discharge ADD oasis_dme_iv_supplies_other varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_dme_foley_supplies
+ALTER TABLE forms_oasis_discharge ADD oasis_dme_foley_supplies varchar(225);
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_dme_foley_supplies_other
+ALTER TABLE forms_oasis_discharge ADD oasis_dme_foley_supplies_other varchar(150);
+#EndIf
 
 
 
 
+-- OASIS-C NURSE RECERTIFICATION
 
+#IfMissingColumn forms_oasis_c_nurse oasis_c_nurse_certification
+ALTER TABLE forms_oasis_c_nurse ADD oasis_c_nurse_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_c_nurse_date_last_contacted_physician
+ALTER TABLE forms_oasis_c_nurse ADD oasis_c_nurse_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_c_nurse_date_last_seen_by_physician
+ALTER TABLE forms_oasis_c_nurse ADD oasis_c_nurse_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2a_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2a_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2b_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2b_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2c_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2c_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2d_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2d_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2e_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2e_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2f_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2f_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2g_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2g_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2h_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2h_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2i_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2i_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2j_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2j_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2k_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2k_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2l_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2l_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse oasis_patient_diagnosis_2m_indicator
+ALTER TABLE forms_oasis_c_nurse ADD oasis_patient_diagnosis_2m_indicator varchar(1);
+#EndIf
+
+-- OASIS-C PT RECERT (V1)
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_certification
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_date_last_contacted_physician
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_date_last_seen_by_physician
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2a_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2a_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2b_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2b_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2c_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2c_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2d_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2d_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2e_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2e_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2f_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2f_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2g_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2g_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2h_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2h_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2i_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2i_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2j_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2j_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2k_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2k_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2l_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2l_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification oasis_therapy_patient_diagnosis_2m_indicator
+ALTER TABLE forms_oasis_therapy_rectification ADD oasis_therapy_patient_diagnosis_2m_indicator varchar(1);
+#EndIf
+
+
+
+-- Oasis Nursing SOC
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_patient_certification
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_patient_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_patient_date_last_contacted_physician
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_patient_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_patient_date_last_seen_by_physician
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_patient_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2a_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2a_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2b_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2b_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2c_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2c_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2d_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2d_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2e_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2e_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2f_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2f_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2g_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2g_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2h_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2h_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2i_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2i_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2j_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2j_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2k_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2k_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2l_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2l_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_therapy_patient_diagnosis_2m_indicator
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_therapy_patient_diagnosis_2m_indicator varchar(1);
+#EndIf
+
+
+-- OASIS-C PT SOC/ROC
+
+
+#IfMissingColumn forms_oasis_pt_soc oasis_patient_certification
+ALTER TABLE forms_oasis_pt_soc ADD oasis_patient_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_patient_date_last_contacted_physician
+ALTER TABLE forms_oasis_pt_soc ADD oasis_patient_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_patient_date_last_seen_by_physician
+ALTER TABLE forms_oasis_pt_soc ADD oasis_patient_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2a_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2a_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2b_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2b_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2c_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2c_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2d_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2d_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2e_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2e_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2f_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2f_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2g_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2g_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2h_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2h_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2i_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2i_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2j_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2j_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2k_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2k_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2l_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2l_indicator varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc oasis_therapy_patient_diagnosis_2m_indicator
+ALTER TABLE forms_oasis_pt_soc ADD oasis_therapy_patient_diagnosis_2m_indicator varchar(1);
+#EndIf
+
+
+
+-- OASIS-C TRANSFER
+
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_certification
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_certification varchar(1);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_date_last_contacted_physician
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_date_last_contacted_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_date_last_seen_by_physician
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_date_last_seen_by_physician DATE;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_mental_status
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_mental_status varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_mental_status_other
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_mental_status_other varchar(100);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_functional_limitations
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_functional_limitations varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_functional_limitations_other
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_functional_limitations_other varchar(100) DEFAULT NULL;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_prognosis
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_prognosis varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_safety_measures
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_safety_measures text;
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_safety_measures_other
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_safety_measures_other varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_dme_iv_supplies
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_dme_iv_supplies varchar(225);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_dme_iv_supplies_other
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_dme_iv_supplies_other varchar(150);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_dme_foley_supplies
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_dme_foley_supplies varchar(225);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer oasistransfer_dme_foley_supplies_other
+ALTER TABLE forms_oasis_transfer ADD oasistransfer_dme_foley_supplies_other varchar(150);
+#EndIf
+
+
+#IfNotRow2D layout_options field_id ss uor 2
+UPDATE layout_options SET uor=2 WHERE field_id='ss';
+#EndIf
+
+#IfNotRow2D layout_options field_id postal_code uor 2
+UPDATE layout_options SET uor=2 WHERE field_id='postal_code';
+#EndIf
+
+-- Save Synergy ID for Encounter
+
+#IfMissingColumn form_encounter synergy_id
+ALTER TABLE form_encounter ADD synergy_id varchar(10);
+#EndIf
+
+
+-- Save Synergy ID for all OASIS Forms
+
+#IfMissingColumn forms_oasis_discharge synergy_id
+ALTER TABLE forms_oasis_discharge ADD synergy_id varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_c_nurse synergy_id
+ALTER TABLE forms_oasis_c_nurse ADD synergy_id varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_therapy_rectification synergy_id
+ALTER TABLE forms_oasis_therapy_rectification ADD synergy_id varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc synergy_id
+ALTER TABLE forms_oasis_nursing_soc ADD synergy_id varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_pt_soc synergy_id
+ALTER TABLE forms_oasis_pt_soc ADD synergy_id varchar(10);
+#EndIf
+
+#IfMissingColumn forms_oasis_transfer synergy_id
+ALTER TABLE forms_oasis_transfer ADD synergy_id varchar(10);
+#EndIf
 
 
 

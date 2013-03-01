@@ -600,6 +600,32 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 					<script	LANGUAGE="JavaScript">
 						Calendar.setup({inputField:"oasis_c_nurse_certification_period_to", ifFormat:"%Y-%m-%d", button:"img_curr_date6"});
 					</script>
+			<hr />
+			<strong><?php xl('Certification:','e');?></strong><br>
+				<label><input type="radio" name="oasis_c_nurse_certification" value="0" <?php if($obj{"oasis_c_nurse_certification"}=="0"){echo "checked";}?> ><?php xl(' Certification','e');?></label>
+				<label><input type="radio" name="oasis_c_nurse_certification" value="1" <?php if($obj{"oasis_c_nurse_certification"}=="1"){echo "checked";}?> ><?php xl(' Recertification','e');?></label>
+			<hr>
+			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
+			<input type='text' size='10' name='oasis_c_nurse_date_last_contacted_physician' id='oasis_c_nurse_date_last_contacted_physician' 
+					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_contacted_physician"};?>" readonly/> 
+					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
+					style='cursor: pointer; cursor: hand'
+					title='<?php xl('Click here to choose a date','e'); ?>'> 
+					<script	LANGUAGE="JavaScript">
+						Calendar.setup({inputField:"oasis_c_nurse_date_last_contacted_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy1"});
+					</script>
+			<hr>
+			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
+			<input type='text' size='10' name='oasis_c_nurse_date_last_seen_by_physician' id='oasis_c_nurse_date_last_seen_by_physician' 
+					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_seen_by_physician"};?>"  readonly/> 
+					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
+					style='cursor: pointer; cursor: hand'
+					title='<?php xl('Click here to choose a date','e'); ?>'> 
+					<script	LANGUAGE="JavaScript">
+						Calendar.setup({inputField:"oasis_c_nurse_date_last_seen_by_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy2"});
+					</script>
 		</td>
 	</tr>	
 
@@ -752,7 +778,7 @@ blank in that row.','e');?>
 						<strong><?php xl('<u>(M1020)</u> Primary Diagnosis','e');?></strong>
 					</td>
 					<td align="center" width="25%">
-						<strong><?php xl('<u>(V-codes are allowed)</u>','e');?></strong>
+						<strong><?php xl('<u>(V-codes are allowed) | Indicators (O-Onset / E-Exacerbation)</u>','e');?></strong>
 					</td>
 					<td align="center" width="25%">
 						<strong><?php xl('<u>(V- or E-codes NOT allowed)</u>','e');?></strong>
@@ -768,7 +794,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2a"  id="oasis_patient_diagnosis_2a"  value="<?php echo $obj{"oasis_patient_diagnosis_2a"};?>" onkeydown="fonChange(this,2,'noe')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2a"  id="oasis_patient_diagnosis_2a" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2a"};?>" onkeydown="fonChange(this,2,'noe')">
+						<select name="oasis_patient_diagnosis_2a_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2a_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2a_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2a_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -805,7 +836,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2b"  id="oasis_patient_diagnosis_2b"  value="<?php echo $obj{"oasis_patient_diagnosis_2b"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2b"  id="oasis_patient_diagnosis_2b" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2b"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2b_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2b_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2b_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2b_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -828,7 +864,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2c"  id="oasis_patient_diagnosis_2c"  value="<?php echo $obj{"oasis_patient_diagnosis_2c"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2c"  id="oasis_patient_diagnosis_2c" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2c"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2c_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2c_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2c_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2c_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -851,7 +892,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2d"  id="oasis_patient_diagnosis_2d"  value="<?php echo $obj{"oasis_patient_diagnosis_2d"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2d"  id="oasis_patient_diagnosis_2d" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2d"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2d_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2d_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2d_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2d_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -874,7 +920,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2e"  id="oasis_patient_diagnosis_2e"  value="<?php echo $obj{"oasis_patient_diagnosis_2e"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2e"  id="oasis_patient_diagnosis_2e" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2e"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2e_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2e_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2e_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2e_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -897,7 +948,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2f"  id="oasis_patient_diagnosis_2f"  value="<?php echo $obj{"oasis_patient_diagnosis_2f"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2f"  id="oasis_patient_diagnosis_2f" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2f"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2f_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2f_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2f_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2f_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -920,7 +976,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2g"  id="oasis_patient_diagnosis_2g"  value="<?php echo $obj{"oasis_patient_diagnosis_2g"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2g"  id="oasis_patient_diagnosis_2g" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2g"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2g_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2g_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2g_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2g_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -943,7 +1004,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2h"  id="oasis_patient_diagnosis_2h"  value="<?php echo $obj{"oasis_patient_diagnosis_2h"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2h"  id="oasis_patient_diagnosis_2h" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2h"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2h_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2h_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2h_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2h_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -966,7 +1032,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2i"  id="oasis_patient_diagnosis_2i"  value="<?php echo $obj{"oasis_patient_diagnosis_2i"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2i"  id="oasis_patient_diagnosis_2i" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2i"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2i_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2i_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2i_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2i_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -989,7 +1060,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2j"  id="oasis_patient_diagnosis_2j"  value="<?php echo $obj{"oasis_patient_diagnosis_2j"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2j"  id="oasis_patient_diagnosis_2j" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2j"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2j_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2j_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2j_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2j_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -1012,7 +1088,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2k"  id="oasis_patient_diagnosis_2k"  value="<?php echo $obj{"oasis_patient_diagnosis_2k"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2k"  id="oasis_patient_diagnosis_2k" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2k"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2k_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2k_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2k_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2k_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -1035,7 +1116,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2l"  id="oasis_patient_diagnosis_2l"  value="<?php echo $obj{"oasis_patient_diagnosis_2l"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2l"  id="oasis_patient_diagnosis_2l" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2l"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2l_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2l_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2l_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2l_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -1058,7 +1144,12 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2m"  id="oasis_patient_diagnosis_2m"  value="<?php echo $obj{"oasis_patient_diagnosis_2m"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2m"  id="oasis_patient_diagnosis_2m" size="15"  value="<?php echo $obj{"oasis_patient_diagnosis_2m"};?>" onkeydown="fonChange(this,2,'all')">
+						<select name="oasis_patient_diagnosis_2m_indicator">
+						<option value="" <?php if($obj{"oasis_patient_diagnosis_2m_indicator"}==""){echo "selected";}?> ></option>
+						<option value="O" <?php if($obj{"oasis_patient_diagnosis_2m_indicator"}=="O"){echo "selected";}?> ><?php xl('O','e');?></option>
+						<option value="E" <?php if($obj{"oasis_patient_diagnosis_2m_indicator"}=="E"){echo "selected";}?> ><?php xl('E','e');?></option>
+						</select><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -5284,12 +5375,12 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                 <td align="center">
                     <?php if($action == "edit") { ?>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
-                    <? } ?>
+                    <?php } ?>
                     </form>
                     <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
-                    <? } ?>
+                    <?php } ?>
                 </td>
             </tr>
             <tr><td>
@@ -5322,15 +5413,6 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
 		</p>
 	</form>
 </div>
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

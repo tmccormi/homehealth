@@ -228,6 +228,11 @@ $non_oasis_summary_disciplines = explode("#",$obj{"non_oasis_summary_disciplines
 $non_oasis_summary_medication_identified = explode("#",$obj{"non_oasis_summary_medication_identified"});
 $patient_Admitted_to_a_Nursing_Home = explode("#",$obj{"patient_Admitted_to_a_Nursing_Home"});
 $Reason_for_Hospitalization = explode("#",$obj{"Reason_for_Hospitalization"});
+$oasis_mental_status = explode("#",$obj{"oasis_mental_status"});
+$oasis_functional_limitations = explode("#",$obj{"oasis_functional_limitations"});
+$oasis_safety_measures = explode("#",$obj{"oasis_safety_measures"});
+$oasis_dme_iv_supplies = explode("#",$obj{"oasis_dme_iv_supplies"});
+$oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 ?>
 
 
@@ -417,6 +422,32 @@ $Reason_for_Hospitalization = explode("#",$obj{"Reason_for_Hospitalization"});
 			<strong><?php xl('<u>(M0100)</u> This Assessment is Currently Being Completed for the Following Reason: <u>Discharge from Agency - Not to an Inpatient Facility</u> ','e');?></strong><br>
 			<label><input type="radio" id="m0100" name="oasis_therapy_follow_up" value="8" <?php if($obj{"oasis_therapy_follow_up"}=="8"){echo "checked";}?> ><?php xl(' 8 - Death at home <b><i>[ Go to M0903 ]</i></b>','e');?></label><br>
 			<label><input type="radio" name="oasis_therapy_follow_up" value="9" <?php if($obj{"oasis_therapy_follow_up"}=="9"){echo "checked";}?> ><?php xl(' 9 - Discharge from agency <b><i>[ Go to M1040 ]</i></b>','e');?></label>
+			<hr />
+			<strong><?php xl('Certification:','e');?></strong><br>
+				<label><input type="radio" name="oasis_therapy_certification" value="0" <?php if($obj{"oasis_therapy_certification"}=="0"){echo "checked";}?> ><?php xl(' Certification','e');?></label>
+				<label><input type="radio" name="oasis_therapy_certification" value="1" <?php if($obj{"oasis_therapy_certification"}=="1"){echo "checked";}?> ><?php xl(' Recertification','e');?></label>
+			<hr>
+			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
+			<input type='text' size='10' name='oasis_therapy_date_last_contacted_physician' id='oasis_therapy_date_last_contacted_physician' 
+					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_date_last_contacted_physician"};?>" readonly/> 
+					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
+					style='cursor: pointer; cursor: hand'
+					title='<?php xl('Click here to choose a date','e'); ?>'> 
+					<script	LANGUAGE="JavaScript">
+						Calendar.setup({inputField:"oasis_therapy_date_last_contacted_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy1"});
+					</script>
+			<hr>
+			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
+			<input type='text' size='10' name='oasis_therapy_date_last_seen_by_physician' id='oasis_therapy_date_last_seen_by_physician' 
+					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_date_last_seen_by_physician"};?>"  readonly/> 
+					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
+					style='cursor: pointer; cursor: hand'
+					title='<?php xl('Click here to choose a date','e'); ?>'> 
+					<script	LANGUAGE="JavaScript">
+						Calendar.setup({inputField:"oasis_therapy_date_last_seen_by_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy2"});
+					</script>
 		</td>
 	</tr>
 </table>
@@ -1643,7 +1674,7 @@ $Reason_for_Hospitalization = explode("#",$obj{"Reason_for_Hospitalization"});
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td valign="top">
 			<?php xl('<b><u>(M1350)</u></b> Does this patient have a <b>Skin Lesion or Open Wound</b>, excluding bowel ostomy, other than those described above <u>that is receiving intervention</u> by the home health agency?','e');?><br>
 			<label><input type="radio" id="m1350" name="oasis_therapy_skin_lesion" value="0" <?php if($obj{"oasis_therapy_skin_lesion"}=="0"){echo "checked";}?> ><?php xl(' 0 - No ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_skin_lesion" value="1" <?php if($obj{"oasis_therapy_skin_lesion"}=="1"){echo "checked";}?> ><?php xl(' 1 - Yes ','e')?></label><br>
@@ -1769,6 +1800,207 @@ $Reason_for_Hospitalization = explode("#",$obj{"Reason_for_Hospitalization"});
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="NA" <?php if($obj{"oasis_elimination_status_bowel_incontinence"}=="NA"){echo "checked";}?> ><?php xl(' NA - Patient has ostomy for bowel elimination ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="UK" <?php if($obj{"oasis_elimination_status_bowel_incontinence"}=="UK"){echo "checked";}?> ><?php xl(' UK - Unknown <b>[Omit "UK" option on FU, DC]</b> ','e')?></label> <br>
 			
+			<br>
+			<hr>
+			<center><strong><?php xl("MENTAL STATUS","e");?></strong></center><br>
+			<label><input type="checkbox" name="oasis_mental_status[]" value="Oriented"
+			<?php if(in_array("Oriented",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Oriented','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Comatose"
+			<?php if(in_array("Comatose",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Comatose','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Forgetful"
+			<?php if(in_array("Forgetful",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Forgetful','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Depressed"
+			<?php if(in_array("Depressed",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Depressed','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Disoriented"
+			<?php if(in_array("Disoriented",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Disoriented','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Lethargic"
+			<?php if(in_array("Lethargic",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Lethargic','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Agitated"
+			<?php if(in_array("Agitated",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Agitated','e')?></label>
+						<label><input type="checkbox" name="oasis_mental_status[]" value="Other"
+			<?php if(in_array("Other",$oasis_mental_status)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
+			<input type="text" name="oasis_mental_status_other"  value="<?php echo stripslashes($obj{"oasis_mental_status_other"});?>" >
+
+			<br>
+			<hr>
+			<center><strong><?php xl("FUNCTIONAL LIMITATIONS","e");?></strong></center><br>
+			<table class="formtable">
+				<tr valign="top">
+					<td width="30%">
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Amputation"
+			<?php if(in_array("Amputation",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Amputation','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Hearing"
+			<?php if(in_array("Hearing",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Hearing','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Ambulation"
+			<?php if(in_array("Ambulation",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Ambulation','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Dyspnea with Minimal Exertion"
+			<?php if(in_array("Dyspnea with Minimal Exertion",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Dyspnea with Minimal Exertion','e')?></label>
+								</td>
+
+								<td width="45%">
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Bowel/Bladder (Incontinence)"
+			<?php if(in_array("Bowel/Bladder (Incontinence)",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Bowel/Bladder (Incontinence)','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Paralysis"
+			<?php if(in_array("Paralysis",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Paralysis','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Speech"
+			<?php if(in_array("Speech",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Speech','e')?></label><br>
+										
+								</td>
+
+								<td width="25%">
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Contracture"
+			<?php if(in_array("Contracture",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Contracture','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Endurance"
+			<?php if(in_array("Endurance",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Endurance','e')?></label><br>
+									<label><input type="checkbox" name="oasis_functional_limitations[]" value="Legally Blind"
+			<?php if(in_array("Legally Blind",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Legally Blind','e')?></label>
+								</td>
+							</tr>
+							<tr>
+							<td colspan="3">
+							<label><input type="checkbox" name="oasis_functional_limitations[]" value="Other"
+			<?php if(in_array("Other",$oasis_functional_limitations)) echo "checked"; ?> ><?php xl('Other (specify):','e')?></label>
+			<input type="text" name="oasis_functional_limitations_other"  value="<?php echo stripslashes($obj{"oasis_functional_limitations_other"});?>" size="15">
+				</td>
+				</tr>
+			</table>
+
+			<br>
+			<hr>
+			<center><strong><?php xl('PROGNOSIS','e')?></strong></center><br>
+			<strong><?php xl('Prognosis:','e')?></strong>
+			<label><input type="radio" name="oasis_prognosis" value="1"
+			<?php if($obj{"oasis_prognosis"}=="1") echo "checked"; ?>  ><?php xl(' 1-Poor ','e')?></label>
+						<label><input type="radio" name="oasis_prognosis" value="2"
+			<?php if($obj{"oasis_prognosis"}=="2") echo "checked"; ?>  ><?php xl(' 2-Guarded ','e')?></label>
+						<label><input type="radio" name="oasis_prognosis" value="3"
+			<?php if($obj{"oasis_prognosis"}=="3") echo "checked"; ?>  ><?php xl(' 3-Fair ','e')?></label>
+						<label><input type="radio" name="oasis_prognosis" value="4"
+			<?php if($obj{"oasis_prognosis"}=="4") echo "checked"; ?>  ><?php xl(' 4-Good ','e')?></label>
+						<label><input type="radio" name="oasis_prognosis" value="5"
+			<?php if($obj{"oasis_prognosis"}=="5") echo "checked"; ?>  ><?php xl(' 5-Excellent ','e')?></label>
+
+			<br>
+			<hr>
+			<center><strong><?php xl("SAFETY MEASURES","e");?></strong></center>
+			<table class="formtable">
+			    <tr>
+				    <td width="50%">
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="911 Protocol"
+		    <?php if(in_array("911 Protocol",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('911 Protocol','e')?></label><br>
+
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Clear Pathways"
+		    <?php if(in_array("Clear Pathways",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Clear Pathways','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Siderails up"
+		    <?php if(in_array("Siderails up",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Siderails up','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Safe Transfers"
+		    <?php if(in_array("Safe Transfers",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Safe Transfers','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Equipment Safety"
+		    <?php if(in_array("Equipment Safety",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Equipment Safety','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Infection Control Measures"
+		    <?php if(in_array("Infection Control Measures",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Infection Control Measures','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Bleeding Precautions"
+		    <?php if(in_array("Bleeding Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Bleeding Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Fall Precautions"
+		    <?php if(in_array("Fall Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Fall Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Seizure Precautions"
+		    <?php if(in_array("Seizure Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Seizure Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Universal Precautions"
+		    <?php if(in_array("Universal Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Universal Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Other"
+		    <?php if(in_array("Other",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
+
+						    <input type="text" name="oasis_safety_measures_other"  value="<?php echo stripslashes($obj{"oasis_safety_measures_other"});?>" ><br>
+
+				    </td>
+				    <td>
+
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Hazard-Free Environment"
+		    <?php if(in_array("Hazard-Free Environment",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Hazard-Free Environment','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Lock W/C with transfers"
+		    <?php if(in_array("Lock W/C with transfers",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Lock W/C with transfers','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Elevate Head of Bed"
+		    <?php if(in_array("Elevate Head of Bed",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Elevate Head of Bed','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Medication Safety/Storage"
+		    <?php if(in_array("Medication Safety/Storage",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Medication Safety/Storage','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Hazardous Waste Disposal"
+		    <?php if(in_array("Hazardous Waste Disposal",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Hazardous Waste Disposal','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="24 hr. supervision"
+		    <?php if(in_array("24 hr. supervision",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('24 hr. supervision','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Neutropenic"
+		    <?php if(in_array("Neutropenic",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Neutropenic','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="O2 Precautions"
+		    <?php if(in_array("O2 Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('O2 Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Aspiration Precautions"
+		    <?php if(in_array("Aspiration Precautions",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Aspiration Precautions','e')?></label><br>
+					    <label><input type="checkbox" name="oasis_safety_measures[]" value="Walker/Cane"
+		    <?php if(in_array("Walker/Cane",$oasis_safety_measures)) echo "checked"; ?> ><?php xl('Walker/Cane','e')?></label><br>
+				    </td>
+			    </tr>
+			    </table>
+
+
+
+
+			<br>
+			<hr>
+		    <strong><?php xl("IV SUPPLIES: ","e");?></strong><br />
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="IV start kit"
+<?php if(in_array("IV start kit",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('IV start kit','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="IV pole"
+<?php if(in_array("IV pole",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('IV pole','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="IV tubing" 
+<?php if(in_array("IV tubing",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('IV tubing','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Alcohol swabs"
+<?php if(in_array("Alcohol swabs",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Alcohol swabs','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Angiocatheter size"
+<?php if(in_array("Angiocatheter size",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Angiocatheter size','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Tape"
+<?php if(in_array("Tape",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Tape','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Extension tubings"
+<?php if(in_array("Extension tubings",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Extension tubings','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Injection caps"
+<?php if(in_array("Injection caps",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Injection caps','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Central line dressing"
+<?php if(in_array("Central line dressing",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Central line dressing','e')?></label><br>
+		    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Infusion pump"
+<?php if(in_array("Infusion pump",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Infusion pump','e')?></label><br>
+				    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Batteries size"
+<?php if(in_array("Batteries size",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Batteries size','e')?></label><br>
+				    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Syringes size"
+<?php if(in_array("Syringes size",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Syringes size','e')?></label><br>
+				    <label><input type="checkbox" name="oasis_dme_iv_supplies[]" value="Other"
+<?php if(in_array("Other",$oasis_dme_iv_supplies)) echo "checked"; ?> ><?php xl('Other','e')?></label>
+
+
+    <input type="text" name="oasis_dme_iv_supplies_other"  value="<?php echo stripslashes($obj{"oasis_dme_iv_supplies_other"});?>" >
+
+
+			<br>
+			<hr>
+			<strong><?php xl("FOLEY SUPPLIES: ","e");?></strong><br />
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Fr catheter kit"
+<?php if(in_array("Fr catheter kit",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Fr catheter kit','e')?></label><br>
+			<?php xl("(tray, bag, foley) ","e");?><br>
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Straight catheter"
+<?php if(in_array("Straight catheter",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Straight catheter','e')?></label><br>
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Irrigation tray"
+<?php if(in_array("Irrigation tray",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Irrigation tray','e')?></label><br>
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Saline"
+<?php if(in_array("Saline",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Saline','e')?></label><br>
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Acetic acid"
+<?php if(in_array("Acetic acid",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Acetic acid','e')?></label><br>
+			<label><input type="checkbox" name="oasis_dme_foley_supplies[]" value="Other"
+<?php if(in_array("Other",$oasis_dme_foley_supplies)) echo "checked"; ?> ><?php xl('Other','e')?></label><br>
+
+<input type="text" name="oasis_dme_foley_supplies_other"  value="<?php echo stripslashes($obj{"oasis_dme_foley_supplies_other"});?>" >
+
+					</td>
+				</tr>
+			</table>
+
+
+
 		</td>
 	</tr>
 </table>

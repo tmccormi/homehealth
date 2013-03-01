@@ -188,7 +188,12 @@
      // xl('Accounting')
 $breakglass  = $gacl->add_group('breakglass' , 'Emergency Login'    , $users, 'ARO');
      // xl('Emergency Login')
-
+$phytherapist  = $gacl->add_group('phytherapist' , 'Physical Therapist'    , $clin, 'ARO');
+     // xl('Physical Therapist')
+$sptherapist  = $gacl->add_group('sptherapist' , 'Speech Therapist'    , $clin, 'ARO');
+     // xl('Speech Therapist')
+$nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
+     // xl('Nurse')
 
  // Create a Users section for the AROs (humans).
  //
@@ -333,6 +338,72 @@ $breakglass  = $gacl->add_group('breakglass' , 'Emergency Login'    , $users, 'A
   1, 1, 'write', 'Emergency Login user can do anything'
  );
      // xl('Emergency Login user can do anything')
+
+ // Set permissions for Physical Therapist.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($phytherapist), NULL, NULL,
+  1, 1, 'addonly', 'Things that Physical Therapist can read and enter but not modify'
+ );
+     // xl('Things that clinicians can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($phytherapist), NULL, NULL,
+  1, 1, 'write', 'Things that Physical Therapist can read and modify'
+ );
+
+ // Set permissions for Speech Therapist.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($sptherapist), NULL, NULL,
+  1, 1, 'addonly', 'Things that Speech Therapist can read and enter but not modify'
+ );
+     // xl('Things that clinicians can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($sptherapist), NULL, NULL,
+  1, 1, 'write', 'Things that Speech Therapist can read and modify'
+ );
+
+ // Set permissions for Nurse.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($nurse), NULL, NULL,
+  1, 1, 'addonly', 'Things that Nurse can read and enter but not modify'
+ );
+     // xl('Things that clinicians can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($nurse), NULL, NULL,
+  1, 1, 'write', 'Things that Nurse can read and modify'
+ );
 
 ?>
 <html>

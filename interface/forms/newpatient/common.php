@@ -50,6 +50,13 @@ $ires = sqlStatement("SELECT id, type, title, begdate FROM lists WHERE " .
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/overlib_mini.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/textformat.js"></script>
 
+
+<!-- For time picker -->
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery.ui.timepicker.css?v=0.3.1" type="text/css" />
+<link rel="stylesheet" href="<?php echo $GLOBALS['webroot'] ?>/library/css/jquery-ui-1.8.21.custom.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery.ui.timepicker.js?v=0.3.1"></script>
+
 <!-- pop up calendar -->
 <style type="text/css">@import url(<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.css);</style>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
@@ -57,6 +64,17 @@ $ires = sqlStatement("SELECT id, type, title, begdate FROM lists WHERE " .
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
 <?php include_once("{$GLOBALS['srcdir']}/ajax/facility_ajax_jav.inc.php"); ?>
 <script language="JavaScript">
+
+$(document).ready(function(){
+$('#form_time_in, #form_time_out').timepicker({
+    minutes: {
+        starts: 0,                // First displayed minute
+        ends: 59,                 // Last displayed minute
+        interval: 1               // Interval of displayed minutes
+    }
+  });
+});
+
 
  var mypcc = '<?php echo $GLOBALS['phone_country_code'] ?>';
 
@@ -71,6 +89,11 @@ $ires = sqlStatement("SELECT id, type, title, begdate FROM lists WHERE " .
   var s = document.forms[0]['issues[]'];
   s.options[s.options.length] = new Option(title, issue, true, true);
  }
+
+var appendCount = 0;
+var appendCount1 = 0;
+var appendCount2 = 0;
+var appendCount3 = 0;
 
  function saveClicked() {
   var f = document.forms[0];
@@ -92,6 +115,33 @@ echo "location.reload();";
 
 ?>
 
+
+var cargivr = $('#form_caregiver').val();
+if(cargivr == 0 && appendCount == 0){
+$('td select#form_caregiver').parent().append('<font class="error"> * Required</font>');
+appendCount++;
+}
+
+var tos = $('#form_type_of_service').val();
+if(tos == "" && appendCount1 == 0){
+$('td select#form_type_of_service').parent().append('<font class="error"> * Required</font>');
+appendCount1++;
+}
+
+var time_in = $('#form_time_in').val();
+if(time_in == "" && appendCount2 == 0){
+$('td #form_time_in').parent().append('<font class="error"> * Required</font>');
+appendCount2++;
+}
+
+var time_out = $('#form_time_out').val();
+if(time_out == "" && appendCount3 == 0){
+$('td #form_time_out').parent().append('<font class="error"> * Required</font>');
+appendCount3++;
+}
+
+
+
 <?php if (!$GLOBALS['athletic_team']) { ?>
   var category = document.forms[0].pc_catid.value;
   if ( category == '_blank' ) {
@@ -99,6 +149,11 @@ echo "location.reload();";
    return;
   }
 <?php } ?>
+
+
+if(cargivr == 0 || tos == "" || time_in == "" || time_out== ""){
+return;
+}
 
 <?php if (false /* $GLOBALS['ippf_specific'] */) { // ippf decided not to do this ?>
   if (f['issues[]'].selectedIndex < 0) {
@@ -129,6 +184,10 @@ ajax_bill_loc(pid,dte,facility);
 <style>
 #episode_id{
 width: 200;
+}
+
+.error{
+color:red;
 }
 </style>
 
@@ -372,7 +431,147 @@ if ($fres) {
         id='img_form_onset_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
         title='<?php xl('Click here to choose a date','e'); ?>'>
      </td>
+    </tr>	
+	
+	
+
+<tr>
+     <td class='bold' nowrap><?php xl('Caregiver:','e'); ?></td>
+     <td class='text' nowrap><!-- default is blank so that while generating claim the date is blank. -->
+		<?php
+		$validUsernames = sqlStatement("SELECT username FROM users WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) AND authorized = 1 ORDER BY lname, fname");
+		while ($row = sqlFetchArray($validUsernames)) {
+		$checkUsers = sqlStatement("select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$row['username']."'))");
+		while ($currUser = sqlFetchArray($checkUsers)){
+		if($currUser['name'] == "Physicians"){
+		if($count==0)
+		{
+		$userNamesToTake = "'".$row['username']."'";
+		$condition = "username IN (".$userNamesToTake.")";
+		$count++;
+		}
+		else{
+		$userNamesToTake = $userNamesToTake.",'".$row['username']."'";
+		$condition = "username IN (".$userNamesToTake.")";
+		}
+		}
+		else
+		{
+		if(!$condition)
+		$condition = " password = '1'";
+		}
+		}
+		}
+		$ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
+		  "WHERE " .$condition.
+		  " ORDER BY lname, fname");
+		echo "<select name='form_caregiver' id='form_caregiver' >";
+		echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
+		while ($urow = sqlFetchArray($ures)) {
+		  $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+		  $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
+		  echo "<option value='$optionId'";
+		  if($viewmode){
+		  if ($urow['id'] == $result['caregiver']){ echo " selected";}
+		  }
+		  echo ">$uname</option>";
+		}
+		echo "</select>";
+		?>
+     </td>
     </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Time In:','e'); ?></td>
+     <td class='text' nowrap><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='15' name='form_time_in' id='form_time_in'
+       value='<?php echo $viewmode ? $result['time_in'] : ''; ?>' 
+       title='<?php xl('Time In','e'); ?>' readonly />
+     </td>
+    </tr>
+
+	<tr>
+     <td class='bold' nowrap><?php xl('Time Out:','e'); ?></td>
+     <td class='text' nowrap><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='15' name='form_time_out' id='form_time_out'
+       value='<?php echo $viewmode ? $result['time_out'] : ''; ?>' 
+       title='<?php xl('Time Out','e'); ?>' readonly />
+     </td>
+    </tr>	
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Billing Units:','e'); ?></td>
+     <td class='text' nowrap><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='15' name='form_billing_units' id='form_billing_units'
+       value='<?php echo $viewmode ? $result['billing_units'] : ''; ?>' 
+       title='<?php xl('Billing Units','e'); ?>' />
+     </td>
+    </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Bill Insurance:','e'); ?></td>
+     <td class='text' nowrap>
+		<label><input type='radio' name='form_billing_insurance' value='True' <?php if($viewmode){if($result['billing_insurance']=='True'){echo 'checked';}}else{echo '';} ?>><?php xl('Yes','e'); ?></label>
+		<label><input type='radio' name='form_billing_insurance' value='False' <?php if($viewmode){if($result['billing_insurance']=='False'){echo 'checked';}}else{echo '';} ?>><?php xl('No','e'); ?></label>
+	 </td>
+    </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Notes In:','e'); ?></td>
+     <td class='text' nowrap>
+		<label><input type='radio' name='form_notes_in' value='True' <?php if($viewmode){if($result['notes_in']=='True'){echo 'checked';}}else{echo '';} ?>><?php xl('Yes','e'); ?></label>
+		<label><input type='radio' name='form_notes_in' value='False' <?php if($viewmode){if($result['notes_in']=='False'){echo 'checked';}}else{echo '';} ?>><?php xl('No','e'); ?></label>
+	 </td>
+    </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Verified:','e'); ?></td>
+     <td class='text' nowrap>
+		<label><input type='radio' name='form_verified' value='True' <?php if($viewmode){if($result['verified']=='True'){echo 'checked';}}else{echo '';} ?>><?php xl('Yes','e'); ?></label>
+		<label><input type='radio' name='form_verified' value='False' <?php if($viewmode){if($result['verified']=='False'){echo 'checked';}}else{echo '';} ?>><?php xl('No','e'); ?></label>
+	 </td>
+    </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Type of Service:','e'); ?></td>
+     <td class='text' nowrap>
+		<select name="form_type_of_service" id="form_type_of_service">
+			<option value="" <?php if($viewmode){if($result['type_of_service']==''){echo 'selected';}} ?>><?php xl('-- Select --','e'); ?></option>
+			<option value="01" <?php if($viewmode){if($result['type_of_service']=='01'){echo 'selected';}} ?>><?php xl('Skilled Nursing','e'); ?></option>
+			<option value="02" <?php if($viewmode){if($result['type_of_service']=='02'){echo 'selected';}} ?>><?php xl('Physical Therapy','e'); ?></option>
+			<option value="03" <?php if($viewmode){if($result['type_of_service']=='03'){echo 'selected';}} ?>><?php xl('Occupational Therapy','e'); ?></option>
+			<option value="04" <?php if($viewmode){if($result['type_of_service']=='04'){echo 'selected';}} ?>><?php xl('Social Services','e'); ?></option>
+			<option value="05" <?php if($viewmode){if($result['type_of_service']=='05'){echo 'selected';}} ?>><?php xl('Speech Therapy','e'); ?></option>
+			<option value="06" <?php if($viewmode){if($result['type_of_service']=='06'){echo 'selected';}} ?>><?php xl('Home Health Aide','e'); ?></option>
+			<option value="07" <?php if($viewmode){if($result['type_of_service']=='07'){echo 'selected';}} ?>><?php xl('Non-Skilled Services','e'); ?></option>
+		</select>
+	 </td>
+    </tr>
+	
+	<tr>
+     <td class='bold' nowrap><?php xl('Modifiers:','e'); ?></td>
+     <td class='text' nowrap><?php xl('1','e'); ?><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='1' name='form_modifier_1' id='form_modifier_1'
+       value='<?php echo $viewmode ? $result['modifier_1'] : ''; ?>' 
+       title='<?php xl('Modifier 1','e'); ?>' />
+	   <?php xl('2','e'); ?><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='1' name='form_modifier_2' id='form_modifier_2'
+       value='<?php echo $viewmode ? $result['modifier_2'] : ''; ?>' 
+       title='<?php xl('Modifier 2','e'); ?>' />
+	   <?php xl('3','e'); ?><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='1' name='form_modifier_3' id='form_modifier_3'
+       value='<?php echo $viewmode ? $result['modifier_3'] : ''; ?>' 
+       title='<?php xl('Modifier 3','e'); ?>' />
+	   <?php xl('4','e'); ?><!-- default is blank so that while generating claim the date is blank. -->
+      <input type='text' size='1' name='form_modifier_4' id='form_modifier_4'
+       value='<?php echo $viewmode ? $result['modifier_4'] : ''; ?>' 
+       title='<?php xl('Modifier 4','e'); ?>' />
+     </td>
+    </tr>
+	
+	
+	
+	
 
     <tr>
      <td class='text' colspan='2' style='padding-top:1em'>

@@ -848,6 +848,153 @@ function updatePatientData($pid, $new, $create=false)
       $sql .= ", `$key` = " . pdValueOrNull($key, $value);
     }
     $db_id = sqlInsert($sql);
+	
+	
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice']);
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+
+$s_result = sqlStatement("select *from patient_data where pid=".$pid."");
+$s_result = sqlFetchArray($s_result);
+
+$p_result = sqlStatement("select *from employer_data where pid=".$pid."");
+$p_result = sqlFetchArray($p_result);
+
+if($s_result['agency_name'] == 0){
+$AgencyName = '';
+$AgencyCode = '';
+}
+else{
+$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlFetchArray($agency);
+$AgencyName = $agency['organization'];
+$AgencyCode = $s_result['agency_name'];
+}
+
+if($s_result['street'] == '' || empty($s_result['street']))
+{
+$s_result['street'] = 'None';
+}
+if($s_result['street2'] == '')
+{
+$s_result['street2'] = ' ';
+}
+if($s_result['city'] == '')
+{
+$s_result['city'] = ' ';
+}
+if($s_result['state'] == '')
+{
+$s_result['state'] = ' ';
+}
+if($s_result['postal_code'] == '')
+{
+$s_result['postal_code'] = '     ';
+}
+
+if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
+$s_result['race'] = 1;
+}
+else if($s_result['race'] == 'Asian'){
+$s_result['race'] = 8;
+}
+else if($s_result['race'] == 'black_or_afri_amer'){
+$s_result['race'] = 2;
+}
+else{
+$s_result['race'] = 0;
+}
+
+if($s_result['status'] == 'married'){
+$s_result['status'] = 2;
+}
+else if($s_result['status'] == 'single'){
+$s_result['status'] = 1;
+}
+else if($s_result['status'] == 'divorced'){
+$s_result['status'] = 4;
+}
+else if($s_result['status'] == 'widowed'){
+$s_result['status'] = 5;
+}
+else if($s_result['status'] == 'separated'){
+$s_result['status'] = 3;
+}
+else{
+$s_result['status'] = 6;
+}
+
+if($s_result['language'] == 'English'){
+$s_result['language'] = 1;
+}
+else if($s_result['language'] == 'Spanish'){
+$s_result['language'] = 2;
+}
+else if($s_result['language'] == 'chinese'){
+$s_result['language'] = 3;
+}
+else if($s_result['language'] == 'japanese'){
+$s_result['language'] = 4;
+}
+else if($s_result['language'] == 'vietnamese'){
+$s_result['language'] = 5;
+}
+else if($s_result['language'] == 'korean'){
+$s_result['language'] = 6;
+}
+else if($s_result['language'] == 'russian'){
+$s_result['language'] = 8;
+}
+else{
+$s_result['language'] = 0;
+}
+
+
+$patient = array(
+0 => $s_result['street'], //Address1
+1 => $s_result['street2'], //Address2
+2 => $s_result['city'],  //City
+3 => $s_result['state'],  //State
+4 => $s_result['postal_code'],  //Zip
+5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
+6 => $AgencyCode,  //AgencyCode
+7 => $AgencyName,  //AgencyName
+8 => $s_result['DOB'],  //Birthdate
+9 => $s_result['fname'],  //FirstName
+10 => $s_result['mname'],  //MiddleInitial
+11 => $s_result['lname'],  //LastName
+12 => $s_result['sex'],  //Gender
+13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
+14 => $s_result['pid'],  //ID
+15 => $s_result['ss'],  //SSN
+16 => str_replace('-','',$s_result['phone_home']),  //Telephone
+17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
+18 => $curr_episode['admit_status'], //CareStatus
+19 => $s_result['providerID'],  //DoctorCode
+20 => $p_result['name'],  //Employer
+21 => $s_result['race'],  //Ethnicity Value
+22 => $s_result['language'],  //Language Value
+23 => $s_result['pref_other'],  //Notes
+24 => $s_result['status'],  //MaritalStatus
+25 => $s_result['occupation'],  //Occupation
+26 => $s_result['agency_name'],  //OfficeCode
+27 => $s_result['providerID'],  //PrimaryDoctorCode
+28 => $s_result['primary_ref_physician'],  //ReferralCode
+29 => $s_result['providerID'],  //CurrentPhysCode
+30 => get_patient_balance($_SESSION['pid'])  //Balance
+);
+
+try{
+$result3 = $client->AddDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_data' => $patient));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+}
+
+
   }
   else {
     $db_id = $new['id'];
@@ -864,6 +1011,156 @@ function updatePatientData($pid, $new, $create=false)
     }
     $sql .= " WHERE id = '$db_id'";
     sqlStatement($sql);
+	
+	
+	
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice']);
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+
+$s_result = sqlStatement("select *from patient_data where pid=".$pid."");
+$s_result = sqlFetchArray($s_result);
+
+$p_result = sqlStatement("select *from employer_data where pid=".$pid."");
+$p_result = sqlFetchArray($p_result);
+
+if($s_result['agency_name'] == 0){
+$AgencyName = '';
+$AgencyCode = '';
+}
+else{
+$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlFetchArray($agency);
+$AgencyName = $agency['organization'];
+$AgencyCode = $s_result['agency_name'];
+}
+
+if($s_result['street'] == '' || empty($s_result['street']))
+{
+$s_result['street'] = 'None';
+}
+if($s_result['street2'] == '')
+{
+$s_result['street2'] = ' ';
+}
+if($s_result['city'] == '')
+{
+$s_result['city'] = ' ';
+}
+if($s_result['state'] == '')
+{
+$s_result['state'] = ' ';
+}
+if($s_result['postal_code'] == '')
+{
+$s_result['postal_code'] = '     ';
+}
+
+if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
+$s_result['race'] = 1;
+}
+else if($s_result['race'] == 'Asian'){
+$s_result['race'] = 8;
+}
+else if($s_result['race'] == 'black_or_afri_amer'){
+$s_result['race'] = 2;
+}
+else{
+$s_result['race'] = 0;
+}
+
+
+if($s_result['status'] == 'married'){
+$s_result['status'] = 2;
+}
+else if($s_result['status'] == 'single'){
+$s_result['status'] = 1;
+}
+else if($s_result['status'] == 'divorced'){
+$s_result['status'] = 4;
+}
+else if($s_result['status'] == 'widowed'){
+$s_result['status'] = 5;
+}
+else if($s_result['status'] == 'separated'){
+$s_result['status'] = 3;
+}
+else{
+$s_result['status'] = 6;
+}
+
+if($s_result['language'] == 'English'){
+$s_result['language'] = 1;
+}
+else if($s_result['language'] == 'Spanish'){
+$s_result['language'] = 2;
+}
+else if($s_result['language'] == 'chinese'){
+$s_result['language'] = 3;
+}
+else if($s_result['language'] == 'japanese'){
+$s_result['language'] = 4;
+}
+else if($s_result['language'] == 'vietnamese'){
+$s_result['language'] = 5;
+}
+else if($s_result['language'] == 'korean'){
+$s_result['language'] = 6;
+}
+else if($s_result['language'] == 'russian'){
+$s_result['language'] = 8;
+}
+else{
+$s_result['language'] = 0;
+}
+
+
+
+$patient = array(
+0 => $s_result['street'], //Address1
+1 => $s_result['street2'], //Address2
+2 => $s_result['city'],  //City
+3 => $s_result['state'],  //State
+4 => $s_result['postal_code'],  //Zip
+5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
+6 => $AgencyCode,  //AgencyCode
+7 => $AgencyName,  //AgencyName
+8 => $s_result['DOB'],  //Birthdate
+9 => $s_result['fname'],  //FirstName
+10 => $s_result['mname'],  //MiddleInitial
+11 => $s_result['lname'],  //LastName
+12 => $s_result['sex'],  //Gender
+13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
+14 => $s_result['pid'],  //ID
+15 => $s_result['ss'],  //SSN
+16 => str_replace('-','',$s_result['phone_home']),  //Telephone
+17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
+18 => $curr_episode['admit_status'], //CareStatus
+19 => $s_result['providerID'],  //DoctorCode
+20 => $p_result['name'],  //Employer
+21 => $s_result['race'],  //Ethnicity Value
+22 => $s_result['language'],  //Language Value
+23 => $s_result['pref_other'],  //Notes
+24 => $s_result['status'],  //MaritalStatus
+25 => $s_result['occupation'],  //Occupation
+26 => $s_result['agency_name'],  //OfficeCode
+27 => $s_result['providerID'],  //PrimaryDoctorCode
+28 => $s_result['primary_ref_physician'],  //ReferralCode
+29 => $s_result['providerID'],  //CurrentPhysCode
+30 => get_patient_balance($_SESSION['pid'])  //Balance
+);
+
+try{
+$result3 = $client->EditDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_data' => $patient));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+}
+
+
   }
 
   $rez = sqlQuery("SELECT * FROM patient_data WHERE id = '$db_id'");
@@ -871,6 +1168,9 @@ function updatePatientData($pid, $new, $create=false)
     $rez['postal_code'],$rez['state'],$rez['phone_home'],$rez['phone_biz'],
     $rez['phone_cell'],$rez['email'],$rez['pid']);
 
+	
+	
+	
   return $db_id;
 }
 

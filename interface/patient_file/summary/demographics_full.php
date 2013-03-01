@@ -54,7 +54,17 @@ $fres = sqlStatement("SELECT * FROM layout_options " .
 
 <link rel="stylesheet" href="<?php echo $css_header; ?>" type="text/css">
 
-<style type="text/css">@import url(../../../library/dynarch_calendar.css);</style>
+<style type="text/css">@import url(../../../library/dynarch_calendar.css);
+
+.error{
+color:red;
+font-weight:bold;
+}
+[generated=true]{
+display:block;
+}
+
+</style>
 
 <script type="text/javascript" src="../../../library/dialog.js"></script>
 <script type="text/javascript" src="../../../library/textformat.js"></script>
@@ -66,6 +76,7 @@ $fres = sqlStatement("SELECT * FROM layout_options " .
 <script type="text/javascript" src="../../../library/js/common.js"></script>
 
 <script type="text/javascript" src="../../../library/js/fancybox/jquery.fancybox-1.2.6.js"></script>
+<script src="../../../library/js/jquery.validate.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../library/js/fancybox/jquery.fancybox-1.2.6.css" media="screen" />
 
 <script type="text/javascript">
@@ -80,8 +91,6 @@ $(document).ready(function(){
 		'frameHeight' : 460,
 		'frameWidth' : 650
 	});
-
-
 
 
 $('#form_hospital_name').change(function(){
@@ -319,6 +328,57 @@ $('#form_ref_providerID').html('<option value="0">Unassigned</option>'+data);
 }
 });
 
+
+jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
+if(phone_number == ''){
+return true;
+}
+phone_number = phone_number.replace(/\s+/g, "");
+if(phone_number.length == 10){
+return true;
+}
+else {
+return false;
+}
+//		return this.optional(element) || phone_number.length == 10 &&
+//		phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
+}, "Please specify a valid phone number");
+
+			//form validation rules
+            $("#demographics_form").validate({
+			
+                rules: {
+                    form_postal_code: {
+				      required: true,
+				      minlength: 5,
+				      maxlength: 5,
+				      digits: true
+				      },
+			      form_phone_home: {
+				      phoneUS: true,
+				      digits: true
+				      },
+			      form_phone_biz: {
+				      phoneUS: true,
+				      digits: true
+				      },
+			      form_ss: {
+				      required: true,
+				      minlength: 9,
+				      maxlength: 9,
+				      digits: true
+				      }
+			},
+                messages: {
+					form_postal_code: "* Required (Must be a 5 Digit Valid US Zipcode)",
+					form_phone_home: "Please Specify a 10 Digit Valid Phone Number",
+					form_phone_biz: "Please Specify a 10 Digit Valid Phone Number",
+					form_ss: "* Required Please Specify a 9 Digit Valid SSN Number"
+                },
+                submitHandler: function(form) {
+                    form.submitme();
+                }
+            });	
 });
 
 
@@ -500,6 +560,7 @@ function validate(f) {
  <?php } ?>
  //return false;
  
+ 
 // Some insurance validation.
  for (var i = 1; i <= 3; ++i) {
   subprov = 'i' + i + 'provider';
@@ -536,11 +597,47 @@ function validate(f) {
  return errMsgs.length < 1;
 }
 
+var appendCount = 0;
+var appendCount1 = 0;
+var appendCount2 = 0;
+
 function submitme() {
  var f = document.forms[0];
+  
+
+var phy = $('#form_providerID').val();
+if(phy == 0){
+if(appendCount == 0){
+$('td select#form_providerID').parent().append('<strong class="error"> * Required</strong>');
+appendCount++;
+}
+}
+
+var agen = $('#form_agency_name').val();
+if(agen == 0){
+if(appendCount1 == 0){
+$('td select#form_agency_name').parent().append('<strong class="error"> * Required</strong>');
+appendCount1++;
+}
+}
+
+var refphy = $('#form_primary_ref_physician').val();
+if(refphy == 0){
+if(appendCount2 == 0){
+$('td select#form_primary_ref_physician').parent().append('<strong class="error"> * Required</strong>');
+appendCount2++;
+}
+}
+
+if(phy == 0 || agen == 0 || refphy == 0){
+alert("Physician, Agency & Primary Referring Physician are mandatory");
+}
+
+  if($('#demographics_form').valid() == true && agen!=0 && phy!=0 && refphy!=0){
  if (validate(f)) {
   top.restoreSession();
   f.submit();
+ }
  }
 }
 
@@ -570,14 +667,14 @@ $(document).ready(function() {
  <?php for ($i=1;$i<=3;$i++) { ?>
   $("#form_i<?php echo $i?>subscriber_relationship").change(function() { auto_populate_employer_address<?php echo $i?>(); });
  <?php } ?>
-
+ 
 });
 
 </script>
 </head>
 
 <body class="body_top">
-<form action='demographics_save.php' name='demographics_form' method='post' onsubmit='return validate(this)'>
+<form action='demographics_save.php' name='demographics_form' id='demographics_form' method='post' onsubmit='return validate(this)'>
 <input type='hidden' name='mode' value='save' />
 <input type='hidden' name='db_id' value="<?php echo $result['id']?>" />
 <table cellpadding='0' cellspacing='0' border='0'>
@@ -593,7 +690,7 @@ $(document).ready(function() {
 			&nbsp;&nbsp;
 		</td>
 		<td>
-			<a href="javascript:submitme();" class='css_button'>
+			<a href="javascript:submitme();" class='css_button' id="save">
 				<span><?php xl('Save','e'); ?></span>
 			</a>
 		</td>
@@ -942,8 +1039,8 @@ $group_seq=0; // this gives the DIV blocks unique IDs
 <script language="JavaScript">
 
  // fix inconsistently formatted phone numbers from the database
- var f = document.forms[0];
  if (f.form_phone_contact) phonekeyup(f.form_phone_contact,mypcc);
+ var f = document.forms[0];
  if (f.form_phone_home   ) phonekeyup(f.form_phone_home   ,mypcc);
  if (f.form_phone_biz    ) phonekeyup(f.form_phone_biz    ,mypcc);
  if (f.form_phone_cell   ) phonekeyup(f.form_phone_cell   ,mypcc);

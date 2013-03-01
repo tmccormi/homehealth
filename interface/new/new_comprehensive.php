@@ -83,6 +83,14 @@ div.section {
  padding: 5pt;
 }
 
+.error{
+color:red;
+font-weight:bold;
+}
+[generated=true]{
+display:block;
+}
+
 </style>
 
 <style type="text/css">@import url(../../library/dynarch_calendar.css);</style>
@@ -92,7 +100,11 @@ div.section {
 <script type="text/javascript" src="../../library/dynarch_calendar.js"></script>
 <?php include_once("{$GLOBALS['srcdir']}/dynarch_calendar_en.inc.php"); ?>
 <script type="text/javascript" src="../../library/dynarch_calendar_setup.js"></script>
-<script type="text/javascript" src="<?php echo $GLOBALS['webroot']; ?>/library/js/jquery.js"></script>
+<script type="text/javascript" src="../../library/js/jquery.1.3.2.js"></script>
+<script type="text/javascript" src="../../library/js/common.js"></script>
+<script type="text/javascript" src="../../library/js/fancybox/jquery.fancybox-1.2.6.js"></script>
+<script src="../../library/js/jquery.validate.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../library/js/fancybox/jquery.fancybox-1.2.6.css" media="screen" />
 
 <SCRIPT LANGUAGE="JavaScript"><!--
 //Visolve - sync the radio buttons - Start
@@ -279,7 +291,9 @@ function validate(f) {
     return false;
   }
   <?php } ?>
+if($('#demographics_form').valid() == true){
  return true;
+}
 }
 
 function toggleSearch(elem) {
@@ -359,7 +373,7 @@ while ($lrow = sqlFetchArray($lres)) {
 
 <body class="body_top">
 
-<form action='new_comprehensive_save.php' name='demographics_form' method='post' onsubmit='return validate(this)'>
+<form action='new_comprehensive_save.php' name='demographics_form' id="demographics_form" method='post' onsubmit='return validate(this)'>
 
 <span class='title'><?php xl('Search or Add Patient','e'); ?></span>
 
@@ -754,11 +768,44 @@ $(document).ready(function() {
     $('#search').click(function() { searchme(); });
     $('#create').click(function() { submitme(); });
 
+var appendCount = 0;
+var appendCount1 = 0;
+var appendCount2 = 0;
+
     var submitme = function() {
       top.restoreSession();
       var f = document.forms[0];
 
-      if (validate(f)) {
+
+var phy = $('#form_providerID').val();
+if(phy == 0){
+if(appendCount == 0){
+$('td select#form_providerID').parent().append('<strong class="error"> * Required</strong>');
+appendCount++;
+}
+}
+
+var agen = $('#form_agency_name').val();
+if(agen == 0){
+if(appendCount1 == 0){
+$('td select#form_agency_name').parent().append('<strong class="error"> * Required</strong>');
+appendCount1++;
+}
+}
+
+var refphy = $('#form_primary_ref_physician').val();
+if(refphy == 0){
+if(appendCount2 == 0){
+$('td select#form_primary_ref_physician').parent().append('<strong class="error"> * Required</strong>');
+appendCount2++;
+}
+}
+
+	    if(phy == 0 || agen == 0 || refphy == 0){
+	    alert("Physician, Agency & Primary Referring Physician are mandatory");
+	    }
+
+      if (validate(f) && agen!=0 && phy!=0 && refphy!=0) {
         if (force_submit) {
           // In this case dups were shown already and Save should just save.
           f.submit();
@@ -1016,23 +1063,56 @@ $('#form_type_of_referral_other').attr("readonly", "readonly");
 
 })
 
+jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
+if(phone_number == ''){
+return true;
+}
+phone_number = phone_number.replace(/\s+/g, "");
+if(phone_number.length == 10){
+return true;
+}
+else {
+return false;
+}
+}, "Please specify a valid phone number");
+
+			//form validation rules
+            $("#demographics_form").validate({
+			
+                rules: {
+                    form_postal_code: {
+						required: true,
+						minlength: 5,
+						maxlength: 5,
+						digits: true
+						},
+					form_phone_home: {
+						phoneUS: true,
+						digits: true
+						},
+					form_phone_biz: {
+						phoneUS: true,
+						digits: true
+						},
+					form_ss: {
+						required: true,
+						minlength: 9,
+						maxlength: 9,
+						digits: true
+						}
+				},
+                messages: {
+					form_postal_code: "* Required (Must be a 5 Digit Valid US Zipcode)",
+					form_phone_home: "Please Specify a 10 Digit Valid Phone Number",
+					form_phone_biz: "Please Specify a 10 Digit Valid Phone Number",
+					form_ss: "* Required. Please Specify a 9 Digit Valid SSN Number"
+                },
+                submitHandler: function(form) {
+                    form.validate();
+                }
+            });
 
 }); // end document.ready
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </script>
 

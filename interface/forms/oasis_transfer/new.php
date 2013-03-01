@@ -50,7 +50,7 @@ formHeader("Form: oasis_transfer");
 <tr> <td><center><b><?php xl('CLINICAL RECORD ITEMS','e')?></b></center></td> </tr>
 <tr><td><hr/></td></tr>
 <tr><td><b><u><?php xl('(M0080)','e')?></u><?php xl('Discipline of Person Completing Assessment','e')?></b></td></tr>
-<tr><td> <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="RN"><?php xl('1-RN','e')?>  &nbsp;&nbsp;&nbsp;
+<tr><td> <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="RN" checked><?php xl('1-RN','e')?>  &nbsp;&nbsp;&nbsp;
  <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="PT"><?php xl('2-PT','e')?>  &nbsp;&nbsp;&nbsp;
  <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="SLP/ST"><?php xl('3-SLP/ST','e')?>  &nbsp;&nbsp;&nbsp;
 <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="OT"><?php xl('4-OT','e')?> </td> 
@@ -92,7 +92,7 @@ formHeader("Form: oasis_transfer");
 </tr>
 <tr><td><b><u><?php xl('Transfer to an Inpatient Facility','e');?></u></b></td></tr>
 <tr><td>
-<input type="radio" id="m0100" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency">
+<input type="radio" id="m0100" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency" checked>
 <?php xl('6-Transfered to an InPatient Facility-patient not discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Discharged_from_Agency">
 <?php xl('7-Transfered to an InPatient Facility-patient discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
@@ -293,6 +293,147 @@ depression since the last OASIS assessment','e')?></td></tr>
 <td><?php xl("Dressings that support the principles of moist wound healing not indicated for this patient's pressure ulcers OR
 patient has no pressure ulcers with need for moist wound healing",'e')?></td></tr>
 </table></td></tr>
+
+<tr><td><hr/></td></tr>
+<tr><td>
+			<center><strong><?php xl("MENTAL STATUS","e");?></strong></center><br>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Oriented"><?php xl('Oriented','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Comatose"><?php xl('Comatose','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Forgetful"><?php xl('Forgetful','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Depressed"><?php xl('Depressed','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Disoriented"><?php xl('Disoriented','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Lethargic"><?php xl('Lethargic','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Agitated"><?php xl('Agitated','e')?></label>
+			<label><input type="checkbox" name="oasistransfer_mental_status[]" value="Other"><?php xl('Other:','e')?></label>
+<input type="text" name="oasistransfer_mental_status_other" value="">
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><hr/></td></tr>
+<tr><td>
+<center><strong><?php xl("FUNCTIONAL LIMITATIONS","e");?></strong></center><br>
+<table class="formtable">
+	<tr valign="top">
+		<td width="30%">
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Amputation"><?php xl('Amputation','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Hearing"><?php xl('Hearing','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Ambulation"><?php xl('Ambulation','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Dyspnea with Minimal Exertion"><?php xl('Dyspnea with Minimal Exertion','e')?></label>
+		</td>
+		<td width="45%">
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Bowel/Bladder (Incontinence)"><?php xl('Bowel/Bladder (Incontinence)','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Paralysis"><?php xl('Paralysis','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Speech"><?php xl('Speech','e')?></label><br>
+			
+		</td>
+		<td width="25%">
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Contracture"><?php xl('Contracture','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Endurance"><?php xl('Endurance','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Legally Blind"><?php xl('Legally Blind','e')?></label>
+		</td>
+	</tr>
+	<tr>
+	<td colspan="3">
+	<label><input type="checkbox" name="oasistransfer_functional_limitations[]" value="Other"><?php xl('Other (specify):','e')?></label>
+	<input type="text" name="oasistransfer_functional_limitations_other" value="" size="15">
+	</td>
+	</tr>
+</table>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><hr/></td></tr>
+<tr><td>
+			<center><strong><?php xl('PROGNOSIS','e')?></strong></center><br>
+			<strong><?php xl('Prognosis:','e')?></strong>
+			<label><input type="radio" name="oasistransfer_prognosis" value="1"><?php xl(' 1-Poor ','e')?></label>
+			<label><input type="radio" name="oasistransfer_prognosis" value="2"><?php xl(' 2-Guarded ','e')?></label>
+			<label><input type="radio" name="oasistransfer_prognosis" value="3"><?php xl(' 3-Fair ','e')?></label>
+			<label><input type="radio" name="oasistransfer_prognosis" value="4"><?php xl(' 4-Good ','e')?></label>
+			<label><input type="radio" name="oasistransfer_prognosis" value="5"><?php xl(' 5-Excellent ','e')?></label>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+
+<tr><td><hr/></td></tr>
+<tr><td>
+				<center><strong><?php xl("SAFETY MEASURES","e");?></strong></center>
+		<table class="formtable">
+		<tr>
+			<td width="50%">
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="911 Protocol"><?php xl('911 Protocol','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Clear Pathways"><?php xl('Clear Pathways','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Siderails up"><?php xl('Siderails up','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Safe Transfers"><?php xl('Safe Transfers','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Equipment Safety"><?php xl('Equipment Safety','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Infection Control Measures"><?php xl('Infection Control Measures','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Bleeding Precautions"><?php xl('Bleeding Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Fall Precautions"><?php xl('Fall Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Seizure Precautions"><?php xl('Seizure Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Universal Precautions"><?php xl('Universal Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Other"><?php xl('Other:','e')?></label>
+					<input type="text" name="oasistransfer_safety_measures_other" value=""><br>
+			</td>
+			<td>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Hazard-Free Environment"><?php xl('Hazard-Free Environment','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Lock W/C with transfers"><?php xl('Lock W/C with transfers','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Elevate Head of Bed"><?php xl('Elevate Head of Bed','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Medication Safety/Storage"><?php xl('Medication Safety/Storage','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Hazardous Waste Disposal"><?php xl('Hazardous Waste Disposal','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="24 hr. supervision"><?php xl('24 hr. supervision','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Neutropenic"><?php xl('Neutropenic','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="O2 Precautions"><?php xl('O2 Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Aspiration Precautions"><?php xl('Aspiration Precautions','e')?></label><br>
+				<label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Walker/Cane"><?php xl('Walker/Cane','e')?></label><br>
+			</td>
+		</tr>
+		</table>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+
+
+<tr><td><hr/></td></tr>
+<tr><td>
+			<strong><?php xl("IV SUPPLIES: ","e");?></strong><br />
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="IV start kit"><?php xl('IV start kit','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="IV pole"><?php xl('IV pole','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="IV tubing"><?php xl('IV tubing','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Alcohol swabs"><?php xl('Alcohol swabs','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Angiocatheter size"><?php xl('Angiocatheter size','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Tape"><?php xl('Tape','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Extension tubings"><?php xl('Extension tubings','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Injection caps"><?php xl('Injection caps','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Central line dressing"><?php xl('Central line dressing','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Infusion pump"><?php xl('Infusion pump','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Batteries size"><?php xl('Batteries size','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Syringes size"><?php xl('Syringes size','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_iv_supplies[]" value="Other"><?php xl('Other','e')?></label>
+				<input type="text" name="oasistransfer_dme_iv_supplies_other" value="">
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+<tr><td><hr/></td></tr>
+<tr><td>
+			<strong><?php xl("FOLEY SUPPLIES: ","e");?></strong><br />
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Fr catheter kit"><?php xl('Fr catheter kit','e')?></label><br>
+			<?php xl("(tray, bag, foley) ","e");?><br>
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Straight catheter"><?php xl('Straight catheter','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Irrigation tray"><?php xl('Irrigation tray','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Saline"><?php xl('Saline','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Acetic acid"><?php xl('Acetic acid','e')?></label><br>
+			<label><input type="checkbox" name="oasistransfer_dme_foley_supplies[]" value="Other"><?php xl('Other','e')?></label><br>
+				<input type="text" name="oasistransfer_dme_foley_supplies_other" value="">
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+
+
+
+
+
+
+
+
 </table></td>
 
 
@@ -320,7 +461,7 @@ Transfer/Discharge), state reason:','e')?></td></tr>
 <tr>
 		<td colspan="2">
 			<strong><?php xl('<u>(M1230)</u> Speech and Oral (Verbal) Expression of Language (in patient\'s own language):','e');?></strong><br>
-			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0"><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
+			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0" checked><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="1"><?php xl(' 1 - Minimal difficulty in expressing ideas and needs (may take extra time; makes occasional errors in word choice, grammar or speech intelligibility; needs minimal prompting or assistance).','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="2"><?php xl(' 2 - Expresses simple ideas or needs with moderate difficulty (needs prompting or assistance, errors in word choice, organization or speech intelligibility). Speaks in phrases or short sentences.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="3"><?php xl(' 3 - Has severe difficulty expressing basic ideas or needs and requires maximal assistance or guessing by listener. Speech limited to single words or short phrases.','e');?></label><br>
@@ -422,7 +563,7 @@ instructed by agency staff or other health care provider to monitor the effectiv
 <b><u><?php xl('(M2410)','e')?></u></b>&nbsp;<?php xl('To which','e')?><b>&nbsp;<?php xl('Inpatient Facility','e')?></b>&nbsp;<?php xl('has the patient been admitted?','e')?>
 </td></tr>
 <tr><td>
-<input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Hospital"/>
+<input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Hospital" checked />
 <?php xl('1 - Hospital','e')?> &nbsp;<b><?php xl('[ Go to M2430 ]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Rehabilitation_Facility"/>
 <?php xl('2 - Rehabilitation facility','e')?> &nbsp;<b><?php xl('[ Go to M0903 ]','e')?></b><br/>
@@ -560,6 +701,36 @@ hospitalization?','e')?> <b><?php xl(' (Mark all that apply.)','e')?></b>
     Calendar.setup({inputField:"oasistransfer_Discharge_Transfer_Death_Date", ifFormat:"%Y-%m-%d", button:"img_discharge_date"});
    </script>
 
+<tr><td>&nbsp;</td></tr>
+<tr><td><hr/></td></tr>
+<tr><td><strong><?php xl('Certification:','e');?></strong><br>
+<label><input type="radio" name="oasistransfer_certification" value="0" checked ><?php xl(' Certification','e');?></label>
+<label><input type="radio" name="oasistransfer_certification" value="1"><?php xl(' Recertification','e');?></label>
+</td></tr>
+<tr><td><hr/></td></tr>
+<tr><td><strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
+<input type='text' size='10' name='oasistransfer_date_last_contacted_physician' id='oasistransfer_date_last_contacted_physician' 
+	title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
+	height='22' id='img_curr_date_sy1' border='0' alt='[?]'
+	style='cursor: pointer; cursor: hand'
+	title='<?php xl('Click here to choose a date','e'); ?>'> 
+	<script	LANGUAGE="JavaScript">
+		Calendar.setup({inputField:"oasistransfer_date_last_contacted_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy1"});
+	</script>
+</td></tr>
+<tr><td><hr/></td></tr>
+<tr><td><strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
+<input type='text' size='10' name='oasistransfer_date_last_seen_by_physician' id='oasistransfer_date_last_seen_by_physician' 
+	title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+	<img src='../../pic/show	_calendar.gif' align='absbottom' width='24'
+	height='22' id='img_curr_date_sy2' border='0' alt='[?]'
+	style='cursor: pointer; cursor: hand'
+	title='<?php xl('Click here to choose a date','e'); ?>'> 
+	<script	LANGUAGE="JavaScript">
+		Calendar.setup({inputField:"oasistransfer_date_last_seen_by_physician", ifFormat:"%Y-%m-%d", button:"img_curr_date_sy2"});
+	</script>
+</td></tr>
 </td></tr>
 </table></td></tr>
 

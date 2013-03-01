@@ -34,10 +34,16 @@ $form_regdate   = $_POST['regdate'  ] ? trim($_POST['regdate'  ]) : date('Y-m-d'
 <link rel="stylesheet" href="<?php echo xl($css_header,'e');?>" type="text/css">
 <style type="text/css">@import url(../../library/dynarch_calendar.css);</style>
 
+<script type="text/javascript" src="../../library/dialog.js"></script>
 <script type="text/javascript" src="../../library/textformat.js"></script>
 <script type="text/javascript" src="../../library/dynarch_calendar.js"></script>
 <?php include_once("{$GLOBALS['srcdir']}/dynarch_calendar_en.inc.php"); ?>
 <script type="text/javascript" src="../../library/dynarch_calendar_setup.js"></script>
+<script type="text/javascript" src="../../../library/js/jquery.1.3.2.js"></script>
+<script type="text/javascript" src="../../../library/js/common.js"></script>
+<script type="text/javascript" src="../../../library/js/fancybox/jquery.fancybox-1.2.6.js"></script>
+<script src="../../../library/js/jquery.validate.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../library/js/fancybox/jquery.fancybox-1.2.6.css" media="screen" />
 
 <script LANGUAGE="JavaScript">
 
@@ -66,7 +72,6 @@ $form_regdate   = $_POST['regdate'  ] ? trim($_POST['regdate'  ]) : date('Y-m-d'
   top.restoreSession();
   return true;
  }
-
 </script>
 
 </head>
@@ -74,11 +79,11 @@ $form_regdate   = $_POST['regdate'  ] ? trim($_POST['regdate'  ]) : date('Y-m-d'
 <body class="body_top" onload="javascript:document.new_patient.fname.focus();">
 
 <?php if ($GLOBALS['concurrent_layout']) { ?>
-<form name='new_patient' method='post' action="new_patient_save.php"
+<form name='new_patient' id="new_patient" method='post' action="new_patient_save.php"
  onsubmit='return validate()'>
 <span class='title'><?php xl('Add Patient Record','e');?></span>
 <?php } else { ?>
-<form name='new_patient' method='post' action="new_patient_save.php"
+<form name='new_patient' id="new_patient" method='post' action="new_patient_save.php"
  target='_top' onsubmit='return validate()'>
 <a class="title" href="../main/main_screen.php" target="_top" onclick="top.restoreSession()">
 <?php xl('Add Patient Record','e');?></a>
