@@ -376,6 +376,11 @@ $bg_count=count($acl_name);
 <input type=hidden name="user_type" value="<? echo $bg_name; ?>" >
 
 <TABLE border=0 cellpadding=0 cellspacing=0>
+
+<TR>
+<TD style="width:180px;"><span class=text><?php xl('User ID','e'); ?>: </span></TD><TD style="width:270px;"><?php echo $iter["id"]; ?></td>
+</TR>
+
 <TR>
 <TD style="width:180px;"><span class=text><?php xl('Username','e'); ?>: </span></TD><TD style="width:270px;"><input type=entry name=username style="width:150px;" value="<?php echo $iter["username"]; ?>" disabled></td>
 <TD style="width:200px;"><span class=text><?php xl('Password','e'); ?>: </span></TD><TD class='text' style="width:280px;"><input type=entry name=clearPass style="width:150px;"  value=""><font class="mandatory">*</font></td>

@@ -195,19 +195,35 @@ function popup_close() {
     row_delete("daily_fitness", "pid = '$patient'");
    }
 
-   row_delete("patient_data", "pid = '$patient'");
+$s_result = sqlFetchArray(sqlStatement("select agency_name from patient_data where pid='".$patient."'"));
 
+   row_delete("patient_data", "pid = '$patient'");
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
 }
+if(isset($client)){
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 try{
-$result3 = $client->DeleteDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_id' => $patient));
+if($s_result['agency_name'] == 0){
+$AgencyCode = '';
+}
+else{
+$AgencyCode = $s_result['agency_name'];
+}
+$result3 = $client->DeleteDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_id' => $patient,'agency_code' => $AgencyCode));
+echo "<script language='javascript'>alert('Patient Data Successfully Deleted in Synergy');</script>";
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Deleting Data in Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
 }
   }
   else if ($encounterid) {
@@ -227,18 +243,27 @@ $synergy_id = sqlFetchArray(sqlStatement("SELECT synergy_id FROM form_encounter 
    row_delete("forms", "encounter = '$encounterid'");
 
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
 }
+if(isset($client)){
 try{
-$result3 = $client->DeleteVisitNote(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_id' => $_SESSION['pid'], 'synergy_id' => $synergy_id['synergy_id']));
+$s_result = sqlFetchArray(sqlStatement("select agency_name from patient_data where pid=".$_SESSION['pid'].""));
+if($s_result['agency_name'] == 0){
+$AgencyCode = '';
+}
+else{
+$AgencyCode = $s_result['agency_name'];
+}
+$result3 = $client->DeleteVisitNote(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_id' => $_SESSION['pid'], 'synergy_id' => $synergy_id['synergy_id'], 'agency_code' => $AgencyCode));
+echo "<script language='javascript'>alert('Encounter Data Successfully Removed in Synergy');</script>";
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
 }
-
+}
   }
   else if ($formid) {
    if (!acl_check('admin', 'super')) die("Not authorized!");

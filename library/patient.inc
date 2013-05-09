@@ -851,11 +851,13 @@ function updatePatientData($pid, $new, $create=false)
 	
 	
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
 }
+
+if(isset($client)){
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -987,11 +989,20 @@ $patient = array(
 30 => get_patient_balance($_SESSION['pid'])  //Balance
 );
 
+
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 try{
-$result3 = $client->AddDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_data' => $patient));
+$result3 = $client->AddDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
+
 }
 
 
@@ -1015,11 +1026,13 @@ echo "<script language='javascript'>alert('Problem when Exporting Data to Synerg
 	
 	
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
 }
+
+if(isset($client)){
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -1153,13 +1166,20 @@ $patient = array(
 30 => get_patient_balance($_SESSION['pid'])  //Balance
 );
 
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 try{
-$result3 = $client->EditDemographics(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'patient_data' => $patient));
+$result3 = $client->EditDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
 }
 
+}
 
   }
 

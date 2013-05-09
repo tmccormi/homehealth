@@ -4764,6 +4764,8 @@ CREATE TABLE `users` (
   `state_license_number` VARCHAR(25) DEFAULT NULL,
   `newcrop_user_role` VARCHAR(30) DEFAULT NULL,
   `agency_area` VARCHAR(60) DEFAULT NULL,
+  `synergy_username` VARCHAR(150) DEFAULT NULL,
+  `synergy_password` VARCHAR(150) DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 

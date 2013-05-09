@@ -90,6 +90,20 @@ function divtoggle(spanid, divid) {
 		text.innerHTML = "<?php xl('Collapse','e'); ?>";
 	}
 }
+
+function export_to_synergy(form_name, form_id, encounter_id, patient_id){
+
+		$("#status").html('Please wait...');
+		$.ajax({
+			type:"POST",
+			url:"../../../library/ajax/oasis_synergy_ajax.php",
+			data:{form_name: form_name,form_id:form_id,encounter_id:encounter_id,patient_id:patient_id},
+			success:function(msg){
+				$("#status").html(msg);
+			}
+		});
+
+}
 </script>
 
 <style type="text/css">
@@ -285,6 +299,9 @@ if (is_numeric($pid)) {
         echo "<td style='border-bottom:1px solid'>";
         // a link to edit the form
         echo "<div class='form_header_controls'>";
+
+	echo "<div id='status'></div>";
+
         echo "<a target='".
 				($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
 				"' href='$rootdir/patient_file/encounter/view_form.php?" .
@@ -308,6 +325,9 @@ if (is_numeric($pid)) {
                 "&form_name=" . $formdir . "&table_name=forms_" . $formdir .
 				"&form_id=" . $iter['form_id'] .
                 "' onclick='top.restoreSession()' class='css_button_small'><span>" . xl('Generate B1 String') . "</span></a>";
+
+		echo "<a href='javascript:void(0);' onclick='export_to_synergy(\"forms_".$formdir."\",".$iter['form_id'].",".$encounter.",".$pid.")' class='css_button_small'><span>" . xl('Export to Synergy') . "</span></a>";
+
 		}
 
         if (acl_check('admin', 'super') ) {

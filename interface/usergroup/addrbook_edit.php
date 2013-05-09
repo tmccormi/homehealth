@@ -57,6 +57,14 @@ td { font-size:10pt; }
 
 <script language="JavaScript">
 
+$(document).ready(function(){
+if($('#form_abook_type').val() == 'agency'){
+   document.getElementById("synergyRow").style.display = "";
+}else{
+   document.getElementById("synergyRow").style.display = "none";
+}
+});
+
  var type_options_js = Array();
  <?php
   // Collect the type options. Possible values are:
@@ -80,6 +88,13 @@ td { font-size:10pt; }
    document.getElementById("nameRow").style.display = "none";
    document.getElementById("specialtyRow").style.display = "none";
    document.getElementById("nameDirectorRow").style.display = "";
+
+if($('#form_abook_type').val() == 'agency'){
+   document.getElementById("synergyRow").style.display = "";
+}else{
+   document.getElementById("synergyRow").style.display = "none";
+}
+
   }
   else {
    // Person centric:
@@ -89,6 +104,12 @@ td { font-size:10pt; }
    document.getElementById("nameDirectorRow").style.display = "none";
    document.getElementById("nameRow").style.display = "";
    document.getElementById("specialtyRow").style.display = "";
+
+if($('#form_abook_type').val() == 'agency'){
+   document.getElementById("synergyRow").style.display = "";
+}else{
+   document.getElementById("synergyRow").style.display = "none";
+}
   }
  }
 </script>
@@ -103,7 +124,7 @@ td { font-size:10pt; }
 
  // Collect the form_abook_type option value
  //  (ie. patient vs company centric)
- $type_sql_row = sqlQuery("SELECT `option_value` FROM `list_options` WHERE `list_id` = 'abook_type' AND `option_id` = ?", array(trim($_POST['form_abook_type'])));
+ $type_sql_row = sqlQuery("SELECT `option_value`, `option_id` FROM `list_options` WHERE `list_id` = 'abook_type' AND `option_id` = ?", array(trim($_POST['form_abook_type'])));
  $option_abook_type = $type_sql_row['option_value'];
  // Set up any abook_type specific settings
  if ($option_abook_type == 3) {
@@ -155,7 +176,9 @@ td { font-size:10pt; }
     "phonecell = "    . invalue('form_phonecell')    . ", " .
     "fax = "          . invalue('form_fax')          . ", " .
     "notes = "        . invalue('form_notes')        . ", "  .
-    "agency_area = "        . invalue('form_agency_area')        . " "  .
+    "agency_area = "  . invalue('form_agency_area')        . ", "  .
+    "synergy_username = "        . invalue('form_synergy_username')        . ", "  .
+    "synergy_password = "        . invalue('form_synergy_password')        . " "  .
     "WHERE id = '" . add_escape_custom($userid) . "'";
     sqlStatement($query);
 
@@ -168,7 +191,7 @@ td { font-size:10pt; }
     "specialty, organization, valedictory, assistant, billname, email, url, " .
     "street, streetb, city, state, zip, " .
     "street2, streetb2, city2, state2, zip2, " .
-    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type, agency_area "            .
+    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type, agency_area , synergy_username, synergy_password "            .
     ") VALUES ( "                        .
     "'', "                               . // username
     "'', "                               . // password
@@ -211,7 +234,9 @@ td { font-size:10pt; }
     invalue('form_fax')           . ", " .
     invalue('form_notes')         . ", " .
     invalue('form_abook_type')    . ", "  .
-    invalue('form_agency_area')    . " "  .
+    invalue('form_agency_area')    . ", "  .
+    invalue('form_synergy_username')    . ", "  .
+    invalue('form_synergy_password')    . " "  .
    ")");
 
   }
@@ -258,6 +283,13 @@ td { font-size:10pt; }
 <center>
 
 <table border='0' width='100%'>
+
+ <tr>
+  <td nowrap><b><?php echo xlt('User ID'); ?>:</b></td>
+  <td>
+  <?php echo attr($row['id']); ?>
+  </td>
+ </tr>
 
 <?php if (acl_check('admin', 'practice' )) { // allow choose type option if have admin access ?>
  <tr>
@@ -465,6 +497,16 @@ td { font-size:10pt; }
 <?php
  generate_form_field(array('data_type'=>1,'field_id'=>'agency_area','list_id'=>'agencyarea','empty_title'=>'Unassigned'), $row['agency_area']);
 ?>
+  </td>
+ </tr>
+
+<tr id="synergyRow">
+  <td nowrap><b><?php echo xlt('Synergy Username'); ?>:</b></td>
+  <td>
+<input type='text' size='10' name='form_synergy_username' value='<?php echo attr($row['synergy_username']); ?>' class='inputtext' />
+  &nbsp;
+  <b><?php echo xlt('Synergy Password'); ?>:</b>
+<input type='text' size='10' name='form_synergy_password' value='<?php echo attr($row['synergy_password']); ?>' class='inputtext' />
   </td>
  </tr>
 

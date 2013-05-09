@@ -1454,7 +1454,7 @@ $GLOBALS_METADATA = array(
     'synergy_webservice' => array(
       xl('Synergy Webservice URL'),
       'text',                           // data type
-      'http://172.16.1.217/WCFService/Service.svc?wsdl',
+      '',
       xl('Enter the URL of Synergy Webservice (IIS Server Location).')
     ),
   ),

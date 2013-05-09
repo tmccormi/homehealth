@@ -7974,7 +7974,12 @@ ALTER TABLE forms_oasis_transfer ADD synergy_id varchar(10);
 #EndIf
 
 
+-- Synergy Username and Password
 
+#IfMissingColumn users synergy_username
+ALTER TABLE users ADD synergy_username varchar(150);
+#EndIf
 
-
-
+#IfMissingColumn users synergy_password
+ALTER TABLE users ADD synergy_password varchar(150);
+#EndIf

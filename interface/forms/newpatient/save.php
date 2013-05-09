@@ -52,6 +52,7 @@ if ($mode == 'new')
 {
   $provider_id = $userauthorized ? $_SESSION['authUserID'] : 0;
   $encounter = $conn->GenID("sequences");
+  
   addForm($encounter, "New Patient Encounter",
     sqlInsert("INSERT INTO form_encounter SET " .
       "date = '$date', " .
@@ -86,8 +87,10 @@ try{
 $client = new SoapClient($GLOBALS['synergy_webservice']);
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
 }
+
+if(isset($client)){
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -209,17 +212,25 @@ $encounter_synergy = array(
 23 => $PeriodStart  //PeriodStart
 );
 
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 try{
-$result3 = $client->AddVisitNotesForPatient(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'encounter_data' => $encounter_synergy));
+$result3 = $client->AddVisitNotesForPatient(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'encounter_data' => $encounter_synergy));
 
 $code = $result3->AddVisitNotesForPatientResult->Label->m_LedgerCode->m_ID;
 if($code!=''){
 $res = sqlStatement("UPDATE form_encounter SET synergy_id='".$code."' WHERE encounter = '".$encounter."'");
+echo "<script language='javascript'>alert('Encounter Data Successfully Exported to Synergy');</script>";
 }
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
+
 }
 
 }
@@ -265,8 +276,10 @@ try{
 $client = new SoapClient($GLOBALS['synergy_webservice']);
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
 }
+
+if(isset($client)){
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -378,14 +391,20 @@ $encounter_synergy = array(
 23 => $PeriodStart  //PeriodStart
 );
 
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 try{
-$result3 = $client->EditVisitNote(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'encounter_data' => $encounter_synergy, 'synergy_id' => $synergy_id));
+$result3 = $client->EditVisitNote(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'encounter_data' => $encounter_synergy, 'synergy_id' => $synergy_id));
+echo "<script language='javascript'>alert('Encounter Data Successfully Updated in Synergy');</script>";
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
 }
-
-
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
+}
 
 }
 else {
