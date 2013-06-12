@@ -790,10 +790,7 @@ function generate_form_field($frow, $currvalue) {
     dropdown_facility($selected = $currvalue, $name = "form_$field_id_esc", $allow_unspecified = true, $allow_allfacilities = false);
   }
 
-
-
-
-//Hospital Drop Down
+  //Hospital Drop Down
   else if ($data_type == 36) {
     $ures = sqlStatement("SELECT id,organization FROM users " .
       "WHERE active = 1 " .
@@ -831,7 +828,7 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
-  // Display only internal users
+  // Lists only internal (Local) users
   else if ($data_type == 38) {
     $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
       "WHERE active = 1 AND ( info IS NULL OR info NOT LIKE '%Inactive%' ) " .
@@ -849,7 +846,7 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
-  // Display only external users
+  // Lists only Address Book (Non-Local) users
   else if ($data_type == 39) {
      $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
       "WHERE username LIKE '' " .
@@ -867,7 +864,8 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
-  //Referral Source1 Drop Down
+  //Referral Source1 Drop Down : The address book type Referral Source was removed and the Referral Source dropdown was changed to a list from list_options.
+  //Will be useful if a type referral_source1 is added
   else if ($data_type == 40) {
     $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
       "WHERE abook_type = 'referral_source1' " .
@@ -884,7 +882,7 @@ function generate_form_field($frow, $currvalue) {
     echo "</select>";
   }
 
-  //Internal Referrer Drop Down
+  //Lists only Address Book type Internal Referrer
   else if ($data_type == 41) {
     $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
       "WHERE abook_type = 'internal_referrer' " .
@@ -948,7 +946,7 @@ $condition = " password = '1'";
     echo "</select>";
   }
 
-  //Internal Referrer Drop Down
+  // Empty Drop Down for Internal Referrer
   else if ($data_type == 43) {
     echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";
     echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
@@ -1475,8 +1473,8 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars(oeFormatShortDate($currvalue),ENT_NOQUOTES);
   }
 
-  // provider
-  else if ($data_type == 10 || $data_type == 11) {
+  // provider, Datatype 38 to 43: Internal Users Only, External Users Only, Referral Source Only, Internal Referrer Only, Internal Users (Clinicians and Physicians Only), Internal Referrer
+  else if ($data_type == 10 || $data_type == 11 || $data_type == 38 || $data_type == 39 || $data_type == 40 || $data_type == 41 || $data_type == 42 || $data_type == 43) {
     $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
       "WHERE id = ?", array($currvalue) );
     $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
@@ -1713,69 +1711,13 @@ function generate_display_field($frow, $currvalue) {
     $s = htmlspecialchars($urow['name'],ENT_NOQUOTES);
   }
 
-
-
-  // Hospital Name
-  else if ($data_type == 36) {
+  // Hospital Name, Agency Name
+  else if ($data_type == 36 || $data_type == 37) {
     $urow = sqlQuery("SELECT organization FROM users " .
       "WHERE id = ?", array($currvalue));
     $org = $urow['organization'];
     $s = htmlspecialchars($org,ENT_NOQUOTES);
-
   }
-
-  // Agency Name
-  else if ($data_type == 37) {
-    $urow = sqlQuery("SELECT organization FROM users " .
-      "WHERE id = ?", array($currvalue));
-    $org = $urow['organization'];
-    $s = htmlspecialchars($org,ENT_NOQUOTES);
-
-  }
-
-    // Internal Users Only
-  else if ($data_type == 38) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
-    // External Users Only
-  else if ($data_type == 39) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
-    // Referral Source Only
-  else if ($data_type == 40) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
-    // Internal Referrer Only
-  else if ($data_type == 41) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
-
-    // Internal Users (Clinicians and Physicians Only)
-  else if ($data_type == 42) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
-    // Internal Users (Clinicians and Physicians Only)
-  else if ($data_type == 43) {
-    $urow = sqlQuery("SELECT fname, lname, specialty FROM users " .
-      "WHERE id = ?", array($currvalue) );
-    $s = htmlspecialchars(ucwords($urow['fname'] . " " . $urow['lname']),ENT_NOQUOTES);
-  }
-
 
   return $s;
 }

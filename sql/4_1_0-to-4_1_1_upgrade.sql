@@ -727,8 +727,8 @@ UPDATE layout_options SET seq=29 WHERE title="Contact Email" AND group_name="1Pa
 #EndIf
 
 
-#IfNotRow2D layout_options field_id ref_providerID data_type 41
-UPDATE layout_options SET title="Internal Referrer",data_type=41 WHERE field_id="ref_providerID";
+#IfNotRow2D layout_options field_id ref_providerID data_type 43
+UPDATE layout_options SET title="Internal Referrer",data_type=43 WHERE field_id="ref_providerID";
 #EndIf
 
 #IfNotRow2D list_options list_id abook_type option_id internal_referrer
@@ -7982,4 +7982,23 @@ ALTER TABLE users ADD synergy_username varchar(150);
 
 #IfMissingColumn users synergy_password
 ALTER TABLE users ADD synergy_password varchar(150);
+#EndIf
+
+
+-- Changes made in sequence of fields
+
+#IfNotRow2D layout_options field_id genericname1 seq 34
+UPDATE `layout_options` SET `seq`=34 WHERE `form_id`='DEM' AND `field_id`='genericname1';
+#EndIf
+
+#IfNotRow2D layout_options field_id genericval1 seq 35
+UPDATE `layout_options` SET `seq`=35 WHERE `form_id`='DEM' AND `field_id`='genericval1';
+#EndIf
+
+#IfNotRow2D layout_options field_id genericname2 seq 36
+UPDATE `layout_options` SET `seq`=36 WHERE `form_id`='DEM' AND `field_id`='genericname2';
+#EndIf
+
+#IfNotRow2D layout_options field_id genericval2 seq 37
+UPDATE `layout_options` SET `seq`=37 WHERE `form_id`='DEM' AND `field_id`='genericval2';
 #EndIf

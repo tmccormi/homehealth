@@ -32,7 +32,7 @@ while ($lrow = sqlFetchArray($lres)) {
 
 // array of the data_types of the fields
 $datatypes = array(
-  "1"  => xl("List box"), 
+  "1"  => xl("List box"),
   "2"  => xl("Textbox"),
   "3"  => xl("Textarea"),
   "4"  => xl("Text-date"),
@@ -54,7 +54,14 @@ $datatypes = array(
   "32" => xl("Smoking Status"),
   "33" => xl("Race and Ethnicity"),
   "34" => xl("NationNotes"),
-  "35" => xl("Facilities")
+  "35" => xl("Facilities"),
+  "36" => xl("Hospitals"),
+  "37" => xl("Agencies"),
+  "38" => xl("Internal (Local) Users"),
+  "39" => xl("Address Book (Non-Local) Users"),
+  "41" => xl("Internal Referrer"),
+  "42" => xl("Users of Custom Roles"),
+  "43" => xl("Empty Dropdown")
 );
 
 function nextGroupOrder($order) {

@@ -1049,6 +1049,25 @@ $('#form_attphy_fax').val(data.fax);
 
 })
 
+$('#form_type_of_referral').change(function(){
+   var agid=  $(this).val();
+    $.ajax({
+    url: 'new_comprehensive_ajax.php?type='+agid,
+    dataType: 'json',
+    success: function(data) {
+
+$('#form_ref_providerID').html('<option value="0">Unassigned</option>'+data);
+
+$('#form_referral_fname').val('');
+$('#form_referral_lname').val('');
+$('#form_referral_company_name').val('');
+$('#form_referral_phone_no').val('');
+$('#form_referral_fax_no').val('');
+
+    }
+  });
+
+})
 
 $('#form_type_of_referral').change(function(){
 
