@@ -4,7 +4,8 @@ Imports HSIAccess
 Imports HSIProvider
 Imports HealthCareSynergyPatientsCharts
 Imports HSIPatientRepository
-Imports HealthCareSynergyInc
+Imports HSIDictionaries
+
 Imports HSIReferralSource
 Imports HealthCareAssistant
 Imports HealthCareSynergyDictionaries
@@ -15,36 +16,101 @@ Imports HealthCareSynergyOASIS
 Imports HSIPatientChart
 Imports HSIOasisEvaluation
 Imports System.Data
-
+<ServiceModel.ServiceBehavior(Namespace:="HealthcareSynergy")>
 Public Class Service
     Implements IService
 
     Public Sub New()
     End Sub
 
-    Public Function LoginAdmin(ByVal username As String, ByVal password As String) As List(Of HealthAgency) Implements IService.LoginAdmin
-        Dim response As List(Of HealthAgency)
-        Dim login_obj As Object = New HealthCareSynergyLogin.Login
-        response = login_obj.Login(username, password)
-        Return response
-    End Function
-    Public Function AddDemographics(ByVal username As String, ByVal password As String, ByVal patient_data() As String) As Patient Implements IService.AddDemographics
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin(username, password)
+    Public Function LoginAdmin(ByVal username As String, ByVal password As String, ByVal agency_id As String) As String Implements IService.LoginAdmin
 
+        'Throw New System.Exception("A test message for debug")
 
         'Dim response As List(Of HealthAgency)
         'Dim login_obj As Object = New HealthCareSynergyLogin.Login
-        'response = login_obj.LoginAndReturnListOfAgencies("SUPERVISOR", "SYNERGY")
+        'response = login_obj.Login(username, password)
+
+        'Dim response As List(Of HealthAgency)
+        'Dim login_obj As Object = New HealthCareSynergyLogin.Login
+        'response = login_obj.LoginAndReturnListOfAgencies(username, password)
+        'login_obj.SelectAgencyAndConnectToDatabase(response.Item(0))
+        'Dim ret_string As String = response.Item(0).Label.AgencyFullName
+        'Return response
+
+        Dim response As List(Of HomeHealthAgency)
+        Dim login_obj As Object = New HealthCareSynergyLogin.Login
+        response = login_obj.LoginAndReturnListOfAgencies(username, password)
+        login_obj.SelectAgencyAndConnectToDatabase(response.Item(0))
+        Dim ret_string As String ' = response.Item(0).Label.AgencyCode
+        Dim ag_flag As String
+
+        If response.Count > 1 Then
+            For Each ag In response
+                If ag.AgencyCode = agency_id Then
+                    ret_string = ag.AgencyCode
+                    ag_flag = 1
+                End If
+            Next
+            If ag_flag <> 1 Then
+                Throw New System.Exception("Agency Login Information and Agency ID Does Not Match")
+            End If
+        Else
+            If agency_id = response.Item(0).Label.AgencyCode Then
+                ret_string = response.Item(0).Label.AgencyCode
+            Else
+                Throw New System.Exception("Agency Login Information and Agency ID Does Not Match")
+            End If
+        End If
+
+        Return ret_string
+
+    End Function
+    Public Function LoginAdminMultiple(ByVal username As String, ByVal password As String, ByVal agency_id As String) As String Implements IService.LoginAdminMultiple
+        'Dim response As List(Of HealthAgency)
+        'Dim login_obj As Object = New HealthCareSynergyLogin.Login
+        'response = login_obj.Login(username, password)
+
+        Dim response As List(Of HomeHealthAgency)
+        Dim login_obj As Object = New HealthCareSynergyLogin.Login
+        response = login_obj.LoginAndReturnListOfAgencies(username, password)
+        login_obj.SelectAgencyAndConnectToDatabase(response.Item(0))
+        Dim ret_string As String ' = response.Item(0).Label.AgencyCode
+        Dim ag_flag As String
+
+        If response.Count > 1 Then
+            For Each ag In response
+                If ag.AgencyCode = agency_id Then
+                    ret_string = ag.AgencyCode
+                    ag_flag = 1
+                End If
+            Next
+            If ag_flag <> 1 Then
+                Throw New System.Exception("Agency Login Information and Agency ID Does Not Match")
+            End If
+        Else
+            If agency_id = response.Item(0).Label.AgencyCode Then
+                ret_string = response.Item(0).Label.AgencyCode
+            Else
+                Throw New System.Exception("Agency Login Information and Agency ID Does Not Match")
+            End If
+        End If
+
+        Return ret_string
+    End Function
+
+    Public Function AddDemographics(ByVal username As String, ByVal password As String, ByVal patient_data() As String) As Patient Implements IService.AddDemographics
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, patient_data(6))
 
         Dim agen_id As SynergyID
-        agen_id = New SynergyID("1")
+        agen_id = New SynergyID(agency_id)
         Dim Agency As New AgencyLabel(agen_id, patient_data(7))
         'login_obj.SelectAgencyAndConnectToDatabase(response.Item(0))
 
         Dim default_patient As Patient
         Dim patient_obj As Object = New HealthCareSynergyPatientsCharts.HCSPatient
-        default_patient = patient_obj.RetrievePatientDefaultWithCode(1, patient_data(14))
+        default_patient = patient_obj.RetrievePatientDefaultWithCode(agency_id, patient_data(14))
         default_patient.Address.Address1 = patient_data(0)
         default_patient.Address.Address2 = patient_data(1)
         default_patient.Address.City = patient_data(2)
@@ -64,9 +130,7 @@ Public Class Service
         default_patient.Notes = patient_data(23)
         default_patient.MaritalStatus = default_patient.MaritalStatus(patient_data(24))
         default_patient.Occupation = patient_data(25)
-
-
-
+        default_patient.EmploymentStatus = default_patient.EmploymentStatus(3)
 
         Dim doc_obj As Object = New HSIProvider.Physician
         Dim doc_return As List(Of HSIProvider.Physician)
@@ -119,8 +183,10 @@ Public Class Service
     End Function
     Public Function EditDemographics(ByVal username As String, ByVal password As String, ByVal patient_data() As String) As Patient Implements IService.EditDemographics
 
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin(username, password)
+        'Throw New System.Exception("Break the flow here")
+
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, patient_data(6))
 
         Dim SynergyID As SynergyBaseID
         Dim WorkingPatient As New HCSPatient
@@ -148,7 +214,7 @@ Public Class Service
         UpdatingPatient.Notes = patient_data(23)
         UpdatingPatient.MaritalStatus = UpdatingPatient.MaritalStatus(patient_data(24))
         UpdatingPatient.Occupation = patient_data(25)
-
+        UpdatingPatient.EmploymentStatus = UpdatingPatient.EmploymentStatus(3)
 
         Dim doc_obj As Object = New HSIProvider.Physician
         Dim doc_return As List(Of HSIProvider.Physician)
@@ -193,7 +259,7 @@ Public Class Service
         UpdatingPatient.PrimaryDoctorCode = phy_id
 
         Dim agen_id As SynergyID
-        agen_id = New SynergyID("1")
+        agen_id = New SynergyID(agency_id)
         Dim Agency As New AgencyLabel(agen_id, patient_data(7))
         UpdatingPatient.AssociatedAgency = Agency
         UpdatingPatient.OfficeCode = "1"
@@ -202,10 +268,10 @@ Public Class Service
 
     End Function
     'Delete Patient
-    Public Function DeleteDemographics(ByVal username As String, ByVal password As String, ByVal patient_id As String) As String Implements IService.DeleteDemographics
+    Public Function DeleteDemographics(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal agency_code As String) As String Implements IService.DeleteDemographics
 
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin(username, password)
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, agency_code)
         Dim SynergyID As SynergyBaseID
         Dim Patienthcs As New HCSPatient
         Dim RetrievedPatient As Patient
@@ -217,9 +283,9 @@ Public Class Service
     'For Oasis
     Public Function ImportAnAssessment(ByVal username As String, ByVal password As String, ByVal oasis_data() As String) As Integer Implements IService.ImportAnAssessment
 
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin("SUPERVISOR", "SYNERGY")
-        Dim AssessmentImport As New HealthCareSynergyOASIS.OASISAnd485Import("1", oasis_data(1), "", "")
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, oasis_data(0))
+        Dim AssessmentImport As New HealthCareSynergyOASIS.OASISAnd485Import(agency_id, oasis_data(1), "", "")
 
         AssessmentImport.AdmissionSourceCode = oasis_data(2)
 
@@ -329,13 +395,16 @@ Public Class Service
 
     Private Function AddVisitNotesForPatient(ByVal username As String, ByVal password As String, ByVal encounter_data() As String) As ChargeItem Implements IService.AddVisitNotesForPatient
 
-        Dim login_response As List(Of HealthAgency)
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, encounter_data(0))
 
-        login_response = LoginAdmin(username, password)
+        Dim agen_id As SynergyID
+        agen_id = New SynergyID(agency_id)
 
-        Dim agencyCode As AgencyLabel = login_response(0).Label
+        'Dim agency_id_int As Integer
+        'Integer.TryParse(agency_id, agency_id_int)
 
-        'Return login_response
+        Dim agencyCode As New AgencyLabel(agen_id, encounter_data(1))
 
         Dim dictionaryLookup As New LookUpReference()
 
@@ -379,8 +448,6 @@ Public Class Service
         Next
 
 
-
-
         VisitNote.TimeIn = New SynergyTime(encounter_data(9))
 
         VisitNote.TimeOut = New SynergyTime(encounter_data(10))
@@ -408,12 +475,19 @@ Public Class Service
 
         VisitNote.Label.ChargeAccount.BillingUnitType = VisitNote.Label.ChargeAccount.BillingUnitType.Item(1)
 
-        VisitNote.Label.ChargeAccount.AccountCode = accounts(13).Entry.EntryId
+        Dim m_AcctToUse As SynergyNameValue
+        For Each acct As SynergyNameValue In accounts
+            If "571" = acct.Entry.EntryId.ID Then
+                m_AcctToUse = acct
+                Exit For
+            End If
+        Next
+
+        VisitNote.Label.ChargeAccount.AccountCode = m_AcctToUse.Entry.EntryId
         Dim mydate As String = encounter_data(23)
         Dim dat As Date
         dat = DateTime.Parse(mydate)
 
-        'VisitNote.Label.PeriodStart = New SynergyDate(#6/1/2008#)
         VisitNote.Label.PeriodStart = New SynergyDate(dat)
 
         Try
@@ -431,13 +505,16 @@ Public Class Service
 
     Private Function EditVisitNote(ByVal username As String, ByVal password As String, ByVal encounter_data() As String, ByVal synergy_id As String) As HCSVisit Implements IService.EditVisitNote
 
-        Dim login_response As List(Of HealthAgency)
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, encounter_data(0))
 
-        login_response = LoginAdmin(username, password)
+        Dim agen_id As SynergyID
+        agen_id = New SynergyID(agency_id)
 
-        Dim agencyCode As AgencyLabel = login_response(0).Label
+        'Dim agency_id_int As Integer
+        'Integer.TryParse(agency_id, agency_id_int)
 
-        'Return login_response
+        Dim agencyCode As New AgencyLabel(agen_id, encounter_data(1))
 
         Dim dictionaryLookup As New LookUpReference()
 
@@ -466,7 +543,7 @@ Public Class Service
         patientLabel.StartOfCare = encounter_data(5)
 
         Dim ledger_list As List(Of LedgerLabel)
-        ledger_list = RetrieveSynergyLedger(username, password, encounter_data(2))
+        ledger_list = RetrieveSynergyLedger(username, password, encounter_data(2), agency_id)
         Dim ledger_code As SynergyID
         For Each myledger In ledger_list
             If myledger.LedgerCode.ID = synergy_id Then
@@ -486,8 +563,6 @@ Public Class Service
                 VisitNote.Caregiver.Reference = careCode
             End If
         Next
-
-
 
 
         VisitNote.TimeIn = New SynergyTime(encounter_data(9))
@@ -537,10 +612,10 @@ Public Class Service
 
     End Function
 
-    Private Function RetrieveSynergyLedger(ByVal username As String, ByVal password As String, ByVal patient_code As String) As List(Of LedgerLabel) Implements IService.RetrieveSynergyLedger
+    Private Function RetrieveSynergyLedger(ByVal username As String, ByVal password As String, ByVal patient_code As String, ByVal agency_code As String) As List(Of LedgerLabel) Implements IService.RetrieveSynergyLedger
 
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin(username, password)
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, agency_code)
         Dim ledgers As List(Of LedgerLabel)
         Dim patCode As SynergyBaseID
         Dim dictionaryLookup As New LookUpReference()
@@ -554,20 +629,19 @@ Public Class Service
         Next
         ledgers = visitAPI.RetrieveCompletePatientLedger(patCode)
 
-
         Return ledgers
 
     End Function
 
 
-    Private Function DeleteVisitNote(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal synergy_id As String) As HCSVisit Implements IService.DeleteVisitNote
+    Private Function DeleteVisitNote(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal synergy_id As String, ByVal agency_code As String) As HCSVisit Implements IService.DeleteVisitNote
 
-        Dim login_response As List(Of HealthAgency)
-        login_response = LoginAdmin(username, password)
+        Dim agency_id As String
+        agency_id = LoginAdmin(username, password, agency_code)
         Dim visitAPI As New HCSVisit
-        Dim agencyCode As AgencyLabel = login_response(0).Label
+
         Dim ledger_list As List(Of LedgerLabel)
-        ledger_list = RetrieveSynergyLedger(username, password, patient_id)
+        ledger_list = RetrieveSynergyLedger(username, password, patient_id, agency_code)
         Dim ledger_code As SynergyID
         For Each myledger In ledger_list
             If myledger.LedgerCode.ID = synergy_id Then
@@ -583,6 +657,80 @@ Public Class Service
         End Try
 
         Return visitAPI
+    End Function
+
+    Public Function LoginCheck(ByVal username As String, ByVal password As String, ByVal agency_id As String) As List(Of HSIAccess.HealthAgency) Implements IService.LoginCheck
+        Dim response As List(Of HSIAccess.HealthAgency)
+        Dim login_obj As Object = New HealthCareSynergyLogin.Login
+        response = login_obj.Login(username, password)
+
+        Return response
+
+    End Function
+
+
+    Public Function UpdateAnAssessment(ByVal username As String, ByVal password As String, ByVal oasis_data() As String, ByVal oasis_synergy_id As String) As List(Of ChartLabel) Implements IService.UpdateAnAssessment
+
+        Dim login_response As String
+        login_response = LoginAdmin(username, password, "1")
+        'Dim agencyCode As AgencyLabel = login_response(0).Label
+
+
+        Dim chartList As List(Of ChartLabel) = (New HCSPatientCabinet).RetrieveAllPatientCharts(ChartStatusFilter.CurrentlyActivePatientCharts)
+        Dim NancysChart As EpisodicChart = (New HCSPatientCabinet).RetrieveEpisodicChart(oasis_data(1), chartList(oasis_data(1) - 1).StartOfCare)
+        Dim ChartOasis As New HCSOasis
+        Dim NancyOasis As Oasis = ChartOasis.RetrieveOasis(NancysChart.Label, NancysChart.AssociatedCare.StateHistory(0))
+        NancyOasis.B1 = NancyOasis.B1.Replace("CA", "AZ")
+        'ChartOasis.SaveOasis(NancysChart.Label, NancysChart.AssociatedCare.StateHistory(0), NancyOasis)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        'Use this block before the chartList Declaration
+        'Dim dictionaryLookup As New LookUpReference()
+        'Dim patients As List(Of SynergyNameValue) = dictionaryLookup.Patient(False)
+        'Dim visitAPI As New HCSVisit()
+        'Dim return_charge As ChargeItem
+        'Dim patCode As SynergyBaseID
+        'For Each mypatient In patients
+        '    If mypatient.Entry.EntryId.ID = oasis_data(2) Then
+        '        patCode = mypatient.Entry.EntryId
+        '    End If
+        'Next
+        'Dim oasis_id As SynergyID
+        'oasis_id = New SynergyID(oasis_synergy_id)
+
+        'Dim chLabel As ChartStatusFilter
+
+
+
+        'Dim OASISImportAPI As New OASISRetriever
+        'Dim IndividualAssessment As DataTable
+
+        'IndividualAssessment = OASISImportAPI.Get_AllOASISAssessments
+
+
+        'Dim patient_Label As New ChartLabel(agencyCode, patCode)
+        'Dim oasis_obj As New HealthCareSynergyPatientsCharts.HCSOasis
+        'Dim AssessmentImport As New HSIOasisEvaluation.Oasis
+        'AssessmentImport = oasis_obj.RetrieveOasis(patient_Label, oasis_id)
+        'AssessmentImport.B1 = oasis_data(1)
+        'Dim return_oasis_id As Integer
+        'oasis_obj.SaveOasis(patient_Label, AssessmentImport)
+
+        Return chartList
     End Function
 
 End Class

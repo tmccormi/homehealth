@@ -3,6 +3,7 @@ Imports HSIAccess
 Imports HSIProvider
 Imports HealthCareSynergyPatientsCharts
 Imports HSIPatientRepository
+Imports HSIDictionaries
 Imports HSIReferralSource
 Imports HealthCareAssistant
 Imports Ledger
@@ -15,11 +16,14 @@ Imports HSIPatientChart
 Imports System.Data
 
 ' NOTE: You can use the "Rename" command on the context menu to change the interface name "IService1" in both code and config file together.
-<ServiceContract()>
+<ServiceContract(Namespace:="HealthcareSynergy")>
 Public Interface IService
 
     <OperationContract()>
-    Function LoginAdmin(ByVal username As String, ByVal password As String) As List(Of HealthAgency)
+    Function LoginAdmin(ByVal username As String, ByVal password As String, ByVal agency_id As String) As String
+
+    <OperationContract()>
+    Function LoginAdminMultiple(ByVal username As String, ByVal password As String, ByVal agency_id As String) As String
 
     <OperationContract()>
     Function AddDemographics(ByVal username As String, ByVal password As String, ByVal patient_data() As String) As Patient
@@ -28,7 +32,7 @@ Public Interface IService
     Function EditDemographics(ByVal username As String, ByVal password As String, ByVal patient_data() As String) As Patient
 
     <OperationContract()>
-    Function DeleteDemographics(ByVal username As String, ByVal password As String, ByVal patient_id As String) As String
+    Function DeleteDemographics(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal agency_code As String) As String
 
     <OperationContract()>
     Function ImportAnAssessment(ByVal username As String, ByVal password As String, ByVal oasis_data() As String) As Integer
@@ -40,13 +44,19 @@ Public Interface IService
     Function EditVisitNote(ByVal username As String, ByVal password As String, ByVal encounter_data() As String, ByVal synergy_id As String) As HCSVisit
 
     <OperationContract()>
-    Function RetrieveSynergyLedger(ByVal username As String, ByVal password As String, ByVal patient_code As String) As List(Of LedgerLabel)
+    Function RetrieveSynergyLedger(ByVal username As String, ByVal password As String, ByVal patient_code As String, ByVal agency_code As String) As List(Of LedgerLabel)
 
     <OperationContract()>
-    Function DeleteVisitNote(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal synergy_id As String) As HCSVisit
+    Function DeleteVisitNote(ByVal username As String, ByVal password As String, ByVal patient_id As String, ByVal synergy_id As String, ByVal agency_code As String) As HCSVisit
 
+    <OperationContract()>
+    Function LoginCheck(ByVal username As String, ByVal password As String, ByVal agency_id As String) As List(Of HSIAccess.HealthAgency)
+
+    <OperationContract()>
+    Function UpdateAnAssessment(ByVal username As String, ByVal password As String, ByVal oasis_data() As String, ByVal oasis_synergy_id As String) As List(Of ChartLabel)
 
     ' TODO: Add your service operations here
+
 
 End Interface
 
