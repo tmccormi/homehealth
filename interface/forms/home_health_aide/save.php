@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) {  $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -17,6 +17,12 @@ $newid = formSubmit("forms_home_health_aide", $addnew, $_GET["id"], $userauthori
 addForm($encounter, "Home Health Aide", $newid, "home_health_aide", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_home_health_aide set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 home_health_patient_name='".$_POST["home_health_patient_name"]."',
 home_health_patient_address='".$_POST["home_health_patient_address"]."',
@@ -28,7 +34,7 @@ home_health_aide_visit_effective_date='".$_POST["home_health_aide_visit_effectiv
 patient_problems='".$_POST["patient_problems"]."',
 home_health_goals_for_care='".$_POST["home_health_goals_for_care"]."',
 home_health_goals_for_care_other='".$_POST["home_health_goals_for_care_other"]."',
-home_health_medical_issues='".implode("#",$_POST["home_health_medical_issues"])."',
+home_health_medical_issues='".$_POST["home_health_medical_issues"]."',
 home_health_medical_issues_diet='".$_POST["home_health_medical_issues_diet"]."',
 home_health_medical_issues_allergies='".$_POST["home_health_medical_issues_allergies"]."',
 home_health_medical_issues_other='".$_POST["home_health_medical_issues_other"]."',
@@ -52,15 +58,15 @@ communication_status_other='".$_POST["communication_status_other"]."',
 miscellaneous_abilities_hearing='".$_POST["miscellaneous_abilities_hearing"]."',
 miscellaneous_abilities_vision='".$_POST["miscellaneous_abilities_vision"]."',
 miscellaneous_abilities_dentures='".$_POST["miscellaneous_abilities_dentures"]."',
-home_health_patient_need='".implode("#",$_POST["home_health_patient_need"])."',
+home_health_patient_need='".$_POST["home_health_patient_need"]."',
 home_health_patient_need_bathing='".$_POST["home_health_patient_need_bathing"]."',
-home_health_patient_need_dressing='".implode("#",$_POST["home_health_patient_need_dressing"])."',
-home_health_patient_need_haircare='".implode("#",$_POST["home_health_patient_need_haircare"])."',
-home_health_patient_need_hygiene='".implode("#",$_POST["home_health_patient_need_hygiene"])."',
-home_health_patient_need_mobility='".implode("#",$_POST["home_health_patient_need_mobility"])."',
-home_health_patient_need_positioning='".implode("#",$_POST["home_health_patient_need_positioning"])."',
+home_health_patient_need_dressing='".$_POST["home_health_patient_need_dressing"]."',
+home_health_patient_need_haircare='".$_POST["home_health_patient_need_haircare"]."',
+home_health_patient_need_hygiene='".$_POST["home_health_patient_need_hygiene"]."',
+home_health_patient_need_mobility='".$_POST["home_health_patient_need_mobility"]."',
+home_health_patient_need_positioning='".$_POST["home_health_patient_need_positioning"]."',
 home_health_patient_need_pressure_location='".$_POST["home_health_patient_need_pressure_location"]."',
-home_health_patient_need_housekeeping='".implode("#",$_POST["home_health_patient_need_housekeeping"])."',
+home_health_patient_need_housekeeping='".$_POST["home_health_patient_need_housekeeping"]."',
 home_health_patient_need_equipment_care='".$_POST["home_health_patient_need_equipment_care"]."',
 home_health_patient_need_medication_assist='".$_POST["home_health_patient_need_medication_assist"]."',
 home_health_patient_need_record_sign='".$_POST["home_health_patient_need_record_sign"]."',

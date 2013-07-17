@@ -32,7 +32,7 @@ $sigId = $esign->getNewestUnsignedSignature();
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -136,6 +136,11 @@ $sigId = $esign->getNewestUnsignedSignature();
 <?php
 include_once("$srcdir/api.inc");
 $obj = formFetch("forms_ot_careplan", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 ?>
 <form method=post action="<?php echo $rootdir?>/forms/careplan/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="careplan">
 <h3 align="center"><?php xl('OCCUPATIONAL THERAPY CARE PLAN','e')?></h3>
@@ -254,7 +259,7 @@ echo "checked";;?>>
             </label>
               <?php xl('Decrease in ROM in','e')?> </td>
             <td valign="top"><label for="ROM in2"></label>
-              <input type="text" style="width:180px" name="dec_rom_txt" id="dec_rom_txt" value="<?php echo stripslashes($obj{"dec_rom_txt"});?>" ></td>
+              <input type="text" style="width:180px" name="dec_rom_txt" id="dec_rom_txt" value="<?php echo $obj{"dec_rom_txt"};?>" ></td>
           </tr>
           <tr>
             <td valign="top" scope="row"><label>

@@ -130,10 +130,15 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 </head>
 <?php
 $obj = formFetch("forms_OASIS", $_GET["id"]);
+
 $val = array();
 foreach($obj as $k => $v) {
 	$key = $k;
 	$$key = explode('#',$v);
+}
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
 }
 
 $integumentary_status_current_no_a = explode("#",$obj{"integumentary_status_current_no_a"});

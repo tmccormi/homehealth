@@ -30,9 +30,6 @@ $esign->init($id, $formTable);
 
 $sigId = $esign->getNewestUnsignedSignature();
 
-
-
-
 ?>
 
 <html>
@@ -58,7 +55,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <!--For Form Validaion--><script src="<?php echo $GLOBALS['webroot'] ?>/library/js/form_validation.js" type="text/javascript"></script>
@@ -171,6 +168,11 @@ $(document).ready(function() {
 <body class="body_top">
 <?php
 $obj = formFetch("forms_oasis_therapy_rectification", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $oasis_therapy_payment_source_homecare = explode("#",$obj{"oasis_therapy_payment_source_homecare"});
 $oasis_therapy_therapies_home = explode("#",$obj{"oasis_therapy_therapies_home"});
 $oasis_therapy_wound = explode("#",$obj{"oasis_therapy_wound"});
@@ -2190,8 +2192,8 @@ blank in that row.','e');?>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Cramps","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_site"}=="Cramps"){echo "checked";}?> ><?php xl('Cramps','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Claudication","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_site"}=="Claudication"){echo "checked";}?> ><?php xl('Claudication','e')?></label><br>
 			<?php xl("Capillary refill","e");?>
-				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl("<3","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_capillary"}=="<3"){echo "checked";}?> ><?php xl('less than 3 sec','e')?></label>
-				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl(">3","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_capillary"}==">3"){echo "checked";}?> ><?php xl('greater than 3 sec','e')?></label><br>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl("<3","e");?>" <?php if(htmlspecialchars_decode($obj{"oasis_therapy_heart_sounds_capillary"})=="<3"){echo "checked";}?> ><?php xl('less than 3 sec','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl(">3","e");?>" <?php if(htmlspecialchars_decode($obj{"oasis_therapy_heart_sounds_capillary"})==">3"){echo "checked";}?> ><?php xl('greater than 3 sec','e')?></label><br>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Other","e");?>" <?php if(in_array("Other",$oasis_therapy_heart_sounds)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_other" value="<?php echo $obj{"oasis_therapy_heart_sounds_other"};?>"><br>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Weigh patient","e");?>" <?php if(in_array("Weigh patient",$oasis_therapy_heart_sounds)) echo "checked"; ?> ><?php xl('Weigh patient','e')?></label><br>

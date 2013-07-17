@@ -10,7 +10,6 @@ include_once("$srcdir/api.inc");
 
 $obj = formFetch("forms_incident_report", $_GET["id"]);
 
-
 $incident_report_patient_related = explode("#",$obj{"incident_report_patient_related"});
 $incident_report_notifications = explode("#",$obj{"incident_report_notifications"});
 
@@ -43,7 +42,7 @@ $sigId = $esign->getNewestUnsignedSignature();
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -98,6 +97,11 @@ $(document).ready(function() {
 <?php
 include_once("$srcdir/api.inc");
 $obj = formFetch("forms_incident_report", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 ?>
 
 <form method="post" action="<?php echo $rootdir;?>/forms/incident_report/save.php?mode=update&&id=<?php echo $_GET['id']; ?>" name="incident_report">
@@ -114,7 +118,7 @@ $obj = formFetch("forms_incident_report", $_GET["id"]);
 <TD align="right">
 <?php xl('(Select an Action)','e') ?><br /><br />
 <b><?php xl('Caregiver:','e') ?></b>
-<input type="text" name="incident_report_caregiver_name" size="30" value='<?php echo stripslashes($obj{"incident_report_caregiver_name"});?>'  />
+<input type="text" name="incident_report_caregiver_name" size="30" value="<?php echo stripslashes($obj{"incident_report_caregiver_name"});?>"  />
 <b><?php xl('Visit Date:','e') ?></b>
 <input type="text" name="incident_visit_date" value="<?php echo stripslashes($obj{"incident_visit_date"});?>" readonly/>
 </TD>

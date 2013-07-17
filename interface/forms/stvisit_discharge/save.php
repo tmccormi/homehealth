@@ -3,16 +3,19 @@ include_once("../../globals.php");
 include_once("$srcdir/api.inc");
 include_once("$srcdir/forms.inc");
 
-foreach ($_POST as $k => $var) {
-$_POST[$k] = mysql_escape_string($var);
-}
 if ($encounter == "")
 $encounter = date("Ymd");
+
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_st_visit_discharge_note", $_POST, $_GET["id"],$userauthorized);
 addForm($encounter, "ST Visit Discharge", $newid, "stvisit_discharge", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
 sqlInsert("update forms_st_visit_discharge_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1,date = NOW(), 
 dischargeplan_Time_In ='".$_POST["dischargeplan_Time_In"]."',
 dischargeplan_Time_Out ='".$_POST["dischargeplan_Time_Out"]."',

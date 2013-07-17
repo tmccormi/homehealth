@@ -301,7 +301,7 @@ if (is_numeric($pid)) {
         echo "<div class='form_header_controls'>";
 
 	echo "<div id='status'></div>";
-
+	if($formdir != 'vitals'){
         echo "<a target='".
 				($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
 				"' href='$rootdir/patient_file/encounter/view_form.php?" .
@@ -309,7 +309,7 @@ if (is_numeric($pid)) {
 				"&action=review" . 
 				"' onclick='top.restoreSession()' class='css_button_small'><span>"  
 				. xl('Review & Sign') . "</span></a>";
-
+	}
 		echo "<a target='".
                 ($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
                 "' href='$rootdir/patient_file/encounter/view_form.php?" .

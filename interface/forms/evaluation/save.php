@@ -7,10 +7,21 @@ include_once("$srcdir/forms.inc");
 if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
+
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 $newid = formSubmit("forms_ot_Evaluation", $_POST, $_GET["id"], $userauthorized);
 addForm($encounter, "OT Evaluation", $newid, "evaluation", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_ot_Evaluation set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 Evaluation_date='".$_POST["Evaluation_date"]."',
 Evaluation_Time_In='".$_POST["Evaluation_Time_In"]."',

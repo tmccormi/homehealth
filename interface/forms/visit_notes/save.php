@@ -2,11 +2,11 @@
 include_once("../../globals.php");
 include_once("$srcdir/api.inc");
 include_once("$srcdir/forms.inc");
-foreach ($_POST as $k => $var) {
-$_POST[$k] = mysql_escape_string($var);
-echo "$var\n";
 
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
 }
+
 if ($encounter == "")
 $encounter = date("Ymd");
 if ($_GET["mode"] == "new"){
@@ -14,6 +14,7 @@ $newid = formSubmit("forms_ot_visitnote", $_POST, $_GET["id"], $userauthorized);
 addForm($encounter, "OT Visit Notes", $newid, "visit_notes", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
 sqlInsert("update forms_ot_visitnote set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 visitnote_Time_In ='".$_POST["visitnote_Time_In"]."',
 visitnote_Time_Out  ='".$_POST["visitnote_Time_Out"]."',

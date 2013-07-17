@@ -14,6 +14,7 @@ addForm($encounter, "OT Visit Discharge", $newid, "visit_discharge_test", $pid, 
 
  }
 elseif ($_GET["mode"] == "update") {
+
 sqlInsert("update forms_ot_visit_discharge_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1,date = NOW(), 
 dischargeplan_Time_In='".$_POST["dischargeplan_Time_In"]."',
 dischargeplan_Time_Out='".$_POST["dischargeplan_Time_Out"]."',

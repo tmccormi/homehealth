@@ -56,7 +56,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -185,6 +185,11 @@ $("#nutrition_total").val(tot);
 <body class="body_top">
 <?php
 $obj = formFetch("forms_oasis_discharge", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $oasis_system_review = explode("#",$obj{"oasis_system_review"});
 $oasis_therapy_pain_relieving_factors = explode("#",$obj{"oasis_therapy_pain_relieving_factors"});
 $oasis_nutrition_eat_patt1 = explode("#",$obj{"oasis_nutrition_eat_patt1"});
@@ -1045,8 +1050,8 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Cramps","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_site"}=="Cramps"){echo "checked";}?> ><?php xl('Cramps','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Claudication","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_site"}=="Claudication"){echo "checked";}?> ><?php xl('Claudication','e')?></label><br>
 			<?php xl("Capillary refill","e");?>
-				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl("<3","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_capillary"}=="<3"){echo "checked";}?> ><?php xl('less than 3 sec','e')?></label>
-				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl(">3","e");?>" <?php if($obj{"oasis_therapy_heart_sounds_capillary"}==">3"){echo "checked";}?> ><?php xl('greater than 3 sec','e')?></label><br>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl("<3","e");?>" <?php if(htmlspecialchars_decode($obj{"oasis_therapy_heart_sounds_capillary"})=="<3"){echo "checked";}?> ><?php xl('less than 3 sec','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl(">3","e");?>" <?php if(htmlspecialchars_decode($obj{"oasis_therapy_heart_sounds_capillary"})==">3"){echo "checked";}?> ><?php xl('greater than 3 sec','e')?></label><br>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Other","e");?>" <?php if(in_array("Other",$oasis_therapy_heart_sounds)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_other" value="<?php echo $obj{"oasis_therapy_heart_sounds_other"};?>"><br>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Weigh patient","e");?>" <?php if(in_array("Weigh patient",$oasis_therapy_heart_sounds)) echo "checked"; ?> ><?php xl('Weigh patient','e')?></label><br>

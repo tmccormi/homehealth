@@ -5,11 +5,17 @@ include_once("$srcdir/forms.inc");
 
 if ($encounter == "")
 $encounter = date("Ymd");
+
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_st_careplan", $_POST, $_GET["id"], $userauthorized);
 addForm($encounter, "ST Care plan", $newid, "stcareplan", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
 sqlInsert("update forms_st_careplan set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 stdate ='".$_POST["stdate"]."',
 careplan_ST_intervention ='".$_POST["careplan_ST_intervention"]."',

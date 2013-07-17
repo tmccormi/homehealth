@@ -378,8 +378,8 @@ $("#nutrition_total").val(tot);
 				<input type='text' size='10' name='oasis_patient_birth_date' value="<?php patientName("DOB");?>" readonly /> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender: ','e');?></b>
-				<label><input type="radio" name="oasis_patient_patient_gender" id="male" value="male" <?php if(patientGender("sex")=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_patient_patient_gender" id="female" value="female" <?php if(patientGender("sex")=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_patient_patient_gender" id="male" value="male" <?php if(patientGender()=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_patient_patient_gender" id="female" value="female" <?php if(patientGender()=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
 			
 			<br>
 			<strong><?php xl('<u>(M0140)</u> Race/Ethnicity: (Mark all that apply.)','e');?></strong><br>

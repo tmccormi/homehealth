@@ -6,7 +6,7 @@ include_once("$srcdir/forms.inc");
 $addnew = array();
 foreach($_POST as $key => $val) {
 	if(is_array($val)) { $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 if ($encounter == "")
 $encounter = date("Ymd");
@@ -15,6 +15,12 @@ $newid = formSubmit("forms_msw_evaluation", $addnew, $_GET["id"], $userauthorize
 addForm($encounter, "MSW Evaluaion", $newid, "msw_evaluation", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_msw_evaluation set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 msw_evaluation_time_in ='".$_POST["msw_evaluation_time_in"]."',
 msw_evaluation_time_out ='".$_POST["msw_evaluation_time_out"]."',

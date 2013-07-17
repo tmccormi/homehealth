@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) {  $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -17,6 +17,12 @@ $newid = formSubmit("forms_patient_missed_visit", $addnew, $_GET["id"], $useraut
 addForm($encounter, "Patient Missed Visit", $newid, "patient_missed_visit", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_patient_missed_visit set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 patient_name='".$_POST["patient_name"]."',
 patient_mr='".$_POST["patient_mr"]."',
@@ -25,9 +31,9 @@ descipline_who_category ='".$_POST["descipline_who_category"]."',
 descipline_who ='".$_POST["descipline_who"]."',
 descipline_who_other='".$_POST["descipline_who_other"]."',
 reason_for_category ='".$_POST["reason_for_category"]."',
-reason_for='".implode("#",$_POST["reason_for"])."',
+reason_for='".$_POST["reason_for"]."',
 reason_for_other='".$_POST["reason_for_other"]."',
-actions_taken='".implode("#",$_POST["actions_taken"])."',
+actions_taken='".$_POST["actions_taken"]."',
 actions_taken_other ='".$_POST["actions_taken_other"]."',
 patient_need_addressed ='".$_POST["patient_need_addressed"]."',
 patient_need_addressed_other='".$_POST["patient_need_addressed_other"]."',

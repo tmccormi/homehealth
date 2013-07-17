@@ -571,7 +571,7 @@ oasis_infusion_performed_by varchar(30) default NULL,
 oasis_infusion_performed_by_other varchar(30) default NULL,
 oasis_infusion_frequency varchar(10) default NULL,
 oasis_infusion_injection varchar(10) default NULL,
-oasis_infusion_labs_drawn varchar(10) default NULL,
+oasis_infusion_labs_drawn varchar(50) default NULL,
 
 
 

@@ -90,5 +90,4 @@ foreach($Fre_duration['units'] as $units)
         }
 }
 
-
 ?>

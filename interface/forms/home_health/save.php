@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) { $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -18,6 +18,12 @@ $newid = formSubmit("forms_home_health", $addnew, $_GET["id"], $userauthorized);
 addForm($encounter, "HOME HEALTH CERTIFICATION AND PLAN OF CARE", $newid, "home_health", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_home_health set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 
 
@@ -49,11 +55,11 @@ home_health_dme_supplies ='".$_POST["home_health_dme_supplies"]."',
 home_health_safety_measures ='".$_POST["home_health_safety_measures"]."',
 home_health_nut_reqs ='".$_POST["home_health_nut_reqs"]."',
 home_health_allergies ='".$_POST["home_health_allergies"]."',
-home_health_functional_limitations ='".implode("#",$_POST["home_health_functional_limitations"])."',
+home_health_functional_limitations ='".$_POST["home_health_functional_limitations"]."',
 home_health_functional_limitations_other ='".$_POST["home_health_functional_limitations_other"]."',
-home_health_activities_permitted ='".implode("#",$_POST["home_health_activities_permitted"])."',
+home_health_activities_permitted ='".$_POST["home_health_activities_permitted"]."',
 home_health_activities_permitted_other ='".$_POST["home_health_activities_permitted_other"]."',
-home_health_mental_status ='".implode("#",$_POST["home_health_mental_status"])."',
+home_health_mental_status ='".$_POST["home_health_mental_status"]."',
 home_health_mental_status_other ='".$_POST["home_health_mental_status_other"]."',
 home_health_prognosis ='".$_POST["home_health_prognosis"]."',
 home_health_orders_discipline ='".$_POST["home_health_orders_discipline"]."',

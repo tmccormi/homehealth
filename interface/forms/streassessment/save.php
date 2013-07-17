@@ -6,11 +6,17 @@ include_once("$srcdir/forms.inc");
 
 if ($encounter == "")
 $encounter = date("Ymd");
+
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_st_Reassessment", $_POST, $_GET["id"], $userauthorized);
 addForm($encounter, "ST Reassessment", $newid, "streassessment", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
 sqlInsert("update forms_st_Reassessment set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 Reassessment_visit_type='".$_POST["Reassessment_visit_type"]."',
 Reassessment_Time_In='".$_POST["Reassessment_Time_In"]."',

@@ -28,6 +28,11 @@ $esign->init($id, $formTable);
 $sigId = $esign->getNewestUnsignedSignature();
 
 $obj = formFetch("forms_patient_missed_visit", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $reason_for = explode("#",$obj{"reason_for"});
 $actions_taken= explode("#",$obj{"actions_taken"});
 
@@ -50,7 +55,7 @@ $actions_taken= explode("#",$obj{"actions_taken"});
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />

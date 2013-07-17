@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) { $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -18,6 +18,12 @@ $newid = formSubmit("forms_hha_visit", $addnew, $_GET["id"], $userauthorized);
 addForm($encounter, "HHA VISIT", $newid, "hha_visit", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_hha_visit set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 
 hha_visit_patient_name ='".$_POST["hha_visit_patient_name"]."',
@@ -27,7 +33,7 @@ hha_visit_time_in ='".$_POST["hha_visit_time_in"]."',
 hha_visit_time_out ='".$_POST["hha_visit_time_out"]."',
 hha_visit_employee_name ='".$_POST["hha_visit_employee_name"]."',
 hha_visit_employee_no ='".$_POST["hha_visit_employee_no"]."',
-hha_visit_activities ='".implode("#",$_POST["hha_visit_activities"])."',
+hha_visit_activities ='".$_POST["hha_visit_activities"]."',
 hha_visit_bath ='".$_POST["hha_visit_bath"]."',
 hha_visit_bath_date ='".$_POST["hha_visit_bath_date"]."',
 hha_visit_bed_bath ='".$_POST["hha_visit_bed_bath"]."',

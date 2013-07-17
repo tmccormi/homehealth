@@ -47,15 +47,14 @@ $sigId = $esign->getNewestUnsignedSignature();
 $obj = formFetch("forms_oasis_c_nurse", $_GET["id"]);
 
 $val = array();
-
 foreach($obj as $k => $v) {
-
 	$key = $k;
-
 	$$key = explode('#',$v);
-
 }
 
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
 
 $oasis_c_nurse_payment_source_homecare = explode("#",$obj{"oasis_c_nurse_payment_source_homecare"});
 $oasis_c_nurse_therapies_home = explode("#",$obj{"oasis_c_nurse_therapies_home"});

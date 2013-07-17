@@ -6,15 +6,22 @@ include_once("$srcdir/forms.inc");
 $addnew = array();
 foreach($_POST as $key => $val) {
 	if(is_array($val)) { $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 if ($encounter == "")
 $encounter = date("Ymd");
+
 if ($_GET["mode"] == "new"){
 $newid = formSubmit("forms_sixty_day_progress_note", $addnew, $_GET["id"], $userauthorized);
 addForm($encounter, "Sixty Day Progress Note", $newid, "sixty_day_progress_note", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_sixty_day_progress_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 sixty_day_progress_note_patient_name ='".$_POST["sixty_day_progress_note_patient_name"]."',
 sixty_day_progress_note_certification_period ='".$_POST["sixty_day_progress_note_certification_period"]."',
@@ -23,10 +30,10 @@ sixty_day_progress_note_patient_receiving_care_first ='".$_POST["sixty_day_progr
 sixty_day_progress_note_patient_receiving_care_other ='".$_POST["sixty_day_progress_note_patient_receiving_care_other"]."',
 sixty_day_progress_note_diagnosis_admission ='".$_POST["sixty_day_progress_note_diagnosis_admission"]."',
 sixty_day_progress_note_additional_diagnosis ='".$_POST["sixty_day_progress_note_additional_diagnosis"]."',
-sixty_day_progress_note_decline_no_change_clinical_pblm ='".implode("#",$_POST["sixty_day_progress_note_decline_no_change_clinical_pblm"])."',
+sixty_day_progress_note_decline_no_change_clinical_pblm ='".$_POST["sixty_day_progress_note_decline_no_change_clinical_pblm"]."',
 sixty_day_progress_note_decline_clinical_pblm_other ='".$_POST["sixty_day_progress_note_decline_clinical_pblm_other"]."',
 sixty_day_progress_note_decline_clinical_pblm_specific_details ='".$_POST["sixty_day_progress_note_decline_clinical_pblm_specific_details"]."',
-sixty_day_progress_note_improvement_in_clinical_issues ='".implode("#",$_POST["sixty_day_progress_note_improvement_in_clinical_issues"])."',
+sixty_day_progress_note_improvement_in_clinical_issues ='".$_POST["sixty_day_progress_note_improvement_in_clinical_issues"]."',
 sixty_day_progress_note_improvement_issues_other ='".$_POST["sixty_day_progress_note_improvement_issues_other"]."',
 sixty_day_progress_note_improvement_issues_specific_details ='".$_POST["sixty_day_progress_note_improvement_issues_specific_details"]."',
 sixty_day_progress_note_living_situation_patient_lives ='".$_POST["sixty_day_progress_note_living_situation_patient_lives"]."',

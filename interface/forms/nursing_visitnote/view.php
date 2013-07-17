@@ -151,10 +151,15 @@ table label, input { display:inherit !important; }
 <?php
 include_once("$srcdir/api.inc");
 $obj = formFetch("forms_nursing_visitnote", $_GET["id"]);
+
 $val = array();
 foreach($obj as $k => $v) {
 	$key = $k;
 	$$key = explode('#',$v);
+}
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
 }
 ?>
 <form method="post" id="submitForm"

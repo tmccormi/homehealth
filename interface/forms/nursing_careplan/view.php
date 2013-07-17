@@ -96,6 +96,11 @@ table label, input { display:inherit !important; }
 <?php
 include_once("$srcdir/api.inc");
 $obj = formFetch("forms_nursing_careplan", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $cardio_teach = explode("#",$obj{"careplan_SN_CARDIO_Teach"});
 $cardio_pcg_goals = explode("#",$obj{"careplan_SN_CARDIO_PtPcgGoals"});
 $endo_assess = explode("#",$obj{"careplan_SN_ENDO_Assess"});

@@ -6625,7 +6625,7 @@ oasis_patient_diagnosis_2k_sub varchar(10),
 oasis_patient_diagnosis_3k varchar(10),
 oasis_patient_diagnosis_4k varchar(10),
 oasis_patient_diagnosis_1l varchar(10),
-oasis_patient_diagnosis_2l varchar(10),oasistransfer_prognosis
+oasis_patient_diagnosis_2l varchar(10),
 oasis_patient_diagnosis_2l_indicator varchar(1),
 oasis_patient_diagnosis_2l_sub varchar(10),
 oasis_patient_diagnosis_3l varchar(10),

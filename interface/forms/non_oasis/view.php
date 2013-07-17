@@ -35,12 +35,16 @@ $sigId = $esign->getNewestUnsignedSignature();
 include_once("$srcdir/api.inc");
 
 $obj = formFetch("forms_non_oasis", $_GET["id"]);
+
 $val = array();
 foreach($obj as $k => $v) {
 	$key = $k;
 	$$key = explode('#',$v);
 }
 
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
 
 $non_oasis_nutrition_eat_patt1 = explode("#",$obj{"non_oasis_nutrition_eat_patt1"});
 $non_oasis_nutrition_risks = explode("#",$obj{"non_oasis_nutrition_risks"});
@@ -74,7 +78,6 @@ $non_oasis_skilled_care = explode("#",$obj{"non_oasis_skilled_care"});
 
 $non_oasis_summary_disciplines = explode("#",$obj{"non_oasis_summary_disciplines"});
 $non_oasis_summary_medication_identified = explode("#",$obj{"non_oasis_summary_medication_identified"});
-
 ?>
 
 <html>
@@ -581,7 +584,6 @@ value="<?php echo stripslashes($obj{"non_oasis_nutrition_status_other"});?>" />
  <?php if($obj{"non_oasis_nutrition_appetite"}=="Poor") echo "checked"; ?> /> <?php xl('Poor','e')?></label> &nbsp;
 <label><input type="radio" name="non_oasis_nutrition_appetite" value="Anorexic"  id="non_oasis_nutrition_appetite" 
  <?php if($obj{"non_oasis_nutrition_appetite"}=="Anorexic") echo "checked"; ?> /> <?php xl('Anorexic','e')?></label> &nbsp;
-
 
 
 

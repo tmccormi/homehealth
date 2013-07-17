@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) { $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -18,6 +18,12 @@ $newid = formSubmit("forms_incident_report", $addnew, $_GET["id"], $userauthoriz
 addForm($encounter, "INCIDENT REPORT", $newid, "incident_report", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    if(is_array($value)) { $value = implode("#",$value); }
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_incident_report set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 
 incident_report_notes ='".$_POST["incident_report_notes"]."',
@@ -26,10 +32,10 @@ incident_visit_date ='".$_POST["incident_visit_date"]."',
 incident_report_patient_name ='".$_POST["incident_report_patient_name"]."',
 incident_report_date ='".$_POST["incident_report_date"]."',
 incident_report_occurance_date ='".$_POST["incident_report_occurance_date"]."',
-incident_report_patient_related ='".implode("#",$_POST["incident_report_patient_related"])."',
+incident_report_patient_related ='".$_POST["incident_report_patient_related"]."',
 incident_report_patient_related_other ='".$_POST["incident_report_patient_related_other"]."',
 incident_report_description_occurence ='".$_POST["incident_report_description_occurence"]."',
-incident_report_notifications ='".implode("#",$_POST["incident_report_notifications"])."',
+incident_report_notifications ='".$_POST["incident_report_notifications"]."',
 incident_report_not_physician_name ='".$_POST["incident_report_not_physician_name"]."',
 incident_report_not_physician_date ='".$_POST["incident_report_not_physician_date"]."',
 incident_report_not_supervisor_name ='".$_POST["incident_report_not_supervisor_name"]."',

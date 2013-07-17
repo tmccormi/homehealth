@@ -44,7 +44,7 @@ $sigId = $esign->getNewestUnsignedSignature();
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -111,6 +111,11 @@ $(document).ready(function() {
 <body class="body_top">
 <?php
 $obj = formFetch("forms_home_environment", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $home_environment_action_plan_1=explode("#",$obj{"home_environment_action_plan_1"});
 $home_environment_action_plan_2=explode("#",$obj{"home_environment_action_plan_2"});
 $home_environment_action_plan_3=explode("#",$obj{"home_environment_action_plan_3"});
@@ -129,6 +134,7 @@ $home_environment_action_plan_15=explode("#",$obj{"home_environment_action_plan_
 $home_environment_action_plan_16=explode("#",$obj{"home_environment_action_plan_16"});
 $home_environment_action_plan_17=explode("#",$obj{"home_environment_action_plan_17"});
 $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safety"});
+
 ?>
 <form method="post"
 		action="<?php echo $rootdir;?>/forms/home_environment/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="home_environment">

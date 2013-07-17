@@ -89,7 +89,9 @@ $sigId = $esign->getNewestUnsignedSignature();
 include_once("$srcdir/api.inc");
 $obj = formFetch("forms_oasis_transfer", $_GET["id"]);
 
-
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
 
 $oasistransfer_mental_status = explode("#",$obj{"oasistransfer_mental_status"});
 $oasistransfer_functional_limitations = explode("#",$obj{"oasistransfer_functional_limitations"});
@@ -97,13 +99,12 @@ $oasistransfer_safety_measures = explode("#",$obj{"oasistransfer_safety_measures
 $oasistransfer_dme_iv_supplies = explode("#",$obj{"oasistransfer_dme_iv_supplies"});
 $oasistransfer_dme_foley_supplies = explode("#",$obj{"oasistransfer_dme_foley_supplies"});
 
-
 ?>
 <form method="post"	action="<?php echo $rootdir;?>/forms/oasis_transfer/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="oasistransfer">
 		<h3 align="center"><?php xl('OASIS-C TRANSFER','e')?></h3>
 		<div><span class="formtable"><strong><?php xl('Patient:','e')?></strong>&nbsp;&nbsp;<label><?php patientName()?></label> </span>
 <span style="float:right" class="formtable"><strong><?php xl('Caregiver:','e')?></strong><input type="text" name="oasistransfer_Caregiver" size="20" 
- value='<?php echo stripslashes($obj{"oasistransfer_Caregiver"});?>'/>
+ value="<?php echo stripslashes($obj{"oasistransfer_Caregiver"});?>"/>
 &nbsp;&nbsp;
 <strong><?php xl('Visit Date:','e')?></strong>&nbsp;
 <input type="text" name="oasistransfer_Visit_Date" value="<?php echo stripslashes($obj{"oasistransfer_Visit_Date"});?>" readonly/>
@@ -154,7 +155,7 @@ $oasistransfer_dme_foley_supplies = explode("#",$obj{"oasistransfer_dme_foley_su
 
 <input type="text" name="oasistransfer_Assessment_Completed_Date" size="10" title='<?php xl('yyyy-mm-dd Assessment Completed Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Assessment_Completed_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Assessment_Completed_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Assessment_Completed_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_Assess_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -545,7 +546,7 @@ patient has no pressure ulcers with need for moist wound healing",'e')?></td></t
 					    <label><input type="checkbox" name="oasistransfer_safety_measures[]" value="Other"
 		    <?php if(in_array("Other",$oasistransfer_safety_measures)) echo "checked"; ?> ><?php xl('Other:','e')?></label>
 
-						    <input type="text" name="oasistransfer_safety_measures_other"  value="<?php echo stripslashes($obj{"oasis_safety_measures_other"});?>" ><br>
+						    <input type="text" name="oasistransfer_safety_measures_other"  value="<?php echo stripslashes($obj{"oasistransfer_safety_measures_other"});?>" ><br>
 
 				    </td>
 				    <td>
@@ -936,7 +937,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
 <tr><td><b><?php xl('(M0903) Date of Last (Most Recent) Home Visit:','e')?> </b>
 <input type="text" name="oasistransfer_Last_Home_Visit_Date" size="10" title='<?php xl('yyyy-mm-dd Last Home Visit Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Last_Home_Visit_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Last_Home_Visit_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Last_Home_Visit_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_home_visit_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -950,7 +951,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
  <?php xl('Enter the date of the discharge, transfer, or death (at home) of the patient','e')?><br/>
 <input type="text" name="oasistransfer_Discharge_Transfer_Death_Date" size="10" title='<?php xl('yyyy-mm-dd Discharge/Transfer/Death Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Discharge_Transfer_Death_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Discharge_Transfer_Death_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Discharge_Transfer_Death_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_discharge_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -1095,7 +1096,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td colspan="2" class="formtable" ><?php xl('Name','e')?>&nbsp;&nbsp;
-<input type="text" name="oasistransfer_name" size="15" value='<?php echo stripslashes($obj{"oasistransfer_name"});?>'/></td></tr>
+<input type="text" name="oasistransfer_name" size="15" value="<?php echo stripslashes($obj{"oasistransfer_name"});?>"/></td></tr>
 
 <tr><td colspan="2">&nbsp;</td></tr>
 
@@ -1106,7 +1107,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
 <b><?php xl('Date Reviewed','e')?></b> 
 <input type="text" name="oasistransfer_Reviewed_Date" size="10" title='<?php xl('yyyy-mm-dd Reviewed Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Reviewed_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Reviewed_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Reviewed_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_Reviewed_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -1119,7 +1120,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
    <b><?php xl('Date Entered and Locked','e')?></b> 
 <input type="text" name="oasistransfer_Entered_Date" size="10" title='<?php xl('yyyy-mm-dd Entered Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Entered_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Entered_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Entered_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_Entered_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -1132,7 +1133,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
    <b><?php xl('Date Transmitted','e')?></b> 
 <input type="text" name="oasistransfer_Transmitted_Date" size="10" title='<?php xl('yyyy-mm-dd Transmitted Date','e'); ?>'
 	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' id="oasistransfer_Transmitted_Date" 
-	value='<?php echo stripslashes($obj{"oasistransfer_Transmitted_Date"});?>' readonly/> 
+	value="<?php echo stripslashes($obj{"oasistransfer_Transmitted_Date"});?>" readonly/> 
 	<img src='../../pic/show_calendar.gif' align='absbottom' width='24'	height='22' id='img_Transmitted_date'
 	 border='0' alt='[?]' style='cursor: pointer; cursor: hand' 
 	 title='<?php xl('Click here to choose a date','e'); ?>'> 

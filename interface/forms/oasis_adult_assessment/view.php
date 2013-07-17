@@ -168,6 +168,9 @@ foreach($obj as $k => $v) {
 	$$key = explode('#',$v);
 }
 
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
 
 ?>
 <body class="body_top">

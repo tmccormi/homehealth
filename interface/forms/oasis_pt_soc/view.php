@@ -58,7 +58,7 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_en.js"></script>
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script src="<?php echo $GLOBALS['webroot'] ?>/library/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.pack.js"></script>
 <script type='text/javascript' src='../../../library/dialog.js'></script>
 <link rel="stylesheet" href="../../../library/js/fancybox-1.3.4/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -190,6 +190,11 @@ $("#nutrition_total").val(tot);
 
 <?php
 $obj = formFetch("forms_oasis_pt_soc", $_GET["id"]);
+
+foreach($obj as $key => $value) {
+    $obj[$key] = htmlspecialchars($value);
+}
+
 $oasis_patient_race_ethnicity = explode("#",$obj{"oasis_patient_race_ethnicity"});
 $oasis_patient_payment_source_homecare = explode("#",$obj{"oasis_patient_payment_source_homecare"});
 $oasis_patient_history_impatient_facility = explode("#",$obj{"oasis_patient_history_impatient_facility"});
@@ -578,8 +583,8 @@ $oasis_therapy_curr_level_risk_factor = explode("#",$obj{"oasis_therapy_curr_lev
 				<input type='text' size='10' name='oasis_patient_birth_date' value="<?php patientName("DOB")?>" readonly/> 
 					<br>
 			<?php xl('<u>(M0069)</u> Gender:','e');?></b>
-				<label><input type="radio" name="oasis_patient_patient_gender" id="male" value="Male" <?php if(patientGender("sex")=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
-				<label><input type="radio" name="oasis_patient_patient_gender" id="female" value="Female" <?php if(patientGender("sex")=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
+				<label><input type="radio" name="oasis_patient_patient_gender" id="male" value="Male" <?php if(patientGender()=="Male"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#female').attr('checked','checked');\"";} ?> ><?php xl('Male','e');?></label>
+				<label><input type="radio" name="oasis_patient_patient_gender" id="female" value="Female" <?php if(patientGender()=="Female"){echo "checked";}else{echo " onclick=\"this.checked = false;  $('#male').attr('checked','checked');\"";} ?> ><?php xl('Female','e');?></label>
 			
 			<br>
 			<strong><?php xl('<u>(M0140)</u> Race/Ethnicity: (Mark all that apply.)','e');?></strong><br>

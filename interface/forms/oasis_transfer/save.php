@@ -6,6 +6,7 @@ include_once ("functions.php");
 
 if ($encounter == "")
 $encounter = date("Ymd");
+
 if ($_GET["mode"] == "new"){
 
 $_POST["oasistransfer_mental_status"]  = implode("#",$_POST["oasistransfer_mental_status"]);
@@ -14,11 +15,21 @@ $_POST["oasistransfer_safety_measures"]  = implode("#",$_POST["oasistransfer_saf
 $_POST["oasistransfer_dme_iv_supplies"]  = implode("#",$_POST["oasistransfer_dme_iv_supplies"]);
 $_POST["oasistransfer_dme_foley_supplies"]  = implode("#",$_POST["oasistransfer_dme_foley_supplies"]);
 
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 $newid = formSubmit("forms_oasis_transfer", $_POST, $_GET["id"], $userauthorized);
 addForm($encounter, "OASIS-C Transfer", $newid, "oasis_transfer", $pid, $userauthorized);
 
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $val) {
+	if(is_array($val)) { $val = implode("#",$val); }
+	$_POST[$key] = mysql_real_escape_string($val);
+}
+
 sqlInsert("update forms_oasis_transfer set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 oasistransfer_Caregiver ='".$_POST["oasistransfer_Caregiver"]."',
 oasistransfer_Visit_Date  ='".$_POST["oasistransfer_Visit_Date"]."',
@@ -58,16 +69,16 @@ oasistransfer_Depression_intervention  ='".$_POST["oasistransfer_Depression_inte
 oasistransfer_Intervention_to_monitor_pain  ='".$_POST["oasistransfer_Intervention_to_monitor_pain"]."',
 oasistransfer_Intervention_to_prevent_pressure_ulcers  ='".$_POST["oasistransfer_Intervention_to_prevent_pressure_ulcers"]."',
 oasistransfer_Pressure_ulcer_treatment  ='".$_POST["oasistransfer_Pressure_ulcer_treatment"]."',
-oasistransfer_mental_status  ='".implode("#",$_POST["oasistransfer_mental_status"])."',
+oasistransfer_mental_status  ='".$_POST["oasistransfer_mental_status"]."',
 oasistransfer_mental_status_other  ='".$_POST["oasistransfer_mental_status_other"]."',
-oasistransfer_functional_limitations  ='".implode("#",$_POST["oasistransfer_functional_limitations"])."',
+oasistransfer_functional_limitations  ='".$_POST["oasistransfer_functional_limitations"]."',
 oasistransfer_functional_limitations_other  ='".$_POST["oasistransfer_functional_limitations_other"]."',
-oasistransfer_prognosis  ='".$_POST["oasis_prognosis"]."',
-oasistransfer_safety_measures  ='".implode("#",$_POST["oasistransfer_safety_measures"])."',
+oasistransfer_prognosis  ='".$_POST["oasistransfer_prognosis"]."',
+oasistransfer_safety_measures  ='".$_POST["oasistransfer_safety_measures"]."',
 oasistransfer_safety_measures_other  ='".$_POST["oasistransfer_safety_measures_other"]."',
-oasistransfer_dme_iv_supplies  ='".implode("#",$_POST["oasistransfer_dme_iv_supplies"])."',
+oasistransfer_dme_iv_supplies  ='".$_POST["oasistransfer_dme_iv_supplies"]."',
 oasistransfer_dme_iv_supplies_other  ='".$_POST["oasistransfer_dme_iv_supplies_other"]."',
-oasistransfer_dme_foley_supplies  ='".implode("#",$_POST["oasistransfer_dme_foley_supplies"])."',
+oasistransfer_dme_foley_supplies  ='".$_POST["oasistransfer_dme_foley_supplies"]."',
 oasistransfer_dme_foley_supplies_other  ='".$_POST["oasistransfer_dme_foley_supplies_other"]."',
 
 oasistransfer_Reason_For_PPV_Not_Received  ='".$_POST["oasistransfer_Reason_For_PPV_Not_Received"]."',
@@ -112,7 +123,10 @@ oasistransfer_Admitted_in_NursingHome_as_Unsafe_at_home  ='".$_POST["oasistransf
 oasistransfer_Admitted_in_NursingHome_for_Other_Reason  ='".$_POST["oasistransfer_Admitted_in_NursingHome_for_Other_Reason"]."',
 oasistransfer_Admitted_in_NursingHome_for_Unknown_Reason  ='".$_POST["oasistransfer_Admitted_in_NursingHome_for_Unknown_Reason"]."',
 oasistransfer_Last_Home_Visit_Date  ='".$_POST["oasistransfer_Last_Home_Visit_Date"]."',
-oasistransfer_Discharge_Transfer_Death_Date='".$_POST["oasistransfer_Discharge_Transfer_Death_Date"]."',
+oasistransfer_Discharge_Transfer_Death_Date ='".$_POST["oasistransfer_Discharge_Transfer_Death_Date"]."',
+oasistransfer_certification ='".$_POST["oasistransfer_certification"]."',
+oasistransfer_date_last_contacted_physician ='".$_POST["oasistransfer_date_last_contacted_physician"]."',
+oasistransfer_date_last_seen_by_physician ='".$_POST["oasistransfer_date_last_seen_by_physician"]."',
 oasistransfer_Disciplined_Involved_SN  ='".$_POST["oasistransfer_Disciplined_Involved_SN"]."',
 oasistransfer_Disciplined_Involved_PT  ='".$_POST["oasistransfer_Disciplined_Involved_PT"]."',
 oasistransfer_Disciplined_Involved_OT  ='".$_POST["oasistransfer_Disciplined_Involved_OT"]."',

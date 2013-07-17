@@ -7,7 +7,7 @@ $addnew = array();
 
 foreach($_POST as $key => $val) {
 	if(is_array($val)) {  $val = implode("#",$val); }
-	$addnew[$key] = $val;
+	$addnew[$key] = mysql_real_escape_string($val);
 }
 
 if ($encounter == "")
@@ -17,6 +17,11 @@ $newid = formSubmit("forms_supervisor_visit_note", $addnew, $_GET["id"], $userau
 addForm($encounter, "HHA-Supervisor Visit", $newid, "supervisor_visit_note", $pid, $userauthorized);
 }
 elseif ($_GET["mode"] == "update") {
+
+foreach($_POST as $key => $value) {
+    $_POST[$key] = mysql_real_escape_string($value);
+}
+
 sqlInsert("update forms_supervisor_visit_note set pid = {$_SESSION["pid"]},groupname='".$_SESSION["authProvider"]."',user='".$_SESSION["authUser"]."',authorized=$userauthorized,activity=1, date = NOW(),
 patient_name='".$_POST["patient_name"]."',
 time_in='".$_POST["time_in"]."',
