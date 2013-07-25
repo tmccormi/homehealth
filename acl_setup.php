@@ -194,6 +194,12 @@ $sptherapist  = $gacl->add_group('sptherapist' , 'Speech Therapist'    , $clin, 
      // xl('Speech Therapist')
 $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
      // xl('Nurse')
+$socialworker  = $gacl->add_group('socialworker' , 'Social Worker'    , $clin, 'ARO');
+     // xl('Social Worker')
+$hha  = $gacl->add_group('hha' , 'Home Health Aide'    , $clin, 'ARO');
+     // xl('Home Health Aide')
+$optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $clin, 'ARO');
+     // xl('Occupational Therapist')
 
  // Create a Users section for the AROs (humans).
  //
@@ -339,6 +345,8 @@ $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
  );
      // xl('Emergency Login user can do anything')
 
+// Clinician Privileges given for Physical Therapist, Speech Therapist, Occupational Therapist, Nurse, HHA, Social Worker - For Synergy
+
  // Set permissions for Physical Therapist.
  //
  $gacl->add_acl(
@@ -350,7 +358,7 @@ $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
   NULL, array($phytherapist), NULL, NULL,
   1, 1, 'addonly', 'Things that Physical Therapist can read and enter but not modify'
  );
-     // xl('Things that clinicians can read and enter but not modify')
+     // xl('Things that Physical Therapist can read and enter but not modify')
  $gacl->add_acl(
   array(
    'admin'=>array('drugs'),
@@ -372,7 +380,7 @@ $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
   NULL, array($sptherapist), NULL, NULL,
   1, 1, 'addonly', 'Things that Speech Therapist can read and enter but not modify'
  );
-     // xl('Things that clinicians can read and enter but not modify')
+     // xl('Things that Speech Therapist can read and enter but not modify')
  $gacl->add_acl(
   array(
    'admin'=>array('drugs'),
@@ -394,7 +402,7 @@ $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
   NULL, array($nurse), NULL, NULL,
   1, 1, 'addonly', 'Things that Nurse can read and enter but not modify'
  );
-     // xl('Things that clinicians can read and enter but not modify')
+     // xl('Things that Nurse can read and enter but not modify')
  $gacl->add_acl(
   array(
    'admin'=>array('drugs'),
@@ -403,6 +411,72 @@ $nurse  = $gacl->add_group('nurse' , 'Nurse'    , $clin, 'ARO');
   ),
   NULL, array($nurse), NULL, NULL,
   1, 1, 'write', 'Things that Nurse can read and modify'
+ );
+
+ // Set permissions for Social Worker.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($socialworker), NULL, NULL,
+  1, 1, 'addonly', 'Things that Social Worker can read and enter but not modify'
+ );
+     // xl('Things that Social Worker can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($socialworker), NULL, NULL,
+  1, 1, 'write', 'Things that Social Worker can read and modify'
+ );
+
+ // Set permissions for Home Health Aide.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($hha), NULL, NULL,
+  1, 1, 'addonly', 'Things that Home Health Aide can read and enter but not modify'
+ );
+     // xl('Things that Home Health Aide can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($hha), NULL, NULL,
+  1, 1, 'write', 'Things that Home Health Aide can read and modify'
+ );
+
+ // Set permissions for Occupational Therapist.
+ //
+ $gacl->add_acl(
+  array(
+   'encounters'=>array('notes', 'relaxed'),
+   'patients'=>array('demo', 'med', 'docs', 'notes'),
+   'sensitivities'=>array('normal')
+  ),
+  NULL, array($optherapist), NULL, NULL,
+  1, 1, 'addonly', 'Things that Occupational Therapist can read and enter but not modify'
+ );
+     // xl('Things that Occupational Therapist can read and enter but not modify')
+ $gacl->add_acl(
+  array(
+   'admin'=>array('drugs'),
+   'encounters'=>array('coding'),
+   'patients'=>array('appt')
+  ),
+  NULL, array($optherapist), NULL, NULL,
+  1, 1, 'write', 'Things that Occupational Therapist can read and modify'
  );
 
 ?>

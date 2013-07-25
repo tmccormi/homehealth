@@ -220,9 +220,8 @@ color:red;
 <div>
     <div style = 'float:left; margin-left:8px;margin-top:-3px'>
       <a href="javascript:saveClicked();" class="css_button link_submit"><span><?php xl('Save','e'); ?></span></a>
-      <?php if ($viewmode || !isset($_GET["autoloaded"]) || $_GET["autoloaded"] != "1") { ?>
     </div>
-
+      <?php if ($viewmode || !isset($_GET["autoloaded"]) || $_GET["autoloaded"] != "1") { ?>
     <div style = 'float:left; margin-top:-3px'>
   <?php if ($GLOBALS['concurrent_layout']) { ?>
       <a href="<?php echo "$rootdir/patient_file/encounter/encounter_top.php"; ?>"
@@ -232,8 +231,25 @@ color:red;
         class="css_button link_submit" target='Main' onClick="top.restoreSession()">
       <span><?php xl('Cancel','e'); ?>]</span></a>
   <?php } // end not concurrent layout ?>
-  <?php } // end not autoloading ?>
+  <?php }else{ // end not autoloading ?>
+    <div style = 'float:left; margin-top:-3px'>
+      <a href="<?php echo "$rootdir/patient_file/history/encounters.php"; ?>"
+        class="css_button link_submit" onClick="top.restoreSession()"><span><?php xl('Cancel','e'); ?></span></a>
+  <?php } ?>
     </div>
+
+    <div style="float:right; border:1px solid #774828; font-size:12px; padding:5px; width:50%; background-color:#F2DFB0; color:#774828;">
+         <span>
+<?php 
+xl('Note:','e');
+if ($viewmode) { 
+xl(' Editing this Encounter will create a new visit in Synergy. Make sure to delete the visit in synergy if already created.','e');
+}
+xl(' Each visit for a patient should have a minimum of 1 day interval for exporting to Synergy.','e');
+?>
+</span>
+      </div>
+
  </div>
 
 <div style="clear:left; font-size:14px;">
@@ -443,7 +459,7 @@ if ($fres) {
 		while ($row = sqlFetchArray($validUsernames)) {
 		$checkUsers = sqlStatement("select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$row['username']."'))");
 		while ($currUser = sqlFetchArray($checkUsers)){
-		if($currUser['name'] == "Physicians"){
+		if($currUser['name'] == "Physical Therapist" || $currUser['name'] == "Speech Therapist" || $currUser['name'] == "Nurse" || $currUser['name'] == "Occupational Therapist" || $currUser['name'] == "Social Worker" || $currUser['name'] == "Home Health Aide"){
 		if($count==0)
 		{
 		$userNamesToTake = "'".$row['username']."'";
@@ -536,14 +552,17 @@ if ($fres) {
      <td class='bold' nowrap><?php xl('Type of Service:','e'); ?></td>
      <td class='text' nowrap>
 		<select name="form_type_of_service" id="form_type_of_service">
-			<option value="" <?php if($viewmode){if($result['type_of_service']==''){echo 'selected';}} ?>><?php xl('-- Select --','e'); ?></option>
-			<option value="01" <?php if($viewmode){if($result['type_of_service']=='01'){echo 'selected';}} ?>><?php xl('Skilled Nursing','e'); ?></option>
-			<option value="02" <?php if($viewmode){if($result['type_of_service']=='02'){echo 'selected';}} ?>><?php xl('Physical Therapy','e'); ?></option>
-			<option value="03" <?php if($viewmode){if($result['type_of_service']=='03'){echo 'selected';}} ?>><?php xl('Occupational Therapy','e'); ?></option>
-			<option value="04" <?php if($viewmode){if($result['type_of_service']=='04'){echo 'selected';}} ?>><?php xl('Social Services','e'); ?></option>
-			<option value="05" <?php if($viewmode){if($result['type_of_service']=='05'){echo 'selected';}} ?>><?php xl('Speech Therapy','e'); ?></option>
-			<option value="06" <?php if($viewmode){if($result['type_of_service']=='06'){echo 'selected';}} ?>><?php xl('Home Health Aide','e'); ?></option>
-			<option value="07" <?php if($viewmode){if($result['type_of_service']=='07'){echo 'selected';}} ?>><?php xl('Non-Skilled Services','e'); ?></option>
+			  <?php
+			  $res = sqlStatement("select option_id, title from list_options where list_id = 'typeofservice'");
+			  print "<option value=''>Unassigned</option>\n";
+			  for ($iter = 0;$row = sqlFetchArray($res);$iter++){
+			    $op = "<option value='".$row["option_id"]."'";
+			    if($viewmode){if($result['type_of_service']==$row["option_id"]){$op .= ' selected';}}
+			    $op .= ">" . $row["title"] . "</option>\n";
+
+			    print $op;
+			  }
+			  ?>
 		</select>
 	 </td>
     </tr>
@@ -658,7 +677,7 @@ if (!$viewmode) {
     "fe.pid = '$pid' AND fe.date = '" . date('Y-m-d 00:00:00') . "' AND " .
     "f.formdir = 'newpatient' AND f.form_id = fe.id AND f.deleted = 0");
   if ($erow['count'] > 0) {
-    echo "alert('" . xl('Warning: A visit was already created for this patient today!') . "');\n";
+    echo "alert('" . xl('Warning: A visit was already created for this patient today! Synergy will not accept this Visit data') . "');\n";
   }
 }
 ?>

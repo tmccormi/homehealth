@@ -910,7 +910,7 @@ $checkUsers = sqlStatement("select name from gacl_aro_groups where id=(select gr
 
 while ($currUser = sqlFetchArray($checkUsers)){
 
-if($currUser['name'] == "Physicians" || $currUser['name'] == "Clinicians" || $currUser['name'] == "Physical Therapist" || $currUser['name'] == "Speech Therapist" || $currUser['name'] == "Nurse" ){
+if($currUser['name'] == "Physicians" || $currUser['name'] == "Clinicians" || $currUser['name'] == "Physical Therapist" || $currUser['name'] == "Speech Therapist" || $currUser['name'] == "Nurse" || $currUser['name'] == "Occupational Therapist" || $currUser['name'] == "Social Worker" || $currUser['name'] == "Home Health Aide" ){
 
 if($count==0)
 {

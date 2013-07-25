@@ -177,6 +177,7 @@ if($('#form_abook_type').val() == 'agency'){
     "fax = "          . invalue('form_fax')          . ", " .
     "notes = "        . invalue('form_notes')        . ", "  .
     "agency_area = "  . invalue('form_agency_area')        . ", "  .
+    "synergy_id = "  . invalue('form_synergy_id')        . ", "  .
     "synergy_username = "        . invalue('form_synergy_username')        . ", "  .
     "synergy_password = "        . invalue('form_synergy_password')        . " "  .
     "WHERE id = '" . add_escape_custom($userid) . "'";
@@ -191,7 +192,7 @@ if($('#form_abook_type').val() == 'agency'){
     "specialty, organization, valedictory, assistant, billname, email, url, " .
     "street, streetb, city, state, zip, " .
     "street2, streetb2, city2, state2, zip2, " .
-    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type, agency_area , synergy_username, synergy_password "            .
+    "phone, phonew1, phonew2, phonecell, fax, notes, abook_type, agency_area , synergy_id, synergy_username, synergy_password "            .
     ") VALUES ( "                        .
     "'', "                               . // username
     "'', "                               . // password
@@ -235,6 +236,7 @@ if($('#form_abook_type').val() == 'agency'){
     invalue('form_notes')         . ", " .
     invalue('form_abook_type')    . ", "  .
     invalue('form_agency_area')    . ", "  .
+    invalue('form_synergy_id')    . ", "  .
     invalue('form_synergy_username')    . ", "  .
     invalue('form_synergy_password')    . " "  .
    ")");
@@ -285,9 +287,9 @@ if($('#form_abook_type').val() == 'agency'){
 <table border='0' width='100%'>
 
  <tr>
-  <td nowrap><b><?php echo xlt('User ID'); ?>:</b></td>
+  <td nowrap><b><?php echo xlt('Synergy ID'); ?>:</b></td>
   <td>
-  <?php echo attr($row['id']); ?>
+  <input type='text' size='11' name='form_synergy_id' value='<?php echo attr($row['synergy_id']); ?>' class='inputtext' />
   </td>
  </tr>
 

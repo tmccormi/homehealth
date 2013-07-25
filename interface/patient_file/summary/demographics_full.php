@@ -1038,9 +1038,10 @@ $group_seq=0; // this gives the DIV blocks unique IDs
 
 <script language="JavaScript">
 
+ var f = document.forms[0];
+
  // fix inconsistently formatted phone numbers from the database
  if (f.form_phone_contact) phonekeyup(f.form_phone_contact,mypcc);
- var f = document.forms[0];
  if (f.form_phone_home   ) phonekeyup(f.form_phone_home   ,mypcc);
  if (f.form_phone_biz    ) phonekeyup(f.form_phone_biz    ,mypcc);
  if (f.form_phone_cell   ) phonekeyup(f.form_phone_cell   ,mypcc);

@@ -27,6 +27,7 @@
  // really be in a SQL table.
  $freeb_type_array = array(''
   , xl('Other HCFA')
+  , xl('Medicare Part A')
   , xl('Medicare Part B')
   , xl('Medicaid')
   , xl('ChampUSVA')
@@ -168,7 +169,7 @@ td { font-size:10pt; }
    $ins_id = generate_id();
 
    sqlInsert("INSERT INTO insurance_companies ( " .
-    "id, name, attn, cms_id, freeb_type, x12_receiver_id, x12_default_partner_id " .
+    "id, name, attn, cms_id, freeb_type, x12_receiver_id, x12_default_partner_id, synergy_id " .
     ") VALUES ( " .
     $ins_id                         . ", "  .
     "'" . $ins_name                 . "', " .
@@ -176,7 +177,8 @@ td { font-size:10pt; }
     "'" . $_POST['form_cms_id']     . "', " .
     "'" . $_POST['form_freeb_type'] . "', " .
     "'" . $_POST['form_partner']    . "', " .
-    "'" . $_POST['form_partner']    . "' "  .
+    "'" . $_POST['form_partner']    . "', "  .
+    "'" . $_POST['form_synergy_id']    . "' "  .
    ")");
 
    sqlInsert("INSERT INTO addresses ( " .
@@ -350,6 +352,13 @@ td { font-size:10pt; }
  }
 ?>
    </select>
+  </td>
+ </tr>
+
+ <tr>
+  <td valign='top' nowrap><b><?php xl('Synergy Insurance ID','e');?>:</b></td>
+  <td>
+   <input type='text' size='20' name='form_synergy_id' maxlength='15' class='search' title='Insurance ID in Synergy' />
   </td>
  </tr>
 

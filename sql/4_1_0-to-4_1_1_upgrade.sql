@@ -8002,3 +8002,61 @@ UPDATE `layout_options` SET `seq`=36 WHERE `form_id`='DEM' AND `field_id`='gener
 #IfNotRow2D layout_options field_id genericval2 seq 37
 UPDATE `layout_options` SET `seq`=37 WHERE `form_id`='DEM' AND `field_id`='genericval2';
 #EndIf
+
+
+-- New column for users table and facility table to store Synergy ID
+
+#IfMissingColumn users synergy_id
+ALTER TABLE users ADD synergy_id varchar(255) NOT NULL default '';
+#EndIf
+
+#IfMissingColumn facility synergy_id
+ALTER TABLE facility ADD synergy_id varchar(255) NOT NULL default '';
+#EndIf
+
+
+
+-- New list_options entry to store the Type of Service
+
+#IfNotRow2D list_options list_id lists option_id typeofservice
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('lists', 'typeofservice', 'Type of Service', '1', '0', '0', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '1', 'Blood Charges', '1', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '2', 'Medical Care', '2', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '3', 'Surgery', '3', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '4', 'Consultation', '4', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '5', 'Diagnostic X-Ray', '5', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '6', 'Diagnostic Lab', '6', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '7', 'Radiation Therapy', '7', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '8', 'Anesthesia', '8', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '9', 'Surgical Assistance', '9', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '10', 'Other Medical', '10', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '11', 'User DME', '11', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '12', 'Ambulance', '12', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '13', 'Chiropractic Services', '13', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '14', 'DME Purchase', '14', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '15', 'ASC Facility', '15', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '16', 'Psychiatry', '16', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '17', 'Hospice', '17', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '18', 'Interpretation', '18', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '19', 'Rental Supplies in the Home', '19', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '20', 'Alt Method Dialysis Payment', '20', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '21', 'CRD Equipment', '21', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '22', 'Pre-Admission Testing', '22', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '23', 'DME Rental', '23', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '24', 'Pneumonia Vaccine', '24', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '25', 'Second Surgical Opinion', '25', '0', '1', '', '');
+INSERT INTO `list_options` (`list_id` ,`option_id` ,`title` ,`seq` ,`is_default` ,`option_value` ,`mapping` ,`notes`)VALUES ('typeofservice', '26', 'Third Surgical Opinion', '26', '0', '1', '', '');
+#EndIf
+
+
+-- New Column to insurance_companies table to store the synergy ID
+
+#IfMissingColumn insurance_companies synergy_id
+ALTER TABLE insurance_companies ADD synergy_id varchar(255) NOT NULL default '';
+#EndIf
+
+-- Changes made for other_physician to display the Physician List
+
+#IfNotRow2D layout_options field_id other_physician data_type 42
+UPDATE `layout_options` SET `data_type`=42 WHERE `form_id`='DEM' AND `field_id`='other_physician';
+#EndIf

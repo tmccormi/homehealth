@@ -314,7 +314,7 @@ foreach ($result as $iter) {
 ?>
 </select>
 </td>
-<td colspan="2">&nbsp;</td>
+<td><span class="text"><?php xl('Synergy ID','e'); ?>: </span></td><td><input type="entry" name="synergy_id" style="width:120px;"></td>
 </tr>
   <tr height="25"><td colspan="4">&nbsp;</td></tr>
 <?php

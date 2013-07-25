@@ -39,6 +39,9 @@ $table_name = $_POST['form_name'];
 $encounter = $_POST['encounter_id'];
 $pid = $_POST['patient_id'];
 
+$error_flag = 0;
+$error_msg = '';
+
 switch($table_name){
 
 case 'forms_oasis_discharge':
@@ -63,12 +66,23 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -85,25 +99,33 @@ $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $addnew['oasis_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 if($addnew['oasis_therapy_medicare_no']!=""){
@@ -176,10 +198,13 @@ $b1_string = b1_replacement(1147,$b1_string);
 $b1_string = b1_replacement(1149,$b1_string);
 $b1_string = b1_replacement(1151,$b1_string);
 
+
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
+
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => "",  //Allergies
 4 => "",  //AP
 5 => "",  //AP_Desc
@@ -197,7 +222,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -235,6 +260,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'],'oasis_data' => $oasis_synergy));
 
@@ -245,7 +271,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 }
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -275,12 +304,21 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -292,30 +330,38 @@ $caregiverSigned = "False";
 }
 */
 
-if($s_result['agency_name'] == 0){
+if($s_result['agency_name'] == '0'){
 $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $addnew['oasis_c_nurse_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 if($addnew['oasis_c_nurse_medicare_no']!=""){
@@ -461,11 +507,12 @@ $b1_string = b1_replacement(1147,$b1_string);
 $b1_string = b1_replacement(1149,$b1_string);
 $b1_string = b1_replacement(1151,$b1_string);
 
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
 
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => $Allergies,  //Allergies
 4 => $ap_string,  //AP
 5 => $addnew['oasis_c_nurse_activities_permitted_other'],  //AP_Desc
@@ -483,7 +530,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -521,6 +568,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'oasis_data' => $oasis_synergy));
 
@@ -531,7 +579,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 }
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -564,12 +615,21 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -581,30 +641,38 @@ $caregiverSigned = "False";
 }
 */
 
-if($s_result['agency_name'] == 0){
+if($s_result['agency_name'] == '0'){
 $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $addnew['oasis_therapy_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 if($addnew['oasis_therapy_medicare_no']!=""){
@@ -750,12 +818,12 @@ $b1_string = b1_replacement(1147,$b1_string);
 $b1_string = b1_replacement(1149,$b1_string);
 $b1_string = b1_replacement(1151,$b1_string);
 
-
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
 
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => $Allergies,  //Allergies
 4 => $ap_string,  //AP
 5 => $addnew['oasis_therapy_activities_permitted_other'],  //AP_Desc
@@ -773,7 +841,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -811,6 +879,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'oasis_data' => $oasis_synergy));
 
@@ -822,7 +891,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -857,12 +929,21 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -874,30 +955,38 @@ $caregiverSigned = "False";
 }
 */
 
-if($s_result['agency_name'] == 0){
-$AgencyName = 'None';
-$AgencyCode = '0';
+if($s_result['agency_name'] == '0'){
+$AgencyName = '';
+$AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $addnew['oasis_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 if($addnew['oasis_patient_medicare_no']!=""){
@@ -1006,11 +1095,12 @@ $b1_string = b1_replacement(1102,$b1_string);
 $b1_string = b1_replacement(1115,$b1_string);
 $b1_string = b1_replacement(1117,$b1_string);
 
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
 
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode **Not in Obj
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode **Not in Obj
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => $Allergies,  //Allergies
 4 => $ap_string,  //AP
 5 => $addnew['oasis_activities_permitted_other'],  //AP_Desc
@@ -1028,7 +1118,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -1066,6 +1156,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'oasis_data' => $oasis_synergy));
 
@@ -1077,7 +1168,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -1114,12 +1208,21 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -1131,30 +1234,38 @@ $caregiverSigned = "False";
 }
 */
 
-if($s_result['agency_name'] == 0){
-$AgencyName = 'None';
-$AgencyCode = '0';
+if($s_result['agency_name'] == '0'){
+$AgencyName = '';
+$AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $addnew['oasis_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 if($addnew['oasis_patient_medicare_no']!=""){
@@ -1269,12 +1380,12 @@ $b1_string = b1_replacement(1113,$b1_string);
 $b1_string = b1_replacement(1115,$b1_string);
 $b1_string = b1_replacement(1117,$b1_string);
 
-
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
 
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => $Allergies,  //Allergies
 4 => $ap_string,  //AP
 5 => $addnew['oasis_activities_permitted_other'],  //AP_Desc
@@ -1292,7 +1403,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -1330,6 +1441,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'oasis_data' => $oasis_synergy));
 
@@ -1341,7 +1453,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -1367,7 +1482,7 @@ try{
 $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice. More Details: ".$e->getMessage()."');</script>";
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
 }
 
 if(isset($client)){
@@ -1378,12 +1493,21 @@ $s_result = sqlFetchArray($s_result);
 $enc_result = sqlStatement("select facility_id, onset_date from form_encounter where encounter=".$encounter."");
 $enc_result = sqlFetchArray($enc_result);
 
+$AdmissionSourceCodeRes = sqlFetchArray(sqlStatement("select synergy_id from facility where id=".$enc_result['facility_id'].""));
+if(!empty($AdmissionSourceCodeRes['synergy_id'])){
+$AdmissionSourceCode = $AdmissionSourceCodeRes['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nFacility\'s Synergy ID";
+}
+
 /*
 $esign_result = sqlStatement("select uid from eSignatures where `tid`=".$newid." AND `table`='oasis_discharge'");
 $esign_result = sqlFetchArray($esign_result);
 */
-$currUser = $_SESSION['authUser'];
-$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip from users where username='".$currUser."'");
+$currUser = $addnew['user']; /* This Oasis form's User */
+$user_result = sqlStatement("select street, streetb, city, id, fname, lname, mname, phone, state, upin, zip, synergy_id from users where username='".$currUser."'");
 $user_result = sqlFetchArray($user_result);
 
 /*
@@ -1395,30 +1519,38 @@ $caregiverSigned = "False";
 }
 */
 
-if($s_result['agency_name'] == 0){
+if($s_result['agency_name'] == '0'){
 $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+
 }
 
 
 $fl = explode("#", $_POST['oasistransfer_functional_limitations']);
 $fl_string = "";
 if(in_array("Amputation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Bowel/Bladder (Incontinence)",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
-if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Contracture",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Hearing",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Paralysis",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Endurance",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Ambulation",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Speech",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Legally Blind",$fl)){$fl_string.="1";}else{$fl_string.="0";}
+if(in_array("Dyspnea",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 if(in_array("Other",$fl)){$fl_string.="1";}else{$fl_string.="0";}
 
 /*
@@ -1521,15 +1653,15 @@ $b1_string = b1_replacement(1151,$b1_string);
 
 
 
-
+$b1_string = substr_replace($b1_string,str_pad($s_result['pubpid'],20),157-1,20);
 
 
 
 
 $oasis_synergy = array(
 0 => $AgencyCode, //Agency
-1 => $s_result['pid'],  //PatientCode
-2 => $enc_result['facility_id'],  //AdmissionSourceCode
+1 => $s_result['pubpid'],  //PatientCode
+2 => $AdmissionSourceCode,  //AdmissionSourceCode
 3 => "",  //Allergies
 4 => "",  //AP
 5 => "",  //AP_Desc
@@ -1547,7 +1679,7 @@ $oasis_synergy = array(
 17 => $user_result['street'],  //DR_ADDR1
 18 => $user_result['streetb'],  //DR_ADDR2
 19 => $user_result['city'],  //DR_CITY
-20 => $user_result['id'],  //DR_ID
+20 => $user_result['synergy_id'],  //DR_ID
 21 => $user_result['lname'] . ", " . $user_result['fname'] ." ". $user_result['mname'],  //DR_NAME
 22 => $user_result['phone'],  //DR_PHONE
 23 => $user_result['state'],  //DR_STATE
@@ -1585,6 +1717,7 @@ $oasis_synergy = array(
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'oasis_data' => $oasis_synergy));
 
@@ -1596,7 +1729,10 @@ echo "<script language='javascript'>alert('OASIS Form Successfully Exported to S
 
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -1604,6 +1740,18 @@ echo "<script language='javascript'>alert('Synergy Login Information Not Availab
 }
 
 break;
+
+case 'forms_oasis_discharge':
+
+/**************************************************************************************************************/
+
+$addnew = sqlFetchArray(sqlStatement("SELECT * FROM ".$table_name." WHERE id=".$newid." AND pid=".$pid.""));
+
+//Passing OASIS-C DISCHARGE ASSESSMENT Data to Synergy
+
+
+break;
+
 
 default:
   echo "<script language='javascript'>alert('Invalid Form Name');</script>";

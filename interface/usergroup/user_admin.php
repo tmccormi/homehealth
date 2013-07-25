@@ -121,6 +121,11 @@ if ($_GET["mode"] == "update") {
       sqlStatement("update users set agency_area='$tqvar' where id={$_GET["id"]}");
  // }
 
+  //if ($_GET["synergy_id"]) {
+      $tqvar = formData('synergy_id','G');
+      sqlStatement("update users set synergy_id='$tqvar' where id={$_GET["id"]}");
+ // }
+
   $tqvar  = $_GET["authorized"] ? 1 : 0;
   $actvar = $_GET["active"]     ? 1 : 0;
   $calvar = $_GET["calendar"]   ? 1 : 0;
@@ -378,10 +383,6 @@ $bg_count=count($acl_name);
 <TABLE border=0 cellpadding=0 cellspacing=0>
 
 <TR>
-<TD style="width:180px;"><span class=text><?php xl('User ID','e'); ?>: </span></TD><TD style="width:270px;"><?php echo $iter["id"]; ?></td>
-</TR>
-
-<TR>
 <TD style="width:180px;"><span class=text><?php xl('Username','e'); ?>: </span></TD><TD style="width:270px;"><input type=entry name=username style="width:150px;" value="<?php echo $iter["username"]; ?>" disabled></td>
 <TD style="width:200px;"><span class=text><?php xl('Password','e'); ?>: </span></TD><TD class='text' style="width:280px;"><input type=entry name=clearPass style="width:150px;"  value=""><font class="mandatory">*</font></td>
 </TR>
@@ -574,6 +575,7 @@ echo ">" . $iter1{"title"} . "</option>\n";
 ?>
 </select>
 </td>
+<td><span class="text"><?php xl('Synergy ID','e'); ?>: </span></td><td><input type="text" name="synergy_id" style="width:150px;"  value="<?php echo $iter["synergy_id"]?>"></td>
 </tr>
 
 

@@ -129,6 +129,39 @@ $back_addonly = addNewACL('Accounting', 'back', 'addonly', 'Things that back off
 //Add 'Emergency Login' ACL with 'write' and collect the ID number (added in 3.3.0)
 $emergency_write = addNewACL('Emergency Login', 'breakglass', 'write', 'Things that can use for emergency login, can read and modify');
 
+/* -- Synergy -- */
+
+//Add 'Physical Therapist' ACL with 'readonly' and collect the ID number
+$pttherapist_addonly = addNewACL('Physical Therapist', 'pttherapist', 'addonly', 'Things that Physical Therapist can read and enter but not modify');
+//Add 'Physical Therapist' ACL with 'write' and collect the ID number
+$pttherapist_write = addNewACL('Physical Therapist', 'pttherapist', 'write', 'Things that can use for Physical Therapist, can read and modify');
+
+//Add 'Speech Therapist' ACL with 'readonly' and collect the ID number
+$sptherapist_addonly = addNewACL('Speech Therapist', 'sptherapist', 'addonly', 'Things that Speech Therapist can read and enter but not modify');
+//Add 'Speech Therapist' ACL with 'write' and collect the ID number
+$sptherapist_write = addNewACL('Speech Therapist', 'sptherapist', 'write', 'Things that can use for Speech Therapist, can read and modify');
+
+//Add 'Occupational Therapist' ACL with 'readonly' and collect the ID number
+$optherapist_addonly = addNewACL('Occupational Therapist', 'optherapist', 'addonly', 'Things that Occupational Therapist can read and enter but not modify');
+//Add 'Occupational Therapist' ACL with 'write' and collect the ID number
+$optherapist_write = addNewACL('Occupational Therapist', 'optherapist', 'write', 'Things that can use for Occupational Therapist, can read and modify');
+
+//Add 'Social Worker' ACL with 'readonly' and collect the ID number
+$socialworker_addonly = addNewACL('Social Worker', 'socialworker', 'addonly', 'Things that Social Worker can read and enter but not modify');
+//Add 'Social Worker' ACL with 'write' and collect the ID number
+$socialworker_write = addNewACL('Social Worker', 'socialworker', 'write', 'Things that can use for Social Worker, can read and modify');
+
+//Add 'Home Health Aide' ACL with 'readonly' and collect the ID number
+$hha_addonly = addNewACL('Home Health Aide', 'hha', 'addonly', 'Things that Home Health Aide can read and enter but not modify');
+//Add 'Home Health Aide' ACL with 'write' and collect the ID number
+$hha_write = addNewACL('Home Health Aide', 'hha', 'write', 'Things that can use for Home Health Aide, can read and modify');
+
+//Add 'Nurse' ACL with 'readonly' and collect the ID number
+$nurse_addonly = addNewACL('Nurse', 'nurse', 'addonly', 'Things that Nurse can read and enter but not modify');
+//Add 'Nurse' ACL with 'write' and collect the ID number
+$nurse_write = addNewACL('Nurse', 'nurse', 'write', 'Things that can use for Nurse, can read and modify');
+
+
 //Update the ACLs
 echo "<BR/><B>Updating the ACLs(Access Control Lists)</B><BR/>";
 //Insert the 'super' object from the 'admin' section into the Administrators group write ACL (added in 2.8.2)
@@ -244,6 +277,146 @@ updateAcl($emergency_write, 'Emergency Login','nationnotes', 'Nation Notes', 'nn
 updateAcl($admin_write, 'Administrators','patientportal', 'Patient Portal', 'portal', 'Patient Portal','write');
 //Insert the 'patientportal' object from the 'patientportal' section into the Emergency Login group write ACL (added in 4.1.0)
 updateAcl($emergency_write, 'Emergency Login','patientportal', 'Patient Portal', 'portal', 'Patient Portal','write');
+
+/* -- Synergy -- */
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist readonly acl
+updateAcl($pttherapist_addonly, 'Physical Therapist','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist write acl
+updateAcl($pttherapist_write, 'Physical Therapist','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist write acl
+updateAcl($pttherapist_write, 'Physical Therapist','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Physical Therapist write acl
+updateAcl($pttherapist_write, 'Physical Therapist','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist readonly acl
+updateAcl($sptherapist_addonly, 'Speech Therapist','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist write acl
+updateAcl($sptherapist_write, 'Speech Therapist','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist write acl
+updateAcl($sptherapist_write, 'Speech Therapist','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Speech Therapist write acl
+updateAcl($sptherapist_write, 'Speech Therapist','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist readonly acl
+updateAcl($optherapist_addonly, 'Occupational Therapist','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist write acl
+updateAcl($optherapist_write, 'Occupational Therapist','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist write acl
+updateAcl($optherapist_write, 'Occupational Therapist','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Occupational Therapist write acl
+updateAcl($optherapist_write, 'Occupational Therapist','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker readonly acl
+updateAcl($socialworker_addonly, 'Social Worker','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker write acl
+updateAcl($socialworker_write, 'Social Worker','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker write acl
+updateAcl($socialworker_write, 'Social Worker','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Social Worker write acl
+updateAcl($socialworker_write, 'Social Worker','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide readonly acl
+updateAcl($hha_addonly, 'Home Health Aide','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide write acl
+updateAcl($hha_write, 'Home Health Aide','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide write acl
+updateAcl($hha_write, 'Home Health Aide','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Home Health Aide write acl
+updateAcl($hha_write, 'Home Health Aide','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','encounters', 'Encounters', 'notes', 'Notes - my encounters (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','encounters', 'Encounters', 'relaxed', 'Less-private information (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','patients', 'Patients', 'demo', 'Demographics (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','patients', 'Patients', 'med', 'Medical/History (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','patients', 'Patients', 'docs', 'Documents (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','patients', 'Patients', 'notes', 'Patient Notes (write,addonly optional)','addonly');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse readonly acl
+updateAcl($nurse_addonly, 'Nurse','sensitivities', 'Sensitivities', 'normal', 'Normal','addonly');
+
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse write acl
+updateAcl($nurse_write, 'Nurse','admin', 'Administration', 'drugs', 'Pharmacy Dispensary','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse write acl
+updateAcl($nurse_write, 'Nurse','encounters', 'Encounters', 'coding', 'Coding - my encounters (write,wsome optional)','write');
+//Insert the 'patientportal' object from the 'patientportal' section into the Nurse write acl
+updateAcl($nurse_write, 'Nurse','patients', 'Patients', 'appt', 'Appointments (write,wsome optional)','write');
+
 
 //Function will return an array that contains the ACL ID number.
 //It will also check to ensure the ACL exist and is not duplicated.

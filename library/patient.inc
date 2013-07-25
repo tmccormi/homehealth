@@ -8,6 +8,15 @@ require_once("{$GLOBALS['srcdir']}/sql.inc");
 require_once(dirname(__FILE__) . "/classes/WSWrapper.class.php");
 require_once("{$GLOBALS['srcdir']}/formdata.inc.php");
 
+function cleanSynergy($str_to_clean){
+$newstr= str_replace("<br />"," ",nl2br($str_to_clean));
+$newstr= str_replace("\r\n",". ",$newstr);
+$newstr= addslashes($newstr);
+
+return $newstr;
+
+}
+
 // These are for sports team use:
 $PLAYER_FITNESSES = array(
   xl('Full Play'),
@@ -850,162 +859,6 @@ function updatePatientData($pid, $new, $create=false)
     $db_id = sqlInsert($sql);
 	
 	
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
-}
-
-if(isset($client)){
-
-$s_result = sqlStatement("select *from patient_data where pid=".$pid."");
-$s_result = sqlFetchArray($s_result);
-
-$p_result = sqlStatement("select *from employer_data where pid=".$pid."");
-$p_result = sqlFetchArray($p_result);
-
-if($s_result['agency_name'] == 0){
-$AgencyName = '';
-$AgencyCode = '';
-}
-else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
-$agency = sqlFetchArray($agency);
-$AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
-}
-
-if($s_result['street'] == '' || empty($s_result['street']))
-{
-$s_result['street'] = 'None';
-}
-if($s_result['street2'] == '')
-{
-$s_result['street2'] = ' ';
-}
-if($s_result['city'] == '')
-{
-$s_result['city'] = ' ';
-}
-if($s_result['state'] == '')
-{
-$s_result['state'] = ' ';
-}
-if($s_result['postal_code'] == '')
-{
-$s_result['postal_code'] = '     ';
-}
-
-if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
-$s_result['race'] = 1;
-}
-else if($s_result['race'] == 'Asian'){
-$s_result['race'] = 8;
-}
-else if($s_result['race'] == 'black_or_afri_amer'){
-$s_result['race'] = 2;
-}
-else{
-$s_result['race'] = 0;
-}
-
-if($s_result['status'] == 'married'){
-$s_result['status'] = 2;
-}
-else if($s_result['status'] == 'single'){
-$s_result['status'] = 1;
-}
-else if($s_result['status'] == 'divorced'){
-$s_result['status'] = 4;
-}
-else if($s_result['status'] == 'widowed'){
-$s_result['status'] = 5;
-}
-else if($s_result['status'] == 'separated'){
-$s_result['status'] = 3;
-}
-else{
-$s_result['status'] = 6;
-}
-
-if($s_result['language'] == 'English'){
-$s_result['language'] = 1;
-}
-else if($s_result['language'] == 'Spanish'){
-$s_result['language'] = 2;
-}
-else if($s_result['language'] == 'chinese'){
-$s_result['language'] = 3;
-}
-else if($s_result['language'] == 'japanese'){
-$s_result['language'] = 4;
-}
-else if($s_result['language'] == 'vietnamese'){
-$s_result['language'] = 5;
-}
-else if($s_result['language'] == 'korean'){
-$s_result['language'] = 6;
-}
-else if($s_result['language'] == 'russian'){
-$s_result['language'] = 8;
-}
-else{
-$s_result['language'] = 0;
-}
-
-
-$patient = array(
-0 => $s_result['street'], //Address1
-1 => $s_result['street2'], //Address2
-2 => $s_result['city'],  //City
-3 => $s_result['state'],  //State
-4 => $s_result['postal_code'],  //Zip
-5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
-6 => $AgencyCode,  //AgencyCode
-7 => $AgencyName,  //AgencyName
-8 => $s_result['DOB'],  //Birthdate
-9 => $s_result['fname'],  //FirstName
-10 => $s_result['mname'],  //MiddleInitial
-11 => $s_result['lname'],  //LastName
-12 => $s_result['sex'],  //Gender
-13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
-14 => $s_result['pid'],  //ID
-15 => $s_result['ss'],  //SSN
-16 => str_replace('-','',$s_result['phone_home']),  //Telephone
-17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
-18 => $curr_episode['admit_status'], //CareStatus
-19 => $s_result['providerID'],  //DoctorCode
-20 => $p_result['name'],  //Employer
-21 => $s_result['race'],  //Ethnicity Value
-22 => $s_result['language'],  //Language Value
-23 => $s_result['pref_other'],  //Notes
-24 => $s_result['status'],  //MaritalStatus
-25 => $s_result['occupation'],  //Occupation
-26 => $s_result['agency_name'],  //OfficeCode
-27 => $s_result['providerID'],  //PrimaryDoctorCode
-28 => $s_result['primary_ref_physician'],  //ReferralCode
-29 => $s_result['providerID'],  //CurrentPhysCode
-30 => get_patient_balance($_SESSION['pid'])  //Balance
-);
-
-
-$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
-
-if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
-try{
-$result3 = $client->AddDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
-}
-}else{
-echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
-}
-
-}
-
-
   }
   else {
     $db_id = $new['id'];
@@ -1025,162 +878,6 @@ echo "<script language='javascript'>alert('Synergy Login Information Not Availab
 	
 	
 	
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
-}
-
-if(isset($client)){
-
-$s_result = sqlStatement("select *from patient_data where pid=".$pid."");
-$s_result = sqlFetchArray($s_result);
-
-$p_result = sqlStatement("select *from employer_data where pid=".$pid."");
-$p_result = sqlFetchArray($p_result);
-
-if($s_result['agency_name'] == 0){
-$AgencyName = '';
-$AgencyCode = '';
-}
-else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
-$agency = sqlFetchArray($agency);
-$AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
-}
-
-if($s_result['street'] == '' || empty($s_result['street']))
-{
-$s_result['street'] = 'None';
-}
-if($s_result['street2'] == '')
-{
-$s_result['street2'] = ' ';
-}
-if($s_result['city'] == '')
-{
-$s_result['city'] = ' ';
-}
-if($s_result['state'] == '')
-{
-$s_result['state'] = ' ';
-}
-if($s_result['postal_code'] == '')
-{
-$s_result['postal_code'] = '     ';
-}
-
-if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
-$s_result['race'] = 1;
-}
-else if($s_result['race'] == 'Asian'){
-$s_result['race'] = 8;
-}
-else if($s_result['race'] == 'black_or_afri_amer'){
-$s_result['race'] = 2;
-}
-else{
-$s_result['race'] = 0;
-}
-
-
-if($s_result['status'] == 'married'){
-$s_result['status'] = 2;
-}
-else if($s_result['status'] == 'single'){
-$s_result['status'] = 1;
-}
-else if($s_result['status'] == 'divorced'){
-$s_result['status'] = 4;
-}
-else if($s_result['status'] == 'widowed'){
-$s_result['status'] = 5;
-}
-else if($s_result['status'] == 'separated'){
-$s_result['status'] = 3;
-}
-else{
-$s_result['status'] = 6;
-}
-
-if($s_result['language'] == 'English'){
-$s_result['language'] = 1;
-}
-else if($s_result['language'] == 'Spanish'){
-$s_result['language'] = 2;
-}
-else if($s_result['language'] == 'chinese'){
-$s_result['language'] = 3;
-}
-else if($s_result['language'] == 'japanese'){
-$s_result['language'] = 4;
-}
-else if($s_result['language'] == 'vietnamese'){
-$s_result['language'] = 5;
-}
-else if($s_result['language'] == 'korean'){
-$s_result['language'] = 6;
-}
-else if($s_result['language'] == 'russian'){
-$s_result['language'] = 8;
-}
-else{
-$s_result['language'] = 0;
-}
-
-
-
-$patient = array(
-0 => $s_result['street'], //Address1
-1 => $s_result['street2'], //Address2
-2 => $s_result['city'],  //City
-3 => $s_result['state'],  //State
-4 => $s_result['postal_code'],  //Zip
-5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
-6 => $AgencyCode,  //AgencyCode
-7 => $AgencyName,  //AgencyName
-8 => $s_result['DOB'],  //Birthdate
-9 => $s_result['fname'],  //FirstName
-10 => $s_result['mname'],  //MiddleInitial
-11 => $s_result['lname'],  //LastName
-12 => $s_result['sex'],  //Gender
-13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
-14 => $s_result['pid'],  //ID
-15 => $s_result['ss'],  //SSN
-16 => str_replace('-','',$s_result['phone_home']),  //Telephone
-17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
-18 => $curr_episode['admit_status'], //CareStatus
-19 => $s_result['providerID'],  //DoctorCode
-20 => $p_result['name'],  //Employer
-21 => $s_result['race'],  //Ethnicity Value
-22 => $s_result['language'],  //Language Value
-23 => $s_result['pref_other'],  //Notes
-24 => $s_result['status'],  //MaritalStatus
-25 => $s_result['occupation'],  //Occupation
-26 => $s_result['agency_name'],  //OfficeCode
-27 => $s_result['providerID'],  //PrimaryDoctorCode
-28 => $s_result['primary_ref_physician'],  //ReferralCode
-29 => $s_result['providerID'],  //CurrentPhysCode
-30 => get_patient_balance($_SESSION['pid'])  //Balance
-);
-
-$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
-
-if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
-try{
-$result3 = $client->EditDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
-}
-}else{
-echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
-}
-
-}
-
   }
 
   $rez = sqlQuery("SELECT * FROM patient_data WHERE id = '$db_id'");
@@ -1357,11 +1054,11 @@ function newInsuranceData(
     $data['date'] = $effective_date;
     $data['accept_assignment'] = $accept_assignment;
     $data['policy_type'] = $policy_type;
-    updateInsuranceData($idrow['id'], $data);
+    updateInsuranceData($idrow['id'], $data, $pid);
     return $idrow['id'];
   }
   else {
-    return sqlInsert("INSERT INTO insurance_data SET
+    $ins_res = sqlInsert("INSERT INTO insurance_data SET
       type = '$type',
       provider = '$provider',
       policy_number = '$policy_number',
@@ -1392,11 +1089,395 @@ function newInsuranceData(
       accept_assignment = '$accept_assignment',
       policy_type = '$policy_type'
     ");
+
+if($type == 'tertiary'){
+
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+
+if(isset($client)){
+
+$s_result = sqlStatement("select * from patient_data where pid=".$pid."");
+$s_result = sqlFetchArray($s_result);
+
+$p_result = sqlStatement("select * from employer_data where pid=".$pid."");
+$p_result = sqlFetchArray($p_result);
+
+
+
+/* -- Retrieving all data for insurance export -- */
+
+$id_result1 = sqlStatement("select * from insurance_data where pid=".$pid." and type='primary'");
+$id_result1 = sqlFetchArray($id_result1);
+
+if(!empty($id_result1['provider'])){
+$ic_result1 = sqlStatement("select * from insurance_companies where id=".$id_result1['provider']."");
+$ic_result1 = sqlFetchArray($ic_result1);
+}
+
+if(!empty($id_result1['provider'])){
+$InsuranceCode1 = $ic_result1['synergy_id'];
+$PartAPartB1 = $ic_result1['freeb_type'];
+
+if($id_result1['subscriber_relationship']!='self'){
+$InsuredRelationship1 = "Another";
+}
+else{
+$InsuredRelationship1 = "Self";
+}
+
+if($id_result1['date'] == '0000-00-00'){
+$MedicaidEffectiveDateFrom1 = '';
+}
+
+}
+else{
+$InsuranceCode1 = '';
+$PartAPartB1 = '';
+$InsuredRelationship1 = '';
+}
+
+$id_result2 = sqlStatement("select * from insurance_data where pid=".$pid." and type='secondary'");
+$id_result2 = sqlFetchArray($id_result2);
+
+if(!empty($id_result2['provider'])){
+$ic_result2 = sqlStatement("select * from insurance_companies where id=".$id_result2['provider']."");
+$ic_result2 = sqlFetchArray($ic_result2);
+}
+
+if(!empty($id_result2['provider'])){
+$InsuranceCode2 = $ic_result2['synergy_id'];
+$PartAPartB2 = $ic_result2['freeb_type'];
+
+if($id_result2['subscriber_relationship']!='self'){
+$InsuredRelationship2 = "Another";
+}
+else{
+$InsuredRelationship2 = "Self";
+}
+
+if($id_result2['date'] == '0000-00-00'){
+$MedicaidEffectiveDateFrom2 = '';
+}
+
+}
+else{
+$InsuranceCode2 = '';
+$PartAPartB2 = '';
+$InsuredRelationship2 = '';
+}
+
+$id_result3 = sqlStatement("select * from insurance_data where pid=".$pid." and type='tertiary'");
+$id_result3 = sqlFetchArray($id_result3);
+
+if(!empty($id_result3['provider'])){
+$ic_result3 = sqlStatement("select * from insurance_companies where id=".$id_result3['provider']."");
+$ic_result3 = sqlFetchArray($ic_result3);
+}
+
+if(!empty($id_result3['provider'])){
+$InsuranceCode3 = $ic_result3['synergy_id'];
+$PartAPartB3 = $ic_result3['freeb_type'];
+
+if($id_result3['subscriber_relationship']!='self'){
+$InsuredRelationship3 = "Another";
+}
+else{
+$InsuredRelationship3 = "Self";
+}
+
+if($id_result3['date'] == '0000-00-00'){
+$MedicaidEffectiveDateFrom3 = '';
+}
+
+}
+else{
+$InsuranceCode3 = '';
+$PartAPartB3 = '';
+$InsuredRelationship3 = '';
+}
+
+
+
+$e_result = sqlStatement("select * from employer_data where pid=".$pid."");
+$e_result = sqlFetchArray($e_result);
+
+
+$error_flag = 0;
+$error_msg = '';
+
+if($s_result['providerID'] != '' && $s_result['providerID'] != '0'){
+$prov = sqlStatement("select synergy_id from users where id=".$s_result['providerID']."");
+$prov = sqlFetchArray($prov);
+
+if( $prov['synergy_id']!='' && $prov['synergy_id']!='0' ){
+$DoctorCode = $prov['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nPhysician\'s Synergy ID";
+}
+}
+
+
+
+if($s_result['agency_name'] == '0' || $s_result['agency_name'] == ''){
+$AgencyName = '';
+$AgencyCode = '';
+}
+else{
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
+$agency = sqlFetchArray($agency);
+$AgencyName = $agency['organization'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+}
+
+if($s_result['primary_ref_physician'] != '' && $s_result['primary_ref_physician'] != '0'){
+$refcode = sqlStatement("select synergy_id from users where id=".$s_result['primary_ref_physician']."");
+$refcode = sqlFetchArray($refcode);
+
+if( $refcode['synergy_id']!='' && $refcode['synergy_id']!='0' ){
+$RefSynCode = $refcode['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nPrimary Referring Physician\'s Synergy ID";
+}
+}
+
+if($s_result['other_physician'] != '' && $s_result['other_physician'] != '0'){
+$OtherDoctor = sqlStatement("select synergy_id from users where id=".$s_result['other_physician']."");
+$OtherDoctor = sqlFetchArray($OtherDoctor);
+
+if( $OtherDoctor['synergy_id']!='' && $OtherDoctor['synergy_id']!='0' ){
+$OtherDoctorSynCode = $OtherDoctor['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nOther Physician\'s Synergy ID";
+}
+}
+
+
+if($s_result['street'] == '' || empty($s_result['street']))
+{
+$s_result['street'] = 'None';
+}
+if($s_result['street2'] == '')
+{
+$s_result['street2'] = ' ';
+}
+if($s_result['city'] == '')
+{
+$s_result['city'] = ' ';
+}
+if($s_result['state'] == '')
+{
+$s_result['state'] = ' ';
+}
+if($s_result['postal_code'] == '')
+{
+$s_result['postal_code'] = '     ';
+}
+
+if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
+$s_result['race'] = 1;
+}
+else if($s_result['race'] == 'Asian'){
+$s_result['race'] = 8;
+}
+else if($s_result['race'] == 'black_or_afri_amer'){
+$s_result['race'] = 2;
+}
+else{
+$s_result['race'] = 0;
+}
+
+if($s_result['status'] == 'married'){
+$s_result['status'] = 2;
+}
+else if($s_result['status'] == 'single'){
+$s_result['status'] = 1;
+}
+else if($s_result['status'] == 'divorced'){
+$s_result['status'] = 4;
+}
+else if($s_result['status'] == 'widowed'){
+$s_result['status'] = 5;
+}
+else if($s_result['status'] == 'separated'){
+$s_result['status'] = 3;
+}
+else{
+$s_result['status'] = 6;
+}
+
+if($s_result['language'] == 'English'){
+$s_result['language'] = 1;
+}
+else if($s_result['language'] == 'Spanish'){
+$s_result['language'] = 2;
+}
+else if($s_result['language'] == 'chinese'){
+$s_result['language'] = 3;
+}
+else if($s_result['language'] == 'japanese'){
+$s_result['language'] = 4;
+}
+else if($s_result['language'] == 'vietnamese'){
+$s_result['language'] = 5;
+}
+else if($s_result['language'] == 'korean'){
+$s_result['language'] = 6;
+}
+else if($s_result['language'] == 'russian'){
+$s_result['language'] = 8;
+}
+else{
+$s_result['language'] = 0;
+}
+
+
+$patient = array(
+0 => $s_result['street'], //Address1
+1 => $s_result['street2'], //Address2
+2 => $s_result['city'],  //City
+3 => $s_result['state'],  //State
+4 => $s_result['postal_code'],  //Zip
+5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
+6 => $AgencyCode,  //AgencyCode
+7 => $AgencyName,  //AgencyName
+8 => $s_result['DOB'],  //Birthdate
+9 => $s_result['fname'],  //FirstName
+10 => $s_result['mname'],  //MiddleInitial
+11 => $s_result['lname'],  //LastName
+12 => $s_result['sex'],  //Gender
+13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
+14 => $s_result['pubpid'],  //ID
+15 => $s_result['ss'],  //SSN
+16 => str_replace('-','',$s_result['phone_home']),  //Telephone
+17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
+18 => $curr_episode['admit_status'], //CareStatus
+19 => $OtherDoctorSynCode,  //DoctorCode
+20 => $p_result['name'],  //Employer
+21 => $s_result['race'],  //Ethnicity Value
+22 => $s_result['language'],  //Language Value
+23 => $s_result['pref_other'],  //Notes
+24 => $s_result['status'],  //MaritalStatus
+25 => $s_result['occupation'],  //Occupation
+26 => $AgencyCode,  //OfficeCode
+27 => $DoctorCode,  //PrimaryDoctorCode
+28 => $RefSynCode,  //ReferralCode
+29 => $RefSynCode,  //CurrentPhysCode
+30 => get_patient_balance($_SESSION['pid'])  //Balance
+);
+
+for($i=31;$i<=40;$i++){
+$patient[$i]='';
+}
+
+
+
+/* -- Pushing Insurance Data if any to the existing array -- */
+
+if(!empty($id_result1['provider'])){
+$patient[41] = $InsuredRelationship1;  //InsuredRelationship
+$patient[42] = $e_result1['name'];  //InsuredEmployer_SchoolName
+$patient[43] = $MedicaidEffectiveDateFrom1;  //MedicaidEffectiveDateFrom
+$patient[44] = $InsuranceCode1;  //InsuranceCode
+$patient[45] = $id_result1['plan_name'];  //PlanName
+$patient[46] = $id_result1['policy_number'];  //Policy
+$patient[47] = $PartAPartB1;  //PartA and PartB
+$patient[48] = '';  //Empty
+$patient[49] = '';  //Empty
+$patient[50] = '';  //Empty
+}
+else{
+
+for($i=41;$i<=50;$i++){
+$patient[$i]='';
+}
+
+}
+
+if(!empty($id_result2['provider'])){
+$patient[51] = $InsuredRelationship2;  //InsuredRelationship
+$patient[52] = $e_result2['name'];  //InsuredEmployer_SchoolName
+$patient[53] = $MedicaidEffectiveDateFrom2;  //MedicaidEffectiveDateFrom
+$patient[54] = $InsuranceCode2;  //InsuranceCode
+$patient[55] = $id_result2['plan_name'];  //PlanName
+$patient[56] = $id_result2['policy_number'];  //Policy
+$patient[57] = $PartAPartB2;  //PartA and PartB
+$patient[58] = '';  //Empty
+$patient[59] = '';  //Empty
+$patient[60] = '';  //Empty
+}
+else{
+for($i=51;$i<=60;$i++){
+$patient[$i]='';
+}
+}
+
+if(!empty($id_result3['provider'])){
+$patient[61] = $InsuredRelationship3;  //InsuredRelationship
+$patient[62] = $e_result3['name'];  //InsuredEmployer_SchoolName
+$patient[63] = $MedicaidEffectiveDateFrom3;  //MedicaidEffectiveDateFrom
+$patient[64] = $InsuranceCode3;  //InsuranceCode
+$patient[65] = $id_result3['plan_name'];  //PlanName
+$patient[66] = $id_result3['policy_number'];  //Policy
+$patient[67] = $PartAPartB3;  //PartA and PartB
+$patient[68] = '';  //Empty
+$patient[69] = '';  //Empty
+$patient[70] = '';  //Empty
+}
+else{
+for($i=61;$i<=70;$i++){
+$patient[$i]='';
+}
+}
+
+
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+
+if($error_flag == 0){
+try{
+$result3 = $client->AddDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert(\"Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."\");</script>";
+}
+}
+else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
+
+}
+
+}
+
+return $ins_res;
+
   }
 }
 
 // This is used internally only.
-function updateInsuranceData($id, $new)
+function updateInsuranceData($id, $new, $pid)
 {
   $fields = sqlListFields("insurance_data");
   $use = array();
@@ -1413,6 +1494,225 @@ function updateInsuranceData($id, $new)
   $sql = substr($sql, 0, -2) . " WHERE id = '$id'";
 
   sqlStatement($sql);
+
+if($new['type'] == 'tertiary'){
+
+try{
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+}
+
+if(isset($client)){
+
+$s_result = sqlStatement("select *from patient_data where pid=".$pid."");
+$s_result = sqlFetchArray($s_result);
+
+$p_result = sqlStatement("select *from employer_data where pid=".$pid."");
+$p_result = sqlFetchArray($p_result);
+
+$error_flag = 0;
+$error_msg = '';
+
+if($s_result['providerID'] != '' && $s_result['providerID'] != '0'){
+$prov = sqlStatement("select synergy_id from users where id=".$s_result['providerID']."");
+$prov = sqlFetchArray($prov);
+
+if( $prov['synergy_id']!='' && $prov['synergy_id']!='0' ){
+$DoctorCode = $prov['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nPhysician\'s Synergy ID";
+}
+}
+
+
+
+if($s_result['agency_name'] == '0' || $s_result['agency_name'] == ''){
+$AgencyName = '';
+$AgencyCode = '';
+}
+else{
+$agency = sqlStatement("select organization, synergy_id from users where id=".$s_result['agency_name']."");
+$agency = sqlFetchArray($agency);
+$AgencyName = $agency['organization'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
+}
+}
+
+if($s_result['primary_ref_physician'] != '' && $s_result['primary_ref_physician'] != '0'){
+$refcode = sqlStatement("select synergy_id from users where id=".$s_result['primary_ref_physician']."");
+$refcode = sqlFetchArray($refcode);
+
+if( $refcode['synergy_id']!='' && $refcode['synergy_id']!='0' ){
+$RefSynCode = $refcode['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nPrimary Referring Physician\'s Synergy ID";
+}
+}
+
+if($s_result['other_physician'] != '' && $s_result['other_physician'] != '0'){
+$OtherDoctor = sqlStatement("select synergy_id from users where id=".$s_result['other_physician']."");
+$OtherDoctor = sqlFetchArray($OtherDoctor);
+
+if( $OtherDoctor['synergy_id']!='' && $OtherDoctor['synergy_id']!='0' ){
+$OtherDoctorSynCode = $OtherDoctor['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nOther Physician\'s Synergy ID";
+}
+}
+
+
+if($s_result['street'] == '' || empty($s_result['street']))
+{
+$s_result['street'] = 'None';
+}
+if($s_result['street2'] == '')
+{
+$s_result['street2'] = ' ';
+}
+if($s_result['city'] == '')
+{
+$s_result['city'] = ' ';
+}
+if($s_result['state'] == '')
+{
+$s_result['state'] = ' ';
+}
+if($s_result['postal_code'] == '')
+{
+$s_result['postal_code'] = '     ';
+}
+
+if($s_result['race'] == 'amer_ind_or_alaska_native' || $s_result['race'] == 'native_hawai_or_pac_island' || $s_result['race'] == 'white'){
+$s_result['race'] = 1;
+}
+else if($s_result['race'] == 'Asian'){
+$s_result['race'] = 8;
+}
+else if($s_result['race'] == 'black_or_afri_amer'){
+$s_result['race'] = 2;
+}
+else{
+$s_result['race'] = 0;
+}
+
+
+if($s_result['status'] == 'married'){
+$s_result['status'] = 2;
+}
+else if($s_result['status'] == 'single'){
+$s_result['status'] = 1;
+}
+else if($s_result['status'] == 'divorced'){
+$s_result['status'] = 4;
+}
+else if($s_result['status'] == 'widowed'){
+$s_result['status'] = 5;
+}
+else if($s_result['status'] == 'separated'){
+$s_result['status'] = 3;
+}
+else{
+$s_result['status'] = 6;
+}
+
+if($s_result['language'] == 'English'){
+$s_result['language'] = 1;
+}
+else if($s_result['language'] == 'Spanish'){
+$s_result['language'] = 2;
+}
+else if($s_result['language'] == 'chinese'){
+$s_result['language'] = 3;
+}
+else if($s_result['language'] == 'japanese'){
+$s_result['language'] = 4;
+}
+else if($s_result['language'] == 'vietnamese'){
+$s_result['language'] = 5;
+}
+else if($s_result['language'] == 'korean'){
+$s_result['language'] = 6;
+}
+else if($s_result['language'] == 'russian'){
+$s_result['language'] = 8;
+}
+else{
+$s_result['language'] = 0;
+}
+
+
+$patient = array(
+0 => $s_result['street'], //Address1
+1 => $s_result['street2'], //Address2
+2 => $s_result['city'],  //City
+3 => $s_result['state'],  //State
+4 => $s_result['postal_code'],  //Zip
+5 => floor((time() - strtotime($s_result['DOB'])) / (60*60*24*365)),  //Age
+6 => $AgencyCode,  //AgencyCode
+7 => $AgencyName,  //AgencyName
+8 => $s_result['DOB'],  //Birthdate
+9 => $s_result['fname'],  //FirstName
+10 => $s_result['mname'],  //MiddleInitial
+11 => $s_result['lname'],  //LastName
+12 => $s_result['sex'],  //Gender
+13 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //Name
+14 => $s_result['pubpid'],  //ID
+15 => $s_result['ss'],  //SSN
+16 => str_replace('-','',$s_result['phone_home']),  //Telephone
+17 => str_replace('-','',$s_result['phone_biz']),  //Workphone
+18 => $curr_episode['admit_status'], //CareStatus
+19 => $OtherDoctorSynCode,  //DoctorCode
+20 => $p_result['name'],  //Employer
+21 => $s_result['race'],  //Ethnicity Value
+22 => $s_result['language'],  //Language Value
+23 => $s_result['pref_other'],  //Notes
+24 => $s_result['status'],  //MaritalStatus
+25 => $s_result['occupation'],  //Occupation
+26 => $AgencyCode,  //OfficeCode
+27 => $DoctorCode,  //PrimaryDoctorCode
+28 => $RefSynCode,  //ReferralCode
+29 => $RefSynCode,  //CurrentPhysCode
+30 => get_patient_balance($_SESSION['pid'])  //Balance
+);
+
+$res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
+
+if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+
+if($error_flag == 0){
+try{
+$result3 = $client->EditDemographics(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'patient_data' => $patient));
+}
+catch(Exception $e){
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}
+else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
+}
+
+}else{
+echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
+}
+
+}
+
+}
+
 }
 
 function newHistoryData($pid, $new=false) {

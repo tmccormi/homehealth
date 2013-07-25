@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Factory="System.Data.Services.DataServiceHostFactory" Service="WcfDataService" %>

@@ -301,7 +301,7 @@ if (is_numeric($pid)) {
         echo "<div class='form_header_controls'>";
 
 	echo "<div id='status'></div>";
-	if($formdir != 'vitals'){
+	if($formdir != 'vitals' && $formdir != 'newpatient'){
         echo "<a target='".
 				($GLOBALS['concurrent_layout'] ? "_parent" : "Main") .
 				"' href='$rootdir/patient_file/encounter/view_form.php?" .
@@ -329,7 +329,12 @@ if (is_numeric($pid)) {
 		echo "<a href='javascript:void(0);' onclick='export_to_synergy(\"forms_".$formdir."\",".$iter['form_id'].",".$encounter.",".$pid.")' class='css_button_small'><span>" . xl('Export to Synergy') . "</span></a>";
 
 		}
-
+/*
+		if($formdir == 'newpatient')
+		{
+		echo "<a href='javascript:void(0);' onclick='export_to_synergy(\"form_encounter\",".$iter['form_id'].",".$encounter.",".$pid.")' class='css_button_small'><span>" . xl('Export to Synergy') . "</span></a>";
+		}
+*/
         if (acl_check('admin', 'super') ) {
             if ( $formdir != 'newpatient') {
                 // a link to delete the form from the encounter

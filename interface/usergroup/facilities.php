@@ -26,6 +26,7 @@ if (isset($_POST["mode"]) && $_POST["mode"] == "facility" && $_POST["newmode"] !
   "accepts_assignment = '"  . trim(formData('accepts_assignment' )) . "', " .
   "pos_code = '"  . trim(formData('pos_code' )) . "', " .
   "domain_identifier = '"  . trim(formData('domain_identifier' )) . "', " .
+  "synergy_id = '"  . trim(formData('synergy_id' )) . "', " .
   "attn = '"  . trim(formData('attn' )) . "', " .
   "tax_id_type = '"  . trim(formData('tax_id_type' )) . "', " .
   "primary_business_entity = '"  . trim(formData('primary_business_entity' )) . "', ".
@@ -53,6 +54,7 @@ if ($_POST["mode"] == "facility" && $_POST["newmode"] == "admin_facility")
 		accepts_assignment='" . trim(formData('accepts_assignment')) . "',
 		pos_code='" . trim(formData('pos_code')) . "',
 		domain_identifier='" . trim(formData('domain_identifier')) . "',
+		synergy_id='" . trim(formData('synergy_id')) . "',
 		facility_npi='" . trim(formData('facility_npi')) . "',
 		attn='" . trim(formData('attn')) . "' ,
 		primary_business_entity='" . trim(formData('primary_business_entity')) . "' ,

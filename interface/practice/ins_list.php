@@ -54,7 +54,7 @@
   $where = addwhere($where, 'p.number', $phone_parts[1]);
 
  $query = "SELECT " .
-  "i.id, i.name, i.attn, " .
+  "i.id, i.name, i.attn, i.synergy_id, " .
   "a.line1, a.line2, a.city, a.state, a.zip, " .
   "p.area_code, p.prefix, p.number " .
   "FROM insurance_companies AS i, addresses AS a, phone_numbers AS p " .
@@ -98,6 +98,7 @@ td { font-size:10pt; }
   <td><b><?php xl('State','e');?></b>&nbsp;</td>
   <td><b><?php xl('Zip','e');?></b>&nbsp;</td>
   <td><b><?php xl('Phone','e');?></b></td>
+  <td><b><?php xl('Synergy ID','e');?></b></td>
  </tr>
 
 <?php 
@@ -117,6 +118,7 @@ td { font-size:10pt; }
    echo "  <td valign='top'>" . $row['state'] . "&nbsp;</td>\n";
    echo "  <td valign='top'>" . $row['zip'] . "&nbsp;</td>\n";
    echo "  <td valign='top'>$phone</td>\n";
+   echo "  <td valign='top' align='center'>" . $row['synergy_id'] . "&nbsp;</td>\n";
    echo " </tr>\n";
   }
 ?>

@@ -11,6 +11,7 @@ require_once("$srcdir/encounter.inc");
 require_once("$srcdir/acl.inc");
 require_once("$srcdir/formatting.inc.php");
 require_once("$srcdir/formdata.inc.php");
+require_once("$srcdir/classes/POSRef.class.php");
 ini_set("soap.wsdl_cache_enabled","0");
 
 $conn = $GLOBALS['adodb']['db'];
@@ -41,6 +42,14 @@ $modifier_4     = formData('form_modifier_4');
 $facilityresult = sqlQuery("select name, pos_code FROM facility WHERE id = $facility_id");
 $facility = $facilityresult['name'];
 
+
+$pc = new POSRef();
+foreach ($pc->get_pos_ref() as $pos) {
+    if ($facilityresult['pos_code'] == $pos['code']) {
+	$PlaceOfService = $pos['title'];
+    }
+}
+
 if ($GLOBALS['concurrent_layout'])
   $normalurl = "patient_file/encounter/encounter_top.php";
 else
@@ -55,36 +64,36 @@ if ($mode == 'new')
   
   addForm($encounter, "New Patient Encounter",
     sqlInsert("INSERT INTO form_encounter SET " .
-      "date = '$date', " .
-      "onset_date = '$onset_date', " .
-      "reason = '$reason', " .
-      "facility = '$facility', " .
-      "pc_catid = '$pc_catid', " .
-      "facility_id = '$facility_id', " .
-      "billing_facility = '$billing_facility', " .
-      "sensitivity = '$sensitivity', " .
-      "referral_source = '$referral_source', " .
-      "pid = '$pid', " .
-      "encounter = '$encounter', " .
-      "provider_id = '$provider_id'," .
-	  "caregiver = '$caregiver'," .
-	  "time_in = '$time_in'," .
-	  "time_out = '$time_out'," .
-	  "billing_units = '$billing_units'," .
-	  "billing_insurance = '$billing_insurance'," .
-	  "notes_in = '$notes_in'," .
-	  "verified = '$verified'," .
-	  "type_of_service = '$type_of_service'," .
-	  "modifier_1 = '$modifier_1'," .
-	  "modifier_2 = '$modifier_2'," .
-	  "modifier_3 = '$modifier_3'," .
-	  "modifier_4 = '$modifier_4'," .
-      "episode_id = '$episode_id'"),
-    "newpatient", $pid, $userauthorized, $date);
+      "date = '".mysql_real_escape_string($date)."', " .
+      "onset_date = '".mysql_real_escape_string($onset_date)."', " .
+      "reason = '".mysql_real_escape_string($reason)."', " .
+      "facility = '".mysql_real_escape_string($facility)."', " .
+      "pc_catid = '".mysql_real_escape_string($pc_catid)."', " .
+      "facility_id = '".mysql_real_escape_string($facility_id)."', " .
+      "billing_facility = '".mysql_real_escape_string($billing_facility)."', " .
+      "sensitivity = '".mysql_real_escape_string($sensitivity)."', " .
+      "referral_source = '".mysql_real_escape_string($referral_source)."', " .
+      "pid = '".mysql_real_escape_string($pid)."', " .
+      "encounter = '".mysql_real_escape_string($encounter)."', " .
+      "provider_id = '".mysql_real_escape_string($provider_id)."'," .
+	  "caregiver = '".mysql_real_escape_string($caregiver)."'," .
+	  "time_in = '".mysql_real_escape_string($time_in)."'," .
+	  "time_out = '".mysql_real_escape_string($time_out)."'," .
+	  "billing_units = '".mysql_real_escape_string($billing_units)."'," .
+	  "billing_insurance = '".mysql_real_escape_string($billing_insurance)."'," .
+	  "notes_in = '".mysql_real_escape_string($notes_in)."'," .
+	  "verified = '".mysql_real_escape_string($verified)."'," .
+	  "type_of_service = '".mysql_real_escape_string($type_of_service)."'," .
+	  "modifier_1 = '".mysql_real_escape_string($modifier_1)."'," .
+	  "modifier_2 = '".mysql_real_escape_string($modifier_2)."'," .
+	  "modifier_3 = '".mysql_real_escape_string($modifier_3)."'," .
+	  "modifier_4 = '".mysql_real_escape_string($modifier_4)."'," .
+      "episode_id = '".mysql_real_escape_string($episode_id)."'"),
+    "newpatient", mysql_real_escape_string($pid), mysql_real_escape_string($userauthorized), mysql_real_escape_string($date));
 
 
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
@@ -98,59 +107,72 @@ $s_result = sqlFetchArray($s_result);
 $p_result = sqlStatement("select *from employer_data where pid=".$pid."");
 $p_result = sqlFetchArray($p_result);
 
-if($s_result['agency_name'] == 0){
+$error_flag = 0;
+$error_msg = '';
+
+if($s_result['agency_name'] == '0'){
 $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select synergy_id, organization from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
 }
 
-$caregiver_name = sqlFetchArray(sqlStatement("select fname, lname, mname from users where id=".$caregiver.""));
+}
+
+$caregiver_name = sqlFetchArray(sqlStatement("select fname, lname, mname, synergy_id, username from users where id=".$caregiver.""));
 if($time_in!="")
 $time_in.=':00';
 if($time_out!="")
 $time_out.=':00';
 
+$caregiver = $caregiver_name['synergy_id'];
 
-switch($type_of_service){
-case '01':
-$type_of_service_val = 'Skilled Nursing';
+$tos = sqlFetchArray(sqlStatement("select title from list_options where list_id = 'typeofservice' AND option_id='".$type_of_service."'"));
+$type_of_service_val = $tos['title'];
+
+$coa_type = sqlFetchArray(sqlStatement("select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$caregiver_name['username']."'))"));
+
+switch($coa_type['name']){
+
+case 'Physical Therapist':
+$chart_of_accounts = "421";
 break;
 
-case '02':
-$type_of_service_val = 'Physical Therapy';
+case 'Speech Therapist':
+$chart_of_accounts = "441";
 break;
 
-case '03':
-$type_of_service_val = 'Occupational Therapy';
+case 'Occupational Therapist':
+$chart_of_accounts = "431";
 break;
 
-case '04':
-$type_of_service_val = 'Social Services';
+case 'Nurse':
+$chart_of_accounts = "551";
 break;
 
-case '05':
-$type_of_service_val = 'Speech Therapy';
+case 'Social Worker':
+$chart_of_accounts = "561";
 break;
 
-case '06':
-$type_of_service_val = 'Home Health Aide';
-break;
-
-case '07':
-$type_of_service_val = 'Non-Skilled Services';
+case 'Home Health Aide':
+$chart_of_accounts = "571";
 break;
 
 default:
-$type_of_service_val = '';
+$chart_of_accounts = "571";
+break;
+
 }
-
-
-
 
 
 //New Changes
@@ -188,12 +210,12 @@ $PeriodStart = $dy."-".$mn."-".$yr;
 $encounter_synergy = array(
 0 => intval($AgencyCode), //Agency
 1 => $AgencyName, //Agency
-2 => intval($s_result['pid']),  //PatientCode
+2 => $s_result['pubpid'],  //PatientCode
 3 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //PatientsName
-4 => $s_result['pid'],  //MedicalRecordNumber
+4 => $s_result['pubpid'],  //MedicalRecordNumber
 5 => $date,  //StartOfCare
-6 => $s_result['providerID'],  //CurrentPhysician **Pending
-7 => intval($caregiver),  //Caregiver
+6 => $caregiver,  //CurrentPhysician **Pending
+7 => $caregiver,  //Caregiver
 8 => $caregiver_name['lname'] .', '. $caregiver_name['mname'] .' '. $caregiver_name['fname'],  //Caregiver
 9 => $time_in,  //TimeIn
 10 => $time_out,  //TimeOut
@@ -202,19 +224,21 @@ $encounter_synergy = array(
 13 => $notes_in,  //NotesIn
 14 => $verified,  //Verified
 15 => intval($facilityresult['pos_code']),  //PlaceOfService - Key
-16 => $facility,  //PlaceOfService - Value
+16 => $PlaceOfService,  //PlaceOfService - Value
 17 => intval($type_of_service),  //TypeOfService - Key
 18 => $type_of_service_val, //TypeOfService - Value
 19 => $modifier_1,  //Modifier1
 20 => $modifier_2,  //Modifier2
 21 => $modifier_3,  //Modifier3
 22 => $modifier_4,  //Modifier4
-23 => $PeriodStart  //PeriodStart
+23 => $PeriodStart,  //PeriodStart
+24 => $chart_of_accounts //Rev code in Synergy
 );
 
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
 $result3 = $client->AddVisitNotesForPatient(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'encounter_data' => $encounter_synergy));
 
@@ -225,7 +249,10 @@ echo "<script language='javascript'>alert('Encounter Data Successfully Exported 
 }
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
@@ -246,34 +273,34 @@ else if ($mode == 'update')
   $datepart = acl_check('encounters', 'date_a') ? "date = '$date', " : "";
   sqlStatement("UPDATE form_encounter SET " .
     $datepart .
-    "onset_date = '$onset_date', " .
-    "reason = '$reason', " .
-    "facility = '$facility', " .
-    "pc_catid = '$pc_catid', " .
-    "facility_id = '$facility_id', " .
-    "billing_facility = '$billing_facility', " .
-    "sensitivity = '$sensitivity', " .
-    "referral_source = '$referral_source', " .
-	"caregiver = '$caregiver'," .
-	"time_in = '$time_in'," .
-	"time_out = '$time_out'," .
-	"billing_units = '$billing_units'," .
-	"billing_insurance = '$billing_insurance'," .
-	"notes_in = '$notes_in'," .
-	"verified = '$verified'," .
-	"type_of_service = '$type_of_service'," .
-	"modifier_1 = '$modifier_1'," .
-	"modifier_2 = '$modifier_2'," .
-	"modifier_3 = '$modifier_3'," .
-	"modifier_4 = '$modifier_4'," .
-    "episode_id = '$episode_id' " .
-    "WHERE id = '$id'");
+    "onset_date = '".mysql_real_escape_string($onset_date)."', " .
+    "reason = '".mysql_real_escape_string($reason)."', " .
+    "facility = '".mysql_real_escape_string($facility)."', " .
+    "pc_catid = '".mysql_real_escape_string($pc_catid)."', " .
+    "facility_id = '".mysql_real_escape_string($facility_id)."', " .
+    "billing_facility = '".mysql_real_escape_string($billing_facility)."', " .
+    "sensitivity = '".mysql_real_escape_string($sensitivity)."', " .
+    "referral_source = '".mysql_real_escape_string($referral_source)."', " .
+	"caregiver = '".mysql_real_escape_string($caregiver)."'," .
+	"time_in = '".mysql_real_escape_string($time_in)."'," .
+	"time_out = '".mysql_real_escape_string($time_out)."'," .
+	"billing_units = '".mysql_real_escape_string($billing_units)."'," .
+	"billing_insurance = '".mysql_real_escape_string($billing_insurance)."'," .
+	"notes_in = '".mysql_real_escape_string($notes_in)."'," .
+	"verified = '".mysql_real_escape_string($verified)."'," .
+	"type_of_service = '".mysql_real_escape_string($type_of_service)."'," .
+	"modifier_1 = '".mysql_real_escape_string($modifier_1)."'," .
+	"modifier_2 = '".mysql_real_escape_string($modifier_2)."'," .
+	"modifier_3 = '".mysql_real_escape_string($modifier_3)."'," .
+	"modifier_4 = '".mysql_real_escape_string($modifier_4)."'," .
+    "episode_id = '".mysql_real_escape_string($episode_id)."' " .
+    "WHERE id = '".mysql_real_escape_string($id)."'");
 
 $id_for_synergy = sqlFetchArray(sqlStatement("SELECT synergy_id FROM form_encounter WHERE id=".$id.""));
 $synergy_id = $id_for_synergy['synergy_id'];
 
 try{
-$client = new SoapClient($GLOBALS['synergy_webservice']);
+$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
 }
 catch(Exception $e){
 echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
@@ -287,48 +314,71 @@ $s_result = sqlFetchArray($s_result);
 $p_result = sqlStatement("select *from employer_data where pid=".$pid."");
 $p_result = sqlFetchArray($p_result);
 
-if($s_result['agency_name'] == 0){
+$error_flag = 0;
+$error_msg = '';
+
+if($s_result['agency_name'] == '0'){
 $AgencyName = '';
 $AgencyCode = '';
 }
 else{
-$agency = sqlStatement("select organization from users where id=".$s_result['agency_name']."");
+$agency = sqlStatement("select synergy_id, organization from users where id=".$s_result['agency_name']."");
 $agency = sqlFetchArray($agency);
 $AgencyName = $agency['organization'];
-$AgencyCode = $s_result['agency_name'];
+
+if($agency['synergy_id'] != ''){
+$AgencyCode = $agency['synergy_id'];
+}
+else{
+$error_flag = 1;
+$error_msg .= "\\nAgency\'s Synergy ID";
 }
 
-$caregiver_name = sqlFetchArray(sqlStatement("select fname, lname, mname from users where id=".$caregiver.""));
+}
+
+$caregiver_name = sqlFetchArray(sqlStatement("select fname, lname, mname, synergy_id, username from users where id=".$caregiver.""));
 $time_in.=':00';
 $time_out.=':00';
 
-switch($type_of_service){
-case '01':
-$type_of_service_val = 'Skilled Nursing';
+$caregiver = $caregiver_name['synergy_id'];
 
-case '02':
-$type_of_service_val = 'Physical Therapy';
+$tos = sqlFetchArray(sqlStatement("select title from list_options where list_id = 'typeofservice' AND option_id='".$type_of_service."'"));
+$type_of_service_val = $tos['title'];
 
-case '03':
-$type_of_service_val = 'Occupational Therapy';
+$coa_type = sqlFetchArray(sqlStatement("select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='".$caregiver_name['username']."'))"));
 
-case '04':
-$type_of_service_val = 'Social Services';
 
-case '05':
-$type_of_service_val = 'Speech Therapy';
+switch($coa_type['name']){
 
-case '06':
-$type_of_service_val = 'Home Health Aide';
+case 'Physical Therapist':
+$chart_of_accounts = "421";
+break;
 
-case '07':
-$type_of_service_val = 'Non-Skilled Services';
+case 'Speech Therapist':
+$chart_of_accounts = "441";
+break;
+
+case 'Occupational Therapist':
+$chart_of_accounts = "431";
+break;
+
+case 'Nurse':
+$chart_of_accounts = "551";
+break;
+
+case 'Social Worker':
+$chart_of_accounts = "561";
+break;
+
+case 'Home Health Aide':
+$chart_of_accounts = "571";
+break;
 
 default:
-$type_of_service_val = '';
+$chart_of_accounts = "571";
+break;
+
 }
-
-
 
 //New Changes
 
@@ -361,18 +411,15 @@ $mn = substr($date,5,2);
 $dy = substr($date,8,2);
 $PeriodStart = $dy."-".$mn."-".$yr;
 
-
-
-
 $encounter_synergy = array(
-0 => $AgencyCode, //Agency
+0 => intval($AgencyCode), //Agency
 1 => $AgencyName, //Agency
-2 => $s_result['pid'],  //PatientCode
+2 => $s_result['pubpid'],  //PatientCode
 3 => $s_result['lname'] .', '. $s_result['fname'] .' '. $s_result['mname'],  //PatientsName
-4 => $s_result['pid'],  //MedicalRecordNumber
+4 => $s_result['pubpid'],  //MedicalRecordNumber
 5 => $date,  //StartOfCare
-6 => $s_result['providerID'],  //CurrentPhysician **Pending
-7 => intval($caregiver),  //Caregiver
+6 => $caregiver,  //CurrentPhysician **Pending
+7 => $caregiver,  //Caregiver
 8 => $caregiver_name['lname'] .', '. $caregiver_name['mname'] .' '. $caregiver_name['fname'],  //Caregiver
 9 => $time_in,  //TimeIn
 10 => $time_out,  //TimeOut
@@ -381,25 +428,35 @@ $encounter_synergy = array(
 13 => $notes_in,  //NotesIn
 14 => $verified,  //Verified
 15 => intval($facilityresult['pos_code']),  //PlaceOfService - Key
-16 => $facility,  //PlaceOfService - Value
+16 => $PlaceOfService,  //PlaceOfService - Value
 17 => intval($type_of_service),  //TypeOfService - Key
 18 => $type_of_service_val, //TypeOfService - Value
 19 => $modifier_1,  //Modifier1
 20 => $modifier_2,  //Modifier2
 21 => $modifier_3,  //Modifier3
 22 => $modifier_4,  //Modifier4
-23 => $PeriodStart  //PeriodStart
+23 => $PeriodStart,  //PeriodStart
+24 => $chart_of_accounts //Rev code in Synergy
 );
 
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
+if($error_flag == 0){
 try{
-$result3 = $client->EditVisitNote(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'encounter_data' => $encounter_synergy, 'synergy_id' => $synergy_id));
-echo "<script language='javascript'>alert('Encounter Data Successfully Updated in Synergy');</script>";
+$result3 = $client->AddVisitNotesForPatient(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'encounter_data' => $encounter_synergy, 'synergy_id' => $synergy_id));
+
+$code = $result3->AddVisitNotesForPatientResult->Label->m_LedgerCode->m_ID;
+if($code!=''){
+$res = sqlStatement("UPDATE form_encounter SET synergy_id='".$code."' WHERE encounter = '".$encounter."'");
+echo "<script language='javascript'>alert('Encounter Data Successfully Exported to Synergy');</script>";
+}
 }
 catch(Exception $e){
-echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. Make sure the Webservice is Running Properly. More Details: ".addslashes($e->getMessage())."');</script>";
+echo "<script language='javascript'>alert('Problem when Exporting Data to Synergy. More Details: ".cleanSynergy($e->getMessage())."');</script>";
+}
+}else{
+echo "<script language='javascript'>alert('The Following Details are Missing:".$error_msg."');</script>";
 }
 }else{
 echo "<script language='javascript'>alert('Synergy Login Information Not Available for the Selected Agency');</script>";
