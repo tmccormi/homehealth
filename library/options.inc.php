@@ -850,6 +850,7 @@ function generate_form_field($frow, $currvalue) {
   else if ($data_type == 39) {
      $ures = sqlStatement("SELECT id, fname, lname, specialty FROM users " .
       "WHERE username LIKE '' " .
+      "AND ( abook_type = 'referring_physician' OR abook_type = 'physician' ) " .
       "ORDER BY lname, fname");
 
     echo "<select name='form_$field_id_esc' id='form_$field_id_esc' title='$description'>";

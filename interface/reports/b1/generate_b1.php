@@ -1199,17 +1199,17 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$inpatient_facility = "0" . $row1['oasis_inpatient_facility'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Inpatient_Facility_patient_been_admitted'] == "Hospital") {$inpatient_facility = 01;
-	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Rehabilitation facility") {$inpatient_facility = 02;
-	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Nursing home") {$inpatient_facility = 03;
-	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Hospice") {$inpatient_facility = 04;
+	  if ($row1['Inpatient_Facility_patient_been_admitted'] == "Hospital") {$inpatient_facility = '01';
+	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Rehabilitation facility") {$inpatient_facility = '02';
+	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Nursing home") {$inpatient_facility = '03';
+	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "Hospice") {$inpatient_facility = '04';
 	  } else if ($row1['Inpatient_Facility_patient_been_admitted'] == "NA - No inpatient facility admission") {$inpatient_facility = "NA";
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
-	  if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Hospital") {$inpatient_facility = 01;
-	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Rehabilitation_Facility") {$inpatient_facility = 02;
-	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Nursing_home") {$inpatient_facility = 03;
-	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Hospice") {$inpatient_facility = 04;
+	  if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Hospital") {$inpatient_facility = '01';
+	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Rehabilitation_Facility") {$inpatient_facility = '02';
+	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Nursing_home") {$inpatient_facility = '03';
+	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "Hospice") {$inpatient_facility = '04';
 	  } else if ($row1['oasistransfer_Inpatient_Facility_patient_admitted'] == "NA") {$inpatient_facility = "NA";
 	  }
   } else {$inpatient_facility = ' ';
@@ -1656,8 +1656,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$influenza_vaccine_received_or_not = '0' . $row1['oasis_influenza_vaccine'];
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
-	  if ($row1['oasistransfer_Influenza_Vaccine_received'] == 'No') {$influenza_vaccine_received_or_not = 00;
-	  } else if ($row1['oasistransfer_Influenza_Vaccine_received'] == 'Yes') {$influenza_vaccine_received_or_not = 01;
+	  if ($row1['oasistransfer_Influenza_Vaccine_received'] == 'No') {$influenza_vaccine_received_or_not = '00';
+	  } else if ($row1['oasistransfer_Influenza_Vaccine_received'] == 'Yes') {$influenza_vaccine_received_or_not = '01';
 	  } else if ($row1['oasistransfer_Influenza_Vaccine_received'] == 'NA') {$influenza_vaccine_received_or_not = "NA";
 	  }
   } else {$influenza_vaccine_received_or_not = ' ';
@@ -1692,11 +1692,11 @@ while ($row1 = mysql_fetch_array($result1)) {
   } else {$pneumococcal_vaccine_received_or_not = '';
   }
   if ($table_name == 'forms_OASIS') {
-	  if (in_array("Patient has received PPV in the past", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = 01;
-	  } else if (in_array("Offered and declined", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = 02;
-	  } else if (in_array("Assessed and determined to have medical contraindication(s)", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = 03;
-	  } else if (in_array("Not indicated; patient does not meet age/condition guidelines for PPV", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = 04;
-	  } else if (in_array("None of the above", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = 05;
+	  if (in_array("Patient has received PPV in the past", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = '01';
+	  } else if (in_array("Offered and declined", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = '02';
+	  } else if (in_array("Assessed and determined to have medical contraindication(s)", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = '03';
+	  } else if (in_array("Not indicated; patient does not meet age/condition guidelines for PPV", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = '04';
+	  } else if (in_array("None of the above", $OASIS_C_reason_not_received_pneumocaccal_vaccine)) {$pneumococcal_vaccine_not_received_reason = '05';
 	  } else {$pneumococcal_vaccine_not_received_reason = '';
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
@@ -1897,9 +1897,9 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$symptoms_heart_failure = "0" . $row1['oasis_cardiac_status_symptoms'];
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
-	  if ($row1['oasistransfer_Cardiac_Status'] == "patient_didnot_Exhibit_Symptoms") {$symptoms_heart_failure = 00;
-	  } else if ($row1['oasistransfer_Cardiac_Status'] == "patient_Exhibited_Symptoms") {$symptoms_heart_failure = 01;
-	  } else if ($row1['oasistransfer_Cardiac_Status'] == "Not_Assessed") {$symptoms_heart_failure = 02;
+	  if ($row1['oasistransfer_Cardiac_Status'] == "patient_didnot_Exhibit_Symptoms") {$symptoms_heart_failure = '00';
+	  } else if ($row1['oasistransfer_Cardiac_Status'] == "patient_Exhibited_Symptoms") {$symptoms_heart_failure = '01';
+	  } else if ($row1['oasistransfer_Cardiac_Status'] == "Not_Assessed") {$symptoms_heart_failure = '02';
 	  } else if ($row1['oasistransfer_Cardiac_Status'] == "NA") {$symptoms_heart_failure = "NA";
 	  }
   } else {$symptoms_heart_failure = '';
@@ -2026,36 +2026,36 @@ while ($row1 = mysql_fetch_array($result1)) {
   $hipps_version_submitted = '';
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_pt_soc') {$prior_functioning_ADL_selfcare = '0' . $row1['oasis_adl_func_self_care'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['adl_iadl_functioning_selfcare'] == 'Independent') {$prior_functioning_ADL_selfcare = 00;
-	  } else if ($row1['adl_iadl_functioning_selfcare'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = 01;
-	  } else if ($row1['adl_iadl_functioning_selfcare'] == 'Dependent') {$prior_functioning_ADL_selfcare = 02;
+	  if ($row1['adl_iadl_functioning_selfcare'] == 'Independent') {$prior_functioning_ADL_selfcare = '00';
+	  } else if ($row1['adl_iadl_functioning_selfcare'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = '01';
+	  } else if ($row1['adl_iadl_functioning_selfcare'] == 'Dependent') {$prior_functioning_ADL_selfcare = '02';
 	  } else {$prior_functioning_ADL_selfcare = ' ';
 	  }
   } else {$prior_functioning_ADL_selfcare = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_pt_soc') {$prior_functioning_ADL_ambulation = '0' . $row1['oasis_adl_func_ambulation'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['adl_iadl_functioning_ambulation'] == 'Independent') {$prior_functioning_ADL_selfcare = 00;
-	  } else if ($row1['adl_iadl_functioning_ambulation'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = 01;
-	  } else if ($row1['adl_iadl_functioning_ambulation'] == 'Dependent') {$prior_functioning_ADL_selfcare = 02;
+	  if ($row1['adl_iadl_functioning_ambulation'] == 'Independent') {$prior_functioning_ADL_selfcare = '00';
+	  } else if ($row1['adl_iadl_functioning_ambulation'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = '01';
+	  } else if ($row1['adl_iadl_functioning_ambulation'] == 'Dependent') {$prior_functioning_ADL_selfcare = '02';
 	  } else {$prior_functioning_ADL_selfcare = ' ';
 	  }
   } else {$prior_functioning_ADL_ambulation = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_pt_soc') {$prior_functioning_ADL_transfer = '0' . $row1['oasis_adl_func_transfer'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['adl_iadl_functioning_transfer'] == 'Independent') {$prior_functioning_ADL_selfcare = 00;
-	  } else if ($row1['adl_iadl_functioning_transfer'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = 01;
-	  } else if ($row1['adl_iadl_functioning_transfer'] == 'Dependent') {$prior_functioning_ADL_selfcare = 02;
+	  if ($row1['adl_iadl_functioning_transfer'] == 'Independent') {$prior_functioning_ADL_selfcare = '00';
+	  } else if ($row1['adl_iadl_functioning_transfer'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = '01';
+	  } else if ($row1['adl_iadl_functioning_transfer'] == 'Dependent') {$prior_functioning_ADL_selfcare = '02';
 	  } else {$prior_functioning_ADL_selfcare = ' ';
 	  }
   } else {$prior_functioning_ADL_transfer = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_pt_soc') {$prior_functioning_ADL_household = '0' . $row1['oasis_adl_func_household'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['adl_iadl_functioning_household'] == 'Independent') {$prior_functioning_ADL_selfcare = 00;
-	  } else if ($row1['adl_iadl_functioning_household'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = 01;
-	  } else if ($row1['adl_iadl_functioning_household'] == 'Dependent') {$prior_functioning_ADL_selfcare = 02;
+	  if ($row1['adl_iadl_functioning_household'] == 'Independent') {$prior_functioning_ADL_selfcare = '00';
+	  } else if ($row1['adl_iadl_functioning_household'] == 'Needed Some Help') {$prior_functioning_ADL_selfcare = '01';
+	  } else if ($row1['adl_iadl_functioning_household'] == 'Dependent') {$prior_functioning_ADL_selfcare = '02';
 	  } else {$prior_functioning_ADL_selfcare = ' ';
 	  }
   } else {$prior_functioning_ADL_household = ' ';
@@ -2087,8 +2087,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$medication_intervention = "0" . $row1['oasis_medication_intervention'];
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
-	  if ($row1['oasistransfer_Medication_Intervention'] == "reconcillation_NotDone") {$medication_intervention = 00;
-	  } else if ($row1['oasistransfer_Medication_Intervention'] == "reconcillation_Done") {$medication_intervention = 01;
+	  if ($row1['oasistransfer_Medication_Intervention'] == "reconcillation_NotDone") {$medication_intervention = '00';
+	  } else if ($row1['oasistransfer_Medication_Intervention'] == "reconcillation_Done") {$medication_intervention = '01';
 	  } else if ($row1['oasistransfer_Medication_Intervention'] == "reconcillation_NA") {$medication_intervention = "NA";
 	  }
   } else {$medication_intervention = ' ';
@@ -2112,8 +2112,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$patient_drug_education_intervention = "0" . $row1['oasis_medication_drug_education'];
 	  }
   } else if ($table_name == 'forms_oasis_transfer') {
-	  if ($row1['oasistransfer_Drug_Education_Intervention'] == "patient_not_instructed") {$patient_drug_education_intervention = 00;
-	  } else if ($row1['oasistransfer_Drug_Education_Intervention'] == "patient_instructed") {$patient_drug_education_intervention = 01;
+	  if ($row1['oasistransfer_Drug_Education_Intervention'] == "patient_not_instructed") {$patient_drug_education_intervention = '00';
+	  } else if ($row1['oasistransfer_Drug_Education_Intervention'] == "patient_instructed") {$patient_drug_education_intervention = '01';
 	  } else if ($row1['oasistransfer_Drug_Education_Intervention'] == "NA") {$patient_drug_education_intervention = "NA";
 	  }
   } else {$patient_drug_education_intervention = '';
@@ -2180,78 +2180,78 @@ while ($row1 = mysql_fetch_array($result1)) {
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_ADL = '0' . $row1['oasis_care_adl_assistance'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['ADL_assistance1'] == "No assistance needed in this area") {$care_mgmt_ADL = 00;
-	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) currently provides assistance") {$care_mgmt_ADL = 01;
-	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_ADL = 02;
-	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_ADL = 03;
-	  } else if ($row1['ADL_assistance1'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_ADL = 04;
-	  } else if ($row1['ADL_assistance1'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_ADL = 05;
+	  if ($row1['ADL_assistance1'] == "No assistance needed in this area") {$care_mgmt_ADL = '00';
+	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) currently provides assistance") {$care_mgmt_ADL = '01';
+	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_ADL = '02';
+	  } else if ($row1['ADL_assistance1'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_ADL = '03';
+	  } else if ($row1['ADL_assistance1'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_ADL = '04';
+	  } else if ($row1['ADL_assistance1'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_ADL = '05';
 	  }
   } else {$care_mgmt_ADL = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_IADL = '0' . $row1['oasis_care_iadl_assistance'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['ADL_assistance12'] == "No assistance needed in this area") {$care_mgmt_IADL = 00;
-	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) currently provides assistance") {$care_mgmt_IADL = 01;
-	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_IADL = 02;
-	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_IADL = 03;
-	  } else if ($row1['ADL_assistance12'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_IADL = 04;
-	  } else if ($row1['ADL_assistance12'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_IADL = 05;
+	  if ($row1['ADL_assistance12'] == "No assistance needed in this area") {$care_mgmt_IADL = '00';
+	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) currently provides assistance") {$care_mgmt_IADL = '01';
+	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_IADL = '02';
+	  } else if ($row1['ADL_assistance12'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_IADL = '03';
+	  } else if ($row1['ADL_assistance12'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_IADL = '04';
+	  } else if ($row1['ADL_assistance12'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_IADL = '05';
 	  }
   } else {$care_mgmt_IADL = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_medication_admin = '0' . $row1['oasis_care_medication_admin'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Medication_administration'] == "No assistance needed in this area") {$care_mgmt_medication_admin = 00;
-	  } else if ($row1['Medication_administration'] == "Caregiver(s) currently provides assistance") {$care_mgmt_medication_admin = 01;
-	  } else if ($row1['Medication_administration'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_medication_admin = 02;
-	  } else if ($row1['Medication_administration'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_medication_admin = 03;
-	  } else if ($row1['Medication_administration'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_medication_admin = 04;
-	  } else if ($row1['Medication_administration'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_medication_admin = 05;
+	  if ($row1['Medication_administration'] == "No assistance needed in this area") {$care_mgmt_medication_admin = '00';
+	  } else if ($row1['Medication_administration'] == "Caregiver(s) currently provides assistance") {$care_mgmt_medication_admin = '01';
+	  } else if ($row1['Medication_administration'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_medication_admin = '02';
+	  } else if ($row1['Medication_administration'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_medication_admin = '03';
+	  } else if ($row1['Medication_administration'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_medication_admin = '04';
+	  } else if ($row1['Medication_administration'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_medication_admin = '05';
 	  }
   } else {$care_mgmt_medication_admin = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_med_tx = '0' . $row1['oasis_care_medical_procedures'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Medical_procedures_treatments'] == "No assistance needed in this area") {$care_mgmt_med_tx = 00;
-	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) currently provides assistance") {$care_mgmt_med_tx = 01;
-	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_med_tx = 02;
-	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_med_tx = 03;
-	  } else if ($row1['Medical_procedures_treatments'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_med_tx = 04;
-	  } else if ($row1['Medical_procedures_treatments'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_med_tx = 05;
+	  if ($row1['Medical_procedures_treatments'] == "No assistance needed in this area") {$care_mgmt_med_tx = '00';
+	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) currently provides assistance") {$care_mgmt_med_tx = '01';
+	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_med_tx = '02';
+	  } else if ($row1['Medical_procedures_treatments'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_med_tx = '03';
+	  } else if ($row1['Medical_procedures_treatments'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_med_tx = '04';
+	  } else if ($row1['Medical_procedures_treatments'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_med_tx = '05';
 	  }
   } else {$care_mgmt_med_tx = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_equipment = '0' . $row1['oasis_care_management_equip'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Management_of_Equipment'] == "No assistance needed in this area") {$care_mgmt_equipment = 00;
-	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) currently provides assistance") {$care_mgmt_equipment = 01;
-	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_equipment = 02;
-	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_equipment = 03;
-	  } else if ($row1['Management_of_Equipment'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_equipment = 04;
-	  } else if ($row1['Management_of_Equipment'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_equipment = 05;
+	  if ($row1['Management_of_Equipment'] == "No assistance needed in this area") {$care_mgmt_equipment = '00';
+	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) currently provides assistance") {$care_mgmt_equipment = '01';
+	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_equipment = '02';
+	  } else if ($row1['Management_of_Equipment'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_equipment = '03';
+	  } else if ($row1['Management_of_Equipment'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_equipment = '04';
+	  } else if ($row1['Management_of_Equipment'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_equipment = '05';
 	  }
   } else {$care_mgmt_equipment = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_supervision = '0' . $row1['oasis_care_supervision_safety'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Supervision_and_safety'] == "No assistance needed in this area") {$care_mgmt_supervision = 00;
-	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) currently provides assistance") {$care_mgmt_supervision = 01;
-	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_supervision = 02;
-	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_supervision = 03;
-	  } else if ($row1['Supervision_and_safety'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_supervision = 04;
-	  } else if ($row1['Supervision_and_safety'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_supervision = 05;
+	  if ($row1['Supervision_and_safety'] == "No assistance needed in this area") {$care_mgmt_supervision = '00';
+	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) currently provides assistance") {$care_mgmt_supervision = '01';
+	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_supervision = '02';
+	  } else if ($row1['Supervision_and_safety'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_supervision = '03';
+	  } else if ($row1['Supervision_and_safety'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_supervision = '04';
+	  } else if ($row1['Supervision_and_safety'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_supervision = '05';
 	  }
   } else {$care_mgmt_supervision = ' ';
   }
   if ($table_name == 'forms_oasis_nursing_soc' || $table_name == 'forms_oasis_discharge' || $table_name == 'forms_oasis_pt_soc') {$care_mgmt_advocacy = '0' . $row1['oasis_care_advocacy_facilitation'];
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Advocacy_or_facilitation'] == "No assistance needed in this area") {$care_mgmt_advocacy = 00;
-	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) currently provides assistance") {$care_mgmt_advocacy = 01;
-	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_advocacy = 02;
-	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_advocacy = 03;
-	  } else if ($row1['Advocacy_or_facilitation'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_advocacy = 04;
-	  } else if ($row1['Advocacy_or_facilitation'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_advocacy = 05;
+	  if ($row1['Advocacy_or_facilitation'] == "No assistance needed in this area") {$care_mgmt_advocacy = '00';
+	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) currently provides assistance") {$care_mgmt_advocacy = '01';
+	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) need training/ supportive services to provide assistance") {$care_mgmt_advocacy = '02';
+	  } else if ($row1['Advocacy_or_facilitation'] == "Caregiver(s) not likely to provide assistance") {$care_mgmt_advocacy = '03';
+	  } else if ($row1['Advocacy_or_facilitation'] == "Unclear if Caregiver(s) will provide assistance") {$care_mgmt_advocacy = '04';
+	  } else if ($row1['Advocacy_or_facilitation'] == "Assistance needed, but no Caregiver(s) available") {$care_mgmt_advocacy = '05';
 	  }
   } else {$care_mgmt_advocacy = ' ';
   }
@@ -2260,11 +2260,11 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$how_often_ADL_IADL_assistance = "0" . $row1['oasis_care_how_often'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "At least daily") {$how_often_ADL_IADL_assistance = 01;
-	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "Three or more times per week") {$how_often_ADL_IADL_assistance = 02;
-	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "One to two times per week") {$how_often_ADL_IADL_assistance = 03;
-	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "Received, but less often than weekly") {$how_often_ADL_IADL_assistance = 04;
-	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "No assistance received") {$how_often_ADL_IADL_assistance = 05;
+	  if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "At least daily") {$how_often_ADL_IADL_assistance = '01';
+	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "Three or more times per week") {$how_often_ADL_IADL_assistance = '02';
+	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "One to two times per week") {$how_often_ADL_IADL_assistance = '03';
+	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "Received, but less often than weekly") {$how_often_ADL_IADL_assistance = '04';
+	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "No assistance received") {$how_often_ADL_IADL_assistance = '05';
 	  } else if ($row1['OASIS_C_receive_ADL_IADL_assistance'] == "UK - Unknown") {$how_often_ADL_IADL_assistance = "UK";
 	  }
   } else {$how_often_ADL_IADL_assistance = ' ';
@@ -2274,8 +2274,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_diabetic_foot_care = "0" . $row1['oasis_care_diabetic_foot_care'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['presence_of_skin_lesions_on_the_lower_extremities2'] == "No") {$poc_synopsis_diabetic_foot_care = 00;
-	  } else if ($row1['presence_of_skin_lesions_on_the_lower_extremities2'] == "Yes") {$poc_synopsis_diabetic_foot_care = 01;
+	  if ($row1['presence_of_skin_lesions_on_the_lower_extremities2'] == "No") {$poc_synopsis_diabetic_foot_care = '00';
+	  } else if ($row1['presence_of_skin_lesions_on_the_lower_extremities2'] == "Yes") {$poc_synopsis_diabetic_foot_care = '01';
 	  } else if ($row1['presence_of_skin_lesions_on_the_lower_extremities2'] == "Not Applicable") {$poc_synopsis_diabetic_foot_care = "NA";
 	  }
   } else {$poc_synopsis_diabetic_foot_care = ' ';
@@ -2285,8 +2285,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_patient_specific_parameters = "0" . $row1['oasis_care_patient_parameter'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['parameters_for_notifying_physician_of_changes_in_vital_signs'] == "No") {$poc_synopsis_patient_specific_parameters = 00;
-	  } else if ($row1['parameters_for_notifying_physician_of_changes_in_vital_signs'] == "Yes") {$poc_synopsis_patient_specific_parameters = 01;
+	  if ($row1['parameters_for_notifying_physician_of_changes_in_vital_signs'] == "No") {$poc_synopsis_patient_specific_parameters = '00';
+	  } else if ($row1['parameters_for_notifying_physician_of_changes_in_vital_signs'] == "Yes") {$poc_synopsis_patient_specific_parameters = '01';
 	  } else if ($row1['parameters_for_notifying_physician_of_changes_in_vital_signs'] == "Not Applicable") {$poc_synopsis_patient_specific_parameters = "NA";
 	  }
   } else {$poc_synopsis_patient_specific_parameters = ' ';
@@ -2296,8 +2296,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_falls_prevention = "0" . $row1['oasis_care_falls_prevention'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Falls_prevention_interventions2'] == "No") {$poc_synopsis_falls_prevention = 00;
-	  } else if ($row1['Falls_prevention_interventions2'] == "Yes") {$poc_synopsis_falls_prevention = 01;
+	  if ($row1['Falls_prevention_interventions2'] == "No") {$poc_synopsis_falls_prevention = '00';
+	  } else if ($row1['Falls_prevention_interventions2'] == "Yes") {$poc_synopsis_falls_prevention = '01';
 	  } else if ($row1['Falls_prevention_interventions2'] == "Not Applicable") {$poc_synopsis_falls_prevention = "NA";
 	  }
   } else {$poc_synopsis_falls_prevention = ' ';
@@ -2307,8 +2307,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_depression = "0" . $row1['oasis_care_depression_intervention'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Depression_interventions_such_as_medication_referral'] == "No") {$poc_synopsis_depression = 00;
-	  } else if ($row1['Depression_interventions_such_as_medication_referral'] == "Yes") {$poc_synopsis_depression = 01;
+	  if ($row1['Depression_interventions_such_as_medication_referral'] == "No") {$poc_synopsis_depression = '00';
+	  } else if ($row1['Depression_interventions_such_as_medication_referral'] == "Yes") {$poc_synopsis_depression = '01';
 	  } else if ($row1['Depression_interventions_such_as_medication_referral'] == "Not Applicable") {$poc_synopsis_depression = "NA";
 	  }
   } else {$poc_synopsis_depression = ' ';
@@ -2318,8 +2318,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_pain = "0" . $row1['oasis_care_intervention_monitor'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Interventions_to_monitor_and_mitigate'] == "No") {$poc_synopsis_pain = 00;
-	  } else if ($row1['Interventions_to_monitor_and_mitigate'] == "Yes") {$poc_synopsis_pain = 01;
+	  if ($row1['Interventions_to_monitor_and_mitigate'] == "No") {$poc_synopsis_pain = '00';
+	  } else if ($row1['Interventions_to_monitor_and_mitigate'] == "Yes") {$poc_synopsis_pain = '01';
 	  } else if ($row1['Interventions_to_monitor_and_mitigate'] == "Not Applicable") {$poc_synopsis_pain = "NA";
 	  }
   } else {$poc_synopsis_pain = ' ';
@@ -2329,8 +2329,8 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_PU_prevention = "0" . $row1['oasis_care_intervention_prevent'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['Interventions_to_prevent_pressure_ulcers'] == "No") {$poc_synopsis_PU_prevention = 00;
-	  } else if ($row1['Interventions_to_prevent_pressure_ulcers'] == "Yes") {$poc_synopsis_PU_prevention = 01;
+	  if ($row1['Interventions_to_prevent_pressure_ulcers'] == "No") {$poc_synopsis_PU_prevention = '00';
+	  } else if ($row1['Interventions_to_prevent_pressure_ulcers'] == "Yes") {$poc_synopsis_PU_prevention = '01';
 	  } else if ($row1['Interventions_to_prevent_pressure_ulcers'] == "Not Applicable") {$poc_synopsis_PU_prevention = "NA";
 	  }
   } else {$poc_synopsis_PU_prevention = ' ';
@@ -2340,16 +2340,16 @@ while ($row1 = mysql_fetch_array($result1)) {
 	  } else {$poc_synopsis_PU_moist = "0" . $row1['oasis_care_pressure_ulcer'];
 	  }
   } else if ($table_name == 'forms_OASIS') {
-	  if ($row1['treatment_based_on_moist_wound_healing'] == "No") {$poc_synopsis_PU_moist = 00;
-	  } else if ($row1['treatment_based_on_moist_wound_healing'] == "Yes") {$poc_synopsis_PU_moist = 01;
+	  if ($row1['treatment_based_on_moist_wound_healing'] == "No") {$poc_synopsis_PU_moist = '00';
+	  } else if ($row1['treatment_based_on_moist_wound_healing'] == "Yes") {$poc_synopsis_PU_moist = '01';
 	  } else if ($row1['treatment_based_on_moist_wound_healing'] == "Not Applicable") {$poc_synopsis_PU_moist = "NA";
 	  }
   } else {$poc_synopsis_PU_moist = ' ';
   }
   if ($table_name == 'forms_OASIS') {
-	  if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "No") {$emergent_care_oasis_data_collection = 00;
-	  } else if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "Yes, used hospital emergency department WITHOUT hospital admission") {$emergent_care_oasis_data_collection = 01;
-	  } else if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "Yes, used hospital emergency department WITH hospital admission") {$emergent_care_oasis_data_collection = 02;
+	  if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "No") {$emergent_care_oasis_data_collection = '00';
+	  } else if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "Yes, used hospital emergency department WITHOUT hospital admission") {$emergent_care_oasis_data_collection = '01';
+	  } else if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "Yes, used hospital emergency department WITH hospital admission") {$emergent_care_oasis_data_collection = '02';
 	  } else if ($row1['OASIS_C_emergent_Care_since_last_time_oasis'] == "UK - Unknown") {$emergent_care_oasis_data_collection = "UK";
 	  }
   } else if ($table_name == 'forms_oasis_discharge') {

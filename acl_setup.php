@@ -351,9 +351,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($phytherapist), NULL, NULL,
   1, 1, 'addonly', 'Things that Physical Therapist can read and enter but not modify'
@@ -361,9 +359,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Physical Therapist can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($phytherapist), NULL, NULL,
   1, 1, 'write', 'Things that Physical Therapist can read and modify'
@@ -373,9 +373,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($sptherapist), NULL, NULL,
   1, 1, 'addonly', 'Things that Speech Therapist can read and enter but not modify'
@@ -383,9 +381,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Speech Therapist can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($sptherapist), NULL, NULL,
   1, 1, 'write', 'Things that Speech Therapist can read and modify'
@@ -395,9 +395,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($nurse), NULL, NULL,
   1, 1, 'addonly', 'Things that Nurse can read and enter but not modify'
@@ -405,9 +403,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Nurse can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($nurse), NULL, NULL,
   1, 1, 'write', 'Things that Nurse can read and modify'
@@ -417,9 +417,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($socialworker), NULL, NULL,
   1, 1, 'addonly', 'Things that Social Worker can read and enter but not modify'
@@ -427,9 +425,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Social Worker can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($socialworker), NULL, NULL,
   1, 1, 'write', 'Things that Social Worker can read and modify'
@@ -439,9 +439,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($hha), NULL, NULL,
   1, 1, 'addonly', 'Things that Home Health Aide can read and enter but not modify'
@@ -449,9 +447,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Home Health Aide can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($hha), NULL, NULL,
   1, 1, 'write', 'Things that Home Health Aide can read and modify'
@@ -461,9 +461,7 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
  //
  $gacl->add_acl(
   array(
-   'encounters'=>array('notes', 'relaxed'),
-   'patients'=>array('demo', 'med', 'docs', 'notes'),
-   'sensitivities'=>array('normal')
+   'placeholder'=>array('filler')
   ),
   NULL, array($optherapist), NULL, NULL,
   1, 1, 'addonly', 'Things that Occupational Therapist can read and enter but not modify'
@@ -471,9 +469,11 @@ $optherapist  = $gacl->add_group('optherapist' , 'Occupational Therapist'    , $
      // xl('Things that Occupational Therapist can read and enter but not modify')
  $gacl->add_acl(
   array(
+   'acct'=>array('disc', 'rep'),
    'admin'=>array('drugs'),
-   'encounters'=>array('coding'),
-   'patients'=>array('appt')
+   'encounters'=>array('auth_a', 'coding_a', 'notes_a', 'date_a'),
+   'patients'=>array('appt', 'demo', 'med', 'trans', 'docs', 'notes', 'sign'),
+   'sensitivities'=>array('normal', 'high')
   ),
   NULL, array($optherapist), NULL, NULL,
   1, 1, 'write', 'Things that Occupational Therapist can read and modify'

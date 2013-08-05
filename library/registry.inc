@@ -50,7 +50,7 @@ while($userroles1 = sqlFetchArray($userroles))
 array_push($roleslist,$userroles1['name']);
 }
 
-if(in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist))
+if(in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist) || in_array('Occupational Therapist',$roleslist) || in_array('Home Health Aide',$roleslist) || in_array('Social Worker',$roleslist))
 {
 	$sql = "select * from registry where state like \"$state\" AND (category='' OR ISNULL(category)) order by priority, name";
 	if ($limit != "unlimited")

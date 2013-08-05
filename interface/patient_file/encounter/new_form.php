@@ -193,7 +193,7 @@ if (!empty($reg)) {
     else {$nickname = $entry['name'];}
     if ($old_category != $new_category) {
 
-if((in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist)) && $new_category!='Interdisciplinary' ){
+if((in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist) || in_array('Occupational Therapist',$roleslist) || in_array('Home Health Aide',$roleslist) || in_array('Social Worker',$roleslist)) && $new_category!='Interdisciplinary' ){
 continue;
 }
       $new_category_ = $new_category;

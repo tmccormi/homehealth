@@ -91,12 +91,18 @@ return json_encode($nullarray);
 function getTypeUsers($user_type){
 
 if($user_type!=""){
-$sql = "SELECT id, fname, lname, specialty FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
+$sql = "SELECT id, fname, lname, organization FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
 $res = sqlStatement($sql);
 $users_list=" ";
 while($urow=sqlFetchArray($res))
 {
+      if( $urow['fname']!='' || $urow['lname']!='' )
       $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      else if($urow['organization']!='')
+      $uname = htmlspecialchars( $urow['organization'] , ENT_NOQUOTES);
+      else
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      
       $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
       $users_list.= "<option value='".$optionId."'>".$uname."</option>";
 }
@@ -124,12 +130,18 @@ $pres = sqlStatement($psql);
 $purow=sqlFetchArray($pres);
 
 if($user_type!=""){
-$sql = "SELECT id, fname, lname, specialty FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
+$sql = "SELECT id, fname, lname, organization FROM users WHERE abook_type = '".$user_type."' ORDER BY lname, fname";
 $res = sqlStatement($sql);
 $users_list=" ";
 while($urow=sqlFetchArray($res))
 {
+      if( $urow['fname']!='' || $urow['lname']!='' )
       $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+      else if($urow['organization']!='')
+      $uname = htmlspecialchars( $urow['organization'] , ENT_NOQUOTES);
+      else
+      $uname = htmlspecialchars( $urow['fname'] . ' ' . $urow['lname'], ENT_NOQUOTES);
+
       $optionId = htmlspecialchars( $urow['id'], ENT_QUOTES);
       $users_list.="<option value='".$optionId."'";
       if ($urow['id'] == $purow['ref_providerID'])

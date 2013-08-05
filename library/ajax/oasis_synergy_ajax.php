@@ -726,7 +726,7 @@ if($addnew['oasis_therapy_patient_diagnosis_2f']!=""){$DiagCodes .= str_pad(" ".
 if($addnew['oasis_therapy_patient_diagnosis_2g']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2g'],8);}
 if($addnew['oasis_therapy_patient_diagnosis_2h']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2h'],8);}
 if($addnew['oasis_therapy_patient_diagnosis_2i']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2i'],8);}
-if($addnew['oasis_therapy_patient_diagnosis_2j$newid']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2j'],8);}
+if($addnew['oasis_therapy_patient_diagnosis_2j']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2j'],8);}
 if($addnew['oasis_therapy_patient_diagnosis_2k']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2k'],8);}
 if($addnew['oasis_therapy_patient_diagnosis_2l']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2l'],8);}
 if($addnew['oasis_therapy_patient_diagnosis_2m']!=""){$DiagCodes .= str_pad(" ".$addnew['oasis_therapy_patient_diagnosis_2m'],8);}
@@ -881,7 +881,7 @@ $res1 = sqlFetchArray(sqlStatement("SELECT synergy_username, synergy_password FR
 if($res1['synergy_username']!='' && $res1['synergy_password']!=''){
 if($error_flag == 0){
 try{
-$result3 = $client->ImportAnAssessment(array('username' => "SUPERVISOR",'password' => "SYNERGY", 'oasis_data' => $oasis_synergy));
+$result3 = $client->ImportAnAssessment(array('username' => $res1['synergy_username'],'password' => $res1['synergy_password'], 'oasis_data' => $oasis_synergy));
 
 $synergy_id = $result3->ImportAnAssessmentResult;
 if($synergy_id!=''){
