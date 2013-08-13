@@ -1450,6 +1450,13 @@ $GLOBALS_METADATA = array(
         '',
         xl('Default Patient Country'),
     ),
+          
+    'synergy_webservice_enable' => array(
+          xl('Enable Synergy Webservice'),
+          'bool',                           // data type
+          '0',
+          xl('Check to enable the Synergy Webservice connector')
+    ),
 
     'synergy_webservice' => array(
       xl('Synergy Webservice URL'),

@@ -1091,15 +1091,19 @@ function newInsuranceData(
     ");
 
 if($type == 'tertiary'){
-
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    
+    $client = null;
+    if ( $GLOBALS['synergy_webservice_enable'] ) {
+    try{
+    $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    }
+    catch(Exception $e){
+    echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+    }
 }
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
-}
 
-if(isset($client)){
+if ( isset($client) &&
+        $client != null ) {
 
 $s_result = sqlStatement("select * from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -1497,14 +1501,18 @@ function updateInsuranceData($id, $new, $pid)
 
 if($new['type'] == 'tertiary'){
 
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+$client = null;
+if ( $GLOBALS['synergy_webservice_enable'] ) {
+    try{
+    $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    }
+    catch(Exception $e){
+    echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+    }
 }
 
-if(isset($client)){
+if ( isset($client) &&
+        $client != null ) {
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);

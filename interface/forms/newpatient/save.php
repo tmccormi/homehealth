@@ -91,15 +91,19 @@ if ($mode == 'new')
       "episode_id = '".mysql_real_escape_string($episode_id)."'"),
     "newpatient", mysql_real_escape_string($pid), mysql_real_escape_string($userauthorized), mysql_real_escape_string($date));
 
-
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+// initialize client to null. if synergy webservice not enabled, bypass all the remote calls§Œ  
+$client = null;
+if ( $GLOBALS['synergy_webservice_enable'] ) {
+    try{
+    $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    }
+    catch(Exception $e){
+    echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
+    }
 }
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
-}
 
-if(isset($client)){
+if( isset($client) && 
+        $client != null ){
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
@@ -299,14 +303,18 @@ else if ($mode == 'update')
 $id_for_synergy = sqlFetchArray(sqlStatement("SELECT synergy_id FROM form_encounter WHERE id=".$id.""));
 $synergy_id = $id_for_synergy['synergy_id'];
 
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
+$client = null;
+if ( $GLOBALS['synergy_webservice_enable'] ) {
+    try{
+    $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    }
+    catch(Exception $e){
+    echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice.');</script>";
+    }
 }
 
-if(isset($client)){
+if ( isset($client) && 
+        $client != null ) {
 
 $s_result = sqlStatement("select *from patient_data where pid=".$pid."");
 $s_result = sqlFetchArray($s_result);
