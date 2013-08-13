@@ -12,7 +12,7 @@ $form_id=$_POST["form_id"];
 $encounter=$_POST['encounter'];
 $b1_string=$_POST['b1_string'];
 $timestamp=date('Y-m-d H:i:s',time());
-$client = new SoapClient("https://services.ppsplus.com/services/analysisservice.asmx?wsdl");
+$client = new SoapClient($GLOBALS['pps_plus']);
 $vendor_key='PPS-1ADF43FD-B331-4502-B7C7-ACEDD4523BA5';
 $result = $client->Analysis(array('Key'=>$vendor_key, 'B1_String'=>$b1_string));
 //print_r($result);
