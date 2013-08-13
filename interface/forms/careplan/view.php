@@ -284,15 +284,14 @@ echo "checked";;?>>
     <table width="100%" class="formtable">
 
 <tr>
-<td colspan="2" valign="top" scope="row"><strong><?php xl('TREATMENT PLAN','e')?></strong><br></td>
+<td colspan="2" valign="top" scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong><br></td>
 <tr>
 <td>
-<?php xl('Frequency & Duration : ','e')?>&nbsp;
-<input type="text" name="frequency" id="frequency" size="80" value="<?php echo stripslashes($obj{"frequency"});?>"/>&nbsp;
+<?php xl('Frequency & Duration: ','e')?>&nbsp;
+<input type="text" name="frequency" id="frequency" style="width:100%;" value="<?php echo stripslashes($obj{"frequency"});?>"/>
 <br />
-<strong><?php xl('EFFECTIVE DATE','e')?>&nbsp;&nbsp;    
-<input type="text" name="effective_date" id="effective_date" value="<?php echo stripslashes($obj{"effective_date"});?>"  readonly>
-</strong>
+<?php xl('Effective Date: ','e')?>
+<input type="text" name="effective_date" id="effective_date" size="12" value="<?php echo stripslashes($obj{"effective_date"});?>"  readonly>
 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_eff_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand' title='<?php xl('Click here to choose a date','e'); ?>'>
 
