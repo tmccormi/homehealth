@@ -11,9 +11,9 @@ formHeader("Form: careplan");
 <style type="text/css">
 .bold {
 	font-weight: bold;
-	
-
+}
 </style>
+
 <style type="text/css">
 @import url(<?php echo $GLOBALS['webroot']?>/library/dynarch_calendar.css);</style>
 <script type="text/javascript"
@@ -116,24 +116,18 @@ formHeader("Form: careplan");
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
 
-      <tr>
-        <td width="18%" align="left" scope="row"><strong>
-        <?php xl('Med DX/ Reason for ST intervention','e')?></strong></td>
-        <td width="32%" >
-	<input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(careplan_ST_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-	<div id="med_icd9">
-	<select id="careplan_ST_intervention" name="careplan_ST_intervention" style="display:none"></select></div>
-        </td>
-        <td width="15%" align="center">
-        <strong><?php xl('Treatment Dx','e')?></strong></td>
-        <td width="30%" align="left">
-	<input type="text" id="icd9" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(careplan_Treatment_DX,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<div id="trmnt_icd9">
-<select id="careplan_Treatment_DX" name="careplan_Treatment_DX" style="display:none"></select></div>
+<tr>
+<td width="18%" align="left" scope="row"><strong><?php xl('Med DX/ Reason for ST intervention','e')?></strong></td>
+<td width="32%" >
+<input type="text" id="careplan_ST_intervention" name="careplan_ST_intervention" size="20"/>
 </td>
-      </tr>
+
+<td width="15%" align="center"><strong><?php xl('Treatment Dx','e')?></strong></td>
+<td width="30%" align="left">
+<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" size="20"/>
+</td>
+</tr>
+
     </table></td>
 
   </tr>
@@ -207,31 +201,26 @@ formHeader("Form: careplan");
 		</tr>
     </table></td>
   </tr>
-  <tr>
-    <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
-      <tr>
-        <td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong> <br/>
-	<?php xl('Frequency and Duration:','e')?>
-        <input type="text" name="careplan_Treatment_Plan_Frequency" id="careplan_Treatment_Plan_Frequency" />
-          <?php xl('of times per','e')?> 
-          <select name="careplan_Treatment_Plan_Freq_Duration1" id="careplan_Treatment_Plan_Freq_Duration1" > <?php Freq_Duration($GLOBALS['Selected']) ?></select>&nbsp;
-                                <?php xl('for','e')?>&nbsp;
-	 <input type="text" name="careplan_Treatment_Plan_Duration" id="careplan_Treatment_Plan_Duration" />
-<?php xl('of','e')?>&nbsp;
-                                <select name="careplan_Treatment_Plan_Freq_Duration2" id="careplan_Treatment_Plan_Freq_Duration2"> <?php Freq_Duration($GLOBALS['Selected']) ?></select>&nbsp;<?php xl('(s)','e')?><br>
 
-          <strong><?php xl('EFFECTIVE DATE','e')?>
-          <input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" readonly> <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-                                        height='22' id='img_effec_date' border='0' alt='[?]'
-                                        style='cursor: pointer; cursor: hand'
-                                        title='<?php xl('Click here to choose a date','e'); ?>'>
-                                        <script LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"careplan_Treatment_Plan_EffectiveDate", ifFormat:"%Y-%m-%d", button:"img_effec_date"});</script>
+<tr>
+<td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
+<tr>
+<td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong> <br/>
+<?php xl('Frequency and Duration:','e')?>
+<input type="text" name="careplan_Treatment_Plan_Frequency" id="careplan_Treatment_Plan_Frequency" size="80" />
+<br />
 
+<strong><?php xl('EFFECTIVE DATE','e')?>
+<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" readonly>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_effec_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'>
 
-          </strong>
-          </td>
-      </tr>
+<script LANGUAGE="JavaScript">
+Calendar.setup({inputField:"careplan_Treatment_Plan_EffectiveDate", ifFormat:"%Y-%m-%d", button:"img_effec_date"});
+</script>
+</strong>
+</td>
+</tr>
+
      </table></td>
   </tr>
   <tr>
@@ -387,7 +376,7 @@ formHeader("Form: careplan");
 <td> <input type="text" style="width:90%" name="careplan_LTO_Implement_adaptations_Time" id="careplan_LTO_Implement_adaptations_Time"/></td>
       </tr>
       <tr>
-     <td> &nbsp; </td><td> &nbsp; </td>
+     <td>&nbsp;  </td><td>&nbsp;  </td>
  <td>    <?php xl(' Other','e')?>
          <input type="text" style="width:82%" name="careplan_LTO_Other" id="careplan_LTO_Other" /></td>
  <td><input type="text" style="width:90%" name="careplan_LTO_Other_Time" id="careplan_LTO_Other_Time"></textarea></td>

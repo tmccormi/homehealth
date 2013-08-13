@@ -181,43 +181,18 @@ value="<?php echo stripslashes($obj{"stdate"});?>"  readonly/>
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
 
-      <tr>
-        <td width="20%" align="left" scope="row"><strong>
-        <?php xl('Med DX/ Reason for ST intervention','e')?></strong></td>
-        <td width="30%">
-        <input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(careplan_ST_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
-<?php if ($obj{"careplan_ST_intervention"} != "")
-{
-echo "<select id='careplan_ST_intervention' name='careplan_ST_intervention'>"; 
-echo "<option value=".stripslashes($obj{'careplan_ST_intervention'}).">". stripslashes($obj{'careplan_ST_intervention'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='careplan_ST_intervention' name='careplan_ST_intervention' style='display:none'> </select>";
- }?></div>
-	</td>
-        <td width="15%" align="center">
-        <strong><?php xl('Treatment Dx','e')?></strong></td>
-        <td width="30%" align="left">
-         <input type="text" id="icd9" size="15"/>
-        <input type="button" value="Search" onclick="javascript:changeICDlist(careplan_Treatment_DX,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/> 
-<div id="trmnt_icd9">
-<?php if ($obj{"careplan_Treatment_DX"} != "")
-{       
-echo "<select id='careplan_Treatment_DX' name='careplan_Treatment_DX'>";
-echo "<option value=".stripslashes($obj{'careplan_Treatment_DX'}).">". stripslashes($obj{'careplan_Treatment_DX'})."</option>";
-echo "</select>";
- }
- else
- {
- echo "<select id='careplan_Treatment_DX' name='careplan_Treatment_DX' style='display:none'> </select>";
- }?></div>
+<tr>
+<td width="20%" align="left" scope="row"><strong><?php xl('Med DX/ Reason for ST intervention','e')?></strong></td>
+<td width="30%">
+<input type="text" id="careplan_ST_intervention" name="careplan_ST_intervention" size="20" value="<?php echo stripslashes($obj{'careplan_ST_intervention'}); ?>" />
+</td>
 
-	</td>
-      </tr>
+<td width="15%" align="center"><strong><?php xl('Treatment Dx','e')?></strong></td>
+<td width="30%" align="left">
+<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" size="20" value="<?php echo stripslashes($obj{'careplan_Treatment_DX'}); ?>" />
+</td>
+</tr>
+
     </table></td>
 
   </tr>
@@ -306,33 +281,25 @@ value="<?php echo stripslashes($obj{"careplan_SOCDate"});?>"  readonly/>
   </tr>
   <tr>
     <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
-      <tr>
-	<td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong> <br/>              
-        <?php xl('Frequency and Duration:','e')?> 
-        <input type="text" name="careplan_Treatment_Plan_Frequency" id="careplan_Treatment_Plan_Frequency" 
-value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Frequency"});?>"/>
-          <?php xl('of times per','e')?>            
-          <select name="careplan_Treatment_Plan_Freq_Duration1" id="careplan_Treatment_Plan_Freq_Duration1" > <?php Freq_Duration(stripslashes($obj{"careplan_Treatment_Plan_Freq_Duration1"}))?></select>&nbsp;
-                                <?php xl('for','e')?>&nbsp;
-         <input type="text" name="careplan_Treatment_Plan_Duration" id="careplan_Treatment_Plan_Duration"
-value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Duration"});?>" />
-<?php xl('of','e')?>&nbsp;
-                                <select name="careplan_Treatment_Plan_Freq_Duration2" id="careplan_Treatment_Plan_Freq_Duration2"> <?php Freq_Duration(stripslashes($obj{"careplan_Treatment_Plan_Freq_Duration2"})) ?> </select>&nbsp;<?php xl('(s)','e')?><br>
 
+<tr>
+<td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong> <br/>              
+<?php xl('Frequency and Duration:','e')?> 
+<input type="text" name="careplan_Treatment_Plan_Frequency" id="careplan_Treatment_Plan_Frequency" value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Frequency"});?>" size="80"/>
+<br />
 	
 <strong><?php xl('EFFECTIVE DATE','e')?>
-          <input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" readonly
-          value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_EffectiveDate"});?>" />
- <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-                                        height='22' id='img_effec_date' border='0' alt='[?]'
-                                        style='cursor: pointer; cursor: hand'
-                                        title='<?php xl('Click here to choose a date','e'); ?>'> 
-                                        <script LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"careplan_Treatment_Plan_EffectiveDate", ifFormat:"%Y-%m-%d", button:"img_effec_date"});
-   </script>
-          </strong>
-          </td>
-      </tr>
+<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" readonly value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_EffectiveDate"});?>" />
+
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_effec_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'>
+
+<script LANGUAGE="JavaScript">
+Calendar.setup({inputField:"careplan_Treatment_Plan_EffectiveDate", ifFormat:"%Y-%m-%d", button:"img_effec_date"});
+</script>
+</strong>
+</td>
+</tr>
+
      </table></td>
   </tr>
   <tr>
@@ -516,7 +483,7 @@ value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Duration"});?>" />
 <td><input type="text" style="width:90%" name="careplan_LTO_Implement_adaptations_Time" id="careplan_LTO_Implement_adaptations_Time" value="<?php echo stripslashes($obj{"careplan_LTO_Implement_adaptations_Time"});?>"/> </td> 
 </tr>
 
-	<tr> <td> &nbsp;</td><td>&nbsp;</td>
+	<tr> <td>&nbsp; </td><td>&nbsp;</td>
 <td> <?php xl(' Other','e')?>
          <input type="text" style="width:82%" name="careplan_LTO_Other" id="careplan_LTO_Other" 
           value="<?php echo stripslashes($obj{"careplan_LTO_Other"});?>" /></td>
@@ -708,7 +675,7 @@ value="Orders Needed"  <?php if ($obj{"careplan_Physician_Orders"} == "Orders Ne
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
