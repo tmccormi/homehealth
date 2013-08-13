@@ -188,12 +188,12 @@ foreach($obj as $key => $value) {
 <td width="20%" align="left" scope="row"><strong>
 <?php xl('Med DX/ Reason for PT intervention','e')?></strong></td>
 <td width="30%" align="center">
-<input type="text" id="careplan_PT_intervention" name="careplan_PT_intervention" size="20" value="<?php echo stripslashes($obj{'careplan_PT_intervention'}); ?>" />
+<input type="text" id="careplan_PT_intervention" name="careplan_PT_intervention" style="width:100%;" value="<?php echo stripslashes($obj{'careplan_PT_intervention'}); ?>" />
 </td>
 
 <td align="center" width="20%"><strong><?php xl('Treatment Dx','e')?></strong></td>
 <td width="30%" align="center" >
-<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" size="20" value="<?php echo stripslashes($obj{'careplan_Treatment_DX'}); ?>" /></td>
+<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" style="width:100%;" value="<?php echo stripslashes($obj{'careplan_Treatment_DX'}); ?>" /></td>
 </tr>
 
     </table></td>

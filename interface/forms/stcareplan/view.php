@@ -184,12 +184,12 @@ value="<?php echo stripslashes($obj{"stdate"});?>"  readonly/>
 <tr>
 <td width="20%" align="left" scope="row"><strong><?php xl('Med DX/ Reason for ST intervention','e')?></strong></td>
 <td width="30%">
-<input type="text" id="careplan_ST_intervention" name="careplan_ST_intervention" size="20" value="<?php echo stripslashes($obj{'careplan_ST_intervention'}); ?>" />
+<input type="text" id="careplan_ST_intervention" name="careplan_ST_intervention" style="width:100%;" value="<?php echo stripslashes($obj{'careplan_ST_intervention'}); ?>" />
 </td>
 
 <td width="15%" align="center"><strong><?php xl('Treatment Dx','e')?></strong></td>
 <td width="30%" align="left">
-<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" size="20" value="<?php echo stripslashes($obj{'careplan_Treatment_DX'}); ?>" />
+<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" style="width:100%;" value="<?php echo stripslashes($obj{'careplan_Treatment_DX'}); ?>" />
 </td>
 </tr>
 
