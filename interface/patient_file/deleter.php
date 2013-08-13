@@ -198,14 +198,19 @@ function popup_close() {
 $s_result = sqlFetchArray(sqlStatement("select pubpid, agency_name from patient_data where pid='".$patient."'"));
 
    row_delete("patient_data", "pid = '$patient'");
+   
+$client = null;
+if ( $GLOBALS['synergy_webservice_enable'] ) {
+    try{
+    $client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
+    }
+    catch(Exception $e){
+    echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
+    }
+}
 
-try{
-$client = new SoapClient($GLOBALS['synergy_webservice'], array('cache_wsdl' => WSDL_CACHE_NONE));
-}
-catch(Exception $e){
-echo "<script language='javascript'>alert('Could not Connect to Synergy Webservice');</script>";
-}
-if(isset($client)){
+if ( isset($client) && 
+        $client != null ) {
 if(!empty($s_result['agency_name'])){
 $res1 = sqlFetchArray(sqlStatement("SELECT synergy_id, synergy_username, synergy_password FROM users WHERE id=".$s_result['agency_name']));
 
