@@ -1464,6 +1464,13 @@ $GLOBALS_METADATA = array(
       '',
       xl('Enter the URL of Synergy Webservice (IIS Server Location).')
     ),
+          
+    'pps_plus' => array(
+          xl('PPS Plus URL'),
+          'text',                           // data type
+          'https://services.ppsplus.com/services/analysisservice.asmx?wsdl',
+          xl('Enter the URL of PPS plus service.')
+    ),
   ),
   
   'Rx' => array(
