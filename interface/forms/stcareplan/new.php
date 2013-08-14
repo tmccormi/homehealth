@@ -206,18 +206,18 @@ formHeader("Form: careplan");
 <td scope="row"><table width="100%" border="1" cellpadding="5px" cellspacing="0px" class="formtable">
 <tr>
 <td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong> <br/>
-<?php xl('Frequency and Duration:','e')?>
-<input type="text" name="careplan_Treatment_Plan_Frequency" id="careplan_Treatment_Plan_Frequency" size="80" />
+<?php xl('Frequency and Duration: ','e')?>
+<input type="text" name="careplan_Treatment_Plan_Frequency" style="width:100%;" id="careplan_Treatment_Plan_Frequency" />
 <br />
 
-<strong><?php xl('EFFECTIVE DATE','e')?>
-<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" readonly>
+<?php xl('Effective Date: ','e')?>
+<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" size="12" readonly>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_effec_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'>
 
 <script LANGUAGE="JavaScript">
 Calendar.setup({inputField:"careplan_Treatment_Plan_EffectiveDate", ifFormat:"%Y-%m-%d", button:"img_effec_date"});
 </script>
-</strong>
+
 </td>
 </tr>
 

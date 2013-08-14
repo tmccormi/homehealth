@@ -4784,9 +4784,6 @@ safety_tech_txt varchar(255),
 safety_tech_others1 varchar(255),
 safety_tech_others2 varchar(255),
 frequency varchar(255),
-duration varchar(255),
-Freq_Duration1 varchar(100),
-Freq_Duration2 varchar(100),
 effective_date date default NULL,
 evaluation varchar(255),
 home_safety varchar(255),
@@ -5469,7 +5466,6 @@ careplan_PT_Decreased_Safety varchar(10),
 careplan_PT_Decreased_Safety_Note varchar(255),
 careplan_PT_intervention_Other varchar(255),
 careplan_Treatment_Plan_Frequency varchar(50),
-careplan_Treatment_Plan_Duration varchar(50),
 careplan_Treatment_Plan_EffectiveDate date,
 careplan_Evaluation varchar(10),
 careplan_Home_Therapeutic_Exercises varchar(10),
@@ -5543,8 +5539,6 @@ careplan_Will_address_above_issues varchar(50),
 careplan_Will_address_above_issues_by varchar(255),
 careplan_Physician_Orders_Other varchar(255),
 careplan_Therapist_Who_Developed_POC varchar(255),
-careplan_Treatment_Plan_Freq_Duration1 varchar(100),
-careplan_Treatment_Plan_Freq_Duration2 varchar(100),
 careplan_STO_Others2_Time varchar(50),
 careplan_STO_Strength_Time varchar(50),
 careplan_Additional_comments varchar(255),
@@ -6125,10 +6119,7 @@ careplan_ST_Decreased_Comprehension_Note varchar(255),
 careplan_ST_intervention_Other varchar(255),
 careplan_ST_intervention_Other1 varchar(255),
 careplan_Treatment_Plan_Frequency varchar(50),
-careplan_Treatment_Plan_Duration varchar(50),
 careplan_Treatment_Plan_EffectiveDate date,
-careplan_Treatment_Plan_Freq_Duration1 varchar(50),
-careplan_Treatment_Plan_Freq_Duration2 varchar(50),
 careplan_Evaluation varchar(10),
 careplan_Dysphagia_Compensatory_Strategies varchar(10),
 careplan_Swallow_Exercise_Program varchar(10),
@@ -8060,3 +8051,21 @@ ALTER TABLE insurance_companies ADD synergy_id varchar(255) NOT NULL default '';
 #IfNotRow2D layout_options field_id other_physician data_type 42
 UPDATE `layout_options` SET `data_type`=42 WHERE `form_id`='DEM' AND `field_id`='other_physician';
 #EndIf
+
+-- Drops the duration, Freq_Duration1, and Freq_Duration2 columns from the table forms_ot_careplan
+
+ALTER TABLE `forms_ot_careplan` DROP COLUMN `duration`;
+ALTER TABLE `forms_ot_careplan` DROP COLUMN `Freq_Duration1`;
+ALTER TABLE `forms_ot_careplan` DROP COLUMN `Freq_Duration2`;
+
+-- Drops the careplan_Treatment_Plan_Duration, careplan_Treatment_Plan_Freq_Duration1, and careplan_Treatment_Plan_Freq_Duration2 columns from the table forms_pt_careplan
+
+ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Duration`;
+ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration1`;
+ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration2`;
+
+-- Drops the careplan_Treatment_Plan_Duration, careplan_Treatment_Plan_Freq_Duration1, and careplan_Treatment_Plan_Freq_Duration2 columns from the table forms_st_careplan
+
+ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Duration`;
+ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration1`;
+ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration2`;

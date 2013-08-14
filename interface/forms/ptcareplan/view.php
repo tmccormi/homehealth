@@ -283,12 +283,11 @@ foreach($obj as $key => $value) {
 <tr>
 <td scope="row"><strong><?php xl('TREATMENT PLAN FREQUENCY','e')?></strong><br></td>
 <tr>
-<td><?php xl('Frequency & Duration : ','e')?>&nbsp;
-<input type="text" name="careplan_Treatment_Plan_Frequency" id="frequency" size="80" value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Frequency"});?>"/>&nbsp;
+<td><?php xl('Frequency & Duration: ','e')?>&nbsp;
+<input type="text" name="careplan_Treatment_Plan_Frequency" style="width:100%;" id="frequency" value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_Frequency"});?>"/>
 <br />
-<strong><?php xl('EFFECTIVE DATE','e')?>&nbsp;&nbsp;    
-<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_EffectiveDate"});?>" style="width:12%" readonly>
-</strong>
+<?php xl('Effective Date: ','e')?> 
+<input type="text" name="careplan_Treatment_Plan_EffectiveDate" id="careplan_Treatment_Plan_EffectiveDate" value="<?php echo stripslashes($obj{"careplan_Treatment_Plan_EffectiveDate"});?>" size="12" readonly>
 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_eff_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand' title='<?php xl('Click here to choose a date','e'); ?>'>
 
