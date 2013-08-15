@@ -129,12 +129,23 @@ foreach($obj as $key => $value) {
  value="<?php echo $obj{"clinical_summary_episode"}; ?>" 
 size="10" />
 </td>
-<TD align="right">
+
+<td align="right">
 <b><?php xl('Caregiver:','e') ?></b>
 <input type="text" name="clinical_summary_caregiver_name" size="25"  value="<?php echo $obj{"clinical_summary_caregiver_name"}; ?>" />
-<b><?php xl('Visit Date:','e') ?></b>
-<input type="text" name="clinical_summary_visit_date"  value="<?php echo $obj{"clinical_summary_visit_date"}; ?>"  readonly/>
-</TD>
+
+<strong><?php xl('Start of Care Date:','e') ?></strong>
+<input type="text" size="12" name="clinical_summary_visit_date" id="clinical_summary_visit_date" value="<?php echo $obj{"clinical_summary_visit_date"}; ?>"  readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"clinical_summary_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 </tr>
 </TABLE>
 
@@ -258,7 +269,7 @@ size="10" />
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

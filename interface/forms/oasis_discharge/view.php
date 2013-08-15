@@ -262,10 +262,20 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<?php xl('Caregiver: ','e');?>
 						<input type="text" name="oasis_patient_caregiver" value="<?php echo $obj{"oasis_patient_caregiver"};?>">
 					</td>
-					<td align="right">
-						<?php xl('Visit Date','e');?>
-						<input type='text' size='10' name='oasis_patient_visit_date' value="<?php echo $obj{"oasis_patient_visit_date"};?>" readonly /> 
-					</td>
+
+<td align="right">
+<?php xl('Start of Care Date','e');?>
+<input type='text' size='12' name='oasis_patient_visit_date' id='oasis_patient_visit_date' value="<?php echo $obj{"oasis_patient_visit_date"};?>" readonly /> 
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 				</tr>
 				<tr>
 					<td align="right">
@@ -596,12 +606,12 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 			<table border="0" cellspacing="0" class="formtable">
 				<tr>
 					<td colspan="2">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onclick="select_pain(0)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onclick="select_pain(1)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onclick="select_pain(2)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onclick="select_pain(3)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onclick="select_pain(4)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onClick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onClick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onClick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onClick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onClick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onClick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -836,7 +846,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" readonly="true"  value="<?php echo stripslashes($obj{"nutrition_total"});?>" /></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" readonly  value="<?php echo stripslashes($obj{"nutrition_total"});?>" /></label>
 </td>
 </tr>
 </TABLE>
@@ -1137,7 +1147,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<strong><?php xl("4. NO IMPAIRMENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_sensory" onkeyup="sum_braden_scale()" id="braden_sensory" value="<?php echo $obj{"oasis_therapy_braden_scale_sensory"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_sensory" onKeyUp="sum_braden_scale()" id="braden_sensory" value="<?php echo $obj{"oasis_therapy_braden_scale_sensory"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1157,7 +1167,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<strong><?php xl("4. RARELY MOIST","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_moisture" onkeyup="sum_braden_scale()" id="braden_moisture" value="<?php echo $obj{"oasis_therapy_braden_scale_moisture"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_moisture" onKeyUp="sum_braden_scale()" id="braden_moisture" value="<?php echo $obj{"oasis_therapy_braden_scale_moisture"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1177,7 +1187,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<strong><?php xl("4. WALKS FREQUENTLY","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_activity" onkeyup="sum_braden_scale()" id="braden_activity" value="<?php echo $obj{"oasis_therapy_braden_scale_activity"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_activity" onKeyUp="sum_braden_scale()" id="braden_activity" value="<?php echo $obj{"oasis_therapy_braden_scale_activity"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1197,7 +1207,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<strong><?php xl("4. NO LIMITATIONS","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_mobility" onkeyup="sum_braden_scale()" id="braden_mobility" value="<?php echo $obj{"oasis_therapy_braden_scale_mobility"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_mobility" onKeyUp="sum_braden_scale()" id="braden_mobility" value="<?php echo $obj{"oasis_therapy_braden_scale_mobility"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1217,7 +1227,7 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 						<strong><?php xl("4. EXCELLENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_nutrition" onkeyup="sum_braden_scale()" id="braden_nutrition" value="<?php echo $obj{"oasis_therapy_braden_scale_nutrition"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_nutrition" onKeyUp="sum_braden_scale()" id="braden_nutrition" value="<?php echo $obj{"oasis_therapy_braden_scale_nutrition"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1233,11 +1243,11 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 					<td align="center">
 						<strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
 					</td>
-					<td align="center">
-						&nbsp;
+					<td align="center">&nbsp;
+						
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_friction" onkeyup="sum_braden_scale()" id="braden_friction" value="<?php echo $obj{"oasis_therapy_braden_scale_friction"};?>">
+						<input type="text" name="oasis_therapy_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="<?php echo $obj{"oasis_therapy_braden_scale_friction"};?>">
 					</td>
 				</tr>
 				<tr>
@@ -1259,8 +1269,8 @@ $oasis_dme_foley_supplies = explode("#",$obj{"oasis_dme_foley_supplies"});
 			<?php xl("<strong><u>(M1308)</u> Current Number of Unhealed (non-epithelialized) Pressure Ulcers at Each Stage:</strong> (Enter '0' if none; excludes Stage I pressure ulcers)","e");?><br>
 			<table border="1px" style="width:100%;" cellspacing="0" class="formtable">
 				<tr>
-					<td width="50%" colspan="2">
-						&nbsp;
+					<td width="50%" colspan="2">&nbsp;
+						
 					</td>
 					<td width="25%" align="center">
 						<strong><?php xl("Column 1 Complete at SOC/ROC/FU & D/C","e");?></strong>
@@ -3692,7 +3702,7 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <?php } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <?php } ?>

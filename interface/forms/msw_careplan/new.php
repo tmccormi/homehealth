@@ -39,20 +39,21 @@ formHeader("Form: msw_careplan");
 			<tr>
 				<td><?php xl('Patient Name','e');?></td>
 				<td width="50%"><input type="text" name="" style="width:100%" value="<?php patientName()?>" readonly ></td>
-				<td><?php xl('SOC Date','e');?></td>
-				<td width="17%" align="center" valign="top" class="bold">
-					<input type='text' size='10' name='SOC_date' id='SOC_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
-					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_curr_date' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
-					title='<?php xl('Click here to choose a date','e'); ?>'> 
-					<script	LANGUAGE="JavaScript">
-						Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
-					</script>
-				</td>
-			</tr>
+				
+<td><?php xl('Start of Care Date','e');?></td>
+<td width="17%" align="center" valign="top" class="bold">
+<input type='text' size='12' name='SOC_date' id='SOC_date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>'	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date' border='0' alt='[?]'	style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
+</tr>
 		</table>
 	</tr>
 	<tr>

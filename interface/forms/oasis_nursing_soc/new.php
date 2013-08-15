@@ -135,10 +135,20 @@ $("#nutrition_total").val(tot);
 						<?php xl('Caregiver: ','e');?>
 						<input type="text" name="oasis_patient_caregiver" value="">
 					</td>
-					<td align="right">
-						<?php xl('Visit Date','e');?>
-						<input type='text' size='10' name='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/> 
-					</td>
+
+<td align="right">
+<?php xl('Start of Care Date','e');?>
+<input type='text' size='12' id='oasis_patient_visit_date' name='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_eff_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'>
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", button:"img_eff_date"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 				</tr>
 				<tr>
 					<td align="right">
@@ -597,12 +607,12 @@ $("#nutrition_total").val(tot);
 							<input type="text" style="width:80%" name="oasis_patient_history_if_diagnosis[]" id="oasis_patient_history_if_diagnosis6" value="" />
 					</td>
 					<td align="center">
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code1" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code2" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code3" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code4" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code5" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code6" name="oasis_patient_history_if_code[]" onkeydown="fonChange(this,2,'noev')" value="" >
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code1" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code2" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code3" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code4" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code5" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_if_code6" name="oasis_patient_history_if_code[]" onKeyDown="fonChange(this,2,'noev')" value="" >
 						
 					</td>
 				</tr>
@@ -636,10 +646,10 @@ $("#nutrition_total").val(tot);
 							<br>
 					</td>
 					<td align="center">
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code1" name="oasis_patient_history_ip_code[]" onkeydown="fonChange(this,1,'no')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code2" name="oasis_patient_history_ip_code[]" onkeydown="fonChange(this,1,'no')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code3" name="oasis_patient_history_ip_code[]" onkeydown="fonChange(this,1,'no')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code4" name="oasis_patient_history_ip_code[]" onkeydown="fonChange(this,1,'no')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code1" name="oasis_patient_history_ip_code[]" onKeyDown="fonChange(this,1,'no')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code2" name="oasis_patient_history_ip_code[]" onKeyDown="fonChange(this,1,'no')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code3" name="oasis_patient_history_ip_code[]" onKeyDown="fonChange(this,1,'no')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_ip_code4" name="oasis_patient_history_ip_code[]" onKeyDown="fonChange(this,1,'no')" value="" ><br>
 					</td>
 				</tr>
 			</table>
@@ -679,12 +689,12 @@ $("#nutrition_total").val(tot);
 							<br>
 					</td>
 					<td align="center">
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code1" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code2" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code3" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code4" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code5" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
-						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code6" name="oasis_patient_history_mrd_code[]" onkeydown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code1" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code2" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code3" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code4" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code5" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
+						&nbsp;<input type="text" style="width:40%" class="autosearch" id="oasis_patient_history_mrd_code6" name="oasis_patient_history_mrd_code[]" onKeyDown="fonChange(this,2,'noev')" value="" ><br>
 					</td>
 				</tr>
 			</table>
@@ -854,11 +864,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3a" class="autosearch" id="oasis_therapy_patient_diagnosis_3a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3a" class="autosearch" id="oasis_therapy_patient_diagnosis_3a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4a" class="autosearch" id="oasis_therapy_patient_diagnosis_4a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4a" class="autosearch" id="oasis_therapy_patient_diagnosis_4a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -882,7 +892,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2b" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2b" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2b" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2b" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2b_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -896,11 +906,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3b" class="autosearch" id="oasis_therapy_patient_diagnosis_3b" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3b" class="autosearch" id="oasis_therapy_patient_diagnosis_3b" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4b" class="autosearch" id="oasis_therapy_patient_diagnosis_4b" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4b" class="autosearch" id="oasis_therapy_patient_diagnosis_4b" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -910,7 +920,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2c" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2c" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2c" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2c" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2c_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -924,11 +934,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3c" class="autosearch" id="oasis_therapy_patient_diagnosis_3c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3c" class="autosearch" id="oasis_therapy_patient_diagnosis_3c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4c" class="autosearch" id="oasis_therapy_patient_diagnosis_4c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4c" class="autosearch" id="oasis_therapy_patient_diagnosis_4c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -938,7 +948,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2d" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2d" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2d" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2d" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2d_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -952,11 +962,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3d" class="autosearch" id="oasis_therapy_patient_diagnosis_3d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3d" class="autosearch" id="oasis_therapy_patient_diagnosis_3d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4d" class="autosearch" id="oasis_therapy_patient_diagnosis_4d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4d" class="autosearch" id="oasis_therapy_patient_diagnosis_4d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -966,7 +976,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2e" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2e" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2e" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2e" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2e_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -980,11 +990,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3e" class="autosearch" id="oasis_therapy_patient_diagnosis_3e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3e" class="autosearch" id="oasis_therapy_patient_diagnosis_3e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4e" class="autosearch" id="oasis_therapy_patient_diagnosis_4e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4e" class="autosearch" id="oasis_therapy_patient_diagnosis_4e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -994,7 +1004,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2f" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2f" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2f" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2f" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2f_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1008,11 +1018,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3f" class="autosearch" id="oasis_therapy_patient_diagnosis_3f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3f" class="autosearch" id="oasis_therapy_patient_diagnosis_3f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4f" class="autosearch" id="oasis_therapy_patient_diagnosis_4f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4f" class="autosearch" id="oasis_therapy_patient_diagnosis_4f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1022,7 +1032,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2g" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2g" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2g" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2g" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2g_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1036,11 +1046,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3g" class="autosearch" id="oasis_therapy_patient_diagnosis_3g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3g" class="autosearch" id="oasis_therapy_patient_diagnosis_3g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4g" class="autosearch" id="oasis_therapy_patient_diagnosis_4g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4g" class="autosearch" id="oasis_therapy_patient_diagnosis_4g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1050,7 +1060,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2h" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2h" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2h" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2h" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2h_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1064,11 +1074,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3h" class="autosearch" id="oasis_therapy_patient_diagnosis_3h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3h" class="autosearch" id="oasis_therapy_patient_diagnosis_3h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4h" class="autosearch" id="oasis_therapy_patient_diagnosis_4h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4h" class="autosearch" id="oasis_therapy_patient_diagnosis_4h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1078,7 +1088,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2i" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2i" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2i" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2i" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2i_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1092,11 +1102,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3i" class="autosearch" id="oasis_therapy_patient_diagnosis_3i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3i" class="autosearch" id="oasis_therapy_patient_diagnosis_3i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4i" class="autosearch" id="oasis_therapy_patient_diagnosis_4i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4i" class="autosearch" id="oasis_therapy_patient_diagnosis_4i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1106,7 +1116,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2j" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2j" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2j" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2j" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2j_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1120,11 +1130,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3j" class="autosearch" id="oasis_therapy_patient_diagnosis_3j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3j" class="autosearch" id="oasis_therapy_patient_diagnosis_3j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4j" class="autosearch" id="oasis_therapy_patient_diagnosis_4j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4j" class="autosearch" id="oasis_therapy_patient_diagnosis_4j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1134,7 +1144,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2k" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2k" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2k" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2k" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2k_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1148,11 +1158,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3k" class="autosearch" id="oasis_therapy_patient_diagnosis_3k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3k" class="autosearch" id="oasis_therapy_patient_diagnosis_3k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4k" class="autosearch" id="oasis_therapy_patient_diagnosis_4k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4k" class="autosearch" id="oasis_therapy_patient_diagnosis_4k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1162,7 +1172,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2l" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2l" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2l" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2l" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2l_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1176,11 +1186,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3l" class="autosearch" id="oasis_therapy_patient_diagnosis_3l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3l" class="autosearch" id="oasis_therapy_patient_diagnosis_3l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4l" class="autosearch" id="oasis_therapy_patient_diagnosis_4l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4l" class="autosearch" id="oasis_therapy_patient_diagnosis_4l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1190,7 +1200,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_2m" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2m" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_2m" size="15" class="autosearch" id="oasis_therapy_patient_diagnosis_2m" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_therapy_patient_diagnosis_2m_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -1204,11 +1214,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_3m" class="autosearch" id="oasis_therapy_patient_diagnosis_3m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_3m" class="autosearch" id="oasis_therapy_patient_diagnosis_3m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_therapy_patient_diagnosis_4m" class="autosearch" id="oasis_therapy_patient_diagnosis_4m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_therapy_patient_diagnosis_4m" class="autosearch" id="oasis_therapy_patient_diagnosis_4m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 			</table>
@@ -2161,12 +2171,12 @@ blank in that row.','e');?>
 			<table border="0" cellspacing="0" class="formtable">
 				<tr>
 					<td colspan="2">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onclick="select_pain(0)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onclick="select_pain(1)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onclick="select_pain(2)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onclick="select_pain(3)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onclick="select_pain(4)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onClick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onClick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onClick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onClick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onClick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onClick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -2301,7 +2311,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Age 65+</b>","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Age 65+"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Age 65+"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2309,7 +2319,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Diagnosis (3 or more co-existing) :</b> Assess for hypotension","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Diagnosis"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Diagnosis"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2317,7 +2327,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Prior History of fall within 3 months :</b> Fall Definition, 'An unintentional change in position resulting in coming to rest on the ground at a lower level.'","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Prior History of fall within 3 months"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Prior History of fall within 3 months"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2325,7 +2335,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Incontinence :</b> Inability to make it to the bathroom or commode in timely manner. Includes frequency, urgency, and/or nocturia","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Incontinence"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Incontinence"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2333,7 +2343,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Visual impairment :</b> Includes macular degeneration, diabetic retinopathies, visual field loss, age related changes, decline in visual acuity, accommodation, glare tolerance, depth perception, and night vision or not wearing prescribed glasses or having the correct prescription.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Visual impairment"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Visual impairment"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2341,7 +2351,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Impaired functional mobility :</b> May include patients who need help with IADLS or ADLS or have gait or transfer problems, arthritis, pain, fear of falling, foot problems, impaired sensation, impaired coordination or improper use of assistive devices.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Impaired functional mobility"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Impaired functional mobility"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2349,7 +2359,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Environmental hazards :</b> May include poor illumination, equipment tubing, inappropriate footwear, pets, hard to reach items, floor surfaces that are uneven or cluttered, or outdoor entry and exits.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Environmental hazards"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Environmental hazards"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2357,7 +2367,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Poly Pharmacy (4 or more prescriptions) :</b> Drugs highly associated with fall risk include but not limited to, sedatives, anti-depressants, tranquilizers, narcotics, antihypertensives, cardiac meds, corticosteroids, anti-anxiety drugs, anticholinergic drugs, and hypoglycemic drugs.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Poly Pharmacy"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Poly Pharmacy"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2365,7 +2375,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Pain affecting level of function :</b> Pain often affects an individual's desire or ability to move or pain can be a factor in depression or compliance with safety recommendations.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Pain affecting level of function"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Pain affecting level of function"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2373,7 +2383,7 @@ blank in that row.','e');?>
 						<?php xl("<b>Cognitive impairment :</b> Could include patients with dementia, Alzheimer's or stroke patients or patients who are confused, use poor judgment, have decreased comprehension, impulsivity, memory deficits. Consider patients ability to adhere to the plan of care.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Cognitive impairment"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_therapy_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Cognitive impairment"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2418,8 +2428,8 @@ blank in that row.','e');?>
 			<strong><?php xl("Instructions to the Patient:","e");?></strong><br>
 			<?php xl("\"On the word 'Go' you are to get up & go & walk at a comfortable & safe pace to the marker, turn & return to the chair & sit down again.\"","e");?>
 			<center>
-				<?php xl("Trial 1:","e");?><input type="text" name="oasis_therapy_timed_up_trial1" id="oasis_therapy_timed_up_trial1" onkeyup="calc_avg();" value="0"><?php xl("Seconds","e");?><br>
-				<?php xl("Trial 2:","e");?><input type="text" name="oasis_therapy_timed_up_trial2" id="oasis_therapy_timed_up_trial2" onkeyup="calc_avg();" value="0"><?php xl("Seconds","e");?><br>
+				<?php xl("Trial 1:","e");?><input type="text" name="oasis_therapy_timed_up_trial1" id="oasis_therapy_timed_up_trial1" onKeyUp="calc_avg();" value="0"><?php xl("Seconds","e");?><br>
+				<?php xl("Trial 2:","e");?><input type="text" name="oasis_therapy_timed_up_trial2" id="oasis_therapy_timed_up_trial2" onKeyUp="calc_avg();" value="0"><?php xl("Seconds","e");?><br>
 				<?php xl("Average:","e");?><input type="text" name="oasis_therapy_timed_up_average" id="oasis_therapy_timed_up_average" value="0" readonly><?php xl("Seconds","e");?>
 			</center>
 			<br>
@@ -2500,7 +2510,7 @@ blank in that row.','e');?>
 						<strong><?php xl("4. NO IMPAIRMENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_sensory" onkeyup="sum_braden_scale()" id="braden_sensory" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_sensory" onKeyUp="sum_braden_scale()" id="braden_sensory" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2520,7 +2530,7 @@ blank in that row.','e');?>
 						<strong><?php xl("4. RARELY MOIST","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_moisture" onkeyup="sum_braden_scale()" id="braden_moisture" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_moisture" onKeyUp="sum_braden_scale()" id="braden_moisture" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2540,7 +2550,7 @@ blank in that row.','e');?>
 						<strong><?php xl("4. WALKS FREQUENTLY","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_activity" onkeyup="sum_braden_scale()" id="braden_activity" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_activity" onKeyUp="sum_braden_scale()" id="braden_activity" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2560,7 +2570,7 @@ blank in that row.','e');?>
 						<strong><?php xl("4. NO LIMITATIONS","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_mobility" onkeyup="sum_braden_scale()" id="braden_mobility" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_mobility" onKeyUp="sum_braden_scale()" id="braden_mobility" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2580,7 +2590,7 @@ blank in that row.','e');?>
 						<strong><?php xl("4. EXCELLENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_nutrition" onkeyup="sum_braden_scale()" id="braden_nutrition" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_nutrition" onKeyUp="sum_braden_scale()" id="braden_nutrition" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2596,11 +2606,11 @@ blank in that row.','e');?>
 					<td align="center">
 						<strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
 					</td>
-					<td align="center">
-						&nbsp;
+					<td align="center">&nbsp;
+						
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_friction" onkeyup="sum_braden_scale()" id="braden_friction" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -2622,8 +2632,8 @@ blank in that row.','e');?>
 			<?php xl("<strong><u>(M1308)</u> Current Number of Unhealed (non-epithelialized) Pressure Ulcers at Each Stage:</strong> (Enter '0' if none; excludes Stage I pressure ulcers)","e");?><br>
 			<table border="1px" style="width:100%;" cellspacing="0" class="formtable">
 				<tr>
-					<td width="50%" colspan="2">
-						&nbsp;
+					<td width="50%" colspan="2">&nbsp;
+						
 					</td>
 					<td width="25%" align="center">
 						<strong><?php xl("Column 1 Complete at SOC/ROC/FU & D/C","e");?></strong>
@@ -4103,7 +4113,7 @@ blank in that row.','e');?>
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly="true"/></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly/></label>
 </td>
 </tr>
 </TABLE>
@@ -6177,8 +6187,8 @@ blank in that row.','e');?>
 	</td>
 	</tr>
 	<tr>
-	<td>
-	&nbsp;
+	<td>&nbsp;
+	
 	</td>
 	<td align="right">
 	<?php xl('diastolic','e')?>
@@ -6277,8 +6287,8 @@ blank in that row.','e');?>
 
 	<table class="formtable" border="1">
 	<tr>
-	<td>
-	&nbsp;
+	<td>&nbsp;
+	
 	</td>
 	<td colspan="2" align="center">
 	<strong><?php xl(' GOALS','e')?></strong>
@@ -6881,8 +6891,8 @@ health or to facilitate treatment or to prevent deterioration of the patients he
 </tr>
 
 <tr>
-<td>
-&nbsp;
+<td>&nbsp;
+
 </td>
 <td align="center">
 <strong><?php xl('Goals','e')?></strong>

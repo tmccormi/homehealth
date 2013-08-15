@@ -135,10 +135,20 @@ $("#nutrition_total").val(tot);
 						<?php xl('Caregiver: ','e');?>
 						<input type="text" name="oasis_patient_caregiver" value="">
 					</td>
-					<td align="right">
-						<?php xl('Visit Date','e');?>
-						<input type='text' size='10' name='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/> 
-					</td>
+
+<td align="right">
+<?php xl('Start of Care Date','e');?>
+<input type='text' size='12' name='oasis_patient_visit_date' id='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/> 
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 				</tr>
 				<tr>
 					<td align="right">
@@ -470,12 +480,12 @@ $("#nutrition_total").val(tot);
 			<table border="0" cellspacing="0" class="formtable">
 				<tr>
 					<td colspan="2">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onclick="select_pain(0)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onclick="select_pain(1)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onclick="select_pain(2)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onclick="select_pain(3)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onclick="select_pain(4)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onClick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onClick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onClick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onClick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onClick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onClick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -697,7 +707,7 @@ $("#nutrition_total").val(tot);
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly="true"/></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly/></label>
 </td>
 </tr>
 </TABLE>
@@ -998,7 +1008,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. NO IMPAIRMENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_sensory" onkeyup="sum_braden_scale()" id="braden_sensory" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_sensory" onKeyUp="sum_braden_scale()" id="braden_sensory" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1018,7 +1028,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. RARELY MOIST","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_moisture" onkeyup="sum_braden_scale()" id="braden_moisture" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_moisture" onKeyUp="sum_braden_scale()" id="braden_moisture" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1038,7 +1048,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. WALKS FREQUENTLY","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_activity" onkeyup="sum_braden_scale()" id="braden_activity" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_activity" onKeyUp="sum_braden_scale()" id="braden_activity" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1058,7 +1068,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. NO LIMITATIONS","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_mobility" onkeyup="sum_braden_scale()" id="braden_mobility" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_mobility" onKeyUp="sum_braden_scale()" id="braden_mobility" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1078,7 +1088,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. EXCELLENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_nutrition" onkeyup="sum_braden_scale()" id="braden_nutrition" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_nutrition" onKeyUp="sum_braden_scale()" id="braden_nutrition" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1094,11 +1104,11 @@ $("#nutrition_total").val(tot);
 					<td align="center">
 						<strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
 					</td>
-					<td align="center">
-						&nbsp;
+					<td align="center">&nbsp;
+						
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_friction" onkeyup="sum_braden_scale()" id="braden_friction" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1120,8 +1130,8 @@ $("#nutrition_total").val(tot);
 			<?php xl("<strong><u>(M1308)</u> Current Number of Unhealed (non-epithelialized) Pressure Ulcers at Each Stage:</strong> (Enter '0' if none; excludes Stage I pressure ulcers)","e");?><br>
 			<table border="1px" style="width:100%;" cellspacing="0" class="formtable">
 				<tr>
-					<td width="50%" colspan="2">
-						&nbsp;
+					<td width="50%" colspan="2">&nbsp;
+						
 					</td>
 					<td width="25%" align="center">
 						<strong><?php xl("Column 1 Complete at SOC/ROC/FU & D/C","e");?></strong>
@@ -3299,7 +3309,7 @@ $("#nutrition_total").val(tot);
 <a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_discharge');"
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;" onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;" onClick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 
 </body>

@@ -13,8 +13,11 @@ formHeader("Form: home_environment");
 	font-weight: bold;
 }
 </style>
+
 <style type="text/css">
-@import url(<?php echo $GLOBALS['webroot']?>/library/dynarch_calendar.css);</style>
+@import url(<?php echo $GLOBALS['webroot']?>/library/dynarch_calendar.css);
+</style>
+
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar.js"></script>
 <script type="text/javascript"
@@ -56,19 +59,20 @@ function appendrow(box,item)
 			<tr>
 				<td><?php xl('Patient Name','e');?></td>
 				<td width="50%"><input type="text" name="home_environment_patient_name" style="width:100%" value="<?php patientName()?>" readonly ></td>
-				<td><?php xl('SOC Date','e');?></td>
-				<td width="17%" align="center" valign="top" class="bold">
-					<input type='text' size='10' name='home_environment_SOC_date' id='home_environment_SOC_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
-					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_curr_date1' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
-					title='<?php xl('Click here to choose a date','e'); ?>'> 
-					<script	LANGUAGE="JavaScript">
-						Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
-					</script>
-				</td>
+
+<td><?php xl('Start of Care Date: ','e');?></td>
+<td width="17%" align="center" valign="top" class="bold">
+<input type='text' size='12' name='home_environment_SOC_date' id='home_environment_SOC_date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/> 
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 			</tr>
 		</table>
 	</tr>
@@ -105,7 +109,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_telephone" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onchange="appendrow(this,1)">
+			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_telephone" value="<?php xl('N/A','e');?>">
@@ -122,7 +126,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onchange="appendrow(this,2)">
+			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>">
@@ -139,7 +143,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onchange="appendrow(this,3)">
+			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>">
@@ -156,7 +160,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onchange="appendrow(this,4)">
+			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>">
@@ -173,7 +177,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onchange="appendrow(this,5)">
+			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>">
@@ -190,7 +194,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onchange="appendrow(this,6)">
+			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>">
@@ -207,7 +211,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onchange="appendrow(this,7)">
+			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>">
@@ -224,7 +228,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_stairs" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onchange="appendrow(this,8)">
+			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_stairs" value="<?php xl('N/A','e');?>">
@@ -241,7 +245,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_lighting" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onchange="appendrow(this,9)">
+			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_lighting" value="<?php xl('N/A','e');?>">
@@ -258,7 +262,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_heating" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onchange="appendrow(this,10)">
+			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_heating" value="<?php xl('N/A','e');?>">
@@ -275,7 +279,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_medicine" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onchange="appendrow(this,11)">
+			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_medicine" value="<?php xl('N/A','e');?>">
@@ -292,7 +296,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onchange="appendrow(this,12)">
+			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('N/A','e');?>">
@@ -309,7 +313,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onchange="appendrow(this,13)">
+			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('N/A','e');?>">
@@ -326,7 +330,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onchange="appendrow(this,14)">
+			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>">
@@ -343,7 +347,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onchange="appendrow(this,15)">
+			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>">
@@ -360,7 +364,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onchange="appendrow(this,16)">
+			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>">
@@ -377,7 +381,7 @@ function appendrow(box,item)
 			<input type="checkbox" name="home_environment_other" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onchange="appendrow(this,17)">
+			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)">
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_other" value="<?php xl('N/A','e');?>">

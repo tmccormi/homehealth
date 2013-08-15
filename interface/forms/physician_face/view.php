@@ -120,7 +120,7 @@ foreach($obj as $key => $value) {
 <tr>
 <TD>
 <b><?php xl('Patient:','e') ?></b>
-<input type="text" name="physician_face_patient_name" size="50" value="<?php patientName(); ?>" readonly="readonly"  /><br />
+<input type="text" name="physician_face_patient_name" size="50" value="<?php patientName(); ?>" readonly  /><br />
 <b><?php xl('Chart:','e') ?></b>
 <input type="text" name="physician_face_chart" size="10" value='<?php echo stripslashes($obj{"physician_face_chart"});?>' />
 <b><?php xl('Episode:','e') ?></b>
@@ -166,15 +166,21 @@ foreach($obj as $key => $value) {
 <b><?php xl('Patient Date of Birth:','e') ?></b>
 </TD>
 <td>
-<input type="text" name="physician_face_patient_dob" size="20" value="<?php patientDOB(); ?>" readonly="readonly"  />
+<input type="text" name="physician_face_patient_dob" size="20" value="<?php patientDOB(); ?>" readonly  />
 </td>
 </tr>
 <tr>
-<TD width="170">
-<b><?php xl('SOC Date:','e') ?></b>
-</TD>
+<td width="170"><strong><?php xl('Start of Care Date:','e') ?></strong></td>
 <td>
-<input type="text" name="physician_face_patient_soc" size="20" value="<?php patientDOB(); ?>" readonly="readonly"  />
+<input type="text" name="physician_face_patient_soc" id="physician_face_patient_soc" size="20" value="<?php VisitDate(); ?>" readonly  />
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"physician_face_patient_soc", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </td>
 </tr>
 </table>
@@ -284,7 +290,7 @@ value='<?php echo stripslashes($obj{"physician_face_services_other"});?>' />
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

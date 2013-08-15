@@ -73,21 +73,23 @@ formHeader("Form: msw_evaluation");
 <table border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px" width="100%" border="1px solid #000000">
 <tr>
 <td align="center"><b><?php xl('PATIENT NAME','e') ?></b></td>
-<td><input type="text" style="width : 95%;" name="msw_evaluation_patient_name" value="<?php patientName(); ?>" readonly="readonly"></td>
+<td><input type="text" style="width : 95%;" name="msw_evaluation_patient_name" value="<?php patientName(); ?>" readonly></td>
 <td align="center"><b><?php xl('MR#','e') ?></b></td>
 <td><input type="text" name="msw_evaluation_mr" style="width : 15%;" value="<?php  echo $_SESSION['pid']?>" readonly /></td>
-<td align="center" ><b><?php xl('SOC','e') ?></b></td>
+
+<td align="center" ><strong><?php xl('Start of Care Date','e') ?></strong></td>
 <td>
-<input type='text' size='10' name='msw_evaluation_soc' id='msw_evaluation_soc' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
-					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_curr_date' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
-					title='<?php xl('Click here to choose a date','e'); ?>'> 
-					<script	LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"img_curr_date"});
-   </script>
+<input type='text' size='12' name='msw_evaluation_soc' id='msw_evaluation_soc' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/> 
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </td>
+
 </tr>
 </table>
 </td></tr>

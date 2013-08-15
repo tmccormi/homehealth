@@ -106,8 +106,18 @@ $oasistransfer_dme_foley_supplies = explode("#",$obj{"oasistransfer_dme_foley_su
 <span style="float:right" class="formtable"><strong><?php xl('Caregiver:','e')?></strong><input type="text" name="oasistransfer_Caregiver" size="20" 
  value="<?php echo stripslashes($obj{"oasistransfer_Caregiver"});?>"/>
 &nbsp;&nbsp;
-<strong><?php xl('Visit Date:','e')?></strong>&nbsp;
-<input type="text" name="oasistransfer_Visit_Date" value="<?php echo stripslashes($obj{"oasistransfer_Visit_Date"});?>" readonly/>
+
+<strong><?php xl('Start of Care Date:','e')?></strong>&nbsp;
+<input type="text" name="oasistransfer_Visit_Date" id="oasistransfer_Visit_Date" size="12" value="<?php echo stripslashes($obj{"oasistransfer_Visit_Date"});?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasistransfer_Visit_Date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+
    </span></div>
 <br/>
 <div align="right" class="formtable"> <?php xl('Time In:','e')?>
@@ -1167,7 +1177,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <?php } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <?php } ?>

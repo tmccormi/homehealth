@@ -100,11 +100,23 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 <tr><td style="padding : 0px;">
 <table class="formtable" width="100%"  border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr><td align="center"><b><?php xl('Last Name','e') ?></b></td>
-<td><input type="text" style="width : 100%;" name="dietary_assessment_last_name" value="<?php patientName("lname"); ?>" readonly="readonly" /></td>
+<td><input type="text" style="width : 100%;" name="dietary_assessment_last_name" value="<?php patientName("lname"); ?>" readonly /></td>
 <td align="center"><b><?php xl('First Name','e') ?></b></td>
-<td><input type="text" style="width : 100%;" name="dietary_assessment_first_name" value="<?php patientName("fname"); ?>" readonly="readonly"/></td>
-<td align="center"><b><?php xl('Visit Date','e') ?></b></td>
-<td><input type='text' style="width : 80%;" name='dietary_assessment_visit_date' value="<?php visitdate(); ?>" readonly="readonly"  /></td>
+<td><input type="text" style="width : 100%;" name="dietary_assessment_first_name" value="<?php patientName("fname"); ?>" readonly/></td>
+
+<td align="center"><b><?php xl('Start of Care Date','e') ?></b></td>
+<td>
+<input type='text' size="20" name='dietary_assessment_visit_date' id='dietary_assessment_visit_date' value="<?php VisitDate(); ?>" readonly  />
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"dietary_assessment_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 </tr>
 </table>
 </td></tr>
@@ -112,10 +124,10 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 <tr><td style="padding : 0px;">
 <table class="formtable" width="100%"  border="1px solid #000000" Style="border : 0px;"  cellpadding="5px" cellspacing="0px">
 <tr><td align="center"><b><?php xl('DOB','e') ?></b></td>
-<td><input type='text' size='10' name='dietary_assessment_dob' id='dietary_assessment_dob' value="<?php patientName("DOB"); ?>" readonly="readonly" />
+<td><input type='text' size='10' name='dietary_assessment_dob' id='dietary_assessment_dob' value="<?php patientName("DOB"); ?>" readonly />
 				</td>
 <td align="center"><b><?php xl('Sex','e') ?></b></td>
-<td><input type="text" name="dietary_assessment_sex" style="width : 52px;" value="<?php patientName("sex"); ?>" readonly="readonly" /></td>
+<td><input type="text" name="dietary_assessment_sex" style="width : 52px;" value="<?php patientName("sex"); ?>" readonly /></td>
 <td align="center"><b><?php xl('Weight','e') ?></b></td>
 <td><input type="text" name="dietary_assessment_weight" value="<?php echo stripslashes($obj{"dietary_assessment_weight"});?>" /></td>
 <td align="center"><b><?php xl('Height','e') ?></b></td>
@@ -250,7 +262,7 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

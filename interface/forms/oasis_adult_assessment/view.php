@@ -176,7 +176,7 @@ foreach($obj as $key => $value) {
 <body class="body_top">
 		<h3 align="center"><?php xl('ADULT ASSESSMENT','e')?></h3>
 <form method="post" id="submitForm"
-		action="<?php echo $rootdir?>/forms/oasis_adult_assessment/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="adult_assessment" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir?>/forms/oasis_adult_assessment/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="adult_assessment" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
 
 	
 	<table width="100%" border="0" class="formtable">
@@ -191,7 +191,15 @@ foreach($obj as $key => $value) {
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <?php xl('Visit Date:','e')?>
-<input type="text" name="oasis_visit_date" value="<?php echo stripslashes($obj{"oasis_visit_date"});?>" readonly/>
+<input type="text" size="12" name="oasis_visit_date" id="oasis_visit_date" value="<?php echo stripslashes($obj{"oasis_visit_date"});?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 
 <br />
 <?php xl('Time In:','e')?>
@@ -711,7 +719,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2a"  id="oasis_patient_diagnosis_2a" value="<?php echo $obj{"oasis_patient_diagnosis_2a"};?>" onkeydown="fonChange(this,2,'noe')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2a"  id="oasis_patient_diagnosis_2a" value="<?php echo $obj{"oasis_patient_diagnosis_2a"};?>" onKeyDown="fonChange(this,2,'noe')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2a_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2a_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -720,11 +728,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3a" id="oasis_patient_diagnosis_3a" value="<?php echo $obj{"oasis_patient_diagnosis_3a"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3a" id="oasis_patient_diagnosis_3a" value="<?php echo $obj{"oasis_patient_diagnosis_3a"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4a" id="oasis_patient_diagnosis_4a" value="<?php echo $obj{"oasis_patient_diagnosis_4a"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4a" id="oasis_patient_diagnosis_4a" value="<?php echo $obj{"oasis_patient_diagnosis_4a"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -748,7 +756,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2b" id="oasis_patient_diagnosis_2b" value="<?php echo $obj{"oasis_patient_diagnosis_2b"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2b" id="oasis_patient_diagnosis_2b" value="<?php echo $obj{"oasis_patient_diagnosis_2b"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2b_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -757,11 +765,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3b" id="oasis_patient_diagnosis_3b"  value="<?php echo $obj{"oasis_patient_diagnosis_3b"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3b" id="oasis_patient_diagnosis_3b"  value="<?php echo $obj{"oasis_patient_diagnosis_3b"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4b" id="oasis_patient_diagnosis_4b" value="<?php echo $obj{"oasis_patient_diagnosis_4b"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4b" id="oasis_patient_diagnosis_4b" value="<?php echo $obj{"oasis_patient_diagnosis_4b"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -771,7 +779,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2c" id="oasis_patient_diagnosis_2c" value="<?php echo $obj{"oasis_patient_diagnosis_2c"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2c" id="oasis_patient_diagnosis_2c" value="<?php echo $obj{"oasis_patient_diagnosis_2c"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2c_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -780,11 +788,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3c" id="oasis_patient_diagnosis_3c" value="<?php echo $obj{"oasis_patient_diagnosis_3c"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3c" id="oasis_patient_diagnosis_3c" value="<?php echo $obj{"oasis_patient_diagnosis_3c"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4c" id="oasis_patient_diagnosis_4c" value="<?php echo $obj{"oasis_patient_diagnosis_4c"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4c" id="oasis_patient_diagnosis_4c" value="<?php echo $obj{"oasis_patient_diagnosis_4c"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -794,7 +802,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2d" id="oasis_patient_diagnosis_2d" value="<?php echo $obj{"oasis_patient_diagnosis_2d"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2d" id="oasis_patient_diagnosis_2d" value="<?php echo $obj{"oasis_patient_diagnosis_2d"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2d_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -803,11 +811,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3d" id="oasis_patient_diagnosis_3d" value="<?php echo $obj{"oasis_patient_diagnosis_3d"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3d" id="oasis_patient_diagnosis_3d" value="<?php echo $obj{"oasis_patient_diagnosis_3d"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4d" id="oasis_patient_diagnosis_4d" value="<?php echo $obj{"oasis_patient_diagnosis_4d"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4d" id="oasis_patient_diagnosis_4d" value="<?php echo $obj{"oasis_patient_diagnosis_4d"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -817,7 +825,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2e" id="oasis_patient_diagnosis_2e" value="<?php echo $obj{"oasis_patient_diagnosis_2e"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2e" id="oasis_patient_diagnosis_2e" value="<?php echo $obj{"oasis_patient_diagnosis_2e"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2e_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -826,11 +834,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3e" id="oasis_patient_diagnosis_3e" value="<?php echo $obj{"oasis_patient_diagnosis_3e"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3e" id="oasis_patient_diagnosis_3e" value="<?php echo $obj{"oasis_patient_diagnosis_3e"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4e" id="oasis_patient_diagnosis_4e" value="<?php echo $obj{"oasis_patient_diagnosis_4e"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4e" id="oasis_patient_diagnosis_4e" value="<?php echo $obj{"oasis_patient_diagnosis_4e"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -840,7 +848,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2f" id="oasis_patient_diagnosis_2f" value="<?php echo $obj{"oasis_patient_diagnosis_2f"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2f" id="oasis_patient_diagnosis_2f" value="<?php echo $obj{"oasis_patient_diagnosis_2f"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2f_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -849,11 +857,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3f" id="oasis_patient_diagnosis_3f" value="<?php echo $obj{"oasis_patient_diagnosis_3f"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3f" id="oasis_patient_diagnosis_3f" value="<?php echo $obj{"oasis_patient_diagnosis_3f"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4f" id="oasis_patient_diagnosis_4f" value="<?php echo $obj{"oasis_patient_diagnosis_4f"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4f" id="oasis_patient_diagnosis_4f" value="<?php echo $obj{"oasis_patient_diagnosis_4f"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -863,7 +871,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2g" id="oasis_patient_diagnosis_2g" value="<?php echo $obj{"oasis_patient_diagnosis_2g"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2g" id="oasis_patient_diagnosis_2g" value="<?php echo $obj{"oasis_patient_diagnosis_2g"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2g_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -872,11 +880,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3g" id="oasis_patient_diagnosis_3g" value="<?php echo $obj{"oasis_patient_diagnosis_3g"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3g" id="oasis_patient_diagnosis_3g" value="<?php echo $obj{"oasis_patient_diagnosis_3g"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4g"  id="oasis_patient_diagnosis_4g" value="<?php echo $obj{"oasis_patient_diagnosis_4g"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4g"  id="oasis_patient_diagnosis_4g" value="<?php echo $obj{"oasis_patient_diagnosis_4g"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -886,7 +894,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2h" id="oasis_patient_diagnosis_2h" value="<?php echo $obj{"oasis_patient_diagnosis_2h"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2h" id="oasis_patient_diagnosis_2h" value="<?php echo $obj{"oasis_patient_diagnosis_2h"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2h_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -895,11 +903,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3h" id="oasis_patient_diagnosis_3h" value="<?php echo $obj{"oasis_patient_diagnosis_3h"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3h" id="oasis_patient_diagnosis_3h" value="<?php echo $obj{"oasis_patient_diagnosis_3h"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4h" id="oasis_patient_diagnosis_4h" value="<?php echo $obj{"oasis_patient_diagnosis_4h"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4h" id="oasis_patient_diagnosis_4h" value="<?php echo $obj{"oasis_patient_diagnosis_4h"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -909,7 +917,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2i" id="oasis_patient_diagnosis_2i" value="<?php echo $obj{"oasis_patient_diagnosis_2i"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2i" id="oasis_patient_diagnosis_2i" value="<?php echo $obj{"oasis_patient_diagnosis_2i"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2i_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -918,11 +926,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3i" id="oasis_patient_diagnosis_3i" value="<?php echo $obj{"oasis_patient_diagnosis_3i"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3i" id="oasis_patient_diagnosis_3i" value="<?php echo $obj{"oasis_patient_diagnosis_3i"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4i" id="oasis_patient_diagnosis_4i" value="<?php echo $obj{"oasis_patient_diagnosis_4i"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4i" id="oasis_patient_diagnosis_4i" value="<?php echo $obj{"oasis_patient_diagnosis_4i"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -932,7 +940,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2j" id="oasis_patient_diagnosis_2j" value="<?php echo $obj{"oasis_patient_diagnosis_2j"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2j" id="oasis_patient_diagnosis_2j" value="<?php echo $obj{"oasis_patient_diagnosis_2j"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2j_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -941,11 +949,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3j" id="oasis_patient_diagnosis_3j" value="<?php echo $obj{"oasis_patient_diagnosis_3j"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3j" id="oasis_patient_diagnosis_3j" value="<?php echo $obj{"oasis_patient_diagnosis_3j"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4j" id="oasis_patient_diagnosis_4j" value="<?php echo $obj{"oasis_patient_diagnosis_4j"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4j" id="oasis_patient_diagnosis_4j" value="<?php echo $obj{"oasis_patient_diagnosis_4j"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -955,7 +963,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2k" id="oasis_patient_diagnosis_2k" value="<?php echo $obj{"oasis_patient_diagnosis_2k"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2k" id="oasis_patient_diagnosis_2k" value="<?php echo $obj{"oasis_patient_diagnosis_2k"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2k_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -964,11 +972,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3k" id="oasis_patient_diagnosis_3k" value="<?php echo $obj{"oasis_patient_diagnosis_3k"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3k" id="oasis_patient_diagnosis_3k" value="<?php echo $obj{"oasis_patient_diagnosis_3k"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4k" id="oasis_patient_diagnosis_4k" value="<?php echo $obj{"oasis_patient_diagnosis_4k"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4k" id="oasis_patient_diagnosis_4k" value="<?php echo $obj{"oasis_patient_diagnosis_4k"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -978,7 +986,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2l" id="oasis_patient_diagnosis_2l" value="<?php echo $obj{"oasis_patient_diagnosis_2l"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2l" id="oasis_patient_diagnosis_2l" value="<?php echo $obj{"oasis_patient_diagnosis_2l"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2l_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -987,11 +995,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3l" id="oasis_patient_diagnosis_3l" value="<?php echo $obj{"oasis_patient_diagnosis_3l"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3l" id="oasis_patient_diagnosis_3l" value="<?php echo $obj{"oasis_patient_diagnosis_3l"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4l" id="oasis_patient_diagnosis_4l" value="<?php echo $obj{"oasis_patient_diagnosis_4l"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4l" id="oasis_patient_diagnosis_4l" value="<?php echo $obj{"oasis_patient_diagnosis_4l"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -1001,7 +1009,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2m" id="oasis_patient_diagnosis_2m" value="<?php echo $obj{"oasis_patient_diagnosis_2m"};?>" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2m" id="oasis_patient_diagnosis_2m" value="<?php echo $obj{"oasis_patient_diagnosis_2m"};?>" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="0" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="0"){echo "checked";}?> ><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="1" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="1"){echo "checked";}?> ><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="2" <?php if($obj{"oasis_patient_diagnosis_2m_sub"}=="2"){echo "checked";}?> ><?php xl(' 2 ','e');?></label>
@@ -1010,11 +1018,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3m" id="oasis_patient_diagnosis_3m" value="<?php echo $obj{"oasis_patient_diagnosis_3m"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3m" id="oasis_patient_diagnosis_3m" value="<?php echo $obj{"oasis_patient_diagnosis_3m"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4m" id="oasis_patient_diagnosis_4m" value="<?php echo $obj{"oasis_patient_diagnosis_4m"};?>" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4m" id="oasis_patient_diagnosis_4m" value="<?php echo $obj{"oasis_patient_diagnosis_4m"};?>" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 			</table>
@@ -1782,8 +1790,8 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
                     <td align="center">
                         <strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
                     </td>
-                    <td align="center">
-                       &nbsp;
+                    <td align="center">&nbsp;
+                       
                     </td>
                     <td align="center">
                         <input type="text" name="oasis_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="<?php echo stripslashes($obj{"oasis_braden_scale_friction"});?>" >
@@ -2392,7 +2400,7 @@ id="braden_activity" value="<?php echo stripslashes($obj{"oasis_braden_scale_act
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

@@ -127,15 +127,23 @@ parseInt($("#braden_friction").val()));
 <tr valign="top">
 <TD align="left" width="40%">
 <?php xl('Patient:','e')?>
-<input type="text" name="non_oasis_patient"  size="40" value="<?php patientName(); ?>" readonly="readonly" />
+<input type="text" name="non_oasis_patient"  size="40" value="<?php patientName(); ?>" readonly />
 </TD>
 <td align="right">
 <?php xl('Caregiver:','e')?>&nbsp;&nbsp;
 <input type="text" name="non_oasis_caregiver" size="15"/>
 &nbsp;&nbsp;
 
-<?php xl('Visit Date:','e')?>
-<input type="text" name="non_oasis_visit_date" value="<?php VisitDate(); ?>" readonly/>
+<?php xl('Start of Care Date:','e')?>
+<input type="text" name="non_oasis_visit_date" id="non_oasis_visit_date" value="<?php VisitDate(); ?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"non_oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 
 <br />
 <?php xl('Time In:','e')?>
@@ -517,7 +525,7 @@ xl("other","e");?>"><?php xl('other','e')?>
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" readonly="true"/></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" readonly/></label>
 </td>
 </tr>
 </TABLE>
@@ -979,8 +987,8 @@ PROBLEM","e");?></strong>
                         <strong><?php xl("3. NO APPARENT 
 PROBLEM","e");?></strong>
                     </td>
-                    <td align="center">
-                       &nbsp;
+                    <td align="center">&nbsp;
+                       
                     </td>
                     <td align="center">
                         <input type="text" 

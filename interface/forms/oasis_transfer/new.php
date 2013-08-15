@@ -33,8 +33,18 @@ formHeader("Form: oasis_transfer");
 		
 <div><span class="formtable"><strong><?php xl('Patient:','e')?></strong>&nbsp;&nbsp;<label><?php patientName()?></label> </span>
 <span class="formtable" style="float:right"><strong><?php xl('Caregiver:','e')?></strong> <input type="text" name="oasistransfer_Caregiver" size="20"/> &nbsp;&nbsp;
-<strong class="formtable"><?php xl('Visit Date:','e')?></strong>
-&nbsp;<input type="text" name="oasistransfer_Visit_Date" value="<?php VisitDate(); ?>" readonly/>
+
+<strong class="formtable"><?php xl('Start of Care Date:','e')?></strong>
+&nbsp;<input type="text" size="12" name="oasistransfer_Visit_Date" id="oasistransfer_Visit_Date" value="<?php VisitDate(); ?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasistransfer_Visit_Date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+
    </span></div>
 <br/>
 <div align="right" class="formtable"> <?php xl('Time In:','e')?>

@@ -36,13 +36,24 @@ formHeader("Form: incident_report");
 <b><?php xl('Notes','e') ?></b><br />
 <textarea name="incident_report_notes" rows="2" cols="30"></textarea><br />
 </TD>
+
 <TD align="right">
 <?php xl('(Select an Action)','e') ?><br /><br />
 <b><?php xl('Caregiver:','e') ?></b>
 <input type="text" name="incident_report_caregiver_name" size="30" />
-<b><?php xl('Visit Date:','e') ?></b>
-<input type="text" name="incident_visit_date" value="<?php VisitDate(); ?>" readonly/>
+
+<strong><?php xl('Start of Care Date:','e') ?></strong>
+<input type="text" size="12" name="incident_visit_date" id="incident_visit_date" value="<?php VisitDate(); ?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </TD>
+
 </tr>
 </TABLE>
 
@@ -53,7 +64,7 @@ formHeader("Form: incident_report");
 <td colspan="2">
 
 <b><?php xl('Patient\'s  Name:','e') ?></b>
-<input type="text" name="incident_report_patient_name" size="50" value="<?php patientName(); ?>" readonly="readonly"  /><br />
+<input type="text" name="incident_report_patient_name" size="50" value="<?php patientName(); ?>" readonly  /><br />
 </td>
 </tr>
 
