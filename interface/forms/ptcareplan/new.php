@@ -114,12 +114,12 @@ formHeader("Form: careplan");
 <tr>
 <td width="20%" align="left" scope="row"><strong><?php xl('Med DX/ Reason for PT intervention','e')?></strong></td>
 <td width="30%" align="center">
-<input type="text" id="careplan_PT_intervention" name="careplan_PT_intervention" size="20"/>
+<input type="text" id="careplan_PT_intervention" name="careplan_PT_intervention" style="width:100%;"/>
 </td>
 
 <td width="20%" align="center"><strong><?php xl('Treatment Dx','e')?></strong></td>
 <td width="30%" align="center">
-<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" size="20"/>
+<input type="text" id="careplan_Treatment_DX" name="careplan_Treatment_DX" style="width:100%;"/>
 </td>
 </tr>
 

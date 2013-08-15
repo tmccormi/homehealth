@@ -119,12 +119,12 @@ formHeader("Form: careplan");
 <td width="20%" align="left" valign="top" scope="row">
 <strong><?php xl('Med Dx/ Reason for OT intervention','e')?></strong></td>
 <td width="30%" colspan="2" align="left" valign="top" class="bold">
-<input type="text" id="med_dx_icd9" name="med_dx_icd9" size="20"/>
+<input type="text" id="med_dx_icd9" name="med_dx_icd9" style="width:100%;"/>
 </td>
 
 <td width="20%" align="left" valign="top" class="bold"><?php xl('Treatment Dx','e')?></td>
 <td width="30%" colspan="2" align="left" valign="top" class="bold">
-<input type="text" id="trmnt_dx_icd9" name="trmnt_dx_icd9" size="20"/>
+<input type="text" id="trmnt_dx_icd9" name="trmnt_dx_icd9" style="width:100%;"/>
 </td>
 </tr>
 
