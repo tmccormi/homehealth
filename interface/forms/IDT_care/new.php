@@ -32,7 +32,7 @@ formHeader("Form: IDT_care");
 <table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr>
 <td><b><?php xl('PATIENT NAME','e') ?></b></td>
-<td><input type="text" name="idt_care_patient_name" size="40" value="<?php patientName(); ?>" readonly="readonly"  /></td>
+<td><input type="text" name="idt_care_patient_name" size="40" value="<?php patientName(); ?>" readonly  /></td>
 <td width="10%" align="center" valign="top"><strong><?php xl('MR#','e')?>
                                 </strong></td>
                                 <td width="15%" align="center" valign="top" class="bold"><input
@@ -42,7 +42,7 @@ formHeader("Form: IDT_care");
                                 <strong><?php xl('DATE','e')?></strong></td>
                                 <td width="17%" align="center" valign="top" class="bold">
                                 <input type='text' size='10' name='idt_care_date' id='idt_care_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'

@@ -82,7 +82,7 @@ formHeader("Form: visit_discharge");
     <td><strong>
     <input type='text' size='20' name='dischargeplan_date' id='dischargeplan_date'
     value='<?php echo $date ?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -165,7 +165,7 @@ formHeader("Form: visit_discharge");
   <tr>
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e');?> </strong>
 	<input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
     <select name="dischargeplan_treatment_diagnosis_problem" id="dischargeplan_treatment_diagnosis_problem" style="display:none"></select> </span>
 
@@ -463,7 +463,7 @@ formHeader("Form: visit_discharge");
 </td><td>
 <strong><?php xl('Date','e');?></strong>
 <input type="text" name="dischargeplan_md_date" value="" id='dischargeplan_md_date'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date2' border='0' alt='[?]' style='cursor:pointer;cursor:hand'

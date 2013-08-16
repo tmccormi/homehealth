@@ -506,7 +506,7 @@ Calendar.setup({inputField:"hha_visit_date", ifFormat:"%Y-%m-%d", button:"img_cu
 <td rowspan="2">
 <b><?php xl('Date','e')?></b>
 <input type='text' size='10' name='hha_visit_patient_client_sign_date' id='hha_visit_patient_client_sign_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date7' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'

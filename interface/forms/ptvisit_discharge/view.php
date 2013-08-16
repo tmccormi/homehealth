@@ -160,7 +160,7 @@ foreach($obj as $key => $value) {
     <td ><strong>
     <input type='text' size='10' name='dischargeplan_date' id='dischargeplan_date'
     value='<?php echo stripslashes($obj{"dischargeplan_date"});?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -241,7 +241,7 @@ foreach($obj as $key => $value) {
   <tr>
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
 <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
 {
@@ -529,7 +529,7 @@ echo "</select>";
 </td><td>
 <strong><?php xl('Date','e');?></strong>
 <input type="text" name="dischargeplan_md_date" value="<?php echo $obj{"dischargeplan_md_date"};?>" id='dischargeplan_md_date'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date2' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -555,7 +555,7 @@ echo "</select>";
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

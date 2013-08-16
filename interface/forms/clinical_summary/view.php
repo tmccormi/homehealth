@@ -172,7 +172,7 @@ Calendar.setup({inputField:"clinical_summary_visit_date", ifFormat:"%Y-%m-%d", b
 <?php xl(' recent hospitalizations.','e') ?><br />
 <?php xl('Patient recently admitted to hospital/ rehab facility on ','e') ?>
 <input type='text' size='10' name='clinical_summary_admission_date' id='clinical_summary_admission_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
  value="<?php echo $obj{"clinical_summary_admission_date"}; ?>"  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'

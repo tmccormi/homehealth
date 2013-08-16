@@ -42,7 +42,7 @@ formHeader("Form: msw_careplan");
 				
 <td><?php xl('Start of Care Date','e');?></td>
 <td width="17%" align="center" valign="top" class="bold">
-<input type='text' size='12' name='SOC_date' id='SOC_date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>'	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/>
+<input type='text' size='12' name='SOC_date' id='SOC_date' title='<?php xl('Start of Care Date','e'); ?>'	onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/>
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date' border='0' alt='[?]'	style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
@@ -267,11 +267,11 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 						<strong><?php xl('MEDICAL SOCIAL SERVICES INTERVENTIONS','e');?></strong>
 					</td>
 					<td align="center" valign="middle" width="20%">
-						<strong><?php xl('SOC Date','e');?></strong>
+						<strong><?php xl('Start of Care Date','e');?></strong>
 					</td>
 					<td align="center" valign="middle" width="30%">
 						<input type='text' size='10' name='SOC_date2' id='SOC_date2' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -333,7 +333,7 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 			<?php xl('EFFECTIVE DATE:','e');?>
 			
 					<input type='text' size='10' name='continued_treatmentplan_effective_date' id='continued_treatmentplan_effective_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date3' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'

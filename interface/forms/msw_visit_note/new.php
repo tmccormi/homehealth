@@ -52,7 +52,7 @@ formHeader("Form: msw_visit_note");
 </td>
 <td>
 <b><?php xl('Date','e') ?></b>
-<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('Visit Date','e'); ?>'
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -79,7 +79,7 @@ formHeader("Form: msw_visit_note");
 
 <td align="center"><strong><?php xl('Start of Care Date','e') ?></strong></td>
 <td>
-<input type='text' size='12' name='msw_visit_note_soc' id='msw_visit_note_soc' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/> 
+<input type='text' size='12' name='msw_visit_note_soc' id='msw_visit_note_soc' title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/> 
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />

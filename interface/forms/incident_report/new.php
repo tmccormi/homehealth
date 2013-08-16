@@ -43,7 +43,7 @@ formHeader("Form: incident_report");
 <input type="text" name="incident_report_caregiver_name" size="30" />
 
 <strong><?php xl('Start of Care Date:','e') ?></strong>
-<input type="text" size="12" name="incident_visit_date" id="incident_visit_date" value="<?php VisitDate(); ?>" readonly/>
+<input type="text" size="12" title="<?php xl('Start of Care Date','e'); ?>" name="incident_visit_date" id="incident_visit_date" value="<?php VisitDate(); ?>" readonly/>
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
@@ -72,7 +72,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <TD>
 <b><?php xl('Date of Report:','e') ?></b>
 <input type='text' size='10' name='incident_report_date' id='incident_report_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Incident Report Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -86,7 +86,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <td>
 <b><?php xl('Date of Occurence:','e') ?></b>
 <input type='text' size='10' name='incident_report_occurance_date' id='incident_report_occurance_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Incident Occurance Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -151,7 +151,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_physician_date' id='incident_report_not_physician_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date3' border='0' alt='[?]'
@@ -172,7 +172,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_supervisor_date' id='incident_report_not_supervisor_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date4' border='0' alt='[?]'
@@ -193,7 +193,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_caregiver_date' id='incident_report_not_caregiver_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date5' border='0' alt='[?]'
@@ -214,7 +214,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_manager_date' id='incident_report_not_manager_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date6' border='0' alt='[?]'
@@ -247,7 +247,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_filing_report_date' id='incident_report_filing_report_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date7' border='0' alt='[?]'
@@ -269,7 +269,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_management_reviewer_date' id='incident_report_management_reviewer_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date8' border='0' alt='[?]'
@@ -292,7 +292,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_admin_reviewer_date' id='incident_report_admin_reviewer_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date9' border='0' alt='[?]'
@@ -310,7 +310,7 @@ Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"i
 <input type="text" name="incident_report_caregiver_sign" size="30%"  />
 
 <input type='text' size='10' name='incident_report_caregiver_sign_date' id='incident_report_caregiver_sign_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date10' border='0' alt='[?]'

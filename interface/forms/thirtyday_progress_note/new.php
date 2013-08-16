@@ -45,7 +45,7 @@ formHeader("Form: thirtyday_progress_note");
 				<strong><?php xl('DATE','e')?></strong></td>
 				<td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='thirty_day_progress_note_date' id='thirty_day_progress_note_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'

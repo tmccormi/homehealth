@@ -249,7 +249,7 @@ Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_
 <b><u><?php xl('(M0030)','e')?></u><?php xl('Start of Care Date:','e')?></b>&nbsp;<input type="text" name="" style="width:30%" value="<?php patientName("DOB")?>" readonly ><br/>
 <b><?php xl('Certification Period From:','e')?></b>&nbsp;
 <input type='text' size='10' name='oasis_certification_period_from' id='oasis_certification_period_from'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' 
+                                        title='<?php xl('Date','e'); ?>' 
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value='<?php echo $obj{"oasis_certification_period_from"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -261,7 +261,7 @@ Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_
 
 <?php xl('To:','e')?>&nbsp;
 <input type='text' size='10' name='oasis_certification_period_to' id='oasis_certification_period_to'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_certification_period_to"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -278,7 +278,7 @@ Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_
 <tr><td>
 <strong><?php xl('PHYSICIAN DATE LAST CONTACTED:','e')?></strong>&nbsp;
 <input type='text' size='10' name='oasis_physician_last_contacted' id='oasis_physician_last_contacted'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_physician_last_contacted"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -290,7 +290,7 @@ Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_
 <br/>
 <strong><?php xl('PHYSICIAN DATE LAST VISITED:','e')?></strong>&nbsp;
 <input type='text' size='10' name='oasis_physician_last_visited' id='oasis_physician_last_visited'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_physician_last_visited"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date3' border='0' alt='[?]'
@@ -354,7 +354,7 @@ the patient','e')?> <br/>
 
 <input type="text" name="oasis_prior_hospitalizations_Reason1" size="40" value="<?php echo stripslashes($obj{"oasis_prior_hospitalizations_Reason1"});?>"/>&nbsp;
 <input type='text' size='10' name='oasis_prior_hospitalizations_date1' id='oasis_prior_hospitalizations_date1'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_prior_hospitalizations_date1"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date4' border='0' alt='[?]'
@@ -366,7 +366,7 @@ the patient','e')?> <br/>
 
 <input type="text" name="oasis_prior_hospitalizations_Reason2" size="40" value="<?php echo stripslashes($obj{"oasis_prior_hospitalizations_Reason2"});?>"/>&nbsp;
 <input type='text' size='10' name='oasis_prior_hospitalizations_date2' id='oasis_prior_hospitalizations_date2'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_prior_hospitalizations_date2"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date5' border='0' alt='[?]'
@@ -1164,7 +1164,7 @@ blank in that row.','e');?>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<?php xl('Date','e')?>&nbsp;
 <input type='text' size='10' name='oasis_vision_date' id='oasis_vision_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_vision_date"};?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date6' border='0' alt='[?]'

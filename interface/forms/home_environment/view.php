@@ -54,7 +54,7 @@ function appendrow(box,item)
 	if(box.checked)
 	{
 		htmlrow='<tr id="home_environment_action_plan_row_'+item+'"><td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" value="'+item+'" readonly></td>';
-		htmlrow+='<td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" id="home_environment_action_plan_'+item+'" title="yyyy-mm-dd Start Date" onkeyup="datekeyup(this,mypcc)"  value="" readonly/><img src="../../pic/show_calendar.gif" align="absbottom" width="24" height="22" id="img_start_date'+item+'" border="0" alt="[?]" style="cursor: pointer; cursor: hand" title="Click here to choose a date"><script	LANGUAGE="JavaScript">Calendar.setup({inputField:"home_environment_action_plan_'+item+'", ifFormat:"%Y-%m-%d", button:"img_start_date'+item+'"}); <';
+		htmlrow+='<td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" id="home_environment_action_plan_'+item+'" title="Start Date" onkeyup="datekeyup(this,mypcc)"  value="" readonly/><img src="../../pic/show_calendar.gif" align="absbottom" width="24" height="22" id="img_start_date'+item+'" border="0" alt="[?]" style="cursor: pointer; cursor: hand" title="Click here to choose a date"><script	LANGUAGE="JavaScript">Calendar.setup({inputField:"home_environment_action_plan_'+item+'", ifFormat:"%Y-%m-%d", button:"img_start_date'+item+'"}); <';
 		htmlrow+='/script>';
 		htmlrow+='</td>';
 		htmlrow+='<td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td><td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td><td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td></tr>'
@@ -152,7 +152,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 
 <td><?php xl('Start of Care Date','e');?></td>
 <td width="17%" align="center" valign="top" class="bold">
-<input type='text' size='12' name='home_environment_SOC_date' id='home_environment_SOC_date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_SOC_date"};?>" readonly/> 
+<input type='text' size='12' name='home_environment_SOC_date' id='home_environment_SOC_date' title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_SOC_date"};?>" readonly/> 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
 
@@ -581,7 +581,7 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Person/Title Completing Evaluation','e');?>&nbsp;<input type="text" name="home_environment_person_title" style="width:20%" value="<?php echo $obj{"home_environment_person_title"};?>">
 				<?php xl('Date:','e');?>
 					<input type='text' size='10' name='home_environment_person_title_date' id='home_environment_person_title_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_person_title_date"};?>" readonly/> 
+					title='<?php xl('Person Completing Evaluation Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_person_title_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date19' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -594,7 +594,7 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Patient/Caregiver Signature','e');?>&nbsp;<input type="text" name="home_environment_patient_sig" style="width:20%" value="<?php echo $obj{"home_environment_patient_sig"};?>">
 				<?php xl('Date:','e');?>
 					<input type='text' size='10' name='home_environment_patient_sig_date' id='home_environment_patient_sig_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_patient_sig_date"};?>" readonly/> 
+					title='<?php xl('Patient/Caregiver Signature Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_patient_sig_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date20' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'

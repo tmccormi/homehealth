@@ -300,7 +300,7 @@ $(document).ready(function() {
 
 <td align="right">
 <?php xl('Start of Care Date','e');?>
-<input type="text" size="12" name="oasis_c_nurse_visit_date" id="oasis_c_nurse_visit_date" value="<?php echo stripslashes($obj{"oasis_c_nurse_visit_date"});?>" readonly>
+<input type="text" title="Start of Care Date" size="12" name="oasis_c_nurse_visit_date" id="oasis_c_nurse_visit_date" value="<?php echo stripslashes($obj{"oasis_c_nurse_visit_date"});?>" readonly>
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
@@ -411,7 +411,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_primary_physician_last"});?>"
 			<input type="text" name="oasis_c_nurse_patient_id" value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_id"});?>" readonly><br>
 			<b><?php xl('(M0030) Start of Care Date:','e');?></b>
 				<input type='text' size='10' name='oasis_c_nurse_soc_date' id='oasis_c_nurse_soc_date' 
-					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_soc_date"});?>" readonly/> 
+					title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_soc_date"});?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -562,7 +562,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 <hr />
 			<b><?php xl('(M0090) Date Assessment Completed: ','e');?></b>
 			<input type='text' size='10' name='oasis_c_nurse_date_assessment_completed' id='oasis_c_nurse_date_assessment_completed' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_date_assessment_completed"});?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_date_assessment_completed"});?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -591,7 +591,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 <hr />
 			<strong><?php xl('Certification Period From: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_certification_period_from' id='oasis_c_nurse_certification_period_from' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_certification_period_from"});?>"  readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_certification_period_from"});?>"  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date5' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -601,7 +601,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 					</script>
 			<strong><?php xl(' To: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_certification_period_to' id='oasis_c_nurse_certification_period_to' 
-					title='<?php xl('yyyy-mm-dd To','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_certification_period_to"});?>"  readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  value="<?php echo stripslashes($obj{"oasis_c_nurse_certification_period_to"});?>"  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -616,7 +616,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 			<hr>
 			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_date_last_contacted_physician' id='oasis_c_nurse_date_last_contacted_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_contacted_physician"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_contacted_physician"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -627,7 +627,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_patient_name_first"});?>"  re
 			<hr>
 			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_date_last_seen_by_physician' id='oasis_c_nurse_date_last_seen_by_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_seen_by_physician"};?>"  readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_c_nurse_date_last_seen_by_physician"};?>"  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1185,7 +1185,7 @@ blank in that row.','e');?>
 <input type="text" name="oasis_surgical_procedure_a"  id="oasis_surgical_procedure_a"  value="<?php echo $obj{"oasis_surgical_procedure_a"};?>" onKeyDown="fonChange(this,2,'noe')">
 <?php xl('Date:','e');?>
 						<input type='text' size='10' name='oasis_surgical_procedure_a_date' id='oasis_surgical_procedure_a_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"oasis_surgical_procedure_a_date"});?>" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"oasis_surgical_procedure_a_date"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date47' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -1198,7 +1198,7 @@ blank in that row.','e');?>
 <input type="text" name="oasis_surgical_procedure_b"  id="oasis_surgical_procedure_b"  value="<?php echo $obj{"oasis_surgical_procedure_b"};?>" onKeyDown="fonChange(this,2,'noe')">
 <?php xl('Date:','e');?>
 						<input type='text' size='10' name='oasis_surgical_procedure_b_date' id='oasis_surgical_procedure_b_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"oasis_surgical_procedure_b_date"});?>" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"oasis_surgical_procedure_b_date"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date48' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -2503,7 +2503,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_cardio_breath_amt"});?>" />
 				<input type="text" name="oasis_c_nurse_heart_sounds_pacemaker"  value="<?php echo stripslashes($obj{"oasis_c_nurse_heart_sounds_pacemaker"});?>" >&nbsp;&nbsp;
 
 				<?php xl('Date:','e')?><input type='text' size='10' name='oasis_c_nurse_heart_sounds_pacemaker_date' id='oasis_c_nurse_heart_sounds_pacemaker_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value="<?php echo stripslashes($obj{"oasis_c_nurse_heart_sounds_pacemaker_date"});?>" 
 readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -2731,7 +2731,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_diapers_other"});?>" 
 
 
 				<input type='text' size='10' name='oasis_c_nurse_urinary_foley_date' id='oasis_c_nurse_urinary_foley_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_date"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date36' border='0' alt='[?]'
@@ -3427,7 +3427,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_central_date' id='oasis_c_nurse_infusion_central_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
  value="<?php echo stripslashes($obj{"oasis_c_nurse_infusion_central_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date8' border='0' alt='[?]'
@@ -3506,7 +3506,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 <?php xl('Triple lumen','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_hickman_date' id='oasis_c_nurse_infusion_hickman_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
  value="<?php echo stripslashes($obj{"oasis_c_nurse_infusion_hickman_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date19' border='0' alt='[?]'
@@ -3534,7 +3534,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 
 
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_epidural_date' id='oasis_c_nurse_infusion_epidural_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
  value="<?php echo stripslashes($obj{"oasis_c_nurse_infusion_epidural_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date20' border='0' alt='[?]'
@@ -3563,7 +3563,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 <br />
 
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_implanted_date' id='oasis_c_nurse_infusion_implanted_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
  value="<?php echo stripslashes($obj{"oasis_c_nurse_infusion_implanted_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date21' border='0' alt='[?]'
@@ -3590,7 +3590,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 <br />
 
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_intrathecal_date' id='oasis_c_nurse_infusion_intrathecal_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
  value="<?php echo stripslashes($obj{"oasis_c_nurse_infusion_intrathecal_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date22' border='0' alt='[?]'
@@ -3989,7 +3989,7 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 
 			<strong><?php xl("APPROXIMATE NEXT VISIT DATE:","e");?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_summary_check_next_visit' id='oasis_c_nurse_summary_check_next_visit' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
  value="<?php echo stripslashes($obj{"oasis_c_nurse_summary_check_next_visit"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date23' border='0' alt='[?]'
@@ -4015,7 +4015,7 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
  
  
 			<input type='text' size='10' name='oasis_c_nurse_summary_verbal_order_date' id='oasis_c_nurse_summary_verbal_order_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
  value="<?php echo stripslashes($obj{"oasis_c_nurse_summary_verbal_order_date"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date52' border='0' alt='[?]'

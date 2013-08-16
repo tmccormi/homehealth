@@ -84,7 +84,7 @@ formHeader("Form: visit_notes");
         <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"><?php timeDropDown($GLOBALS['Selected']) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
-        <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+        <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('Date','e'); ?>'
 					 readonly/> 
 		<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_visit_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -169,7 +169,7 @@ formHeader("Form: visit_notes");
   <tr>
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
    <input type="text" id="icd" size="25"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <select id="visitnote_Treatment_Diagnosis_Problem" name="visitnote_Treatment_Diagnosis_Problem" style="display:none"></select></span></td>
   </tr>
@@ -416,7 +416,7 @@ formHeader("Form: visit_notes");
 </strong><br>
 <?php xl('Approximate Date of Next Visit','e'); ?>&nbsp;
 <input type='text' size='10' name='visitnote_Date_of_Next_Visit' id='visitnote_Date_of_Next_Visit' 
-title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+title='<?php xl('Date','e'); ?>'
 onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 height='22' id='img_curr_date' border='0' alt='[?]'

@@ -119,7 +119,7 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 </td>
 <td>
 <b><?php xl('Date','e') ?></b>
-<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('Visit Date','e'); ?>'
 value="<?php echo stripslashes($obj{"msw_visit_note_date"});?>"
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly /> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -146,7 +146,7 @@ value="<?php echo stripslashes($obj{"msw_visit_note_date"});?>"
 <td><input type="text" name="msw_visit_note_mr" style="width : 15%;" value="<?php  echo $_SESSION['pid']?>" readonly></td>
 
 <td align="center"><b><?php xl('Start of Care Date','e') ?></b></td>
-<td><input type='text' size='12' name='msw_visit_note_soc' id='msw_visit_note_soc' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' value="<?php echo stripslashes($obj{"msw_visit_note_soc"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly /> 
+<td><input type='text' size='12' name='msw_visit_note_soc' id='msw_visit_note_soc' title='<?php xl('Start of Care Date','e'); ?>' value="<?php echo stripslashes($obj{"msw_visit_note_soc"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly /> 
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />

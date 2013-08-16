@@ -128,7 +128,7 @@ $(document).ready(function() {
 				<strong><?php xl('DATE','e')?></strong></td>
 				<td align="center" valign="top" class="bold">
 				<input type='text' size='10' name='patient_discharge_date' id='patient_discharge_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"patient_discharge_date"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"patient_discharge_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -267,7 +267,7 @@ health agency (Check all that apply)','e');?>&nbsp;&nbsp;
 			<table border="1px" width="100%" class="formtable">
 			<tr><td width="33%">
 			<strong><?php xl('MD PRINTED NAME','e');?></strong><br>
-			<input type="text" name="discharge_summary_md_name" style="width:90%" value="<?php doctorname(); ?>" readonly="readonly" >
+			<input type="text" name="discharge_summary_md_name" style="width:90%" value="<?php doctorname(); ?>" readonly >
 			</td>
 			<td width="33%">
 			<strong><?php xl('MD Signature','e');?></strong><br>
@@ -276,7 +276,7 @@ health agency (Check all that apply)','e');?>&nbsp;&nbsp;
 			<td width="33%">
 			<strong><?php xl('Date','e');?></strong><br>&nbsp;
 			<input type='text' size='16' name='discharge_summary_md_signature_date' id='discharge_summary_md_signature_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"discharge_summary_md_signature_date"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"discharge_summary_md_signature_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -311,7 +311,7 @@ health agency (Check all that apply)','e');?>&nbsp;&nbsp;
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

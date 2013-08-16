@@ -163,7 +163,7 @@ foreach($obj as $key => $value) {
     <td width="17%" align="center" valign="top" class="bold">
       <input type='text' size='10' name='date_curr' id='date_curr'
     value="<?php echo stripslashes($obj{"date_curr"});?>"
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -193,7 +193,7 @@ foreach($obj as $key => $value) {
 
 <td valign="top"><strong><?php xl('SOC Date','e')?></strong></td>
 <td colspan="2" valign="top">
-<input type='text' size='12' name='SOC_Date' id='SOC_Date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"SOC_Date"});?>" readonly/>
+<input type='text' size='12' name='SOC_Date' id='SOC_Date' title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"SOC_Date"});?>" readonly/>
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />

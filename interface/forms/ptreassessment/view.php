@@ -172,7 +172,7 @@ foreach($obj as $key => $value) {
 					<td  width="5%"align="center"><strong><?php xl('REASSESS DATE','e')?></strong></td>
        <td width="25%" align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					value="<?php echo stripslashes($obj{"Reassessment_date"});?>" 
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -342,7 +342,7 @@ SBP <80 or >190 DBP <50 or >100 Pain Significantly Impacts patients ability to p
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"Reassessment_TREATMENT_DX_Problem"} != "")
 {
@@ -1093,7 +1093,7 @@ value="<?php echo stripslashes($obj{"Reassessment_Other_Services_Provided"});?>"
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

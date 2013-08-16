@@ -165,7 +165,7 @@ foreach($obj as $key => $value) {
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 				value='<?php echo stripslashes($obj{"Evaluation_date"});?>'
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_date' border='0' alt='[?]'
@@ -1034,7 +1034,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
 <?php xl('Received physician orders for OT treatment and approximate next visit date will be','e')?>&nbsp;
 <input type='text' size='20px' name='Evaluation_approximate_next_visit_date' id='Evaluation_approximate_next_visit_date'
     value='<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'

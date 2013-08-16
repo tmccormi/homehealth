@@ -259,7 +259,7 @@ parseInt($("#braden_friction").val()));
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <?php xl('Start of Care Date:','e')?>
-<input type="text" name="non_oasis_visit_date" id="non_oasis_visit_date" value="<?php echo stripslashes($obj{"non_oasis_visit_date"});?>" readonly/>
+<input type="text" title="<?php xl('Start of Care Date','e') ?>" name="non_oasis_visit_date" id="non_oasis_visit_date" value="<?php echo stripslashes($obj{"non_oasis_visit_date"});?>" readonly/>
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
@@ -1073,7 +1073,7 @@ value="<?php echo stripslashes($obj{"non_oasis_cardio_breath_dyspnea_other"});?>
                 <input type="text" name="non_oasis_cardio_heart_sounds_pacemaker" 
 value="<?php echo stripslashes($obj{"non_oasis_cardio_heart_sounds_pacemaker"});?>" >&nbsp;&nbsp;
                 <?php xl('Date:','e')?><input type='text' size='10' name='non_oasis_cardio_heart_sounds_pacemaker_date' id='non_oasis_cardio_heart_sounds_pacemaker_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
 value="<?php echo stripslashes($obj{"non_oasis_cardio_heart_sounds_pacemaker_date"});?>" 
 
 />
@@ -1912,7 +1912,7 @@ value="<?php echo stripslashes($obj{"non_oasis_infusion_PICC"});?>" /><br />
 
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_central_date' id='non_oasis_infusion_central_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly 
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly 
 value="<?php echo stripslashes($obj{"non_oasis_infusion_central_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date8' border='0' alt='[?]'
@@ -1979,7 +1979,7 @@ value="<?php echo stripslashes($obj{"non_oasis_infusion_length"});?>" /><br />
 <?php xl('Triple lumen','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_hickman_date' id='non_oasis_infusion_hickman_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
 value="<?php echo stripslashes($obj{"non_oasis_infusion_hickman_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date9' border='0' alt='[?]'
@@ -2005,7 +2005,7 @@ value="<?php echo stripslashes($obj{"non_oasis_infusion_hickman_date"});?>" />
 <?php xl('Port','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_epidural_date' id='non_oasis_infusion_epidural_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
 value="<?php echo stripslashes($obj{"non_oasis_infusion_epidural_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date10' border='0' alt='[?]'
@@ -2033,7 +2033,7 @@ value="<?php echo stripslashes($obj{"non_oasis_infusion_epidural_date"});?>" />
 <?php xl('Peritoneal','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_implanted_date' id='non_oasis_infusion_implanted_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
 value="<?php echo stripslashes($obj{"non_oasis_infusion_implanted_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date11' border='0' alt='[?]'
@@ -2059,7 +2059,7 @@ value="<?php echo stripslashes($obj{"non_oasis_infusion_implanted_date"});?>" />
 <?php xl('Reservoir','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_intrathecal_date' id='non_oasis_infusion_intrathecal_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly
 value="<?php echo stripslashes($obj{"non_oasis_infusion_intrathecal_date"});?>" />
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date12' border='0' alt='[?]'

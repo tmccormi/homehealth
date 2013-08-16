@@ -118,7 +118,7 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 </td>
 <td>
 <b><?php xl('Date','e') ?></b>
-<input type='text' size='10' name='msw_evaluation_date' id='msw_evaluation_date' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+<input type='text' size='10' name='msw_evaluation_date' id='msw_evaluation_date' title='<?php xl('Evaluation Date','e'); ?>'
 value="<?php echo stripslashes($obj{"msw_evaluation_date"});?>"
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly /> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -145,7 +145,7 @@ value="<?php echo stripslashes($obj{"msw_evaluation_date"});?>"
 <td><input type="text" name="msw_evaluation_mr" style="width : 15%;" value="<?php  echo $_SESSION['pid']?>" readonly></td>
 
 <td align="center"><b><?php xl('Start of Care Date','e') ?></b></td>
-<td><input type='text' size='12' name='msw_evaluation_soc' id='msw_evaluation_soc' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' value="<?php echo stripslashes($obj{"msw_evaluation_soc"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
+<td><input type='text' size='12' name='msw_evaluation_soc' id='msw_evaluation_soc' title='<?php xl('Start of Care Date','e'); ?>' value="<?php echo stripslashes($obj{"msw_evaluation_soc"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
@@ -208,7 +208,7 @@ Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"im
 <tr>
 <td style="width :43%;"><b><?php xl('Medical Diagnosis/Problem ','e') ?></b></td>
 <td style="width :57%;"><b><?php xl('Onset ','e') ?></b>
-<input type='text' size='10' name='msw_evaluation_medical_diagnosis_problem_onset' id='msw_evaluation_medical_diagnosis_problem_onset' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+<input type='text' size='10' name='msw_evaluation_medical_diagnosis_problem_onset' id='msw_evaluation_medical_diagnosis_problem_onset' title='<?php xl('Onset Date','e'); ?>'
 value="<?php echo stripslashes($obj{"msw_evaluation_medical_diagnosis_problem_onset"});?>"
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'

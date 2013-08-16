@@ -169,7 +169,7 @@ foreach($obj as $key => $value) {
 
           <td width="20%" align="center">
 <input type='text' size='15' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 			value="<?php echo stripslashes($obj{"Evaluation_date"});?>"
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -1142,7 +1142,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_STRENGTH_Left3"});?>"/>
 <?php if ($obj{"Evaluation_Summary_Received_Physician_Orders"} == "on")  echo "checked";;?>/>
     <?php xl('Received physician orders for PT treatment and approximate next visit date will be','e')?>
     <input type="text" style="width:10%" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date" 
- value="<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>" title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+ value="<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>" title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_onset_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 <script	LANGUAGE="JavaScript">
 Calendar.setup({inputField:"Evaluation_approximate_next_visit_date", ifFormat:"%Y-%m-%d", button:"img_onset_date"});

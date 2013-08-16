@@ -61,7 +61,7 @@ function patientDOB($field)
 function datePicker($idName)
 {
 
-$op="<input type='text' size='10' name='".$idName."' id='".$idName."' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='".$idName."' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> <script LANGUAGE=\"JavaScript\"> Calendar.setup({inputField:\"".$idName."\", ifFormat:\"%Y-%m-%d\", button:\"".$idName."\"}); </script>";
+$op="<input type='text' size='10' name='".$idName."' id='".$idName."' title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='".$idName."' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> <script LANGUAGE=\"JavaScript\"> Calendar.setup({inputField:\"".$idName."\", ifFormat:\"%Y-%m-%d\", button:\"".$idName."\"}); </script>";
 
 echo $op;
 
@@ -193,7 +193,7 @@ foreach($Fre_duration['units'] as $units)
 function goals_date($name, $val='') {
 	return 
 			"<input type='text' size='10' name='$name' id='$name'
-							title='yyyy-mm-dd Date of Birth'
+							title='Date'
 							onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='".stripslashes($val)."'  readonly/> 
 							<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 							height='22' id='img_$name' border='0' alt='[?]'

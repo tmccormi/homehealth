@@ -89,7 +89,7 @@ formHeader("Form: visit_notes");
         <strong>
     <input type='text' size='20' name='visitnote_date_curr' id='visitnote_date_curr'
     value='<?php echo $date ?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -468,7 +468,7 @@ formHeader("Form: visit_notes");
  <?php xl('Approximate Date of Next Visit','e'); ?>
     <input type='text' size='20' name='visitnote_Date_of_Next_Visit' id='visitnote_Date_of_Next_Visit'
     value='<?php echo $date ?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'

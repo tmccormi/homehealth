@@ -53,7 +53,7 @@ formHeader("Form: home_health_aide");
 			<?php xl('EFFECTIVE DATE:','e');?>
 			
 					<input type='text' size='10' name='home_health_aide_visit_effective_date' id='home_health_aide_visit_effective_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -282,7 +282,7 @@ formHeader("Form: home_health_aide");
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_1' id='review_date_1' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -300,7 +300,7 @@ formHeader("Form: home_health_aide");
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_2' id='review_date_2' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -318,7 +318,7 @@ formHeader("Form: home_health_aide");
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_3' id='review_date_3' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date3' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -348,7 +348,7 @@ formHeader("Form: home_health_aide");
 <a href="javascript:top.restoreSession();document.home_health_aide.submit();"
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B" onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B" onClick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 
 </body>

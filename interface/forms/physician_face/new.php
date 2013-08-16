@@ -53,7 +53,7 @@ formHeader("Form: physician_face");
 <TD align="right">
 <b><?php xl('Date:','e') ?></b>
 <input type='text' size='10' name='physician_face_date' id='physician_face_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -112,7 +112,7 @@ Calendar.setup({inputField:"physician_face_patient_soc", ifFormat:"%Y-%m-%d", bu
 <?php xl('I certify that this patient is under my care and that I, or a nurse practitioner or physician\'s assistant working with me, had a face-to-face encounter that meets the physician face-to-face encounter requirements with this patient on:','e') ?>
 
 <input type='text' size='10' name='physician_face_patient_date' id='physician_face_patient_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'

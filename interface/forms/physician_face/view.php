@@ -129,7 +129,7 @@ foreach($obj as $key => $value) {
 <TD align="right">
 <b><?php xl('Date:','e') ?></b>
 <input type='text' size='10' name='physician_face_date' id='physician_face_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 					 value='<?php echo stripslashes($obj{"physician_face_date"});?>'
 					 readonly/>
@@ -188,7 +188,7 @@ Calendar.setup({inputField:"physician_face_patient_soc", ifFormat:"%Y-%m-%d", bu
 <?php xl('I certify that this patient is under my care and that I, or a nurse practitioner or physician\'s assistant working with me, had a face-to-face encounter that meets the physician face-to-face encounter requirements with this patient on:','e') ?>
 
 <input type='text' size='10' name='physician_face_patient_date' id='physician_face_patient_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
                                         value='<?php echo stripslashes($obj{"physician_face_patient_date"});?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'

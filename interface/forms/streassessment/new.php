@@ -58,7 +58,7 @@ formHeader("Form: reassessment");
 <td width="9%" align="center"><strong><?php xl('Reassess Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'

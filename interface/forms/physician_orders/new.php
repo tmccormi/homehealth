@@ -80,7 +80,7 @@ function changeICDlist(dx,code,rootdir)
 <table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr>
 <td width="20%"><b><?php xl('PATIENT NAME','e') ?></b></td>
-<td><input type="text" name="physician_orders_patient_name" size="30%" value="<?php patientName(); ?>" readonly="readonly"  /></td>
+<td><input type="text" name="physician_orders_patient_name" size="30%" value="<?php patientName(); ?>" readonly  /></td>
 <td width="10%" align="center" valign="top"><strong><?php xl('MR#','e')?>
                                 </strong></td>
                                 <td width="15%" align="center" valign="top" class="bold"><input
@@ -90,7 +90,7 @@ function changeICDlist(dx,code,rootdir)
                                 <strong><?php xl('Date of Order','e')?></strong></td>
                                 <td width="17%" align="center" valign="top" class="bold">
                                 <input type='text' size='10' name='physician_orders_date' id='physician_orders_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -126,7 +126,7 @@ function changeICDlist(dx,code,rootdir)
 <tr>
     <td scope="row" width="50%"><strong><?php xl('Diagnosis','e');?> </strong>
    <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(physician_orders_diagnosis,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(physician_orders_diagnosis,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <select id="physician_orders_diagnosis" name="physician_orders_diagnosis" style="display:none"></select>
 </span>
@@ -193,7 +193,7 @@ function changeICDlist(dx,code,rootdir)
 <td width="22%" align="left" valign="top" colspan="6">
         <strong><?php xl('Effective Date','e')?></strong>
   <input type='text' size='10' name='physician_orders_effective_date' id='physician_orders_effective_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
   <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -252,7 +252,7 @@ function changeICDlist(dx,code,rootdir)
 <td width="40%" align="left" valign="top">
         <strong><?php xl('DATE','e')?></strong>
   <input type='text' size='10' name='physician_orders_date1' id='physician_orders_date1'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
   <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -287,7 +287,7 @@ function changeICDlist(dx,code,rootdir)
 <a href="javascript:top.restoreSession();document.physician_orders.submit();"
                         class="link_submit"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B" onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B" onClick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 
 </form>
 </body>

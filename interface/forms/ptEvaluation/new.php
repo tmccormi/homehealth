@@ -103,7 +103,7 @@ formHeader("Form: evaluation");
  
           <td width="5%" align="center"><strong><?php xl('Date','e')?></strong></td>
 <td width="20%" > <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -879,7 +879,7 @@ formHeader("Form: evaluation");
     <?php xl('Need physician orders for PT services with specific treatments, frequency, and duration. See OT Care Plan and/or 485','e')?><br />
     <input type="checkbox" name="Evaluation_Summary_Received_Physician_Orders" id="Evaluation_Summary_Received_Physician_Orders" />
     <?php xl('Received physician orders for PT treatment and approximate next visit date will be','e')?>
-    <input type="text" style="width:10%" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date"   title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'  onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+    <input type="text" style="width:10%" name="Evaluation_approximate_next_visit_date" id="Evaluation_approximate_next_visit_date"   title='<?php xl('Date','e'); ?>'  onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_onset_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 <script LANGUAGE="JavaScript"> 
 Calendar.setup({inputField:"Evaluation_approximate_next_visit_date", ifFormat:"%Y-%m-%d", button:"img_onset_date"});

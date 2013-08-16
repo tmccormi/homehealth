@@ -104,7 +104,7 @@ formHeader("Form: evaluation");
           <td align="center"><strong><?php xl('Date','e')?></strong></td>
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_date' border='0' alt='[?]'
@@ -811,7 +811,7 @@ formHeader("Form: evaluation");
 &nbsp;
 <input type='text' size='20px' name='Evaluation_approximate_next_visit_date' id='Evaluation_approximate_next_visit_date'
     value='<?php echo $date ?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'

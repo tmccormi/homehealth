@@ -493,7 +493,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<input type="text" name="oasis_patient_patient_id" value="<?php patientName('pid');?>" readonly ><br>
 			<?php xl('<u>(M0030)</u> Start of Care Date:','e');?>
 				<input type='text' size='10' name='oasis_patient_soc_date' id='oasis_patient_soc_date' 
-					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_soc_date"};?>" readonly/> 
+					title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_soc_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2b' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -504,7 +504,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 					<br>
 			<?php xl('<u>(M0032)</u> Resumption of Care Date: ','e');?>
 				<input type='text' size='10' name='oasis_patient_resumption_care_date' id='oasis_patient_resumption_care_date' 
-					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_resumption_care_date"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_resumption_care_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2a' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -627,7 +627,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<strong><?php xl('Certification Period From: ','e');?></strong>
 			<input type='text' size='10' name='oasis_patient_certification_period_from' id='oasis_patient_certification_period_from' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_certification_period_from"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_certification_period_from"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date5' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -637,7 +637,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 					</script>
 			<?php xl(' To: ','e');?>
 			<input type='text' size='10' name='oasis_patient_certification_period_to' id='oasis_patient_certification_period_to' 
-					title='<?php xl('yyyy-mm-dd To','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_certification_period_to"};?> " readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_certification_period_to"};?> " readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date5b' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -652,7 +652,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_patient_date_last_contacted_physician' id='oasis_patient_date_last_contacted_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_last_contacted_physician"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_last_contacted_physician"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -663,7 +663,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_patient_date_last_seen_by_physician' id='oasis_patient_date_last_seen_by_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_last_seen_by_physician"};?>"  readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_last_seen_by_physician"};?>"  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -689,7 +689,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<strong><?php xl('<u>(M0090)</u> Date Assessment Completed: ','e');?></strong>
 			<input type='text' size='10' name='oasis_patient_date_assessment_completed' id='oasis_patient_date_assessment_completed' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_assessment_completed"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_assessment_completed"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -707,7 +707,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 		<td>
 			<?php xl('<b><u>(M0102)</u> Date of Physician-ordered Start of Care (Resumption of Care):</b> If the physician indicated a specific start of care (resumption of care) date when the patient was referred for home health services, record the date specified. <b><i>(Go to M0110, if date entered)</i></b>','e');?>
 			<input type='text' size='10' name='oasis_patient_date_ordered_soc' id='oasis_patient_date_ordered_soc' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_ordered_soc"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_ordered_soc"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4z' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -721,7 +721,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<?php xl('<b><u>(M0104)</u> Date of Referral:</b> Indicate the date that the written or verbal referral for initiation or resumption of care was received by the HHA.','e');?>
 			<input type='text' size='10' name='oasis_patient_date_of_referral' id='oasis_patient_date_of_referral' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_of_referral"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_date_of_referral"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4a' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -773,7 +773,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<hr>
 			<?php xl('<b><u>(M1005)</u> Inpatient Discharge Date</b> (most recent):','e');?><br>
 			<input type='text' size='10' name='oasis_patient_history_discharge_date' id='oasis_patient_history_discharge_date' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_patient_history_discharge_date"};?>' readonly /> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php echo $obj{"oasis_patient_history_discharge_date"};?>' readonly /> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4b' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1437,7 +1437,7 @@ blank in that row.','e');?>
 			<?php xl('a. ','e');?>
 			<input type="text" name="oasis_therapy_surgical_procedure_a" value="<?php echo $obj{"oasis_therapy_surgical_procedure_a"};?> ">
 			<input type='text' size='10' name='oasis_therapy_surgical_procedure_a_date' id='oasis_therapy_surgical_procedure_a_date' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_surgical_procedure_a_date"};?> " readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_surgical_procedure_a_date"};?> " readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1448,7 +1448,7 @@ blank in that row.','e');?>
 			<?php xl('b. ','e');?>
 			<input type="text" name="oasis_therapy_surgical_procedure_b" value="<?php echo $obj{"oasis_therapy_surgical_procedure_b"};?> ">
 			<input type='text' size='10' name='oasis_therapy_surgical_procedure_b_date' id='oasis_therapy_surgical_procedure_b_date' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_surgical_procedure_b_date"};?> " readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_surgical_procedure_b_date"};?> " readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6b' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1462,7 +1462,7 @@ blank in that row.','e');?>
 		<td valign="top">
 			<b><?php xl('PHYSICIAN DATE LAST CONTACTED:','e');?></b>
 				<input type='text' size='10' name='oasis_patient_history_last_contact_date' id='oasis_patient_history_last_contact_date' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_history_last_contact_date"};?> " readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_history_last_contact_date"};?> " readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6c' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1473,7 +1473,7 @@ blank in that row.','e');?>
 					
 			<b><?php xl('PHYSICIAN DATE LAST VISITED:','e');?></b>
 				<input type='text' size='10' name='oasis_patient_history_last_visit_date' id='oasis_patient_history_last_visit_date' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_history_last_visit_date"};?> " readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_patient_history_last_visit_date"};?> " readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6d' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1583,7 +1583,7 @@ blank in that row.','e');?>
 			<?php xl('Reason(s)/Date(s):','e');?><br>
 				<input type="text" name="oasis_patient_history_prior_hospitalization_reason[]" size="40" value="<?php echo $oasis_patient_history_prior_hospitalization_reason[0];?>">
 				<input type='text' size='10' name='oasis_patient_history_prior_hospitalization_reason[]' id='oasis_patient_history_prior_hospitalization_reason1' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $oasis_patient_history_prior_hospitalization_reason[1];?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $oasis_patient_history_prior_hospitalization_reason[1];?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date10a' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -1593,7 +1593,7 @@ blank in that row.','e');?>
 					</script><br>
 				<input type="text" name="oasis_patient_history_prior_hospitalization_reason[]" size="40" value="<?php echo $oasis_patient_history_prior_hospitalization_reason[2];?>">
 				<input type='text' size='10' name='oasis_patient_history_prior_hospitalization_reason[]' id='oasis_patient_history_prior_hospitalization_reason2' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $oasis_patient_history_prior_hospitalization_reason[3];?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $oasis_patient_history_prior_hospitalization_reason[3];?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date10b' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -2049,7 +2049,7 @@ blank in that row.','e');?>
 						<input type="text" name="oasis_sensory_status_vision_site" value="<?php echo $obj{"oasis_sensory_status_vision_site"};?>">
 						<?php xl("Date:","e");?>
 						<input type='text' size='10' name='oasis_sensory_status_vision_date' id='oasis_sensory_status_vision_date' 
-							title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_sensory_status_vision_date"};?> " readonly/> 
+							title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_sensory_status_vision_date"};?> " readonly/> 
 							<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 							height='22' id='img_curr_date6e' border='0' alt='[?]'
 							style='cursor: pointer; cursor: hand'
@@ -3700,7 +3700,7 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Pacemaker","e");?>" <?php if(in_array("Pacemaker",$oasis_therapy_heart_sounds)) echo "checked"; ?> ><?php xl('Pacemaker:','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_pacemaker" value="<?php echo $obj{"oasis_therapy_heart_sounds_pacemaker"};?>">&nbsp;&nbsp;
 				<?php xl('Date:','e')?><input type='text' size='10' name='oasis_therapy_heart_sounds_pacemaker_date' id='oasis_therapy_heart_sounds_pacemaker_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_heart_sounds_pacemaker_date"};?>" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"oasis_therapy_heart_sounds_pacemaker_date"};?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date7' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -3893,7 +3893,7 @@ blank in that row.','e');?>
 			<?php xl("Date last changed","e");?><br>
 				<label><input type="checkbox" name="oasis_urinary[]" value="Foley inserted" <?php if(in_array("Foley inserted",$oasis_urinary)) echo "checked"; ?> ><?php xl('Foley inserted','e')?></label>
 				<input type='text' size='10' name='oasis_urinary_foley_date' id='oasis_urinary_foley_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 						 value="<?php echo stripslashes($obj{"oasis_urinary_foley_date"});?>" 
 						readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -3987,7 +3987,7 @@ blank in that row.','e');?>
 	<input type="text" name="oasis_genitalia_prostate_problem"  value="<?php echo stripslashes($obj{"oasis_genitalia_prostate_problem"});?>" >
 		<?php xl('BPH/TURP Date','e')?>
 	<input type='text' size='10' name='oasis_genitalia_date' id='oasis_genitalia_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 						 value="<?php echo stripslashes($obj{"oasis_genitalia_date"});?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -4006,7 +4006,7 @@ blank in that row.','e');?>
 	<label><input type="checkbox" name="oasis_genitalia[]" value="Hysterectomy Date" <?php if(in_array("Hysterectomy Date",$oasis_genitalia)) echo "checked"; ?> ><?php xl('Hysterectomy Date','e')?></label><br />
 	<label><?php xl('Date last PAP','e')?>	
 	<input type='text' size='10' name='oasis_genitalia_date_last_PAP' id='oasis_genitalia_date_last_PAP' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 						 value="<?php echo stripslashes($obj{"oasis_genitalia_date_last_PAP"});?>" 
 						readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -4025,7 +4025,7 @@ blank in that row.','e');?>
 	<input type="text" name="oasis_genitalia_mastectomy"  value="<?php echo stripslashes($obj{"oasis_genitalia_mastectomy"});?>" >
 	<label><?php xl('R/L Date','e')?>
 	<input type='text' size='10' name='oasis_genitalia_rl_date' id='oasis_genitalia_rl_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 						 value="<?php echo stripslashes($obj{"oasis_genitalia_rl_date"});?>" 
 						readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -4102,7 +4102,7 @@ blank in that row.','e');?>
 	<input type="text" name="oasis_endocrine_insulin"  value="<?php echo stripslashes($obj{"oasis_endocrine_insulin"});?>" ><br />
 	<?php xl('On insulin since','e')?>
 	<input type='text' size='10' name='oasis_endocrine_insulin_since' id='oasis_endocrine_insulin_since' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 						 value="<?php echo stripslashes($obj{"oasis_endocrine_insulin_since"});?>" 
 						readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'

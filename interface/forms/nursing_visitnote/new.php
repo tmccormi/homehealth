@@ -88,7 +88,7 @@ table label, input { display:inherit !important; }
 
 <body>
 <form method="post" id="submitForm"
-		action="<?php echo $rootdir;?>/forms/nursing_visitnote/save.php?mode=new" name="nursing_visitnote" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir;?>/forms/nursing_visitnote/save.php?mode=new" name="nursing_visitnote" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
   <h3 align="center">
     <?php xl('SKILLED NURSE VISIT NOTE','e')?>
   </h3>
@@ -119,7 +119,7 @@ table label, input { display:inherit !important; }
             <?php xl('Date','e')?>
             </strong></td>
           <td width="10%" ><input type='text' size='10' name='Visitnote_Evaluation_date' id='Visitnote_Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
             <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -261,7 +261,7 @@ table label, input { display:inherit !important; }
         <tr>
           <td scope="row"> <strong><?php xl('DIAGNOSIS','e')?></strong>
 				<input type="text" id="icd9" size="15"/>
-				<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+				<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 				<span id="trmnt_icd9">
 				<select id="visitnote_VS_Diagnosis" name="visitnote_VS_Diagnosis" style="display:none">					
 				</select></span>	
@@ -395,7 +395,7 @@ table label, input { display:inherit !important; }
                   <input type="checkbox" value="Last BM" name="visitnote_Gastrointestinal[]" />
                   <?php xl('Last BM','e')?>
                   <input type="text" style="width:10%" name="visitnote_Gastrointestinal_bm_date" id="visitnote_Gastrointestinal_bm_date" 
-					 value="<?php echo stripslashes($visitnote_Gastrointestinal_bm_date[0]);?>" title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					 value="<?php echo stripslashes($visitnote_Gastrointestinal_bm_date[0]);?>" title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_onset_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 					<script	LANGUAGE="JavaScript">
 					Calendar.setup({inputField:"visitnote_Gastrointestinal_bm_date", ifFormat:"%Y-%m-%d", button:"img_onset_date"});

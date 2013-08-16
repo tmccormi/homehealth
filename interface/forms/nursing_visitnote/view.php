@@ -163,7 +163,7 @@ foreach($obj as $key => $value) {
 }
 ?>
 <form method="post" id="submitForm"
-		action="<?php echo $rootdir;?>/forms/nursing_visitnote/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="nursing_visitnote" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir;?>/forms/nursing_visitnote/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="nursing_visitnote" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
 		<h3 align="center"> <?php xl('SKILLED NURSE VISIT NOTE','e')?> </h3>
 
 <table width="100%" cellpadding="0px" cellspacing="0px" border="1" class="formtable">
@@ -192,7 +192,7 @@ foreach($obj as $key => $value) {
             <?php xl('Date','e')?>
             </strong></td>
           <td width="10%" ><input type='text' size='10' name='Visitnote_Evaluation_date' id='Visitnote_Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' value="<?php echo stripslashes($Visitnote_Evaluation_date[0]);?>" 
+					title='<?php xl('Date','e'); ?>' value="<?php echo stripslashes($Visitnote_Evaluation_date[0]);?>" 
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
             <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -335,7 +335,7 @@ foreach($obj as $key => $value) {
           <td scope="row"> <strong><?php xl('DIAGNOSIS','e')?></strong>
 			
 				<input type="text" id="icd9" size="15"/>
-				<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+				<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 				<span id="trmnt_icd9">
 				<?php if ($obj{"visitnote_VS_Diagnosis"} != "")
 				{
@@ -475,7 +475,7 @@ foreach($obj as $key => $value) {
                   <input type="checkbox" value="Last BM" name="visitnote_Gastrointestinal[]" <?php if(in_array("Last BM",$visitnote_Gastrointestinal)) echo "checked"; ?> />
                   <?php xl('Last BM','e')?>
 				  <input type="text" style="width:10%" name="visitnote_Gastrointestinal_bm_date" id="visitnote_Gastrointestinal_bm_date" 
-					 value="<?php echo stripslashes($visitnote_Gastrointestinal_bm_date[0]);?>" title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					 value="<?php echo stripslashes($visitnote_Gastrointestinal_bm_date[0]);?>" title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_onset_date' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
 					<script	LANGUAGE="JavaScript">
 					Calendar.setup({inputField:"visitnote_Gastrointestinal_bm_date", ifFormat:"%Y-%m-%d", button:"img_onset_date"});
@@ -1122,7 +1122,7 @@ echo $c->view_action($_GET['id']);
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

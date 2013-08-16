@@ -39,7 +39,7 @@ formHeader("Form: dietary_visit");
 
 <td align="center"><strong><?php xl('Start of Care Date','e')?></strong></td>
 <td>
-<input type='text' size='20' name='dietary_visit_visit_date' id='dietary_visit_visit_date' value="<?php VisitDate(); ?>" readonly  />
+<input type='text' size='20' title='Start of Care Date' name='dietary_visit_visit_date' id='dietary_visit_visit_date' value="<?php VisitDate(); ?>" readonly  />
 
 <?php if($date_is_blank == 0) { ?>
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
