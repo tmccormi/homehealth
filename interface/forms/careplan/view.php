@@ -190,21 +190,20 @@ foreach($obj as $key => $value) {
   <tr>
     <td colspan="3" valign="top" scope="row"><strong>
     <?php xl('PROBLEMS REQUIRING OT INTERVENTION','e')?></strong></td>
-    <td valign="top"><strong><?php xl('SOC Date','e')?></strong></td>
-    <td colspan="2" valign="top">
- <input type='text' size='10' name='SOC_Date' id='SOC_Date' 
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-                                        onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'
-					 value="<?php echo stripslashes($obj{"SOC_Date"});?>" readonly/>
-                                        <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-                                        height='22' id='soc_date' border='0' alt='[?]'
-                                        style='cursor: pointer; cursor: hand'
-                                        title='<?php xl('Click here to choose a date','e'); ?>'>
-                                        <script LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"SOC_Date", ifFormat:"%Y-%m-%d", button:"soc_date"});
-   </script>
 
+<td valign="top"><strong><?php xl('SOC Date','e')?></strong></td>
+<td colspan="2" valign="top">
+<input type='text' size='12' name='SOC_Date' id='SOC_Date' title='<?php xl('yyyy-mm-dd Start of Care','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo stripslashes($obj{"SOC_Date"});?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"SOC_Date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </td>
+
   </tr>
   <tr>
     <td colspan="3" valign="top" scope="row">
