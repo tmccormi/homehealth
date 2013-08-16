@@ -269,7 +269,7 @@ formHeader("Form: evaluation");
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for PT intervention','e')?></strong></td>
           <td align="center">
 <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="display:none">
 </select></span>
@@ -278,7 +278,7 @@ formHeader("Form: evaluation");
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 <input type="text" id="icd9" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <span id="trmnt_icd9">
 <select id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem" style="display:none">					
 </select></span>	
@@ -621,57 +621,48 @@ formHeader("Form: evaluation");
       <input type="checkbox" name="Evaluation_COG_Safety_Awareness" value="Poor" id="Evaluation_COG_Safety_Awareness" />
       <?php xl('Poor','e')?></td></tr></table></td>
   </tr>
-  <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
-      <tr><td colspan="8"><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr>
-      <tr>
+
+<tr>
+<td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
+<tr><td colspan="8"><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr>
+<tr>
 	
-        <td align="center" scope="row">&nbsp;</th>
-          <strong><?php xl('SKILL','e')?></strong>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?></strong></td>
-        <td align="center"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?> </strong></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('ENDURANCE','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Good"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Fair"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Poor"/></td>
-        <td><?php xl('HEARING','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Good"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Fair"/></td>
+<td align="center" scope="row">&nbsp;</th>
+<strong><?php xl('SKILL','e')?></strong>
+<td align="center"><strong><?php xl('GOOD','e')?></strong></td>
+<td align="center"><strong><?php xl('FAIR','e')?></strong></td>
+<td align="center"><strong><?php xl('POOR','e')?></strong></td>
+<td align="center"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('GOOD','e')?></strong></td>
+<td align="center"><strong><?php xl('FAIR','e')?></strong></td>
+<td align="center"><strong><?php xl('POOR','e')?> </strong></td>
+</tr>
 
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Poor"/></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('COMMUNICATION','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Good"/>
-          </td>
-        <td align="center">
-      <input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Fair"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Poor"/></td>
+<tr>
+<td scope="row"><?php xl('ENDURANCE','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Good"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Fair"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Poor"/></td>
 
-        <td><?php xl('VISION','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Good"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Fair"/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Poor"/></td>
-      </tr>
-  </table></td>
+<td><?php xl('HEARING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Good"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Fair"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Poor"/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('COMMUNICATION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Good"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Fair"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Poor"/></td>
+
+<td><?php xl('VISION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Good"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Fair"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Poor"/></td>
+</tr>
+
+</table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>

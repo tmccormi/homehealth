@@ -371,7 +371,7 @@ foreach($obj as $key => $value) {
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for PT intervention','e')?></strong></td>
           <td align="center">
 <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
 {
@@ -388,7 +388,7 @@ echo "</select>";
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 <input type="text" id="icd9" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <span id="trmnt_icd9">
 <?php if ($obj{"Evaluation_TREATMENT_DX_PT_Problem"} != "")
 {
@@ -823,68 +823,48 @@ echo "</select>";
 <?php if ($obj{"Evaluation_COG_Safety_Awareness"} == "Poor")  echo "checked";;?>/>
       <?php xl('Poor','e')?></td></tr></table></td>
   </tr>
-  <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
-      <tr><td colspan="8"><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr>
-      <tr>
-        <td align="center" scope="row">&nbsp;</th>
-          <strong><?php xl('SKILL','e')?></strong>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?></strong></td>
-        <td align="center"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('GOOD','e')?></strong></td>
-        <td align="center"><strong><?php xl('FAIR','e')?></strong></td>
-        <td align="center"><strong><?php xl('POOR','e')?> </strong></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('ENDURANCE','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Good")  echo "checked";;?>/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" 
-    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Fair")  echo "checked";;?>/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" 
-    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Poor")  echo "checked";;?>/></td>
 
-        <td><?php xl('HEARING','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Good")  echo "checked";;?>/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" 
-    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Fair")  echo "checked";;?>/></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" 
-    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Poor")  echo "checked";;?>/></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('COMMUNICATION','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Good")  echo "checked";;?>/></td>
-          </td>
-        <td align="center">
-      <input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" 
-    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Fair")  echo "checked";;?>/></td></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" 
-    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Poor")  echo "checked";;?>/></td></td>
+<tr>
+<td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
+<tr><td colspan="8"><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr>
 
-        <td><?php xl('VISION','e')?></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" 
-    value="Good" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Good")  echo "checked";;?>/></td></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" 
-    value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Fair")  echo "checked";;?>/></td></td>
-        <td align="center">
-	<input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" 
-    value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Poor")  echo "checked";;?>/></td></td>
-      </tr>
-  </table></td>
+<tr>
+<td align="center" scope="row">&nbsp;</th>
+<strong><?php xl('SKILL','e')?></strong>
+<td align="center"><strong><?php xl('GOOD','e')?></strong></td>
+<td align="center"><strong><?php xl('FAIR','e')?></strong></td>
+<td align="center"><strong><?php xl('POOR','e')?></strong></td>
+<td align="center"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('GOOD','e')?></strong></td>
+<td align="center"><strong><?php xl('FAIR','e')?></strong></td>
+<td align="center"><strong><?php xl('POOR','e')?> </strong></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('ENDURANCE','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Good" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Good") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Fair")  echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Endurance" id="Evaluation_Mis_skil_Endurance" value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Endurance"} == "Poor")  echo "checked"; ?>/></td>
+
+<td><?php xl('HEARING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Good" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Good")  echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Fair")  echo "checked"; ?>/></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "Poor")  echo "checked"; ?>/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('COMMUNICATION','e')?></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Good" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Good")  echo "checked"; ?>/></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Fair")  echo "checked"; ?>/></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Communication" id="Evaluation_Mis_skil_Communication" value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Communication"} == "Poor")  echo "checked"; ?>/></td>
+
+<td><?php xl('VISION','e')?></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Good" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Good")  echo "checked"; ?>/></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Fair" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Fair")  echo "checked"; ?>/></td>
+<td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Vision" id="Evaluation_Mis_skil_Vision" value="Poor" <?php if ($obj{"Evaluation_Mis_skil_Vision"} == "Poor")  echo "checked"; ?>/></td>
+</tr>
+
+</table></td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable"><tr><td>
@@ -1267,7 +1247,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Additional_Comments"});?>"/>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
