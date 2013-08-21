@@ -101,7 +101,7 @@ function changeICDlist(dx,code,rootdir)
 	<td width="7%" align="center"><strong><?php xl('Reassess Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -221,7 +221,7 @@ function changeICDlist(dx,code,rootdir)
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
 
 <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9"> <select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none">
 </select></span>
 

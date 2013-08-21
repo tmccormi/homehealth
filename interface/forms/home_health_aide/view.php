@@ -144,7 +144,7 @@ $home_health_patient_need_housekeeping=explode("#",$obj{"home_health_patient_nee
 			<?php xl('EFFECTIVE DATE:','e');?>
 			
 					<input type='text' size='10' name='home_health_aide_visit_effective_date' id='home_health_aide_visit_effective_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_health_aide_visit_effective_date"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_health_aide_visit_effective_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -372,7 +372,7 @@ $home_health_patient_need_housekeeping=explode("#",$obj{"home_health_patient_nee
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_1' id='review_date_1' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_1"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_1"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -390,7 +390,7 @@ $home_health_patient_need_housekeeping=explode("#",$obj{"home_health_patient_nee
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_2' id='review_date_2' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_2"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_2"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -408,7 +408,7 @@ $home_health_patient_need_housekeeping=explode("#",$obj{"home_health_patient_nee
 		<td colspan="3">
 			<strong><?php xl('Reviewed/Revised Date: ','e');?></strong>
 			<input type='text' size='10' name='review_date_3' id='review_date_3' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_3"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"review_date_3"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date3' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -449,7 +449,7 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

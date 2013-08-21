@@ -135,10 +135,20 @@ $("#nutrition_total").val(tot);
 						<?php xl('Caregiver: ','e');?>
 						<input type="text" name="oasis_patient_caregiver" value="">
 					</td>
-					<td align="right">
-						<?php xl('Visit Date','e');?>
-						<input type='text' size='10' name='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/> 
-					</td>
+
+<td align="right">
+<?php xl('Start of Care Date','e');?>
+<input type='text' size='12' name='oasis_patient_visit_date' id='oasis_patient_visit_date' value="<?php VisitDate(); ?>" readonly/> 
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 				</tr>
 				<tr>
 					<td align="right">
@@ -190,7 +200,7 @@ $("#nutrition_total").val(tot);
 			<input type="text" name="oasis_therapy_patient_id" value="<?php patientName('pid');?>" readonly><br>
 			<?php xl('<u>(M0030)</u> Start of Care Date:','e');?>
 				<input type='text' size='10' name='oasis_therapy_soc_date' id='oasis_therapy_soc_date' 
-					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -288,7 +298,7 @@ $("#nutrition_total").val(tot);
 			<hr>
 			<strong><?php xl('<u>(M0090)</u> Date Assessment Completed: ','e');?></strong>
 			<input type='text' size='10' name='oasis_therapy_date_assessment_completed' id='oasis_therapy_date_assessment_completed' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -308,7 +318,7 @@ $("#nutrition_total").val(tot);
 			<hr>
 			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_therapy_date_last_contacted_physician' id='oasis_therapy_date_last_contacted_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -319,7 +329,7 @@ $("#nutrition_total").val(tot);
 			<hr>
 			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_therapy_date_last_seen_by_physician' id='oasis_therapy_date_last_seen_by_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -470,12 +480,12 @@ $("#nutrition_total").val(tot);
 			<table border="0" cellspacing="0" class="formtable">
 				<tr>
 					<td colspan="2">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onclick="select_pain(0)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onclick="select_pain(1)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onclick="select_pain(2)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onclick="select_pain(3)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onclick="select_pain(4)">
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_0.png" border="0" onClick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_2.png" border="0" onClick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_4.png" border="0" onClick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_6.png" border="0" onClick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_8.png" border="0" onClick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_therapy_rectification/templates/scale_10.png" border="0" onClick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -697,7 +707,7 @@ $("#nutrition_total").val(tot);
 <?php xl('MD aware or MD notified','e')?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php xl('TOTAL','e')?></strong></label>
 </TD>
 <td width="30%">
-<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly="true"/></label>
+<label><input type="text" name="nutrition_total" id="nutrition_total" size="2" value="0" readonly/></label>
 </td>
 </tr>
 </TABLE>
@@ -873,7 +883,7 @@ $("#nutrition_total").val(tot);
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Pacemaker","e");?>"><?php xl('Pacemaker:','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_pacemaker" value="">&nbsp;&nbsp;
 				<?php xl('Date:','e')?><input type='text' size='10' name='oasis_therapy_heart_sounds_pacemaker_date' id='oasis_therapy_heart_sounds_pacemaker_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date7' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -947,7 +957,7 @@ $("#nutrition_total").val(tot);
 			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="1"><?php xl(' 1 - Was present at the most recent SOC/ROC assessment','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_integumentary_status_stage2" value="2"><?php xl(' 2 - Developed since the most recent SOC/ROC assessment: record date pressure ulcer first identified:','e')?></label>
 <input type='text' size='10' name='oasis_therapy_integumentary_status_stage2_date' id='oasis_therapy_integumentary_status_stage2_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date79' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -998,7 +1008,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. NO IMPAIRMENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_sensory" onkeyup="sum_braden_scale()" id="braden_sensory" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_sensory" onKeyUp="sum_braden_scale()" id="braden_sensory" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1018,7 +1028,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. RARELY MOIST","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_moisture" onkeyup="sum_braden_scale()" id="braden_moisture" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_moisture" onKeyUp="sum_braden_scale()" id="braden_moisture" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1038,7 +1048,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. WALKS FREQUENTLY","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_activity" onkeyup="sum_braden_scale()" id="braden_activity" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_activity" onKeyUp="sum_braden_scale()" id="braden_activity" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1058,7 +1068,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. NO LIMITATIONS","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_mobility" onkeyup="sum_braden_scale()" id="braden_mobility" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_mobility" onKeyUp="sum_braden_scale()" id="braden_mobility" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1078,7 +1088,7 @@ $("#nutrition_total").val(tot);
 						<strong><?php xl("4. EXCELLENT","e");?></strong>
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_nutrition" onkeyup="sum_braden_scale()" id="braden_nutrition" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_nutrition" onKeyUp="sum_braden_scale()" id="braden_nutrition" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1094,11 +1104,11 @@ $("#nutrition_total").val(tot);
 					<td align="center">
 						<strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
 					</td>
-					<td align="center">
-						&nbsp;
+					<td align="center">&nbsp;
+						
 					</td>
 					<td align="center">
-						<input type="text" name="oasis_therapy_braden_scale_friction" onkeyup="sum_braden_scale()" id="braden_friction" value="0">
+						<input type="text" name="oasis_therapy_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="0">
 					</td>
 				</tr>
 				<tr>
@@ -1120,8 +1130,8 @@ $("#nutrition_total").val(tot);
 			<?php xl("<strong><u>(M1308)</u> Current Number of Unhealed (non-epithelialized) Pressure Ulcers at Each Stage:</strong> (Enter '0' if none; excludes Stage I pressure ulcers)","e");?><br>
 			<table border="1px" style="width:100%;" cellspacing="0" class="formtable">
 				<tr>
-					<td width="50%" colspan="2">
-						&nbsp;
+					<td width="50%" colspan="2">&nbsp;
+						
 					</td>
 					<td width="25%" align="center">
 						<strong><?php xl("Column 1 Complete at SOC/ROC/FU & D/C","e");?></strong>
@@ -2572,7 +2582,7 @@ $("#nutrition_total").val(tot);
 
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_central_date' id='non_oasis_infusion_central_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date8' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2623,7 +2633,7 @@ $("#nutrition_total").val(tot);
 <?php xl('Triple lumen','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_hickman_date' id='non_oasis_infusion_hickman_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date9' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2645,7 +2655,7 @@ $("#nutrition_total").val(tot);
 <?php xl('Port','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_epidural_date' id='non_oasis_infusion_epidural_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date10' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2668,7 +2678,7 @@ $("#nutrition_total").val(tot);
 <?php xl('Peritoneal','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_implanted_date' id='non_oasis_infusion_implanted_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date11' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2689,7 +2699,7 @@ $("#nutrition_total").val(tot);
 <?php xl('Reservoir','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_intrathecal_date' id='non_oasis_infusion_intrathecal_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date12' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -3009,7 +3019,7 @@ $("#nutrition_total").val(tot);
 		<td>
 			<strong><?php xl('<u>(M0903)</u> Date of Last (Most Recent) Home Visit: ','e');?></strong>
 			<input type='text' size='10' name='oasis_discharge_date_last_visit' id='oasis_discharge_date_last_visit' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date903' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -3021,7 +3031,7 @@ $("#nutrition_total").val(tot);
 		<td>
 			<?php xl('<b><u>(M0906)</u> Discharge/Transfer/Death Date:</b> Enter the date of the discharge, transfer, or death (at home) of the patient. ','e');?>
 			<input type='text' size='10' name='oasis_discharge_transfer_date' id='oasis_discharge_transfer_date' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date906' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -3299,7 +3309,7 @@ $("#nutrition_total").val(tot);
 <a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_discharge');"
 class="link_submit"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;" onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
+<a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;" onClick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
 </form>
 
 </body>

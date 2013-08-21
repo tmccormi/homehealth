@@ -165,7 +165,7 @@ foreach($obj as $key => $value) {
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
 				value='<?php echo stripslashes($obj{"Evaluation_date"});?>'
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_date' border='0' alt='[?]'
@@ -373,7 +373,7 @@ foreach($obj as $key => $value) {
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?>  </strong></td>
           <td align="center">
            <input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <div id="med_icd9">
 <?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
 {
@@ -389,7 +389,7 @@ echo "</select>";
           <td align="center"><strong><?php xl('TREATMENT DX/ OT Problem','e')?>  </strong></td>
           <td align="center">
          <input type="text" id="icd9" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <div id="trmnt_icd9">    
 <?php if ($obj{"Evaluation_TREATMENT_DX_OT_Problem"} != "")
 {
@@ -699,75 +699,65 @@ value="<?php echo stripslashes($obj{"Evaluation_EnvBar_Other"});?>" />
         <td><select name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory"><?php Cognition_skills(stripslashes($obj{"Evaluation_skil_Longterm_Memory"})) ?></select></td></tr> 
   </table></td>
   </tr>
-  <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
-    <tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?> </strong></td></tr></table></td>
 
-  </tr>
-  <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
-      <tr>
-        <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
-        <td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
+<tr>
+<td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
+<tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?> </strong></td></tr></table></td>
+</tr>
 
-        <td align="center"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
-        <td align="center"><strong><?php xl('IMPAIRED','e')?> </strong></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('PROPRIOCEPTION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="intact" 
-        <?php if ($obj{"Evaluation_Mis_skil_Proprioception"} == "intact") echo "checked";;?>/></td>
+<tr>
+<td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Proprioception"} == "impaired") echo "checked";;?>/></td>
-        <td><?php xl('GROSS MOTOR COORDINATION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Gross_Motor"} == "intact") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Gross_Motor"} == "impaired") echo "checked";;?>/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('VISUAL TRACKING','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Visual_Tracking"} == "intact") echo "checked";;?>/></td>
+<tr>
+<td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('INTACT','e')?></strong></td>
+<td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
+<td align="center"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('INTACT','e')?></strong></td>
+<td align="center"><strong><?php xl('IMPAIRED','e')?> </strong></td>
+</tr>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Visual_Tracking"} == "impaired") echo "checked";;?>/></td>
-        <td><?php xl('FINE MOTOR COORDINATION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Fine_Motor"} == "intact") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Fine_Motor"} == "impaired") echo "checked";;?>/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('PERIPHERAL VISION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Peripheral_Vision"} == "intact") echo "checked";;?>/></td>
+<tr>
+<td scope="row"><?php xl('PROPRIOCEPTION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Proprioception"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Proprioception"} == "impaired") echo "checked"; ?>/></td>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Peripheral_Vision"} == "impaired") echo "checked";;?>/></td>
-        <td><?php xl('SENSORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Sensory"} == "intact") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Sensory"} == "impaired") echo "checked";;?>/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('HEARING','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "intact") echo "checked";;?>/></td>
+<td><?php xl('GROSS MOTOR COORDINATION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Gross_Motor"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Gross_Motor"} == "impaired") echo "checked"; ?>/></td>
+</tr>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "impaired") echo "checked";;?>/></td>
-        <td><?php xl('SPEECH','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="intact"
-        <?php if ($obj{"Evaluation_Mis_skil_Speech"} == "intact") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="impaired"
-        <?php if ($obj{"Evaluation_Mis_skil_Speech"} == "impaired") echo "checked";;?>/></td>
-        </tr>
-    </table></td>
+<tr>
+<td scope="row"><?php xl('VISUAL TRACKING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Visual_Tracking"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Visual_Tracking"} == "impaired") echo "checked"; ?>/></td>
+
+<td><?php xl('FINE MOTOR COORDINATION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Fine_Motor"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Fine_Motor"} == "impaired") echo "checked"; ?>/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('PERIPHERAL VISION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Peripheral_Vision"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Peripheral_Vision"} == "impaired") echo "checked"; ?>/></td>
+
+<td><?php xl('SENSORY','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Sensory"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Sensory"} == "impaired") echo "checked"; ?>/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('HEARING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Hearing"} == "impaired") echo "checked"; ?>/></td>
+
+<td><?php xl('SPEECH','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="intact" <?php if ($obj{"Evaluation_Mis_skil_Speech"} == "intact") echo "checked"; ?>/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="impaired" <?php if ($obj{"Evaluation_Mis_skil_Speech"} == "impaired") echo "checked"; ?>/></td>
+</tr>
+
+</table></td>
   </tr>
   <tr>
 
@@ -1044,7 +1034,7 @@ value="<?php echo stripslashes($obj{"Evaluation_MS_ROM_Following_Problem_areas"}
 <?php xl('Received physician orders for OT treatment and approximate next visit date will be','e')?>&nbsp;
 <input type='text' size='20px' name='Evaluation_approximate_next_visit_date' id='Evaluation_approximate_next_visit_date'
     value='<?php echo stripslashes($obj{"Evaluation_approximate_next_visit_date"});?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -1160,7 +1150,7 @@ value="<?php echo stripslashes($obj{"Evaluation_ASP_Other"});?>" /> </td></tr></
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

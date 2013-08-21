@@ -143,7 +143,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 <table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr>
 <td width="20%"><b><?php xl('PATIENT NAME','e') ?></b></td>
-<td><input type="text" name="physician_orders_patient_name" size="30%" value="<?php patientName(); ?>" readonly="readonly"  /></td>
+<td><input type="text" name="physician_orders_patient_name" size="30%" value="<?php patientName(); ?>" readonly  /></td>
 <td width="10%" align="center" valign="top"><strong><?php xl('MR#','e')?>
                                 </strong></td>
                                 <td width="15%" align="center" valign="top" class="bold"><input
@@ -154,7 +154,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
                                 <td width="17%" align="center" valign="top" class="bold">
                                 <input type='text' size='10' name='physician_orders_date' id='physician_orders_date'
 										value='<?php echo stripslashes($obj{"physician_orders_date"});?>'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -171,7 +171,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 <table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr>
 <td><b><?php xl('Patient Date of Birth','e') ?></b></td>
-<td><input type="text" name="physician_orders_patient_dob" size="33" value="<?php patientDOB(); ?>" readonly="readonly"  /></td>
+<td><input type="text" name="physician_orders_patient_dob" size="33" value="<?php patientDOB(); ?>" readonly  /></td>
 
 <td width="20%" align="center" valign="top">
 <strong><?php xl('Physician','e')?></strong></td>
@@ -188,7 +188,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 <tr>
     <td scope="row" width="50%"><strong><?php xl('Diagnosis','e');?> </strong>
    <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(physician_orders_diagnosis,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(physician_orders_diagnosis,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"physician_orders_diagnosis"} != "")
 				{
@@ -273,7 +273,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
         <strong><?php xl('Effective Date','e')?></strong>
                                 <input type='text' size='10' name='physician_orders_effective_date' id='physician_orders_effective_date'
 										value='<?php echo stripslashes($obj{"physician_orders_effective_date"});?>'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -328,7 +328,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
         <strong><?php xl('Date','e')?></strong>
                                 <input type='text' size='10' name='physician_orders_date1' id='physician_orders_date1'
 										value='<?php echo stripslashes($obj{"physician_orders_date1"});?>'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -379,7 +379,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

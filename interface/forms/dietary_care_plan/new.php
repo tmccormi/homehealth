@@ -29,15 +29,26 @@ formHeader("Form: dietary_care_plan");
 <body>
 <form method="post"		action="<?php echo $rootdir;?>/forms/dietary_care_plan/save.php?mode=new" name="dietary_care_plan">
 		<h3 align="center"><?php xl('DIETARY CARE PLAN','e')?></h3>
-<table cellspacing="0px" width="100%" border="1px solid #000000" Style="border : 0px;" class="formtable" cellpadding="5px" width="100%">
+<table  class="formtable" cellspacing="0px" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" width="100%">
 <tr><td style="padding : 0px;">
-<table  width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px"  class="formtable"><tr>
+<table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px" width="100%"><tr>
 <td align="center"><b><?php xl('Last Name','e')?></b></td>
-<td><input style="width : 100%;" type="text" name="dietary_care_plan_last_name" value="<?php patientName("lname"); ?>" readonly="readonly" /></td>
+<td><input style="width : 100%;" type="text" name="dietary_care_plan_last_name" value="<?php patientName("lname"); ?>" readonly /></td>
 <td align="center"><b><?php xl('First Name','e')?></b></td>
-<td><input style="width : 100%;" type="text" name="dietary_care_plan_first_name" value="<?php patientName("fname"); ?>" readonly="readonly"></td>
-<td align="center"><b><?php xl('Visit Date','e')?></b></td>
-<td><input type='text' style="width : 80%;" name='dietary_care_plan_visit_date' value="<?php visitdate(); ?>" readonly="readonly"  /></td>
+<td><input style="width : 100%;" type="text" name="dietary_care_plan_first_name" value="<?php patientName("fname"); ?>" readonly></td>
+
+<td align="center"><strong><?php xl('Start of Care Date','e')?></strong></td>
+<td>
+<input type='text' size='20' title="Start of Care Date" name='dietary_care_plan_visit_date' id='dietary_care_plan_visit_date' value="<?php VisitDate(); ?>" readonly  />
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"dietary_care_plan_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
 		
 </tr></table>
 </td></tr>
@@ -45,9 +56,9 @@ formHeader("Form: dietary_care_plan");
 <tr><td style="padding : 0px;">
 <table width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" class="formtable" cellspacing="0px" width="100%"><tr>
 <td align="center"><b><?php xl('DOB','e')?></b></td>
-<td><input type='text' size='10' name='dietary_care_plan_dob' id='dietary_care_plan_dob' value="<?php patientName("DOB"); ?>" readonly="readonly"/></td>
+<td><input type='text' size='10' name='dietary_care_plan_dob' id='dietary_care_plan_dob' value="<?php patientName("DOB"); ?>" readonly/></td>
 <td align="center"><b><?php xl('Sex','e')?></b></td>
-<td><input type="text" style="width : 52px;" name="dietary_care_plan_sex" value="<?php patientName("sex"); ?>" readonly="readonly"></td>
+<td><input type="text" style="width : 52px;" name="dietary_care_plan_sex" value="<?php patientName("sex"); ?>" readonly></td>
 <td align="center"><b><?php xl('Weight','e')?></b></td>
 <td><input type="text" name="dietary_care_plan_weight"></td>
 <td align="center"><b><?php xl('Height','e')?></b></td>

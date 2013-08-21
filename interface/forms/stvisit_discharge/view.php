@@ -160,7 +160,7 @@ foreach($obj as $key => $value) {
     <td style="width:25%"><strong>
     <input type='text' size='15' name='dischargeplan_date' id='dischargeplan_date'
     value='<?php echo stripslashes($obj{"dischargeplan_date"});?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -288,7 +288,7 @@ foreach($obj as $key => $value) {
   <tr>
     <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
     <input type="text" id="icd9" size="15"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">  
 <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
 {
@@ -548,7 +548,7 @@ echo "</select>";
                         <table border="1px" width="100%" class="formtable">
                         <tr><td width="33%">
                         <strong><?php xl('MD PRINTED NAME','e');?></strong><br>
-                        <input type="text" name="dischargeplan_md_printed_name" style="width:90%" value="<?php doctorname(); ?>" readonly="readonly">
+                        <input type="text" name="dischargeplan_md_printed_name" style="width:90%" value="<?php doctorname(); ?>" readonly>
                         </td>
                         <td width="33%">
                         <strong><?php xl('MD Signature','e');?></strong><br>
@@ -557,7 +557,7 @@ echo "</select>";
                         <td width="33%">
                         <strong><?php xl('Date','e');?></strong><br>&nbsp;
                         <input type='text' size='16' name='dischargeplan_md_signature_date' id='dischargeplan_md_signature_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"dischargeplan_md_signature_date"};?>" readonly />
+                                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"dischargeplan_md_signature_date"};?>" readonly />
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
                                         style='cursor: pointer; cursor: hand'
@@ -588,7 +588,7 @@ echo "</select>";
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

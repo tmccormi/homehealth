@@ -127,7 +127,7 @@ $(document).ready(function() {
 				<strong><?php xl('DATE OF MISSED VISIT','e')?></strong></td>
 				<td align="center" valign="top" class="bold">
 				<input type='text' size='10' name='patient_missed_date' id='patient_missed_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"patient_missed_date"};?>" readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"patient_missed_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -246,7 +246,7 @@ $(document).ready(function() {
 						<label><input type="checkbox" name="physician_acknowledgment" value="<?php xl("DELAYED INITIAL SOC/EVALUATION","e");?>" <?php if($obj{"physician_acknowledgment"}=="DELAYED INITIAL SOC/EVALUATION"){ echo "checked"; }?> ><?php xl("DELAYED INITIAL SOC/EVALUATION","e");?></label>
 						<?php xl(' ON ','e')?>
 						<input type='text' size='10' name='physician_acknowledgment_date' id='physician_acknowledgment_date' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"physician_acknowledgment_date"};?>" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"physician_acknowledgment_date"};?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -258,7 +258,7 @@ $(document).ready(function() {
 						<?php xl('PHYSICIAN SIGNATURE ','e')?><input type="text" name="physician_signature" value="<?php echo $obj{"physician_signature"};?>">&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl('DATE ','e')?>
 						<input type='text' size='10' name='physician_signature_date' id='physician_signature_date' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"physician_signature_date"};?>" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"physician_signature_date"};?>" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date3' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -296,7 +296,7 @@ $(document).ready(function() {
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

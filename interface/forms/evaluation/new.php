@@ -104,7 +104,7 @@ formHeader("Form: evaluation");
           <td align="center"><strong><?php xl('Date','e')?></strong></td>
          <td width="17%" align="center" valign="top" class="bold">
 				<input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_date' border='0' alt='[?]'
@@ -276,13 +276,13 @@ formHeader("Form: evaluation");
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?></strong></td>
           <td align="center">                 
 	  <input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <div id="med_icd9">
           <select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="display:none" ></select></div>
 
     <td align="center"><strong><?php xl('TREATMENT DX/ OT Problem','e')?></strong></td>
     <td align="center"> <input type="text" id="icd9" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <div id="trmnt_icd9">
           <select id="Evaluation_TREATMENT_DX_OT_Problem" name="Evaluation_TREATMENT_DX_OT_Problem" style="display:none">
           </select></div>
@@ -545,59 +545,65 @@ formHeader("Form: evaluation");
         <td><select name="Evaluation_skil_Longterm_Memory" id="Evaluation_skil_Longterm_Memory"><?php Cognition_skills($GLOBALS['Selected']) ?></select></td></tr>
   </table></td>
   </tr>
-  <tr>
-    <td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
-    <tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr></table></td>
+  
+<tr>
+<td scope="row"><table border="0px" cellspacing="0px" cellpadding="5px" class="formtable">
+<tr><td><strong><?php xl('MISCELLANEOUS SKILLS','e')?></strong></td></tr></table></td>
+</tr>
 
-  </tr>
-  <tr>
-    <td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
-      <tr>
-        <td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
-        <td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
+<tr>
+<td scope="row"><table width="100%" border="1px" cellspacing="0px" cellpadding="5px" class="formtable">
 
-        <td align="center"><strong><?php xl('SKILL','e')?></strong></td>
-        <td align="center"><strong><?php xl('INTACT','e')?></strong></td>
-        <td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
-      </tr>
-      <tr>
-        <td scope="row"><?php xl('PROPRIOCEPTION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="intact" /></td>
+<tr>
+<td align="center" scope="row"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('INTACT','e')?></strong></td>
+<td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
+<td align="center"><strong><?php xl('SKILL','e')?></strong></td>
+<td align="center"><strong><?php xl('INTACT','e')?></strong></td>
+<td align="center"><strong><?php xl('IMPAIRED','e')?></strong></td>
+</tr>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="impaired"/></td>
-        <td><?php xl('GROSS MOTOR COORDINATION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="intact"/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="impaired"/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('VISUAL TRACKING','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="intact"/></td>
+<tr>
+<td scope="row"><?php xl('PROPRIOCEPTION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="intact" /></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Proprioception" id="Evaluation_Mis_skil_Proprioception" value="impaired"/></td>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="impaired"/></td>
-        <td><?php xl('FINE MOTOR COORDINATION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="intact"/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="impaired"/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('PERIPHERAL VISION','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="intact"/></td>
+<td><?php xl('GROSS MOTOR COORDINATION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Gross_Motor" id="Evaluation_Mis_skil_Gross_Motor" value="impaired"/></td>
+</tr>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="impaired"/></td>
-        <td><?php xl('SENSORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="intact"/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="impaired"/></td>
-        </tr>
-      <tr>
-        <td scope="row"><?php xl('HEARING','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="intact"/></td>
+<tr>
+<td scope="row"><?php xl('VISUAL TRACKING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Visual_Tracking" id="Evaluation_Mis_skil_Visual_Tracking" value="impaired"/></td>
 
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="impaired"/></td>
-        <td><?php xl('SPEECH','e')?></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="intact"/></td>
-        <td align="center"><input type="checkbox" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="impaired"/></td>
-        </tr>
-    </table></td>
+<td><?php xl('FINE MOTOR COORDINATION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Fine_Motor" id="Evaluation_Mis_skil_Fine_Motor" value="impaired"/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('PERIPHERAL VISION','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Peripheral_Vision" id="Evaluation_Mis_skil_Peripheral_Vision" value="impaired"/></td>
+
+<td><?php xl('SENSORY','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Sensory" id="Evaluation_Mis_skil_Sensory" value="impaired"/></td>
+</tr>
+
+<tr>
+<td scope="row"><?php xl('HEARING','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Hearing" id="Evaluation_Mis_skil_Hearing" value="impaired"/></td>
+
+<td><?php xl('SPEECH','e')?></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="intact"/></td>
+<td align="center"><input type="radio" name="Evaluation_Mis_skil_Speech" id="Evaluation_Mis_skil_Speech" value="impaired"/></td>
+</tr>
+
+</table></td>
   </tr>
   <tr>
 
@@ -805,7 +811,7 @@ formHeader("Form: evaluation");
 &nbsp;
 <input type='text' size='20px' name='Evaluation_approximate_next_visit_date' id='Evaluation_approximate_next_visit_date'
     value='<?php echo $date ?>'
-    title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+    title='<?php xl('Date','e'); ?>'
     onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_curr_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'

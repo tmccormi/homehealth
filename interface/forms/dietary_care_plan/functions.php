@@ -23,12 +23,19 @@ function patientName($field)
 }
 }
 
-function visitdate()
-{
-	 $select= sqlStatement("select * from form_encounter where pid=" .$_SESSION['pid'] ." and encounter =". $_SESSION['encounter']);
-        $Row=sqlFetchArray($select);
-			echo $Row['date'];
+function VisitDate() {
+$select= sqlStatement("select * from form_encounter where pid=" .$_SESSION['pid'] ." and encounter =". $_SESSION['encounter']);
+$Row=sqlFetchArray($select);
+echo $Row['date'];
 }
+
+//Start Non-function query
+$is_it_empty = sqlStatement("SELECT date FROM form_encounter WHERE pid=" .$_SESSION['pid']." AND encounter=".$GLOBALS['encounter']);
+while($is_it_empty_row = sqlFetchArray($is_it_empty)) {
+$checking_for_date = date('Y-m-d',strtotime($is_it_empty_row['date']));
+}
+if($checking_for_date == '') {$date_is_blank = 0;} else {$date_is_blank = 1;}
+//End Non-function query
 
 
 function timeDropDown($sel)

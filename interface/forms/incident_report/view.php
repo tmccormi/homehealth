@@ -115,12 +115,22 @@ foreach($obj as $key => $value) {
 <textarea name="incident_report_notes" rows="2" cols="30">
 <?php echo stripslashes($obj{"incident_report_notes"});?></textarea><br />
 </TD>
+
 <TD align="right">
 <?php xl('(Select an Action)','e') ?><br /><br />
 <b><?php xl('Caregiver:','e') ?></b>
 <input type="text" name="incident_report_caregiver_name" size="30" value="<?php echo stripslashes($obj{"incident_report_caregiver_name"});?>"  />
-<b><?php xl('Visit Date:','e') ?></b>
-<input type="text" name="incident_visit_date" value="<?php echo stripslashes($obj{"incident_visit_date"});?>" readonly/>
+
+<strong><?php xl('Start of Care Date:','e') ?></strong>
+<input type="text" size="12" name="incident_visit_date" value="<?php echo stripslashes($obj{"incident_visit_date"});?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"incident_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </TD>
 </tr>
 </TABLE>
@@ -131,13 +141,13 @@ foreach($obj as $key => $value) {
 <td colspan="2">
 
 <b><?php xl('Patient\'s  Name:','e') ?></b>
-<input type="text" name="incident_report_patient_name" size="50" value="<?php patientName(); ?>" readonly="readonly"  /><br />
+<input type="text" name="incident_report_patient_name" size="50" value="<?php patientName(); ?>" readonly  /><br />
 </td>
 </tr>
 <tr><TD>
 <b><?php xl('Date of Report:','e') ?></b>
 <input type='text' size='10' name='incident_report_date' id='incident_report_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Incident Report Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 					value='<?php echo stripslashes($obj{"incident_report_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -152,7 +162,7 @@ foreach($obj as $key => $value) {
 <td>
 <b><?php xl('Date of Occurence:','e') ?></b>
 <input type='text' size='10' name='incident_report_occurance_date' id='incident_report_occurance_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Incident Occurance Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 					value='<?php echo stripslashes($obj{"incident_report_occurance_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -233,7 +243,7 @@ value='<?php echo stripslashes($obj{"incident_report_not_physician_name"});?>'  
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_physician_date' id='incident_report_not_physician_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_not_physician_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -257,7 +267,7 @@ value='<?php echo stripslashes($obj{"incident_report_not_supervisor_name"});?>' 
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_supervisor_date' id='incident_report_not_supervisor_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_not_supervisor_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -281,7 +291,7 @@ value='<?php echo stripslashes($obj{"incident_report_not_caregiver_name"});?>'  
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_caregiver_date' id='incident_report_not_caregiver_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_not_caregiver_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -305,7 +315,7 @@ value='<?php echo stripslashes($obj{"incident_report_not_manager_name"});?>'  />
 <td>
 <?php xl('Date/Time:','e') ?>
 <input type='text' size='10' name='incident_report_not_manager_date' id='incident_report_not_manager_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_not_manager_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -343,7 +353,7 @@ value='<?php echo stripslashes($obj{"incident_report_person_filing_report"});?>'
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_filing_report_date' id='incident_report_filing_report_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_filing_report_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -369,7 +379,7 @@ value='<?php echo stripslashes($obj{"incident_report_management_reviewer"});?>' 
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_management_reviewer_date' id='incident_report_management_reviewer_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_management_reviewer_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -394,7 +404,7 @@ value='<?php echo stripslashes($obj{"incident_report_admin_reviewer"});?>'  /><b
 
 <?php xl('Date:','e') ?>
 <input type='text' size='10' name='incident_report_admin_reviewer_date' id='incident_report_admin_reviewer_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_admin_reviewer_date"});?>'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -414,7 +424,7 @@ value='<?php echo stripslashes($obj{"incident_report_admin_reviewer_date"});?>' 
 <input type="text" name="incident_report_caregiver_sign" size="30%" value='<?php echo stripslashes($obj{"incident_report_caregiver_sign"});?>'  />
 
 <input type='text' size='10' name='incident_report_caregiver_sign_date' id='incident_report_caregiver_sign_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' 
 value='<?php echo stripslashes($obj{"incident_report_caregiver_sign_date"});?>' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -454,7 +464,7 @@ value='<?php echo stripslashes($obj{"incident_report_caregiver_sign_date"});?>' 
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

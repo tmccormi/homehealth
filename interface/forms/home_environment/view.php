@@ -54,7 +54,7 @@ function appendrow(box,item)
 	if(box.checked)
 	{
 		htmlrow='<tr id="home_environment_action_plan_row_'+item+'"><td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" value="'+item+'" readonly></td>';
-		htmlrow+='<td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" id="home_environment_action_plan_'+item+'" title="yyyy-mm-dd Start Date" onkeyup="datekeyup(this,mypcc)"  value="" readonly/><img src="../../pic/show_calendar.gif" align="absbottom" width="24" height="22" id="img_start_date'+item+'" border="0" alt="[?]" style="cursor: pointer; cursor: hand" title="Click here to choose a date"><script	LANGUAGE="JavaScript">Calendar.setup({inputField:"home_environment_action_plan_'+item+'", ifFormat:"%Y-%m-%d", button:"img_start_date'+item+'"}); <';
+		htmlrow+='<td><input type="text" size="10" name="home_environment_action_plan_'+item+'[]" id="home_environment_action_plan_'+item+'" title="Start Date" onkeyup="datekeyup(this,mypcc)"  value="" readonly/><img src="../../pic/show_calendar.gif" align="absbottom" width="24" height="22" id="img_start_date'+item+'" border="0" alt="[?]" style="cursor: pointer; cursor: hand" title="Click here to choose a date"><script	LANGUAGE="JavaScript">Calendar.setup({inputField:"home_environment_action_plan_'+item+'", ifFormat:"%Y-%m-%d", button:"img_start_date'+item+'"}); <';
 		htmlrow+='/script>';
 		htmlrow+='</td>';
 		htmlrow+='<td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td><td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td><td><input type="text" name="home_environment_action_plan_'+item+'[]" value=""></td></tr>'
@@ -149,18 +149,19 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<tr>
 				<td><?php xl('Patient Name','e');?></td>
 				<td width="50%"><input type="text" name="home_environment_patient_name" style="width:100%" value="<?php patientName()?>" readonly ></td>
-				<td><?php xl('SOC Date','e');?></td>
-				<td width="17%" align="center" valign="top" class="bold">
-					<input type='text' size='10' name='home_environment_SOC_date' id='home_environment_SOC_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_SOC_date"};?>" readonly/> 
-					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_curr_date1' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
-					title='<?php xl('Click here to choose a date','e'); ?>'> 
-					<script	LANGUAGE="JavaScript">
-						Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
-					</script>
-				</td>
+
+<td><?php xl('Start of Care Date','e');?></td>
+<td width="17%" align="center" valign="top" class="bold">
+<input type='text' size='12' name='home_environment_SOC_date' id='home_environment_SOC_date' title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_SOC_date"};?>" readonly/> 
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
 			</tr>
 		</table>
 	</tr>
@@ -197,7 +198,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_telephone" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_telephone"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onchange="appendrow(this,1)" <?php if($obj{"home_environment_telephone"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)" <?php if($obj{"home_environment_telephone"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_telephone" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_telephone"}=="N/A"){echo "checked";};?> >
@@ -214,7 +215,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onchange="appendrow(this,2)" <?php if($obj{"home_environment_gas_electrical"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)" <?php if($obj{"home_environment_gas_electrical"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="N/A"){echo "checked";};?> >
@@ -231,7 +232,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onchange="appendrow(this,3)" <?php if($obj{"home_environment_smoke_alarm_condition"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)" <?php if($obj{"home_environment_smoke_alarm_condition"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="N/A"){echo "checked";};?> >
@@ -248,7 +249,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onchange="appendrow(this,4)" <?php if($obj{"home_environment_fire_extinguisher"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)" <?php if($obj{"home_environment_fire_extinguisher"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="N/A"){echo "checked";};?> >
@@ -265,7 +266,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_outside_exit"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onchange="appendrow(this,5)" <?php if($obj{"home_environment_outside_exit"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)" <?php if($obj{"home_environment_outside_exit"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_outside_exit"}=="N/A"){echo "checked";};?> >
@@ -282,7 +283,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onchange="appendrow(this,6)" <?php if($obj{"home_environment_alternate_exit"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)" <?php if($obj{"home_environment_alternate_exit"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="N/A"){echo "checked";};?> >
@@ -299,7 +300,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onchange="appendrow(this,7)" <?php if($obj{"home_environment_walking_pathway"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)" <?php if($obj{"home_environment_walking_pathway"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="N/A"){echo "checked";};?> >
@@ -316,7 +317,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_stairs" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_stairs"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onchange="appendrow(this,8)" <?php if($obj{"home_environment_stairs"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)" <?php if($obj{"home_environment_stairs"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_stairs" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_stairs"}=="N/A"){echo "checked";};?> >
@@ -333,7 +334,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_lighting" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_lighting"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onchange="appendrow(this,9)" <?php if($obj{"home_environment_lighting"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)" <?php if($obj{"home_environment_lighting"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_lighting" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_lighting"}=="N/A"){echo "checked";};?> >
@@ -350,7 +351,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_heating" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_heating"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onchange="appendrow(this,10)" <?php if($obj{"home_environment_heating"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)" <?php if($obj{"home_environment_heating"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_heating" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_heating"}=="N/A"){echo "checked";};?> >
@@ -367,7 +368,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_medicine" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_medicine"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onchange="appendrow(this,11)" <?php if($obj{"home_environment_medicine"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)" <?php if($obj{"home_environment_medicine"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_medicine" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_medicine"}=="N/A"){echo "checked";};?> >
@@ -384,7 +385,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_bathroom"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onchange="appendrow(this,12)" <?php if($obj{"home_environment_bathroom"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)" <?php if($obj{"home_environment_bathroom"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_bathroom"}=="N/A"){echo "checked";};?> >
@@ -401,7 +402,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_kitchen"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onchange="appendrow(this,13)" <?php if($obj{"home_environment_kitchen"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)" <?php if($obj{"home_environment_kitchen"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_kitchen"}=="N/A"){echo "checked";};?> >
@@ -418,7 +419,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onchange="appendrow(this,14)" <?php if($obj{"home_environment_eff_oxygen"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)" <?php if($obj{"home_environment_eff_oxygen"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="N/A"){echo "checked";};?> >
@@ -435,7 +436,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onchange="appendrow(this,15)" <?php if($obj{"home_environment_overall_sanitary"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)" <?php if($obj{"home_environment_overall_sanitary"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="N/A"){echo "checked";};?> >
@@ -452,7 +453,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onchange="appendrow(this,16)" <?php if($obj{"home_environment_sanitation_plumbing"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)" <?php if($obj{"home_environment_sanitation_plumbing"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="N/A"){echo "checked";};?> >
@@ -469,7 +470,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<input type="checkbox" name="home_environment_other" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_other"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onchange="appendrow(this,17)" <?php if($obj{"home_environment_other"}=="No"){echo "checked";};?> >
+			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)" <?php if($obj{"home_environment_other"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
 			<input type="checkbox" name="home_environment_other" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_other"}=="N/A"){echo "checked";};?> >
@@ -580,7 +581,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<?php xl('Person/Title Completing Evaluation','e');?>&nbsp;<input type="text" name="home_environment_person_title" style="width:20%" value="<?php echo $obj{"home_environment_person_title"};?>">
 				<?php xl('Date:','e');?>
 					<input type='text' size='10' name='home_environment_person_title_date' id='home_environment_person_title_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_person_title_date"};?>" readonly/> 
+					title='<?php xl('Person Completing Evaluation Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_person_title_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date19' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -593,7 +594,7 @@ $home_environment_improve_safety=explode("#",$obj{"home_environment_improve_safe
 			<?php xl('Patient/Caregiver Signature','e');?>&nbsp;<input type="text" name="home_environment_patient_sig" style="width:20%" value="<?php echo $obj{"home_environment_patient_sig"};?>">
 				<?php xl('Date:','e');?>
 					<input type='text' size='10' name='home_environment_patient_sig_date' id='home_environment_patient_sig_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_patient_sig_date"};?>" readonly/> 
+					title='<?php xl('Patient/Caregiver Signature Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"home_environment_patient_sig_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date20' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -619,7 +620,7 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

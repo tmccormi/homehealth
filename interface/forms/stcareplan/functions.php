@@ -90,5 +90,19 @@ foreach($Fre_duration['units'] as $units)
 }
 
 
+function VisitDate() {
+$select= sqlStatement("select date from form_encounter where pid=" .$_SESSION['pid']." and encounter=".$GLOBALS['encounter']);
+while($Row=sqlFetchArray($select)) {
+$value= date('Y-m-d',strtotime($Row['date']));
+echo $value;
+}
+}  
 
+//Start Non-function query
+$is_it_empty = sqlStatement("SELECT date FROM form_encounter WHERE pid=" .$_SESSION['pid']." AND encounter=".$GLOBALS['encounter']);
+while($is_it_empty_row = sqlFetchArray($is_it_empty)) {
+$checking_for_date = date('Y-m-d',strtotime($is_it_empty_row['date']));
+}
+if($checking_for_date == '') {$date_is_blank = 0;} else {$date_is_blank = 1;}
+//End Non-function query
 ?>

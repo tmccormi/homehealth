@@ -95,7 +95,7 @@ formHeader("Form: careplan");
 					readonly/></td>
     <td align="center"><strong><?php xl('Onset Date','e')?></strong></td><td width="21%" align="left">
    <input type='text' style="width:60%"  name='Onsetdate' id='Onsetdate'
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_onset_date' border='0' alt='[?]'
@@ -132,18 +132,19 @@ formHeader("Form: careplan");
         <td width="50%" align="left" scope="row"><strong>
         <?php xl('PROBLEMS REQUIRING PT INTERVENTION','e')?></strong></td>
          
-        <td width="15%" align="center"><strong><?php xl('SOC Date','e')?></strong></td>
-        <td width="35%" align="left">
-        <input type='text' style="width:35%" name='careplan_SOCDate' id='careplan_SOCDate' 
-        			title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
-					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
-					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-					height='22' id='img_soc_date' border='0' alt='[?]'
-					style='cursor: pointer; cursor: hand'
-					title='<?php xl('Click here to choose a date','e'); ?>'> 
-					<script	LANGUAGE="JavaScript">
-    Calendar.setup({inputField:"careplan_SOCDate", ifFormat:"%Y-%m-%d", button:"img_soc_date"});
-   </script></td>
+<td width="15%" align="center"><strong><?php xl('Start of Care Date','e')?></strong></td>
+<td width="35%" align="left">
+<input type='text' size='12' name='careplan_SOCDate' id='careplan_SOCDate' title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='<?php VisitDate(); ?>' readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"careplan_SOCDate", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
+
       </tr>
     </table></td>
   </tr>

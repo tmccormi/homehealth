@@ -32,15 +32,21 @@ function doctorname()
 	
 }
 
-function VisitDate()
- {
-        $select= sqlStatement("select date from form_encounter where pid=" .$_SESSION['pid']." and encounter=".$GLOBALS['encounter']);
-        while($Row=sqlFetchArray($select))
-        {
-          $value= $Row['date'];
-        echo $value;
-        }
+function VisitDate() {
+$select= sqlStatement("select date from form_encounter where pid=" .$_SESSION['pid']." and encounter=".$GLOBALS['encounter']);
+while($Row=sqlFetchArray($select)) {
+$value= date('Y-m-d',strtotime($Row['date']));
+echo $value;
 }
+}  
+
+//Start Non-function query
+$is_it_empty = sqlStatement("SELECT date FROM form_encounter WHERE pid=" .$_SESSION['pid']." AND encounter=".$GLOBALS['encounter']);
+while($is_it_empty_row = sqlFetchArray($is_it_empty)) {
+$checking_for_date = date('Y-m-d',strtotime($is_it_empty_row['date']));
+}
+if($checking_for_date == '') {$date_is_blank = 0;} else {$date_is_blank = 1;}
+//End Non-function query
 
 function patientDOB($field)
 {
@@ -55,7 +61,7 @@ function patientDOB($field)
 function datePicker($idName)
 {
 
-$op="<input type='text' size='10' name='".$idName."' id='".$idName."' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='".$idName."' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> <script LANGUAGE=\"JavaScript\"> Calendar.setup({inputField:\"".$idName."\", ifFormat:\"%Y-%m-%d\", button:\"".$idName."\"}); </script>";
+$op="<input type='text' size='10' name='".$idName."' id='".$idName."' title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='".$idName."' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> <script LANGUAGE=\"JavaScript\"> Calendar.setup({inputField:\"".$idName."\", ifFormat:\"%Y-%m-%d\", button:\"".$idName."\"}); </script>";
 
 echo $op;
 
@@ -187,7 +193,7 @@ foreach($Fre_duration['units'] as $units)
 function goals_date($name, $val='') {
 	return 
 			"<input type='text' size='10' name='$name' id='$name'
-							title='yyyy-mm-dd Date of Birth'
+							title='Date'
 							onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='".stripslashes($val)."'  readonly/> 
 							<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 							height='22' id='img_$name' border='0' alt='[?]'

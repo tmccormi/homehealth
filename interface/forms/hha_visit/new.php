@@ -39,14 +39,23 @@ border-right:none;
 <TR valign="top">
 <TD>
 <b><?php xl('Patient:','e') ?></b>
-<input type="text" name="hha_visit_patient_name" size="40" value="<?php patientName(); ?>" readonly="readonly"  /><br />
+<input type="text" name="hha_visit_patient_name" size="40" value="<?php patientName(); ?>" readonly  /><br />
 </TD>
 <TD align="right">
 
 <b><?php xl('Caregiver:','e') ?></b>
 <input type="text" name="hha_visit_caregiver_name" size="30" />
-<b><?php xl('Visit Date:','e') ?></b>
-<input type="text" name="hha_visit_date" size="20" value="<?php VisitDate(); ?>" readonly/><br />
+
+<strong><?php xl('Start of Care Date:','e') ?></strong>
+<input type="text" name="hha_visit_date" id="hha_visit_date" size="12" value="<?php VisitDate(); ?>" readonly/><br />
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"hha_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 
 <b><?php xl('Time In:','e') ?></b>
 <select name="hha_visit_time_in" id="hha_visit_time_in">
@@ -497,7 +506,7 @@ border-right:none;
 <td rowspan="2">
 <b><?php xl('Date','e')?></b>
 <input type='text' size='10' name='hha_visit_patient_client_sign_date' id='hha_visit_patient_client_sign_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date7' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'

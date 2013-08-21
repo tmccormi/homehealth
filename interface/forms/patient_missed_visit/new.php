@@ -47,7 +47,7 @@ formHeader("Form: patient_missed_visit");
 				<strong><?php xl('DATE OF MISSED VISIT','e')?></strong></td>
 				<td align="center" valign="top" class="bold">
 				<input type='text' size='10' name='patient_missed_date' id='patient_missed_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -167,7 +167,7 @@ formHeader("Form: patient_missed_visit");
 						<input type="checkbox" name="physician_acknowledgment" id="physician_acknowledgment_delayed" value="<?php xl("DELAYED INITIAL SOC/EVALUATION","e");?>"><label for="physician_acknowledgment_delayed"><?php xl("DELAYED INITIAL SOC/EVALUATION","e");?></label>
 						<?php xl(' ON ','e')?>
 						<input type='text' size='10' name='physician_acknowledgment_date' id='physician_acknowledgment_date' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date2' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -179,7 +179,7 @@ formHeader("Form: patient_missed_visit");
 						<?php xl('PHYSICIAN SIGNATURE ','e')?><input type="text" name="physician_signature" value="">&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl('DATE ','e')?>
 						<input type='text' size='10' name='physician_signature_date' id='physician_signature_date' 
-						title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date3' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'

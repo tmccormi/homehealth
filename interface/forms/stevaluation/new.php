@@ -102,7 +102,7 @@ formHeader("Form: evaluation");
           <td width="5%" align="center"><strong><?php xl('Date','e')?></strong></td><td>
 
           <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -269,14 +269,14 @@ formHeader("Form: evaluation");
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for ST intervention','e')?></strong></td>
           <td align="center">
 	<input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="display:none"></select></span>  
 	</td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 	<input type="text" id="icd9" size="15"/>
-        <input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+        <input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <span id="trmnt_icd9">
 <select id="Evaluation_TREATMENT_DX_Problem" name="Evaluation_TREATMENT_DX_Problem" style="display:none"></select></span> 
 	</td>
@@ -490,7 +490,7 @@ formHeader("Form: evaluation");
     <?php xl('Need physician orders for ST services with specific treatments, frequency, and duration. See ST Care Plan and/or 485','e')?><br />
     <input type="checkbox" name="Evaluation_Received_Physician_Orders" id="Evaluation_Received_Physician_Orders" />
     <?php xl('Received physician orders for ST treatment and approximate next visit date will be','e')?>
-    <input type="text" size="10" name="Evaluation_Approximate_Next_Visit_Date" id="Evaluation_Approximate_Next_Visit_Date" title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
+    <input type="text" size="10" name="Evaluation_Approximate_Next_Visit_Date" id="Evaluation_Approximate_Next_Visit_Date" title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_next_visit_date' border='0' alt='[?]'
                                         style='cursor: pointer; cursor: hand'

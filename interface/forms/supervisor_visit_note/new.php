@@ -49,7 +49,7 @@ formHeader("Form: supervisor_visit_note");
 				<td><strong><?php xl('Date','e');?></strong></td>
 				<td align="center" valign="top" class="bold">
 					<input type='text' size='10' name='SOC_date' id='date' 
-					title='<?php xl('yyyy-mm-dd Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
+					title='<?php xl('Supervisor Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -329,7 +329,7 @@ formHeader("Form: supervisor_visit_note");
 		<td>
 			<?php xl('Date','e');?>
 					<input type='text' size='10' name='clinician_signature_date' id='clinician_signature_date' 
-					title='<?php xl('yyyy-mm-dd Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
+					title='<?php xl('Clinician Signature Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'

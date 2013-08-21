@@ -153,7 +153,7 @@ foreach($obj as $key => $value) {
 <?php timeDropDown(stripslashes($obj{"visitnote_Time_Out"})) ?></select></td>
         <td><strong><?php xl('Date','e'); ?></strong></td>
         <td>
-         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' 
+         <input type='text' size='10' name="visitnote_visitdate" id='visitnote_visitdate' title='<?php xl('Date','e'); ?>' 
 					value="<?php echo stripslashes($obj{"visitnote_visitdate"});?>" onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly />
 		<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_visit_date' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>'> 
@@ -260,7 +260,7 @@ value="<?php echo stripslashes($obj{"visitnote_VS_Pain_Intensity"});?>" >
   <tr>
     <td valign="top" scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM','e'); ?></strong>
    <input type="text" id="icd" size="25"/>
-<input type="button" value="Search" onclick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_Treatment_Diagnosis_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"visitnote_Treatment_Diagnosis_Problem"} != "")
 {
@@ -564,7 +564,7 @@ value="<?php echo stripslashes($obj{"visitnote_FSVR_Other"});?>" >
 </strong><br>
  <?php xl('Approximate Date of Next Visit','e'); ?>
 &nbsp;<input type='text' size='10' name='visitnote_Date_of_Next_Visit' id='visitnote_Date_of_Next_Visit' 
-title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+title='<?php xl('Date','e'); ?>'
 onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'
 value="<?php echo stripslashes($obj{"visitnote_Date_of_Next_Visit"});?>"  readonly/> 
 <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -644,7 +644,7 @@ Calendar.setup({inputField:"visitnote_Date_of_Next_Visit", ifFormat:"%Y-%m-%d", 
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

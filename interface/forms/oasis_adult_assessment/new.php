@@ -95,7 +95,7 @@ parseInt($("#braden_friction").val()));
 <body>
 		<h3 align="center"><?php xl('ADULT ASSESSMENT','e')?></h3>
 <form method="post" id="submitForm"
-		action="<?php echo $rootdir;?>/forms/oasis_adult_assessment/save.php?mode=new" name="adult_assessment" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir;?>/forms/oasis_adult_assessment/save.php?mode=new" name="adult_assessment" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
 	
 	
 	<table width="100%" border="0" class="formtable">
@@ -109,8 +109,16 @@ parseInt($("#braden_friction").val()));
 <input type="text" name="oasis_caregiver" size="15" >
 &nbsp;&nbsp;
 
-<?php xl('Visit Date:','e')?>
-<input type="text" name="oasis_visit_date" value="<?php VisitDate(); ?>" readonly/>
+<?php xl('Start of Care Date:','e')?>
+<input type="text" size="12" name="oasis_visit_date" id="oasis_visit_date" value="<?php VisitDate(); ?>" readonly/>
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 
 <br />
 <?php xl('Time In:','e')?>
@@ -157,7 +165,7 @@ parseInt($("#braden_friction").val()));
 <b><u><?php xl('(M0030)','e')?></u><?php xl('Start of Care Date:','e')?></b>&nbsp;<input type="text" name="" style="width:30%" value="<?php patientName("DOB")?>" readonly ><br/>
 <b><?php xl('Certification Period From:','e')?></b>&nbsp;
 <input type='text' size='10' name='oasis_certification_period_from' id='oasis_certification_period_from'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -169,7 +177,7 @@ parseInt($("#braden_friction").val()));
 
 <?php xl('To:','e')?>&nbsp;
 <input type='text' size='10' name='oasis_certification_period_to' id='oasis_certification_period_to'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'
@@ -186,7 +194,7 @@ parseInt($("#braden_friction").val()));
 <tr><td>
 <strong><?php xl('PHYSICIAN DATE LAST CONTACTED:','e')?></strong>&nbsp;
 <input type='text' size='10' name='oasis_physician_last_contacted' id='oasis_physician_last_contacted'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -198,7 +206,7 @@ parseInt($("#braden_friction").val()));
 <br/>
 <strong><?php xl('PHYSICIAN DATE LAST VISITED:','e')?></strong>&nbsp;
 <input type='text' size='10' name='oasis_physician_last_visited' id='oasis_physician_last_visited'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date3' border='0' alt='[?]'
@@ -259,7 +267,7 @@ the patient','e')?> <br/>
 <?php xl('Reason(s)/Date(s):','e')?><br>
 <input type="text" name="oasis_prior_hospitalizations_Reason1" size="40" />&nbsp;
 <input type='text' size='10' name='oasis_prior_hospitalizations_date1' id='oasis_prior_hospitalizations_date1'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date4' border='0' alt='[?]'
@@ -271,7 +279,7 @@ the patient','e')?> <br/>
 
 <input type="text" name="oasis_prior_hospitalizations_Reason2" size="40" />&nbsp;
 <input type='text' size='10' name='oasis_prior_hospitalizations_date2' id='oasis_prior_hospitalizations_date2'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date5' border='0' alt='[?]'
@@ -641,11 +649,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3a" class="autosearch" id="oasis_patient_diagnosis_3a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3a" class="autosearch" id="oasis_patient_diagnosis_3a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4a" class="autosearch" id="oasis_patient_diagnosis_4a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4a" class="autosearch" id="oasis_patient_diagnosis_4a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -669,7 +677,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2b" class="autosearch" id="oasis_patient_diagnosis_2b" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2b" class="autosearch" id="oasis_patient_diagnosis_2b" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2b_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -678,11 +686,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3b" class="autosearch" id="oasis_patient_diagnosis_3b" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3b" class="autosearch" id="oasis_patient_diagnosis_3b" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4b" class="autosearch" id="oasis_patient_diagnosis_4b" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4b" class="autosearch" id="oasis_patient_diagnosis_4b" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -692,7 +700,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2c" class="autosearch" id="oasis_patient_diagnosis_2c" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2c" class="autosearch" id="oasis_patient_diagnosis_2c" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2c_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -701,11 +709,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3c" class="autosearch" id="oasis_patient_diagnosis_3c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3c" class="autosearch" id="oasis_patient_diagnosis_3c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4c" class="autosearch" id="oasis_patient_diagnosis_4c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4c" class="autosearch" id="oasis_patient_diagnosis_4c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -715,7 +723,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2d" class="autosearch" id="oasis_patient_diagnosis_2d" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2d" class="autosearch" id="oasis_patient_diagnosis_2d" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2d_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -724,11 +732,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3d" class="autosearch" id="oasis_patient_diagnosis_3d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3d" class="autosearch" id="oasis_patient_diagnosis_3d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4d" class="autosearch" id="oasis_patient_diagnosis_4d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4d" class="autosearch" id="oasis_patient_diagnosis_4d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -738,7 +746,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2e" class="autosearch" id="oasis_patient_diagnosis_2e" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2e" class="autosearch" id="oasis_patient_diagnosis_2e" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2e_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -747,11 +755,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3e" class="autosearch" id="oasis_patient_diagnosis_3e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3e" class="autosearch" id="oasis_patient_diagnosis_3e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4e" class="autosearch" id="oasis_patient_diagnosis_4e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4e" class="autosearch" id="oasis_patient_diagnosis_4e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -761,7 +769,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2f" class="autosearch" id="oasis_patient_diagnosis_2f" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2f" class="autosearch" id="oasis_patient_diagnosis_2f" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2f_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -770,11 +778,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3f" class="autosearch" id="oasis_patient_diagnosis_3f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3f" class="autosearch" id="oasis_patient_diagnosis_3f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4f" class="autosearch" id="oasis_patient_diagnosis_4f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4f" class="autosearch" id="oasis_patient_diagnosis_4f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -784,7 +792,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2g" class="autosearch" id="oasis_patient_diagnosis_2g" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2g" class="autosearch" id="oasis_patient_diagnosis_2g" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2g_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -793,11 +801,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3g" class="autosearch" id="oasis_patient_diagnosis_3g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3g" class="autosearch" id="oasis_patient_diagnosis_3g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4g" class="autosearch" id="oasis_patient_diagnosis_4g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4g" class="autosearch" id="oasis_patient_diagnosis_4g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -807,7 +815,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2h" class="autosearch" id="oasis_patient_diagnosis_2h" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2h" class="autosearch" id="oasis_patient_diagnosis_2h" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2h_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -816,11 +824,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3h" class="autosearch" id="oasis_patient_diagnosis_3h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3h" class="autosearch" id="oasis_patient_diagnosis_3h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4h" class="autosearch" id="oasis_patient_diagnosis_4h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4h" class="autosearch" id="oasis_patient_diagnosis_4h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -830,7 +838,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2i" class="autosearch" id="oasis_patient_diagnosis_2i" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2i" class="autosearch" id="oasis_patient_diagnosis_2i" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2i_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -839,11 +847,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3i" class="autosearch" id="oasis_patient_diagnosis_3i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3i" class="autosearch" id="oasis_patient_diagnosis_3i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4i" class="autosearch" id="oasis_patient_diagnosis_4i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4i" class="autosearch" id="oasis_patient_diagnosis_4i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -853,7 +861,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2j" class="autosearch" id="oasis_patient_diagnosis_2j" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2j" class="autosearch" id="oasis_patient_diagnosis_2j" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2j_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -862,11 +870,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3j" class="autosearch" id="oasis_patient_diagnosis_3j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3j" class="autosearch" id="oasis_patient_diagnosis_3j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4j" class="autosearch" id="oasis_patient_diagnosis_4j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4j" class="autosearch" id="oasis_patient_diagnosis_4j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -876,7 +884,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2k" class="autosearch" id="oasis_patient_diagnosis_2k" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2k" class="autosearch" id="oasis_patient_diagnosis_2k" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2k_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -885,11 +893,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3k" class="autosearch" id="oasis_patient_diagnosis_3k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3k" class="autosearch" id="oasis_patient_diagnosis_3k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4k" class="autosearch" id="oasis_patient_diagnosis_4k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4k" class="autosearch" id="oasis_patient_diagnosis_4k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -899,7 +907,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2l" class="autosearch" id="oasis_patient_diagnosis_2l" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2l" class="autosearch" id="oasis_patient_diagnosis_2l" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2l_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -908,11 +916,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3l" class="autosearch" id="oasis_patient_diagnosis_3l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3l" class="autosearch" id="oasis_patient_diagnosis_3l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4l" class="autosearch" id="oasis_patient_diagnosis_4l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4l" class="autosearch" id="oasis_patient_diagnosis_4l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -922,7 +930,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2m" class="autosearch" id="oasis_patient_diagnosis_2m" value="" onkeydown="fonChange(this,2,'all')"><br>
+						<input type="text" name="oasis_patient_diagnosis_2m" class="autosearch" id="oasis_patient_diagnosis_2m" value="" onKeyDown="fonChange(this,2,'all')"><br>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="0"><?php xl(' 0 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="1"><?php xl(' 1 ','e');?></label>
 						<label><input type="radio" name="oasis_patient_diagnosis_2m_sub" value="2"><?php xl(' 2 ','e');?></label>
@@ -931,11 +939,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3m" class="autosearch" id="oasis_patient_diagnosis_3m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3m" class="autosearch" id="oasis_patient_diagnosis_3m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4m" class="autosearch" id="oasis_patient_diagnosis_4m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4m" class="autosearch" id="oasis_patient_diagnosis_4m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 			</table>
@@ -1079,7 +1087,7 @@ blank in that row.','e');?>
 <input type="textbox" size="32" name="oasis_vision_cataract_surgery"/><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<?php xl('Date','e')?>&nbsp;
 <input type='text' size='10' name='oasis_vision_date' id='oasis_vision_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date6' border='0' alt='[?]'
@@ -1645,8 +1653,8 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <td align="center">
                         <strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
                     </td>
-                    <td align="center">
-                       &nbsp;
+                    <td align="center">&nbsp;
+                       
                     </td>
                     <td align="center">
                         <input type="text" name="oasis_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="0">

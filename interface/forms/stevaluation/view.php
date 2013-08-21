@@ -166,7 +166,7 @@ foreach($obj as $key => $value) {
 
           <td align="center">
 <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 			value="<?php echo stripslashes($obj{"Evaluation_date"});?>"
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -366,7 +366,7 @@ foreach($obj as $key => $value) {
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for ST intervention','e')?></strong></td>
           <td align="center">
 	<input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
 <span id="med_icd9">
 <?php if ($obj{"Evaluation_Reason_for_intervention"}!= "")
 {
@@ -382,7 +382,7 @@ echo "</select>";
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
 	<input type="text" id="icd9" size="15"/>
-	<input type="button" value="Search" onclick="javascript:changeICDlist(Evaluation_TREATMENT_DX_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
+	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
 <span id="trmnt_icd9">   
 <?php if ($obj{"Evaluation_TREATMENT_DX_Problem"} != "")
 {
@@ -642,7 +642,7 @@ echo "</select>";
     <?php xl('Received physician orders for ST treatment and approximate next visit date will be','e')?>
     <input type="text" size="10" name="Evaluation_Approximate_Next_Visit_Date" id="Evaluation_Approximate_Next_Visit_Date" 
  value="<?php echo stripslashes($obj{"Evaluation_Approximate_Next_Visit_Date"});?>" 
-title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
+title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_next_visit_date' border='0' alt='[?]'
                                         style='cursor: pointer; cursor: hand'
@@ -739,7 +739,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Skilled_ST_Other"});?>"/></td></
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>

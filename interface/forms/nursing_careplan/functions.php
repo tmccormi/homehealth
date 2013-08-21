@@ -92,7 +92,7 @@ foreach($Fre_duration['units'] as $units)
 function goals_date($name, $val='') {
 	return 
 			"<input type='text' size='10' name='$name' id='$name'
-							title='yyyy-mm-dd Date of Birth'
+							title='Date'
 							onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value='".stripslashes($val)."'  readonly/> 
 							<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 							height='22' id='img_$name' border='0' alt='[?]'

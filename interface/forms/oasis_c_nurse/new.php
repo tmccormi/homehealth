@@ -153,14 +153,19 @@ function calc_avg()
 						<input type="text" name="oasis_c_nurse_caregiver" value="">
 					</td>
 
+<td align="right">
+<?php xl('Start of Care Date','e');?>
+<input type="text" title="Start of Care Date" size="12" name="oasis_c_nurse_visit_date" id="oasis_c_nurse_visit_date" value="<?php VisitDate(); ?>" readonly>
 
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
 
-					<td align="right">
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"oasis_c_nurse_visit_date", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
+</td>
 
-
-						<?php xl('Visit Date','e');?>
-						<input type="text" name="oasis_c_nurse_visit_date" value="<?php VisitDate(); ?>" readonly="true">
-					</td>
 				</tr>
 				<tr>
 					<td align="right" colspan="2">
@@ -261,7 +266,7 @@ function calc_avg()
 					
 			<strong><?php xl('(M0030) Start of Care Date:','e');?></strong>
 				<input type='text' size='10' name='oasis_c_nurse_soc_date' id='oasis_c_nurse_soc_date' 
-					title='<?php xl('yyyy-mm-dd SOC Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
+					title='<?php xl('Start of Care Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -277,13 +282,13 @@ function calc_avg()
 						<?php xl('First: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_name_first" value="<?php patientName('fname')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_name_first" value="<?php patientName('fname')?>" readonly>
 					</td>
 					<td align="right">
 						<?php xl('MI: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_name_mi" value="<?php patientName('mname')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_name_mi" value="<?php patientName('mname')?>" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -291,13 +296,13 @@ function calc_avg()
 						<?php xl('Last: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_name_last" value="<?php patientName('lname')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_name_last" value="<?php patientName('lname')?>" readonly>
 					</td>
 					<td align="right">
 						<?php xl('Suffix: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_name_suffix" value="<?php patientName('title')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_name_suffix" value="<?php patientName('title')?>" readonly>
 					</td>
 				</tr>
 			</table>
@@ -310,24 +315,24 @@ function calc_avg()
 						<?php xl('Street: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_address_street" value="<?php patientName('street')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_address_street" value="<?php patientName('street')?>" readonly>
 					</td>
 					<td align="right">
 						<?php xl('City: ','e');?>
 					</td>
 					<td align="left">
-						<input type="text" name="oasis_c_nurse_patient_address_city" value="<?php patientName('city')?>" readonly="true">
+						<input type="text" name="oasis_c_nurse_patient_address_city" value="<?php patientName('city')?>" readonly>
 					</td>
 				</tr>
 			</table>
 			<br>
 			
 			<strong><?php xl('Patient Phone: ','e');?></strong>
-			<input type="text" name="oasis_c_nurse_patient_phone" value="<?php patientName('phone_home')?>" readonly="true"><br>
+			<input type="text" name="oasis_c_nurse_patient_phone" value="<?php patientName('phone_home')?>" readonly><br>
 			<strong><?php xl('(M0050) Patient State of Residence: ','e');?></strong>
-			<input type="text" name="oasis_c_nurse_patient_state" value="<?php patientName("state")?>" readonly="true"><br>
+			<input type="text" name="oasis_c_nurse_patient_state" value="<?php patientName("state")?>" readonly><br>
 			<strong><?php xl('(M0060) Patient Zip Code: ','e');?></strong>
-			<input type="text" name="oasis_c_nurse_patient_zip" value="<?php patientName("postal_code")?>" readonly="true"><br>
+			<input type="text" name="oasis_c_nurse_patient_zip" value="<?php patientName("postal_code")?>" readonly><br>
 			<strong><?php xl('(M0063) Medicare Number: (including suffix) ','e');?></strong>
 			<input type="text" name="oasis_c_nurse_medicare_no" value="">
 <br />
@@ -341,7 +346,7 @@ function calc_avg()
 <br />
 			<label><input type="checkbox" name="oasis_c_nurse_medicaid_no_na" value="N/A"><?php xl('NA - No Medicaid','e');?></label><br>
 			<strong><?php xl('(M0066) Birth Date: ','e');?></strong>
-<input type="text" name="oasis_c_nurse_birth_date" value="<?php patientName("DOB")?>" readonly="true">
+<input type="text" name="oasis_c_nurse_birth_date" value="<?php patientName("DOB")?>" readonly>
 					<br>
 			<strong><?php xl('(M0069) Gender: ','e');?></strong>
 				<label><input type="radio" name="oasis_c_nurse_patient_gender" id="male" value="male" 
@@ -382,7 +387,7 @@ function calc_avg()
 <hr />
 			<strong><?php xl('(M0090) Date Assessment Completed: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_date_assessment_completed' id='oasis_c_nurse_date_assessment_completed' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date4' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -405,7 +410,7 @@ function calc_avg()
 <hr />
 			<strong><?php xl('Certification Period From: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_certification_period_from' id='oasis_c_nurse_certification_period_from' 
-					title='<?php xl('yyyy-mm-dd From','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date5' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -415,7 +420,7 @@ function calc_avg()
 					</script>
 			<strong><?php xl(' To: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_certification_period_to' id='oasis_c_nurse_certification_period_to' 
-					title='<?php xl('yyyy-mm-dd To','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date6' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -430,7 +435,7 @@ function calc_avg()
 			<hr>
 			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_date_last_contacted_physician' id='oasis_c_nurse_date_last_contacted_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -441,7 +446,7 @@ function calc_avg()
 			<hr>
 			<strong><?php xl('Date Last Seen By Physician: ','e');?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_date_last_seen_by_physician' id='oasis_c_nurse_date_last_seen_by_physician' 
-					title='<?php xl('yyyy-mm-dd Date Assessment Completed','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+					title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show	_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date_sy2' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -606,7 +611,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2a" id="oasis_patient_diagnosis_2a" size="15" value="" onkeydown="fonChange(this,2,'noe')">
+						<input type="text" name="oasis_patient_diagnosis_2a" id="oasis_patient_diagnosis_2a" size="15" value="" onKeyDown="fonChange(this,2,'noe')">
 						<select name="oasis_patient_diagnosis_2a_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -621,11 +626,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3a" id="oasis_patient_diagnosis_3a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3a" id="oasis_patient_diagnosis_3a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('a. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4a" id="oasis_patient_diagnosis_4a" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4a" id="oasis_patient_diagnosis_4a" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -649,7 +654,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('b. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2b" id="oasis_patient_diagnosis_2b" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2b" id="oasis_patient_diagnosis_2b" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2b_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -677,7 +682,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2c" id="oasis_patient_diagnosis_2c" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2c" id="oasis_patient_diagnosis_2c" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2c_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -691,11 +696,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3c" id="oasis_patient_diagnosis_3c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3c" id="oasis_patient_diagnosis_3c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('c. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4c" id="oasis_patient_diagnosis_4c" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4c" id="oasis_patient_diagnosis_4c" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -705,7 +710,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2d" id="oasis_patient_diagnosis_2d" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2d" id="oasis_patient_diagnosis_2d" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2d_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -719,11 +724,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3d" id="oasis_patient_diagnosis_3d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3d" id="oasis_patient_diagnosis_3d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('d. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4d" id="oasis_patient_diagnosis_4d" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4d" id="oasis_patient_diagnosis_4d" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -733,7 +738,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2e" id="oasis_patient_diagnosis_2e" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2e" id="oasis_patient_diagnosis_2e" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2e_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -747,11 +752,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3e" id="oasis_patient_diagnosis_3e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3e" id="oasis_patient_diagnosis_3e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('e. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4e" id="oasis_patient_diagnosis_4e" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4e" id="oasis_patient_diagnosis_4e" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -761,7 +766,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2f" id="oasis_patient_diagnosis_2f" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2f" id="oasis_patient_diagnosis_2f" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2f_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -775,11 +780,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3f" id="oasis_patient_diagnosis_3f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3f" id="oasis_patient_diagnosis_3f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('f. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4f" id="oasis_patient_diagnosis_4f" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4f" id="oasis_patient_diagnosis_4f" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -789,7 +794,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2g" id="oasis_patient_diagnosis_2g" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2g" id="oasis_patient_diagnosis_2g" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2g_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -803,11 +808,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3g" id="oasis_patient_diagnosis_3g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3g" id="oasis_patient_diagnosis_3g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('g. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4g" id="oasis_patient_diagnosis_4g" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4g" id="oasis_patient_diagnosis_4g" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -817,7 +822,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2h" id="oasis_patient_diagnosis_2h" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2h" id="oasis_patient_diagnosis_2h" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2h_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -831,11 +836,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3h" id="oasis_patient_diagnosis_3h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3h" id="oasis_patient_diagnosis_3h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('h. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4h" id="oasis_patient_diagnosis_4h" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4h" id="oasis_patient_diagnosis_4h" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -845,7 +850,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2i" id="oasis_patient_diagnosis_2i" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2i" id="oasis_patient_diagnosis_2i" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2i_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -859,11 +864,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3i" id="oasis_patient_diagnosis_3i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3i" id="oasis_patient_diagnosis_3i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('i. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4i" id="oasis_patient_diagnosis_4i" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4i" id="oasis_patient_diagnosis_4i" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -873,7 +878,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2j" id="oasis_patient_diagnosis_2j" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2j" id="oasis_patient_diagnosis_2j" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2j_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -887,11 +892,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3j" id="oasis_patient_diagnosis_3j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3j" id="oasis_patient_diagnosis_3j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('j. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4j" id="oasis_patient_diagnosis_4j" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4j" id="oasis_patient_diagnosis_4j" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -901,7 +906,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2k" id="oasis_patient_diagnosis_2k" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2k" id="oasis_patient_diagnosis_2k" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2k_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -915,11 +920,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3k" id="oasis_patient_diagnosis_3k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3k" id="oasis_patient_diagnosis_3k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('k. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4k" id="oasis_patient_diagnosis_4k" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4k" id="oasis_patient_diagnosis_4k" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -929,7 +934,7 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_2l" id="oasis_patient_diagnosis_2l" size="15" value="" onkeydown="fonChange(this,2,'all')">
+						<input type="text" name="oasis_patient_diagnosis_2l" id="oasis_patient_diagnosis_2l" size="15" value="" onKeyDown="fonChange(this,2,'all')">
 						<select name="oasis_patient_diagnosis_2l_indicator">
 						<option value=""></option>
 						<option value="O"><?php xl('O','e');?></option>
@@ -943,11 +948,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3l" id="oasis_patient_diagnosis_3l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3l" id="oasis_patient_diagnosis_3l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('l. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4l" id="oasis_patient_diagnosis_4l" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4l" id="oasis_patient_diagnosis_4l" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 				<tr>
@@ -971,11 +976,11 @@ blank in that row.','e');?>
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_3m" id="oasis_patient_diagnosis_3m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_3m" id="oasis_patient_diagnosis_3m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 					<td>
 						<?php xl('m. ','e');?>
-						<input type="text" name="oasis_patient_diagnosis_4m" id="oasis_patient_diagnosis_4m" value="" onkeydown="fonChange(this,2,'noev')">
+						<input type="text" name="oasis_patient_diagnosis_4m" id="oasis_patient_diagnosis_4m" value="" onKeyDown="fonChange(this,2,'noev')">
 					</td>
 				</tr>
 			</table>
@@ -986,10 +991,10 @@ blank in that row.','e');?>
 <tr><TD colspan="2">
 <u><?php xl('Surgical Procedure ( V codes are allowed )','e');?></u><br />
 <?php xl('a. ','e');?>
-<input type="text" name="oasis_surgical_procedure_a" id="oasis_surgical_procedure_a" value="" onkeydown="fonChange(this,2,'noe')">
+<input type="text" name="oasis_surgical_procedure_a" id="oasis_surgical_procedure_a" value="" onKeyDown="fonChange(this,2,'noe')">
 <?php xl('Date:','e');?>
 						<input type='text' size='10' name='oasis_surgical_procedure_a_date' id='oasis_surgical_procedure_a_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date7' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -1000,10 +1005,10 @@ blank in that row.','e');?>
 
 <br />
 <?php xl('b. ','e');?>
-<input type="text" name="oasis_surgical_procedure_b" id="oasis_surgical_procedure_b" value="" onkeydown="fonChange(this,2,'noe')">
+<input type="text" name="oasis_surgical_procedure_b" id="oasis_surgical_procedure_b" value="" onKeyDown="fonChange(this,2,'noe')">
 <?php xl('Date:','e');?>
 						<input type='text' size='10' name='oasis_surgical_procedure_b_date' id='oasis_surgical_procedure_b_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date8' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -1068,22 +1073,22 @@ blank in that row.','e');?>
 				<tr align="center">
 					<td></td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_0.png" border="0" onclick="select_pain(0)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_0.png" border="0" onClick="select_pain(0)">
 					</td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_2.png" border="0" onclick="select_pain(1)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_2.png" border="0" onClick="select_pain(1)">
 					</td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_4.png" border="0" onclick="select_pain(2)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_4.png" border="0" onClick="select_pain(2)">
 					</td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_6.png" border="0" onclick="select_pain(3)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_6.png" border="0" onClick="select_pain(3)">
 					</td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_8.png" border="0" onclick="select_pain(4)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_8.png" border="0" onClick="select_pain(4)">
 					</td>
 					<td>
-						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_10.png" border="0" onclick="select_pain(5)">
+						<img src="<?php echo $GLOBALS['webroot'] ?>/interface/forms/oasis_c_nurse/templates/scale_10.png" border="0" onClick="select_pain(5)">
 					</td>
 				</tr>
 				<tr>
@@ -1677,8 +1682,8 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
                     <td align="center">
                         <strong><?php xl("3. NO APPARENT PROBLEM","e");?></strong>
                     </td>
-                    <td align="center">
-                       &nbsp;
+                    <td align="center">&nbsp;
+                       
                     </td>
                     <td align="center">
                         <input type="text" name="oasis_braden_scale_friction" onKeyUp="sum_braden_scale()" id="braden_friction" value="0">
@@ -2092,7 +2097,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			<label><input type="checkbox" name="oasis_c_nurse_heart_sounds[]" value="<?php xl("Pacemaker","e");?>"><?php xl('Pacemaker:','e')?></label>
 				<input type="text" name="oasis_c_nurse_heart_sounds_pacemaker" value="">&nbsp;&nbsp;
 				<?php xl('Date:','e')?><input type='text' size='10' name='oasis_c_nurse_heart_sounds_pacemaker_date' id='oasis_c_nurse_heart_sounds_pacemaker_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date16' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -2207,7 +2212,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			<?php xl("Date last changed","e");?><br>
 				<label><input type="checkbox" name="oasis_c_nurse_urinary[]" value="Foley inserted"><?php xl('Foley inserted','e')?></label>
 				<input type='text' size='10' name='oasis_c_nurse_urinary_foley_date' id='oasis_c_nurse_urinary_foley_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date17' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -2494,7 +2499,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<b><?php xl("Age 65+","e");?></b>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Age 65+"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Age 65+"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2502,7 +2507,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Diagnosis (3 or more co-existing) :</b> Assess for hypotension","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Diagnosis"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Diagnosis"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2510,7 +2515,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Prior History of fall within 3 months :</b> Fall Definition, 'An unintentional change in position resulting in coming to rest on the ground or at a lower level.'","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Prior History of fall within 3 months"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Prior History of fall within 3 months"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2518,7 +2523,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Incontinence :</b> Inability to make it to the bathroom or commode in timely manner. Includes frequency, urgency, and/or nocturia","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Incontinence"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Incontinence"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2526,7 +2531,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Visual impairment :</b> Includes macular degeneration, diabetic retinopathies, visual field loss, age related changes, decline in visual acuity, accommodation, glare tolerance, depth perception, and night vision or not wearing prescribed glasses or having the correct prescription.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Visual impairment"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Visual impairment"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2534,7 +2539,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Impaired functional mobility :</b> May include patients who need help with IADLS or ADLS or have gait or transfer problems, arthritis, pain, fear of falling, foot problems, impaired sensation, impaired coordination or improper use of assistive devices.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Impaired functional mobility"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Impaired functional mobility"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2542,7 +2547,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Environmental hazards :</b> May include poor illumination, equipment tubing, inappropriate footwear, pets, hard to reach items, floor surfaces that are uneven or cluttered, or outdoor entry and exits.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Environmental hazards"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Environmental hazards"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2550,7 +2555,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Poly Pharmacy (4 or more prescriptions) :</b> Drugs highly associated with fall risk include but not limited to, sedatives, anti-depressants, tranquilizers, narcotics, antihypertensives, cardiac meds, corticosteroids, anti-anxiety drugs, anticholinergic drugs, and hypoglycemic drugs.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Poly Pharmacy"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Poly Pharmacy"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2558,7 +2563,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Pain affecting level of function :</b> Pain often affects an individual's desire or ability to move or pain can be a factor in depression or compliance with safety recommendations.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Pain affecting level of function"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Pain affecting level of function"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2566,7 +2571,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 						<?php xl("<b>Cognitive impairment :</b> Could include patients with dementia, Alzheimer's or stroke patients or patients who are confused, use poor judgment, have decreased comprehension, impulsivity, memory deficits. Consider patients ability to adhere to the plan of care.","e");?>
 					</td>
 					<td>
-						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onchange="sumfallrisk(this);" value="Cognitive impairment"></label>
+						<label><?php xl('Yes - 1','e')?><input type="checkbox" name="oasis_c_nurse_fall_risk_assessment[]" onChange="sumfallrisk(this);" value="Cognitive impairment"></label>
 					</td>
 				</tr>
 				<tr>
@@ -2687,7 +2692,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_central_date' id='oasis_c_nurse_infusion_central_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date99' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2738,7 +2743,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Triple lumen','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_hickman_date' id='oasis_c_nurse_infusion_hickman_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date19' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2761,7 +2766,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 <br />
 
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_epidural_date' id='oasis_c_nurse_infusion_epidural_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date20' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2784,7 +2789,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Peritoneal','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_implanted_date' id='oasis_c_nurse_infusion_implanted_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date21' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2805,7 +2810,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 <?php xl('Reservoir','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='oasis_c_nurse_infusion_intrathecal_date' id='oasis_c_nurse_infusion_intrathecal_date'
-                        title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
+                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                         height='22' id='img_curr_date22' border='0' alt='[?]'
                         style='cursor: pointer; cursor: hand'
@@ -2968,8 +2973,8 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;
 			<strong><?php xl("Instructions to the Patient:","e");?></strong><br>
 			<?php xl("\"On the word 'Go' you are to get up & go & walk at a comfortable & safe pace to the marker, turn & return to the chair & sit down again.\"","e");?>
 			<center>
-				<?php xl("Trial 1:","e");?><input type="text" name="oasis_c_nurse_timed_up_trial1" id="oasis_c_nurse_timed_up_trial1" onkeyup="calc_avg();" value=""><?php xl("Seconds","e");?><br>
-				<?php xl("Trial 2:","e");?><input type="text" name="oasis_c_nurse_timed_up_trial2" id="oasis_c_nurse_timed_up_trial2" onkeyup="calc_avg();" value=""><?php xl("Seconds","e");?><br>
+				<?php xl("Trial 1:","e");?><input type="text" name="oasis_c_nurse_timed_up_trial1" id="oasis_c_nurse_timed_up_trial1" onKeyUp="calc_avg();" value=""><?php xl("Seconds","e");?><br>
+				<?php xl("Trial 2:","e");?><input type="text" name="oasis_c_nurse_timed_up_trial2" id="oasis_c_nurse_timed_up_trial2" onKeyUp="calc_avg();" value=""><?php xl("Seconds","e");?><br>
 				<?php xl("Average:","e");?><input type="text" name="oasis_c_nurse_timed_up_average" id="oasis_c_nurse_timed_up_average" value="" readonly><?php xl("Seconds","e");?>
 			</center>
 			<br>
@@ -3083,7 +3088,7 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 			<strong><?php xl("REFERRAL TO:","e");?></strong><input type="text" name="oasis_c_nurse_summary_check_referrel" value="">
 			<strong><?php xl("APPROXIMATE NEXT VISIT DATE:","e");?></strong>
 			<input type='text' size='10' name='oasis_c_nurse_summary_check_next_visit' id='oasis_c_nurse_summary_check_next_visit' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date23' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -3101,7 +3106,7 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 			<label><input type="radio" name="oasis_c_nurse_summary_check_verbal_order" value="Yes"><?php xl(' Yes, specify date (Locator #23)','e')?></label>
 			
 			<input type='text' size='10' name='oasis_c_nurse_summary_verbal_order_date' id='oasis_c_nurse_summary_verbal_order_date' 
-						title='<?php xl('yyyy-mm-dd Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
+						title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 						<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 						height='22' id='img_curr_date52' border='0' alt='[?]'
 						style='cursor: pointer; cursor: hand'
@@ -3432,8 +3437,8 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 	</td>
 	</tr>
 	<tr>
-	<td>
-	&nbsp;
+	<td>&nbsp;
+	
 	</td>
 	<td align="right">
 	<?php xl('diastolic','e')?>
@@ -3464,8 +3469,8 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 	<td>
 	<?php xl('Notify MD if < 88%','e')?>
 	</td>
-	<td>
-	&nbsp;
+	<td>&nbsp;
+	
 	</td>
 	</tr>
 	
@@ -3534,8 +3539,8 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 
 	<table class="formtable" border="1">
 	<tr>
-	<td>
-	&nbsp;
+	<td>&nbsp;
+	
 	</td>
 	<td colspan="2" align="center">
 	<strong><?php xl(' GOALS','e')?></strong>
@@ -4141,8 +4146,8 @@ health or to facilitate treatment or to prevent deterioration of the patients he
 </tr>
 
 <tr>
-<td>
-&nbsp;
+<td>&nbsp;
+
 </td>
 <td align="center">
 <strong><?php xl('Goals','e')?></strong>

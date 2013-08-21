@@ -44,7 +44,7 @@ formHeader("Form: physician_face");
 <tr>
 <TD>
 <b><?php xl('Patient:','e') ?></b>
-<input type="text" name="physician_face_patient_name" size="50" value="<?php patientName(); ?>" readonly="readonly"  /><br />
+<input type="text" name="physician_face_patient_name" size="50" value="<?php patientName(); ?>" readonly  /><br />
 <b><?php xl('Chart:','e') ?></b>
 <input type="text" name="physician_face_chart" size="10" />
 <b><?php xl('Episode:','e') ?></b>
@@ -53,7 +53,7 @@ formHeader("Form: physician_face");
 <TD align="right">
 <b><?php xl('Date:','e') ?></b>
 <input type='text' size='10' name='physician_face_date' id='physician_face_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date' border='0' alt='[?]'
@@ -88,23 +88,31 @@ formHeader("Form: physician_face");
 <b><?php xl('Patient Date of Birth:','e') ?></b>
 </TD>
 <td>
-<input type="text" name="physician_face_patient_dob" size="20" value="<?php patientDOB(); ?>" readonly="readonly"  />
+<input type="text" name="physician_face_patient_dob" size="20" value="<?php patientDOB(); ?>" readonly  />
 </td>
 </tr>
 <tr>
-<TD width="170">
-<b><?php xl('SOC Date:','e') ?></b>
-</TD>
+
+<td width="170"><strong><?php xl('Start of Care Date:','e') ?></strong></td>
 <td>
-<input type="text" name="physician_face_patient_soc" size="20" value="<?php patientDOB(); ?>" readonly="readonly"  />
+<input type="text" name="physician_face_patient_soc" id="physician_face_patient_soc" size="20" value="<?php VisitDate(); ?>" readonly  />
+
+<?php if($date_is_blank == 0) { ?>
+<img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22' id='img_curr_date1' border='0' alt='[?]' style='cursor: pointer; cursor: hand' title='<?php xl('Click here to choose a date','e'); ?>' />
+
+<script	LANGUAGE="JavaScript">
+Calendar.setup({inputField:"physician_face_patient_soc", ifFormat:"%Y-%m-%d", button:"img_curr_date1"});
+</script>
+<?php } else {echo '';} ?>
 </td>
+
 </tr>
 </table>
 
 <?php xl('I certify that this patient is under my care and that I, or a nurse practitioner or physician\'s assistant working with me, had a face-to-face encounter that meets the physician face-to-face encounter requirements with this patient on:','e') ?>
 
 <input type='text' size='10' name='physician_face_patient_date' id='physician_face_patient_date'
-                                        title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+                                        title='<?php xl('Date','e'); ?>'
                                         onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
                                         <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
                                         height='22' id='img_curr_date1' border='0' alt='[?]'

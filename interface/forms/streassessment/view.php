@@ -125,7 +125,7 @@ foreach($obj as $key => $value) {
   <td width="9%" align="center"><strong><?php xl('REASSESS DATE','e')?></strong></td>
 <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('yyyy-mm-dd Date of Birth','e'); ?>'
+					title='<?php xl('Date','e'); ?>'
 					value="<?php echo stripslashes($obj{"Reassessment_date"});?>" 
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -665,7 +665,7 @@ value="<?php echo stripslashes($obj{"Reassessment_Other_Services_Provided"});?>"
                     <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
-                    <input type="button" value="Back" onclick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
+                    <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;
                     <?php if($action == "review") { ?>
                     <input type="button" value="Sign" id="signoff" href="#login_form" <?php echo $signDisabled;?> />
                     <? } ?>
