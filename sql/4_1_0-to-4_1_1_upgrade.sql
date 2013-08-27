@@ -1547,7 +1547,7 @@ physician_orders_mr varchar(40),
 physician_orders_date date default NULL,
 physician_orders_patient_dob date default NULL,
 physician_orders_physician varchar(40),
-physician_orders_diagnosis tinyint(4) default NULL,
+physician_orders_diagnosis varchar(255),
 physician_orders_problem varchar(50),
 physician_orders_discipline text,
 physician_orders_discipline_other text,
@@ -7353,7 +7353,7 @@ CREATE TABLE `forms_nursing_visitnote` (
   `visitnote_VS_Pain_Intensity` varchar(40) DEFAULT NULL,
   `visitnote_VS_condition` varchar(30) DEFAULT NULL,
   `visitnote_VS_Condition_other` varchar(255) DEFAULT NULL,
-  `visitnote_VS_Diagnosis` varchar(100) DEFAULT NULL,
+  `visitnote_VS_Diagnosis` varchar(255) DEFAULT NULL,
   `visitnote_HR_Home_Bound` text,
   `visitnote_HR_Patient_Restriction` varchar(40) DEFAULT NULL,
   `visitnote_HR_others` varchar(40) DEFAULT NULL,
@@ -8069,3 +8069,11 @@ ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Durati
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Duration`;
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration1`;
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration2`;
+
+-- Alters the forms_physician_orders table and changes data type from tinyint(4) to varchar(255)
+
+ALTER TABLE `forms_physician_orders` MODIFY COLUMN `physician_orders_diagnosis` VARCHAR(255);
+
+-- Alters the forms_physician_orders table and changes data type from tinyint(4) to varchar(255)
+
+ALTER TABLE `forms_nursing_visitnote` MODIFY COLUMN `visitnote_VS_Diagnosis` VARCHAR(255);

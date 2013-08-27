@@ -370,38 +370,11 @@ foreach($obj as $key => $value) {
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for PT intervention','e')?></strong></td>
           <td align="center">
-<input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<span id="med_icd9">
-<?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
-{
-echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention'>"; 
-echo "<option value=".stripslashes($obj{'Evaluation_Reason_for_intervention'}).">". stripslashes($obj{'Evaluation_Reason_for_intervention'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention' style='display:none'> </select>";
- }?>
-</span>
+<input type="text" id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="width:100%;" value="<?php echo stripslashes($obj{'Evaluation_Reason_for_intervention'}); ?>"/>
 </td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
-<input type="text" id="icd9" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<span id="trmnt_icd9">
-<?php if ($obj{"Evaluation_TREATMENT_DX_PT_Problem"} != "")
-{
-echo "<select id='Evaluation_TREATMENT_DX_PT_Problem' name='Evaluation_TREATMENT_DX_PT_Problem'>"; 
-echo "<option value=".stripslashes($obj{'Evaluation_TREATMENT_DX_PT_Problem'}).">". stripslashes($obj{'Evaluation_TREATMENT_DX_PT_Problem'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='med_dx_icd9' name='med_dx_icd9' style='display:none'> </select>";
- }?>
-</span>
-
+<input type="text" id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem" style="width:100%;" value="<?php echo stripslashes($obj{'Evaluation_TREATMENT_DX_PT_Problem'}); ?>"/>
 </td>
         </tr>
       </table>

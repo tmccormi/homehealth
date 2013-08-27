@@ -187,21 +187,7 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 <table class="formtable" width="100%" border="1px solid #000000" Style="border : 0px;" cellpadding="5px" cellspacing="0px">
 <tr>
     <td scope="row" width="50%"><strong><?php xl('Diagnosis','e');?> </strong>
-   <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(physician_orders_diagnosis,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<span id="med_icd9">
-<?php if ($obj{"physician_orders_diagnosis"} != "")
-				{
-				echo "<select id='physician_orders_diagnosis' name='physician_orders_diagnosis'>"; 
-				echo "<option value=".stripslashes($obj{'physician_orders_diagnosis'}).">". stripslashes($obj{'physician_orders_diagnosis'})."</option>";
-				echo "</select>";
-				 } 
-				 else 
-				 { 
-				 echo "<select id='physician_orders_diagnosis' name='physician_orders_diagnosis' style='display:none'> </select>";
-				 }?>
-
-</span>
+   <input type="text" id="physician_orders_diagnosis" name="physician_orders_diagnosis" style="width:100%;" value="<?php echo stripslashes($obj{'physician_orders_diagnosis'}); ?>"/>
 <td><b><?php xl('Problem','e') ?></b></td>
 <td><input type="text" name="physician_orders_problem" rows="2" style="width:95%"  value="<?php echo $obj{"physician_orders_problem"};?>"/>
 </td>

@@ -268,20 +268,11 @@ formHeader("Form: evaluation");
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for PT intervention','e')?></strong></td>
           <td align="center">
-<input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<span id="med_icd9">
-<select id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="display:none">
-</select></span>
-	  
- </td>
+<input type="text" id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="width:100%;"/>
+	  	  </td>
           <td align="center"><strong><?php xl('TREATMENT DX/Problem','e')?></strong></td>
           <td align="center">
-<input type="text" id="icd9" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_PT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<span id="trmnt_icd9">
-<select id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem" style="display:none">					
-</select></span>	
+<input type="text" id="Evaluation_TREATMENT_DX_PT_Problem" name="Evaluation_TREATMENT_DX_PT_Problem" style="width:100%;"/>	
 </td>
         </tr>
       </table>

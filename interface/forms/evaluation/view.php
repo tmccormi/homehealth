@@ -372,36 +372,11 @@ foreach($obj as $key => $value) {
         <tr>
           <td align="center" scope="row"><strong><?php xl('MED DX/ Reason for intervention','e')?>  </strong></td>
           <td align="center">
-           <input type="text" id="icd" size="15"/>
-	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_Reason_for_intervention,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<div id="med_icd9">
-<?php if ($obj{"Evaluation_Reason_for_intervention"} != "")
-{
-echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention'>"; 
-echo "<option value=".stripslashes($obj{'Evaluation_Reason_for_intervention'}).">". stripslashes($obj{'Evaluation_Reason_for_intervention'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='Evaluation_Reason_for_intervention' name='Evaluation_Reason_for_intervention' style='display:none'> </select>";
- }?></div>
+           <input type="text" id="Evaluation_Reason_for_intervention" name="Evaluation_Reason_for_intervention" style="width:100%;" value="<?php echo stripslashes($obj{'Evaluation_Reason_for_intervention'}); ?>"/>
 </td>
           <td align="center"><strong><?php xl('TREATMENT DX/ OT Problem','e')?>  </strong></td>
           <td align="center">
-         <input type="text" id="icd9" size="15"/>
-	<input type="button" value="Search" onClick="javascript:changeICDlist(Evaluation_TREATMENT_DX_OT_Problem,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-<div id="trmnt_icd9">    
-<?php if ($obj{"Evaluation_TREATMENT_DX_OT_Problem"} != "")
-{
-echo "<select id='Evaluation_TREATMENT_DX_OT_Problem' name='Evaluation_TREATMENT_DX_OT_Problem'>"; 
-echo "<option value=".stripslashes($obj{'Evaluation_TREATMENT_DX_OT_Problem'}).">". stripslashes($obj{'Evaluation_TREATMENT_DX_OT_Problem'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='Evaluation_TREATMENT_DX_OT_Problem' name='Evaluation_TREATMENT_DX_OT_Problem' style='display:none'> </select>";
- }?>
- </div>
+         <input type="text" id="Evaluation_TREATMENT_DX_OT_Problem" name="Evaluation_TREATMENT_DX_OT_Problem" style="width:100%;" value="<?php echo stripslashes($obj{'Evaluation_TREATMENT_DX_OT_Problem'}); ?>"/>
 </td>
         </tr>
       </table>

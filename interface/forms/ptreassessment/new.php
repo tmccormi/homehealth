@@ -239,13 +239,10 @@ SBP <80 or >190 DBP <50 or >100 Pain Significantly Impacts patients ability to p
   </tr>
   <tr>
 
-    <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
+    <td scope="row" style="padding-left:8px; padding-right:8px; padding-bottom:8px;">
     <strong><?php xl('TREATMENT DX/Problem','e')?></strong> 
-<input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(Reassessment_TREATMENT_DX_Problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<span id="med_icd9">
-<select id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="display:none"></select></span>
-</td></tr></table></td>
+<input type="text" id="Reassessment_TREATMENT_DX_Problem" name="Reassessment_TREATMENT_DX_Problem" style="width:100%;"/>
+</td>
   </tr>
   <tr>
     <td scope="row"><table border="0px" cellpadding="5px" cellspacing="0px" class="formtable"><tr><td>
