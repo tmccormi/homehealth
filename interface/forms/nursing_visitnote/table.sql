@@ -27,7 +27,7 @@ CREATE TABLE `forms_nursing_visitnote` (
   `visitnote_VS_Pain_Intensity` varchar(40) DEFAULT NULL,
   `visitnote_VS_condition` varchar(30) DEFAULT NULL,
   `visitnote_VS_Condition_other` varchar(255) DEFAULT NULL,
-  `visitnote_VS_Diagnosis` varchar(100) DEFAULT NULL,
+  `visitnote_VS_Diagnosis` varchar(255) DEFAULT NULL,
   `visitnote_HR_Home_Bound` text,
   `visitnote_HR_Patient_Restriction` varchar(40) DEFAULT NULL,
   `visitnote_HR_others` varchar(40) DEFAULT NULL,

@@ -334,20 +334,7 @@ foreach($obj as $key => $value) {
         <tr>
           <td scope="row"> <strong><?php xl('DIAGNOSIS','e')?></strong>
 			
-				<input type="text" id="icd9" size="15"/>
-				<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-				<span id="trmnt_icd9">
-				<?php if ($obj{"visitnote_VS_Diagnosis"} != "")
-				{
-				echo "<select id='visitnote_VS_Diagnosis' name='visitnote_VS_Diagnosis'>"; 
-				echo "<option value=".stripslashes($obj{'visitnote_VS_Diagnosis'}).">". stripslashes($obj{'visitnote_VS_Diagnosis'})."</option>";
-				echo "</select>";
-				 } 
-				 else 
-				 { 
-				 echo "<select id='visitnote_VS_Diagnosis' name='visitnote_VS_Diagnosis' style='display:none'> </select>";
-				 }?>			
-				 </span>
+				<input type="text" id="visitnote_VS_Diagnosis" name="visitnote_VS_Diagnosis" style="width:100%;" value="<?php echo stripslashes($obj{'visitnote_VS_Diagnosis'}); ?>"/>
 			</td>
         </tr>
       </table></td>

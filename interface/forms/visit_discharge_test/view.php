@@ -234,21 +234,8 @@ foreach($obj as $key => $value) {
        <tr>
     <td scope="row"></td></tr>
   <tr>
-    <td scope="row"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
-    <input type="text" id="icd" size="15"/>
-<input type="button" value="Search" onClick="javascript:changeICDlist(dischargeplan_treatment_diagnosis_problem,document.getElementById('icd'),'<?php echo $rootdir; ?>')"/>
-<span id="med_icd9">
- <?php if ($obj{"dischargeplan_treatment_diagnosis_problem"} != "")
-{
-echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem'>"; 
-echo "<option value=".stripslashes($obj{'dischargeplan_treatment_diagnosis_problem'}).">". stripslashes($obj{'dischargeplan_treatment_diagnosis_problem'})."</option>";
-echo "</select>";
- } 
- else 
- { 
- echo "<select id='dischargeplan_treatment_diagnosis_problem' name='dischargeplan_treatment_diagnosis_problem' style='display:none'> </select>";
- }?>   
-</span>
+    <td scope="row" style="padding-left:8px; padding-right:8px; padding-bottom:8px;"><strong><?php xl('TREATMENT DIAGNOSIS/PROBLEM ','e');?></strong>
+    <input type="text" id="dischargeplan_treatment_diagnosis_problem" name="dischargeplan_treatment_diagnosis_problem" style="width:100%;" value="<?php echo stripslashes($obj{'dischargeplan_treatment_diagnosis_problem'}); ?>" />
   </tr>
   <tr>
          <td scope="row"><p><strong><?php xl('Mental Status','e');?></strong></p>

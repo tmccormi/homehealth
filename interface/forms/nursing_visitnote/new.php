@@ -260,13 +260,8 @@ table label, input { display:inherit !important; }
     <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
         <tr>
           <td scope="row"> <strong><?php xl('DIAGNOSIS','e')?></strong>
-				<input type="text" id="icd9" size="15"/>
-				<input type="button" value="Search" onClick="javascript:changeICDlist(visitnote_VS_Diagnosis,document.getElementById('icd9'),'<?php echo $rootdir; ?>')"/>
-				<span id="trmnt_icd9">
-				<select id="visitnote_VS_Diagnosis" name="visitnote_VS_Diagnosis" style="display:none">					
-				</select></span>	
-
-		</td>
+				<input type="text" id="visitnote_VS_Diagnosis" name="visitnote_VS_Diagnosis" style="width:100%;"/>	
+          </td>
         </tr>
       </table></td>
   </tr>
