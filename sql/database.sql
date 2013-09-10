@@ -9680,7 +9680,8 @@ issues_Communication varchar(100),
 supervisor_visit varchar(100),
 visitnote_Supervisory_visit_Observed varchar(100),
 visitnote_Supervisory_visit_Teaching_Training varchar(100),
-visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100)
+visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100),
+visitnote_further_Visit_Required_text varchar(255)
 ) ENGINE=MyISAM;
 
 INSERT INTO `registry` VALUES ('OT Visit Notes', 1, 'visit_notes', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'OT Forms', '');
@@ -10296,7 +10297,8 @@ visitnote_Supervisory_visit varchar(255),
 visitnote_Supervisory_visit_Observed varchar(100),
 visitnote_Supervisory_visit_Teaching_Training varchar(100),
 visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100),
-visitnote_Therapist_Signature varchar(255)
+visitnote_Therapist_Signature varchar(255),
+visitnote_further_Visit_Required_text varchar(255)
 ) ENGINE=MyISAM;
 
 INSERT INTO `registry` VALUES ('PT Visit Notes', 1, 'ptvisit_notes', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'PT Forms', '');
@@ -10755,7 +10757,8 @@ visitnote_Date_of_Next_Visit date,
 visitnote_Plan_Type varchar(255),
 visitnote_Long_Term_Outcomes_Due_To varchar(255),
 visitnote_Address_Above_Issues_By varchar(255),
-visitnote_Therapist_Signature varchar(255)
+visitnote_Therapist_Signature varchar(255),
+visitnote_further_Visit_Required_text varchar(255)
 ) ENGINE=MyISAM;
 
 INSERT INTO `registry` VALUES ('ST Visit Notes', 1, 'stvisit_notes', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'ST Forms', '');

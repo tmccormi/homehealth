@@ -614,7 +614,8 @@ value="<?php echo stripslashes($obj{"visitnote_Careplan_Revised_Notes"});?>" >
   </tr>
   <tr>
     <td valign="top" scope="row">
-    <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO','e'); ?></strong> 
+    <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO: ','e'); ?></strong>
+    <input type="text" name="visitnote_further_Visit_Required_text" id="visitnote_further_Visit_Required_text" value="<?php echo stripslashes($obj{"visitnote_further_Visit_Required_text"});?>" style="width:465px;" />
     <input type="checkbox" name="visitnote_Further_Skilled_Visits_Required" value="Reprioritize exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" 
     <?php if ($obj{"visitnote_Further_Skilled_Visits_Required"} == "Reprioritize exercise") echo "checked";;?> />
 <?php xl('Progress/Re-prioritize exercise program','e'); ?>

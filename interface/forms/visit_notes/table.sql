@@ -103,5 +103,6 @@ issues_Communication varchar(100),
 supervisor_visit varchar(100),
 visitnote_Supervisory_visit_Observed varchar(100),
 visitnote_Supervisory_visit_Teaching_Training varchar(100),
-visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100)
+visitnote_Supervisory_visit_Patient_Family_Discussion varchar(100),
+visitnote_further_Visit_Required_text varchar(255)
 ) ENGINE=MyISAM;	
