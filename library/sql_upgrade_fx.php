@@ -50,6 +50,19 @@ function columnExists($tblname, $colname) {
 }
 
 /**
+* Check if a Sql column does exist in a selected table.
+*
+* @param  string  $tblname  Sql Table Name
+* @param  string  $colname  Sql Column Name
+* @return boolean           returns true if the sql column does exist
+*/
+function columnDoesExist($tblname, $colname) {
+  $row = sqlQuery("SHOW COLUMNS FROM $tblname LIKE '$colname'");
+  if (empty($row)) return true;
+  return false;
+}
+
+/**
 * Check if a Sql column has a certain type.
 *
 * @param  string  $tblname  Sql Table Name
@@ -160,6 +173,10 @@ function tableHasIndex($tblname, $colname) {
 *   arguments: table_name colname
 *   behavior:  if the table exists but the column does not,  the block will be executed
 *
+* #IfColumnDoesExist
+*   arguments: table_name colname
+*   behavior:  if the table exists and the column does exist,  the block will be executed
+*
 * #IfNotColumnType
 *   arguments: table_name colname value
 *   behavior:  If the table table_name does not have a column colname with a data type equal to value, then the block will be executed
@@ -260,6 +277,17 @@ function upgradeFromSqlFile($filename) {
       }
       if ($skipping) echo "<font color='green'>Skipping section $line</font><br />\n";
     }
+	
+	else if (preg_match('/^#IfColumnDoesExist\s+(\S+)\s+(\S+)/', $line, $matches)) {
+	  if (tableExists($matches[1])) {
+        $skipping = columnDoesExist($matches[1], $matches[2]);
+      }
+	else {
+		$skipping = true;
+	}
+	if ($skipping) echo "<font color='green'>Skipping section $line</font><br />\n";
+	}
+	
     else if (preg_match('/^#IfIndex\s+(\S+)\s+(\S+)/', $line, $matches)) {
       if (tableExists($matches[1])) {
         // If no such index then skip.

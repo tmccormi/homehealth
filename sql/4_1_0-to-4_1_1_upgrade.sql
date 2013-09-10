@@ -13,6 +13,10 @@
 --    arguments: table_name colname
 --    behavior:  if the table exists but the column does not,  the block will be executed
 
+--  #IfColumnDoesExist
+--    arguments: table_name colname
+--    behavior:  if the table exists and the column does exist,  the block will be executed
+
 --  #IfNotColumnType
 --    arguments: table_name colname value
 --    behavior:  If the table table_name does not have a column colname with a data type equal to value, then the block will be executed
@@ -5415,9 +5419,11 @@ visitnote_CarePlan_Reviewed_to varchar(100),
 visitnote_CPRW_Other varchar(255),
 visitnote_CP_Modifications_Include varchar(100),
 visitnote_CP_Modifications_Include_Notes varchar(255),
+visitnote_further_Visit_Required_text varchar(255),
 visitnote_further_Visit_Required varchar(100),
 visitnote_FSVR_Other varchar(255),
 visitnote_Date_of_Next_Visit varchar(100),
+visitnote_further_Visit_Required_text varchar(255),
 visitnote_No_further_visits varchar(100),
 treatment_Plan varchar(100),
 Additional_Treatment varchar(100),
@@ -8054,21 +8060,45 @@ UPDATE `layout_options` SET `data_type`=42 WHERE `form_id`='DEM' AND `field_id`=
 
 -- Drops the duration, Freq_Duration1, and Freq_Duration2 columns from the table forms_ot_careplan
 
+#IfColumnDoesExist forms_ot_careplan duration
 ALTER TABLE `forms_ot_careplan` DROP COLUMN `duration`;
+#EndIf
+
+#IfColumnDoesExist forms_ot_careplan Freq_Duration1
 ALTER TABLE `forms_ot_careplan` DROP COLUMN `Freq_Duration1`;
+#EndIf
+
+#IfColumnDoesExist forms_ot_careplan Freq_Duration2
 ALTER TABLE `forms_ot_careplan` DROP COLUMN `Freq_Duration2`;
+#EndIf
 
 -- Drops the careplan_Treatment_Plan_Duration, careplan_Treatment_Plan_Freq_Duration1, and careplan_Treatment_Plan_Freq_Duration2 columns from the table forms_pt_careplan
 
+#IfColumnDoesExist forms_pt_careplan careplan_Treatment_Plan_Duration
 ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Duration`;
+#EndIf
+
+#IfColumnDoesExist forms_pt_careplan careplan_Treatment_Plan_Freq_Duration1
 ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration1`;
+#EndIf
+
+#IfColumnDoesExist forms_pt_careplan careplan_Treatment_Plan_Freq_Duration2
 ALTER TABLE `forms_pt_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration2`;
+#EndIf
 
 -- Drops the careplan_Treatment_Plan_Duration, careplan_Treatment_Plan_Freq_Duration1, and careplan_Treatment_Plan_Freq_Duration2 columns from the table forms_st_careplan
 
+#IfColumnDoesExist forms_st_careplan careplan_Treatment_Plan_Duration
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Duration`;
+#EndIf
+
+#IfColumnDoesExist forms_st_careplan careplan_Treatment_Plan_Freq_Duration1
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration1`;
+#EndIf
+
+#IfColumnDoesExist forms_st_careplan careplan_Treatment_Plan_Freq_Duration2
 ALTER TABLE `forms_st_careplan` DROP COLUMN `careplan_Treatment_Plan_Freq_Duration2`;
+#EndIf
 
 -- Alters the forms_physician_orders table and changes data type from tinyint(4) to varchar(255)
 
@@ -8077,3 +8107,21 @@ ALTER TABLE `forms_physician_orders` MODIFY COLUMN `physician_orders_diagnosis` 
 -- Alters the forms_physician_orders table and changes data type from tinyint(4) to varchar(255)
 
 ALTER TABLE `forms_nursing_visitnote` MODIFY COLUMN `visitnote_VS_Diagnosis` VARCHAR(255);
+
+-- New Column to forms_ot_visitnote table to store the further skills required text
+
+#IfMissingColumn forms_ot_visitnote visitnote_further_Visit_Required_text
+ALTER TABLE forms_ot_visitnote ADD visitnote_further_Visit_Required_text varchar(255) NOT NULL default '';
+#EndIf
+
+-- New Column to forms_pt_visitnote table to store the further skills required text
+
+#IfMissingColumn forms_pt_visitnote visitnote_further_Visit_Required_text
+ALTER TABLE forms_pt_visitnote ADD visitnote_further_Visit_Required_text varchar(255) NOT NULL default '';
+#EndIf
+
+-- New Column to forms_st_visitnote table to store the further skills required text
+
+#IfMissingColumn forms_st_visitnote visitnote_further_Visit_Required_text
+ALTER TABLE forms_st_visitnote ADD visitnote_further_Visit_Required_text varchar(255) NOT NULL default '';
+#EndIf

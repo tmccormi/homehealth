@@ -81,5 +81,6 @@ visitnote_Date_of_Next_Visit date,
 visitnote_Plan_Type varchar(255),
 visitnote_Long_Term_Outcomes_Due_To varchar(255),
 visitnote_Address_Above_Issues_By varchar(255),
-visitnote_Therapist_Signature varchar(255)
+visitnote_Therapist_Signature varchar(255),
+visitnote_further_Visit_Required_text varchar(255)
 ) ENGINE=MyISAM;

@@ -97,6 +97,7 @@ visitnote_Discharge_Discussed_With ='".$_POST["visitnote_Discharge_Discussed_Wit
 visitnote_CPRW_Other ='".$_POST["visitnote_CPRW_Other"]."',
 visitnote_Careplan_Revised ='".$_POST["visitnote_Careplan_Revised"]."',
 visitnote_Careplan_Revised_Notes ='".$_POST["visitnote_Careplan_Revised_Notes"]."',
+visitnote_further_Visit_Required_text ='".$_POST["visitnote_further_Visit_Required_text"]."',
 visitnote_Further_Skilled_Visits_Required ='".$_POST["visitnote_Further_Skilled_Visits_Required"]."',
 visitnote_Train_patient_Suchas_Notes ='".$_POST["visitnote_Train_patient_Suchas_Notes"]."',
 visitnote_FSVR_IADLs_Notes ='".$_POST["visitnote_FSVR_IADLs_Notes"]."',

@@ -443,7 +443,8 @@ formHeader("Form: visit_notes");
   </tr>
   <tr>
     <td valign="top" scope="row">
-    <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO','e'); ?></strong> 
+    <p><strong><?php xl('FURTHER SKILLED VISITS REQUIRED TO: ','e'); ?></strong> 
+    <input type="text" name="visitnote_further_Visit_Required_text" id="visitnote_further_Visit_Required_text" value="" style="width:465px;" />
     <input type="checkbox" name="visitnote_further_Visit_Required" value="Reprioritize exercise" id="visitnote_FSVR_Progress_Reprioritize_exercise" />
 <?php xl('Progress/Re-prioritize exercise program','e'); ?>
   <input type="checkbox" name="visitnote_further_Visit_Required" value="Train patient in additional skills" id="visitnote_FSVR_Train_patient" />
