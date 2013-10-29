@@ -61,7 +61,8 @@ $datatypes = array(
   "39" => xl("Address Book (Non-Local) Users"),
   "41" => xl("Internal Referrer"),
   "42" => xl("Users of Custom Roles"),
-  "43" => xl("Empty Dropdown")
+  "43" => xl("Empty Dropdown"),
+  "44" => xl("Caregiver Multi-Select")
 );
 
 function nextGroupOrder($order) {

@@ -34,6 +34,7 @@ $fres = sqlStatement("SELECT * FROM layout_options " .
 while ($frow = sqlFetchArray($fres)) {
   $data_type = $frow['data_type'];
   $field_id  = $frow['field_id'];
+
   // $value  = '';
   $colname = $field_id;
   $table = 'patient_data';

@@ -219,27 +219,25 @@ for ($i = 0; $i < count($aColumns); ++$i) {
 
 
 // User Check
-
 $currUser = $_SESSION['authUser'];
+$accessGroups = acl_get_group_titles( $currUser );
 
-$chkquery = "select name from gacl_aro_groups where id=(select group_id from gacl_groups_aro_map where aro_id=(select id from gacl_aro where value='$currUser'))";
-$groupName = sqlStatement($chkquery);
-$groupIDRes = sqlFetchArray($groupName);
-
-$accessGroup = $groupIDRes['name'];
-
-
-      if($accessGroup=='Front Office' || $accessGroup=='Administrators')
+      if ( in_array( 'Front Office', $accessGroups ) || 
+        in_array( 'Administrators', $accessGroups ) )
       {
 	
       }
       else
       {
 	  $where .= $where ? ' AND' : 'WHERE';
-	 $currUserID = sqlStatement("select id from users where username='$currUser'");
+	 $currUserID = sqlStatement("select id from users where username=?", array($currUser));
 	 $currUserIDRes = sqlFetchArray($currUserID);
 	 $myUserID = $currUserIDRes['id'];
-	 $where.=" patient_data.providerID = $myUserID ";
+	 // providerID is stored as a pipe-separated list, so search for all combination
+	 $where.=" patient_data.providerID = '".$myUserID."' ";
+	 $where .= " OR patient_data.providerID LIKE '".$myUserID."|%' ";
+	 $where .= " OR patient_data.providerID LIKE '%|".$myUserID."|%' ";
+	 $where .= " OR patient_data.providerID LIKE '%|".$myUserID."' ";
       }
 	  
 	  

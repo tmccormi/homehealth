@@ -606,11 +606,11 @@ function submitme() {
   
 
 var phy = $('#form_providerID').val();
-if(phy == 0){
-if(appendCount == 0){
-$('td select#form_providerID').parent().append('<strong class="error"> * Required</strong>');
-appendCount++;
-}
+if ( phy.length == 0) {
+    if ( appendCount == 0 ) {
+        $('td select#form_providerID[]').parent().append('<strong class="error"> * Required</strong>');
+        appendCount++;
+    }
 }
 
 var agen = $('#form_agency_name').val();
@@ -629,7 +629,7 @@ appendCount2++;
 }
 }
 
-if(phy == 0 || agen == 0 || refphy == 0){
+if(phy.length == 0 || agen == 0 || refphy == 0){
 alert("Physician, Agency & Primary Referring Physician are mandatory");
 }
 
