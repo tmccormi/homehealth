@@ -3539,7 +3539,7 @@ CREATE TABLE `patient_data` (
   `sex` varchar(255) NOT NULL default '',
   `referrer` varchar(255) NOT NULL default '',
   `referrerID` varchar(255) NOT NULL default '',
-  `providerID` int(11) default NULL,
+  `providerID` TEXT default NULL,
   `ref_providerID` int(11) default NULL,
   `email` varchar(255) NOT NULL default '',
   `ethnoracial` varchar(255) NOT NULL default '',

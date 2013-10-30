@@ -222,12 +222,8 @@ for ($i = 0; $i < count($aColumns); ++$i) {
 $currUser = $_SESSION['authUser'];
 $accessGroups = acl_get_group_titles( $currUser );
 
-      if ( in_array( 'Front Office', $accessGroups ) || 
-        in_array( 'Administrators', $accessGroups ) )
-      {
-	
-      }
-      else
+      if ( !in_array( 'Front Office', $accessGroups ) && 
+        !in_array( 'Administrators', $accessGroups ) )
       {
 	  $where .= $where ? ' AND' : 'WHERE';
 	 $currUserID = sqlStatement("select id from users where username=?", array($currUser));

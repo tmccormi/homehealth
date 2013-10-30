@@ -960,26 +960,44 @@ $condition = " password = '1'";
     $row = sqlQuery( $statement, array( $_SESSION['pid'] ) );  
     $providerString = $row['providerID'];
     $providers = explode( "|", $providerString );
+    
+    // Get the role types that are caregives (gonfigured in globals) so we can populate the list
+    $groups = $GLOBALS['caregiver_groups'];
 
     // Build a multi-select list of all providers (active or not), and select the providers from this patient's list
-    $statement = "SELECT U.username, U.id, U.fname, U.lname, ARO.id AS aro_id, AROG.value AS aro_group_value ";
-    $statement .= "FROM users U ";
-    $statement .= "JOIN gacl_aro ARO ON ARO.value = U.username ";
-    $statement .= "JOIN gacl_groups_aro_map AROGM ON AROGM.aro_id = ARO.id ";
-    $statement .= "JOIN gacl_aro_groups AROG ON AROG.id = AROGM.group_id ";
-    $statement .= "WHERE AROG.value = ? ";
-    $statement .= "ORDER BY U.lname, U.fname";
-    $result = sqlStatement( $statement, array( 'caregiver' ) );
-    echo "<select multiple name='form_".$field_id_esc."[]' id='form_$field_id_esc' title='$description'>";
-    while ( $row = sqlFetchArray( $result ) ) {
-        $printSelected = in_array( $row['id'], $providers );
-        $selected = "";
-        if ( $printSelected ) {
-            $selected = "selected";
+    if ( count( $groups ) ) {
+        $statement = "SELECT U.username, U.id, U.fname, U.lname, ARO.id AS aro_id, AROG.value AS aro_group_value ";
+        $statement .= "FROM users U ";
+        $statement .= "JOIN gacl_aro ARO ON ARO.value = U.username ";
+        $statement .= "JOIN gacl_groups_aro_map AROGM ON AROGM.aro_id = ARO.id ";
+        $statement .= "JOIN gacl_aro_groups AROG ON AROG.id = AROGM.group_id ";
+        $statement .= "WHERE ";
+        $count = 0;
+        $binds = array();
+        foreach ( $groups as $group => $value ) {
+            $statement .= "AROG.value = ? ";
+            $binds[]= $value;
+            $c = count( $groups );
+            if ( $count < $c - 1 ) {
+                $statement .= "OR ";
+            }
+            $count++;
         }
-        echo "<option $selected value='".$row['id']."'>".$row['lname'].", ".$row['fname']."</option>";
+        $statement .= "ORDER BY U.lname, U.fname";
+        $result = sqlStatement( $statement, $binds );
+        echo "<select multiple name='form_".$field_id_esc."[]' id='form_$field_id_esc' title='$description'>";
+        while ( $row = sqlFetchArray( $result ) ) {
+            $printSelected = in_array( $row['id'], $providers );
+            $selected = "";
+            if ( $printSelected ) {
+                $selected = "selected";
+            }
+            echo "<option $selected value='".$row['id']."'>".$row['lname'].", ".$row['fname']."</option>";
+        }
+        echo "</select>";
+    } else {
+        echo xl("There are no caregiver groups configured in global settings.");
     }
-    echo "</select>";
   }
 
 

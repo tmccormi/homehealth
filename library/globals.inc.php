@@ -810,6 +810,13 @@ $GLOBALS_METADATA = array(
       '',                               // default
       xl('Email address, if any, to receive emergency login user activation messages.')
     ),
+          
+     'caregiver_groups' => array(
+        xl('Caregiver Groups'),
+        'm_gacl_groups',                           // data type
+        '',                               // default
+        xl('Groups designated as providers. Users in these groups are able to be assigned to patients in preferences.')
+    ),
 
   ),
 
