@@ -125,6 +125,21 @@ function changeICDlist(dx,code,rootdir)
     });
 
 	</script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('Reassessment_Time_In').value;
+    var time_out = document.getElementById('Reassessment_Time_Out').value;
+				var date = document.getElementById('Reassessment_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -168,10 +183,10 @@ foreach($obj as $key => $value) {
         <td width="9%"><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_In"}))?></select></td>
         <td width="5%"><p><strong><?php xl('Time Out','e');?></strong></p></td>
         <td width="9%"><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown(stripslashes($obj{"Reassessment_Time_Out"}))?></select></td>
-	<td align="center" width="9%"><strong><?php xl('Reassess Date','e')?></strong></td>
+	<td align="center" width="9%"><strong><?php xl('Encounter Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('Date','e'); ?>'
+					title='<?php xl('Encounter Date','e'); ?>'
 					value="<?php echo stripslashes($obj{"Reassessment_date"});?>" 
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -1078,8 +1093,7 @@ value="<?php echo stripslashes($obj{"Reassessment_Other_Services_Provided"});?>"
 
   </tr>
 </table>
-<a href="javascript:top.restoreSession();document.reassessment.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.reassessment.submit();"	class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

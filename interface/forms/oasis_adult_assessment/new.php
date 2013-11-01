@@ -91,6 +91,20 @@ parseInt($("#braden_friction").val()));
     }
 
  </script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('oasis_Time_In').value;
+    var time_out = document.getElementById('oasis_Time_Out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body>
 		<h3 align="center"><?php xl('ADULT ASSESSMENT','e')?></h3>
@@ -2232,8 +2246,7 @@ policy","e");?>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</ul>
 
 <br>
-<a id="btn_save" href="javascript:void(0)"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a id="btn_save" href="javascript:void(0)" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a></form>

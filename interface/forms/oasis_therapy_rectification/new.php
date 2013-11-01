@@ -95,10 +95,23 @@ ul { list-style:none; padding:0; margin:0px; margin:0px 10px; }
 	$("#oasis_therapy_timed_up_average").val((parseInt($("#oasis_therapy_timed_up_trial1").val())+parseInt($("#oasis_therapy_timed_up_trial2").val()))/2);
 	}
  </script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('time_in').value;
+    var time_out = document.getElementById('time_out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body>
-<form method="post"
-		action="<?php echo $rootdir;?>/forms/oasis_therapy_rectification/save.php?mode=new" name="oasis_therapy_rectification">
+<form method="post"	action="<?php echo $rootdir;?>/forms/oasis_therapy_rectification/save.php?mode=new" name="oasis_therapy_rectification">
 		<h3 align="center"><?php xl('OASIS-C PT RECERT (V1)','e')?></h3>		
 		
 		
@@ -135,13 +148,13 @@ Calendar.setup({inputField:"oasis_therapy_visit_date", ifFormat:"%Y-%m-%d", butt
 				<tr>
 					<td align="right">
 						<?php xl('Time In','e');?>
-						<select name="time_in">
+						<select name="time_in" id="time_in">
 							<?php timeDropDown($GLOBALS['Selected']) ?>
 						</select>
 					</td>
 					<td align="right">
 						<?php xl('Time Out','e');?>
-						<select name="time_out">
+						<select name="time_out" id="time_out">
 							<?php timeDropDown($GLOBALS['Selected']) ?>
 						</select>
 					</td>
@@ -4235,8 +4248,7 @@ blank in that row.','e');?>
 	</li>
 </ul>
 <!--<a id="btn_save" href="javascript:void(0)" class="link_submit"><?php xl(' [Save]','e')?></a>-->
-<a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_therapy_rectification');"
-class="link_submit"><?php xl(' [Save]','e')?></a>
+<a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_therapy_rectification');" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

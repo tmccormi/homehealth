@@ -132,6 +132,21 @@ $sigId = $esign->getNewestUnsignedSignature();
     });
 
 	</script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('Evaluation_Time_In').value;
+    var time_out = document.getElementById('Evaluation_Time_Out').value;
+				var date = document.getElementById('Evaluation_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -165,11 +180,11 @@ foreach($obj as $key => $value) {
         <td width="5%"><strong><?php xl('Time Out','e'); ?></strong></td>
         <td width="9%"><select name="Evaluation_Time_Out" id="Evaluation_Time_Out"><?php timeDropDown(stripslashes($obj{"Evaluation_Time_Out"})) ?></select></td>
         
-          <td width="5%"align="center"><strong><?php xl('Date','e')?></strong></td>
+          <td width="5%"align="center"><strong><?php xl('Encounter Date','e')?></strong></td>
 
           <td width="20%" align="center">
 <input type='text' size='15' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('Date','e'); ?>'
+					title='<?php xl('Encounter Date','e'); ?>'
 			value="<?php echo stripslashes($obj{"Evaluation_date"});?>"
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -1208,7 +1223,7 @@ value="<?php echo stripslashes($obj{"Evaluation_Additional_Comments"});?>"/>
     </table></td>
   </tr>
 </table>
-<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit" onClick="return requiredCheck()">[<?php xl('Save','e');?>]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save Changes','e');?>]</a>
 </form>

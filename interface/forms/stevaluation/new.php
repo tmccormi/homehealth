@@ -76,6 +76,21 @@ formHeader("Form: evaluation");
 	  }	 
 	</script>
 </style>
+
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('Evaluation_Time_In').value;
+    var time_out = document.getElementById('Evaluation_Time_Out').value;
+				var date = document.getElementById('Evaluation_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 
 <body>
@@ -99,10 +114,10 @@ formHeader("Form: evaluation");
         <td width="7%"><select name="Evaluation_Time_In" id="Evaluation_Time_In"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
         <td width="7%"><strong><?php xl('Time Out','e'); ?></strong></td>
         <td width="6%"><select name="Evaluation_Time_Out" id="Evaluation_Time_Out"> <?php timeDropDown($GLOBALS['Selected']) ?></select></td>
-          <td width="5%" align="center"><strong><?php xl('Date','e')?></strong></td><td>
+          <td width="5%" align="center"><strong><?php xl('Encounter Date','e')?></strong></td><td>
 
           <input type='text' size='10' name='Evaluation_date' id='Evaluation_date' 
-					title='<?php xl('Date','e'); ?>'
+					title='<?php xl('Encounter Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -553,8 +568,7 @@ value="Train Patient New Skills"/>
         <td width="50%"><strong><?php xl('Electronic Signature','e')?></strong></td>
       </tr>
     </table></td></tr></table>
-<a href="javascript:top.restoreSession();document.evaluation.submit();"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.evaluation.submit();" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

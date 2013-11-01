@@ -23,11 +23,24 @@ formHeader("Form: msw_evaluation");
 <script type="text/javascript"
 	src="<?php echo $GLOBALS['webroot'] ?>/library/dynarch_calendar_setup.js"></script>
 
-
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('msw_evaluation_time_in').value;
+    var time_out = document.getElementById('msw_evaluation_time_out').value;
+				var date = document.getElementById('msw_evaluation_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 
 <body>
-<form method="post"		action="<?php echo $rootdir;?>/forms/msw_evaluation/save.php?mode=new" name="msw_evaluation">
+<form method="post"		action="<?php echo $rootdir;?>/forms/msw_evaluation/save.php?mode=new" name="msw_evaluation" id="msw_evaluation">
 		<h3 align="center"><?php xl('MEDICAL SOCIAL WORKER EVALUATION','e')?></h3>
 		
 <table cellspacing="0px"  border="1px solid #000000" Style="border : 0px;" width="100%" class="formtable">
@@ -40,19 +53,19 @@ formHeader("Form: msw_evaluation");
 <tr>
 <td>
 <b><?php xl(' Time In ','e') ?></b>
-<select name="msw_evaluation_time_in">
+<select name="msw_evaluation_time_in" id="msw_evaluation_time_in">
 <?php timeDropDown($GLOBALS['Selected']) ?>
 </select>
 </td>
 <td>
 <b><?php xl(' Time Out ','e') ?></b>
-<select name="msw_evaluation_time_out" >
+<select name="msw_evaluation_time_out" id="msw_evaluation_time_out">
 <?php timeDropDown($GLOBALS['Selected']) ?>
 </select>
 </td>
 <td>
-<b><?php xl('Date','e') ?></b>
-<input type='text' size='10' name='msw_evaluation_date' id='msw_evaluation_date' title='<?php xl('Evaluation Date','e'); ?>'
+<b><?php xl('Encounter Date','e') ?></b>
+<input type='text' size='10' name='msw_evaluation_date' id='msw_evaluation_date' title='<?php xl('Encounter Date','e'); ?>'
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date2' border='0' alt='[?]'
@@ -253,8 +266,7 @@ Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"im
 </tr></table>
 </td></tr>
 </table>
-<a href="javascript:top.restoreSession();document.msw_evaluation.submit();"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.msw_evaluation.submit();" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

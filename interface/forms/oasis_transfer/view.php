@@ -83,6 +83,19 @@ $sigId = $esign->getNewestUnsignedSignature();
 
 </script>
 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('oasistransfer_Time_In').value;
+    var time_out = document.getElementById('oasistransfer_Time_Out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -1161,8 +1174,7 @@ hospitalization?','e')?> &nbsp;<b><?php xl('(Mark all that apply.)','e')?></b>
 <tr><td>
 </table>
 
-<a href="javascript:top.restoreSession();form_validation('oasistransfer');"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();form_validation('oasistransfer');" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
