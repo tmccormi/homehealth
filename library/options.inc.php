@@ -953,6 +953,52 @@ $condition = " password = '1'";
     echo "<option value='0'>" . htmlspecialchars( xl('Unassigned'), ENT_NOQUOTES) . "</option>";
     echo "</select>";
   }
+  
+  else if ( $data_type == 44 ) {
+    // Get the list of providers for this patient
+    $statement = "SELECT providerID FROM patient_data WHERE pid = ?";
+    $row = sqlQuery( $statement, array( $_SESSION['pid'] ) );  
+    $providerString = $row['providerID'];
+    $providers = explode( "|", $providerString );
+    
+    // Get the role types that are caregives (gonfigured in globals) so we can populate the list
+    $groups = $GLOBALS['caregiver_groups'];
+
+    // Build a multi-select list of all providers (active or not), and select the providers from this patient's list
+    if ( count( $groups ) ) {
+        $statement = "SELECT U.username, U.id, U.fname, U.lname, ARO.id AS aro_id, AROG.value AS aro_group_value ";
+        $statement .= "FROM users U ";
+        $statement .= "JOIN gacl_aro ARO ON ARO.value = U.username ";
+        $statement .= "JOIN gacl_groups_aro_map AROGM ON AROGM.aro_id = ARO.id ";
+        $statement .= "JOIN gacl_aro_groups AROG ON AROG.id = AROGM.group_id ";
+        $statement .= "WHERE ";
+        $count = 0;
+        $binds = array();
+        foreach ( $groups as $group => $value ) {
+            $statement .= "AROG.value = ? ";
+            $binds[]= $value;
+            $c = count( $groups );
+            if ( $count < $c - 1 ) {
+                $statement .= "OR ";
+            }
+            $count++;
+        }
+        $statement .= "ORDER BY U.lname, U.fname";
+        $result = sqlStatement( $statement, $binds );
+        echo "<select multiple name='form_".$field_id_esc."[]' id='form_$field_id_esc' title='$description'>";
+        while ( $row = sqlFetchArray( $result ) ) {
+            $printSelected = in_array( $row['id'], $providers );
+            $selected = "";
+            if ( $printSelected ) {
+                $selected = "selected";
+            }
+            echo "<option $selected value='".$row['id']."'>".$row['lname'].", ".$row['fname']."</option>";
+        }
+        echo "</select>";
+    } else {
+        echo xl("There are no caregiver groups configured in global settings.");
+    }
+  }
 
 
 }
@@ -1719,6 +1765,44 @@ function generate_display_field($frow, $currvalue) {
     $org = $urow['organization'];
     $s = htmlspecialchars($org,ENT_NOQUOTES);
   }
+  
+  else if ( $data_type == 44 ) {
+      // Provider IDs are stored in a pipe-separated list
+      $providerString = $currvalue;
+      $providers = explode( "|", $providerString );
+      
+      // If there are provider IDs, query for their names and list them
+      if ( count( $providers ) ) {
+          // Build a comma-sep string of provider names
+          $statement = "SELECT U.id, U.fname, U.lname ";
+          $statement .= "FROM users U ";
+          $statement .= "WHERE ";
+          $count = 0;
+          foreach ( $providers as $provId ) {
+            $statement .= "U.id = ? ";
+            if ( $count < count( $providers ) - 1 ) {
+                $statement .= "OR ";
+            }
+            $count++;
+          }
+          $statement .= "ORDER BY U.lname, U.fname";
+          $result = sqlStatement( $statement, $providers );
+          $names = array();
+          while ( $row = sqlFetchArray( $result ) ) {
+            $names[]= $row['fname']." ".$row['lname'];
+          }
+          
+          $s = "";
+          $count = 0;
+          foreach ( $names as $name ) {
+              $s .= $name;
+              if ( $count < count( $names ) - 1 ) {
+                  $s .= ", ";
+              }
+              $count++;
+          }
+      }
+  }
 
   return $s;
 }
@@ -2190,6 +2274,11 @@ function get_layout_form_value($frow) {
       }
       else
       $value = "$resnote|$restype|$resdate";
+    }
+    else if ( $data_type == 44 ) {
+        $providers = $_POST['form_providerID'];
+        $providerString = implode( "|", $providers );
+        $value = $providerString;
     }
     else {
       $value = $_POST["form_$field_id"];

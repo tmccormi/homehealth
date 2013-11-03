@@ -337,6 +337,25 @@ foreach ($GLOBALS_METADATA as $grpname => $grparr) {
       }
       echo "  </select>\n";
     }
+    
+    else if ($fldtype =='m_gacl_groups') {
+        $statement = "SELECT name, value FROM gacl_aro_groups";
+        $res = sqlStatement( $statement );
+        echo "  <select multiple name='form_{$i}[]' id='form_{$i}[]' size='3'>\n";
+        while ($row = sqlFetchArray($res)) {
+            echo "   <option value='" . $row['value'] . "'";
+            foreach ($glarr as $glrow) {
+                if ($glrow['gl_value'] == $row['value']) {
+                    echo " selected";
+                    break;
+                }
+            }
+            echo ">";
+            echo xl($row['name']);
+            echo "</option>\n";
+        }
+        echo "  </select>\n";
+    }
 
     else if ($fldtype == 'css') {
       if ($_GET['mode'] == "user") {
