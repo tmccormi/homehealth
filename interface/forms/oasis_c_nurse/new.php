@@ -126,6 +126,20 @@ function calc_avg()
 
 
  </script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('oasis_c_nurse_time_in').value;
+    var time_out = document.getElementById('oasis_c_nurse_time_out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body>
 
@@ -133,8 +147,7 @@ function calc_avg()
 <h3 align="center"><?php xl('OASIS-C NURSE RECERTIFICATION','e')?></h3>		
 
 
-<form method="post"
-		action="<?php echo $rootdir;?>/forms/oasis_c_nurse/save.php?mode=new" name="oasis_c_nurse">
+<form method="post" action="<?php echo $rootdir;?>/forms/oasis_c_nurse/save.php?mode=new" name="oasis_c_nurse" id="oasis_c_nurse">
 		
 
 		
@@ -170,11 +183,11 @@ Calendar.setup({inputField:"oasis_c_nurse_visit_date", ifFormat:"%Y-%m-%d", butt
 				<tr>
 					<td align="right" colspan="2">
 						<?php xl('Time In','e');?>
-						<select name="oasis_c_nurse_time_in">
+						<select name="oasis_c_nurse_time_in" id="oasis_c_nurse_time_in">
 							<?php timeDropDown($GLOBALS['Selected']) ?>
 						</select>
 						<?php xl('Time Out','e');?>
-						<select name="oasis_c_nurse_time_out">
+						<select name="oasis_c_nurse_time_out" id="oasis_c_nurse_time_out">
 							<?php timeDropDown($GLOBALS['Selected']) ?>
 						</select>
 					</td>
@@ -4223,8 +4236,7 @@ health or to facilitate treatment or to prevent deterioration of the patients he
 
 </ul>
 
-<a href="javascript:top.restoreSession();form_validation('oasis_c_nurse');" id="btn_save" 
-class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();form_validation('oasis_c_nurse');" id="btn_save" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color:#483D8B;"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

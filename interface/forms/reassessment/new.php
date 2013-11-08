@@ -65,12 +65,26 @@ function changeICDlist(dx,code,rootdir)
 	    };
 	    obj.open("GET",site_root+"/forms/reassessment/functions.php?code="+icd9code+"&Dx="+Dx,true);
 		obj.send(null);
-	   }</script>	
+	   }</script>
+    
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('Reassessment_Time_In').value;
+    var time_out = document.getElementById('Reassessment_Time_Out').value;
+				var date = document.getElementById('Reassessment_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 
 <body>
-	<form method="post"
-		action="<?php echo $rootdir;?>/forms/reassessment/save.php?mode=new" name="reassessment">
+	<form method="post"	action="<?php echo $rootdir;?>/forms/reassessment/save.php?mode=new" name="reassessment">
 		<h3 align="center"><?php xl('OCCUPATIONAL THERAPY REASSESSMENT','e'); ?>
 		<br>
 		<label>
@@ -98,10 +112,10 @@ function changeICDlist(dx,code,rootdir)
         <td width="9%" ><select name="Reassessment_Time_In" id="Reassessment_Time_In"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
         <td width="7%"><strong><?php xl('Time Out','e');?></strong> <br /></td>
         <td width="9%"><select name="Reassessment_Time_Out" id="Reassessment_Time_Out"><?php timeDropDown($GLOBALS['Selected'])?></select></td>
-	<td width="7%" align="center"><strong><?php xl('Reassess Date','e')?></strong></td>
+	<td width="7%" align="center"><strong><?php xl('Encounter Date','e')?></strong></td>
         <td align="center">
         <input type='text' size='10' name='Reassessment_date' id='Reassessment_date' 
-					title='<?php xl('Date','e'); ?>'
+					title='<?php xl('Encounter Date','e'); ?>'
 					onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date' border='0' alt='[?]'
@@ -820,8 +834,7 @@ function changeICDlist(dx,code,rootdir)
 
   </tr>
 </table>
-<a href="javascript:top.restoreSession();document.reassessment.submit();"
-			class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.reassessment.submit();" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

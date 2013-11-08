@@ -164,6 +164,20 @@ $(document).ready(function() {
         });
     });
 </script>
+
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('time_in').value;
+    var time_out = document.getElementById('time_out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -286,12 +300,12 @@ Calendar.setup({inputField:"oasis_therapy_visit_date", ifFormat:"%Y-%m-%d", butt
 				<tr>
 					<td align="right">
 						<?php xl('Time In','e');?>
-						<select name="time_in">
+						<select name="time_in" id="time_in">
 							<?php timeDropDown(stripslashes($obj{"time_in"})) ?>
 						</select>
 					</td><td align="right">
 						<?php xl('Time Out','e');?>
-						<select name="time_out">
+						<select name="time_out" id="time_out">
 							<?php timeDropDown(stripslashes($obj{"time_out"})) ?>
 						</select>
 					</td>
@@ -4385,8 +4399,7 @@ blank in that row.','e');?>
 	</li>
 </ul>
 <!--<a id="btn_save" href="javascript:void(0)" class="link_submit"><?php xl(' [Save]','e')?></a>-->
-<a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_therapy_rectification');"
-class="link_submit"><?php xl(' [Save]','e')?></a>
+<a id="btn_save" href="javascript:top.restoreSession();form_validation('oasis_therapy_rectification');" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

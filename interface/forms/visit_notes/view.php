@@ -126,6 +126,21 @@ $sigId = $esign->getNewestUnsignedSignature();
 
 
 	</script>
+ 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('visitnote_Time_In').value;
+    var time_out = document.getElementById('visitnote_Time_Out').value;
+				var date = document.getElementById('visitnote_date_curr').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -153,12 +168,12 @@ foreach($obj as $key => $value) {
         <td><select name="visitnote_Time_In" id="visitnote_Time_In"><?php timeDropDown(stripslashes($obj{"visitnote_Time_In"})) ?></select></td>
         <td><strong><?php xl('Time Out','e'); ?></strong></td>
         <td><select name="visitnote_Time_Out" id="visitnote_Time_Out"><?php timeDropDown(stripslashes($obj{"visitnote_Time_Out"})) ?></select></td>
-        <td><strong><?php xl('Date','e'); ?></strong></td>
+        <td><strong><?php xl('Encounter Date','e'); ?></strong></td>
         <td>
         <strong>
     <input type='text' size='20' name='visitnote_date_curr' id='visitnote_date_curr'
     value='<?php echo stripslashes($obj{"visitnote_date_curr"});?>'
-    title='<?php xl('Date','e'); ?>'
+    title='<?php xl('Encounter Date','e'); ?>'
    onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);'  readonly/>
     <img src='../../pic/show_calendar.gif' align='absbottom' width='24' height='22'
     id='img_date' border='0' alt='[?]' style='cursor:pointer;cursor:hand'
@@ -736,7 +751,7 @@ value="<?php echo stripslashes($obj{"visitnote_Supervisory_visit_Patient_Family_
   </tr>
   </table>
   <br></br>
-<a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit">[<?php xl('Save','e');?>]</a>
+<a href="javascript:top.restoreSession();document.visitnotes.submit();" class="link_submit" onClick="return requiredCheck()">[<?php xl('Save','e');?>]</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e');?>]</a>

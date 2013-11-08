@@ -78,6 +78,20 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('msw_visit_note_time_in').value;
+    var time_out = document.getElementById('msw_visit_note_time_out').value;
+				var date = document.getElementById('msw_visit_note_date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -94,7 +108,7 @@ $endo_assess = explode("#",$obj{"careplan_SN_ENDO_Assess"});
 $endo_teach = explode("#",$obj{"careplan_SN_ENDO_Teach"});
 $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 ?>
-<form method="post"		action="<?php echo $rootdir;?>/forms/msw_visit_note/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="msw_visit_note">
+<form method="post"		action="<?php echo $rootdir;?>/forms/msw_visit_note/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="msw_visit_note" id="msw_visit_note">
 		<h3 align="center"><?php xl('MEDICAL SOCIAL SERVICES VISIT NOTE','e')?></h3>
 
 <table cellspacing="0px" cellpadding="5px"  border="1px solid #000000" Style="border : 0px;" width="100%" class="formtable">
@@ -107,19 +121,19 @@ $endo_perform = explode("#",$obj{"careplan_SN_ENDO_Perform"});
 <tr>
 <td>
 <b><?php xl(' Time In ','e') ?></b>
-<select name="msw_visit_note_time_in" >
+<select name="msw_visit_note_time_in" id="msw_visit_note_time_in">
 <?php timeDropDown(stripslashes($obj{"msw_visit_note_time_in"})) ?>
 </select>
 </td>
 <td>
 <b><?php xl(' Time Out ','e') ?></b>
-<select name="msw_visit_note_time_out" >
+<select name="msw_visit_note_time_out" id="msw_visit_note_time_out">
 <?php timeDropDown(stripslashes($obj{"msw_visit_note_time_out"})) ?>
 </select>
 </td>
 <td>
-<b><?php xl('Date','e') ?></b>
-<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('Visit Date','e'); ?>'
+<b><?php xl('Encounter Date','e') ?></b>
+<input type='text' size='10' name='msw_visit_note_date' id='msw_visit_note_date' title='<?php xl('Encounter Date','e'); ?>'
 value="<?php echo stripslashes($obj{"msw_visit_note_date"});?>"
 				onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly /> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
@@ -266,8 +280,7 @@ Calendar.setup({inputField:"msw_visit_note_soc", ifFormat:"%Y-%m-%d", button:"im
 </td></tr>
 </table>
 
-<a href="javascript:top.restoreSession();document.msw_visit_note.submit();"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.msw_visit_note.submit();" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>

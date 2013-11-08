@@ -91,6 +91,21 @@ $(document).ready(function() {
         });
     });
 </script>
+
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('time_in').value;
+    var time_out = document.getElementById('time_out').value;
+				var date = document.getElementById('date').value;
+    
+				if(time_in != "" && time_out != "" && date != "") {
+        return true;
+    } else {
+        alert("Please select a time in, time out, and encounter date before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 <body class="body_top">
 <?php
@@ -105,7 +120,7 @@ foreach($obj as $key => $value) {
 
 
 <form method="post"
-		action="<?php echo $rootdir;?>/forms/supervisor_visit_note/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="supervisor_visit_note">
+		action="<?php echo $rootdir;?>/forms/supervisor_visit_note/save.php?mode=update&id=<?php echo $_GET["id"];?>" name="supervisor_visit_note" id="supervisor_visit_note">
 		<h3 align="center"><?php xl('SUPERVISOR VISIT OF HOME HEALTH STAFF','e')?></h3>		
 		
 <table width="100%" border="1px" class="formtable">
@@ -117,20 +132,20 @@ foreach($obj as $key => $value) {
 				<td><input type="text" name="patient_name" style="width:100%" value="<?php patientName()?>" readonly ></td>
 				<td><strong><?php xl('Time In','e');?></strong></td>
 				<td>
-					<select name="time_in">
+					<select name="time_in" id="time_in">
 						<?php timeDropDown(stripslashes($obj{"time_in"})) ?>
 					</select>
 				</td>
 				<td><strong><?php xl('Time Out','e');?></strong></td>
 				<td>
-					<select name="time_out">
+					<select name="time_out" id="time_out">
 						<?php timeDropDown(stripslashes($obj{"time_out"})) ?>
 					</select>
 				</td>
-				<td><strong><?php xl('Date','e');?></strong></td>
+				<td><strong><?php xl('Encounter Date','e');?></strong></td>
 				<td align="center" valign="top" class="bold">
-					<input type='text' size='10' name='SOC_date' id='date' 
-					title='<?php xl('Supervisor Visit Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"SOC_date"};?>" readonly/> 
+					<input type='text' size='10' name='SOC_date' id='date' class="required" 
+					title='<?php xl('Encounter Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' value="<?php echo $obj{"SOC_date"};?>" readonly/> 
 					<img src='../../pic/show_calendar.gif' align='absbottom' width='24'
 					height='22' id='img_curr_date1' border='0' alt='[?]'
 					style='cursor: pointer; cursor: hand'
@@ -431,7 +446,7 @@ foreach($obj as $key => $value) {
 
 </table>
 <a href="javascript:top.restoreSession();document.supervisor_visit_note.submit();"
-class="link_submit"><?php xl(' [Save]','e')?></a>
+class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
@@ -441,7 +456,7 @@ class="link_submit"><?php xl(' [Save]','e')?></a>
             <tr>
                 <td align="center">
                     <?php if($action == "edit") { ?>
-                    <input type="submit" name="Submit" value="Save Form" > &nbsp;&nbsp;
+                    <input type="submit" name="Submit" onclick="formcheck(); return false" value="Save Form" > &nbsp;&nbsp;
                     <? } ?>
                     </form>
                     <input type="button" value="Back" onClick="top.restoreSession();window.location='<?php echo $GLOBALS['webroot'] ?>/interface/patient_file/encounter/encounter_top.php';"/>&nbsp;&nbsp;

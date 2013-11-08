@@ -89,6 +89,19 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+function requiredCheck(){
+    var time_in = document.getElementById('hha_visit_time_in').value;
+    var time_out = document.getElementById('hha_visit_time_out').value;
+    
+				if(time_in != "" && time_out != "") {
+        return true;
+    } else {
+        alert("Please select a time in and time out before submitting.");
+        return false;
+    }
+}
+</script>
 </head>
 
 
@@ -659,8 +672,7 @@ Calendar.setup({inputField:"hha_visit_date", ifFormat:"%Y-%m-%d", button:"img_cu
 <br />
 
 
-<a href="javascript:top.restoreSession();document.hha_visit.submit();"
-                        class="link_submit"><?php xl(' [Save]','e')?></a>
+<a href="javascript:top.restoreSession();document.hha_visit.submit();" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
