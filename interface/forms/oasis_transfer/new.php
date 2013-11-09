@@ -74,7 +74,7 @@ Calendar.setup({inputField:"oasistransfer_Visit_Date", ifFormat:"%Y-%m-%d", butt
 <tr> <td><center><b><?php xl('CLINICAL RECORD ITEMS','e')?></b></center></td> </tr>
 <tr><td><hr/></td></tr>
 <tr><td><b><u><?php xl('(M0080)','e')?></u><?php xl('Discipline of Person Completing Assessment','e')?></b></td></tr>
-<tr><td> <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="RN" checked><?php xl('1-RN','e')?>  &nbsp;&nbsp;&nbsp;
+<tr><td> <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="RN" ><?php xl('1-RN','e')?>  &nbsp;&nbsp;&nbsp;
  <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="PT"><?php xl('2-PT','e')?>  &nbsp;&nbsp;&nbsp;
  <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="SLP/ST"><?php xl('3-SLP/ST','e')?>  &nbsp;&nbsp;&nbsp;
 <input type="radio" name="oasistransfer_Discipline_of_Person_completing_Assessment" value="OT"><?php xl('4-OT','e')?> </td> 
@@ -116,7 +116,7 @@ Calendar.setup({inputField:"oasistransfer_Visit_Date", ifFormat:"%Y-%m-%d", butt
 </tr>
 <tr><td><b><u><?php xl('Transfer to an Inpatient Facility','e');?></u></b></td></tr>
 <tr><td>
-<input type="radio" id="m0100" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency" checked>
+<input type="radio" id="m0100" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Not_Discharged_from_Agency" >
 <?php xl('6-Transfered to an InPatient Facility-patient not discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Transfer_to_an_InPatient_Facility" value="Patient_Discharged_from_Agency">
 <?php xl('7-Transfered to an InPatient Facility-patient discharged from agency','e')?> <b><?php xl('[Go To M1040]','e')?></b><br/>
@@ -485,7 +485,7 @@ Transfer/Discharge), state reason:','e')?></td></tr>
 <tr>
 		<td colspan="2">
 			<strong><?php xl('<u>(M1230)</u> Speech and Oral (Verbal) Expression of Language (in patient\'s own language):','e');?></strong><br>
-			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0" checked><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
+			<label><input type="radio" id="m1230" name="oasis_speech_and_oral" value="0" ><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="1"><?php xl(' 1 - Minimal difficulty in expressing ideas and needs (may take extra time; makes occasional errors in word choice, grammar or speech intelligibility; needs minimal prompting or assistance).','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="2"><?php xl(' 2 - Expresses simple ideas or needs with moderate difficulty (needs prompting or assistance, errors in word choice, organization or speech intelligibility). Speaks in phrases or short sentences.','e');?></label><br>
 			<label><input type="radio" name="oasis_speech_and_oral" value="3"><?php xl(' 3 - Has severe difficulty expressing basic ideas or needs and requires maximal assistance or guessing by listener. Speech limited to single words or short phrases.','e');?></label><br>
@@ -587,7 +587,7 @@ instructed by agency staff or other health care provider to monitor the effectiv
 <b><u><?php xl('(M2410)','e')?></u></b>&nbsp;<?php xl('To which','e')?><b>&nbsp;<?php xl('Inpatient Facility','e')?></b>&nbsp;<?php xl('has the patient been admitted?','e')?>
 </td></tr>
 <tr><td>
-<input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Hospital" checked />
+<input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Hospital"  />
 <?php xl('1 - Hospital','e')?> &nbsp;<b><?php xl('[ Go to M2430 ]','e')?></b><br/>
 <input type="radio" name="oasistransfer_Inpatient_Facility_patient_admitted" value="Rehabilitation_Facility"/>
 <?php xl('2 - Rehabilitation facility','e')?> &nbsp;<b><?php xl('[ Go to M0903 ]','e')?></b><br/>
@@ -728,7 +728,7 @@ hospitalization?','e')?> <b><?php xl(' (Mark all that apply.)','e')?></b>
 <tr><td>&nbsp;</td></tr>
 <tr><td><hr/></td></tr>
 <tr><td><strong><?php xl('Certification:','e');?></strong><br>
-<label><input type="radio" name="oasistransfer_certification" value="0" checked ><?php xl(' Certification','e');?></label>
+<label><input type="radio" name="oasistransfer_certification" value="0"  ><?php xl(' Certification','e');?></label>
 <label><input type="radio" name="oasistransfer_certification" value="1"><?php xl(' Recertification','e');?></label>
 </td></tr>
 <tr><td><hr/></td></tr>
