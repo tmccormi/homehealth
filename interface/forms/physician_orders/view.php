@@ -288,8 +288,13 @@ $obj = formFetch("forms_physician_orders", $_GET["id"]);
 				</label> <label> <input type="checkbox"
 						name="physician_orders_communication[]"
 						value="<?php xl('SN','e')?>" <?php if(in_array("SN",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('SN','e')?> </label> <label>
-						 <input type="checkbox" name="physician_orders_communication[]" value="<?php xl('PT/OT/ST','e')?>" <?php if(in_array("PT/OT/ST",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('PT/OT/ST','e')?>
-				</label> <label> <input type="checkbox"
+						
+						<input type="checkbox" name="physician_orders_communication[]" value="<?php xl('PT','e')?>" <?php if(in_array("PT",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('PT','e')?></label> <label> 
+						<input type="checkbox" name="physician_orders_communication[]" value="<?php xl('OT','e')?>" <?php if(in_array("OT",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('OT','e')?></label> <label>
+						<input type="checkbox" name="physician_orders_communication[]" value="<?php xl('ST','e')?>" <?php if(in_array("ST",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('ST','e')?></label> <label>
+						<input type="checkbox" name="physician_orders_communication[]" value="<?php xl('MSW','e')?>" <?php if(in_array("MSW",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('MSW','e')?></label> <label>
+				
+						<input type="checkbox"
 						name="physician_orders_communication[]"
 						value="<?php xl('HHA','e')?>" <?php if(in_array("HHA",$physician_orders_communication)) echo "checked"; ?>/> <?php xl('HHA','e')?> </label>
 						
