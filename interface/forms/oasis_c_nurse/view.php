@@ -2691,7 +2691,7 @@ readonly/>
  <?php if(in_array("Management Strategies",$oasis_c_nurse_urinary)) echo "checked"; ?> ><?php xl('Management Strategies:','e')?></label>
 				<input type="text" name="oasis_c_nurse_urinary_management_strategy"  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_management_strategy"});?>" ><br>
 			<label><input type="checkbox" name="oasis_c_nurse_urinary[]" value="<?php xl("Diapers/other:","e");?>"
- <?php if(in_array("Diapers/other:",$oasis_c_nurse_urinary)) echo "checked"; ?> ><?php xl('Diapers/other:','e')?></label>
+ <?php if(in_array("Diapers/other:",$oasis_c_nurse_urinary)) echo "checked"; ?> ><?php xl('Incontinents Pads/other:','e')?></label>
 
 
 				<input type="text" name="oasis_c_nurse_urinary_diapers_other"  
@@ -2771,10 +2771,8 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 				<?php xl("ml","e");?>
 				<input type="text" name="oasis_c_nurse_urinary_irrigation_ml"  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_irrigation_ml"});?>" >
 				<?php xl("Frequency","e");?>
-				<input type="text" name="oasis_c_nurse_urinary_irrigation_frequency"  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_irrigation_frequency"});?>" >
-				<?php xl("Returns","e");?>
-				<input type="text" name="oasis_c_nurse_urinary_irrigation_returns"  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_irrigation_returns"});?>" ><br>
-
+				<input type="text" name="oasis_c_nurse_urinary_irrigation_frequency"  value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_irrigation_frequency"});?>" ><br />
+				
 
 
 			<?php xl("Patient tolerated procedure well","e");?>
@@ -2846,12 +2844,12 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 
 
 			<label><input type="checkbox" name="oasis_c_nurse_bowels[]" value="Diapers/other"
- <?php if(in_array("Diapers/other",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Diapers/other:','e')?></label>
+ <?php if(in_array("Diapers/other",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Incontinents Pads/other:','e')?></label>
 				<input type="text" name="oasis_c_nurse_bowels_diapers_others"  value="<?php echo stripslashes($obj{"oasis_c_nurse_bowels_diapers_others"});?>" ><br>
 
 
 			<label><input type="checkbox" name="oasis_c_nurse_bowels[]" value="Ileostomy/colostomy"
- <?php if(in_array("Ileostomy/colostomy",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Ileostomy/colostomy site (describe skin around stoma):','e')?></label><br>
+ <?php if(in_array("Ileostomy/colostomy",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Ileostomy/colostomy site:','e')?></label><br>
 
 
 				<textarea rows="3" cols="48" name="oasis_c_nurse_bowels_ileostomy_site">
@@ -2866,12 +2864,12 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 			
 			<br />
 			<label><input type="checkbox" name="oasis_c_nurse_bowels[]" value="Other site"
- <?php if(in_array("Other site",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Other site (describe skin around stoma):','e')?></label><br>
+ <?php if(in_array("Other site",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Other site:','e')?></label><br>
 				<textarea rows="3" cols="48" name="oasis_c_nurse_bowels_other_site">
 <?php echo stripslashes($obj{"oasis_c_nurse_bowels_other_site"});?>
 </textarea><br>
 			<label><input type="checkbox" name="oasis_c_nurse_bowels[]" value="Urostomy"
- <?php if(in_array("Urostomy",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Urostomy (describe skin around stoma):','e')?></label><br>
+ <?php if(in_array("Urostomy",$oasis_c_nurse_bowels)) echo "checked"; ?> ><?php xl('Urostomy:','e')?></label><br>
 				<textarea rows="3" cols="48" name="oasis_c_nurse_bowels_urostomy">
 <?php echo stripslashes($obj{"oasis_c_nurse_bowels_urostomy"});?>
 </textarea><br>
@@ -3156,7 +3154,7 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 
 
 <li>
-			<div><a href="#" id="black">Fall Risk Assessment/Reassessment, Enteral Feeding, Infusion, Time Up and Go Test, Amplification of Care, Homebound Reason</a> <span id="mod"><a href="#">(Expand)</a></span></div>
+			<div><a href="#" id="black">Fall Risk Assessment/Reassessment, Enteral Feeding, Infusion, Time Up and Go Test, Homebound Reason</a> <span id="mod"><a href="#">(Expand)</a></span></div>
 			<ul>
 				<li>
 <table width="100%" border="1px" class="formtable">
@@ -3846,34 +3844,6 @@ value="<?php echo stripslashes($obj{"oasis_c_nurse_urinary_foley_ml"});?>" ><?ph
 </td>
 </tr>
 
-
-
-<tr>
-<TD colspan="2">
-<center><strong><?php xl("AMPLIFICATION OF CARE PROVIDED/ANALYSIS OF FINDINGS","e");?></strong></center><br>
-</td>
-</tr>
-
-
-<tr>
-<TD>
-
-			<textarea name="oasis_c_nurse_amplification_care_provided" rows="4" cols="48">
-<?php echo stripslashes($obj{"oasis_c_nurse_amplification_care_provided"});?>
-</textarea>
-
-</TD>
-
-<td>
-<?php xl("Patient/Caregiver Response","e");?><br>
-			<textarea name="oasis_c_nurse_amplification_patient_response" rows="3" cols="48">
-<?php echo stripslashes($obj{"oasis_c_nurse_amplification_patient_response"});?>
-</textarea><br>
-
-</TD>
-</tr>
-
-
 <tr>
 		<td colspan="2">
 			<center><strong><?php xl("HOMEBOUND REASON","e");?></strong></center>
@@ -3947,8 +3917,8 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 
 			
 			<strong><?php xl("MEDICATION STATUS:","e");?></strong>
-			<label><input type="checkbox" name="oasis_c_nurse_summary_check_medication" value="Medication regimen completed/reviewed (Locator #10)"
- <?php if($obj{"oasis_c_nurse_summary_check_medication"}=="Medication regimen completed/reviewed (Locator #10)") echo "checked"; ?> ><?php xl('Medication regimen completed/reviewed (Locator #10)','e')?></label>
+			<label><input type="checkbox" name="oasis_c_nurse_summary_check_medication" value="Medication regimen completed/reviewed"
+ <?php if($obj{"oasis_c_nurse_summary_check_medication"}=="Medication regimen completed/reviewed") echo "checked"; ?> ><?php xl('Medication regimen completed/reviewed','e')?></label>
 			<label><input type="checkbox" name="oasis_c_nurse_summary_check_medication" value="No change"
  <?php if($obj{"oasis_c_nurse_summary_check_medication"}=="No change") echo "checked"; ?> ><?php xl('No change','e')?></label>
 			<label><input type="checkbox" name="oasis_c_nurse_summary_check_medication" value="Order obtained"
@@ -4023,7 +3993,7 @@ Limitations, Allergies, Mental Status</a> <span id="mod"><a href="#">(Expand)</a
 			<label><input type="radio" name="oasis_c_nurse_summary_check_verbal_order" value="No"
  <?php if($obj{"oasis_c_nurse_summary_check_verbal_order"}=="No") echo "checked"; ?> ><?php xl(' No','e')?></label>
 			<label><input type="radio" name="oasis_c_nurse_summary_check_verbal_order" value="Yes"
- <?php if($obj{"oasis_c_nurse_summary_check_verbal_order"}=="Yes") echo "checked"; ?> ><?php xl(' Yes, specify date (Locator #23)','e')?></label>
+ <?php if($obj{"oasis_c_nurse_summary_check_verbal_order"}=="Yes") echo "checked"; ?> ><?php xl(' Yes, specify date','e')?></label>
  
  
 			<input type='text' size='10' name='oasis_c_nurse_summary_verbal_order_date' id='oasis_c_nurse_summary_verbal_order_date' 

@@ -8125,3 +8125,31 @@ ALTER TABLE forms_pt_visitnote ADD visitnote_further_Visit_Required_text varchar
 #IfMissingColumn forms_st_visitnote visitnote_further_Visit_Required_text
 ALTER TABLE forms_st_visitnote ADD visitnote_further_Visit_Required_text varchar(255) NOT NULL default '';
 #EndIf
+
+-- Drops oasis_c_nurse_urinary_irrigation_returns, oasis_c_nurse_amplification_care_provided, oasis_c_nurse_amplification_patient_response from the table forms_oasis_c_nurse
+
+#IfColumnDoesExist forms_oasis_c_nurse oasis_c_nurse_urinary_irrigation_returns
+ALTER TABLE `forms_oasis_c_nurse` DROP COLUMN `oasis_c_nurse_urinary_irrigation_returns`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_c_nurse oasis_c_nurse_amplification_care_provided
+ALTER TABLE `forms_oasis_c_nurse` DROP COLUMN `oasis_c_nurse_amplification_care_provided`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_c_nurse oasis_c_nurse_amplification_patient_response
+ALTER TABLE `forms_oasis_c_nurse` DROP COLUMN `oasis_c_nurse_amplification_patient_response`;
+#EndIf
+
+-- Drops oasis_therapy_urinary_irrigation_returns, oasis_therapy_amplification_care_provided, oasis_therapy_amplification_patient_response from the table forms_oasis_therapy_rectification
+
+#IfColumnDoesExist forms_oasis_therapy_rectification oasis_therapy_urinary_irrigation_returns
+ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_urinary_irrigation_returns`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_therapy_rectification oasis_therapy_amplification_care_provided
+ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_amplification_care_provided`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_therapy_rectification oasis_therapy_amplification_patient_response
+ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_amplification_patient_response`;
+#EndIf
