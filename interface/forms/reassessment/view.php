@@ -127,12 +127,28 @@ function changeICDlist(dx,code,rootdir)
 	</script>
  
 <script>
-function requiredCheck(){
+function requiredCheck() {
     var time_in = document.getElementById('Reassessment_Time_In').value;
     var time_out = document.getElementById('Reassessment_Time_Out').value;
-				var date = document.getElementById('Reassessment_date').value;
+	var date = document.getElementById('Reassessment_date').value;
     
-				if(time_in != "" && time_out != "" && date != "") {
+	var isSelected = function() {
+    var visit_checker = document.reassessment.Reassessment_Visit_Count;
+
+    for(var i=0; i<visit_checker.length; i++) {
+        if( visit_checker[i].checked ) {
+            return true;
+        }
+    }
+    return false;
+	};
+
+	if(!isSelected()) {
+		alert("Please select a 13th visit, 19th visit, or other visit before submitting.");
+		return false;
+	}   
+            
+	if(time_in != "" && time_out != "" && date != "") {
         return true;
     } else {
         alert("Please select a time in, time out, and encounter date before submitting.");
@@ -156,13 +172,13 @@ foreach($obj as $key => $value) {
 		<h3 align="center"><?php xl('OCCUPATIONAL THERAPY REASSESSMENT','e'); ?>
 		<br>
 		<label>
-        <input type="checkbox" name="Reassessment_Visit_Count" value="13th Visit" id="Reassessment_Visit_Count" 
+        <input type="radio" name="Reassessment_Visit_Count" value="13th Visit" id="Reassessment_Visit_Count" 
         <?php if ($obj{"Reassessment_Visit_Count"} == "13th Visit") echo "checked";;?>/>
 		<?php xl('13th Visit','e')?></label><label>
-        <input type="checkbox" name="Reassessment_Visit_Count" value="19th Visit" id="Reassessment_Visit_Count" 
+        <input type="radio" name="Reassessment_Visit_Count" value="19th Visit" id="Reassessment_Visit_Count" 
         <?php if ($obj{"Reassessment_Visit_Count"} == "19th Visit") echo "checked";;?>/>
         <?php xl('19th Visit','e')?></label><label>
-        <input type="checkbox" name="Reassessment_Visit_Count" value="Other Visit" id="Reassessment_Visit_Count" 
+        <input type="radio" name="Reassessment_Visit_Count" value="Other Visit" id="Reassessment_Visit_Count" 
         <?php if ($obj{"Reassessment_Visit_Count"} == "Other Visit") echo "checked";;?>/>
         <?php xl('Other Visit','e')?></label></h3>
 		
