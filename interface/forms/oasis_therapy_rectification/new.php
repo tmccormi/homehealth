@@ -2131,7 +2131,7 @@ blank in that row.','e');?>
 				<input type="text" name="oasis_therapy_urinary_incontinence" value=""><br>
 			<label><input type="checkbox" name="oasis_therapy_urinary[]" value="<?php xl("Management Strategies","e");?>"><?php xl('Management Strategies:','e')?></label>
 				<input type="text" name="oasis_therapy_urinary_management_strategy" value=""><br>
-			<label><input type="checkbox" name="oasis_therapy_urinary[]" value="<?php xl("Diapers/other:","e");?>"><?php xl('Diapers/other:','e')?></label>
+			<label><input type="checkbox" name="oasis_therapy_urinary[]" value="<?php xl("Diapers/other:","e");?>"><?php xl('Incontinents Pads/other:','e')?></label>
 				<input type="text" name="oasis_therapy_urinary_diapers_other" value=""><br>
 			<b><?php xl("Color:","e");?></b>
 				<label><input type="radio" name="oasis_therapy_urinary_color" value="Yellow"><?php xl('Yellow/straw','e')?></label>
@@ -2170,9 +2170,7 @@ blank in that row.','e');?>
 				<?php xl("ml","e");?>
 				<input type="text" name="oasis_therapy_urinary_irrigation_ml" value="">
 				<?php xl("Frequency","e");?>
-				<input type="text" name="oasis_therapy_urinary_irrigation_frequency" value="">
-				<?php xl("Returns","e");?>
-				<input type="text" name="oasis_therapy_urinary_irrigation_returns" value=""><br>
+				<input type="text" name="oasis_therapy_urinary_irrigation_frequency" value=""><br />
 			<?php xl("Patient tolerated procedure well","e");?>
 				<label><input type="radio" name="oasis_therapy_urinary_tolerated_procedure" value="Yes"><?php xl('Yes','e')?></label>
 				<label><input type="radio" name="oasis_therapy_urinary_tolerated_procedure" value="No"><?php xl('No','e')?></label><br>
@@ -2201,16 +2199,16 @@ blank in that row.','e');?>
 					<input type="text" name="oasis_therapy_bowels_lexative_enema_other" value=""><br>
 			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Incontinence"><?php xl('Incontinence (details if applicable)','e')?></label><br>
 				<textarea name="oasis_therapy_bowels_incontinence" rows="3" style="width:100%;"></textarea><br>
-			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Diapers/other"><?php xl('Diapers/other:','e')?></label>
+			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Diapers/other"><?php xl('Incontinents Pads/other:','e')?></label>
 				<input type="text" name="oasis_therapy_bowels_diapers_others" value=""><br>
-			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Ileostomy/colostomy"><?php xl('Ileostomy/colostomy site (describe skin around stoma):','e')?></label><br>
+			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Ileostomy/colostomy"><?php xl('Ileostomy/colostomy site:','e')?></label><br>
 				<textarea rows="3" style="width:100%;" name="oasis_therapy_bowels_ileostomy_site"></textarea><br>
 			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Ostomy care managed"><?php xl('Ostomy care managed by:','e')?></label>
 				<label><input type="radio" name="oasis_therapy_bowels_ostomy_care" value="Self"><?php xl('Self','e')?></label>
 				<label><input type="radio" name="oasis_therapy_bowels_ostomy_care" value="Caregiver"><?php xl('Caregiver','e')?></label><br>
-			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Other site"><?php xl('Other site (describe skin around stoma):','e')?></label><br>
+			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Other site"><?php xl('Other site:','e')?></label><br>
 				<textarea rows="3" style="width:100%;" name="oasis_therapy_bowels_other_site"></textarea><br>
-			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Urostomy"><?php xl('Urostomy (describe skin around stoma):','e')?></label><br>
+			<label><input type="checkbox" name="oasis_therapy_bowels[]" value="Urostomy"><?php xl('Urostomy:','e')?></label><br>
 				<textarea rows="3" style="width:100%;" name="oasis_therapy_bowels_urostomy"></textarea><br>
 				
 			
@@ -2376,7 +2374,7 @@ blank in that row.','e');?>
 			</ul>
 		</li>
 		<li>
-			<div><a href="#" id="black">Fall Risk Assessment/Reassessment, Timed Up and Go Test, Amplification of Care, Homebound Reason</a> <span id="mod"><a href="#">(Expand)</a></span></div>
+			<div><a href="#" id="black">Fall Risk Assessment/Reassessment, Timed Up and Go Test, Homebound Reason</a> <span id="mod"><a href="#">(Expand)</a></span></div>
 			<ul id="fall_risk_assessment">
 				<li>
 <table style="width:100%;" border="1px" class="formtable">
@@ -2525,17 +2523,9 @@ blank in that row.','e');?>
 			<?php xl("20 - 29 seconds = moderately impaired/ variable mobility","e");?><br>
 			<?php xl("greater than or equal to 30 seconds = significant impaired mobility","e");?><br>
 			
-			<br><br>
-			<center><strong><?php xl("AMPLIFICATION OF CARE PROVIDED/ANALYSIS OF FINDINGS","e");?></strong></center><br>
-			<textarea name="oasis_therapy_amplification_care_provided" rows="3" style="width:100%;"></textarea>
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<b><?php xl("Patient/Caregiver Response","e");?></b><br>
-			<textarea name="oasis_therapy_amplification_patient_response" rows="3" style="width:100%;"></textarea><br>
-		</td>
-	</tr>
+
 	<tr>
 		<td>
 			<center><strong><?php xl("HOMEBOUND REASON","e");?></strong></center><br>
@@ -2579,7 +2569,7 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_therapy_summary_check_careplan" value="achieved"><?php xl('Outcome achieved','e')?></label><br>
 			
 			<strong><?php xl("MEDICATION STATUS:","e");?></strong>
-			<label><input type="checkbox" name="oasis_therapy_summary_check_medication" value="completed"><?php xl('Medication regimen completed/reviewed (Locator #10)','e')?></label>
+			<label><input type="checkbox" name="oasis_therapy_summary_check_medication" value="completed"><?php xl('Medication regimen completed/reviewed','e')?></label>
 			<label><input type="checkbox" name="oasis_therapy_summary_check_medication" value="No change"><?php xl('No change','e')?></label>
 			<label><input type="checkbox" name="oasis_therapy_summary_check_medication" value="obtained"><?php xl('Order obtained','e')?></label><br>
 			
@@ -2620,7 +2610,7 @@ blank in that row.','e');?>
 			
 			<strong><?php xl("Verbal Order obtained:","e");?></strong>
 			<label><input type="radio" name="oasis_therapy_summary_check_verbal_order" value="No"><?php xl(' No','e')?></label>
-			<label><input type="radio" name="oasis_therapy_summary_check_verbal_order" value="Yes"><?php xl(' Yes, specify date (Locator #23)','e')?></label><br>
+			<label><input type="radio" name="oasis_therapy_summary_check_verbal_order" value="Yes"><?php xl(' Yes, specify date','e')?></label><br>
 			
 		</td>
 	</tr>
