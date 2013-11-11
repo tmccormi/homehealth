@@ -219,9 +219,15 @@ function changeICDlist(dx,code,rootdir)
 <label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('Caregiver','e')?>" /> <?php xl('Caregiver','e')?>
 </label> 
 
-<label><input type="checkbox"	name="physician_orders_communication[]" value="<?php xl('SN','e')?>" /><?php xl('SN','e')?> </label>
+<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('SN','e')?>" /><?php xl('SN','e')?> </label>
 
-<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('PT/OT/ST','e')?>" /> <?php xl('PT/OT/ST','e')?></label>
+<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('PT','e')?>" /> <?php xl('PT','e')?></label>
+
+<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('OT','e')?>" /> <?php xl('OT','e')?></label>
+
+<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('ST','e')?>" /> <?php xl('ST','e')?></label>
+
+<label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('MSW','e')?>" /> <?php xl('MSW','e')?></label>
 
 <label><input type="checkbox" name="physician_orders_communication[]" value="<?php xl('HHA','e')?>" /> <?php xl('HHA','e')?>
 </label>
