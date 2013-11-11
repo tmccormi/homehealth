@@ -109,8 +109,8 @@ formHeader("Form: patient_missed_visit");
 				<td colspan="3">
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Phoned patient to confirm and was not home when clinician showed up at home","e");?>"><?php xl("Phoned patient to confirm and was not home when clinician showed up at home","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient was not home when clinician showed up at home","e");?>"><?php xl("Patient was not home when clinician showed up at home","e");?></label><br>
-					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had MD/medical appointment and not available later in week","e");?>"><?php xl("Patient had MD/medical appointment and not available later in week","e");?></label><br>
-					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had another appointment and not available later in week","e");?>"><?php xl("Patient had another appointment and not available later in week","e");?></label><br>
+					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had MD appointment and not available","e");?>"><?php xl("Patient had MD appointment and not available","e");?></label><br>
+					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had another appointment and not available","e");?>"><?php xl("Patient had another appointment and not available","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient refused-no reason given","e");?>"><?php xl("Patient refused-no reason given","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient refused secondary to transient illness (e.g. cold)","e");?>"><?php xl("Patient refused secondary to transient illness (e.g. cold)","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient c/o of fatigue and unable to participate","e");?>"><?php xl("Patient c/o of fatigue and unable to participate","e");?></label><br>
@@ -120,7 +120,6 @@ formHeader("Form: patient_missed_visit");
 					</td></tr></table>
 				</td>
 				<td colspan="3">
-					<label><input type="checkbox" name="actions_taken[]" value="<?php xl("Clinician unable to reschedule to meet the physician orders for this week, missed visit documented.","e");?>"><?php xl("Clinician unable to reschedule to meet the physician orders for this week, missed visit documented.","e");?></label><br>
 					<label><input type="checkbox" name="actions_taken[]" value="<?php xl("Documented on Clinicians Care Communication Note","e");?>"><?php xl("Documented on Clinicians Care Communication Note","e");?></label><br>
 					<label><input type="checkbox" name="actions_taken[]" value="<?php xl("Message left for patient on answering machine","e");?>"><?php xl("Message left for patient on answering machine","e");?></label><br>
 					<label><input type="checkbox" name="actions_taken[]" value="<?php xl("Message left for patient with authorized contact person","e");?>"><?php xl("Message left for patient with authorized contact person","e");?></label><br>
