@@ -193,9 +193,23 @@ if (!empty($reg)) {
     else {$nickname = $entry['name'];}
     if ($old_category != $new_category) {
 
-if((in_array('Physical Therapist',$roleslist) || in_array('Speech Therapist',$roleslist) || in_array('Nurse',$roleslist) || in_array('Occupational Therapist',$roleslist) || in_array('Home Health Aide',$roleslist) || in_array('Social Worker',$roleslist)) && $new_category!='Interdisciplinary' ){
-continue;
+if((in_array('Nurse',$roleslist) || in_array('Home Health Aide',$roleslist) || in_array('Social Worker',$roleslist)) && $new_category!='Interdisciplinary'){
+	continue;
 }
+
+//This controls what is displayed form wise based on user level. The $new_category variable is being referenced from the registry table category column in the database.
+if(in_array('Physical Therapist',$roleslist) && $new_category!='Interdisciplinary' && $new_category!='PT Forms') {
+	continue;
+}
+
+if(in_array('Speech Therapist',$roleslist) && $new_category!='Interdisciplinary' && $new_category!='ST Forms') {
+	continue;
+}
+
+if(in_array('Occupational Therapist',$roleslist) && $new_category!='Interdisciplinary' && $new_category!='OT Forms') {
+	continue;
+}
+
       $new_category_ = $new_category;
       $new_category_ = str_replace(' ','_',$new_category_);
       if ($old_category != '') {$StringEcho.= "</table></div></li>";}
