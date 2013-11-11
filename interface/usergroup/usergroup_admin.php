@@ -426,7 +426,8 @@ if ($show_message == 1){
 		<th width="180px"><b><?php xl('Username','e'); ?></b></th>
 		<th width="270px"><b><?php xl('Real Name','e'); ?></b></th>
 		<th width="320px"><b><span class="bold"><?php xl('Additional Info','e'); ?></span></b></th>
-		<th><b><?php xl('Authorized','e'); ?>?</b></th>
+		<th width="100px"><b><?php xl('Authorized','e'); ?>?</b></th>
+		<th width="200px"><strong><?php xl('Synergy ID','e'); ?></strong></th>
 
 		<?php
 $query = "SELECT * FROM users WHERE username != '' ";
@@ -446,7 +447,8 @@ foreach ($result4 as $iter) {
     "' class='iframe_medium' onclick='top.restoreSession()'><span>" . $iter{"username"} . "</span></a></b>" ."&nbsp;</td>
 	<td><span class='text'>" .$iter{"fname"} . ' ' . $iter{"lname"}."</span>&nbsp;</td>
 	<td><span class='text'>" .$iter{"info"} . "</span>&nbsp;</td>
-	<td align='left'><span class='text'>" .$iter{"authorized"} . "</span>&nbsp;</td>";
+	<td align='left'><span class='text'>" .$iter{"authorized"} . "</span>&nbsp;</td>
+    <td align='left'><span class='text'>" .$iter{"synergy_id"}. "</span>&nbsp;</td>";
   print "<td><!--<a href='usergroup_admin.php?mode=delete&id=" . $iter{"id"} .
     "' class='link_submit'>[Delete]</a>--></td>";
   print "</tr>\n";
