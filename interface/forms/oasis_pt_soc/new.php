@@ -456,7 +456,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 					</script>
 			<hr>
 			<strong><?php xl('Certification:','e');?></strong><br>
-				<label><input type="radio" name="oasis_patient_certification" value="0" checked ><?php xl(' Certification','e');?></label>
+				<label><input type="radio" name="oasis_patient_certification" value="0"  ><?php xl(' Certification','e');?></label>
 				<label><input type="radio" name="oasis_patient_certification" value="1"><?php xl(' Recertification','e');?></label>
 			<hr>
 			<strong><?php xl('Date Last Contacted Physician: ','e');?></strong>
@@ -490,7 +490,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 	<tr>
 		<td valign="top">
 			<strong><?php xl('<u>(M0080)</u> Discipline of Person Completing Assessment:','e');?></strong><br>
-				<label><input type="radio" name="oasis_patient_discipline_person" value="1" checked><?php xl(' 1 - RN ','e');?></label>&nbsp;&nbsp;
+				<label><input type="radio" name="oasis_patient_discipline_person" value="1" ><?php xl(' 1 - RN ','e');?></label>&nbsp;&nbsp;
 				<label><input type="radio" name="oasis_patient_discipline_person" value="2"><?php xl(' 2 - PT ','e');?></label>&nbsp;&nbsp;
 				<label><input type="radio" name="oasis_patient_discipline_person" value="3"><?php xl(' 3 - SLP/ST ','e');?></label>&nbsp;&nbsp;
 				<label><input type="radio" name="oasis_patient_discipline_person" value="4"><?php xl(' 4 - OT ','e');?></label>
@@ -509,7 +509,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<br>
 			<hr>
 			<strong><?php xl('<u>(M0100)</u> This Assessment is Currently Being Completed for the Following Reason: <br><u>Start/Resumption of Care</u> ','e');?></strong><br>
-				<label><input id="m0100" type="radio" name="oasis_patient_follow_up" value="1" checked><?php xl(' 1 - Start of care-further visits planned','e');?></label><br>
+				<label><input id="m0100" type="radio" name="oasis_patient_follow_up" value="1" ><?php xl(' 1 - Start of care-further visits planned','e');?></label><br>
 				<label><input type="radio" name="oasis_patient_follow_up" value="3"><?php xl(' 3 - Resumption of care (after inpatient stay)','e');?></label>
 		</td>
 		<td>
@@ -539,7 +539,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<br>
 			<hr>
 			<?php xl('<b><u>(M0110)</u> Episode Timing:</b> Is the Medicare home health payment episode for which this assessment will define a case mix group an "early" episode or a "later" episode in the patient"s current sequence of adjacent Medicare home health payment episodes? ','e');?></strong><br>
-				<label><input id="m0110" type="radio" name="oasis_patient_episode_timing" value="1" checked><?php xl(' 1 - Early','e');?></label><br>
+				<label><input id="m0110" type="radio" name="oasis_patient_episode_timing" value="1" ><?php xl(' 1 - Early','e');?></label><br>
 				<label><input type="radio" name="oasis_patient_episode_timing" value="2"><?php xl(' 2 - Later','e');?></label><br>
 				<label><input type="radio" name="oasis_patient_episode_timing" value="UK"><?php xl(' UK - Unknown','e');?></label><br>
 				<label><input type="radio" name="oasis_patient_episode_timing" value="NA"><?php xl(' NA - Not Applicable: No Medicare case mix group to be defined by this assessment.','e');?></label>
@@ -1436,7 +1436,7 @@ blank in that row.','e');?>
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1034)</u> Overall Status:</b> Which description best fits the patient\'s overall status? <b>(Check one)</b>','e');?><br>
-			<label><input type="radio" name="oasis_patient_history_overall_status" value="0" checked><?php xl(' 0 - The patient is stable with no heightened risk(s) for serious complications and death (beyond those typical of the patient\'s age). ','e')?></label><br>
+			<label><input type="radio" name="oasis_patient_history_overall_status" value="0" ><?php xl(' 0 - The patient is stable with no heightened risk(s) for serious complications and death (beyond those typical of the patient\'s age). ','e')?></label><br>
 			<label><input type="radio" name="oasis_patient_history_overall_status" value="1"><?php xl(' 1 - The patient is temporarily facing high health risk(s) but is likely to return to being stable without heightened risk(s) for serious complications and death (beyond those typical of the patient\'s age). ','e')?></label><br>
 			<label><input type="radio" name="oasis_patient_history_overall_status" value="2"><?php xl(' 2 - The patient is likely to remain in fragile health and have ongoing high risk(s) of serious complications and death. ','e')?></label><br>
 			<label><input type="radio" name="oasis_patient_history_overall_status" value="3"><?php xl(' 3 - The patient has serious progressive conditions that could lead to death within a year. ','e')?></label><br>
@@ -1822,7 +1822,7 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_sensory_status_vision_no" value="No"><?php xl('No Problem','e')?></label>
 			</center>
 			<?php xl('<b><u>(M1200)</u> Vision </b>(with corrective lenses if the patient usually wears them):','e');?><br>
-			<label><input type="radio" name="oasis_sensory_status_vision" value="0" checked><?php xl(' 0 - Normal vision: sees adequately in most situations; can see medication labels, newsprint. ','e')?></label><br>
+			<label><input type="radio" name="oasis_sensory_status_vision" value="0" ><?php xl(' 0 - Normal vision: sees adequately in most situations; can see medication labels, newsprint. ','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_vision" value="1"><?php xl(' 1 - Partially impaired: cannot see medication labels or newsprint, but <u>can</u> see obstacles in path, and the surrounding layout; can count fingers at arm\'s length. ','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_vision" value="2"><?php xl(' 2 - Severely impaired: cannot locate objects without hearing or touching them or patient nonresponsive. ','e')?></label><br>
 			<br>
@@ -1875,7 +1875,7 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_sensory_status_ears_no" value="No"><?php xl('No Problem','e')?></label>
 			</center>
 			<?php xl('<b><u>(M1210)</u> Ability to hear</b> (with hearing aid or hearing appliance if normally used):','e');?><br>
-			<label><input type="radio" name="oasis_sensory_status_hear" value="0" checked><?php xl(' 0 - Adequate: hears normal conversation without difficulty.','e')?></label><br>
+			<label><input type="radio" name="oasis_sensory_status_hear" value="0" ><?php xl(' 0 - Adequate: hears normal conversation without difficulty.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_hear" value="1"><?php xl(' 1 - Mildly to Moderately Impaired: difficulty hearing in some environments or speaker may need to increase volume or speak distinctly.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_hear" value="2"><?php xl(' 2 - Severely Impaired: absence of useful hearing.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_hear" value="UK"><?php xl(' UK - Unable to assess hearing.','e')?></label><br>
@@ -1883,7 +1883,7 @@ blank in that row.','e');?>
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1220)</u> Understanding of Verbal Content</b> in patient\'s own language (with hearing aid or device if used):','e');?><br>
-			<label><input type="radio" name="oasis_sensory_status_understand_verbal" value="0" checked><?php xl(' 0 - Understands: clear comprehension without cues or repetitions.','e')?></label><br>
+			<label><input type="radio" name="oasis_sensory_status_understand_verbal" value="0" ><?php xl(' 0 - Understands: clear comprehension without cues or repetitions.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_understand_verbal" value="1"><?php xl(' 1 - Usually Understands: understands most conversations, but misses some part/intent of message. Requires cues at times to understand.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_understand_verbal" value="2"><?php xl(' 2 - Sometimes Understands: understands only basic conversations or simple, direct phrases. Frequently requires cues to understand.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_understand_verbal" value="3"><?php xl(' 3 - Rarely/Never Understands','e')?></label><br>
@@ -2006,7 +2006,7 @@ blank in that row.','e');?>
 		<td colspan="2">
 			<center><strong><?php xl("SPEECH","e");?></strong></center>
 			<strong><?php xl('<u>(M1230)</u> Speech and Oral (Verbal) Expression of Language (in patient\'s own language):','e');?></strong><br>
-			<label><input type="radio" name="oasis_sensory_status_speech" value="0" checked><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e')?></label><br>
+			<label><input type="radio" name="oasis_sensory_status_speech" value="0" ><?php xl(' 0 - Expresses complex ideas, feelings, and needs clearly, completely, and easily in all situations with no observable impairment.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_speech" value="1"><?php xl(' 1 - Minimal difficulty in expressing ideas and needs (may take extra time; makes occasional errors in word choice, grammar or speech intelligibility; needs minimal prompting or assistance).','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_speech" value="2"><?php xl(' 2 - Expresses simple ideas or needs with moderate difficulty (needs prompting or assistance, errors in word choice, organization or speech intelligibility). Speaks in phrases or short sentences.','e')?></label><br>
 			<label><input type="radio" name="oasis_sensory_status_speech" value="3"><?php xl(' 3 - Has severe difficulty expressing basic ideas or needs and requires maximal assistance or guessing by listener. Speech limited to single words or short phrases.','e')?></label><br>
@@ -2167,14 +2167,14 @@ blank in that row.','e');?>
 	<tr>
 		<td valign="top" width="40%">
 			<?php xl('<b><u>(M1240)</u></b> Has this patient had a formal <b>Pain Assessment</b> using a standardized pain assessment tool (appropriate to the patient\'s ability to communicate the severity of pain)?','e');?></strong><br>
-			<label><input type="radio" name="oasis_pain_assessment_tool" value="0" checked><?php xl(' 0 - No standardized assessment conducted','e')?></label><br>
+			<label><input type="radio" name="oasis_pain_assessment_tool" value="0" ><?php xl(' 0 - No standardized assessment conducted','e')?></label><br>
 			<label><input type="radio" name="oasis_pain_assessment_tool" value="1"><?php xl(' 1 - Yes, and it does not indicate severe pain','e')?></label><br>
 			<label><input type="radio" name="oasis_pain_assessment_tool" value="2"><?php xl(' 2 - Yes, and it indicates severe pain','e')?></label><br>
 			
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1242)</u> Frequency of Pain Interfering</b> with patient\'s activity or movement:','e');?><br>
-			<label><input type="radio" name="oasis_pain_frequency_interfering" value="0" checked><?php xl(' 0 - Patient has no pain','e')?></label><br>
+			<label><input type="radio" name="oasis_pain_frequency_interfering" value="0" ><?php xl(' 0 - Patient has no pain','e')?></label><br>
 			<label><input type="radio" name="oasis_pain_frequency_interfering" value="1"><?php xl(' 1 - Patient has pain that does not interfere with activity or movement','e')?></label><br>
 			<label><input type="radio" name="oasis_pain_frequency_interfering" value="2"><?php xl(' 2 - Less often than daily','e')?></label><br>
 			<label><input type="radio" name="oasis_pain_frequency_interfering" value="3"><?php xl(' 3 - Daily, but not constantly','e')?></label><br>
@@ -2414,7 +2414,7 @@ blank in that row.','e');?>
 	<tr>
 		<td valign="top">
 			<?php xl('<b><u>(M1300)</u> Pressure Ulcer Assessment:</b> Was this patient assessed for <b>Risk of Developing Pressure Ulcers?</b>','e');?><br>
-			<label><input type="radio" name="oasis_pressure_ulcer_assessment" value="0" checked><?php xl(' 0 - No assessment conducted <b><i>[ Go to M1306 ]</i></b>','e')?></label><br>
+			<label><input type="radio" name="oasis_pressure_ulcer_assessment" value="0" ><?php xl(' 0 - No assessment conducted <b><i>[ Go to M1306 ]</i></b>','e')?></label><br>
 			<label><input type="radio" name="oasis_pressure_ulcer_assessment" value="1"><?php xl(' 1 - Yes, based on an evaluation of clinical factors, e.g., mobility, incontinence, nutrition, etc., without use of standardized tool','e')?></label><br>
 			<label><input type="radio" name="oasis_pressure_ulcer_assessment" value="2"><?php xl(' 2 - Yes, using a standardized tool, e.g., Braden, Norton, other','e')?></label><br>
 			
@@ -2789,7 +2789,7 @@ blank in that row.','e');?>
 		</td>
 		<td valign="top">
 			<?php xl('<b><u>(M1322)</u>Current Number of Stage I Pressure Ulcers:</b> Intact skin with non-blanchable redness of a localized area usually over a bony prominence. The area may be painful, firm, soft, warmer or cooler as compared to adjacent tissue.','e');?><br>
-			<label><input id="m1322" type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="0" checked><?php xl(' 0 ','e')?></label>
+			<label><input id="m1322" type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="0" ><?php xl(' 0 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="1"><?php xl(' 1 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="2"><?php xl(' 2 ','e')?></label>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_current_no" value="3"><?php xl(' 3 ','e')?></label>
@@ -2808,7 +2808,7 @@ blank in that row.','e');?>
 			<br>
 			<hr>
 			<?php xl('<b><u>(M1330)</u></b> Does this patient have a <b>Stasis Ulcer</b>?','e');?><br>
-			<label><input type="radio" name="oasis_therapy_pressure_ulcer_statis_ulcer" value="0" checked><?php xl(' 0 - No <b><i>[ Go to M1340 ]</i></b> ','e')?></label><br>
+			<label><input type="radio" name="oasis_therapy_pressure_ulcer_statis_ulcer" value="0" ><?php xl(' 0 - No <b><i>[ Go to M1340 ]</i></b> ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_statis_ulcer" value="1"><?php xl(' 1 - Yes, patient has BOTH observable and unobservable stasis ulcers ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_statis_ulcer" value="2"><?php xl(' 2 - Yes, patient has observable stasis ulcers ONLY ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_pressure_ulcer_statis_ulcer" value="3"><?php xl(' 3 - Yes, patient has unobservable stasis ulcers ONLY (known but not observable due to non-removable dressing) <b><i>[ Go to M1340 ]</i></b> ','e')?></label><br>
@@ -2855,7 +2855,7 @@ blank in that row.','e');?>
 		</td>
 		<td>
 			<?php xl('<b><u>(M1340)</u></b> Does this patient have a <b>Surgical Wound?</b>','e');?><br>
-			<label><input id="m1340" type="radio" name="oasis_therapy_surgical_wound" value="0" checked><?php xl(' 0 - No <b><i>[ Go to M1350 ]</i></b> ','e')?></label><br>
+			<label><input id="m1340" type="radio" name="oasis_therapy_surgical_wound" value="0" ><?php xl(' 0 - No <b><i>[ Go to M1350 ]</i></b> ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_surgical_wound" value="1"><?php xl(' 1 - Yes, patient has at least one (observable) surgical wound ','e')?></label><br>
 			<label><input type="radio" name="oasis_therapy_surgical_wound" value="2"><?php xl(' 2 - Surgical wound known but not observable due to non-removable dressing <b><i>[ Go to M1350 ] </i></b>','e')?></label><br>
 			
@@ -3574,7 +3574,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1400)</u>","e");?></strong>
 			<?php xl(" When is the patient dyspneic or noticeably ","e");?> 
 			<strong><?php xl(" Short of Breath?","e");?></strong> <br>
-			<label><input type="radio" name="oasis_therapy_respiratory_status" value="0" checked><?php xl(' 0 - Patient is not short of breath ','e')?></label> <br>
+			<label><input type="radio" name="oasis_therapy_respiratory_status" value="0" ><?php xl(' 0 - Patient is not short of breath ','e')?></label> <br>
 			<label><input type="radio" name="oasis_therapy_respiratory_status" value="1"><?php xl(' 1 - When walking more than 20 feet, climbing stairs ','e')?></label> <br>
 			<label><input type="radio" name="oasis_therapy_respiratory_status" value="2"><?php xl(' 2 - With moderate exertion (e.g., while dressing, using commode or bedpan, walking distances less than 20 feet) ','e')?></label> <br>
 			<label><input type="radio" name="oasis_therapy_respiratory_status" value="3"><?php xl(' 3 - With minimal exertion (e.g., while eating, talking, or performing other ADLs) or with agitation ','e')?></label> <br>
@@ -3613,7 +3613,7 @@ blank in that row.','e');?>
 			
 			<br>
 			<strong><?php xl("<u>(M1610)</u> Urinary Incontinence or Urinary Catheter Presence:","e");?></strong><br>
-			<label><input type="radio" name="oasis_elimination_status_urinary_incontinence" value="0" checked><?php xl(' 0 - No incontinence or catheter (includes anuria or ostomy for urinary drainage) <b><i>[ Go to M1620 ]</i></b> ','e')?></label> <br>
+			<label><input type="radio" name="oasis_elimination_status_urinary_incontinence" value="0" ><?php xl(' 0 - No incontinence or catheter (includes anuria or ostomy for urinary drainage) <b><i>[ Go to M1620 ]</i></b> ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_urinary_incontinence" value="1"><?php xl(' 1 - Patient is incontinent ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_urinary_incontinence" value="2"><?php xl(' 2 - Patient requires a urinary catheter (i.e., external, indwelling, intermittent, suprapubic) <b><i>[ Go to M1620 ]</i></b> ','e')?></label> <br>
 			
@@ -3628,7 +3628,7 @@ blank in that row.','e');?>
 		</td>
 		<td valign="top">
 			<strong><?php xl("<u>(M1620)</u> Bowel Incontinence Frequency:","e");?></strong><br>
-			<label><input id="m1620" type="radio" name="oasis_elimination_status_bowel_incontinence" value="0" checked><?php xl(' 0 - Very rarely or never has bowel incontinence ','e')?></label> <br>
+			<label><input id="m1620" type="radio" name="oasis_elimination_status_bowel_incontinence" value="0" ><?php xl(' 0 - Very rarely or never has bowel incontinence ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="1"><?php xl(' 1 - Less than once weekly ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="2"><?php xl(' 2 - One to three times weekly ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_bowel_incontinence" value="3"><?php xl(' 3 - Four to six times weekly ','e')?></label> <br>
@@ -3639,7 +3639,7 @@ blank in that row.','e');?>
 			
 			<br>
 			<?php xl("<b><u>(M1630)</u> Ostomy for Bowel Elimination:</b> Does this patient have an ostomy for bowel elimination that (within the last 14 days): a) was related to an inpatient facility stay, <u>or</u> b) necessitated a change in medical or treatment regimen?","e");?><br>
-			<label><input type="radio" name="oasis_elimination_status_ostomy_bowel" value="0" checked><?php xl(' 0 - Patient does not have an ostomy for bowel elimination. ','e')?></label> <br>
+			<label><input type="radio" name="oasis_elimination_status_ostomy_bowel" value="0" ><?php xl(' 0 - Patient does not have an ostomy for bowel elimination. ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_ostomy_bowel" value="1"><?php xl(' 1 - Patient\'s ostomy was <u>not</u> related to an inpatient stay and did <u>not</u> necessitate change in medical or treatment regimen. ','e')?></label> <br>
 			<label><input type="radio" name="oasis_elimination_status_ostomy_bowel" value="2"><?php xl(' 2 - The ostomy <u>was</u> related to an inpatient stay or <u>did</u> necessitate change in medical or treatment regimen. ','e')?></label> <br>
 			
@@ -4157,7 +4157,7 @@ blank in that row.','e');?>
 			<?php xl("Cognitive Functioning:","e");?></strong>
 			<?php xl("Patient's current (day of assessment) level of alertness, orientation, comprehension, concentration, and immediate memory for simple commands.","e");?> 
 			<br />
-			<label><input type="radio" name="oasis_neuro_cognitive_functioning" value="0" checked><?php xl(' 0 - Alert/oriented, able to focus and shift attention, comprehends and recalls task directions independently. ','e')?></label> <br>
+			<label><input type="radio" name="oasis_neuro_cognitive_functioning" value="0" ><?php xl(' 0 - Alert/oriented, able to focus and shift attention, comprehends and recalls task directions independently. ','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_cognitive_functioning" value="1"><?php xl(' 1 - Requires prompting (cuing, repetition, reminders) only under stressful or unfamiliar conditions. ','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_cognitive_functioning" value="2"><?php xl(' 2 - Requires assistance and some direction in specific situations (e.g., on all tasks involving shifting of attention), or consistently requires low stimulus environment due to distractibility.','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_cognitive_functioning" value="3"><?php xl(' 3 - Requires considerable assistance in routine situations. Is not alert and oriented or is unable to shift attention and recall directions more than half the time.','e')?></label> <br>
@@ -4167,7 +4167,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1710)</u>","e");?>
 			<?php xl("When Confused (Reported or Observed Within the Last 14 Days):","e");?></strong>
 			<br />
-			<label><input type="radio" name="oasis_neuro_when_confused" value="0" checked><?php xl(' 0 - Never','e')?></label> <br>
+			<label><input type="radio" name="oasis_neuro_when_confused" value="0" ><?php xl(' 0 - Never','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_confused" value="1"><?php xl(' 1 - In new or complex situations only','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_confused" value="2"><?php xl(' 2 - On awakening or at night only','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_confused" value="3"><?php xl(' 3 - During the day and evening, but not constantly','e')?></label> <br>
@@ -4178,7 +4178,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1720)</u>","e");?>
 			<?php xl("When Anxious (Reported or Observed Within the Last 14 Days):","e");?></strong>
 			<br />
-			<label><input type="radio" name="oasis_neuro_when_anxious" value="0" checked><?php xl(' 0 - None of the time','e')?></label> <br>
+			<label><input type="radio" name="oasis_neuro_when_anxious" value="0" ><?php xl(' 0 - None of the time','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_anxious" value="1"><?php xl(' 1 - Less often than daily','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_anxious" value="2"><?php xl(' 2 - Daily, but not constantly','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_when_anxious" value="3"><?php xl(' 3 - All of the time','e')?></label> <br>
@@ -4188,7 +4188,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1730)</u>","e");?></strong>
 			<?php xl("<b>Depression Screening:</b> Has the patient been screened for depression, using a standardized depression screening tool?","e");?> 
 			<br />
-			<label><input type="radio" name="oasis_neuro_depression_screening" value="0" checked><?php xl(' 0 - No','e')?></label> <br>
+			<label><input type="radio" name="oasis_neuro_depression_screening" value="0" ><?php xl(' 0 - No','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_depression_screening" value="1"><?php xl(' 1 - Yes, patient was screened using the PHQ-2&copy;* scale. (Instructions for this two-question tool: Ask patient: "Over the last two weeks, how often have you been bothered by any of the following problems")','e')?>
 			</label> <br>
 			
@@ -4257,7 +4257,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1745)</u>","e");?></strong>
 			<?php xl("<strong>Frequency of Disruptive Behavior Symptoms (Reported or Observed)</strong> Any physical, verbal, or other disruptive/dangerous symptoms that are injurious to self or others or jeopardize personal safety.","e");?> 
 			<br />
-			<label><input type="radio" name="oasis_neuro_frequency_disruptive" value="0" checked><?php xl(' 0 - Never','e')?></label> <br>
+			<label><input type="radio" name="oasis_neuro_frequency_disruptive" value="0" ><?php xl(' 0 - Never','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_frequency_disruptive" value="1"><?php xl(' 1 - Less than once a month','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_frequency_disruptive" value="2"><?php xl(' 2 - Once a month','e')?></label> <br>
 			<label><input type="radio" name="oasis_neuro_frequency_disruptive" value="3"><?php xl(' 3 - Several times each month.','e')?></label> <br>
@@ -4544,7 +4544,7 @@ blank in that row.','e');?>
 	<strong><?php xl("<u>(M1800)</u>","e");?></strong>
 			<?php xl("<strong>Grooming:</strong> Current ability to tend safely to personal hygiene needs (i.e., washing face and hands, hair care, shaving or make up, teeth or denture care, fingernail care).","e");?> 
 			<br />
-			<label><input type="radio" name="oasis_adl_grooming" value="0" checked><?php xl(' 0 - Able to groom self unaided, with or without the use of assistive devices or adapted methods.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_grooming" value="0" ><?php xl(' 0 - Able to groom self unaided, with or without the use of assistive devices or adapted methods.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_grooming" value="1"><?php xl(' 1 - Grooming utensils must be placed within reach before able to complete grooming activities.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_grooming" value="2"><?php xl(' 2 - Someone must assist the patient to groom self.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_grooming" value="3"><?php xl(' 3 - Patient depends entirely upon someone else for grooming needs.','e')?></label> <br>
@@ -4555,7 +4555,7 @@ blank in that row.','e');?>
 			<?php xl("Current ","e");?>
 			<strong><?php xl(" Ability to Dress <u>Upper</u> Body ","e");?></strong> 
 			<?php xl(" safely (with or without dressing aids) including undergarments, pullovers, front-opening shirts and blouses, managing zippers, buttons, and snaps:","e");?><br />
-			<label><input type="radio" name="oasis_adl_dress_upper" value="0" checked><?php xl(' 0 - Able to get clothes out of closets and drawers, put them on and remove them from the  upper body without assistance. ','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_dress_upper" value="0" ><?php xl(' 0 - Able to get clothes out of closets and drawers, put them on and remove them from the  upper body without assistance. ','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_upper" value="1"><?php xl(' 1 - Able to dress upper body without assistance if clothing is laid out or handed to the patient.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_upper" value="2"><?php xl(' 2 - Someone must help the patient put on upper body clothing.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_upper" value="3"><?php xl(' 3 - Patient depends entirely upon another person to dress the upper body.','e')?></label> <br>
@@ -4566,7 +4566,7 @@ blank in that row.','e');?>
 			<?php xl("Current ","e");?>
 			<strong><?php xl("Ability to Dress <u>Lower</u> Body ","e");?></strong> 
 			<?php xl(" safely (with or without dressing aids) including undergarments, slacks, socks or nylons, shoes:","e");?><br />
-			<label><input type="radio" name="oasis_adl_dress_lower" value="0" checked><?php xl(' 0 - Able to obtain, put on, and remove clothing and shoes without assistance.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_dress_lower" value="0" ><?php xl(' 0 - Able to obtain, put on, and remove clothing and shoes without assistance.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_lower" value="1"><?php xl(' 1 - Able to dress lower body without assistance if clothing and shoes are laid out or handed to the patient.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_lower" value="2"><?php xl(' 2 - Someone must help the patient put on undergarments, slacks, socks or nylons, and shoes.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_dress_lower" value="3"><?php xl(' 3 - Patient depends entirely upon another person to dress lower body.','e')?></label> <br>
@@ -4575,7 +4575,7 @@ blank in that row.','e');?>
 			<strong><?php xl("<u>(M1830)</u> Bathing: ","e");?></strong>
 			<?php xl("Current ability to wash entire body safely. ","e");?>
 			<strong><?php xl("<u>Excludes</u> grooming (washing face, washing hands, and shampooing hair). ","e");?></strong> <br />
-			<label><input type="radio" name="oasis_adl_wash" value="0" checked><?php xl(' 0 - Able to bathe self in <u>shower or tub</u> independently, including getting in and out of tub/shower.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_wash" value="0" ><?php xl(' 0 - Able to bathe self in <u>shower or tub</u> independently, including getting in and out of tub/shower.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_wash" value="1"><?php xl(' 1 - With the use of devices, is able to bathe self in shower or tub independently, including getting in and out of the tub/shower.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_wash" value="2"><?php xl(' 2 - Able to bathe in shower or tub with the intermittent assistance of another person:<br>
 (a) for intermittent supervision or encouragement or reminders, <u>OR</u><br>
@@ -4589,7 +4589,7 @@ blank in that row.','e');?>
 			
 			<strong><?php xl("<u>(M1840)</u> Toilet Transferring: ","e");?></strong>
 			<?php xl("Current ability to get to and from the toilet or bedside commode safely <u>and</u> transfer on and off toilet/commode. ","e");?><br />
-			<label><input type="radio" name="oasis_adl_toilet_transfer" value="0" checked><?php xl(' 0 - Able to get to and from the toilet and transfer independently with or without a device.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_toilet_transfer" value="0" ><?php xl(' 0 - Able to get to and from the toilet and transfer independently with or without a device.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toilet_transfer" value="1"><?php xl(' 1 - When reminded, assisted, or supervised by another person, able to get to and from the toilet and transfer.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toilet_transfer" value="2"><?php xl(' 2 - <u>Unable</u> to get to and from the toilet but is able to use a bedside commode (with or without assistance).','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toilet_transfer" value="3"><?php xl(' 3 - <u>Unable</u> to get to and from the toilet or bedside commode but is able to use a bedpan/urinal independently.','e')?></label> <br>
@@ -4602,7 +4602,7 @@ blank in that row.','e');?>
 	<td>
 			<strong><?php xl("<u>(M1845)</u> Toileting Hygiene: ","e");?></strong>
 			<?php xl("Current ability to maintain perineal hygiene safely, adjust clothes and/or incontinence pads before and after using toilet, commode, bedpan, urinal. If managing ostomy, includes cleaning area around stoma, but not managing equipment.","e");?><br />
-			<label><input type="radio" name="oasis_adl_toileting_hygiene" value="0" checked><?php xl(' 0 - Able to manage toileting hygiene and clothing management without assistance.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_toileting_hygiene" value="0" ><?php xl(' 0 - Able to manage toileting hygiene and clothing management without assistance.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toileting_hygiene" value="1"><?php xl(' 1 - Able to manage toileting hygiene and clothing management without assistance if supplies/implements are laid out for the patient.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toileting_hygiene" value="2"><?php xl(' 2 - Someone must help the patient to maintain toileting hygiene and/or adjust clothing.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_toileting_hygiene" value="3"><?php xl(' 3 - Patient depends entirely upon another person to maintain toileting hygiene.','e')?></label> <br>
@@ -4610,7 +4610,7 @@ blank in that row.','e');?>
 			<hr />
 			<strong><?php xl("<u>(M1850)</u> Transferring: ","e");?></strong>
 			<?php xl("Current ability to move safely from bed to chair, or ability to turn and position self in bed if patient is bedfast.","e");?><br />
-			<label><input type="radio" name="oasis_adl_transferring" value="0" checked><?php xl(' 0 - Able to independently transfer.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_transferring" value="0" ><?php xl(' 0 - Able to independently transfer.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_transferring" value="1"><?php xl(' 1 - Able to transfer with minimal human assistance or with use of an assistive device.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_transferring" value="2"><?php xl(' 2 - Able to bear weight and pivot during the transfer process but unable to transfer self.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_transferring" value="3"><?php xl(' 3 - Unable to transfer self and is unable to bear weight or pivot when transferred by another person.','e')?></label> <br>
@@ -4620,7 +4620,7 @@ blank in that row.','e');?>
 			
 			<strong><?php xl("<u>(M1860)</u> Ambulation/Locomotion: ","e");?></strong>
 			<?php xl("Current ability to walk safely, once in a standing position, or use a wheelchair, once in a seated position, on a variety of surfaces.","e");?><br />
-			<label><input type="radio" name="oasis_adl_ambulation" value="0" checked><?php xl(' 0 - Able to independently walk on even and uneven surfaces and negotiate stairs with or without railings (i.e., needs no human assistance or assistive device).','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_ambulation" value="0" ><?php xl(' 0 - Able to independently walk on even and uneven surfaces and negotiate stairs with or without railings (i.e., needs no human assistance or assistive device).','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_ambulation" value="1"><?php xl(' 1 - With the use of a one-handed device (e.g. cane, single crutch, hemi-walker), able to independently walk on even and uneven surfaces and negotiate stairs with or without railings.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_ambulation" value="2"><?php xl(' 2 - Requires use of a two-handed device (e.g., walker or crutches) to walk alone on a level surface and/or requires human supervision or assistance to negotiate stairs or steps or uneven surfaces.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_ambulation" value="3"><?php xl(' 3 - Able to walk only with the supervision or assistance of another person at all times.','e')?></label> <br>
@@ -4632,7 +4632,7 @@ blank in that row.','e');?>
 			
 			<strong><?php xl("<u>(M1870)</u> Feeding or Eating: ","e");?></strong>
 			<?php xl("Current ability to feed self meals and snacks safely. Note: This refers only to the process of <u>eating</u>, <u>chewing</u>, and <u>swallowing</u>, <u>not preparing</u> the food to be eaten.","e");?><br />
-			<label><input type="radio" name="oasis_adl_feeding_eating" value="0" checked><?php xl(' 0 - Able to independently feed self.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_feeding_eating" value="0" ><?php xl(' 0 - Able to independently feed self.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_feeding_eating" value="1"><?php xl(' 1 - Able to feed self independently but requires:<br />
 (a) meal set-up; <u>OR</u><br />
 (b) intermittent assistance or supervision from another person; <u>OR</u><br />
@@ -4646,7 +4646,7 @@ blank in that row.','e');?>
 			<hr />
 			<strong><?php xl("<u>(M1880)</u>","e");?></strong>
 			<?php xl("Current <strong>Ability to Plan and Prepare Light Meals</strong> (e.g., cereal, sandwich) or reheat delivered meals safely:","e");?><br />
-			<label><input type="radio" name="oasis_adl_current_ability" value="0" checked><?php xl(' 0 - (a) Able to independently plan and prepare all light meals for self or reheat delivered meals; <u>OR</u><br />
+			<label><input type="radio" name="oasis_adl_current_ability" value="0" ><?php xl(' 0 - (a) Able to independently plan and prepare all light meals for self or reheat delivered meals; <u>OR</u><br />
 (b) Is physically, cognitively, and mentally able to prepare light meals on a regular basis but has not routinely performed light meal preparation in the past (i.e., prior to this home care admission).','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_current_ability" value="1"><?php xl(' 1 - <u>Unable</u> to prepare light meals on a regular basis due to physical, cognitive, or mental limitations.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_current_ability" value="2"><?php xl(' 2 - Unable to prepare any light meals or reheat any delivered meals.','e')?></label> <br>
@@ -4699,7 +4699,7 @@ blank in that row.','e');?>
 <td width="50%">
 <strong><?php xl("<u>(M1890)</u>","e");?></strong>
 			<?php xl("<strong>Ability to Use Telephone:</strong> Current ability to answer the phone safely, including dialing numbers, and <u>effectively</u> using the telephone to communicate.","e");?><br />
-			<label><input type="radio" name="oasis_adl_use_telephone" value="0" checked><?php xl(' 0 - Able to dial numbers and answer calls appropriately and as desired.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_use_telephone" value="0" ><?php xl(' 0 - Able to dial numbers and answer calls appropriately and as desired.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="1"><?php xl(' 1 - Able to use a specially adapted telephone (i.e., large numbers on the dial, teletype phone for the deaf) and call essential numbers.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="2"><?php xl(' 2 - Able to answer the telephone and carry on a normal conversation but has difficulty with placing calls.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_use_telephone" value="3"><?php xl(' 3 - Able to answer the telephone only some of the time or is able to carry on only a limited conversation.','e')?></label> <br>
@@ -4739,7 +4739,7 @@ blank in that row.','e');?>
 <?php xl("Self-Care (e.g., grooming, dressing, and bathing)","e");?>
 </td>
 <td valign="middle" align="center">
-<label><input type="radio" name="oasis_adl_func_self_care" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_adl_func_self_care" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td valign="middle" align="center">
 <label><input type="radio" name="oasis_adl_func_self_care" value="1"><?php xl(' 1','e')?></label> <br>
@@ -4757,7 +4757,7 @@ blank in that row.','e');?>
 <?php xl("Ambulation","e");?>
 </td>
 <td valign="middle" align="center">
-<label><input type="radio" name="oasis_adl_func_ambulation" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_adl_func_ambulation" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td valign="middle" align="center">
 <label><input type="radio" name="oasis_adl_func_ambulation" value="1"><?php xl(' 1','e')?></label> <br>
@@ -4775,7 +4775,7 @@ blank in that row.','e');?>
 <?php xl("Transfer","e");?>
 </td>
 <td valign="middle" align="center">
-<label><input type="radio" name="oasis_adl_func_transfer" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_adl_func_transfer" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td valign="middle" align="center">
 <label><input type="radio" name="oasis_adl_func_transfer" value="1"><?php xl(' 1','e')?></label> <br>
@@ -4836,7 +4836,7 @@ blank in that row.','e');?>
 <td>
 <strong><?php xl("<u>(M1910)</u>","e");?></strong>
 			<?php xl("Has this patient had a multi-factor <strong>Fall Risk Assessment</strong> (such as falls history, use of multiple medications, mental impairment, toileting frequency, general mobility/transferring impairment, environmental hazards)?","e");?><br />
-			<label><input type="radio" name="oasis_adl_fall_risk_assessment" value="0" checked><?php xl(' 0 - No multi-factor falls risk assessment conducted.','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_fall_risk_assessment" value="0" ><?php xl(' 0 - No multi-factor falls risk assessment conducted.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_fall_risk_assessment" value="1"><?php xl(' 1 - Yes, and it does not indicate a risk for falls.','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_fall_risk_assessment" value="2"><?php xl(' 2 - Yes, and it indicates a risk for falls.','e')?></label> <br>
 			<br /><hr />
@@ -4844,7 +4844,7 @@ blank in that row.','e');?>
 			<center><strong><?php xl("MEDICATIONS","e");?></strong></center><br />
 			<strong><?php xl("<u>(M2000)</u>","e");?></strong>
 			<?php xl("<strong>Drug Regimen Review:</strong> Does a complete drug regimen review indicate potential clinically significant medication issues, e.g., drug reactions, ineffective drug therapy, side effects, drug interactions, duplicate therapy, omissions, dosage errors, or noncompliance?","e");?><br />
-			<label><input type="radio" name="oasis_adl_drug_regimen" value="0" checked><?php xl(' 0 - Not assessed/reviewed <strong><i>[Go to M2010]</i></strong>','e')?></label> <br>
+			<label><input type="radio" name="oasis_adl_drug_regimen" value="0" ><?php xl(' 0 - Not assessed/reviewed <strong><i>[Go to M2010]</i></strong>','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_drug_regimen" value="1"><?php xl(' 1 - No problems found during review <strong><i>[Go to M2010]</i></strong>','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_drug_regimen" value="2"><?php xl(' 2 - Problems found during review','e')?></label> <br>
 			<label><input type="radio" name="oasis_adl_drug_regimen" value="NA"><?php xl(' NA - Patient is not taking any medications <strong><i>[Go to M2040]</i></strong>','e')?></label> <br>
@@ -4937,7 +4937,7 @@ blank in that row.','e');?>
 <?php xl("Oral medications","e");?>
 </td>
 <td>
-<label><input id="m2040" type="radio" name="oasis_adl_func_oral_med" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input id="m2040" type="radio" name="oasis_adl_func_oral_med" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_adl_func_oral_med" value="1"><?php xl(' 1','e')?></label> <br>
@@ -4958,7 +4958,7 @@ blank in that row.','e');?>
 <?php xl("Injectable medications","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_adl_inject_med" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_adl_inject_med" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_adl_inject_med" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5048,7 +5048,7 @@ blank in that row.','e');?>
 <?php xl("<strong>ADL assistance</strong> (e.g., transfer/ ambulation, bathing, dressing, toileting, eating/feeding)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_adl_assistance" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_adl_assistance" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_adl_assistance" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5075,7 +5075,7 @@ blank in that row.','e');?>
 <?php xl("<strong>IADL assistance</strong> (e.g., meals, housekeeping, laundry, telephone, shopping, finances)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_iadl_assistance" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_iadl_assistance" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_iadl_assistance" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5103,7 +5103,7 @@ blank in that row.','e');?>
 <?php xl("<strong>Medication administration</strong> (e.g., oral, inhaled or injectable)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_medication_admin" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_medication_admin" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_medication_admin" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5131,7 +5131,7 @@ blank in that row.','e');?>
 <?php xl("<strong>Medical procedures/ treatments</strong> (e.g., changing wound dressing)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_medical_procedures" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_medical_procedures" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_medical_procedures" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5159,7 +5159,7 @@ blank in that row.','e');?>
 <?php xl("<strong>Management of Equipment</strong> (includes oxygen, IV/infusion equipment, enteral/ parenteral nutrition, ventilator therapy equipment or supplies)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_management_equip" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_management_equip" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_management_equip" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5186,7 +5186,7 @@ blank in that row.','e');?>
 <?php xl("<strong>Supervision and safety</strong> (e.g., due to cognitive impairment)","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_supervision_safety" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_supervision_safety" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_supervision_safety" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5214,7 +5214,7 @@ blank in that row.','e');?>
 <?php xl("<strong>Advocacy or facilitation</strong> of patient's participation in appropriate medical care (includes transportation to or from appointments).","e");?>
 </td>
 <td align="center">
-<label><input type="radio" name="oasis_care_advocacy_facilitation" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_advocacy_facilitation" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td align="center">
 <label><input type="radio" name="oasis_care_advocacy_facilitation" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5243,7 +5243,7 @@ blank in that row.','e');?>
 	<td>
 	<strong><?php xl("<u>(M2110)</u>","e");?></strong>
 			<?php xl("<strong>How Often </strong> does the patient receive <strong>ADL or IADL assistance</strong> from any caregiver(s) (other than home health agency staff)?","e");?><br />
-			<label><input type="radio" name="oasis_care_how_often" value="1" checked><?php xl(' 1 - At least daily','e')?></label> <br>
+			<label><input type="radio" name="oasis_care_how_often" value="1" ><?php xl(' 1 - At least daily','e')?></label> <br>
 			<label><input type="radio" name="oasis_care_how_often" value="2"><?php xl(' 2 - Three or more times per week','e')?></label> <br>
 			<label><input type="radio" name="oasis_care_how_often" value="3"><?php xl(' 3 - One to two times per week','e')?></label> <br>
 			<label><input type="radio" name="oasis_care_how_often" value="4"><?php xl(' 4 - Received, but less often than weekly','e')?></label> <br>
@@ -5298,7 +5298,7 @@ blank in that row.','e');?>
 <?php xl("Patient-specific parameters for notifying physician of changes in vital signs or other clinical findings","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_patient_parameter" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_patient_parameter" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_patient_parameter" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5319,7 +5319,7 @@ blank in that row.','e');?>
 <?php xl("Diabetic foot care including monitoring for the presence of skin lesions on the lower extremities and patient/caregiver education on proper foot care","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_diabetic_foot_care" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_diabetic_foot_care" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_diabetic_foot_care" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5340,7 +5340,7 @@ blank in that row.','e');?>
 <?php xl("Falls prevention interventions","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_falls_prevention" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_falls_prevention" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_falls_prevention" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5361,7 +5361,7 @@ blank in that row.','e');?>
 <?php xl("Depression intervention(s) such as medication, referral for other treatment, or a monitoring plan for current treatment","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_depression_intervention" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_depression_intervention" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_depression_intervention" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5382,7 +5382,7 @@ blank in that row.','e');?>
 <?php xl("Intervention(s) to monitor and mitigate pain","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_intervention_monitor" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_intervention_monitor" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_intervention_monitor" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5403,7 +5403,7 @@ blank in that row.','e');?>
 <?php xl("Intervention(s) to prevent pressure ulcers","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_intervention_prevent" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_intervention_prevent" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_intervention_prevent" value="1"><?php xl(' 1','e')?></label> <br>
@@ -5424,7 +5424,7 @@ blank in that row.','e');?>
 <?php xl("Pressure ulcer treatment based on principles of moist wound healing OR order for treatment based on moist wound healing has been requested from physician","e");?>
 </td>
 <td>
-<label><input type="radio" name="oasis_care_pressure_ulcer" value="0" checked><?php xl(' 0','e')?></label> <br>
+<label><input type="radio" name="oasis_care_pressure_ulcer" value="0" ><?php xl(' 0','e')?></label> <br>
 </td>
 <td>
 <label><input type="radio" name="oasis_care_pressure_ulcer" value="1"><?php xl(' 1','e')?></label> <br>
