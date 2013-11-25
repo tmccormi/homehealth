@@ -11557,7 +11557,7 @@ CREATE TABLE `forms_nursing_visitnote` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
-INSERT INTO `registry` VALUES ('Nursing Visitnote', 1, 'nursing_visitnote', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'Skilled Nursing', '');
+INSERT INTO `registry` VALUES ('Nursing Visit Note', 1, 'nursing_visitnote', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'Skilled Nursing', '');
 
 --  Insert Address 2 for Synergy
 INSERT INTO layout_options (`form_id`, `field_id`,`group_name`, `title`, `seq`, `data_type`, `uor`, `fld_length`, `max_length`, `list_id`, `titlecols`, `datacols`, `default_value`, `edit_options`, `description`, `fld_rows`) VALUES ( 'DEM', 'street2', '1Patient Info', 'Address 2', 17, 2, 1, 25, 63, '', 1, 1, '', 'C', 'Street and Place', 0);

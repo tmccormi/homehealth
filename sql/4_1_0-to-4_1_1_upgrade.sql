@@ -7470,7 +7470,7 @@ ALTER TABLE forms_oasis_transfer MODIFY oasistransfer_Visit_Date DATE;
 
 
 #IfNotRow registry directory nursing_visitnote
-INSERT INTO `registry` VALUES ('Nursing Visitnote', 1, 'nursing_visitnote', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'Skilled Nursing', '');
+INSERT INTO `registry` VALUES ('Nursing Visit Note', 1, 'nursing_visitnote', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, 'Skilled Nursing', '');
 #EndIf
 
 #IfNotRow2D registry directory nursing_visitnote category Skilled Nursing
