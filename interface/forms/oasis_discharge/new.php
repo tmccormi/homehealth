@@ -1259,13 +1259,13 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<strong><?php xl("WOUND/LESION (specify)","e");?></strong>
 					</td>
 					<td align="center">
-						<strong><?php xl("#","e");?></strong>
+						<strong><?php xl("1","e");?></strong>
 					</td>
 					<td align="center">
-						<strong><?php xl("#","e");?></strong>
+						<strong><?php xl("2","e");?></strong>
 					</td>
 					<td align="center">
-						<strong><?php xl("#","e");?></strong>
+						<strong><?php xl("3","e");?></strong>
 					</td>
 				</tr>
 				<tr>

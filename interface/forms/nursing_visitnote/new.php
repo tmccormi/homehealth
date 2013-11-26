@@ -821,10 +821,10 @@ echo $c->default_action();
 	  <table width="100%" border="1px" cellspacing="0px" cellpadding="2px" class="formtable">
 	  	<tr>
 	 <th scope="row"><?php xl('Wound','e')?>
-	 <td align="center"><strong><?php xl('#','e')?></strong></td>
-	 <td align="center"><strong><?php xl('#','e')?></strong></td>
-	 <td align="center"><strong><?php xl('#','e')?></strong></td>
-	 <td align="center"><strong><?php xl('#','e')?></strong></td>
+	 <td align="center"><strong><?php xl('1','e')?></strong></td>
+	 <td align="center"><strong><?php xl('2','e')?></strong></td>
+	 <td align="center"><strong><?php xl('3','e')?></strong></td>
+	 <td align="center"><strong><?php xl('4','e')?></strong></td>
 	 <td align="center"><strong><?php xl('Comments','e')?></strong></td>
 	</tr>
   <tr>

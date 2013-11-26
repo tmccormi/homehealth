@@ -1317,13 +1317,13 @@ blank in that row.','e');?>
                         <strong><?php xl("WOUND/LESION (specify)","e");?></strong>
                     </td>
                     <td align="center">
-                        <strong><?php xl("#","e");?></strong>
+                        <strong><?php xl("1","e");?></strong>
                     </td>
                     <td align="center">
-                        <strong><?php xl("#","e");?></strong>
+                        <strong><?php xl("2","e");?></strong>
                     </td>
                     <td align="center">
-                        <strong><?php xl("#","e");?></strong>
+                        <strong><?php xl("3","e");?></strong>
                     </td>
                 </tr>
                 <tr>

@@ -33,7 +33,7 @@ table label, input { display:inherit !important; }
 
 <body>
 <form method="post" id="submitForm"
-		action="<?php echo $rootdir;?>/forms/nursing_careplan/save.php?mode=new" name="nursing_careplan" onsubmit="return top.restoreSession();" enctype="multipart/form-data">
+		action="<?php echo $rootdir;?>/forms/nursing_careplan/save.php?mode=new" name="nursing_careplan" onSubmit="return top.restoreSession();" enctype="multipart/form-data">
 		<h3 align="center"><?php xl('SKILLED NURSING CARE PLAN','e')?></h3>
 		<h5 align="center">
 		<?php xl('(Information from this form populates the Plan of Care/485)','e'); ?>
@@ -708,10 +708,10 @@ table label, input { display:inherit !important; }
 	<table width="100%" border="1px" cellspacing="0px" cellpadding="0px" class="formtable">
 	<tr>
 	<th scope="row"><?php xl('Wound','e')?>
-         <td align="center"><strong><?php xl('#','e')?></strong></td>
-         <td align="center"><strong><?php xl('#','e')?></strong></td>
-         <td align="center"><strong><?php xl('#','e')?></strong></td>
-         <td align="center"><strong><?php xl('#','e')?></strong></td>
+         <td align="center"><strong><?php xl('1','e')?></strong></td>
+         <td align="center"><strong><?php xl('2','e')?></strong></td>
+         <td align="center"><strong><?php xl('3','e')?></strong></td>
+         <td align="center"><strong><?php xl('4','e')?></strong></td>
          <td align="center"><strong><?php xl('Comments','e')?></strong></td>
         </tr>
 	</tr>
