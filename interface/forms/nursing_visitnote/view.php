@@ -726,23 +726,23 @@ foreach($obj as $key => $value) {
         <tr>
           <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
               <tr>
-                <td scope="row" width="50%"><input type="checkbox" value="G0154-Direct skilled services of a LPN/LVN or RN" name="visitnote_services_provided_options[]" <?php if(in_array("G0154-Direct skilled services of a LPN/LVN or RN",$visitnote_services_provided_options)) echo "checked"; ?> />
+                <td scope="row" width="50%"><input type="radio" value="G0154-Direct skilled services of a LPN/LVN or RN" name="visitnote_services_provided_options[]" <?php if(in_array("G0154-Direct skilled services of a LPN/LVN or RN",$visitnote_services_provided_options)) echo "checked"; ?> />
                   <?php xl('<b>G0154</b>-Direct skilled services of a LPN/LVN or RN','e')?> <br />
-                  <input type="checkbox" value="G0162-RN management and evaluation of plan of care" name="visitnote_services_provided_options[]" <?php if(in_array("G0162-RN management and evaluation of plan of care",$visitnote_services_provided_options)) echo "checked"; ?> />
+                  <input type="radio" value="G0162-RN management and evaluation of plan of care" name="visitnote_services_provided_options[]" <?php if(in_array("G0162-RN management and evaluation of plan of care",$visitnote_services_provided_options)) echo "checked"; ?> />
                   <?php xl('<b>G0162</b>-RN management and evaluation of plan of care','e')?> <br />
-                  <input type="checkbox" value="G0163- LPN/LVN or RN for observation and assessment of organ system" name="visitnote_services_provided_options[]" <?php if(in_array("G0163- LPN/LVN or RN for observation and assessment of organ system",$visitnote_services_provided_options)) echo "checked"; ?> />
+                  <input type="radio" value="G0163- LPN/LVN or RN for observation and assessment of organ system" name="visitnote_services_provided_options[]" <?php if(in_array("G0163- LPN/LVN or RN for observation and assessment of organ system",$visitnote_services_provided_options)) echo "checked"; ?> />
                   <?php xl('<b>G0163</b>- LPN/LVN or RN for observation and assessment of organ system','e')?> </td>
-                <td scope="row"><input type="checkbox" value="G0164 RN Training and Education in" name="visitnote_services_provided_options[]" <?php if(in_array("G0164 RN Training and Education in",$visitnote_services_provided_options)) echo "checked"; ?> />
+                <td scope="row"><input type="radio" value="G0164 RN Training and Education in" name="visitnote_services_provided_options[]" <?php if(in_array("G0164 RN Training and Education in",$visitnote_services_provided_options)) echo "checked"; ?> />
                   <?php xl('<b>G0164</b> RN Training and Education in','e')?>
-                  <table style="padding-left:15px;"><tr><td width="75%"><input type="checkbox" value="Medication Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Medication Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
+                  <table style="padding-left:15px;"><tr><td width="75%"><input type="radio" value="Medication Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Medication Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
                  <?php xl('Medication Management','e')?>
-                  <input type="checkbox" value="Disease Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Disease Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
+                  <input type="radio" value="Disease Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Disease Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
                   <?php xl('Disease Management','e')?>
-                  <input type="checkbox" value="Wound Care" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Wound Care",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
+                  <input type="radio" value="Wound Care" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Wound Care",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
                   <?php xl('Wound Care','e')?>
-                  <input type="checkbox" value="Diet Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Diet Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
+                  <input type="radio" value="Diet Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Diet Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
                   <?php xl('Diet Management','e')?>
-                  <input type="checkbox" value="Oxygen Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Oxygen Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
+                  <input type="radio" value="Oxygen Management" name="visitnote_RN_Training_and_Education[]" <?php if(in_array("Oxygen Management",$visitnote_RN_Training_and_Education)) echo "checked"; ?> />
                   <?php xl('Oxygen Management','e')?><br>
                   <?php xl('Other','e')?>
                   <input type="text" style="width:85%" name="visitnote_services_provided_options_other" value="<?php echo $visitnote_services_provided_options_other[0];?>" />
@@ -799,9 +799,9 @@ foreach($obj as $key => $value) {
           <td scope="row"><table width="100%" align="center"  border="1px" cellspacing="0px" cellpadding="5px">
               <tr>
                 <td scope="row"> <strong><?php xl('SUPERVISOR VISITS','e')?></strong>
-                  <input type="checkbox" value="LPN/LVN" name="visitnote_supervisor_visit" <?php if(in_array("LPN/LVN",$visitnote_supervisor_visit)) echo "checked"; ?> />
+                  <input type="radio" value="LPN/LVN" name="visitnote_supervisor_visit" <?php if(in_array("LPN/LVN",$visitnote_supervisor_visit)) echo "checked"; ?> />
                   <?php xl('LPN/LVN (every 30 days)','e')?>
-                  <input type="checkbox" value="HHA" name="visitnote_supervisor_visit" <?php if(in_array("HHA",$visitnote_supervisor_visit)) echo "checked"; ?> />
+                  <input type="radio" value="HHA" name="visitnote_supervisor_visit" <?php if(in_array("HHA",$visitnote_supervisor_visit)) echo "checked"; ?> />
                   <?php xl('HHA (every 14 days)','e')?> </td>
               </tr>
             </table></td>
@@ -1107,7 +1107,7 @@ echo $c->view_action($_GET['id']);
 <input type="text" style="width:90%" name="careplan_SN_wound_status" id="careplan_SN_wound_status"  value="<?php echo stripslashes($careplan_SN_wound_status[0]);?>"/>
 </td>
 </tr></table>	 
-      <a id="btn_save" href="javascript:void(0)" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
+      <a href="javascript:void(0)" class="link_submit" onClick="return requiredCheck()"><?php xl(' [Save]','e')?></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="<?php echo $GLOBALS['form_exit_url']; ?>" class="link" style="color: #483D8B"
  onclick="top.restoreSession()">[<?php xl('Don\'t Save','e'); ?>]</a>
