@@ -469,38 +469,38 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
        </tr>
       <tr>
         <td align="center" scope="row"><?php xl('SAFETY AWARENESS','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="Improved" id="Reassessment_Skills_SAFETY_AWARENESS" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="Improved" id="Reassessment_Skills_SAFETY_AWARENESS" 
          <?php if ($obj{"Reassessment_Skills_SAFETY_AWARENESS"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="No Change" id="Reassessment_Skills_SAFETY_AWARENESS" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="No Change" id="Reassessment_Skills_SAFETY_AWARENESS" 
            <?php if ($obj{"Reassessment_Skills_SAFETY_AWARENESS"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="N/A" id="Reassessment_Skills_SAFETY_AWARENESS" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="N/A" id="Reassessment_Skills_SAFETY_AWARENESS" 
            <?php if ($obj{"Reassessment_Skills_SAFETY_AWARENESS"} == "N/A") echo "checked";;?>/></td>
        
 
 	<td align="center" scope="row"><?php xl('SHORT-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="Improved" id="Reassessment_Skills_SHORTTERM_MEMORY" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="Improved" id="Reassessment_Skills_SHORTTERM_MEMORY" 
          <?php if ($obj{"Reassessment_Skills_SHORTTERM_MEMORY"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="No Change" id="Reassessment_Skills_SHORTTERM_MEMORY" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="No Change" id="Reassessment_Skills_SHORTTERM_MEMORY" 
            <?php if ($obj{"Reassessment_Skills_SHORTTERM_MEMORY"} == "No Change") echo "checked";;?>/></td>
-       	 <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="N/A" id="Reassessment_Skills_SHORTTERM_MEMORY" 
+       	 <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="N/A" id="Reassessment_Skills_SHORTTERM_MEMORY" 
            <?php if ($obj{"Reassessment_Skills_SHORTTERM_MEMORY"} == "N/A") echo "checked";;?>/></td>
          </tr>
 
     <tr>
         <td align="center" scope="row"><?php xl('ATTENTION SPAN','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="Improved" id="Reassessment_Skills_ATTENTION_SPAN" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="Improved" id="Reassessment_Skills_ATTENTION_SPAN" 
          <?php if ($obj{"Reassessment_Skills_ATTENTION_SPAN"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="No Change" id="Reassessment_Skills_ATTENTION_SPAN" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="No Change" id="Reassessment_Skills_ATTENTION_SPAN" 
            <?php if ($obj{"Reassessment_Skills_ATTENTION_SPAN"} == "No Change") echo "checked";;?>/></td>
-       	 <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="N/A" id="Reassessment_Skills_ATTENTION_SPAN" 
+       	 <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="N/A" id="Reassessment_Skills_ATTENTION_SPAN" 
            <?php if ($obj{"Reassessment_Skills_ATTENTION_SPAN"} == "N/A") echo "checked";;?>/></td>
       
 	<td align="center" scope="row"><?php xl('LONG-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="Improved" id="Reassessment_Skills_LONGTERM_MEMORY" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="Improved" id="Reassessment_Skills_LONGTERM_MEMORY" 
          <?php if ($obj{"Reassessment_Skills_LONGTERM_MEMORY"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="No Change" id="Reassessment_Skills_LONGTERM_MEMORY" 
+        <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="No Change" id="Reassessment_Skills_LONGTERM_MEMORY" 
            <?php if ($obj{"Reassessment_Skills_LONGTERM_MEMORY"} == "No Change") echo "checked";;?>/></td>
-      	 <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="N/A" id="Reassessment_Skills_LONGTERM_MEMORY" 
+      	 <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="N/A" id="Reassessment_Skills_LONGTERM_MEMORY" 
            <?php if ($obj{"Reassessment_Skills_LONGTERM_MEMORY"} == "N/A") echo "checked";;?>/></td>
        
 

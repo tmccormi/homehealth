@@ -476,24 +476,24 @@ function requiredCheck() {
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('SAFETY AWARENESS','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" value="N/A"/></td>
         <td align="center"><?php xl('SHORT-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" value="N/A"/></td>
         </tr>
       <tr>
 
         <td align="center" scope="row"><?php xl('ATTENTION SPAN','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" value="N/A"/></td>
         <td align="center"><?php xl('LONG-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" value="N/A"/></td>
 
         </tr>
       <tr>
@@ -514,36 +514,36 @@ function requiredCheck() {
       </tr>
       <tr>
         <td align="center" scope="row"><?php xl('VISION','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" value="N/A"/></td>
         <td align="center"><?php xl('GROSS MOTOR COORD','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="Improved"/></td>
 
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" value="N/A"/></td>
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('HEARING','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" value="N/A"/></td>
 
         <td align="center"><?php xl('FINE MOTOR COORD','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" value="N/A"/></td>
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('ACTIVITY  TOLERANCE','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="Improved"/></td>
 
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" value="N/A"/></td>
         <td align="center"><?php xl('USE OF ASSISTIVE-  ADAPTIVE DEVICES','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="Improved"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="No Change"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="N/A"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="Improved"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="No Change"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" value="N/A"/></td>
         </tr>
     </table></td>
 
