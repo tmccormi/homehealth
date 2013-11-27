@@ -8153,3 +8153,8 @@ ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_ampli
 #IfColumnDoesExist forms_oasis_therapy_rectification oasis_therapy_amplification_patient_response
 ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_amplification_patient_response`;
 #EndIf
+
+-- Renames Nurse Visitnote to Nurse Visit Note in registry table
+#IfColumnDoesExist registry name
+UPDATE `registry` SET `name` = 'Nurse Visit Note' WHERE `name` = 'Nurse Visitnote';
+#EndIf
