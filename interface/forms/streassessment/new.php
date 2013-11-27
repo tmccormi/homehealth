@@ -354,28 +354,28 @@ function requiredCheck() {
        </tr>
       <tr>
         <td align="center" scope="row"><?php xl('SAFETY AWARENESS','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="Improved" id="Reassessment_Skills_SAFETY_AWARENESS" /></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="No Change" id="Reassessment_Skills_SAFETY_AWARENESS"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SAFETY_AWARENESS" value="N/A" id="Reassessment_Skills_SAFETY_AWARENESS"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="Improved" id="Reassessment_Skills_SAFETY_AWARENESS" /></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="No Change" id="Reassessment_Skills_SAFETY_AWARENESS"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SAFETY_AWARENESS" value="N/A" id="Reassessment_Skills_SAFETY_AWARENESS"/></td>
 
 
 	<td align="center" scope="row"><?php xl('SHORT-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="Improved" id="Reassessment_Skills_SHORTTERM_MEMORY" /></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="No Change" id="Reassessment_Skills_SHORTTERM_MEMORY"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_SHORTTERM_MEMORY" value="N/A" id="Reassessment_Skills_SHORTTERM_MEMORY"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="Improved" id="Reassessment_Skills_SHORTTERM_MEMORY" /></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="No Change" id="Reassessment_Skills_SHORTTERM_MEMORY"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_SHORTTERM_MEMORY" value="N/A" id="Reassessment_Skills_SHORTTERM_MEMORY"/></td>
         </tr>
 
        <tr>
          <td align="center" scope="row"><?php xl('ATTENTION SPAN','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="Improved" id="Reassessment_Skills_ATTENTION_SPAN" /></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="No Change" id="Reassessment_Skills_ATTENTION_SPAN"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_ATTENTION_SPAN" value="N/A" id="Reassessment_Skills_ATTENTION_SPAN"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="Improved" id="Reassessment_Skills_ATTENTION_SPAN" /></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="No Change" id="Reassessment_Skills_ATTENTION_SPAN"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_ATTENTION_SPAN" value="N/A" id="Reassessment_Skills_ATTENTION_SPAN"/></td>
 
 
 	<td align="center" scope="row"><?php xl('LONG-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="Improved" id="Reassessment_Skills_LONGTERM_MEMORY" /></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="No Change" id="Reassessment_Skills_LONGTERM_MEMORY"/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Skills_LONGTERM_MEMORY" value="N/A" id="Reassessment_Skills_LONGTERM_MEMORY"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="Improved" id="Reassessment_Skills_LONGTERM_MEMORY" /></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="No Change" id="Reassessment_Skills_LONGTERM_MEMORY"/></td>
+        <td align="center"><input type="radio" name="Reassessment_Skills_LONGTERM_MEMORY" value="N/A" id="Reassessment_Skills_LONGTERM_MEMORY"/></td>
         </tr>
          </table></td>
 

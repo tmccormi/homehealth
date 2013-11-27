@@ -628,35 +628,35 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('SAFETY AWARENESS','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
         value="Improved" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
         value="No Change" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Safety_Awareness" id="Reassessment_Compensatory_Safety_Awareness" 
         value="N/A" <?php if ($obj{"Reassessment_Compensatory_Safety_Awareness"} == "N/A") echo "checked";;?>/></td>
         <td align="center"><?php xl('SHORT-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
         value="Improved" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
         value="No Change" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Short_Term_Memory" id="Reassessment_Compensatory_Short_Term_Memory" 
         value="N/A" <?php if ($obj{"Reassessment_Compensatory_Short_Term_Memory"} == "N/A") echo "checked";;?>/></td>
         </tr>
       <tr>
 
         <td align="center" scope="row"><?php xl('ATTENTION SPAN','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
          value="Improved" <?php if ($obj{"Reassessment_Compensatory_Attention_Span"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
          value="No Change" <?php if ($obj{"Reassessment_Compensatory_Attention_Span"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Attention_Span" id="Reassessment_Compensatory_Attention_Span" 
          value="N/A" <?php if ($obj{"Reassessment_Compensatory_Attention_Span"} == "N/A") echo "checked";;?>/></td>
         <td align="center"><?php xl('LONG-TERM MEMORY','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
   		 value="Improved" <?php if ($obj{"Reassessment_Compensatory_Long_Term_Memory"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
   		 value="No Change" <?php if ($obj{"Reassessment_Compensatory_Long_Term_Memory"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_Long_Term_Memory" id="Reassessment_Compensatory_Long_Term_Memory" 
   		 value="N/A" <?php if ($obj{"Reassessment_Compensatory_Long_Term_Memory"} == "N/A") echo "checked";;?>/></td>
 
         </tr>
@@ -678,52 +678,52 @@ value="<?php echo stripslashes($obj{"Reassessment_VS_Pain_Intensity"});?>" />
       </tr>
       <tr>
         <td align="center" scope="row"><?php xl('VISION','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_Vision"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_Vision"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Vision" id="Reassessment_Compensatory_For_Vision" 
   value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Vision"} == "N/A") echo "checked";;?>/></td>
         <td align="center"><?php xl('GROSS MOTOR COORD','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_Gross_Motor"} == "Improved") echo "checked";;?>/></td>
 
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_Gross_Motor"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Gross_Motor" id="Reassessment_Compensatory_For_Gross_Motor" 
   value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Gross_Motor"} == "N/A") echo "checked";;?>/></td>
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('HEARING','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_Hearing"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_Hearing"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Hearing" id="Reassessment_Compensatory_For_Hearing" 
   value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Hearing"} == "N/A") echo "checked";;?>/></td>
 
         <td align="center"><?php xl('FINE MOTOR COORD','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Fine_Motor" id="Reassessment_Compensatory_For_Fine_Motor" 
   value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "N/A") echo "checked";;?>/></td>
         </tr>
       <tr>
         <td align="center" scope="row"><?php xl('ACTIVITY  TOLERANCE','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_Activity_Tolerance"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_Activity_Tolerance"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_Activity_Tolerance" id="Reassessment_Compensatory_For_Activity_Tolerance" 
 value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Activity_Tolerance"} == "N/A") echo "checked";;?>/></td>
         <td align="center"><?php xl('USE OF ASSISTIVE-  ADAPTIVE DEVICES','e')?></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" 
 value="Improved" <?php if ($obj{"Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices"} == "Improved") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" 
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" 
 value="No Change" <?php if ($obj{"Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices"} == "No Change") echo "checked";;?>/></td>
-        <td align="center"><input type="checkbox" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices"
+        <td align="center"><input type="radio" name="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices" id="Reassessment_Compensatory_For_UseOf_Assistive_Adaptive_Devices"
 value="N/A" <?php if ($obj{"Reassessment_Compensatory_For_Fine_Motor"} == "N/A") echo "checked";;?>/></td>
         </tr>
     </table></td>
