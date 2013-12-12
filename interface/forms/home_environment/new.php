@@ -106,13 +106,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('There is a working telephone and emergency numbers are accessible.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_telephone" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)">
+			<input type="radio" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_telephone" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -120,16 +120,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			2.
 		</td>
 		<td>
-			<?php xl('Gas/Electrical appliances and outlets appear in working condition','e');?>
+			<?php xl('Gas/Electrical appliances and outlets appear in working condition.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)">
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -137,16 +137,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			3.
 		</td>
 		<td>
-			<?php xl('There are functional smoke alarm(s) in working condition at all levels','e');?>
+			<?php xl('There are functional smoke alarms/carbon monoxide detectors in working condition on all levels.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)">
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -154,16 +154,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			4.
 		</td>
 		<td>
-			<?php xl('There is a fire extinguisher available and accessible','e');?>
+			<?php xl('There is a fire extinguisher available and accessible.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)">
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -174,13 +174,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Access to outside exits is free of obstructions.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)">
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -191,13 +191,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Alternate exits are accessible in case of fire.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)">
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -208,13 +208,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Walking pathways are level, uncluttered and have non-skid surfaces.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)">
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -225,13 +225,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Stairs are in good repair, well lit, uncluttered and have non-skid surfaces. Handrails are present and secure.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_stairs" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)">
+			<input type="radio" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_stairs" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -239,16 +239,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			9.
 		</td>
 		<td>
-			<?php xl('Lighting is adequate for safe ambulation/mobility and ADL','e');?>
+			<?php xl('Lighting is adequate for safe ambulation/mobility and ADL.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_lighting" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)">
+			<input type="radio" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_lighting" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -259,13 +259,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Adequate heating and cooling systems available.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_heating" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)">
+			<input type="radio" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_heating" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -273,16 +273,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			11.
 		</td>
 		<td>
-			<?php xl('Medicines and poisonous/toxic substances are clearly labeled and place where patient can reach, if needed, yet not within reach of children','e');?>
+			<?php xl('Medicines and poisonous/toxic substances are clearly labeled and placed where patient can reach, if needed, yet not within reach of children.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_medicine" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)">
+			<input type="radio" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_medicine" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -290,16 +290,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			12.
 		</td>
 		<td>
-			<?php xl('Bathroom is safe for the provision of care (i.e. raised toilet seat, tub seat, grab bar, non-skid surface in tub, etc.)','e');?>
+			<?php xl('Bathroom is safe for the provision of care (i.e. raised toilet seat, tub seat, grab bar, non-skid surface in tub, etc.).','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)">
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -307,16 +307,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			13.
 		</td>
 		<td>
-			<?php xl('Kitchen is safe for the provision of care (i.e. working small appliances, adequate ventilation for cooking, working refrigerator, stove, oven)','e');?>
+			<?php xl('Kitchen is safe for the provision of care (i.e. working small appliances, adequate ventilation for cooking, working refrigerator, stove, oven).','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)">
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -327,13 +327,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Environment is safe for effective oxygen use.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)">
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -344,13 +344,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Overall environment is adequately sanitary for the provision of care.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)">
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -358,16 +358,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			16.
 		</td>
 		<td>
-			<?php xl('Is there adequate sanitation/plumbing','e');?>
+			<?php xl('Adequate sanitation/plumbing.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)">
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>
@@ -378,13 +378,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Other','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('Yes','e');?>">
+			<input type="radio" name="home_environment_other" value="<?php xl('Yes','e');?>">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)">
+			<input type="radio" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)">
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('N/A','e');?>">
+			<input type="radio" name="home_environment_other" value="<?php xl('N/A','e');?>">
 		</td>
 	</tr>
 	<tr>

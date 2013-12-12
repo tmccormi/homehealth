@@ -195,13 +195,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('There is a working telephone and emergency numbers are accessible.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_telephone"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_telephone" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_telephone"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)" <?php if($obj{"home_environment_telephone"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_telephone" value="<?php xl('No','e');?>" onChange="appendrow(this,1)" <?php if($obj{"home_environment_telephone"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_telephone" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_telephone"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_telephone" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_telephone"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -209,16 +209,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			2.
 		</td>
 		<td>
-			<?php xl('Gas/Electrical appliances and outlets appear in working condition','e');?>
+			<?php xl('Gas/Electrical appliances and outlets appear in working condition.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)" <?php if($obj{"home_environment_gas_electrical"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('No','e');?>" onChange="appendrow(this,2)" <?php if($obj{"home_environment_gas_electrical"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_gas_electrical" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_gas_electrical"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -226,16 +226,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			3.
 		</td>
 		<td>
-			<?php xl('There are functional smoke alarm(s) in working condition at all levels','e');?>
+			<?php xl('There are functional smoke alarms/carbon monoxide detectors in working condition on all levels.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)" <?php if($obj{"home_environment_smoke_alarm_condition"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('No','e');?>" onChange="appendrow(this,3)" <?php if($obj{"home_environment_smoke_alarm_condition"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_smoke_alarm_condition" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_smoke_alarm_condition"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -243,16 +243,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			4.
 		</td>
 		<td>
-			<?php xl('There is a fire extinguisher available and accessible','e');?>
+			<?php xl('There is a fire extinguisher available and accessible.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)" <?php if($obj{"home_environment_fire_extinguisher"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('No','e');?>" onChange="appendrow(this,4)" <?php if($obj{"home_environment_fire_extinguisher"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_fire_extinguisher" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_fire_extinguisher"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -263,13 +263,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Access to outside exits is free of obstructions.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_outside_exit"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_outside_exit"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)" <?php if($obj{"home_environment_outside_exit"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,5)" <?php if($obj{"home_environment_outside_exit"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_outside_exit"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_outside_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_outside_exit"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -280,13 +280,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Alternate exits are accessible in case of fire.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)" <?php if($obj{"home_environment_alternate_exit"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('No','e');?>" onChange="appendrow(this,6)" <?php if($obj{"home_environment_alternate_exit"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_alternate_exit" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_alternate_exit"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -297,13 +297,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Walking pathways are level, uncluttered and have non-skid surfaces.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)" <?php if($obj{"home_environment_walking_pathway"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('No','e');?>" onChange="appendrow(this,7)" <?php if($obj{"home_environment_walking_pathway"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_walking_pathway" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_walking_pathway"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -314,13 +314,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Stairs are in good repair, well lit, uncluttered and have non-skid surfaces. Handrails are present and secure.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_stairs"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_stairs" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_stairs"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)" <?php if($obj{"home_environment_stairs"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_stairs" value="<?php xl('No','e');?>" onChange="appendrow(this,8)" <?php if($obj{"home_environment_stairs"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_stairs" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_stairs"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_stairs" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_stairs"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -328,16 +328,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			9.
 		</td>
 		<td>
-			<?php xl('Lighting is adequate for safe ambulation/mobility and ADL','e');?>
+			<?php xl('Lighting is adequate for safe ambulation/mobility and ADL.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_lighting"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_lighting" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_lighting"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)" <?php if($obj{"home_environment_lighting"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_lighting" value="<?php xl('No','e');?>" onChange="appendrow(this,9)" <?php if($obj{"home_environment_lighting"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_lighting" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_lighting"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_lighting" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_lighting"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -348,13 +348,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Adequate heating and cooling systems available.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_heating"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_heating" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_heating"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)" <?php if($obj{"home_environment_heating"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_heating" value="<?php xl('No','e');?>" onChange="appendrow(this,10)" <?php if($obj{"home_environment_heating"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_heating" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_heating"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_heating" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_heating"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -362,16 +362,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			11.
 		</td>
 		<td>
-			<?php xl('Medicines and poisonous/toxic substances are clearly labeled and place where patient can reach, if needed, yet not within reach of children','e');?>
+			<?php xl('Medicines and poisonous/toxic substances are clearly labeled and placed where patient can reach, if needed, yet not within reach of children.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_medicine"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_medicine" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_medicine"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)" <?php if($obj{"home_environment_medicine"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_medicine" value="<?php xl('No','e');?>" onChange="appendrow(this,11)" <?php if($obj{"home_environment_medicine"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_medicine" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_medicine"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_medicine" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_medicine"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -379,16 +379,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			12.
 		</td>
 		<td>
-			<?php xl('Bathroom is safe for the provision of care (i.e. raised toilet seat, tub seat, grab bar, non-skid surface in tub, etc.)','e');?>
+			<?php xl('Bathroom is safe for the provision of care (i.e. raised toilet seat, tub seat, grab bar, non-skid surface in tub, etc.).','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_bathroom"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_bathroom"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)" <?php if($obj{"home_environment_bathroom"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('No','e');?>" onChange="appendrow(this,12)" <?php if($obj{"home_environment_bathroom"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_bathroom" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_bathroom"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_bathroom" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_bathroom"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -396,16 +396,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			13.
 		</td>
 		<td>
-			<?php xl('Kitchen is safe for the provision of care (i.e. working small appliances, adequate ventilation for cooking, working refrigerator, stove, oven)','e');?>
+			<?php xl('Kitchen is safe for the provision of care (i.e. working small appliances, adequate ventilation for cooking, working refrigerator, stove, oven).','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_kitchen"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_kitchen"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)" <?php if($obj{"home_environment_kitchen"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('No','e');?>" onChange="appendrow(this,13)" <?php if($obj{"home_environment_kitchen"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_kitchen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_kitchen"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_kitchen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_kitchen"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -416,13 +416,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Environment is safe for effective oxygen use.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)" <?php if($obj{"home_environment_eff_oxygen"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('No','e');?>" onChange="appendrow(this,14)" <?php if($obj{"home_environment_eff_oxygen"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_eff_oxygen" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_eff_oxygen"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -433,13 +433,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Overall environment is adequately sanitary for the provision of care.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)" <?php if($obj{"home_environment_overall_sanitary"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('No','e');?>" onChange="appendrow(this,15)" <?php if($obj{"home_environment_overall_sanitary"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_overall_sanitary" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_overall_sanitary"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -447,16 +447,16 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			16.
 		</td>
 		<td>
-			<?php xl('Is there adequate sanitation/plumbing','e');?>
+			<?php xl('Adequate sanitation/plumbing.','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)" <?php if($obj{"home_environment_sanitation_plumbing"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('No','e');?>" onChange="appendrow(this,16)" <?php if($obj{"home_environment_sanitation_plumbing"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_sanitation_plumbing" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_sanitation_plumbing"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
@@ -467,13 +467,13 @@ Calendar.setup({inputField:"home_environment_SOC_date", ifFormat:"%Y-%m-%d", but
 			<?php xl('Other','e');?>
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_other"}=="Yes"){echo "checked";};?> >
+			<input type="radio" name="home_environment_other" value="<?php xl('Yes','e');?>" <?php if($obj{"home_environment_other"}=="Yes"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)" <?php if($obj{"home_environment_other"}=="No"){echo "checked";};?> >
+			<input type="radio" name="home_environment_other" value="<?php xl('No','e');?>" onChange="appendrow(this,17)" <?php if($obj{"home_environment_other"}=="No"){echo "checked";};?> >
 		</td>
 		<td>
-			<input type="checkbox" name="home_environment_other" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_other"}=="N/A"){echo "checked";};?> >
+			<input type="radio" name="home_environment_other" value="<?php xl('N/A','e');?>" <?php if($obj{"home_environment_other"}=="N/A"){echo "checked";};?> >
 		</td>
 	</tr>
 	<tr>
