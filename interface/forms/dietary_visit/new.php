@@ -58,17 +58,17 @@ Calendar.setup({inputField:"dietary_visit_visit_date", ifFormat:"%Y-%m-%d", butt
 </td></tr>
 
 <tr><td><b><?php xl('How much weight has the patient lost since the last visit/assessment?','e')?></b>
-<input type="checkbox" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('No loss','e') ?>"><?php xl('No loss','e') ?>
-<input type="checkbox" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('5 lbs. or less','e') ?>"><?php xl('5 lbs. or less','e') ?>
-<input type="checkbox" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('6-10 lbs.','e') ?>"><?php xl('6-10 lbs.','e') ?>
-<input type="checkbox" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('11-20 lbs.','e') ?>"><?php xl('11-20 lbs.','e') ?>
-<input type="checkbox" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('More than 20 lbs.','e') ?>"><?php xl('More than 20 lbs. Other','e') ?> 
+<input type="radio" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('No loss','e') ?>"><?php xl('No loss','e') ?>
+<input type="radio" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('5 lbs. or less','e') ?>"><?php xl('5 lbs. or less','e') ?>
+<input type="radio" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('6-10 lbs.','e') ?>"><?php xl('6-10 lbs.','e') ?>
+<input type="radio" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('11-20 lbs.','e') ?>"><?php xl('11-20 lbs.','e') ?>
+<input type="radio" name="dietary_visit_patient_weight_lost_since_last_visit" value="<?php xl('More than 20 lbs.','e') ?>"><?php xl('More than 20 lbs. Other','e') ?> 
 <input type="text" name="dietary_visit_patient_weight_lost_since_last_visit_others">
 </td></tr>
 
 <tr><td><b><?php xl('Are there any new factors affecting the patients decline in weight?','e') ?></b>
-<input type="checkbox" name="dietary_visit_new_factors_affecting_patient_weight" value="<?php xl('Yes','e') ?>"><?php xl('Yes','e') ?>
-<input type="checkbox" name="dietary_visit_new_factors_affecting_patient_weight" value="<?php xl('No','e') ?>"><?php xl('No','e') ?><br/>
+<input type="radio" name="dietary_visit_new_factors_affecting_patient_weight" value="<?php xl('Yes','e') ?>"><?php xl('Yes','e') ?>
+<input type="radio" name="dietary_visit_new_factors_affecting_patient_weight" value="<?php xl('No','e') ?>"><?php xl('No','e') ?><br/>
 <b><?php xl('If Yes what are the factors?','e') ?></b>
 <input type="text" name="dietary_visit_new_affecting_factors" style="width: 43%;" />
 </td></tr>
