@@ -184,13 +184,13 @@ $clinical_issues = explode("#",$obj{"sixty_day_progress_note_improvement_in_clin
 
 <tr><td>
 <b><?php xl('Living Situation: Patient Lives: ','e') ?></b>
-<input type="checkbox" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "Alone") echo "checked";;?> value="<?php xl('Alone','e') ?>"/><?php xl('Alone ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Spouse/Significant") echo "checked";;?> value="<?php xl('With Spouse/Significant','e') ?>"/><?php xl('With Spouse/Significant ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "Alone") echo "checked";;?> value="<?php xl('Alone','e') ?>"/><?php xl('Alone ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Spouse/Significant") echo "checked";;?> value="<?php xl('With Spouse/Significant','e') ?>"/><?php xl('With Spouse/Significant ', 'e') ?>
 <?php xl(' Other ','e') ?>
-<input type="checkbox" name="sixty_day_progress_note_living_situation_patient_lives" size="60px" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Family") echo "checked";;?> value="<?php xl('With Family','e') ?>"/><?php xl('With Family ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_living_situation_patient_lives" size="60px" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Family") echo "checked";;?> value="<?php xl('With Family','e') ?>"/><?php xl('With Family ', 'e') ?>
 <?php xl(' Who: ','e') ?>
 <input type="text" name="sixty_day_progress_note_living_situation_patient_lives_who" style="width : 43%;" value="<?php echo stripslashes($obj{"sixty_day_progress_note_living_situation_patient_lives_who"});?>" /><br/>
-<input type="checkbox" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Paid Help") echo "checked";;?> value="<?php xl('With Paid Help','e') ?>"/><?php xl('With Paid Help ', 'e') ?>&nbsp; &nbsp; &nbsp;
+<input type="radio" name="sixty_day_progress_note_living_situation_patient_lives" <?php if ($obj{"sixty_day_progress_note_living_situation_patient_lives"} == "With Paid Help") echo "checked";;?> value="<?php xl('With Paid Help','e') ?>"/><?php xl('With Paid Help ', 'e') ?>&nbsp; &nbsp; &nbsp;
 <?php xl(' Other ','e') ?>
 <input type="text" name="sixty_day_progress_note_living_situation_patient_lives_other" style="width : 72%" value="<?php echo stripslashes($obj{"sixty_day_progress_note_living_situation_patient_lives_other"});?>" /><br/>
 <?php xl('Number of Hours Patient is Alone Each Day/Why ','e') ?>
@@ -199,8 +199,8 @@ $clinical_issues = explode("#",$obj{"sixty_day_progress_note_improvement_in_clin
 
 <tr><td>
 <b><?php xl('Mental Status ','e') ?></b>
-<input type="checkbox" name="sixty_day_progress_note_mental_status" <?php if ($obj{"sixty_day_progress_note_mental_status"} == "Alert") echo "checked";;?> value="<?php xl('Alert','e') ?>"/><?php xl('Alert ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_mental_status" <?php if ($obj{"sixty_day_progress_note_mental_status"} == "Not Alerted") echo "checked";;?> value="<?php xl('Not Alerted','e') ?>"/><?php xl('Not Alerted ', 'e') ?> &nbsp; &nbsp; &nbsp; 
+<input type="radio" name="sixty_day_progress_note_mental_status" <?php if ($obj{"sixty_day_progress_note_mental_status"} == "Alert") echo "checked";;?> value="<?php xl('Alert','e') ?>"/><?php xl('Alert ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_mental_status" <?php if ($obj{"sixty_day_progress_note_mental_status"} == "Not Alerted") echo "checked";;?> value="<?php xl('Not Alerted','e') ?>"/><?php xl('Not Alerted ', 'e') ?> &nbsp; &nbsp; &nbsp; 
 <?php xl('Oriented to','e') ?>
 <input type="checkbox" name="sixty_day_progress_note_mental_status_oriented" <?php if ($obj{"sixty_day_progress_note_mental_status_oriented"} == "Person") echo "checked";;?> value="<?php xl('Person','e') ?>"/><?php xl('Person ', 'e') ?>
 <input type="checkbox" name="sixty_day_progress_note_mental_status_oriented" <?php if ($obj{"sixty_day_progress_note_mental_status_oriented"} == "Place") echo "checked";;?> value="<?php xl('Place','e') ?>"/><?php xl('Place ', 'e') ?>
@@ -218,11 +218,11 @@ $clinical_issues = explode("#",$obj{"sixty_day_progress_note_improvement_in_clin
 
 <tr><td>
 <b><?php xl('Patient ADL Status: ','e') ?></b>
-<input type="checkbox" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Total Assistance") echo "checked";;?> value="<?php xl('Requires Total Assistance','e') ?>"/><?php xl('Requires Total Assistance ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Moderate Assistance") echo "checked";;?> value="<?php xl('Requires Moderate Assistance','e') ?>"/><?php xl('Requires Moderate Assistance ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Minimal Assistance") echo "checked";;?> value="<?php xl('Requires Minimal Assistance','e') ?>"/><?php xl('Requires Minimal Assistance ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Supervision Only") echo "checked";;?> value="<?php xl('Requires Supervision Only','e') ?>"/><?php xl('Requires Supervision Only ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Independent") echo "checked";;?> value="<?php xl('Independent','e') ?>"/><?php xl('Independent ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Total Assistance") echo "checked";;?> value="<?php xl('Requires Total Assistance','e') ?>"/><?php xl('Requires Total Assistance ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Moderate Assistance") echo "checked";;?> value="<?php xl('Requires Moderate Assistance','e') ?>"/><?php xl('Requires Moderate Assistance ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Minimal Assistance") echo "checked";;?> value="<?php xl('Requires Minimal Assistance','e') ?>"/><?php xl('Requires Minimal Assistance ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Requires Supervision Only") echo "checked";;?> value="<?php xl('Requires Supervision Only','e') ?>"/><?php xl('Requires Supervision Only ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_patient_adl_status" <?php if ($obj{"sixty_day_progress_note_patient_adl_status"} == "Independent") echo "checked";;?> value="<?php xl('Independent','e') ?>"/><?php xl('Independent ', 'e') ?>
 <br/><?php xl(' Other ','e') ?>
 <input type="text" name="sixty_day_progress_note_patient_adl_status_other" style="width : 80%" value="<?php echo stripslashes($obj{"sixty_day_progress_note_patient_adl_status_other"});?>" />
 </td></tr>
@@ -241,11 +241,11 @@ $clinical_issues = explode("#",$obj{"sixty_day_progress_note_improvement_in_clin
 
 <tr><td>
 <b><?php xl('Communication Status: ','e') ?></b>
-<input type="checkbox" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Good") echo "checked";;?> value="<?php xl('Good','e') ?>"/><?php xl('Good ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Average") echo "checked";;?> value="<?php xl('Average','e') ?>"/><?php xl('Average ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Poor") echo "checked";;?> value="<?php xl('Poor','e') ?>"/><?php xl('Poor ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Needs Interpreter") echo "checked";;?> value="<?php xl('Needs Interpreter','e') ?>"/><?php xl('Needs Interpreter ', 'e') ?>
-<input type="checkbox" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Non-Verbal") echo "checked";;?> value="<?php xl('Non-Verbal','e') ?>"/><?php xl('Non-Verbal ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Good") echo "checked";;?> value="<?php xl('Good','e') ?>"/><?php xl('Good ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Average") echo "checked";;?> value="<?php xl('Average','e') ?>"/><?php xl('Average ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Poor") echo "checked";;?> value="<?php xl('Poor','e') ?>"/><?php xl('Poor ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Needs Interpreter") echo "checked";;?> value="<?php xl('Needs Interpreter','e') ?>"/><?php xl('Needs Interpreter ', 'e') ?>
+<input type="radio" name="sixty_day_progress_note_communication_status" <?php if ($obj{"sixty_day_progress_note_communication_status"} == "Non-Verbal") echo "checked";;?> value="<?php xl('Non-Verbal','e') ?>"/><?php xl('Non-Verbal ', 'e') ?>
 <br/><?php xl(' Other ','e') ?>
 <input type="text" name="sixty_day_progress_note_communication_status_other" style="width : 80%" value="<?php echo stripslashes($obj{"sixty_day_progress_note_communication_status_other"});?>" />
 </td></tr>
