@@ -118,38 +118,38 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Living Situation: Patient Lives: ','e');?></strong>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('Alone','e');?>"><?php xl('Alone','e');?></label>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>"><?php xl('With Spouse/Significant Other','e');?></label>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Family','e');?>"><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="radio" name="patient_lives" value="<?php xl('Alone','e');?>"><?php xl('Alone','e');?></label>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>"><?php xl('With Spouse/Significant Other','e');?></label>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Family','e');?>"><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><?php xl('Who:','e');?><input type="text" name="patient_lives_with_who" size="20" value=""></label><br>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Paid Help','e');?>"><?php xl('With Paid Help','e');?></label><br>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Paid Help','e');?>"><?php xl('With Paid Help','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_lives_other" style="width:80%" value=""></label><br>
 			<label><?php xl('Number of Hours Patient is Alone Each Day/Why ','e');?><input type="text" name="no_of_hours_patient_alone" style="width:40%" value=""></label><br>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Type of Housing: ','e');?></strong>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('House','e');?>"><?php xl('House','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>"><?php xl('Apartment','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Mobile Home','e');?>"><?php xl('Mobile Home','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Retirement Community','e');?>"><?php xl('Retirement Community','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>"><?php xl('Assisted Living Facility','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Board and Care','e');?>"><?php xl('Board and Care','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Public Housing','e');?>"><?php xl('Public Housing','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Subsidized Housing','e');?>"><?php xl('Subsidized Housing','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Group Home','e');?>"><?php xl('Group Home','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Homeless','e');?>"><?php xl('Homeless','e');?></label><br>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('House','e');?>"><?php xl('House','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Apartment','e');?>"><?php xl('Apartment','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Mobile Home','e');?>"><?php xl('Mobile Home','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Retirement Community','e');?>"><?php xl('Retirement Community','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>"><?php xl('Assisted Living Facility','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Board and Care','e');?>"><?php xl('Board and Care','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Public Housing','e');?>"><?php xl('Public Housing','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Subsidized Housing','e');?>"><?php xl('Subsidized Housing','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Group Home','e');?>"><?php xl('Group Home','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Homeless','e');?>"><?php xl('Homeless','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="type_of_housing_other" style="width:80%" value=""></label><br>
 			<strong><?php xl('Condition of Housing: ','e');?></strong>
-			<label><input type="checkbox" name="condition_of_housing" value="<?php xl('Adequate','e');?>"><?php xl('Adequate','e');?></label>
-			<label><input type="checkbox" name="condition_of_housing" value="<?php xl('Inadequate','e');?>"><?php xl('Inadequate','e');?></label><br>
+			<label><input type="radio" name="condition_of_housing" value="<?php xl('Adequate','e');?>"><?php xl('Adequate','e');?></label>
+			<label><input type="radio" name="condition_of_housing" value="<?php xl('Inadequate','e');?>"><?php xl('Inadequate','e');?></label><br>
 			<?php xl('Describe Problems/Safety Issues ','e');?><input type="text" name="problem_safety_issues" style="width:70%" value=""></label><br>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Mental Status: ','e');?></strong>
-			<label><input type="checkbox" name="mental_status" value="<?php xl('Alert','e');?>"><?php xl('Alert','e');?></label>
-			<label><input type="checkbox" name="mental_status" value="<?php xl('Not Alerted','e');?>"><?php xl('Not Alerted','e');?></label>
+			<label><input type="radio" name="mental_status" value="<?php xl('Alert','e');?>"><?php xl('Alert','e');?></label>
+			<label><input type="radio" name="mental_status" value="<?php xl('Not Alerted','e');?>"><?php xl('Not Alerted','e');?></label>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<?php xl('Oriented to: ','e');?>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Person','e');?>"><?php xl('Person','e');?></label>
@@ -157,22 +157,22 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Date','e');?>"><?php xl('Date','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><input type="checkbox" name="mental_status_disoriented" value="<?php xl('Disoriented','e');?>"><?php xl('Disoriented','e');?></label><br>
 			<strong><?php xl('Impaired Mental Status Requires the following resources: ','e');?></strong>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>"><?php xl('None','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>"><?php xl('Family/Cregiver Support','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Guardian','e');?>"><?php xl('Guardian','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Power of Attorney','e');?>"><?php xl('Power of Attorney','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Public Conservator','e');?>"><?php xl('Public Conservator','e');?></label><br>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>"><?php xl('None','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>"><?php xl('Family/Cregiver Support','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Guardian','e');?>"><?php xl('Guardian','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Power of Attorney','e');?>"><?php xl('Power of Attorney','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Public Conservator','e');?>"><?php xl('Public Conservator','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="impaired_mental_status_requires_resources_other" style="width:70%" value=""></label><br>
 			
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Patient ADL Status: ','e');?></strong>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Total Assistance','e');?>"><?php xl('Requires Total Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>"><?php xl('Requires Moderate Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>"><?php xl('Requires Minimal Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>"><?php xl('Requires Supervision Only','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>"><?php xl('Independent','e');?></label><br>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Total Assistance','e');?>"><?php xl('Requires Total Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>"><?php xl('Requires Moderate Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>"><?php xl('Requires Minimal Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>"><?php xl('Requires Supervision Only','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Independent','e');?>"><?php xl('Independent','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_adl_status_other" style="width:70%" value=""></label>
 			
 		</td>
@@ -191,11 +191,11 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Communication Status: ','e');?></strong>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Good','e');?>"><?php xl('Good','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Average','e');?>"><?php xl('Average','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Poor','e');?>"><?php xl('Poor','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Needs Interpreter','e');?>"><?php xl('Needs Interpreter','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Non Verbal','e');?>"><?php xl('Non Verbal','e');?></label><br>
+			<label><input type="radio" name="communication_status" value="<?php xl('Good','e');?>"><?php xl('Good','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Average','e');?>"><?php xl('Average','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Poor','e');?>"><?php xl('Poor','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Needs Interpreter','e');?>"><?php xl('Needs Interpreter','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Non Verbal','e');?>"><?php xl('Non Verbal','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="communication_status_other" style="width:93%;" value=""></label>
 			
 		</td>
