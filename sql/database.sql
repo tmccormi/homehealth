@@ -5457,7 +5457,7 @@ clinician_signature varchar(100),
 clinician_signature_date DATE
 ) engine=MyISAM;
 
-INSERT INTO `registry` VALUES ('HHA-Supervisor Visit', 1, 'supervisor_visit_note', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, '', '');
+INSERT INTO `registry` VALUES ('Supervisor Visit', 1, 'supervisor_visit_note', id=id+1, 1, 1, CURRENT_TIMESTAMP, 0, '', '');
 
 
 DROP TABLE IF EXISTS `forms_home_environment`;
