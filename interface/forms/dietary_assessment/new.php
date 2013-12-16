@@ -72,17 +72,17 @@ Calendar.setup({inputField:"dietary_assessment_visit_date", ifFormat:"%Y-%m-%d",
 <tr><td>
 <b><?php xl('How much of a decline in food intake has occurred over the past 3 months due to loss of appetite, digestive problems, chewing or swallowing difficulties? ','e') ?>
 </b><br/>
-<input type="checkbox" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('severe decrease in food intake','e') ?>"/><?php xl(' Severe decrease in food intake ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('moderate decrease in food intake','e') ?>"/><?php xl(' Moderate decrease in food intake ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('no decrease in food intake','e') ?>"/><?php xl(' No decrease in food intake ', 'e') ?>
+<input type="radio" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('severe decrease in food intake','e') ?>"/><?php xl(' Severe decrease in food intake ', 'e') ?>
+<input type="radio" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('moderate decrease in food intake','e') ?>"/><?php xl(' Moderate decrease in food intake ', 'e') ?>
+<input type="radio" name="dietary_assessment_food_intake_occurred_past3month" value="<?php xl('no decrease in food intake','e') ?>"/><?php xl(' No decrease in food intake ', 'e') ?>
 </td></tr>
 
 <tr><td><b><?php xl('How much weight has the patient lost over the last 3 months?','e') ?></b>
-<input type="checkbox" name="dietary_assessment_lost_weight_past3month" value="<?php xl('No loss','e') ?>"/><?php xl(' No loss ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_lost_weight_past3month" value="<?php xl('5 lbs. or less','e') ?>"/><?php xl(' 5 lbs. or less ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_lost_weight_past3month" value="<?php xl('6-10 lbs.','e') ?>"/><?php xl(' 6-10 lbs. ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_lost_weight_past3month" value="<?php xl('11-20 lbs.','e') ?>"/><?php xl(' 11-20 lbs. ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_lost_weight_past3month" value="<?php xl('More than 20 lbs.','e') ?>"/><?php xl(' More than 20 lbs. ', 'e') ?>
+<input type="radio" name="dietary_assessment_lost_weight_past3month" value="<?php xl('No loss','e') ?>"/><?php xl(' No loss ', 'e') ?>
+<input type="radio" name="dietary_assessment_lost_weight_past3month" value="<?php xl('5 lbs. or less','e') ?>"/><?php xl(' 5 lbs. or less ', 'e') ?>
+<input type="radio" name="dietary_assessment_lost_weight_past3month" value="<?php xl('6-10 lbs.','e') ?>"/><?php xl(' 6-10 lbs. ', 'e') ?>
+<input type="radio" name="dietary_assessment_lost_weight_past3month" value="<?php xl('11-20 lbs.','e') ?>"/><?php xl(' 11-20 lbs. ', 'e') ?>
+<input type="radio" name="dietary_assessment_lost_weight_past3month" value="<?php xl('More than 20 lbs.','e') ?>"/><?php xl(' More than 20 lbs. ', 'e') ?>
 <br/><?php xl(' Other ', 'e') ?><input type="text" name="dietary_assessment_lost_weight_past3month_other" style="width : 90%;" />
 </td></tr>
 
@@ -109,37 +109,37 @@ Calendar.setup({inputField:"dietary_assessment_visit_date", ifFormat:"%Y-%m-%d",
 
 <tr><td>
 <b><?php xl('Number of Different Medications Taken a Day?','e') ?></b>
-<input type="checkbox" name="dietary_assessment_different_medications_per_day" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_different_medications_per_day" value="<?php xl('1-3','e') ?>"/><?php xl(' 1-3 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_different_medications_per_day" value="<?php xl('4-8','e') ?>"/><?php xl(' 4-8 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_different_medications_per_day" value="<?php xl('9 or more','e') ?>"/><?php xl(' 9 or more', 'e') ?>
+<input type="radio" name="dietary_assessment_different_medications_per_day" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
+<input type="radio" name="dietary_assessment_different_medications_per_day" value="<?php xl('1-3','e') ?>"/><?php xl(' 1-3 ', 'e') ?>
+<input type="radio" name="dietary_assessment_different_medications_per_day" value="<?php xl('4-8','e') ?>"/><?php xl(' 4-8 ', 'e') ?>
+<input type="radio" name="dietary_assessment_different_medications_per_day" value="<?php xl('9 or more','e') ?>"/><?php xl(' 9 or more', 'e') ?>
 </td></tr>
 
 <tr><td>
 <b><?php xl('Pressure Ulcers Present','e') ?></b>
-<input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('1-3','e') ?>"/><?php xl(' 1-3 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('more than 3','e') ?>"/><?php xl(' more than 3 ', 'e') ?><br/>
+<input type="radio" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
+<input type="radio" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('1-3','e') ?>"/><?php xl(' 1-3 ', 'e') ?>
+<input type="radio" name="dietary_assessment_pressure_ulcers_present" value="<?php xl('more than 3','e') ?>"/><?php xl(' more than 3 ', 'e') ?><br/>
 <b><?php xl('Stage of Ulcers','e') ?></b>
-<input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 1','e') ?>"/><?php xl(' Stage 1 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 2','e') ?>"/><?php xl(' Stage 2 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 3','e') ?>"/><?php xl(' Stage 3 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 4','e') ?>"/><?php xl(' Stage 4 ', 'e') ?>
+<input type="radio" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 1','e') ?>"/><?php xl(' Stage 1 ', 'e') ?>
+<input type="radio" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 2','e') ?>"/><?php xl(' Stage 2 ', 'e') ?>
+<input type="radio" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 3','e') ?>"/><?php xl(' Stage 3 ', 'e') ?>
+<input type="radio" name="dietary_assessment_stage_ulcers" value="<?php xl('Stage 4','e') ?>"/><?php xl(' Stage 4 ', 'e') ?>
 </td></tr>
 
 <tr><td>
 <b><?php xl('How many full meals does the patient eat daily?','e') ?></b>
-<input type="checkbox" name="dietary_assessment_full_meals_per_day" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_full_meals_per_day" value="<?php xl('1','e') ?>"/><?php xl(' 1 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_full_meals_per_day" value="<?php xl('2','e') ?>"/><?php xl(' 2 ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_full_meals_per_day" value="<?php xl('3','e') ?>"/><?php xl(' 3 ', 'e') ?>
+<input type="radio" name="dietary_assessment_full_meals_per_day" value="<?php xl('0','e') ?>"/><?php xl(' 0 ', 'e') ?>
+<input type="radio" name="dietary_assessment_full_meals_per_day" value="<?php xl('1','e') ?>"/><?php xl(' 1 ', 'e') ?>
+<input type="radio" name="dietary_assessment_full_meals_per_day" value="<?php xl('2','e') ?>"/><?php xl(' 2 ', 'e') ?>
+<input type="radio" name="dietary_assessment_full_meals_per_day" value="<?php xl('3','e') ?>"/><?php xl(' 3 ', 'e') ?>
 </td></tr>
 
 <tr><td>
 <b><?php xl('How much assistance does the patient require to feed self?','e') ?></b>
-<input type="checkbox" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('unable to feed self without assistance','e') ?>"><?php xl(' Unable to feed self without assistance ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('can feed self but needs reminders','e') ?>"/><?php xl(' Can feed self but needs reminders ', 'e') ?>
-<input type="checkbox" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('can feed self independently','e') ?>"/><?php xl(' Can feed self independently ', 'e') ?>
+<input type="radio" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('unable to feed self without assistance','e') ?>"><?php xl(' Unable to feed self without assistance ', 'e') ?>
+<input type="radio" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('can feed self but needs reminders','e') ?>"/><?php xl(' Can feed self but needs reminders ', 'e') ?>
+<input type="radio" name="dietary_assessment_assistance_patient_require_feed_self" value="<?php xl('can feed self independently','e') ?>"/><?php xl(' Can feed self independently ', 'e') ?>
 </td></tr>
 
 <tr><td>
