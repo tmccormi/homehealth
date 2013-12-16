@@ -207,38 +207,38 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Living Situation: Patient Lives: ','e');?></strong>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('Alone','e');?>" <?php if($obj{"patient_lives"}=="Alone") echo "checked"; ?> ><?php xl('Alone','e');?></label>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>" <?php if($obj{"patient_lives"}=="With Spouse/Significant Other") echo "checked"; ?> ><?php xl('With Spouse/Significant Other','e');?></label>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Family','e');?>" <?php if($obj{"patient_lives"}=="With Family") echo "checked"; ?> ><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label><input type="radio" name="patient_lives" value="<?php xl('Alone','e');?>" <?php if($obj{"patient_lives"}=="Alone") echo "checked"; ?> ><?php xl('Alone','e');?></label>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Spouse/Significant Other','e');?>" <?php if($obj{"patient_lives"}=="With Spouse/Significant Other") echo "checked"; ?> ><?php xl('With Spouse/Significant Other','e');?></label>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Family','e');?>" <?php if($obj{"patient_lives"}=="With Family") echo "checked"; ?> ><?php xl('With Family','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><?php xl('Who:','e');?><input type="text" name="patient_lives_with_who" size="20" value="<?php echo stripslashes($obj{"patient_lives_with_who"});?>"></label><br>
-			<label><input type="checkbox" name="patient_lives" value="<?php xl('With Paid Help','e');?>" <?php if($obj{"patient_lives"}=="With Paid Help") echo "checked"; ?> ><?php xl('With Paid Help','e');?></label><br>
+			<label><input type="radio" name="patient_lives" value="<?php xl('With Paid Help','e');?>" <?php if($obj{"patient_lives"}=="With Paid Help") echo "checked"; ?> ><?php xl('With Paid Help','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_lives_other" style="width:80%" value="<?php echo stripslashes($obj{"patient_lives_other"});?>"></label><br>
 			<label><?php xl('Number of Hours Patient is Alone Each Day/Why ','e');?><input type="text" name="no_of_hours_patient_alone" style="width:40%" value="<?php echo stripslashes($obj{"no_of_hours_patient_alone"});?>"></label><br>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Type of Housing: ','e');?></strong>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('House','e');?>" <?php if($obj{"type_of_housing"}=="House") echo "checked"; ?> ><?php xl('House','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Apartment','e');?>" <?php if($obj{"type_of_housing"}=="Apartment") echo "checked"; ?> ><?php xl('Apartment','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Mobile Home','e');?>" <?php if($obj{"type_of_housing"}=="Mobile Home") echo "checked"; ?> ><?php xl('Mobile Home','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Retirement Community','e');?>" <?php if($obj{"type_of_housing"}=="Retirement Community") echo "checked"; ?> ><?php xl('Retirement Community','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>" <?php if($obj{"type_of_housing"}=="Assisted Living Facility") echo "checked"; ?> ><?php xl('Assisted Living Facility','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Board and Care','e');?>" <?php if($obj{"type_of_housing"}=="Board and Care") echo "checked"; ?> ><?php xl('Board and Care','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Public Housing','e');?>" <?php if($obj{"type_of_housing"}=="Public Housing") echo "checked"; ?> ><?php xl('Public Housing','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Subsidized Housing','e');?>" <?php if($obj{"type_of_housing"}=="Subsidized Housing") echo "checked"; ?> ><?php xl('Subsidized Housing','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Group Home','e');?>" <?php if($obj{"type_of_housing"}=="Group Home") echo "checked"; ?> ><?php xl('Group Home','e');?></label>
-			<label><input type="checkbox" name="type_of_housing" value="<?php xl('Homeless','e');?>" <?php if($obj{"type_of_housing"}=="Homeless") echo "checked"; ?> ><?php xl('Homeless','e');?></label><br>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('House','e');?>" <?php if($obj{"type_of_housing"}=="House") echo "checked"; ?> ><?php xl('House','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Apartment','e');?>" <?php if($obj{"type_of_housing"}=="Apartment") echo "checked"; ?> ><?php xl('Apartment','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Mobile Home','e');?>" <?php if($obj{"type_of_housing"}=="Mobile Home") echo "checked"; ?> ><?php xl('Mobile Home','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Retirement Community','e');?>" <?php if($obj{"type_of_housing"}=="Retirement Community") echo "checked"; ?> ><?php xl('Retirement Community','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Assisted Living Facility','e');?>" <?php if($obj{"type_of_housing"}=="Assisted Living Facility") echo "checked"; ?> ><?php xl('Assisted Living Facility','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Board and Care','e');?>" <?php if($obj{"type_of_housing"}=="Board and Care") echo "checked"; ?> ><?php xl('Board and Care','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Public Housing','e');?>" <?php if($obj{"type_of_housing"}=="Public Housing") echo "checked"; ?> ><?php xl('Public Housing','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Subsidized Housing','e');?>" <?php if($obj{"type_of_housing"}=="Subsidized Housing") echo "checked"; ?> ><?php xl('Subsidized Housing','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Group Home','e');?>" <?php if($obj{"type_of_housing"}=="Group Home") echo "checked"; ?> ><?php xl('Group Home','e');?></label>
+			<label><input type="radio" name="type_of_housing" value="<?php xl('Homeless','e');?>" <?php if($obj{"type_of_housing"}=="Homeless") echo "checked"; ?> ><?php xl('Homeless','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="type_of_housing_other" style="width:80%" value="<?php echo stripslashes($obj{"type_of_housing_other"});?>"></label><br>
 			<strong><?php xl('Condition of Housing: ','e');?></strong>
-			<label><input type="checkbox" name="condition_of_housing" value="<?php xl('Adequate','e');?>" <?php if($obj{"condition_of_housing"}=="Adequate") echo "checked"; ?> ><?php xl('Adequate','e');?></label>
-			<label><input type="checkbox" name="condition_of_housing" value="<?php xl('Inadequate','e');?>" <?php if($obj{"condition_of_housing"}=="Inadequate") echo "checked"; ?> ><?php xl('Inadequate','e');?></label><br>
+			<label><input type="radio" name="condition_of_housing" value="<?php xl('Adequate','e');?>" <?php if($obj{"condition_of_housing"}=="Adequate") echo "checked"; ?> ><?php xl('Adequate','e');?></label>
+			<label><input type="radio" name="condition_of_housing" value="<?php xl('Inadequate','e');?>" <?php if($obj{"condition_of_housing"}=="Inadequate") echo "checked"; ?> ><?php xl('Inadequate','e');?></label><br>
 			<?php xl('Describe Problems/Safety Issues ','e');?><input type="text" name="problem_safety_issues" style="width:70%" value="<?php echo stripslashes($obj{"problem_safety_issues"});?>"></label><br>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Mental Status: ','e');?></strong>
-			<label><input type="checkbox" name="mental_status" value="<?php xl('Alert','e');?>" <?php if($obj{"mental_status"}=="Alert") echo "checked"; ?> ><?php xl('Alert','e');?></label>
-			<label><input type="checkbox" name="mental_status" value="<?php xl('Not Alerted','e');?>" <?php if($obj{"mental_status"}=="Not Alerted") echo "checked"; ?> ><?php xl('Not Alerted','e');?></label>
+			<label><input type="radio" name="mental_status" value="<?php xl('Alert','e');?>" <?php if($obj{"mental_status"}=="Alert") echo "checked"; ?> ><?php xl('Alert','e');?></label>
+			<label><input type="radio" name="mental_status" value="<?php xl('Not Alerted','e');?>" <?php if($obj{"mental_status"}=="Not Alerted") echo "checked"; ?> ><?php xl('Not Alerted','e');?></label>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<?php xl('Oriented to: ','e');?>
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Person','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Person") echo "checked"; ?> ><?php xl('Person','e');?></label>
@@ -246,22 +246,22 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 			<label><input type="checkbox" name="mental_status_oriented_to" value="<?php xl('Date','e');?>" <?php if($obj{"mental_status_oriented_to"}=="Date") echo "checked"; ?> ><?php xl('Date','e');?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 			<label><input type="checkbox" name="mental_status_disoriented" value="<?php xl('Disoriented','e');?>" <?php if($obj{"mental_status_disoriented"}=="Disoriented") echo "checked"; ?> ><?php xl('Disoriented','e');?></label><br>
 			<strong><?php xl('Impaired Mental Status Requires the following resources: ','e');?></strong>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="None") echo "checked"; ?> ><?php xl('None','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Family/Cregiver Support") echo "checked"; ?> ><?php xl('Family/Cregiver Support','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Guardian','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Guardian") echo "checked"; ?> ><?php xl('Guardian','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Power of Attorney','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Power of Attorney") echo "checked"; ?> ><?php xl('Power of Attorney','e');?></label>
-			<label><input type="checkbox" name="impaired_mental_status_requires_resources" value="<?php xl('Public Conservator','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Public Conservator") echo "checked"; ?> ><?php xl('Public Conservator','e');?></label><br>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('None','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="None") echo "checked"; ?> ><?php xl('None','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Family/Cregiver Support','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Family/Cregiver Support") echo "checked"; ?> ><?php xl('Family/Cregiver Support','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Guardian','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Guardian") echo "checked"; ?> ><?php xl('Guardian','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Power of Attorney','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Power of Attorney") echo "checked"; ?> ><?php xl('Power of Attorney','e');?></label>
+			<label><input type="radio" name="impaired_mental_status_requires_resources" value="<?php xl('Public Conservator','e');?>" <?php if($obj{"impaired_mental_status_requires_resources"}=="Public Conservator") echo "checked"; ?> ><?php xl('Public Conservator','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="impaired_mental_status_requires_resources_other" style="width:70%" value="<?php echo stripslashes($obj{"impaired_mental_status_requires_resources_other"});?>"></label><br>
 			
 		</td>
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Patient ADL Status: ','e');?></strong>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Total Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Total Assistance") echo "checked"; ?> ><?php xl('Requires Total Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Moderate Assistance") echo "checked"; ?> ><?php xl('Requires Moderate Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Minimal Assistance") echo "checked"; ?> ><?php xl('Requires Minimal Assistance','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Supervision Only") echo "checked"; ?> ><?php xl('Requires Supervision Only','e');?></label>
-			<label><input type="checkbox" name="patient_adl_status" value="<?php xl('Independent','e');?>" <?php if($obj{"patient_adl_status"}=="Independent") echo "checked"; ?> ><?php xl('Independent','e');?></label><br>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Total Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Total Assistance") echo "checked"; ?> ><?php xl('Requires Total Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Moderate Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Moderate Assistance") echo "checked"; ?> ><?php xl('Requires Moderate Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Minimal Assistance','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Minimal Assistance") echo "checked"; ?> ><?php xl('Requires Minimal Assistance','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Requires Supervision Only','e');?>" <?php if($obj{"patient_adl_status"}=="Requires Supervision Only") echo "checked"; ?> ><?php xl('Requires Supervision Only','e');?></label>
+			<label><input type="radio" name="patient_adl_status" value="<?php xl('Independent','e');?>" <?php if($obj{"patient_adl_status"}=="Independent") echo "checked"; ?> ><?php xl('Independent','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="patient_adl_status_other" style="width:70%" value="<?php echo stripslashes($obj{"patient_adl_status_other"});?>"></label>
 			
 		</td>
@@ -280,11 +280,11 @@ Calendar.setup({inputField:"SOC_date", ifFormat:"%Y-%m-%d", button:"img_curr_dat
 	</tr>
 	<tr>
 		<td colspan="4"><strong><?php xl('Communication Status: ','e');?></strong>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Good','e');?>" <?php if($obj{"communication_status"}=="Good") echo "checked"; ?> ><?php xl('Good','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Average','e');?>" <?php if($obj{"communication_status"}=="Average") echo "checked"; ?> ><?php xl('Average','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Poor','e');?>" <?php if($obj{"communication_status"}=="Poor") echo "checked"; ?> ><?php xl('Poor','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Needs Interpreter','e');?>" <?php if($obj{"communication_status"}=="Needs Interpreter") echo "checked"; ?> ><?php xl('Needs Interpreter','e');?></label>
-			<label><input type="checkbox" name="communication_status" value="<?php xl('Non Verbal','e');?>" <?php if($obj{"communication_status"}=="Non Verbal") echo "checked"; ?> ><?php xl('Non Verbal','e');?></label><br>
+			<label><input type="radio" name="communication_status" value="<?php xl('Good','e');?>" <?php if($obj{"communication_status"}=="Good") echo "checked"; ?> ><?php xl('Good','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Average','e');?>" <?php if($obj{"communication_status"}=="Average") echo "checked"; ?> ><?php xl('Average','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Poor','e');?>" <?php if($obj{"communication_status"}=="Poor") echo "checked"; ?> ><?php xl('Poor','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Needs Interpreter','e');?>" <?php if($obj{"communication_status"}=="Needs Interpreter") echo "checked"; ?> ><?php xl('Needs Interpreter','e');?></label>
+			<label><input type="radio" name="communication_status" value="<?php xl('Non Verbal','e');?>" <?php if($obj{"communication_status"}=="Non Verbal") echo "checked"; ?> ><?php xl('Non Verbal','e');?></label><br>
 			<label><?php xl('Other','e');?><input type="text" name="communication_status_other" style="width:93%;" value="<?php echo stripslashes($obj{"communication_status_other"});?>"></label>
 			
 		</td>
