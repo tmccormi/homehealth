@@ -8158,3 +8158,8 @@ ALTER TABLE `forms_oasis_therapy_rectification` DROP COLUMN `oasis_therapy_ampli
 #IfColumnDoesExist registry name
 UPDATE `registry` SET `name` = 'Nurse Visit Note' WHERE `name` = 'Nurse Visitnote';
 #EndIf
+
+-- Renames HHA-Supervisor Visit to Supervisor Visit in registry table
+#IfColumnDoesExist registry name
+UPDATE `registry` SET `name` = 'Supervisor Visit' WHERE `name` = 'HHA-Supervisor Visit';
+#EndIf
