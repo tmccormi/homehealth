@@ -194,17 +194,17 @@ Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"im
 <tr>
 <td>
 <b><?php xl('Psychosocial ','e')?></b><?php xl(' (A description of mental status, coping mechanisms, safety awareness and potential issues, etc.)','e') ?><br/>
-<input type="checkbox" name="msw_evaluation_psychosocial" value="<?php xl('Alert','e') ?>" /><?php xl(' Alert ','e') ?>
-<input type="checkbox" name="msw_evaluation_psychosocial" value="<?php xl('Not Alert','e') ?>" /><?php xl(' Not Alert ','e') ?>
+<input type="radio" name="msw_evaluation_psychosocial" value="<?php xl('Alert','e') ?>" /><?php xl(' Alert ','e') ?>
+<input type="radio" name="msw_evaluation_psychosocial" value="<?php xl('Not Alert','e') ?>" /><?php xl(' Not Alert ','e') ?>
 &nbsp; &nbsp; &nbsp; <?php xl(' Oriented to ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" value="<?php xl('Person','e') ?>" /><?php xl(' Person ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" value="<?php xl('Place','e') ?>" /><?php xl(' Place ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" value="<?php xl('Date','e') ?>" /><?php xl(' Date ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" value="<?php xl('Reason for MSW Intervention','e') ?>" /><?php xl(' Reason for MSW Intervention ','e') ?><br/>
 <b><?php xl('Safety Awareness ','e')?></b>
-<input type="checkbox" name="msw_evaluation_safety_awareness" value="<?php xl('Good','e') ?>" /><?php xl(' Good ','e') ?>
-<input type="checkbox" name="msw_evaluation_safety_awareness" value="<?php xl('Fair','e') ?>" /><?php xl(' Fair ','e') ?>
-<input type="checkbox" name="msw_evaluation_safety_awareness" value="<?php xl('Poor','e') ?>" /><?php xl(' Poor ','e') ?><br/>
+<input type="radio" name="msw_evaluation_safety_awareness" value="<?php xl('Good','e') ?>" /><?php xl(' Good ','e') ?>
+<input type="radio" name="msw_evaluation_safety_awareness" value="<?php xl('Fair','e') ?>" /><?php xl(' Fair ','e') ?>
+<input type="radio" name="msw_evaluation_safety_awareness" value="<?php xl('Poor','e') ?>" /><?php xl(' Poor ','e') ?><br/>
 <textarea name="msw_evaluation_safety_awareness_other" rows="3" cols="100"></textarea>
 </td>
 </tr>
@@ -250,7 +250,9 @@ Calendar.setup({inputField:"msw_evaluation_soc", ifFormat:"%Y-%m-%d", button:"im
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('Patient','e') ?>" /><?php xl(' Patient ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('Caregiver/Family','e') ?>" /><?php xl(' Caregiver/Family ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('Physician','e') ?>" /><?php xl(' Physician ','e') ?>
-<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('PT/OT/ST','e') ?>" /><?php xl(' PT/OT/ST ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('PT','e') ?>" /><?php xl(' PT ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('OT','e') ?>" /><?php xl(' OT ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('ST','e') ?>" /><?php xl(' ST ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('Skilled Nursing','e') ?>" /><?php xl(' Skilled Nursing ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" value="<?php xl('Case Manager','e') ?>" /><?php xl(' Case Manager ','e') ?><br/>
 <?php xl(' Other ','e') ?>

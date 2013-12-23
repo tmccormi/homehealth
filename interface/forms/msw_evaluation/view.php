@@ -263,17 +263,17 @@ value="<?php echo stripslashes($obj{"msw_evaluation_medical_diagnosis_problem_on
 <tr>
 <td>
 <b><?php xl('Psychosocial ','e')?></b><?php xl(' (A description of mental status, coping mechanisms, safety awareness and potential issues, etc.)','e') ?><br/>
-<input type="checkbox" name="msw_evaluation_psychosocial" <?php if ($obj{"msw_evaluation_psychosocial"} == "Alert") echo "checked";;?> value="<?php xl('Alert','e') ?>" /><?php xl(' Alert ','e') ?>
-<input type="checkbox" name="msw_evaluation_psychosocial" <?php if ($obj{"msw_evaluation_psychosocial"} == "Not Alert") echo "checked";;?> value="<?php xl('Not Alert','e') ?>" /><?php xl(' Not Alert ','e') ?>
+<input type="radio" name="msw_evaluation_psychosocial" <?php if ($obj{"msw_evaluation_psychosocial"} == "Alert") echo "checked";;?> value="<?php xl('Alert','e') ?>" /><?php xl(' Alert ','e') ?>
+<input type="radio" name="msw_evaluation_psychosocial" <?php if ($obj{"msw_evaluation_psychosocial"} == "Not Alert") echo "checked";;?> value="<?php xl('Not Alert','e') ?>" /><?php xl(' Not Alert ','e') ?>
 &nbsp; &nbsp; &nbsp; <?php xl(' Oriented to ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" <?php if ($obj{"msw_evaluation_psychosocial_oriented"} == "Person") echo "checked";;?> value="<?php xl('Person','e') ?>" /><?php xl(' Person ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" <?php if ($obj{"msw_evaluation_psychosocial_oriented"} == "Place") echo "checked";;?> value="<?php xl('Place','e') ?>" /><?php xl(' Place ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" <?php if ($obj{"msw_evaluation_psychosocial_oriented"} == "Date") echo "checked";;?> value="<?php xl('Date','e') ?>" /><?php xl(' Date ','e') ?>
 <input type="checkbox" name="msw_evaluation_psychosocial_oriented" <?php if ($obj{"msw_evaluation_psychosocial_oriented"} == "Reason for MSW Intervention") echo "checked";;?> value="<?php xl('Reason for MSW Intervention','e') ?>" /><?php xl(' Reason for MSW Intervention ','e') ?><br/>
 <b><?php xl('Safety Awareness ','e')?></b>
-<input type="checkbox" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Good") echo "checked";;?> value="<?php xl('Good','e') ?>" /><?php xl(' Good ','e') ?>
-<input type="checkbox" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Fair") echo "checked";;?> value="<?php xl('Fair','e') ?>" /><?php xl(' Fair ','e') ?>
-<input type="checkbox" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Poor") echo "checked";;?> value="<?php xl('Poor','e') ?>" /><?php xl(' Poor ','e') ?><br/>
+<input type="radio" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Good") echo "checked";;?> value="<?php xl('Good','e') ?>" /><?php xl(' Good ','e') ?>
+<input type="radio" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Fair") echo "checked";;?> value="<?php xl('Fair','e') ?>" /><?php xl(' Fair ','e') ?>
+<input type="radio" name="msw_evaluation_safety_awareness" <?php if ($obj{"msw_evaluation_safety_awareness"} == "Poor") echo "checked";;?> value="<?php xl('Poor','e') ?>" /><?php xl(' Poor ','e') ?><br/>
 <textarea name="msw_evaluation_safety_awareness_other" rows="3" cols="100"><?php echo stripslashes($obj{"msw_evaluation_safety_awareness_other"});?></textarea>
 </td>
 </tr>
@@ -319,7 +319,9 @@ value="<?php echo stripslashes($obj{"msw_evaluation_medical_diagnosis_problem_on
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "Patient") echo "checked";;?> value="<?php xl('Patient','e') ?>" /><?php xl(' Patient ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "Caregiver/Family") echo "checked";;?> value="<?php xl('Caregiver/Family','e') ?>" /><?php xl(' Caregiver/Family ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "Physician") echo "checked";;?> value="<?php xl('Physician','e') ?>" /><?php xl(' Physician ','e') ?>
-<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "PT/OT/ST") echo "checked";;?> value="<?php xl('PT/OT/ST','e') ?>" /><?php xl(' PT/OT/ST ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "PT") echo "checked";;?> value="<?php xl('PT','e') ?>" /><?php xl(' PT ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "OT") echo "checked";;?> value="<?php xl('OT','e') ?>" /><?php xl(' OT ','e') ?>
+<input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "ST") echo "checked";;?> value="<?php xl('ST','e') ?>" /><?php xl(' ST ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "Skilled Nursing") echo "checked";;?> value="<?php xl('Skilled Nursing','e') ?>" /><?php xl(' Skilled Nursing ','e') ?>
 <input type="checkbox" name="msw_evaluation_plan_ofc_are_and_discharge_was_communicated" <?php if ($obj{"msw_evaluation_plan_ofc_are_and_discharge_was_communicated"} == "Case Manager") echo "checked";;?> value="<?php xl('Case Manager','e') ?>" /><?php xl(' Case Manager ','e') ?><br/>
 <?php xl(' Other ','e') ?>
