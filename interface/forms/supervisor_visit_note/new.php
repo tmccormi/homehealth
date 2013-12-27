@@ -43,7 +43,7 @@ function requiredCheck(){
 		
 <table width="100%" border="1px" class="formtable">
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 		<table width="100%" border="1px" class="formtable">
 			<tr>
 				<td><strong><?php xl('Patient Name','e');?></strong></td>
@@ -76,25 +76,22 @@ function requiredCheck(){
 		</table>
 	</tr>
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 			<strong><?php xl('NAME OF STAFF MEMBER SUPERVISED: ','e');?></strong>&nbsp;&nbsp;
 			<input type="text" name="staff_supervised" style="width:50%;" value="">
 		</td>
 	</tr>
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 			<strong><?php xl('SUPERVISOR VISITS: ','e');?><br>
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('LPN/LVN (every 30 days)','e');?>"><?php xl('LPN/LVN (every 30 days)','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('HHA (every 14 days)','e');?>"><?php xl('HHA (every 14 days)','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('PTA','e');?>"><?php xl('PTA','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('COTA (Per State Guidelines)','e');?>"><?php xl('COTA (Per State Guidelines)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('LPN/LVN (every 30 days)','e');?>"><?php xl('LPN/LVN (every 30 days)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('HHA (every 14 days)','e');?>"><?php xl('HHA (every 14 days)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('PTA','e');?>"><?php xl('PTA','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('COTA (Per State Guidelines)','e');?>"><?php xl('COTA (Per State Guidelines)','e');?></label>&nbsp;&nbsp;
 			</strong>
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<strong><?php xl('EXCEEDS REQUIREMENTS','e');?></strong>
-		</td>
 		<td>
 			<strong><?php xl('MEETS REQUIREMENTS','e');?></strong>
 		</td>
@@ -102,7 +99,7 @@ function requiredCheck(){
 			<strong><?php xl('DOES NOT MEET REQUIREMENTS','e');?></strong>
 		</td>
 		<td>
-			<strong><?php xl('NOT OBSERVED','e');?></strong>
+			<strong><?php xl('N/A','e');?></strong>
 		</td>
 		<td>
 			<strong><?php xl('OBSERVATIONS','e');?></strong>
@@ -110,84 +107,69 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
-			<?php xl('Reported to patient home when scheduled','e');?>
+			<?php xl('Arrived at patient home when scheduled','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="wearing_name_badge" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="wearing_name_badge" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="wearing_name_badge" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
-			<?php xl('Wearing name badge','e');?>
+			<?php xl('Photo identification badge visible','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="using_two_identifiers" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="using_two_identifiers" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="using_two_identifiers" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
-			<?php xl('Using two identifiers for patient','e');?>
+			<?php xl('Uses two identifiers for patient verification','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
-			<?php xl('Demonstrates politeness, courteous and respectful behavior during visit','e');?>
+			<?php xl('Demonstrates politeness, courteous, respectful, and professional behavior during visit','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="follow_home_health" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="follow_home_health" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="follow_home_health" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Follows Home Health Aide Care Plan Assignment','e');?>
@@ -195,16 +177,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_communication" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_communication" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="demonstrates_communication" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Demonstrates Adequate Communication Skills','e');?>
@@ -212,16 +191,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="aware_patient_code" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="aware_patient_code" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="aware_patient_code" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Aware of patient"s code status','e');?>
@@ -229,16 +205,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Demonstrates clinical skills appropriate to patient need','e');?>
@@ -246,16 +219,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="adheres_to_policies" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="adheres_to_policies" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="adheres_to_policies" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Adheres to policies and procedures','e');?>
@@ -263,16 +233,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="identify_patient_issues" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="identify_patient_issues" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="identify_patient_issues" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('If applicable, Identifies patient issues during visit','e');?>
@@ -280,33 +247,27 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="handling_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="handling_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="handling_skills" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
-			<?php xl('Utilizes good patient handling skills','e');?>
+			<?php xl('Follow universal precautions','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Demonstrates appropriate grooming, hygiene and dressing skills','e');?>
@@ -314,16 +275,13 @@ function requiredCheck(){
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>">
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('MEETS REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('MEETS REQUIREMENTS','e');?>">
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>">
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('NOT OBSERVED','e');?>">
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('NOT OBSERVED','e');?>">
 		</td>
 		<td>
 			<?php xl('Other','e');?>
