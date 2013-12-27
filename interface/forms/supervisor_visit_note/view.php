@@ -125,7 +125,7 @@ foreach($obj as $key => $value) {
 		
 <table width="100%" border="1px" class="formtable">
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 		<table width="100%" border="1px" class="formtable">
 			<tr>
 				<td><strong><?php xl('Patient Name','e');?></strong></td>
@@ -158,25 +158,22 @@ foreach($obj as $key => $value) {
 		</table>
 	</tr>
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 			<strong><?php xl('NAME OF STAFF MEMBER SUPERVISED: ','e');?></strong>&nbsp;&nbsp;
 			<input type="text" name="staff_supervised" style="width:50%;" value="<?php echo $obj{"staff_supervised"};?>">
 		</td>
 	</tr>
 	<tr>
-		<td colspan="5">
+		<td colspan="4">
 			<strong><?php xl('SUPERVISOR VISITS: ','e');?><br>
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('LPN/LVN (every 30 days)','e');?>" <?php if($obj{"supervisor_visits"}=="LPN/LVN (every 30 days)"){ echo "checked"; }?> ><?php xl('LPN/LVN (every 30 days)','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('HHA (every 14 days)','e');?>" <?php if($obj{"supervisor_visits"}=="HHA (every 14 days)"){ echo "checked"; }?> ><?php xl('HHA (every 14 days)','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('PTA','e');?>" <?php if($obj{"supervisor_visits"}=="PTA"){ echo "checked"; }?> ><?php xl('PTA','e');?></label>&nbsp;&nbsp;
-			<label><input type="checkbox" name="supervisor_visits" value="<?php xl('COTA (Per State Guidelines)','e');?>" <?php if($obj{"supervisor_visits"}=="COTA (Per State Guidelines)"){ echo "checked"; }?> ><?php xl('COTA (Per State Guidelines)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('LPN/LVN (every 30 days)','e');?>" <?php if($obj{"supervisor_visits"}=="LPN/LVN (every 30 days)"){ echo "checked"; }?> ><?php xl('LPN/LVN (every 30 days)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('HHA (every 14 days)','e');?>" <?php if($obj{"supervisor_visits"}=="HHA (every 14 days)"){ echo "checked"; }?> ><?php xl('HHA (every 14 days)','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('PTA','e');?>" <?php if($obj{"supervisor_visits"}=="PTA"){ echo "checked"; }?> ><?php xl('PTA','e');?></label>&nbsp;&nbsp;
+			<label><input type="radio" name="supervisor_visits" value="<?php xl('COTA (Per State Guidelines)','e');?>" <?php if($obj{"supervisor_visits"}=="COTA (Per State Guidelines)"){ echo "checked"; }?> ><?php xl('COTA (Per State Guidelines)','e');?></label>&nbsp;&nbsp;
 			</strong>
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<strong><?php xl('EXCEEDS REQUIREMENTS','e');?></strong>
-		</td>
 		<td>
 			<strong><?php xl('MEETS REQUIREMENTS','e');?></strong>
 		</td>
@@ -184,7 +181,7 @@ foreach($obj as $key => $value) {
 			<strong><?php xl('DOES NOT MEET REQUIREMENTS','e');?></strong>
 		</td>
 		<td>
-			<strong><?php xl('NOT OBSERVED','e');?></strong>
+			<strong><?php xl('N/A','e');?></strong>
 		</td>
 		<td>
 			<strong><?php xl('OBSERVATIONS','e');?></strong>
@@ -192,84 +189,69 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"reported_to_patient_home"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"reported_to_patient_home"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"reported_to_patient_home"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"reported_to_patient_home"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"reported_to_patient_home"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="reported_to_patient_home" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"reported_to_patient_home"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="reported_to_patient_home" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"reported_to_patient_home"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
-			<?php xl('Reported to patient home when scheduled','e');?>
+			<?php xl('Arrived at patient home when scheduled','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"wearing_name_badge"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="wearing_name_badge" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"wearing_name_badge"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"wearing_name_badge"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="wearing_name_badge" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"wearing_name_badge"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"wearing_name_badge"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="wearing_name_badge" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"wearing_name_badge"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="wearing_name_badge" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"wearing_name_badge"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
-			<?php xl('Wearing name badge','e');?>
+			<?php xl('Photo identification badge visible','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"using_two_identifiers"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="using_two_identifiers" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"using_two_identifiers"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"using_two_identifiers"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="using_two_identifiers" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"using_two_identifiers"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"using_two_identifiers"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="using_two_identifiers" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"using_two_identifiers"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="using_two_identifiers" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"using_two_identifiers"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
-			<?php xl('Using two identifiers for patient','e');?>
+			<?php xl('Uses two identifiers for patient verification','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_behaviour"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_behaviour"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_behaviour"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_behaviour"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_behaviour"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_behaviour" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_behaviour"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_behaviour" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_behaviour"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
-			<?php xl('Demonstrates politeness, courteous and respectful behavior during visit','e');?>
+			<?php xl('Demonstrates politeness, courteous, respectful, and professional behavior during visit','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"follow_home_health"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="follow_home_health" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"follow_home_health"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"follow_home_health"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="follow_home_health" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"follow_home_health"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"follow_home_health"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="follow_home_health" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"follow_home_health"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="follow_home_health" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"follow_home_health"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Follows Home Health Aide Care Plan Assignment','e');?>
@@ -277,16 +259,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_communication"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_communication" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_communication"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_communication"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_communication" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_communication"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_communication"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_communication" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_communication"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_communication" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_communication"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Demonstrates Adequate Communication Skills','e');?>
@@ -294,16 +273,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"aware_patient_code"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="aware_patient_code" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"aware_patient_code"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"aware_patient_code"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="aware_patient_code" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"aware_patient_code"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"aware_patient_code"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="aware_patient_code" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"aware_patient_code"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="aware_patient_code" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"aware_patient_code"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Aware of patient"s code status','e');?>
@@ -311,16 +287,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_clinical_skills" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_clinical_skills" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_clinical_skills"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Demonstrates clinical skills appropriate to patient need','e');?>
@@ -328,16 +301,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"adheres_to_policies"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="adheres_to_policies" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"adheres_to_policies"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"adheres_to_policies"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="adheres_to_policies" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"adheres_to_policies"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"adheres_to_policies"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="adheres_to_policies" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"adheres_to_policies"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="adheres_to_policies" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"adheres_to_policies"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Adheres to policies and procedures','e');?>
@@ -345,16 +315,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"identify_patient_issues"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="identify_patient_issues" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"identify_patient_issues"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"identify_patient_issues"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="identify_patient_issues" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"identify_patient_issues"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"identify_patient_issues"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="identify_patient_issues" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"identify_patient_issues"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="identify_patient_issues" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"identify_patient_issues"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('If applicable, Identifies patient issues during visit','e');?>
@@ -362,33 +329,27 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"handling_skills"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="handling_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"handling_skills"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"handling_skills"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="handling_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"handling_skills"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"handling_skills"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="handling_skills" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"handling_skills"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="handling_skills" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"handling_skills"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
-			<?php xl('Utilizes good patient handling skills','e');?>
+			<?php xl('Follows univeral precautions','e');?>
 		</td>
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_grooming"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_grooming"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_grooming"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_grooming"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"demonstrates_grooming"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="demonstrates_grooming" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_grooming"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="demonstrates_grooming" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"demonstrates_grooming"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Demonstrates appropriate grooming, hygiene and dressing skills','e');?>
@@ -396,16 +357,13 @@ foreach($obj as $key => $value) {
 	</tr>
 	<tr>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('EXCEEDS REQUIREMENTS','e');?>" <?php if($obj{"supervisor_visit_other"}=="EXCEEDS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"supervisor_visit_other"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('MEETS REQUIREMENTS','e');?>" <?php if($obj{"supervisor_visit_other"}=="MEETS REQUIREMENTS"){ echo "checked"; }?> >
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"supervisor_visit_other"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
 		</td>
 		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('DOES NOT MEET REQUIREMENTS','e');?>" <?php if($obj{"supervisor_visit_other"}=="DOES NOT MEET REQUIREMENTS"){ echo "checked"; }?> >
-		</td>
-		<td align="center" valign="middle">
-			<input type="checkbox" name="supervisor_visit_other" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"supervisor_visit_other"}=="NOT OBSERVED"){ echo "checked"; }?> >
+			<input type="radio" name="supervisor_visit_other" value="<?php xl('NOT OBSERVED','e');?>" <?php if($obj{"supervisor_visit_other"}=="NOT OBSERVED"){ echo "checked"; }?> >
 		</td>
 		<td>
 			<?php xl('Other','e');?>

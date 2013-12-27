@@ -143,26 +143,26 @@ $(document).ready(function() {
 				<td colspan="6">
 					<strong>
 						<?php xl('DISCIPLINE WHO','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
-						<label><input type="checkbox" name="descipline_who_category" value="<?php xl("MISSED VISIT","e");?>" <?php if($obj{"descipline_who_category"}=="MISSED VISIT"){ echo "checked"; }?> ><?php xl("MISSED VISIT","e");?></label>
-						<label><input type="checkbox" name="descipline_who_category" value="<?php xl("DELAYED INITIAL SOC/EVALUATION","e");?>" <?php if($obj{"descipline_who_category"}=="DELAYED INITIAL SOC/EVALUATION"){ echo "checked"; }?> ><?php xl("DELAYED INITIAL SOC/EVALUATION","e");?></label>
+						<label><input type="radio" name="descipline_who_category" value="<?php xl("MISSED VISIT","e");?>" <?php if($obj{"descipline_who_category"}=="MISSED VISIT"){ echo "checked"; }?> ><?php xl("MISSED VISIT","e");?></label>
+						<label><input type="radio" name="descipline_who_category" value="<?php xl("DELAYED INITIAL SOC/EVALUATION","e");?>" <?php if($obj{"descipline_who_category"}=="DELAYED INITIAL SOC/EVALUATION"){ echo "checked"; }?> ><?php xl("DELAYED INITIAL SOC/EVALUATION","e");?></label>
 					</strong>
 				</td>
 			</tr>
 			<tr>
 				<td width="33%" colspan="2">
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Skilled Nursing","e");?>" <?php if($obj{"descipline_who"}=="Skilled Nursing"){ echo "checked"; }?> ><?php xl("Skilled Nursing","e");?></label><br>
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Physical Therapy","e");?>" <?php if($obj{"descipline_who"}=="Physical Therapy"){ echo "checked"; }?> ><?php xl("Physical Therapy","e");?></label><br>
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Occupational Therapy","e");?>" <?php if($obj{"descipline_who"}=="Occupational Therapy"){ echo "checked"; }?> ><?php xl("Occupational Therapy","e");?></label>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Skilled Nursing","e");?>" <?php if($obj{"descipline_who"}=="Skilled Nursing"){ echo "checked"; }?> ><?php xl("Skilled Nursing","e");?></label><br>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Physical Therapy","e");?>" <?php if($obj{"descipline_who"}=="Physical Therapy"){ echo "checked"; }?> ><?php xl("Physical Therapy","e");?></label><br>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Occupational Therapy","e");?>" <?php if($obj{"descipline_who"}=="Occupational Therapy"){ echo "checked"; }?> ><?php xl("Occupational Therapy","e");?></label>
 				</td>
 				<td width="33%" colspan="2">
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Home Health Aide","e");?>" <?php if($obj{"descipline_who"}=="Home Health Aide"){ echo "checked"; }?> ><?php xl("Home Health Aide","e");?></label><br>
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Medical Social Worker","e");?>" <?php if($obj{"descipline_who"}=="Medical Social Worker"){ echo "checked"; }?> ><?php xl("Medical Social Worker","e");?></label><br>
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Speech Language Pathologist","e");?>" <?php if($obj{"descipline_who"}=="Speech Language Pathologist"){ echo "checked"; }?> ><?php xl("Speech Language Pathologist","e");?></label>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Home Health Aide","e");?>" <?php if($obj{"descipline_who"}=="Home Health Aide"){ echo "checked"; }?> ><?php xl("Home Health Aide","e");?></label><br>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Medical Social Worker","e");?>" <?php if($obj{"descipline_who"}=="Medical Social Worker"){ echo "checked"; }?> ><?php xl("Medical Social Worker","e");?></label><br>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Speech Language Pathologist","e");?>" <?php if($obj{"descipline_who"}=="Speech Language Pathologist"){ echo "checked"; }?> ><?php xl("Speech Language Pathologist","e");?></label>
 				</td>
 				<td colspan="2">
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Dietician","e");?>" <?php if($obj{"descipline_who"}=="Dietician"){ echo "checked"; }?> ><?php xl("Dietician","e");?></label><br>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Dietician","e");?>" <?php if($obj{"descipline_who"}=="Dietician"){ echo "checked"; }?> ><?php xl("Dietician","e");?></label><br>
 					<table border="0px" cellspacing="0" width="100%" class="formtable"><tr><td valign="top">
-					<label><input type="checkbox" name="descipline_who" value="<?php xl("Other","e");?>" <?php if($obj{"descipline_who"}=="Other"){ echo "checked"; }?> ><?php xl("Other ","e");?></label>
+					<label><input type="radio" name="descipline_who" value="<?php xl("Other","e");?>" <?php if($obj{"descipline_who"}=="Other"){ echo "checked"; }?> ><?php xl("Other ","e");?></label>
 					</td><td valign="top">
 					<textarea name="descipline_who_other" rows="3" style="width:60%;"><?php echo $obj{"descipline_who_other"};?></textarea>
 					</td></tr></table>
@@ -172,8 +172,8 @@ $(document).ready(function() {
 				<td colspan="3">
 					<strong>
 						<?php xl('REASON FOR','e')?>&nbsp;&nbsp;&nbsp;&nbsp;
-						<label><input type="checkbox" name="reason_for_category" value="<?php xl("MISSED VISIT","e");?>" <?php if($obj{"reason_for_category"}=="MISSED VISIT"){ echo "checked"; }?> ><?php xl("MISSED VISIT","e");?></label>
-						<label><input type="checkbox" name="reason_for_category" value="<?php xl("DELAYED INITIAL EVALUATION","e");?>" <?php if($obj{"reason_for_category"}=="DELAYED INITIAL EVALUATION"){ echo "checked"; }?> ><?php xl("DELAYED INITIAL EVALUATION","e");?></label>
+						<label><input type="radio" name="reason_for_category" value="<?php xl("MISSED VISIT","e");?>" <?php if($obj{"reason_for_category"}=="MISSED VISIT"){ echo "checked"; }?> ><?php xl("MISSED VISIT","e");?></label>
+						<label><input type="rdaio" name="reason_for_category" value="<?php xl("DELAYED INITIAL EVALUATION","e");?>" <?php if($obj{"reason_for_category"}=="DELAYED INITIAL EVALUATION"){ echo "checked"; }?> ><?php xl("DELAYED INITIAL EVALUATION","e");?></label>
 						<?php xl("(check all that apply)","e");?>
 					</strong>
 				</td>
@@ -186,8 +186,7 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<td colspan="3">
-					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Phoned patient to confirm and was not home when clinician showed up at home","e");?>" <?php if(in_array("Phoned patient to confirm and was not home when clinician showed up at home",$reason_for)) { echo "checked"; }?> ><?php xl("Phoned patient to confirm and was not home when clinician showed up at home","e");?></label><br>
-					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient was not home when clinician showed up at home","e");?>" <?php if(in_array("Patient was not home when clinician showed up at home",$reason_for)) { echo "checked"; }?> ><?php xl("Patient was not home when clinician showed up at home","e");?></label><br>
+					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient was not home when clinician arrived","e");?>" <?php if(in_array("Patient was not home when clinician arrived",$reason_for)) { echo "checked"; }?> ><?php xl("Patient was not home when clinician arrived","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had MD appointment and not available","e");?>" <?php if(in_array("Patient had MD appointment and not available",$reason_for)) { echo "checked"; }?> ><?php xl("Patient had MD appointment and not available","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient had another appointment and not available","e");?>" <?php if(in_array("Patient had another appointment and not available",$reason_for)) { echo "checked"; }?> ><?php xl("Patient had another appointment and not available","e");?></label><br>
 					<label><input type="checkbox" name="reason_for[]" value="<?php xl("Patient refused-no reason given","e");?>" <?php if(in_array("Patient refused-no reason given",$reason_for)) { echo "checked"; }?> ><?php xl("Patient refused-no reason given","e");?></label><br>
