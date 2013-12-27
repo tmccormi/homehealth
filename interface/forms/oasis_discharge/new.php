@@ -802,17 +802,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse" value="Irregular"><?php xl(' Irregular ','e')?></label> 
 			<br>
 				
-			<label><input type="checkbox" name="oasis_therapy_vital_sign_pulse_type[]" value="Radial"><?php xl(' Radial ','e')?></label> 
-			<label><input type="checkbox" name="oasis_therapy_vital_sign_pulse_type[]" value="Carotid"><?php xl(' Carotid ','e')?></label> 
-			<label><input type="checkbox" name="oasis_therapy_vital_sign_pulse_type[]" value="Apical"><?php xl(' Apical ','e')?></label> 
-			<label><input type="checkbox" name="oasis_therapy_vital_sign_pulse_type[]" value="Brachial"><?php xl(' Brachial ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Radial"><?php xl(' Radial ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Carotid"><?php xl(' Carotid ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Apical"><?php xl(' Apical ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Brachial"><?php xl(' Brachial ','e')?></label> 
 			<br><br>
 			
 			<strong><?php xl("Respiratory Rate:","e");?></strong>&nbsp;&nbsp;
 			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Normal"><?php xl(' Normal ','e')?></label> 
-			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Cheynes"><?php xl(' Cheynes Stokes ','e')?></label> 
-			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Death"><?php xl(' Death rattle ','e')?></label> 
-			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Apnea"><?php xl(' Apnea /sec.','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Cheynes"><?php xl(' Cheynes ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Stokes"><?php xl(' Stokes ','e')?></label> 
 		</td>
 	</tr>
 </table>
@@ -857,7 +856,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 				<label><input type="checkbox" name="oasis_therapy_breath_sounds_accessory_muscle_o2" value="<?php xl("O2","e");?>"><?php xl('O2','e')?></label>
 				<input type="text" name="oasis_therapy_breath_sounds_accessory_o2_detail" value="">
 				<?php xl('LPM per','e')?><input type="text" name="oasis_therapy_breath_sounds_accessory_lpm" value=""><br>
-			<label><input type="checkbox" name="oasis_therapy_breath_sounds[]" value="<?php xl("Pulse Oximetry per Symptomology","e");?>"><?php xl('Pulse Oximetry per Symptomology','e')?></label><br>
+			<label><input type="checkbox" name="oasis_therapy_breath_sounds[]" value="<?php xl("Pulse Oximetry per M.D. order","e");?>"><?php xl('Pulse Oximetry per M.D. order','e')?></label><br>
 			<?php xl('Does this patient have a trach?','e')?>
 				<label><input type="radio" name="oasis_therapy_breath_sounds_trach" value="Yes"><?php xl(' Yes ','e')?></label>
 				<label><input type="radio" name="oasis_therapy_breath_sounds_trach" value="No"><?php xl(' No ','e')?></label><br>
@@ -870,8 +869,8 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 				<label><input type="checkbox" name="oasis_therapy_breath_sounds_cough" value="<?php xl("Acute","e");?>"><?php xl('Acute','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_breath_sounds_cough" value="<?php xl("Chronic","e");?>"><?php xl('Chronic','e')?></label><br>
 			<label><input type="checkbox" name="oasis_therapy_breath_sounds[]" value="<?php xl("Productive","e");?>"><b><?php xl('Productive:','e')?></b></label>
-				<label><input type="checkbox" name="oasis_therapy_breath_sounds_productive" value="<?php xl("Thick","e");?>"><?php xl('Thick','e')?></label>
-				<label><input type="checkbox" name="oasis_therapy_breath_sounds_productive" value="<?php xl("Thin","e");?>"><?php xl('Thin','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label><input type="radio" name="oasis_therapy_breath_sounds_productive" value="<?php xl("Thick","e");?>"><?php xl('Thick','e')?></label>
+				<label><input type="radio" name="oasis_therapy_breath_sounds_productive" value="<?php xl("Thin","e");?>"><?php xl('Thin','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 				<?php xl('Color','e')?>
 				<input type="text" name="oasis_therapy_breath_sounds_productive_color" value="">
 				<?php xl('Amount','e')?>
@@ -918,11 +917,13 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<b><?php xl('Associated with:','e')?></b>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_associated_with" value="<?php xl("Shortness","e");?>"><?php xl('Shortness of breath','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_associated_with" value="<?php xl("Activity","e");?>"><?php xl('Activity','e')?></label>
-				<label><input type="checkbox" name="oasis_therapy_heart_sounds_associated_with" value="<?php xl("Sweats","e");?>"><?php xl('Sweats','e')?></label><br>
+				<label><input type="checkbox" name="oasis_therapy_heart_sounds_associated_with" value="<?php xl("Other","e");?>"><?php xl('Other','e')?></label><br>
+				<label></label><input type="text" name="oasis_therapy_heart_sounds_associated_with_other" value=""></label><br>
 			<b><?php xl('Frequency/duration:','e')?></b>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_frequency" value="<?php xl("Palpitations","e");?>"><?php xl('Palpitations','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_frequency" value="<?php xl("Fatigue","e");?>"><?php xl('Fatigue','e')?></label><br>
-			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Edema","e");?>"><b><?php xl('Edema:','e')?></b></label><br>
+			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Edema","e");?>"><b><?php xl('Edema:','e')?></b></label><br>				
+			<strong><?php xl("Left Side:","e");?></strong><br />
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema" value="<?php xl("Pedal","e");?>"><?php xl('Pedal Right/Left','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema" value="<?php xl("Sacral","e");?>"><?php xl('Sacral','e')?></label>
 				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema" value="<?php xl("Dependent","e");?>"><?php xl('Dependent:','e')?></label><br>
@@ -931,16 +932,28 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent" value="<?php xl("Pitting +3","e");?>"><?php xl('Pitting +3','e')?></label>
 				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent" value="<?php xl("Pitting +4","e");?>"><?php xl('Pitting +4','e')?></label>
 				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent" value="<?php xl("Non-pitting","e");?>"><?php xl('Non-pitting','e')?></label><br>
-			<?php xl("Site","e");?>
-				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Cramps","e");?>"><?php xl('Cramps','e')?></label>
-				<label><input type="checkbox" name="oasis_therapy_heart_sounds_site" value="<?php xl("Claudication","e");?>"><?php xl('Claudication','e')?></label><br>
 			<?php xl("Capillary refill","e");?>
 				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl("<3","e");?>"><?php xl('less than 3 sec','e')?></label>
 				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary" value="<?php xl(">3","e");?>"><?php xl('greater than 3 sec','e')?></label><br>
 			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Other","e");?>"><?php xl('Other:','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_other" value=""><br>
-			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Weigh patient","e");?>"><?php xl('Weigh patient','e')?></label><br>
-			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Notify MD","e");?>"><?php xl('Notify MD of weight variations of','e')?></label>
+				
+			<strong><?php xl("Right Side:","e");?></strong><br />
+				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema_right" value="<?php xl("Pedal","e");?>"><?php xl('Pedal Right/Left','e')?></label>
+				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema_right" value="<?php xl("Sacral","e");?>"><?php xl('Sacral','e')?></label>
+				<label><input type="checkbox" name="oasis_therapy_heart_sounds_edema_right" value="<?php xl("Dependent","e");?>"><?php xl('Dependent:','e')?></label><br>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent_right" value="<?php xl("Pitting +1","e");?>"><?php xl('Pitting +1','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent_right" value="<?php xl("Pitting +2","e");?>"><?php xl('Pitting +2','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent_right" value="<?php xl("Pitting +3","e");?>"><?php xl('Pitting +3','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent_right" value="<?php xl("Pitting +4","e");?>"><?php xl('Pitting +4','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_edema_dependent_right" value="<?php xl("Non-pitting","e");?>"><?php xl('Non-pitting','e')?></label><br>
+			<?php xl("Capillary refill","e");?>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary_right" value="<?php xl("<3","e");?>"><?php xl('less than 3 sec','e')?></label>
+				<label><input type="radio" name="oasis_therapy_heart_sounds_capillary_right" value="<?php xl(">3","e");?>"><?php xl('greater than 3 sec','e')?></label><br>
+			<label><input type="checkbox" name="oasis_therapy_heart_sounds_right[]" value="<?php xl("Other","e");?>"><?php xl('Other:','e')?></label>
+				<input type="text" name="oasis_therapy_heart_sounds_other_right" value=""><br>
+				
+			<label><input type="checkbox" name="oasis_therapy_heart_sounds[]" value="<?php xl("Notify MD of weight variations per specific order","e");?>"><?php xl('Notify MD of weight variations per specific order','e')?></label>
 				<input type="text" name="oasis_therapy_heart_sounds_notify" value="">
 				
 		</td>
@@ -1580,14 +1593,14 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<input type="text" name="oasis_therapy_wound_location" value=""><br>
 			<label><input type="checkbox" name="oasis_therapy_wound[]" value="<?php xl("Soiled dressing removed","e");?>"><?php xl('Soiled dressing removed','e')?></label>&nbsp;&nbsp;&nbsp;&nbsp;
 			<?php xl('By:','e')?>
-			<label><input type="checkbox" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("Patient","e");?>"><?php xl('Patient','e')?></label>
-			<label><input type="checkbox" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("Family/caregiver","e");?>"><?php xl('Family/caregiver','e')?></label>
-			<label><input type="checkbox" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("RN/PT","e");?>"><?php xl('RN/PT','e')?></label>
+			<label><input type="radio" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("Patient","e");?>"><?php xl('Patient','e')?></label>
+			<label><input type="radio" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("Family/caregiver","e");?>"><?php xl('Family/caregiver','e')?></label>
+			<label><input type="radio" name="oasis_therapy_wound_soiled_dressing_by" value="<?php xl("RN/PT","e");?>"><?php xl('RN/PT','e')?></label>
 			<br>
 			
 			<?php xl('Technique:','e')?>
-			<label><input type="checkbox" name="oasis_therapy_wound_soiled_technique" value="<?php xl("Sterile","e");?>"><?php xl('Sterile','e')?></label>
-			<label><input type="checkbox" name="oasis_therapy_wound_soiled_technique" value="<?php xl("Clean","e");?>"><?php xl('Clean','e')?></label>
+			<label><input type="radio" name="oasis_therapy_wound_soiled_technique" value="<?php xl("Sterile","e");?>"><?php xl('Sterile','e')?></label>
+			<label><input type="radio" name="oasis_therapy_wound_soiled_technique" value="<?php xl("Clean","e");?>"><?php xl('Clean','e')?></label>
 			<br>
 			
 			<label><input type="checkbox" name="oasis_therapy_wound[]" value="<?php xl("Wound cleaned with","e");?>"><?php xl('Wound cleaned with (specify):','e')?></label>
@@ -2583,7 +2596,6 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <label>
 <input type="checkbox" name="non_oasis_infusion[]" value="Central"  id="non_oasis_infusion" /><?php xl('Central','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Midline/Midclavicular"  id="non_oasis_infusion" /><?php xl('Midline/Midclavicular','e')?></label><br />
 &nbsp;&nbsp;&nbsp;&nbsp;
 <label><input type="radio" name="non_oasis_infusion_central" value="Single lumen"  id="non_oasis_infusion_central" />
 <?php xl('Single lumen','e')?></label> &nbsp;
@@ -2623,19 +2635,19 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <br />
 
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Hickman"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Hickman"  id="non_oasis_infusion" />
 <?php xl('Hickman','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Broviac"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Broviac"  id="non_oasis_infusion" />
 <?php xl('Broviac','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Groshong"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Groshong"  id="non_oasis_infusion" />
 <?php xl('Groshong','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Jugular"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Jugular"  id="non_oasis_infusion" />
 <?php xl('Jugular','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Subclavian"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Subclavian"  id="non_oasis_infusion" />
 <?php xl('Subclavian','e')?></label> &nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 <label><input type="radio" name="non_oasis_infusion_hickman" value="Single lumen"  id="non_oasis_infusion_hickman" />
@@ -2661,9 +2673,6 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <input type="checkbox" name="non_oasis_infusion[]" value="Epidural catheter"  id="non_oasis_infusion" />
 <?php xl('Epidural catheter','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Tunneled"  id="non_oasis_infusion" />
-<?php xl('Tunneled','e')?></label> &nbsp;
-<label>
 <input type="checkbox" name="non_oasis_infusion[]" value="Port1"  id="non_oasis_infusion" />
 <?php xl('Port','e')?></label> &nbsp;
 <br />
@@ -2678,16 +2687,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <br />
 
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Implanted VAD"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Implanted VAD"  id="non_oasis_infusion" />
 <?php xl('Implanted VAD','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Venous"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Venous"  id="non_oasis_infusion" />
 <?php xl('Venous','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Arterial"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Arterial"  id="non_oasis_infusion" />
 <?php xl('Arterial','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Peritoneal"  id="non_oasis_infusion" />
+<input type="radio" name="non_oasis_infusion[]" value="Peritoneal"  id="non_oasis_infusion" />
 <?php xl('Peritoneal','e')?></label> &nbsp;
 <br />
 <?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_implanted_date' id='non_oasis_infusion_implanted_date'
@@ -2697,27 +2706,6 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
                         style='cursor: pointer; cursor: hand'
                         title='<?php xl('Click here to choose a date','e'); ?>'><script    LANGUAGE="JavaScript">
                             Calendar.setup({inputField:"non_oasis_infusion_implanted_date", ifFormat:"%Y-%m-%d", button:"img_curr_date11"});
-                        </script>
-<br />
-
-
-<label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Intrathecal"  id="non_oasis_infusion" />
-<?php xl('Intrathecal','e')?></label> &nbsp;
-<label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Port2"  id="non_oasis_infusion" />
-<?php xl('Port','e')?></label> &nbsp;
-<label>
-<input type="checkbox" name="non_oasis_infusion[]" value="Reservoir"  id="non_oasis_infusion" />
-<?php xl('Reservoir','e')?></label> &nbsp;
-<br />
-<?php xl('Date of placement:','e')?><input type='text' size='10' name='non_oasis_infusion_intrathecal_date' id='non_oasis_infusion_intrathecal_date'
-                        title='<?php xl('Date','e'); ?>' onkeyup='datekeyup(this,mypcc)' onblur='dateblur(this,mypcc);' readonly/>
-                        <img src='../../pic/show_calendar.gif' align='absbottom' width='24'
-                        height='22' id='img_curr_date12' border='0' alt='[?]'
-                        style='cursor: pointer; cursor: hand'
-                        title='<?php xl('Click here to choose a date','e'); ?>'><script    LANGUAGE="JavaScript">
-                            Calendar.setup({inputField:"non_oasis_infusion_intrathecal_date", ifFormat:"%Y-%m-%d", button:"img_curr_date12"});
                         </script>
 <br />
 
@@ -2812,16 +2800,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <br />
 <strong><?php xl('Administered by:','e')?></strong>
 <label>
-<input type="checkbox" name="non_oasis_infusion_admin_by" value="Self"  id="non_oasis_infusion_admin_by" />
+<input type="radio" name="non_oasis_infusion_admin_by" value="Self"  id="non_oasis_infusion_admin_by" />
 <?php xl('Self','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_admin_by" value="Caregiver"  id="non_oasis_infusion_admin_by" />
+<input type="radio" name="non_oasis_infusion_admin_by" value="Caregiver"  id="non_oasis_infusion_admin_by" />
 <?php xl('Caregiver','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_admin_by" value="RN"  id="non_oasis_infusion_admin_by" />
+<input type="radio" name="non_oasis_infusion_admin_by" value="RN"  id="non_oasis_infusion_admin_by" />
 <?php xl('RN','e')?></label> &nbsp;
 <label><br />
-<input type="checkbox" name="non_oasis_infusion_admin_by" value="Other"  id="non_oasis_infusion_admin_by" />
+<input type="radio" name="non_oasis_infusion_admin_by" value="Other"  id="non_oasis_infusion_admin_by" />
 <?php xl('Other','e')?></label> &nbsp;
 <input type="text" name="non_oasis_infusion_admin_by_other" id="non_oasis_infusion_admin_by_other"  style="width:100%"  />
 
@@ -2870,16 +2858,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 
 <strong><?php xl('Performed by:','e')?></strong> &nbsp;&nbsp;&nbsp;&nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_performed_by" value="Self"  id="non_oasis_infusion_performed_by" />
+<input type="radio" name="non_oasis_infusion_performed_by" value="Self"  id="non_oasis_infusion_performed_by" />
 <?php xl('Self','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_performed_by" value="RN"  id="non_oasis_infusion_performed_by" />
+<input type="radio" name="non_oasis_infusion_performed_by" value="RN"  id="non_oasis_infusion_performed_by" />
 <?php xl('RN','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_performed_by" value="Caregiver"  id="non_oasis_infusion_performed_by" />
+<input type="radio" name="non_oasis_infusion_performed_by" value="Caregiver"  id="non_oasis_infusion_performed_by" />
 <?php xl('Caregiver','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_infusion_performed_by" value="Other"  id="non_oasis_infusion_performed_by" />
+<input type="radio" name="non_oasis_infusion_performed_by" value="Other"  id="non_oasis_infusion_performed_by" />
 <?php xl('Other','e')?></label> &nbsp;
 <br />
 
@@ -2917,16 +2905,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 		<td>
 			<center><strong><?php xl('ENTERAL FEEDINGS - ACCESS DEVICE','e')?></strong></center>
 			<label>
-<input type="checkbox" name="non_oasis_enteral[]" value="Nasogastric"  id="non_oasis_enteral" />
+<input type="radio" name="non_oasis_enteral[]" value="Nasogastric"  id="non_oasis_enteral" />
 <?php xl('Nasogastric','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral[]" value="Gastrostomy"  id="non_oasis_enteral" />
+<input type="radio" name="non_oasis_enteral[]" value="Gastrostomy"  id="non_oasis_enteral" />
 <?php xl('Gastrostomy','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral[]" value="Jejunostomy"  id="non_oasis_enteral" />
+<input type="radio" name="non_oasis_enteral[]" value="Jejunostomy"  id="non_oasis_enteral" />
 <?php xl('Jejunostomy','e')?></label> &nbsp;<br />
 <label>
-<input type="checkbox" name="non_oasis_enteral[]" value="Other (specify)"  id="non_oasis_enteral" />
+<input type="radio" name="non_oasis_enteral[]" value="Other (specify)"  id="non_oasis_enteral" />
 <?php xl('Other (specify)','e')?></label> &nbsp;
 
 <input type="text" name="non_oasis_enteral_other" id="non_oasis_enteral_other" size="30" />
@@ -2940,10 +2928,10 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 
 <strong><?php xl('Feedings:','e')?></strong> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral_feedings" value="Bolus"  id="non_oasis_enteral_feedings" />
+<input type="radio" name="non_oasis_enteral_feedings" value="Bolus"  id="non_oasis_enteral_feedings" />
 <?php xl('Bolus','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral_feedings" value="Continuous"  id="non_oasis_enteral_feedings" />
+<input type="radio" name="non_oasis_enteral_feedings" value="Continuous"  id="non_oasis_enteral_feedings" />
 <?php xl('Continuous','e')?></label> &nbsp;
 
 <label><?php xl('Rate:','e')?> &nbsp;
@@ -2960,16 +2948,16 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 
 <strong><?php xl('Performed by:','e')?></strong> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral_performed_by" value="Self"  id="non_oasis_enteral_performed_by" />
+<input type="radio" name="non_oasis_enteral_performed_by" value="Self"  id="non_oasis_enteral_performed_by" />
 <?php xl('Self','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral_performed_by" value="RN"  id="non_oasis_enteral_performed_by" />
+<input type="radio" name="non_oasis_enteral_performed_by" value="RN"  id="non_oasis_enteral_performed_by" />
 <?php xl('RN','e')?></label> &nbsp;
 <label>
-<input type="checkbox" name="non_oasis_enteral_performed_by" value="Caregiver"  id="non_oasis_enteral_performed_by" />
+<input type="radio" name="non_oasis_enteral_performed_by" value="Caregiver"  id="non_oasis_enteral_performed_by" />
 <?php xl('Caregiver','e')?></label> &nbsp;<br>
 <label>
-<input type="checkbox" name="non_oasis_enteral_performed_by" value="Other"  id="non_oasis_enteral_performed_by" />
+<input type="radio" name="non_oasis_enteral_performed_by" value="Other"  id="non_oasis_enteral_performed_by" />
 <?php xl('Other','e')?></label> &nbsp;
 
 <input type="text" name="non_oasis_enteral_performed_by_other" id="non_oasis_enteral_performed_by_other" size="45" />
@@ -2989,27 +2977,27 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<center><strong><?php xl('SKILLED CARE PROVIDED THIS VISIT','e')?></strong></center>
 			<strong><?php xl('CARE COORDINATION:','e')?></strong>
 			<label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="RN"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="RN"  id="non_oasis_skilled_care" />
 <?php xl('RN','e')?>
 </label>
 <label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="PT"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="PT"  id="non_oasis_skilled_care" />
 <?php xl('PT','e')?>
 </label>
 <label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="OT"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="OT"  id="non_oasis_skilled_care" />
 <?php xl('OT','e')?>
 </label>
 <label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="ST"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="ST"  id="non_oasis_skilled_care" />
 <?php xl('ST','e')?>
 </label>
 <label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="MSW"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="MSW"  id="non_oasis_skilled_care" />
 <?php xl('MSW','e')?>
 </label>
 <label>
-<input type="checkbox" name="non_oasis_skilled_care[]" value="Aide"  id="non_oasis_skilled_care" />
+<input type="radio" name="non_oasis_skilled_care[]" value="Aide"  id="non_oasis_skilled_care" />
 <?php xl('Aide','e')?>
 </label>
 		</td>
