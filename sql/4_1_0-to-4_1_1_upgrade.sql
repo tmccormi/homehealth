@@ -8163,3 +8163,46 @@ UPDATE `registry` SET `name` = 'Nurse Visit Note' WHERE `name` = 'Nurse Visitnot
 #IfColumnDoesExist registry name
 UPDATE `registry` SET `name` = 'Supervisor Visit' WHERE `name` = 'HHA-Supervisor Visit';
 #EndIf
+
+-- Drops the oasis_therapy_heart_sounds_site, non_oasis_infusion, and non_oasis_infusion_intrathecal_date columns from the table forms_oasis_discharge
+#IfColumnDoesExist forms_oasis_discharge oasis_therapy_heart_sounds_site
+ALTER TABLE `forms_oasis_discharge` DROP COLUMN `oasis_therapy_heart_sounds_site`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_discharge non_oasis_infusion
+ALTER TABLE `forms_oasis_discharge` DROP COLUMN `non_oasis_infusion`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_discharge non_oasis_infusion_intrathecal_date
+ALTER TABLE `forms_oasis_discharge` DROP COLUMN `non_oasis_infusion_intrathecal_date`;
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_associated_with_other data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_associated_with_other
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_associated_with_other` varchar(255) NOT NULL default '';
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_edema_right data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_edema_right
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_edema_right` varchar(10) NOT NULL default '';
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_edema_dependent_right data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_edema_dependent_right
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_edema_dependent_right` varchar(12) NOT NULL default '';
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_capillary_right data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_capillary_right
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_capillary_right` varchar(2) NOT NULL default '';
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_right data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_right
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_right` TEXT;
+#EndIf
+
+-- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_other_right data
+#IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_other_right
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_other_right` varchar(30) NOT NULL default '';
+#EndIf

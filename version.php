@@ -18,5 +18,5 @@ $v_realpatch = '0';
 // internally to determine when a database upgrade is needed.
 //
 // THIS VERSION NUMBER IS MEDASKO specific, be careful if we merge with OpenEMR upstream (tm)
-$v_database = 80;
+$v_database = 81;
 ?>
