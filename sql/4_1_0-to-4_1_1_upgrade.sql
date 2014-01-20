@@ -2008,11 +2008,9 @@ oasis_therapy_frequency_pain varchar(1),
 oasis_system_review_weight varchar(30),
 oasis_system_review_weight_detail varchar(10),
 oasis_system_review_blood_sugar varchar(30),
-oasis_system_review_bowel varchar(30),
 oasis_system_review_bowel_detail varchar(10),
 oasis_system_review_bowel_other varchar(30),
 oasis_system_review_bowel_sounds varchar(30),
-oasis_system_review_bladder varchar(30),
 oasis_system_review_bladder_detail varchar(10),
 oasis_system_review_bladder_other varchar(30),
 oasis_system_review_urinary_output varchar(30),
@@ -8205,4 +8203,22 @@ ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_right` TEXT;
 -- Adds new column to forms_oasis_discharge table to store oasis_therapy_heart_sounds_other_right data
 #IfMissingColumn forms_oasis_discharge oasis_therapy_heart_sounds_other_right
 ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_heart_sounds_other_right` varchar(30) NOT NULL default '';
+#EndIf
+
+-- Drops the columns oasis_system_review_bowel, and oasis_system_review_bladder from forms_oasis_discharge
+#IfColumnDoesExist forms_oasis_discharge oasis_system_review_bowel
+ALTER TABLE `forms_oasis_discharge` DROP COLUMN `oasis_system_review_bowel`;
+#EndIf
+
+#IfColumnDoesExist forms_oasis_discharge oasis_system_review_bladder
+ALTER TABLE `forms_oasis_discharge` DROP COLUMN `oasis_system_review_bladder`;
+#EndIf
+
+-- Adds new columns in forms_oasis_discharge for newly added textboxes
+#IfMissingColumn forms_oasis_discharge oasis_therapy_vital_sign_pulse_textinput
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_vital_sign_pulse_textinput` varchar(100) NOT NULL default '';
+#EndIf
+
+#IfMissingColumn forms_oasis_discharge oasis_therapy_vital_sign_respiratory_textinput
+ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_vital_sign_respiratory_textinput` varchar(100) NOT NULL default '';
 #EndIf

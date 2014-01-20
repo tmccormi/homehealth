@@ -568,25 +568,24 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<center><strong><?php xl('SYSTEM REVIEW','e');?></strong></center>
 			<?php xl('Weight:','e');?>
 			<input type="text" name="oasis_system_review_weight" value="<?php echo $obj{"oasis_system_review_weight"};?>">
-			<label><input type="checkbox" name="oasis_system_review_weight_detail" value="reported" <?php if($obj{"oasis_system_review_weight_detail"}=="reported"){echo "checked";}?> ><?php xl(' reported ','e')?></label>
-			<label><input type="checkbox" name="oasis_system_review_weight_detail" value="actual" <?php if($obj{"oasis_system_review_weight_detail"}=="actual"){echo "checked";}?> ><?php xl(' actual ','e')?></label>
+			<label><input type="radio" name="oasis_system_review_weight_detail" value="reported" <?php if($obj{"oasis_system_review_weight_detail"}=="reported"){echo "checked";}?> ><?php xl(' reported ','e')?></label>
+			<label><input type="radio" name="oasis_system_review_weight_detail" value="actual" <?php if($obj{"oasis_system_review_weight_detail"}=="actual"){echo "checked";}?> ><?php xl(' actual ','e')?></label>
 			
 			<br>
 			<?php xl('Blood sugars (range):','e');?>
 			<input type="text" name="oasis_system_review_blood_sugar" value="<?php echo $obj{"oasis_system_review_blood_sugar"};?>">
 			
 			<br>
-			<?php xl('Bowel:','e');?>
-			<input type="text" name="oasis_system_review_bowel" value="<?php echo $obj{"oasis_system_review_bowel"};?>">
+			<?php xl('Abdomen:','e');?>
 			<label><input type="checkbox" name="oasis_system_review_bowel_detail" value="WNL" <?php if($obj{"oasis_system_review_bowel_detail"}=="WNL"){echo "checked";}?> ><?php xl(' WNL ','e')?></label>
 			<label><input type="checkbox" name="oasis_system_review_bowel_detail" value="Other" <?php if($obj{"oasis_system_review_bowel_detail"}=="Other"){echo "checked";}?> ><?php xl(' Other ','e')?></label>
 			<input type="text" name="oasis_system_review_bowel_other" value="<?php echo $obj{"oasis_system_review_bowel_other"};?>">
+			<br />
 			<?php xl('Bowel sounds','e');?>
 			<input type="text" name="oasis_system_review_bowel_sounds" value="<?php echo $obj{"oasis_system_review_bowel_sounds"};?>">
 			
 			<br>
 			<?php xl('Bladder:','e');?>
-			<input type="text" name="oasis_system_review_bladder" value="<?php echo $obj{"oasis_system_review_bladder"};?>">
 			<label><input type="checkbox" name="oasis_system_review_bladder_detail" value="WNL" <?php if($obj{"oasis_system_review_bladder_detail"}=="WNL"){echo "checked";}?> ><?php xl(' WNL ','e')?></label>
 			<label><input type="checkbox" name="oasis_system_review_bladder_detail" value="Other" <?php if($obj{"oasis_system_review_bladder_detail"}=="Other"){echo "checked";}?> ><?php xl(' Other ','e')?></label>
 			<input type="text" name="oasis_system_review_bladder_other" value="<?php echo $obj{"oasis_system_review_bladder_other"};?>">
@@ -604,7 +603,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<?php xl(' mL ','e')?>
 			
 			<br>
-			<label><input type="checkbox" name="oasis_system_review[]" value="Suprapubic" <?php if(in_array("Suprapubic",$oasis_system_review)) echo "checked"; ?> ><?php xl(' Suprapubic ','e')?></label>
+			<label><input type="checkbox" name="oasis_system_review[]" value="Suprapubic" <?php if(in_array("Suprapubic",$oasis_system_review)) echo "checked"; ?> ><?php xl(' Suprapubic Tube Change ','e')?></label>
 			
 			<br>
 			<?php xl('Tolerated procedure well: ','e')?>
@@ -712,8 +711,8 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <br />
 <strong>
 <?php xl('Nutritional Requirements (diet)','e')?></strong><br />
-<label><input type="checkbox" name="oasis_nutrition_requirements" value="Increase fluids amt"  id="oasis_nutrition_requirements"  <?php if($obj{"oasis_nutrition_requirements"}=="Increase fluids amt") echo "checked"; ?> /> <?php xl('Increase fluids amt','e')?></label> &nbsp;
-<label><input type="checkbox" name="oasis_nutrition_requirements" value="Restrict fluids amt"  id="oasis_nutrition_requirements" <?php if($obj{"oasis_nutrition_requirements"}=="Restrict fluids amt") echo "checked"; ?>  /> <?php xl('Restrict fluids amt','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_requirements" value="Increase fluids amt"  id="oasis_nutrition_requirements"  <?php if($obj{"oasis_nutrition_requirements"}=="Increase fluids amt") echo "checked"; ?> /> <?php xl('Increase fluids amt','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_requirements" value="Restrict fluids amt"  id="oasis_nutrition_requirements" <?php if($obj{"oasis_nutrition_requirements"}=="Restrict fluids amt") echo "checked"; ?>  /> <?php xl('Restrict fluids amt','e')?></label> &nbsp;
 
 <br />
 <strong><?php xl('Appetite','e')?></strong>
@@ -945,11 +944,21 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Carotid" <?php if(in_array("Carotid",$oasis_therapy_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Carotid ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Apical" <?php if(in_array("Apical",$oasis_therapy_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Apical ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Brachial" <?php if(in_array("Brachial",$oasis_therapy_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Brachial ','e')?></label> 
-			<br><br>			
+			
+			<br />
+			
+			<?php xl("Pulse Data: ","e");?><input type="text" name="oasis_therapy_vital_sign_pulse_textinput" value="<?php echo $obj{"oasis_therapy_vital_sign_pulse_textinput"};?>">
+			
+			<br /><br />
+						
 			<strong><?php xl("Respiratory Rate:","e");?></strong>&nbsp;&nbsp;
 			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Normal" <?php if($obj{"oasis_therapy_vital_sign_respiratory_rate"}=="Normal"){echo "checked";}?> ><?php xl(' Normal ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Cheynes" <?php if($obj{"oasis_therapy_vital_sign_respiratory_rate"}=="Cheynes"){echo "checked";}?> ><?php xl(' Cheynes ','e')?></label> 
-			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Stokes" <?php if($obj{"oasis_therapy_vital_sign_respiratory_rate"}=="Stokes"){echo "checked";}?> ><?php xl(' Stokes ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Stokes" <?php if($obj{"oasis_therapy_vital_sign_respiratory_rate"}=="Stokes"){echo "checked";}?> ><?php xl(' Stokes ','e')?></label>
+			
+			<br />
+			
+			<?php xl("Respiratory Data: ","e");?><input type="text" name="oasis_therapy_vital_sign_respiratory_textinput" value="<?php echo $obj{"oasis_therapy_vital_sign_respiratory_textinput"};?>"> 
 		</td>
 	</tr>
 </table>
@@ -1438,13 +1447,52 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Type","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[0];?>">
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type" <?php if($oasis_therapy_wound_lesion_type[0] == 'choose_type' {echo 'selected';} ?>>Choose Type</option>
+						<option value="diabetic_ulcer" <?php if($oasis_therapy_wound_lesion_type[0] == 'diabetic_ulcer' {echo 'selected';} ?>>Diabetic Ulcer</option>				
+						<option value="pressure_ulcer" <?php if($oasis_therapy_wound_lesion_type[0] == 'pressure_ulcer' {echo 'selected';} ?>>Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer" <?php if($oasis_therapy_wound_lesion_type[0] == 'venous_stasis_ulcer' {echo 'selected';} ?>>Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer" <?php if($oasis_therapy_wound_lesion_type[0] == 'arterial_ulcer' {echo 'selected';} ?>>Arterial Ulcer</option>
+						<option value="traumatic_wound" <?php if($oasis_therapy_wound_lesion_type[0] == 'traumatic_wound' {echo 'selected';} ?>>Traumatic Wound</option>
+						<option value="burn_wound" <?php if($oasis_therapy_wound_lesion_type[0] == 'burn_wound' {echo 'selected';} ?>>Burn Wound</option>
+						<option value="surgical_wound" <?php if($oasis_therapy_wound_lesion_type[0] == 'surgical_wound' {echo 'selected';} ?>>Surgical Wound</option>
+						<option value="superficial_skin_tear" <?php if($oasis_therapy_wound_lesion_type[0] == 'superficial_skin_tear' {echo 'selected';} ?>>Superficial Skin Tear</option>
+						<option value="other" <?php if($oasis_therapy_wound_lesion_type[0] == 'other' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[0]; ?>" >
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[1];?>">
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type" <?php if($oasis_therapy_wound_lesion_type[1] == 'choose_type' {echo 'selected';} ?>>Choose Type</option>
+						<option value="diabetic_ulcer" <?php if($oasis_therapy_wound_lesion_type[1] == 'diabetic_ulcer' {echo 'selected';} ?>>Diabetic Ulcer</option>				
+						<option value="pressure_ulcer" <?php if($oasis_therapy_wound_lesion_type[1] == 'pressure_ulcer' {echo 'selected';} ?>>Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer" <?php if($oasis_therapy_wound_lesion_type[1] == 'venous_stasis_ulcer' {echo 'selected';} ?>>Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer" <?php if($oasis_therapy_wound_lesion_type[1] == 'arterial_ulcer' {echo 'selected';} ?>>Arterial Ulcer</option>
+						<option value="traumatic_wound" <?php if($oasis_therapy_wound_lesion_type[1] == 'traumatic_wound' {echo 'selected';} ?>>Traumatic Wound</option>
+						<option value="burn_wound" <?php if($oasis_therapy_wound_lesion_type[1] == 'burn_wound' {echo 'selected';} ?>>Burn Wound</option>
+						<option value="surgical_wound" <?php if($oasis_therapy_wound_lesion_type[1] == 'surgical_wound' {echo 'selected';} ?>>Surgical Wound</option>
+						<option value="superficial_skin_tear" <?php if($oasis_therapy_wound_lesion_type[1] == 'superficial_skin_tear' {echo 'selected';} ?>>Superficial Skin Tear</option>
+						<option value="other" <?php if($oasis_therapy_wound_lesion_type[1] == 'other' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[1]; ?>" >
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[2];?>">
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type" <?php if($oasis_therapy_wound_lesion_type[2] == 'choose_type' {echo 'selected';} ?>>Choose Type</option>
+						<option value="diabetic_ulcer" <?php if($oasis_therapy_wound_lesion_type[2] == 'diabetic_ulcer' {echo 'selected';} ?>>Diabetic Ulcer</option>				
+						<option value="pressure_ulcer" <?php if($oasis_therapy_wound_lesion_type[2] == 'pressure_ulcer' {echo 'selected';} ?>>Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer" <?php if($oasis_therapy_wound_lesion_type[2] == 'venous_stasis_ulcer' {echo 'selected';} ?>>Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer" <?php if($oasis_therapy_wound_lesion_type[2] == 'arterial_ulcer' {echo 'selected';} ?>>Arterial Ulcer</option>
+						<option value="traumatic_wound" <?php if($oasis_therapy_wound_lesion_type[2] == 'traumatic_wound' {echo 'selected';} ?>>Traumatic Wound</option>
+						<option value="burn_wound" <?php if($oasis_therapy_wound_lesion_type[2] == 'burn_wound' {echo 'selected';} ?>>Burn Wound</option>
+						<option value="surgical_wound" <?php if($oasis_therapy_wound_lesion_type[2] == 'surgical_wound' {echo 'selected';} ?>>Surgical Wound</option>
+						<option value="superficial_skin_tear" <?php if($oasis_therapy_wound_lesion_type[2] == 'superficial_skin_tear' {echo 'selected';} ?>>Superficial Skin Tear</option>
+						<option value="other" <?php if($oasis_therapy_wound_lesion_type[2] == 'other' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="<?php echo $oasis_therapy_wound_lesion_type[2]; ?>" >
 					</td>
 				</tr>
 				<tr>
@@ -1452,13 +1500,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Status","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="<?php echo $oasis_therapy_wound_lesion_status[0];?>">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status" <?php if($oasis_therapy_wound_lesion_status[0] == 'choose_status' {echo 'selected';} ?>>Choose Status</option>
+						<option value="open" <?php if($oasis_therapy_wound_lesion_status[0] == 'open' {echo 'selected';} ?>>Open</option>
+						<option value="closed" <?php if($oasis_therapy_wound_lesion_status[0] == 'closed' {echo 'selected';} ?>>Closed</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="<?php echo $oasis_therapy_wound_lesion_status[1];?>">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status" <?php if($oasis_therapy_wound_lesion_status[1] == 'choose_status' {echo 'selected';} ?>>Choose Status</option>
+						<option value="open" <?php if($oasis_therapy_wound_lesion_status[1] == 'open' {echo 'selected';} ?>>Open</option>
+						<option value="closed" <?php if($oasis_therapy_wound_lesion_status[1] == 'closed' {echo 'selected';} ?>>Closed</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="<?php echo $oasis_therapy_wound_lesion_status[2];?>">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status" <?php if($oasis_therapy_wound_lesion_status[2] == 'choose_status' {echo 'selected';} ?>>Choose Status</option>
+						<option value="open" <?php if($oasis_therapy_wound_lesion_status[2] == 'open' {echo 'selected';} ?>>Open</option>
+						<option value="closed" <?php if($oasis_therapy_wound_lesion_status[2] == 'closed' {echo 'selected';} ?>>Closed</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1495,13 +1555,34 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Stage (pressure ulcers only)","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="<?php echo $oasis_therapy_wound_lesion_stage[0];?>">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage" <?php if($oasis_therapy_wound_lesion_stage[0] == 'choose_status' {echo 'selected';} ?>>Choose Stage</option>
+						<option value="1" <?php if($oasis_therapy_wound_lesion_stage[0] == '1' {echo 'selected';} ?>>1</option>
+						<option value="2" <?php if($oasis_therapy_wound_lesion_stage[0] == '2' {echo 'selected';} ?>>2</option>
+						<option value="3" <?php if($oasis_therapy_wound_lesion_stage[0] == '3' {echo 'selected';} ?>>3</option>
+						<option value="4" <?php if($oasis_therapy_wound_lesion_stage[0] == '4' {echo 'selected';} ?>>4</option>
+						<option value="utd" <?php if($oasis_therapy_wound_lesion_stage[0] == 'utd' {echo 'selected';} ?>>UTD</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="<?php echo $oasis_therapy_wound_lesion_stage[1];?>">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage" <?php if($oasis_therapy_wound_lesion_stage[1] == 'choose_status' {echo 'selected';} ?>>Choose Stage</option>
+						<option value="1" <?php if($oasis_therapy_wound_lesion_stage[1] == '1' {echo 'selected';} ?>>1</option>
+						<option value="2" <?php if($oasis_therapy_wound_lesion_stage[1] == '2' {echo 'selected';} ?>>2</option>
+						<option value="3" <?php if($oasis_therapy_wound_lesion_stage[1] == '3' {echo 'selected';} ?>>3</option>
+						<option value="4" <?php if($oasis_therapy_wound_lesion_stage[1] == '4' {echo 'selected';} ?>>4</option>
+						<option value="utd" <?php if($oasis_therapy_wound_lesion_stage[1] == 'utd' {echo 'selected';} ?>>UTD</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="<?php echo $oasis_therapy_wound_lesion_stage[2];?>">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage" <?php if($oasis_therapy_wound_lesion_stage[2] == 'choose_status' {echo 'selected';} ?>>Choose Stage</option>
+						<option value="1" <?php if($oasis_therapy_wound_lesion_stage[2] == '1' {echo 'selected';} ?>>1</option>
+						<option value="2" <?php if($oasis_therapy_wound_lesion_stage[2] == '2' {echo 'selected';} ?>>2</option>
+						<option value="3" <?php if($oasis_therapy_wound_lesion_stage[2] == '3' {echo 'selected';} ?>>3</option>
+						<option value="4" <?php if($oasis_therapy_wound_lesion_stage[2] == '4' {echo 'selected';} ?>>4</option>
+						<option value="utd" <?php if($oasis_therapy_wound_lesion_stage[2] == 'utd' {echo 'selected';} ?>>UTD</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1509,13 +1590,28 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Tunneling/Undermining","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="<?php echo $oasis_therapy_wound_lesion_tunneling[0];?>">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[0] == 'choose_tunneling' {echo 'selected';} ?>>Choose Tunneling/Undermining</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_tunneling[0] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[0] == 'tunneling' {echo 'selected';} ?>>Tunneling</option>
+						<option value="undermining" <?php if($oasis_therapy_wound_lesion_tunneling[0] == 'undermining' {echo 'selected';} ?>>Undermining</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="<?php echo $oasis_therapy_wound_lesion_tunneling[1];?>">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[1] == 'choose_tunneling' {echo 'selected';} ?>>Choose Tunneling/Undermining</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_tunneling[1] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[1] == 'tunneling' {echo 'selected';} ?>>Tunneling</option>
+						<option value="undermining" <?php if($oasis_therapy_wound_lesion_tunneling[1] == 'undermining' {echo 'selected';} ?>>Undermining</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="<?php echo $oasis_therapy_wound_lesion_tunneling[2];?>">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[2] == 'choose_tunneling' {echo 'selected';} ?>>Choose Tunneling/Undermining</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_tunneling[2] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="tunneling" <?php if($oasis_therapy_wound_lesion_tunneling[2] == 'tunneling' {echo 'selected';} ?>>Tunneling</option>
+						<option value="undermining" <?php if($oasis_therapy_wound_lesion_tunneling[2] == 'undermining' {echo 'selected';} ?>>Undermining</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1523,13 +1619,31 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Odor","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="<?php echo $oasis_therapy_wound_lesion_odor[0];?>">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor" <?php if($oasis_therapy_wound_lesion_odor[0] == 'choose_odor' {echo 'selected';} ?>>Choose Odor</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_odor[0] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="slight" <?php if($oasis_therapy_wound_lesion_odor[0] == 'slight' {echo 'selected';} ?>>Slight</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_odor[0] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="strong" <?php if($oasis_therapy_wound_lesion_odor[0] == 'strong' {echo 'selected';} ?>>Strong</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="<?php echo $oasis_therapy_wound_lesion_odor[1];?>">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor" <?php if($oasis_therapy_wound_lesion_odor[1] == 'choose_odor' {echo 'selected';} ?>>Choose Odor</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_odor[1] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="slight" <?php if($oasis_therapy_wound_lesion_odor[1] == 'slight' {echo 'selected';} ?>>Slight</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_odor[1] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="strong" <?php if($oasis_therapy_wound_lesion_odor[1] == 'strong' {echo 'selected';} ?>>Strong</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="<?php echo $oasis_therapy_wound_lesion_odor[2];?>">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor" <?php if($oasis_therapy_wound_lesion_odor[2] == 'choose_odor' {echo 'selected';} ?>>Choose Odor</option>
+						<option value="none" <?php if($oasis_therapy_wound_lesion_odor[2] == 'none' {echo 'selected';} ?>>None</option>
+						<option value="slight" <?php if($oasis_therapy_wound_lesion_odor[2] == 'slight' {echo 'selected';} ?>>Slight</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_odor[2] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="strong" <?php if($oasis_therapy_wound_lesion_odor[2] == 'strong' {echo 'selected';} ?>>Strong</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1537,13 +1651,34 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Surrounding Skin","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="<?php echo $oasis_therapy_wound_lesion_skin[0];?>">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin" <?php if($oasis_therapy_wound_lesion_skin[0] == 'choose_surrounding_skin' {echo 'selected';} ?>>Choose Surrounding Skin</option>
+						<option value="normal" <?php if($oasis_therapy_wound_lesion_skin[0] == 'normal' {echo 'selected';} ?>>Normal</option>
+						<option value="red" <?php if($oasis_therapy_wound_lesion_skin[0] == 'red' {echo 'selected';} ?>>Red</option>
+						<option value="black" <?php if($oasis_therapy_wound_lesion_skin[0] == 'black' {echo 'selected';} ?>>Black</option>
+						<option value="pale" <?php if($oasis_therapy_wound_lesion_skin[0] == 'pale' {echo 'selected';} ?>>Pale</option>
+						<option value="purple" <?php if($oasis_therapy_wound_lesion_skin[0] == 'purple' {echo 'selected';} ?>>Purple</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="<?php echo $oasis_therapy_wound_lesion_skin[1];?>">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin" <?php if($oasis_therapy_wound_lesion_skin[1] == 'choose_surrounding_skin' {echo 'selected';} ?>>Choose Surrounding Skin</option>
+						<option value="normal" <?php if($oasis_therapy_wound_lesion_skin[1] == 'normal' {echo 'selected';} ?>>Normal</option>
+						<option value="red" <?php if($oasis_therapy_wound_lesion_skin[1] == 'red' {echo 'selected';} ?>>Red</option>
+						<option value="black" <?php if($oasis_therapy_wound_lesion_skin[1] == 'black' {echo 'selected';} ?>>Black</option>
+						<option value="pale" <?php if($oasis_therapy_wound_lesion_skin[1] == 'pale' {echo 'selected';} ?>>Pale</option>
+						<option value="purple" <?php if($oasis_therapy_wound_lesion_skin[1] == 'purple' {echo 'selected';} ?>>Purple</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="<?php echo $oasis_therapy_wound_lesion_skin[2];?>">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin" <?php if($oasis_therapy_wound_lesion_skin[2] == 'choose_surrounding_skin' {echo 'selected';} ?>>Choose Surrounding Skin</option>
+						<option value="normal" <?php if($oasis_therapy_wound_lesion_skin[2] == 'normal' {echo 'selected';} ?>>Normal</option>
+						<option value="red" <?php if($oasis_therapy_wound_lesion_skin[2] == 'red' {echo 'selected';} ?>>Red</option>
+						<option value="black" <?php if($oasis_therapy_wound_lesion_skin[2] == 'black' {echo 'selected';} ?>>Black</option>
+						<option value="pale" <?php if($oasis_therapy_wound_lesion_skin[2] == 'pale' {echo 'selected';} ?>>Pale</option>
+						<option value="purple" <?php if($oasis_therapy_wound_lesion_skin[2] == 'purple' {echo 'selected';} ?>>Purple</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1551,13 +1686,37 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Edema","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="<?php echo $oasis_therapy_wound_lesion_edema[0];?>">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema" <?php if($oasis_therapy_wound_lesion_edema[0] == 'choose_edema' {echo 'selected';} ?>>Choose Edema</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_edema[0] == 'no' {echo 'selected';} ?>>No</option>
+						<option value="+1" <?php if($oasis_therapy_wound_lesion_edema[0] == '+1' {echo 'selected';} ?>>+1</option>
+						<option value="+2" <?php if($oasis_therapy_wound_lesion_edema[0] == '+2' {echo 'selected';} ?>>+2</option>
+						<option value="+3" <?php if($oasis_therapy_wound_lesion_edema[0] == '+3' {echo 'selected';} ?>>+3</option>
+						<option value="+4" <?php if($oasis_therapy_wound_lesion_edema[0] == '+4' {echo 'selected';} ?>>+4</option>
+						<option value="+5" <?php if($oasis_therapy_wound_lesion_edema[0] == '+5' {echo 'selected';} ?>>+5</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="<?php echo $oasis_therapy_wound_lesion_edema[1];?>">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema" <?php if($oasis_therapy_wound_lesion_edema[1] == 'choose_edema' {echo 'selected';} ?>>Choose Edema</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_edema[1] == 'no' {echo 'selected';} ?>>No</option>
+						<option value="+1" <?php if($oasis_therapy_wound_lesion_edema[1] == '+1' {echo 'selected';} ?>>+1</option>
+						<option value="+2" <?php if($oasis_therapy_wound_lesion_edema[1] == '+2' {echo 'selected';} ?>>+2</option>
+						<option value="+3" <?php if($oasis_therapy_wound_lesion_edema[1] == '+3' {echo 'selected';} ?>>+3</option>
+						<option value="+4" <?php if($oasis_therapy_wound_lesion_edema[1] == '+4' {echo 'selected';} ?>>+4</option>
+						<option value="+5" <?php if($oasis_therapy_wound_lesion_edema[1] == '+5' {echo 'selected';} ?>>+5</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="<?php echo $oasis_therapy_wound_lesion_edema[2];?>">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema" <?php if($oasis_therapy_wound_lesion_edema[2] == 'choose_edema' {echo 'selected';} ?>>Choose Edema</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_edema[2] == 'no' {echo 'selected';} ?>>No</option>
+						<option value="+1" <?php if($oasis_therapy_wound_lesion_edema[2] == '+1' {echo 'selected';} ?>>+1</option>
+						<option value="+2" <?php if($oasis_therapy_wound_lesion_edema[2] == '+2' {echo 'selected';} ?>>+2</option>
+						<option value="+3" <?php if($oasis_therapy_wound_lesion_edema[2] == '+3' {echo 'selected';} ?>>+3</option>
+						<option value="+4" <?php if($oasis_therapy_wound_lesion_edema[2] == '+4' {echo 'selected';} ?>>+4</option>
+						<option value="+5" <?php if($oasis_therapy_wound_lesion_edema[2] == '+5' {echo 'selected';} ?>>+5</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1565,13 +1724,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Stoma","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="<?php echo $oasis_therapy_wound_lesion_stoma[0];?>">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma" <?php if($oasis_therapy_wound_lesion_stoma[0] == 'choose_stoma' {echo 'selected';} ?>>Choose Stoma</option>
+						<option value="yes" <?php if($oasis_therapy_wound_lesion_stoma[0] == 'yes' {echo 'selected';} ?>>Yes</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_stoma[0] == 'no' {echo 'selected';} ?>>No</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="<?php echo $oasis_therapy_wound_lesion_stoma[1];?>">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma" <?php if($oasis_therapy_wound_lesion_stoma[1] == 'choose_stoma' {echo 'selected';} ?>>Choose Stoma</option>
+						<option value="yes" <?php if($oasis_therapy_wound_lesion_stoma[1] == 'yes' {echo 'selected';} ?>>Yes</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_stoma[1] == 'no' {echo 'selected';} ?>>No</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="<?php echo $oasis_therapy_wound_lesion_stoma[2];?>">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma" <?php if($oasis_therapy_wound_lesion_stoma[2] == 'choose_stoma' {echo 'selected';} ?>>Choose Stoma</option>
+						<option value="yes" <?php if($oasis_therapy_wound_lesion_stoma[2] == 'yes' {echo 'selected';} ?>>Yes</option>
+						<option value="no" <?php if($oasis_therapy_wound_lesion_stoma[2] == 'no' {echo 'selected';} ?>>No</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1579,13 +1750,31 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Appearance of the Wound Bed","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="<?php echo $oasis_therapy_wound_lesion_appearance[0];?>">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance" <?php if($oasis_therapy_wound_lesion_appearance[0] == 'choose_appearance' {echo 'selected';} ?>>Choose Appearance</option>
+						<option value="beefy_red" <?php if($oasis_therapy_wound_lesion_appearance[0] == 'beefy_red' {echo 'selected';} ?>>Beefy Red</option>
+						<option value="yellow" <?php if($oasis_therapy_wound_lesion_appearance[0] == 'yellow' {echo 'selected';} ?>>Yellow</option>
+						<option value="pink" <?php if($oasis_therapy_wound_lesion_appearance[0] == 'pink' {echo 'selected';} ?>>Pink</option>
+						<option value="necrotic" <?php if($oasis_therapy_wound_lesion_appearance[0] == 'necrotic' {echo 'selected';} ?>>Necrotic</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="<?php echo $oasis_therapy_wound_lesion_appearance[1];?>">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance" <?php if($oasis_therapy_wound_lesion_appearance[1] == 'choose_appearance' {echo 'selected';} ?>>Choose Appearance</option>
+						<option value="beefy_red" <?php if($oasis_therapy_wound_lesion_appearance[1] == 'beefy_red' {echo 'selected';} ?>>Beefy Red</option>
+						<option value="yellow" <?php if($oasis_therapy_wound_lesion_appearance[1] == 'yellow' {echo 'selected';} ?>>Yellow</option>
+						<option value="pink" <?php if($oasis_therapy_wound_lesion_appearance[1] == 'pink' {echo 'selected';} ?>>Pink</option>
+						<option value="necrotic" <?php if($oasis_therapy_wound_lesion_appearance[1] == 'necrotic' {echo 'selected';} ?>>Necrotic</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="<?php echo $oasis_therapy_wound_lesion_appearance[2];?>">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance" <?php if($oasis_therapy_wound_lesion_appearance[2] == 'choose_appearance' {echo 'selected';} ?>>Choose Appearance</option>
+						<option value="beefy_red" <?php if($oasis_therapy_wound_lesion_appearance[2] == 'beefy_red' {echo 'selected';} ?>>Beefy Red</option>
+						<option value="yellow" <?php if($oasis_therapy_wound_lesion_appearance[2] == 'yellow' {echo 'selected';} ?>>Yellow</option>
+						<option value="pink" <?php if($oasis_therapy_wound_lesion_appearance[2] == 'pink' {echo 'selected';} ?>>Pink</option>
+						<option value="necrotic" <?php if($oasis_therapy_wound_lesion_appearance[2] == 'necrotic' {echo 'selected';} ?>>Necrotic</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1593,13 +1782,28 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Drainage Amount","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="<?php echo $oasis_therapy_wound_lesion_drainage[0];?>">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage" <?php if($oasis_therapy_wound_lesion_drainage[0] == 'choose_drainage' {echo 'selected';} ?>>Choose Drainage</option>
+						<option value="small" <?php if($oasis_therapy_wound_lesion_drainage[0] == 'small' {echo 'selected';} ?>>Small</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_drainage[0] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="large" <?php if($oasis_therapy_wound_lesion_drainage[0] == 'large' {echo 'selected';} ?>>Large</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="<?php echo $oasis_therapy_wound_lesion_drainage[1];?>">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage" <?php if($oasis_therapy_wound_lesion_drainage[1] == 'choose_drainage' {echo 'selected';} ?>>Choose Drainage</option>
+						<option value="small" <?php if($oasis_therapy_wound_lesion_drainage[1] == 'small' {echo 'selected';} ?>>Small</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_drainage[1] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="large" <?php if($oasis_therapy_wound_lesion_drainage[1] == 'large' {echo 'selected';} ?>>Large</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="<?php echo $oasis_therapy_wound_lesion_drainage[2];?>">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage" <?php if($oasis_therapy_wound_lesion_drainage[2] == 'choose_drainage' {echo 'selected';} ?>>Choose Drainage</option>
+						<option value="small" <?php if($oasis_therapy_wound_lesion_drainage[2] == 'small' {echo 'selected';} ?>>Small</option>
+						<option value="moderate" <?php if($oasis_therapy_wound_lesion_drainage[2] == 'moderate' {echo 'selected';} ?>>Moderate</option>
+						<option value="large" <?php if($oasis_therapy_wound_lesion_drainage[2] == 'large' {echo 'selected';} ?>>Large</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1607,12 +1811,39 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Color","e");?>
 					</td>
 					<td>
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color" <?php if($oasis_therapy_wound_lesion_color[0] == 'choose_color' {echo 'selected';} ?>>Choose Color</option>
+						<option value="clear" <?php if($oasis_therapy_wound_lesion_color[0] == 'clear' {echo 'selected';} ?>>Clear</option>
+						<option value="tan" <?php if($oasis_therapy_wound_lesion_color[0] == 'tan' {echo 'selected';} ?>>Tan</option>
+						<option value="serosanguinous" <?php if($oasis_therapy_wound_lesion_color[0] == 'serosanguinous' {echo 'selected';} ?>>Serosanguinous</option>
+						<option value="bloody" <?php if($oasis_therapy_wound_lesion_color[0] == 'bloody' {echo 'selected';} ?>>Bloody</option>
+						<option value="other_color" <?php if($oasis_therapy_wound_lesion_color[0] == 'other_color' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />			
 						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="<?php echo $oasis_therapy_wound_lesion_color[0];?>">
 					</td>
 					<td>
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color" <?php if($oasis_therapy_wound_lesion_color[1] == 'choose_color' {echo 'selected';} ?>>Choose Color</option>
+						<option value="clear" <?php if($oasis_therapy_wound_lesion_color[1] == 'clear' {echo 'selected';} ?>>Clear</option>
+						<option value="tan" <?php if($oasis_therapy_wound_lesion_color[1] == 'tan' {echo 'selected';} ?>>Tan</option>
+						<option value="serosanguinous" <?php if($oasis_therapy_wound_lesion_color[1] == 'serosanguinous' {echo 'selected';} ?>>Serosanguinous</option>
+						<option value="bloody" <?php if($oasis_therapy_wound_lesion_color[1] == 'bloody' {echo 'selected';} ?>>Bloody</option>
+						<option value="other_color" <?php if($oasis_therapy_wound_lesion_color[1] == 'other_color' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />			
 						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="<?php echo $oasis_therapy_wound_lesion_color[1];?>">
 					</td>
 					<td>
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color" <?php if($oasis_therapy_wound_lesion_color[2] == 'choose_color' {echo 'selected';} ?>>Choose Color</option>
+						<option value="clear" <?php if($oasis_therapy_wound_lesion_color[2] == 'clear' {echo 'selected';} ?>>Clear</option>
+						<option value="tan" <?php if($oasis_therapy_wound_lesion_color[2] == 'tan' {echo 'selected';} ?>>Tan</option>
+						<option value="serosanguinous" <?php if($oasis_therapy_wound_lesion_color[2] == 'serosanguinous' {echo 'selected';} ?>>Serosanguinous</option>
+						<option value="bloody" <?php if($oasis_therapy_wound_lesion_color[2] == 'bloody' {echo 'selected';} ?>>Bloody</option>
+						<option value="other_color" <?php if($oasis_therapy_wound_lesion_color[2] == 'other_color' {echo 'selected';} ?>>Other (Specify)</option>
+						</select>
+						<br />			
 						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="<?php echo $oasis_therapy_wound_lesion_color[2];?>">
 					</td>
 				</tr>
@@ -1621,13 +1852,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Consistency","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="<?php echo $oasis_therapy_wound_lesion_consistency[0];?>">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency" <?php if($oasis_therapy_wound_lesion_consistency[0] == 'choose_consistency' {echo 'selected';} ?>>Choose Consistency</option>
+						<option value="thin" <?php if($oasis_therapy_wound_lesion_consistency[0] == 'thin' {echo 'selected';} ?>>Thin</option>
+						<option value="thick" <?php if($oasis_therapy_wound_lesion_consistency[0] == 'thick' {echo 'selected';} ?>>Thick</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="<?php echo $oasis_therapy_wound_lesion_consistency[1];?>">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency" <?php if($oasis_therapy_wound_lesion_consistency[1] == 'choose_consistency' {echo 'selected';} ?>>Choose Consistency</option>
+						<option value="thin" <?php if($oasis_therapy_wound_lesion_consistency[1] == 'thin' {echo 'selected';} ?>>Thin</option>
+						<option value="thick" <?php if($oasis_therapy_wound_lesion_consistency[1] == 'thick' {echo 'selected';} ?>>Thick</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="<?php echo $oasis_therapy_wound_lesion_consistency[2];?>">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency" <?php if($oasis_therapy_wound_lesion_consistency[2] == 'choose_consistency' {echo 'selected';} ?>>Choose Consistency</option>
+						<option value="thin" <?php if($oasis_therapy_wound_lesion_consistency[2] == 'thin' {echo 'selected';} ?>>Thin</option>
+						<option value="thick" <?php if($oasis_therapy_wound_lesion_consistency[2] == 'thick' {echo 'selected';} ?>>Thick</option>
+						</select>
 					</td>
 				</tr>
 			</table>
