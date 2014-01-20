@@ -2082,8 +2082,8 @@ blank in that row.','e');?>
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Axillary"><?php xl(' Axillary ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Rectal"><?php xl(' Rectal ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Tympanic"><?php xl(' Tympanic ','e')?></label> 
-			<label><input type="radio" name="oasis_vital_sign_temperature" value="Temporal"><?php xl(' Temporal ','e')?></label> 
-			
+			<label><input type="radio" name="oasis_vital_sign_temperature" value="Temporal"><?php xl(' Temporal ','e')?></label><br /> 
+			<strong><?php xl(' Temperature Value: ','e')?></strong><input type="text" name="oasis_vital_sign_temperature_textvalue" value="">
 		</td>
 		<td>
 			<strong><?php xl("Pulse:","e");?></strong><br>
@@ -2096,14 +2096,15 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Radial"><?php xl(' Radial ','e')?></label> 
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Carotid"><?php xl(' Carotid ','e')?></label> 
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Apical"><?php xl(' Apical ','e')?></label> 
-			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Brachial"><?php xl(' Brachial ','e')?></label> 
+			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Brachial"><?php xl(' Brachial ','e')?></label><br />
+			<strong><?php xl(' Pulse Value: ','e')?></strong><input type="text" name="oasis_vital_sign_pulse_textvalue" value="">
 			<br><br>
 			
 			<strong><?php xl("Respiratory Rate:","e");?></strong>&nbsp;&nbsp;
 			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Normal"><?php xl(' Normal ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Cheynes"><?php xl(' Cheynes Stokes ','e')?></label> 
-			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Death"><?php xl(' Death rattle ','e')?></label> 
-			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Apnea"><?php xl(' Apnea /sec.','e')?></label> 
+			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Apnea"><?php xl(' Apnea /sec.','e')?></label><br />
+			<strong><?php xl(' Respiratory Value: ','e')?></strong><input type="text" name="oasis_vital_sign_respiratory_textvalue" value=""> 
 		</td>
 	</tr>
 	<tr>
@@ -6274,13 +6275,23 @@ blank in that row.','e');?>
 	
 	<td>
 	
-	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="RESPIRATORY / MEDICAL CASES"><?php xl('<strong>RESPIRATORY / MEDICAL CASES</strong>','e')?></label><br />
-	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="O2 at liters per minute"><?php xl('O2 at liters per minute','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="RESPIRATORY / MEDICAL CASES"><?php xl('<strong>RESPIRATORY</strong>','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="O2 at liters per minute"><?php xl('O2 at ','e')?></label><input type="text" name="oasis_professional_sn_parameters_textvalue" value=""><?php xl(' liters per minute ','e')?><br />
 	<label><input type="radio" name="oasis_professional_sn1" value="Continuous"><?php xl(' Continuous','e')?></label>
 	<label><input type="radio" name="oasis_professional_sn1" value="Intermittent"><?php xl(' Intermittent','e')?></label>
 	<label><input type="radio" name="oasis_professional_sn1" value="PRN"><?php xl(' PRN','e')?></label><br />
+	
+	<label><strong><?php xl(' State: ','e') ?></strong></label>
+	<select name="oasis_professional_sn1_dropdown">
+	<option value="none">Choose one</option>
+	<option value="N.C.">N.C.</option>
+	<option value="Simple Face Mask">Simple Face Mask</option>
+	<option value="Venturi Mask">Venturi Mask</option>
+	<option value="Non Rebreather Mask">Non Rebreather Mask</option>
+	</select><br /><br />
+	
 	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: Every Visit"><?php xl(' Pulse Oximetry: Every Visit','e')?></label>
-	<input type="text" name="oasis_professional_sn_every_visit" value=""><br />
+	<input type="text" name="oasis_professional_sn_every_visit" value=""><?php xl(' per MD order','e')?><br />
 	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: PRN Dyspnea"><?php xl(' Pulse Oximetry: PRN Dyspnea','e')?></label>
 	<br />
 	<textarea name="oasis_professional_sn_PRN_dyspnea" rows="3" cols="48"></textarea>
@@ -6312,6 +6323,7 @@ blank in that row.','e');?>
 	<tr>
 	<td>
 	<strong><?php xl('SN FREQUENCY/DURATION','e')?></strong><br />
+	<?php xl('Frequency/Duration: ','e')?><input type="text" name="oasis_professional_sn_frequency_and_duration_textbox" value=""><br />
 	<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="+ 2 PRN Visits For"><?php xl('+ 2 PRN Visits For','e')?></label><br />
 	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="IV Complications"><?php xl('IV Complications','e')?></label><br />
 	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Tube Feeding Complications"><?php xl('Tube Feeding Complications','e')?></label><br />

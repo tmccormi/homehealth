@@ -2282,7 +2282,7 @@ blank in that row.','e');?>
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Rectal" <?php if($obj{"oasis_vital_sign_temperature"}=="Rectal"){echo "checked";}?> ><?php xl(' Rectal ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Tympanic" <?php if($obj{"oasis_vital_sign_temperature"}=="Tympanic"){echo "checked";}?> ><?php xl(' Tympanic ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_temperature" value="Temporal" <?php if($obj{"oasis_vital_sign_temperature"}=="Temporal"){echo "checked";}?> ><?php xl(' Temporal ','e')?></label> 
-			
+			<strong><?php xl(' Temperature Value: ','e')?></strong><input type="text" name="oasis_vital_sign_temperature_textvalue" value="<?php echo $obj{"oasis_vital_sign_temperature_textvalue"}; ?>">
 		</td>
 		<td>
 			<strong><?php xl("Pulse:","e");?></strong><br>
@@ -2296,12 +2296,14 @@ blank in that row.','e');?>
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Carotid" <?php if(in_array("Carotid",$oasis_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Carotid ','e')?></label> 
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Apical" <?php if(in_array("Apical",$oasis_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Apical ','e')?></label> 
 			<label><input type="checkbox" name="oasis_vital_sign_pulse_type[]" value="Brachial" <?php if(in_array("Brachial",$oasis_vital_sign_pulse_type)) echo "checked"; ?> ><?php xl(' Brachial ','e')?></label> 
-			<br><br>			
+			<strong><?php xl(' Pulse Value: ','e')?></strong><input type="text" name="oasis_vital_sign_pulse_textvalue" value="<?php echo $obj{"oasis_vital_sign_pulse_textvalue"};?>">
+			<br><br>
+						
 			<strong><?php xl("Respiratory Rate:","e");?></strong>&nbsp;&nbsp;
 			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Normal" <?php if($obj{"oasis_vital_sign_respiratory_rate"}=="Normal"){echo "checked";}?> ><?php xl(' Normal ','e')?></label> 
 			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Cheynes" <?php if($obj{"oasis_vital_sign_respiratory_rate"}=="Cheynes"){echo "checked";}?> ><?php xl(' Cheynes Stokes ','e')?></label> 
-			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Death" <?php if($obj{"oasis_vital_sign_respiratory_rate"}=="Death"){echo "checked";}?> ><?php xl(' Death rattle ','e')?></label> 
-			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Apnea" <?php if($obj{"oasis_vital_sign_respiratory_rate"}=="Apnea"){echo "checked";}?> ><?php xl(' Apnea /sec.','e')?></label> 
+			<label><input type="radio" name="oasis_vital_sign_respiratory_rate" value="Apnea" <?php if($obj{"oasis_vital_sign_respiratory_rate"}=="Apnea"){echo "checked";}?> ><?php xl(' Apnea /sec.','e')?></label>
+			<strong><?php xl(' Respiratory Value: ','e')?></strong><input type="text" name="oasis_vital_sign_respiratory_textvalue" value="<?php echo $obj{"oasis_vital_sign_respiratory_textvalue"}; ?>"> 
 		</td>
 	</tr>
 	<tr>
@@ -6519,13 +6521,23 @@ blank in that row.','e');?>
 	
 	<td>
 	
-	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="RESPIRATORY / MEDICAL CASES" <?php if(in_array("RESPIRATORY / MEDICAL CASES",$oasis_professional_sn_parameters)) echo "checked"; ?> ><?php xl('<strong>RESPIRATORY / MEDICAL CASES</strong>','e')?></label><br />
-	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="O2 at liters per minute" <?php if(in_array("O2 at liters per minute",$oasis_professional_sn_parameters)) echo "checked"; ?> ><?php xl('O2 at liters per minute','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="RESPIRATORY / MEDICAL CASES" <?php if(in_array("RESPIRATORY / MEDICAL CASES",$oasis_professional_sn_parameters)) echo "checked"; ?> ><?php xl('<strong>RESPIRATORY</strong>','e')?></label><br />
+	<label><input type="checkbox" name="oasis_professional_sn_parameters[]" value="O2 at liters per minute" <?php if(in_array("O2 at liters per minute",$oasis_professional_sn_parameters)) echo "checked"; ?> ><?php xl('O2 at ','e')?></label><input type="text" name="oasis_professional_sn_parameters_textvalue" value="<?php echo $obj{"oasis_professional_sn_parameters_textvalue"};?>"><?php xl(' liters per minute ','e')?><br />
 	<label><input type="radio" name="oasis_professional_sn1" value="Continuous" <?php if($obj{"oasis_professional_sn1"}=="Continuous") echo "checked"; ?> ><?php xl(' Continuous','e')?></label>
 	<label><input type="radio" name="oasis_professional_sn1" value="Intermittent" <?php if($obj{"oasis_professional_sn1"}=="Intermittent") echo "checked"; ?> ><?php xl(' Intermittent','e')?></label>
 	<label><input type="radio" name="oasis_professional_sn1" value="PRN" <?php if($obj{"oasis_professional_sn1"}=="PRN") echo "checked"; ?> ><?php xl(' PRN','e')?></label><br />
+	
+	<label><strong><?php xl(' State: ','e') ?></strong></label>
+	<select name="oasis_professional_sn1_dropdown">
+	<option value="none" <?php if($obj{"oasis_professional_sn1_dropdown"} == "none") {echo "selected";}?>>Choose one</option>
+	<option value="N.C." <?php if($obj{"oasis_professional_sn1_dropdown"} == "N.C.") {echo "selected";}?>>N.C.</option>
+	<option value="Simple Face Mask" <?php if($obj{"oasis_professional_sn1_dropdown"} == "Simple Face Mask") {echo "selected";}?>>Simple Face Mask</option>
+	<option value="Venturi Mask" <?php if($obj{"oasis_professional_sn1_dropdown"} == "Venturi Mask") {echo "selected";}?>>Venturi Mask</option>
+	<option value="Non Rebreather Mask" <?php if($obj{"oasis_professional_sn1_dropdown"} == "Non Rebreather Mask") {echo "selected";}?>>Non Rebreather Mask</option>
+	</select><br /><br />
+	
 	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: Every Visit" <?php if($obj{"oasis_professional_sn2"}=="Pulse Oximetry: Every Visit") echo "checked"; ?> ><?php xl(' Pulse Oximetry: Every Visit','e')?></label>
-	<input type="text" name="oasis_professional_sn_every_visit"  value="<?php echo stripslashes($obj{"oasis_professional_sn_every_visit"});?>" ><br />
+	<input type="text" name="oasis_professional_sn_every_visit"  value="<?php echo stripslashes($obj{"oasis_professional_sn_every_visit"});?>" ><?php xl(' per MD order','e')?><br />
 	<label><input type="radio" name="oasis_professional_sn2" value="Pulse Oximetry: PRN Dyspnea" <?php if($obj{"oasis_professional_sn2"}=="Pulse Oximetry: PRN Dyspnea") echo "checked"; ?> ><?php xl(' Pulse Oximetry: PRN Dyspnea','e')?></label>
 
 
@@ -6567,6 +6579,7 @@ blank in that row.','e');?>
 	<tr>
 	<td>
 	<strong><?php xl('SN FREQUENCY/DURATION','e')?></strong><br />
+	<?php xl('Frequency/Duration: ','e')?><input type="text" name="oasis_professional_sn_frequency_and_duration_textbox" value="<?php echo stripslashes($obj{"oasis_professional_sn_frequency_and_duration_textbox"});?>"><br />
 	<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="+ 2 PRN Visits For" <?php if(in_array("+ 2 PRN Visits For",$oasis_professional_sn_frequency)) echo "checked"; ?> ><?php xl('+ 2 PRN Visits For','e')?></label><br />
 	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="IV Complications" <?php if(in_array("IV Complications",$oasis_professional_sn_frequency)) echo "checked"; ?> ><?php xl('IV Complications','e')?></label><br />
 	&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="oasis_professional_sn_frequency[]" value="Tube Feeding Complications" <?php if(in_array("Tube Feeding Complications",$oasis_professional_sn_frequency)) echo "checked"; ?> ><?php xl('Tube Feeding Complications','e')?></label><br />

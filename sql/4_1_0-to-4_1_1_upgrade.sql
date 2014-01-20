@@ -8221,4 +8221,29 @@ ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_vital_sign_pulse_textinpu
 
 #IfMissingColumn forms_oasis_discharge oasis_therapy_vital_sign_respiratory_textinput
 ALTER TABLE `forms_oasis_discharge` ADD `oasis_therapy_vital_sign_respiratory_textinput` varchar(100) NOT NULL default '';
+
+-- Adding 5 new columns to forms_oasis_nursing_soc
+#IfMissingColumn forms_oasis_nursing_soc oasis_vital_sign_temperature_textvalue
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_vital_sign_temperature_textvalue varchar(50);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_vital_sign_pulse_textvalue
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_vital_sign_pulse_textvalue varchar(50);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_vital_sign_respiratory_textvalue
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_vital_sign_respiratory_textvalue varchar(50);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_professional_sn_parameters_textvalue
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_professional_sn_parameters_textvalue varchar(50);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_professional_sn1_dropdown
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_professional_sn1_dropdown varchar(75);
+#EndIf
+
+#IfMissingColumn forms_oasis_nursing_soc oasis_professional_sn_frequency_and_duration_textbox
+ALTER TABLE forms_oasis_nursing_soc ADD oasis_professional_sn_frequency_and_duration_textbox varchar(40);
+
 #EndIf
