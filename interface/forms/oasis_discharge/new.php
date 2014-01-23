@@ -442,25 +442,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<center><strong><?php xl('SYSTEM REVIEW','e');?></strong></center>
 			<?php xl('Weight:','e');?>
 			<input type="text" name="oasis_system_review_weight" value="">
-			<label><input type="checkbox" name="oasis_system_review_weight_detail" value="reported"><?php xl(' reported ','e')?></label>
-			<label><input type="checkbox" name="oasis_system_review_weight_detail" value="actual"><?php xl(' actual ','e')?></label>
+			<label><input type="radio" name="oasis_system_review_weight_detail" value="reported"><?php xl(' reported ','e')?></label>
+			<label><input type="radio" name="oasis_system_review_weight_detail" value="actual"><?php xl(' actual ','e')?></label>
 			
 			<br>
 			<?php xl('Blood sugars (range):','e');?>
 			<input type="text" name="oasis_system_review_blood_sugar" value="">
 			
 			<br>
-			<?php xl('Bowel:','e');?>
-			<input type="text" name="oasis_system_review_bowel" value="">
+			<?php xl('Abdomen:','e');?>
 			<label><input type="checkbox" name="oasis_system_review_bowel_detail" value="WNL"><?php xl(' WNL ','e')?></label>
 			<label><input type="checkbox" name="oasis_system_review_bowel_detail" value="Other"><?php xl(' Other ','e')?></label>
 			<input type="text" name="oasis_system_review_bowel_other" value="">
-			<?php xl('Bowel sounds','e');?>
+			
+			<br />
+			<?php xl('Bowel sounds:','e');?>
 			<input type="text" name="oasis_system_review_bowel_sounds" value="">
 			
 			<br>
 			<?php xl('Bladder:','e');?>
-			<input type="text" name="oasis_system_review_bladder" value="">
 			<label><input type="checkbox" name="oasis_system_review_bladder_detail" value="WNL"><?php xl(' WNL ','e')?></label>
 			<label><input type="checkbox" name="oasis_system_review_bladder_detail" value="Other"><?php xl(' Other ','e')?></label>
 			<input type="text" name="oasis_system_review_bladder_other" value="">
@@ -478,7 +478,7 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<?php xl(' mL ','e')?>
 			
 			<br>
-			<label><input type="checkbox" name="oasis_system_review[]" value="Suprapubic"><?php xl(' Suprapubic ','e')?></label>
+			<label><input type="checkbox" name="oasis_system_review[]" value="Suprapubic"><?php xl(' Suprapubic Tube Change ','e')?></label>
 			
 			<br>
 			<?php xl('Tolerated procedure well: ','e')?>
@@ -585,8 +585,8 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 <br />
 <strong>
 <?php xl('Nutritional Requirements (diet)','e')?></strong><br />
-<label><input type="checkbox" name="oasis_nutrition_requirements" value="Increase fluids amt"  id="oasis_nutrition_requirements" /> <?php xl('Increase fluids amt','e')?></label> &nbsp;
-<label><input type="checkbox" name="oasis_nutrition_requirements" value="Restrict fluids amt"  id="oasis_nutrition_requirements" /> <?php xl('Restrict fluids amt','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_requirements" value="Increase fluids amt"  id="oasis_nutrition_requirements" /> <?php xl('Increase fluids amt','e')?></label> &nbsp;
+<label><input type="radio" name="oasis_nutrition_requirements" value="Restrict fluids amt"  id="oasis_nutrition_requirements" /> <?php xl('Restrict fluids amt','e')?></label> &nbsp;
 
 <br />
 <strong><?php xl('Appetite','e')?></strong>
@@ -806,12 +806,22 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Carotid"><?php xl(' Carotid ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Apical"><?php xl(' Apical ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_pulse_type[]" value="Brachial"><?php xl(' Brachial ','e')?></label> 
+			
+			<br />
+			
+			<?php xl("Pulse Data: ","e");?><input type="text" name="oasis_therapy_vital_sign_pulse_textinput" value="">
+			
 			<br><br>
 			
 			<strong><?php xl("Respiratory Rate:","e");?></strong>&nbsp;&nbsp;
 			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Normal"><?php xl(' Normal ','e')?></label> 
 			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Cheynes"><?php xl(' Cheynes ','e')?></label> 
-			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Stokes"><?php xl(' Stokes ','e')?></label> 
+			<label><input type="radio" name="oasis_therapy_vital_sign_respiratory_rate" value="Stokes"><?php xl(' Stokes ','e')?></label>
+			
+			<br />
+			
+			<?php xl("Respiratory Data: ","e");?><input type="text" name="oasis_therapy_vital_sign_respiratory_textinput" value="">
+			 
 		</td>
 	</tr>
 </table>
@@ -1299,28 +1309,82 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 					<td>
 						<?php xl("Type","e");?>
 					</td>
-					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="">
+					<td>					
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type">Choose Type</option>
+						<option value="diabetic_ulcer">Diabetic Ulcer</option>				
+						<option value="pressure_ulcer">Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer">Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer">Arterial Ulcer</option>
+						<option value="traumatic_wound">Traumatic Wound</option>
+						<option value="burn_wound">Burn Wound</option>
+						<option value="surgical_wound">Surgical Wound</option>
+						<option value="superficial_skin_tear">Superficial Skin Tear</option>
+						<option value="other">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="" >
 					</td>
-					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="">
+
+					<td>					
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type">Choose Type</option>
+						<option value="diabetic_ulcer">Diabetic Ulcer</option>				
+						<option value="pressure_ulcer">Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer">Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer">Arterial Ulcer</option>
+						<option value="traumatic_wound">Traumatic Wound</option>
+						<option value="burn_wound">Burn Wound</option>
+						<option value="surgical_wound">Surgical Wound</option>
+						<option value="superficial_skin_tear">Superficial Skin Tear</option>
+						<option value="other">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="" >
 					</td>
-					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_type[]" value="">
+
+					<td>					
+						<select name="oasis_therapy_wound_lesion_type[]">
+						<option value="choose_type">Choose Type</option>
+						<option value="diabetic_ulcer">Diabetic Ulcer</option>				
+						<option value="pressure_ulcer">Pressure Ulcer</option>
+						<option value="venous_stasis_ulcer">Venous Stasis Ulcer</option>
+						<option value="arterial_ulcer">Arterial Ulcer</option>
+						<option value="traumatic_wound">Traumatic Wound</option>
+						<option value="burn_wound">Burn Wound</option>
+						<option value="surgical_wound">Surgical Wound</option>
+						<option value="superficial_skin_tear">Superficial Skin Tear</option>
+						<option value="other">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" id="oasis_therapy_wound_lesion_type" name="oasis_therapy_wound_lesion_type[]" value="" >
 					</td>
 				</tr>
+
 				<tr>
 					<td>
 						<?php xl("Status","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status">Choose Status</option>
+						<option value="open">Open</option>
+						<option value="closed">Closed</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status">Choose Status</option>
+						<option value="open">Open</option>
+						<option value="closed">Closed</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_status[]" value="">
+						<select name="oasis_therapy_wound_lesion_status[]">
+						<option value="choose_status">Choose Status</option>
+						<option value="open">Open</option>
+						<option value="closed">Closed</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1357,13 +1421,34 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Stage (pressure ulcers only)","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage">Choose Stage</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="utd">UTD</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage">Choose Stage</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="utd">UTD</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stage[]" value="">
+						<select name="oasis_therapy_wound_lesion_stage[]">
+						<option value="choose_stage">Choose Stage</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="utd">UTD</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1371,13 +1456,28 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Tunneling/Undermining","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling">Choose Tunneling/Undermining</option>
+						<option value="none">None</option>
+						<option value="tunneling">Tunneling</option>
+						<option value="undermining">Undermining</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling">Choose Tunneling/Undermining</option>
+						<option value="none">None</option>
+						<option value="tunneling">Tunneling</option>
+						<option value="undermining">Undermining</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_tunneling[]" value="">
+						<select name="oasis_therapy_wound_lesion_tunneling[]">
+						<option value="choose_tunneling">Choose Tunneling/Undermining</option>
+						<option value="none">None</option>
+						<option value="tunneling">Tunneling</option>
+						<option value="undermining">Undermining</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1385,13 +1485,31 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Odor","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor">Choose Odor</option>
+						<option value="none">None</option>
+						<option value="slight">Slight</option>
+						<option value="moderate">Moderate</option>
+						<option value="strong">Strong</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor">Choose Odor</option>
+						<option value="none">None</option>
+						<option value="slight">Slight</option>
+						<option value="moderate">Moderate</option>
+						<option value="strong">Strong</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_odor[]" value="">
+						<select name="oasis_therapy_wound_lesion_order[]">
+						<option value="choose_odor">Choose Odor</option>
+						<option value="none">None</option>
+						<option value="slight">Slight</option>
+						<option value="moderate">Moderate</option>
+						<option value="strong">Strong</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1399,13 +1517,34 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Surrounding Skin","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin">Choose Surrounding Skin</option>
+						<option value="normal">Normal</option>
+						<option value="red">Red</option>
+						<option value="black">Black</option>
+						<option value="pale">Pale</option>
+						<option value="purple">Purple</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin">Choose Surrounding Skin</option>
+						<option value="normal">Normal</option>
+						<option value="red">Red</option>
+						<option value="black">Black</option>
+						<option value="pale">Pale</option>
+						<option value="purple">Purple</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_skin[]" value="">
+						<select name="oasis_therapy_wound_lesion_skin[]">
+						<option value="choose_surrounding_skin">Choose Surrounding Skin</option>
+						<option value="normal">Normal</option>
+						<option value="red">Red</option>
+						<option value="black">Black</option>
+						<option value="pale">Pale</option>
+						<option value="purple">Purple</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1413,13 +1552,37 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Edema","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema">Choose Edema</option>
+						<option value="no">No</option>
+						<option value="+1">+1</option>
+						<option value="+2">+2</option>
+						<option value="+3">+3</option>
+						<option value="+4">+4</option>
+						<option value="+5">+5</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema">Choose Edema</option>
+						<option value="no">No</option>
+						<option value="+1">+1</option>
+						<option value="+2">+2</option>
+						<option value="+3">+3</option>
+						<option value="+4">+4</option>
+						<option value="+5">+5</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_edema[]" value="">
+						<select name="oasis_therapy_wound_lesion_edema[]">
+						<option value="choose_edema">Choose Edema</option>
+						<option value="no">No</option>
+						<option value="+1">+1</option>
+						<option value="+2">+2</option>
+						<option value="+3">+3</option>
+						<option value="+4">+4</option>
+						<option value="+5">+5</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1427,13 +1590,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Stoma","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma">Choose Stoma</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma">Choose Stoma</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_stoma[]" value="">
+						<select name="oasis_therapy_wound_lesion_stoma[]">
+						<option value="choose_stoma">Choose Stoma</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1441,13 +1616,31 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Appearance of the Wound Bed","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance">Choose Appearance</option>
+						<option value="beefy_red">Beefy Red</option>
+						<option value="yellow">Yellow</option>
+						<option value="pink">Pink</option>
+						<option value="necrotic">Necrotic</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance">Choose Appearance</option>
+						<option value="beefy_red">Beefy Red</option>
+						<option value="yellow">Yellow</option>
+						<option value="pink">Pink</option>
+						<option value="necrotic">Necrotic</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_appearance[]" value="">
+						<select name="oasis_therapy_wound_lesion_appearance[]">
+						<option value="choose_appearance">Choose Appearance</option>
+						<option value="beefy_red">Beefy Red</option>
+						<option value="yellow">Yellow</option>
+						<option value="pink">Pink</option>
+						<option value="necrotic">Necrotic</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1455,13 +1648,28 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Drainage Amount","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage">Choose Drainage</option>
+						<option value="small">Small</option>
+						<option value="moderate">Moderate</option>
+						<option value="large">Large</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage">Choose Drainage</option>
+						<option value="small">Small</option>
+						<option value="moderate">Moderate</option>
+						<option value="large">Large</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_drainage[]" value="">
+						<select name="oasis_therapy_wound_lesion_drainage[]">
+						<option value="choose_drainage">Choose Drainage</option>
+						<option value="small">Small</option>
+						<option value="moderate">Moderate</option>
+						<option value="large">Large</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
@@ -1469,13 +1677,40 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Color","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="">
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color">Choose Color</option>
+						<option value="clear">Clear</option>
+						<option value="tan">Tan</option>
+						<option value="serosanguinous">Serosanguinous</option>
+						<option value="bloody">Bloody</option>
+						<option value="other_color">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="" >
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="">
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color">Choose Color</option>
+						<option value="clear">Clear</option>
+						<option value="tan">Tan</option>
+						<option value="serosanguinous">Serosanguinous</option>
+						<option value="bloody">Bloody</option>
+						<option value="other_color">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="" >
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="">
+						<select name="oasis_therapy_wound_lesion_color[]">
+						<option value="choose_color">Choose Color</option>
+						<option value="clear">Clear</option>
+						<option value="tan">Tan</option>
+						<option value="serosanguinous">Serosanguinous</option>
+						<option value="bloody">Bloody</option>
+						<option value="other_color">Other (Specify)</option>
+						</select>
+						<br />
+						<input type="text" name="oasis_therapy_wound_lesion_color[]" value="" >
 					</td>
 				</tr>
 				<tr>
@@ -1483,13 +1718,25 @@ Calendar.setup({inputField:"oasis_patient_visit_date", ifFormat:"%Y-%m-%d", butt
 						<?php xl("Consistency","e");?>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency">Choose Consistency</option>
+						<option value="thin">Thin</option>
+						<option value="thick">Thick</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency">Choose Consistency</option>
+						<option value="thin">Thin</option>
+						<option value="thick">Thick</option>
+						</select>
 					</td>
 					<td>
-						<input type="text" name="oasis_therapy_wound_lesion_consistency[]" value="">
+						<select name="oasis_therapy_wound_lesion_consistency[]">
+						<option value="choose_consistency">Choose Consistency</option>
+						<option value="thin">Thin</option>
+						<option value="thick">Thick</option>
+						</select>
 					</td>
 				</tr>
 			</table>
