@@ -8247,3 +8247,7 @@ ALTER TABLE forms_oasis_nursing_soc ADD oasis_professional_sn1_dropdown varchar(
 ALTER TABLE forms_oasis_nursing_soc ADD oasis_professional_sn_frequency_and_duration_textbox varchar(40);
 
 #EndIf
+
+-- Support multi provider select
+ALTER TABLE patient_data MODIFY COLUMN providerID TEXT;
+

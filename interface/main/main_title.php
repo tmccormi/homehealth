@@ -87,7 +87,7 @@ $res = sqlQuery("select * from users where username='".$_SESSION{"authUser"}."'"
 <?php if ($GLOBALS['concurrent_layout']) { ?>
 	<table cellspacing="0" cellpadding="1" style="margin:0px 0px 0px 3px;"><tr>
 	<td rowspan="2">
-						<?php echo "<img src='$web_root/sites/" . $_SESSION['site_id'] . "/images/medasko_logo.png'>";?>
+						<?php echo "<img src='$web_root/sites/" . $_SESSION['site_id'] . "/images/login_logo.png'>";?>
 					</td>
 	<td style="vertical-align:text-bottom;">
 	<a href='' class="css_button_small" style="margin:0px;vertical-align:top;" id='new0' onClick=" return top.window.parent.left_nav.loadFrame2('new0','RTop','new/new.php')">
